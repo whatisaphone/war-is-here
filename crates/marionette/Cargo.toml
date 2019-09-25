@@ -7,4 +7,20 @@ edition = "2018"
 [features]
 strict = []
 
+[lib]
+crate-type = ["cdylib"]
+
 [dependencies]
+detour = "0.7.1"
+parking_lot = { version = "0.9.0", features = ["nightly"] }
+
+darksiders1-sys = { path = "../darksiders1-sys" }
+pdbindgen-runtime = { path = "../../../pdbindgen/crates/pdbindgen-runtime" }
+
+[dependencies.winapi]
+version = "0.3.8"
+features = [
+    "consoleapi",
+    "libloaderapi",
+    "minwindef",
+]

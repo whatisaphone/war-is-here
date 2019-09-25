@@ -1,0 +1,3 @@
+https://github.com/nefarius/Injector
+
+https://github.com/nefarius/Injector/releases/download/v1.1.6/Injector_x86_amd64.zip

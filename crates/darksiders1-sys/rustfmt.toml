@@ -1,0 +1,3 @@
+# https://github.com/rust-lang/rustfmt/blob/master/Configurations.md
+
+error_on_line_overflow = false
