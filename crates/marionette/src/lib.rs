@@ -15,6 +15,8 @@ use winapi::{
     },
 };
 
+#[macro_use]
+mod macros;
 mod hooks;
 mod utils;
 

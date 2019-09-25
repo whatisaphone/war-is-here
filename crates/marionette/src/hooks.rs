@@ -62,15 +62,7 @@ extern "thiscall" fn hook_gfc__Darksiders__onPostUpdateInterval(
 fn open_load_map_menu() {
     unsafe {
         let window_helper = *target::gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
-
-        let mut wndclass = mem::MaybeUninit::uninit();
-        target::gfc__HString__HString_3(
-            wndclass.as_mut_ptr(),
-            b"ui_core/loadmapmenu\0".as_ptr() as *const _,
-            false,
-        );
-        let wndclass = wndclass.assume_init();
-
+        let wndclass = hstring!("ui_core/loadmapmenu");
         target::gfc__WindowHelper__pushWindow(window_helper, &wndclass);
     }
 }
