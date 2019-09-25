@@ -1,16 +1,228 @@
 #![allow(non_snake_case, unused_imports)]
 
-use super::types::*;
-use super::types10::*;
-use super::types11::*;
-use super::types12::*;
-use super::types2::*;
-use super::types4::*;
-use super::types5::*;
-use super::types6::*;
-use super::types7::*;
-use super::types8::*;
-use super::types9::*;
+use super::{
+    types::*,
+    types10::*,
+    types11::*,
+    types12::*,
+    types2::*,
+    types4::*,
+    types5::*,
+    types6::*,
+    types7::*,
+    types8::*,
+    types9::*,
+};
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Interpolator_gfc__Quaternion_gfc__LinearInterpolator_gfc__Quaternion___ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__LightNode__VisNode_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__String_gfc__HLSLShaderBuilder__ScriptFragment_std__less_gfc__String_____Iterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__String_gfc__HLSLShaderBuilder__ScriptFragment_std__less_gfc__String_____ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__String_gfc__HLSLShaderBuilder__ScriptFragment_std__less_gfc__String_____KeyIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__FullScreenEffectDescQueueObject_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__SpringMesh__Bone_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__HStringManager___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___Iterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__UncompressedMesh__UncompressedSubMesh_0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__UncompressedMesh__UncompressedSubMesh_0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_unsigned___int64_unsigned___int64_std__less_unsigned___int64_____Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_unsigned___int64_unsigned___int64_std__less_unsigned___int64_____ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_unsigned___int64_unsigned___int64_std__less_unsigned___int64_____KeyIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_______Iterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_______ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_______KeyIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Shader__std__less_gfc__HString_____Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Shader__std__less_gfc__HString_____KeyIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__TerrainNodeInfo__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__pair_gfc__String_gfc__String_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___value_compare
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__MeshResource___0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__MeshResource___0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__ResourcePackageRead__FileInfo_0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__ResourcePackageRead__FileInfo_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__ResourcePackageRead__ExtInfo_0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__ResourcePackageRead__ExtInfo_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__PackFileInfo_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__UncompressedMeshPack__UCMEntry_0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__UncompressedMeshPack__UCMEntry_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
 
 #[repr(C)]
 pub struct gfc__CreateStatic_gfc__MeshFormat___MaxAlign__Test {
@@ -2409,207 +2621,5 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__CameraCinematicGroup__0_gfc__CAllocator
 
 #[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__AnimationTrackInstance__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__SceneCell___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__RigidBody___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__PhysicsEffects__FXSoundManager__SoundInfo_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__PhysicsEffects__FXSoundManager__SoundInfo_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__LayerDesc__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__WorldPacer__Channel__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ModuleEventLink_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__RagdollMapper___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__TerrainChunkLayer__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ClothVisual___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ClothVisual___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString_____Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString_____ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString_____KeyIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__CinematicGroup__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__SceneLight___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpPhysicsContext {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkVisualDebugger {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__PhysicsMaterial__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__FullScreenEffect__0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__FullScreenEffect__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_hkpConstraintInstance___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_hkpConstraintInstance___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__SceneOccluder___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__PhysicsManager__KeyframedBodyInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__PhantomBody___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__VisScriptModule__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_unsigned___int64_gfc__AutoRef_gfc__FloraLayer__std__less_unsigned___int64_____Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_unsigned___int64_gfc__AutoRef_gfc__FloraLayer__std__less_unsigned___int64_____ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_unsigned___int64_gfc__AutoRef_gfc__FloraLayer__std__less_unsigned___int64_____KeyIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__FloraPatternItem_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__FloraPatternItem_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__RumbleManager__EffectInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ScenePortal___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpDynamicsContactMgr__MustEndWithSemiColon {
     _opaque: [u8; 0],
 }

@@ -11,5 +11,14 @@ pub unsafe fn bind(args: &BindArgs) {
         };
     }
 
+    bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
+    bind!(text, gfc__HString__HString);
+    bind!(text, gfc__HString__HString_2);
+    bind!(text, gfc__HString__HString_3);
+    bind!(text, gfc__HString__HString_4);
+    bind!(text, gfc__HString__HString_5);
+    bind!(text, gfc__HString__HString_6);
     bind!(text, gfc__Darksiders__onPostUpdateInterval);
+    bind!(text, gfc__LoadMapMenu__LoadMapMenu);
+    bind!(text, gfc__WindowHelper__pushWindow);
 }

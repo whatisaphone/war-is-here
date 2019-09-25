@@ -1,16 +1,387 @@
 #![allow(non_snake_case, unused_imports)]
 
-use super::types::*;
-use super::types10::*;
-use super::types11::*;
-use super::types12::*;
-use super::types3::*;
-use super::types4::*;
-use super::types5::*;
-use super::types6::*;
-use super::types7::*;
-use super::types8::*;
-use super::types9::*;
+use super::{
+    types::*,
+    types10::*,
+    types11::*,
+    types12::*,
+    types3::*,
+    types4::*,
+    types5::*,
+    types6::*,
+    types7::*,
+    types8::*,
+    types9::*,
+};
+
+#[repr(C)]
+pub struct gfc__LoadMapMenu____vftable {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field setAnchorOffset")]
+#[repr(C)]
+pub struct gfc__LoadMapMenu____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub setEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setVisible: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getVisible: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setClipChildren: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getClipChildren: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setText: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *const gfc__WString),
+    pub ___3: *const (),
+    pub ___4: *const (),
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getPreferredSize: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub ___5: *const (),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getAbsolutePosition: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    )
+        -> gfc__TVector2_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub getRotation: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> f32,
+    pub ___6: *const (),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub setLayoutManager: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: gfc__AutoRef_gfc__UILayoutManager_,
+    ),
+    pub getLayoutManager: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__AutoRef_gfc__UILayoutManager_,
+    pub setLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub getLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> f32,
+    pub addAction:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc___UIAction_),
+    pub removeAction:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc___UIAction_),
+    pub clearAllActions: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub updateActions: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub invalidateLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub doAnchorLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub doLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
+    pub setAnchorOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: compile_error!("unimplemented feature: type kind 0x1001"),
+    ),
+    pub getAnchorOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub draw: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *mut gfc__UIRenderer,
+        _: *mut gfc__TRect_long_,
+    ),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub pick: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: gfc__TVector2_int_gfc__FloatMath_,
+        _: bool,
+    ) -> *mut gfc___UIControl,
+    pub getControlByID:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: i32) -> *mut gfc___UIControl,
+    pub getControlByName: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+    ) -> *mut gfc___UIControl,
+    pub setControlText: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: *const gfc__WString,
+    ) -> bool,
+    pub setControlTextA: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: *const gfc__String,
+    ) -> bool,
+    pub setControlVisible: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: bool,
+    ) -> bool,
+    pub setControlEnabled: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: bool,
+    ) -> bool,
+    pub processMouseEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__MouseEvent),
+    pub processKeyboardEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__KeyboardEvent),
+    pub processFocusEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__FocusEvent),
+    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub onReInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub onDeInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub onVisibilityLost: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub setDialogResults:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc__Value_),
+    pub getLastDialogResult: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *mut gfc__AutoRef_gfc__Value_,
+    ) -> bool,
+    pub unregisterToolTipEvent: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub getInputListener:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> gfc__AutoRef_gfc___UIControl_,
+    pub initControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub postInitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub deinitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub reinitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub doInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub drawInternal:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__UIRenderer),
+    pub getAnchorPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *mut gfc___UIControl,
+        _: u8,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getGlobalScale: unsafe extern "thiscall" fn(
+        this: *const gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getParentSize: unsafe extern "thiscall" fn(
+        this: *const gfc___UIControl,
+        _: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__VertexDeclaration_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Query_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct keen__SteamworksSystem {
+    pub m_appId: u32,
+}
+
+#[repr(C)]
+pub struct IUnknownVtbl {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field QueryInterface")]
+#[repr(C)]
+pub struct IUnknownVtbl {
+    #[cfg(pdb_issue = "unimplemented feature: primitive kind 0x8")]
+    pub QueryInterface: *mut unsafe extern "stdcall" fn(
+        _: *mut IUnknown,
+        _: *const _GUID,
+        _: *mut *mut (),
+    ) -> compile_error!(
+        "unimplemented feature: primitive kind 0x8"
+    ),
+    pub AddRef: *mut unsafe extern "stdcall" fn(_: *mut IUnknown) -> u32,
+    pub Release: *mut unsafe extern "stdcall" fn(_: *mut IUnknown) -> u32,
+}
+
+#[repr(C)]
+pub struct IUnknown {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+#[repr(C)]
+pub struct threadmbcinfostruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct __lc_time_data {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__ResourceFindDebugDataResult {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__InternalList_keen__ResourceRequest___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__ResourceContextDescriptor_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__BlobResourceHandleType {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct _TP_POOL {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct _TP_CLEANUP_GROUP {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct _ACTIVATION_CONTEXT {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct _TP_CALLBACK_INSTANCE {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct ISteamGameServer {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct ISteamGameServerStats {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct _IMAGELIST {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct _DSA {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__LocalPlayerIdStructureType {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct _DPA {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__Task___ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__WorkerThreadContext_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice__D3D11_SIGNATURE_PARAMETER_DESC_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__RenderEffectSlot_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__TextureHandleType {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__Slice_keen__RenderCommand___ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator_
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__ModelHandleType {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__MaterialHandleType {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__profiler__ZoneVisit {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_float_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__Matrix43_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_unsigned_char_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__AnimationJoint_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__SoundSystem__VoiceSound_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__SoundSystem__TemporarySoundDefinition_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct keen__Slice_keen__SoundSystem__ParameterAutomation_ {
+    _opaque: [u8; 0],
+}
 
 #[repr(C)]
 pub struct keen__Slice_keen__SoundSystem__SoundTriggerMemory_ {
@@ -2528,215 +2899,5 @@ pub struct gfc__Vector_gfc__Node3D___0_gfc__CAllocator___ConstIterator {
 
 #[repr(C)]
 pub struct gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Interpolator_gfc__Quaternion_gfc__LinearInterpolator_gfc__Quaternion___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__LightNode__VisNode_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__String_gfc__HLSLShaderBuilder__ScriptFragment_std__less_gfc__String_____Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__String_gfc__HLSLShaderBuilder__ScriptFragment_std__less_gfc__String_____ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__String_gfc__HLSLShaderBuilder__ScriptFragment_std__less_gfc__String_____KeyIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__FullScreenEffectDescQueueObject_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__SpringMesh__Bone_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__HStringManager___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__UncompressedMesh__UncompressedSubMesh_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__UncompressedMesh__UncompressedSubMesh_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_unsigned___int64_unsigned___int64_std__less_unsigned___int64_____Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_unsigned___int64_unsigned___int64_std__less_unsigned___int64_____ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_unsigned___int64_unsigned___int64_std__less_unsigned___int64_____KeyIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_______Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_______ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_______KeyIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Shader__std__less_gfc__HString_____Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Shader__std__less_gfc__HString_____KeyIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__TerrainNodeInfo__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_gfc__String_gfc__String_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___value_compare
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__MeshResource___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__MeshResource___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourcePackageRead__FileInfo_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourcePackageRead__FileInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourcePackageRead__ExtInfo_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourcePackageRead__ExtInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__PackFileInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__UncompressedMeshPack__UCMEntry_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__UncompressedMeshPack__UCMEntry_0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }

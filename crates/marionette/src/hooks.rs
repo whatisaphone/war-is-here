@@ -4,6 +4,7 @@ use crate::utils::detour::TypedDetour;
 use darksiders1_sys::target;
 use parking_lot::Mutex;
 use pdbindgen_runtime::BindArgs;
+use std::mem;
 
 static GOD_LOCK: Mutex<Option<GodObject>> = Mutex::new(None);
 
@@ -47,12 +48,29 @@ extern "thiscall" fn hook_gfc__Darksiders__onPostUpdateInterval(
     let guard = GOD_LOCK.lock();
     let god = guard.as_ref().unwrap();
 
-    let n = unsafe {
-        static mut N: i32 = 0;
-        N += 1;
-        N
-    };
-    println!("onPostUpdateInterval {}", n);
+    unsafe {
+        static mut OPENED: bool = false;
+        if !OPENED {
+            OPENED = true;
+            open_load_map_menu();
+        }
+    }
 
     unsafe { (god.gfc__Darksiders__onPostUpdateInterval)(this, deltat) }
+}
+
+fn open_load_map_menu() {
+    unsafe {
+        let window_helper = *target::gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+
+        let mut wndclass = mem::MaybeUninit::uninit();
+        target::gfc__HString__HString_3(
+            wndclass.as_mut_ptr(),
+            b"ui_core/loadmapmenu\0".as_ptr() as *const _,
+            false,
+        );
+        let wndclass = wndclass.assume_init();
+
+        target::gfc__WindowHelper__pushWindow(window_helper, &wndclass);
+    }
 }

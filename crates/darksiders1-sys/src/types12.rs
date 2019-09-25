@@ -1,16 +1,214 @@
 #![allow(non_snake_case, unused_imports)]
 
-use super::types::*;
-use super::types10::*;
-use super::types11::*;
-use super::types2::*;
-use super::types3::*;
-use super::types4::*;
-use super::types5::*;
-use super::types6::*;
-use super::types7::*;
-use super::types8::*;
-use super::types9::*;
+use super::{
+    types::*,
+    types10::*,
+    types11::*,
+    types2::*,
+    types3::*,
+    types4::*,
+    types5::*,
+    types6::*,
+    types7::*,
+    types8::*,
+    types9::*,
+};
+
+#[repr(C)]
+pub struct hkpGroupCollisionFilter__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpPoweredChainMapper__LinkInfo___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpConstraintChainInstance___hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpConstraintChainInstance___hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpPoweredChainMapper__LinkInfo_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpPoweredChainMapper__LinkInfo_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpConstraintChainInstance_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpPoweredChainMapper__Target___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpPoweredChainMapper__Target_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpPoweredChainMapper__Target_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__LinkInfo__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__LinkInfo__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__Target__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__Target__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__ChainEndpoints__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpPoweredChainMapper__Config__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMountedBallGun__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMountedBallGun__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkPointerMap_hkpConstraintInstance___int_hkContainerHeapAllocator___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkPointerMap_hkpConstraintInstance___int_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkPointerMap_hkpConstraintInstance___int_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray__anonymous_namespace___hkMapperTargetInfo_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray__anonymous_namespace___hkMapperTargetInfo_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpPoweredChainMapper__ChainEndpoints_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpPoweredChainMapper__ChainEndpoints_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase__anonymous_namespace___hkMapperTargetInfo___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpPoweredChainMapper__ChainEndpoints___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpCharacterProxyCinfo__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpCharacterProxyCinfo__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpSerializedDisplayMarker_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSerializedDisplayMarkerList__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSerializedDisplayMarkerList__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpSerializedDisplayMarker___hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpSerializedDisplayMarker___hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_triInfo_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkGeometryUtils__Node_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_weldVerticesVirtualNs__VertexRef_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
 
 #[repr(C)]
 pub struct hkArray_weldVerticesVirtualNs__VertexRef_hkContainerDebugAllocator_ {

@@ -1,20 +1,22 @@
 #![allow(non_camel_case_types, non_upper_case_globals)]
 
 use super::map;
-pub use super::symbols::*;
-pub use super::types::*;
-pub use super::types10::*;
-pub use super::types11::*;
-pub use super::types12::*;
-pub use super::types2::*;
-pub use super::types3::*;
-pub use super::types4::*;
-pub use super::types5::*;
-pub use super::types6::*;
-pub use super::types7::*;
-pub use super::types8::*;
-pub use super::types9::*;
-use std::mem;
+pub use super::{
+    symbols::*,
+    types::*,
+    types10::*,
+    types11::*,
+    types12::*,
+    types2::*,
+    types3::*,
+    types4::*,
+    types5::*,
+    types6::*,
+    types7::*,
+    types8::*,
+    types9::*,
+};
+use std::{mem, ptr};
 
 fn transmute_hack() {
     panic!("need to call `bind` first");
@@ -52,5 +54,14 @@ macro_rules! symbols {
 }
 
 symbols! {
+    pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+    pub fn gfc__HString__HString;
+    pub fn gfc__HString__HString_2;
+    pub fn gfc__HString__HString_3;
+    pub fn gfc__HString__HString_4;
+    pub fn gfc__HString__HString_5;
+    pub fn gfc__HString__HString_6;
     pub fn gfc__Darksiders__onPostUpdateInterval;
+    pub fn gfc__LoadMapMenu__LoadMapMenu;
+    pub fn gfc__WindowHelper__pushWindow;
 }

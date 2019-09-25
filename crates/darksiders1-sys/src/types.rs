@@ -1,16 +1,18 @@
 #![allow(non_snake_case, unused_imports)]
 
-use super::types10::*;
-use super::types11::*;
-use super::types12::*;
-use super::types2::*;
-use super::types3::*;
-use super::types4::*;
-use super::types5::*;
-use super::types6::*;
-use super::types7::*;
-use super::types8::*;
-use super::types9::*;
+use super::{
+    types10::*,
+    types11::*,
+    types12::*,
+    types2::*,
+    types3::*,
+    types4::*,
+    types5::*,
+    types6::*,
+    types7::*,
+    types8::*,
+    types9::*,
+};
 
 #[repr(C)]
 pub struct unit4__StatUpdateData {
@@ -884,6 +886,13 @@ pub struct gfc__TVector3_float_gfc__FloatMath_ {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__String_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__String,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__TVector4_float_gfc__FloatMath_ {
     pub x: f32,
     pub y: f32,
@@ -935,6 +944,26 @@ pub struct gfc__ThreadSafeBool {
 pub struct gfc__ThreadSafeBool {
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
     pub mValue: compile_error!("unimplemented feature: type kind 0x1001"),
+}
+
+#[repr(C)]
+pub struct gfc__WString {
+    pub mStringData: *mut gfc__WString__StringData,
+}
+
+#[repr(C)]
+pub struct gfc__WString__StringData {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field mRefCount")]
+#[repr(C)]
+pub struct gfc__WString__StringData {
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
+    pub mRefCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mCapacity: u16,
+    pub mCurrentSize: u16,
+    pub mData: [u16; 1],
 }
 
 #[repr(C)]
@@ -2001,6 +2030,14 @@ pub struct gfc__AutoRef_gfc__EventHandler_ {
 }
 
 #[repr(C)]
+pub struct gfc__TRect_float_ {
+    pub left: f32,
+    pub top: f32,
+    pub right: f32,
+    pub bottom: f32,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__Object_,
     pub mSize: i32,
@@ -2193,6 +2230,15 @@ pub struct gfc__Vector_gfc__UIRenderer__Params_0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__Parameter_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__TVector2_int_gfc__FloatMath_ {
+    pub x: i32,
+    pub y: i32,
+    pub u: i32,
+    pub v: i32,
+    pub array: [i32; 2],
 }
 
 #[repr(C)]
@@ -2875,6 +2921,14 @@ pub struct gfc__Viewport {
     pub Bottom: i32,
     pub MinZ: f32,
     pub MaxZ: f32,
+}
+
+#[repr(C)]
+pub struct gfc__TRect_long_ {
+    pub left: i32,
+    pub top: i32,
+    pub right: i32,
+    pub bottom: i32,
 }
 
 #[repr(C)]
@@ -4363,6 +4417,11 @@ pub struct gfc__Darksiders____vftable {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent___ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__Camera3D_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -4437,6 +4496,29 @@ pub struct gfc__WorldManager__InitParams {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent___ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc___UIVisual_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent____0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent___,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__TUIEventBroadcaster_gfc__KeyboardEvent_ {
+    pub mDelegates:
+        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent____0_gfc__CAllocator_,
+}
+
+#[repr(C)]
 pub struct gfc__RegionLoadInfo {
     pub RegionID: i32,
     pub LayerID: i32,
@@ -4453,8 +4535,79 @@ pub struct gfc__AutoRef_gfc__PackageMarker_ {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc___UIAction_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__InputDevice_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__KeyboardEvent {
+    pub mEventID: i32,
+    pub mContext: i32,
+    pub mSource: *mut gfc___UIControl,
+    pub mKeyCode: i32,
+    pub mChar: i8,
+    pub mShiftPressed: bool,
+    pub mCtrlPressed: bool,
+    pub mAltPressed: bool,
+    pub mStateChange: bool,
+}
+
+impl gfc__KeyboardEvent {
+    pub fn as_gfc___UIEvent_ptr(&self) -> *const gfc___UIEvent {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc___UIEvent_mut_ptr(&mut self) -> *mut gfc___UIEvent {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Hierarchical_gfc___UIControl_ {
+    pub __vfptr: *const gfc__Hierarchical_gfc___UIControl_____vftable,
+    pub mParent: *mut gfc___UIControl,
+    pub mHead: gfc__AutoRef_gfc___UIControl_,
+    pub mTail: gfc__AutoRef_gfc___UIControl_,
+    pub mNext: gfc__AutoRef_gfc___UIControl_,
+    pub mPrev: gfc__AutoRef_gfc___UIControl_,
+}
+
+#[repr(C)]
+pub struct gfc__Hierarchical_gfc___UIControl_____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hierarchical_gfc___UIControl_,
+        _: u32,
+    ) -> *mut (),
+    pub addFront: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hierarchical_gfc___UIControl_,
+        _: *mut gfc___UIControl,
+    ),
+    pub addBack: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hierarchical_gfc___UIControl_,
+        _: *mut gfc___UIControl,
+    ),
+    pub add: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hierarchical_gfc___UIControl_,
+        _: *mut gfc___UIControl,
+    ),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
+    pub added: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hierarchical_gfc___UIControl_,
+        _: *mut gfc___UIControl,
+    ),
+    pub removed: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hierarchical_gfc___UIControl_,
+        _: *mut gfc___UIControl,
+    ),
+    pub invalidateHierarchy:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
 }
 
 #[repr(C)]
@@ -4463,8 +4616,26 @@ pub struct gfc__AutoRef_gfc__Player_ {
 }
 
 #[repr(C)]
+pub struct gfc__TUIEventBroadcaster_gfc__MouseEvent_ {
+    pub mDelegates:
+        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent____0_gfc__CAllocator_,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__Achievements_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent___ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent____0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent___,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
 }
 
 #[repr(C)]
@@ -4473,8 +4644,54 @@ pub struct gfc__AutoRef_gfc__World_ {
 }
 
 #[repr(C)]
+pub struct gfc__FocusEvent {
+    pub mEventID: i32,
+    pub mContext: i32,
+    pub mSource: *mut gfc___UIControl,
+}
+
+impl gfc__FocusEvent {
+    pub fn as_gfc___UIEvent_ptr(&self) -> *const gfc___UIEvent {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc___UIEvent_mut_ptr(&mut self) -> *mut gfc___UIEvent {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__MediaManager_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent___ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__MouseEvent {
+    pub mEventID: i32,
+    pub mContext: i32,
+    pub mSource: *mut gfc___UIControl,
+    pub mLocation: gfc__TVector2_int_gfc__FloatMath_,
+    pub mButton: u8,
+    pub mClickCount: u8,
+    pub mScrollDelta: i32,
+    pub mShiftPressed: bool,
+    pub mCtrlPressed: bool,
+    pub mAltPressed: bool,
+}
+
+impl gfc__MouseEvent {
+    pub fn as_gfc___UIEvent_ptr(&self) -> *const gfc___UIEvent {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc___UIEvent_mut_ptr(&mut self) -> *mut gfc___UIEvent {
+        self as *mut _ as _
+    }
 }
 
 #[repr(C)]
@@ -4482,6 +4699,62 @@ pub struct gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_ {
     pub mData: *mut *mut gfc__VisScriptModule,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Helper {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field ReferenceCount")]
+#[repr(C)]
+pub struct gfc__Helper {
+    pub __vfptr: *const gfc__Helper____vftable,
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
+    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mIsIterating: bool,
+    pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    pub mQueuedListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+    pub mQueuedSystemListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+}
+
+impl gfc__Helper {
+    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Helper____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub init: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+}
+
+#[repr(C)]
+pub struct gfc__Helper__QueuedListenerInfo {
+    pub obj: gfc__AutoRef_gfc__Object_,
+    pub shouldAdd: bool,
 }
 
 #[repr(C)]
@@ -4626,7 +4899,271 @@ pub struct gfc__OblivionGame____vftable {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent____0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent___,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent____0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent___,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc___UIAction_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__RichPresenceManager_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc___UIControl {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field ReferenceCount")]
+#[repr(C)]
+pub struct gfc___UIControl {
+    pub __vfptr: *const gfc___UIControl____vftable,
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
+    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub __vfptr_2: *const gfc___UIControl____vftable,
+    pub mParent: *mut gfc___UIControl,
+    pub mHead: gfc__AutoRef_gfc___UIControl_,
+    pub mTail: gfc__AutoRef_gfc___UIControl_,
+    pub mNext: gfc__AutoRef_gfc___UIControl_,
+    pub mPrev: gfc__AutoRef_gfc___UIControl_,
+    pub mID: i32,
+    pub mName: gfc__HString,
+    pub mOpacity: f32,
+    pub mContext: i32,
+    pub mWindowSize: i32,
+    pub mVisual: gfc__AutoRef_gfc___UIVisual_,
+    pub mClipMask: gfc__HString,
+    pub mIgnoreHideUI: bool,
+    pub mAnchorPoint: u8,
+    pub mAnchorRelativePoint: u8,
+    pub mAnchorRelativeCtrl: gfc__HString,
+    pub mAnchorRelSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorRelOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub OnEvent: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnAction: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnMouse: gfc__TUIEventBroadcaster_gfc__MouseEvent_,
+    pub OnKeyboard: gfc__TUIEventBroadcaster_gfc__KeyboardEvent_,
+    pub OnFocus: gfc__TUIEventBroadcaster_gfc__FocusEvent_,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mLastVisibilityState: bool,
+    pub mPackageID: i32,
+    pub mIndents: gfc__TRect_float_,
+    pub mPosition: gfc__TVector2_float_gfc__FloatMath_,
+    pub mSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub mRotation: f32,
+    pub mScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mLayoutManager: gfc__AutoRef_gfc__UILayoutManager_,
+    pub mLayoutHint: f32,
+    pub mCurrentActions: gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_,
+    pub mClipMaterial: gfc__AutoRef_gfc__Material_,
+    pub mOnInitCalledAlready: bool,
+    pub mFirstDraw: bool,
+    pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
+}
+
+impl gfc___UIControl {
+    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
+        self as *mut _ as _
+    }
+
+    pub fn as_gfc__Hierarchical_gfc___UIControl__ptr(
+        &self,
+    ) -> *const gfc__Hierarchical_gfc___UIControl_ {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Hierarchical_gfc___UIControl__mut_ptr(
+        &mut self,
+    ) -> *mut gfc__Hierarchical_gfc___UIControl_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc___UIControl____vftable {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field setAnchorOffset")]
+#[repr(C)]
+pub struct gfc___UIControl____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub setEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setVisible: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getVisible: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setClipChildren: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getClipChildren: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
+    pub getRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
+    pub setText: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *const gfc__WString),
+    pub ___3: *const (),
+    pub ___4: *const (),
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getPreferredSize: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub ___5: *const (),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getAbsolutePosition: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    )
+        -> gfc__TVector2_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub getRotation: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> f32,
+    pub ___6: *const (),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub setLayoutManager: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: gfc__AutoRef_gfc__UILayoutManager_,
+    ),
+    pub getLayoutManager: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__AutoRef_gfc__UILayoutManager_,
+    pub setLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub getLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> f32,
+    pub addAction:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc___UIAction_),
+    pub removeAction:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc___UIAction_),
+    pub clearAllActions: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub updateActions: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub invalidateLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub doAnchorLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub doLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
+    pub setAnchorOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: compile_error!("unimplemented feature: type kind 0x1001"),
+    ),
+    pub getAnchorOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub draw: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *mut gfc__UIRenderer,
+        _: *mut gfc__TRect_long_,
+    ),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
+    pub pick: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: gfc__TVector2_int_gfc__FloatMath_,
+        _: bool,
+    ) -> *mut gfc___UIControl,
+    pub getControlByID:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: i32) -> *mut gfc___UIControl,
+    pub getControlByName: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+    ) -> *mut gfc___UIControl,
+    pub setControlText: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: *const gfc__WString,
+    ) -> bool,
+    pub setControlTextA: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: *const gfc__String,
+    ) -> bool,
+    pub setControlVisible: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: bool,
+    ) -> bool,
+    pub setControlEnabled: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *const gfc__HString,
+        _: bool,
+    ) -> bool,
+    pub processMouseEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__MouseEvent),
+    pub processKeyboardEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__KeyboardEvent),
+    pub processFocusEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__FocusEvent),
+    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub onReInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub onDeInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub onVisibilityLost: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub setDialogResults:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc__Value_),
+    pub getLastDialogResult: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *mut gfc__AutoRef_gfc__Value_,
+    ) -> bool,
+    pub unregisterToolTipEvent: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub getInputListener:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> gfc__AutoRef_gfc___UIControl_,
+    pub initControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub postInitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub deinitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub reinitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub doInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
+    pub drawInternal:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__UIRenderer),
+    pub getAnchorPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc___UIControl,
+        _: *mut gfc___UIControl,
+        _: u8,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getGlobalScale: unsafe extern "thiscall" fn(
+        this: *const gfc___UIControl,
+    ) -> gfc__TVector2_float_gfc__FloatMath_,
+    pub getParentSize: unsafe extern "thiscall" fn(
+        this: *const gfc___UIControl,
+        _: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__UILayoutManager_ {
     pub p: *mut gfc__IRefObject,
 }
 
@@ -4641,8 +5178,34 @@ pub struct gfc__AutoRef_gfc__Monster_ {
 }
 
 #[repr(C)]
+pub struct gfc__TUIEventBroadcaster_gfc__FocusEvent_ {
+    pub mDelegates:
+        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent____0_gfc__CAllocator_,
+}
+
+#[repr(C)]
+pub struct gfc___UIEvent {
+    pub mEventID: i32,
+    pub mContext: i32,
+    pub mSource: *mut gfc___UIControl,
+}
+
+#[repr(C)]
+pub struct gfc__TUIEventBroadcaster_gfc___UIEvent_ {
+    pub mDelegates:
+        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent____0_gfc__CAllocator_,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__LiquidRegionDesc__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__LiquidRegionDesc_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__Helper__QueuedListenerInfo,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
 }
@@ -7551,212 +8114,140 @@ pub struct gfc__MoveInput {
 }
 
 #[repr(C)]
+pub struct gfc__WindowHelper {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field ReferenceCount")]
+#[repr(C)]
+pub struct gfc__WindowHelper {
+    pub __vfptr: *const gfc__WindowHelper____vftable,
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
+    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mIsIterating: bool,
+    pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    pub mQueuedListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+    pub mQueuedSystemListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+    pub mWindowStack: gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_,
+    pub mOverlayWindow: gfc__AutoRef_gfc___UIControl_,
+    pub mEvenOverlayederWindow: gfc__AutoRef_gfc___UIControl_,
+    pub mWindow: gfc__AutoRef_gfc___UIControl_,
+    pub mRootWindow: gfc__AutoRef_gfc___UIControl_,
+}
+
+impl gfc__WindowHelper {
+    pub fn as_gfc__Helper_ptr(&self) -> *const gfc__Helper {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Helper_mut_ptr(&mut self) -> *mut gfc__Helper {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__WindowHelper____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub init: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc___UIControl_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__LiquidRegionDesc_ {
     pub p: *mut gfc__IRefObject,
 }
 
 #[repr(C)]
-pub struct gfc__AutoRef_gfc__VertexDeclaration_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Query_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct keen__SteamworksSystem {
-    pub m_appId: u32,
-}
-
-#[repr(C)]
-pub struct IUnknownVtbl {
+pub struct gfc__LoadMapMenu {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field QueryInterface")]
+#[cfg(pdb_issue = "error in field ReferenceCount")]
 #[repr(C)]
-pub struct IUnknownVtbl {
-    #[cfg(pdb_issue = "unimplemented feature: primitive kind 0x8")]
-    pub QueryInterface: *mut unsafe extern "stdcall" fn(
-        _: *mut IUnknown,
-        _: *const _GUID,
-        _: *mut *mut (),
-    ) -> compile_error!(
-        "unimplemented feature: primitive kind 0x8"
-    ),
-    pub AddRef: *mut unsafe extern "stdcall" fn(_: *mut IUnknown) -> u32,
-    pub Release: *mut unsafe extern "stdcall" fn(_: *mut IUnknown) -> u32,
+pub struct gfc__LoadMapMenu {
+    pub __vfptr: *const gfc__LoadMapMenu____vftable,
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
+    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub __vfptr_2: *const gfc___UIControl____vftable,
+    pub mParent: *mut gfc___UIControl,
+    pub mHead: gfc__AutoRef_gfc___UIControl_,
+    pub mTail: gfc__AutoRef_gfc___UIControl_,
+    pub mNext: gfc__AutoRef_gfc___UIControl_,
+    pub mPrev: gfc__AutoRef_gfc___UIControl_,
+    pub mID: i32,
+    pub mName: gfc__HString,
+    pub mOpacity: f32,
+    pub mContext: i32,
+    pub mWindowSize: i32,
+    pub mVisual: gfc__AutoRef_gfc___UIVisual_,
+    pub mClipMask: gfc__HString,
+    pub mIgnoreHideUI: bool,
+    pub mAnchorPoint: u8,
+    pub mAnchorRelativePoint: u8,
+    pub mAnchorRelativeCtrl: gfc__HString,
+    pub mAnchorRelSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorRelOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub OnEvent: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnAction: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnMouse: gfc__TUIEventBroadcaster_gfc__MouseEvent_,
+    pub OnKeyboard: gfc__TUIEventBroadcaster_gfc__KeyboardEvent_,
+    pub OnFocus: gfc__TUIEventBroadcaster_gfc__FocusEvent_,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mLastVisibilityState: bool,
+    pub mPackageID: i32,
+    pub mIndents: gfc__TRect_float_,
+    pub mPosition: gfc__TVector2_float_gfc__FloatMath_,
+    pub mSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub mRotation: f32,
+    pub mScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mLayoutManager: gfc__AutoRef_gfc__UILayoutManager_,
+    pub mLayoutHint: f32,
+    pub mCurrentActions: gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_,
+    pub mClipMaterial: gfc__AutoRef_gfc__Material_,
+    pub mOnInitCalledAlready: bool,
+    pub mFirstDraw: bool,
+    pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
+    pub mListItems: gfc__Vector_gfc__String_0_gfc__CAllocator_,
+    pub mMaps: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mSelectedMapType: i32,
+    pub mSelectedMapIdx: i32,
+    #[cfg(pdb_issue = "error in gfc__String")]
+    pub mLastMapName: gfc__String,
+    #[cfg(pdb_issue = "error in gfc__String")]
+    pub mLastMapRegion: gfc__String,
+    pub mHasLastMap: bool,
 }
 
-#[repr(C)]
-pub struct IUnknown {
-    pub lpVtbl: *mut IUnknownVtbl,
-}
+impl gfc__LoadMapMenu {
+    pub fn as_gfc___UIControl_ptr(&self) -> *const gfc___UIControl {
+        self as *const _ as _
+    }
 
-#[repr(C)]
-pub struct threadmbcinfostruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct __lc_time_data {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__ResourceFindDebugDataResult {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__InternalList_keen__ResourceRequest___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__ResourceContextDescriptor_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__BlobResourceHandleType {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct _TP_POOL {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct _TP_CLEANUP_GROUP {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct _ACTIVATION_CONTEXT {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct _TP_CALLBACK_INSTANCE {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct ISteamGameServer {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct ISteamGameServerStats {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct _IMAGELIST {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct _DSA {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__LocalPlayerIdStructureType {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct _DPA {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__Task___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__WorkerThreadContext_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice__D3D11_SIGNATURE_PARAMETER_DESC_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__RenderEffectSlot_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__TextureHandleType {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__Slice_keen__RenderCommand___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__ModelHandleType {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__MaterialHandleType {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__profiler__ZoneVisit {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_float_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__Matrix43_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_unsigned_char_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__AnimationJoint_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__SoundSystem__VoiceSound_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__SoundSystem__TemporarySoundDefinition_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct keen__Slice_keen__SoundSystem__ParameterAutomation_ {
-    _opaque: [u8; 0],
+    pub fn as_gfc___UIControl_mut_ptr(&mut self) -> *mut gfc___UIControl {
+        self as *mut _ as _
+    }
 }

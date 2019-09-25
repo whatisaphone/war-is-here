@@ -1,16 +1,233 @@
 #![allow(non_snake_case, unused_imports)]
 
-use super::types::*;
-use super::types10::*;
-use super::types11::*;
-use super::types12::*;
-use super::types2::*;
-use super::types3::*;
-use super::types4::*;
-use super::types5::*;
-use super::types6::*;
-use super::types8::*;
-use super::types9::*;
+use super::{
+    types::*,
+    types10::*,
+    types11::*,
+    types12::*,
+    types2::*,
+    types3::*,
+    types4::*,
+    types5::*,
+    types6::*,
+    types8::*,
+    types9::*,
+};
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__TempestCloakFissure___0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__PlayerGhostHookGizmo___0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__QueryResult___0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_MountAttackPicker_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__PlatformHelper___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__Object3D___0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__CharacterDoInteractiveDesc___0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__VoidwalkerDetectRegion__ContainedPortal_0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__pair_int_gfc__HString_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tmap_traits_int_gfc__HString_std__less_int__std__allocator_std__pair_int_const__gfc__HString____0___value_compare
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_int_gfc__HString_std__less_int__std__allocator_std__pair_int_const__gfc__HString____0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_int_gfc__HString_std__less_int__std__allocator_std__pair_int_const__gfc__HString____0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_int_gfc__HString_std__less_int__std__allocator_std__pair_int_const__gfc__HString____0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_int_gfc__HString_std__less_int__std__allocator_std__pair_int_const__gfc__HString____0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int__std__allocator_std__pair_int_const__gfc__Vector_int_0_gfc__CAllocator______0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_int_gfc__HString_std__less_int__std__allocator_std__pair_int_const__gfc__HString____0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__SoundHelper___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__SystemHelper___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__KeenSaveGameManager___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__WindowHelper___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_int_gfc__HString_std__less_int_____Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_int_gfc__HString_std__less_int_____KeyIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__DSSaveGameManager___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__GenericInputDevice__0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__GenericInputDevice__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__pair_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator___ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tmap_traits_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator______0___value_compare
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator______0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator______0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator______0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator______0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator______0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString_____ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__HString_gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator__std__less_gfc__HString_____KeyIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_LanguageMapping_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__CameraShakeController__CameraShakePoint_0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tmap_traits_unsigned___int64_gfc__AutoRef_gfc__KGVertexShader__std__less_unsigned___int64__std__allocator_std__pair_unsigned___int64_const__gfc__AutoRef_gfc__KGVertexShader______0___value_compare
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_unsigned___int64_gfc__AutoRef_gfc__KGVertexShader__std__less_unsigned___int64__std__allocator_std__pair_unsigned___int64_const__gfc__AutoRef_gfc__KGVertexShader______0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_unsigned___int64_gfc__AutoRef_gfc__KGVertexShader__std__less_unsigned___int64__std__allocator_std__pair_unsigned___int64_const__gfc__AutoRef_gfc__KGVertexShader______0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__garray_base_GTexture__ChangeHandler___std__garray_GTexture__ChangeHandler_______iterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__garray_base_GTexture__ChangeHandler___std__garray_GTexture__ChangeHandler_______const_iterator
+{
+    _opaque: [u8; 0],
+}
 
 #[repr(C)]
 pub struct std__pair_unsigned___int64_gfc__AutoRef_gfc__KGVertexShader___ {
@@ -2379,226 +2596,5 @@ pub struct hkSortedTreeBase__MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbExistWrapper {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___LocatePointWrapper {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___OverlapExistWrapper {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkgpAbstractMesh_hkgpIndexedMeshDefinitions__Edge_hkgpIndexedMeshDefinitions__Vertex_hkgpIndexedMeshDefinitions__Triangle_hkContainerHeapAllocator___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkgpAbstractMesh_hkgpIndexedMeshDefinitions__Edge_hkgpIndexedMeshDefinitions__Vertex_hkgpIndexedMeshDefinitions__Triangle_hkContainerHeapAllocator___AllEdgeIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkgpAbstractMeshDefinitions__List_hkgpIndexedMeshDefinitions__Vertex_hkgpAbstractMeshDefinitions__List_hkgpIndexedMeshDefinitions__Vertex_hkgpIndexedMeshDefinitions__VertexBase_hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Vertex_32_hkContainerHeapAllocator_____Item_hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Vertex_32_hkContainerHeapAllocator_____Item
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkgpAbstractMeshDefinitions__List_hkgpIndexedMeshDefinitions__Triangle_hkgpAbstractMeshDefinitions__List_hkgpIndexedMeshDefinitions__Vertex_hkgpIndexedMeshDefinitions__VertexBase_hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Vertex_32_hkContainerHeapAllocator_____Item_hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Triangle_32_hkContainerHeapAllocator_____Item
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkPointerMap_unsigned_long_hkgpIndexedMeshDefinitions__Vertex___hkContainerHeapAllocator___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkPointerMap_unsigned_long_hkgpIndexedMeshDefinitions__Vertex___hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkPointerMap_unsigned_long_hkgpIndexedMeshDefinitions__Vertex___hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkGeometryProcessing__HashTable_hkgpIndexedMesh__EdgeMatch_hkContainerHeapAllocator___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkGeometryProcessing__HashTable_hkgpIndexedMesh__EdgeMatch_hkContainerHeapAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpIndexedMesh__SetInfos_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpIndexedMesh__SetInfos_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpIndexedMesh__EdgeMatch_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpIndexedMesh__EdgeMatch_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkArray_hkgpIndexedMesh__EdgeMatch_hkContainerHeapAllocator__hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkArray_hkgpIndexedMesh__EdgeMatch_hkContainerHeapAllocator__hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpIndexedMesh__SetInfos___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkSimdFloat32___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkSortedTree_hkGeometryProcessingInternals__ClusterQueueNode_hkSortedTreeBase__CompareValues_int_16___Node_hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkSortedTree_hkGeometryProcessingInternals__ClusterQueueNode_hkSortedTreeBase__CompareValues_int_16___Node_hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkSortedTree_hkGeometryProcessingInternals__ClusterQueueNode_hkSortedTreeBase__CompareValues_int_16___Node___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkGeometryProcessingInternals__HashedEdgeValue_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkGeometryProcessingInternals__HashedEdgeValue_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkArray_hkGeometryProcessingInternals__HashedEdgeValue_hkContainerHeapAllocator__hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkArray_hkGeometryProcessingInternals__HashedEdgeValue_hkContainerHeapAllocator__hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkArray_hkgpIndexedMesh__EdgeMatch_hkContainerHeapAllocator_____MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkArray_hkGeometryProcessingInternals__HashedEdgeValue_hkContainerHeapAllocator_____MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkGeometryProcessingInternals__HashedEdgeValue___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkGeometryProcessing__PoolAllocator_hkgpMeshBase__Vertex_32_hkContainerHeapAllocator___Pool__MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkGeometryProcessing__PoolAllocator_hkgpMeshBase__Triangle_32_hkContainerHeapAllocator___Pool__MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Vertex_32_hkContainerHeapAllocator___Pool__MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Triangle_32_hkContainerHeapAllocator___Pool__MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpIndexedMesh__EdgeMatch___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdDynamicTree__Tree_hkcdDynamicTree__DynamicStoragePtr___SAHTask_hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdDynamicTree__Tree_hkcdDynamicTree__DynamicStoragePtr___SAHTask_hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdDynamicTree__Tree_hkcdDynamicTree__DynamicStoragePtr___SAHTask___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_unsigned_long_64_hkContainerHeapAllocator___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdDynamicTree__Tree_hkcdDynamicTree__DynamicStoragePtr___SAHBin_hkContainerTempAllocator_
-{
     _opaque: [u8; 0],
 }
