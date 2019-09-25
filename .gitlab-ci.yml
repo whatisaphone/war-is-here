@@ -14,15 +14,15 @@ fmt:
     - rustup component add clippy
   script: cargo clippy --manifest-path "$crate_dir"/Cargo.toml --all-targets --features strict
 
-check-bin:
+check-darksiders1-sys:
   extends: .check-crate
   variables:
-    crate_dir: crates/bin
+    crate_dir: crates/darksiders1-sys
 
-check-lib:
+check-marionette:
   extends: .check-crate
   variables:
-    crate_dir: crates/lib
+    crate_dir: crates/marionette
 
 test:
   image: rust
