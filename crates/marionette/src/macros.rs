@@ -1,3 +1,4 @@
+#[allow(unused_macros)]
 macro_rules! hstring {
     ($str:literal) => {{
         let string = concat!($str, "\0");

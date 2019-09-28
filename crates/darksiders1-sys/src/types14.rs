@@ -6,266 +6,20 @@ use super::{
     types11::*,
     types12::*,
     types13::*,
+    types15::*,
+    types16::*,
+    types17::*,
+    types18::*,
+    types19::*,
     types2::*,
     types3::*,
     types4::*,
     types5::*,
     types6::*,
     types7::*,
+    types8::*,
     types9::*,
 };
-
-#[repr(C)]
-pub struct gfc__Vector_hkpPhantom___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_hkpPhantom___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__CharacterProxy__Ignore_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HavokCharacterProxyNew__RigidBodyInteraction_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HavokCharacterProxyNew__RigidBodyInteraction_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_hkpRigidBody___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_hkpRigidBody___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tmap_traits_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int__std__allocator_std__pair_int_const__gfc__Vector_int_0_gfc__CAllocator______0___value_compare
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int__std__allocator_std__pair_int_const__gfc__Vector_int_0_gfc__CAllocator______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int__std__allocator_std__pair_int_const__gfc__Vector_int_0_gfc__CAllocator______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_int_gfc__Vector_int_0_gfc__CAllocator___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int__std__allocator_std__pair_int_const__gfc__Vector_int_0_gfc__CAllocator______0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int__std__allocator_std__pair_int_const__gfc__Vector_int_0_gfc__CAllocator______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int_____Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int_____ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_gfc__Vector_int_0_gfc__CAllocator__std__less_int_____KeyIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HudGearAssignedItem_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HudGearAssignedItem_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__InventoryHelper___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Conditional__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__GhostHookEffect__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HudWrathMenuAssignedItem_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HudWrathMenuAssignedItem_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__EquippableItem__0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__EquippableItem__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__KeyControl__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Portal__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__VisualDesc__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__AIBehaviorAction__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__InfoWindowManager___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__CharacterClass__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__CharacterClass______0_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__ActorDesc__0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__ActorDesc__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkDebugDisplayHandler_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpShapeRayCastJob_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpPairLinearCastJob_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpPairLinearCastJob_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpShapeRayCastJob___hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpShapeRayCastJob___hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpCollisionQueryJob__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkDebugDisplayProcess__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkProcessContext___hkContainerHeapAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkDisplayGeometry___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkLocalArray_hkpCollidable_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkSurfaceConstraintInfo_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkSurfaceConstraintInfo_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkDebugDisplayHandler___hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkDebugDisplayHandler___hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpWorldRayCastCommand__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkLocalArray_hkSurfaceConstraintInfo___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
 
 #[repr(C)]
 pub struct hkpPairLinearCastJob__MustEndWithSemiColon {
@@ -2591,5 +2345,258 @@ pub struct hkgpAbstractMesh_hkgpMeshBase__Edge_hkgpMeshBase__Vertex_hkgpMeshBase
 #[repr(C)]
 pub struct hkgpAbstractMesh_hkgpMeshBase__Edge_hkgpMeshBase__Vertex_hkgpMeshBase__Triangle_hkContainerHeapAllocator___VertexIterator
 {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpAbstractMesh_hkgpMeshBase__Edge_hkgpMeshBase__Vertex_hkgpMeshBase__Triangle_hkContainerHeapAllocator___AllEdgeIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpAbstractMeshDefinitions__List_hkgpMeshBase__Vertex_hkgpAbstractMeshDefinitions__List_hkgpMeshBase__Vertex_hkgpMeshBase__BaseVertex_hkGeometryProcessing__PoolAllocator_hkgpMeshBase__Vertex_32_hkContainerHeapAllocator_____Item_hkGeometryProcessing__PoolAllocator_hkgpMeshBase__Vertex_32_hkContainerHeapAllocator_____Item
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpAbstractMeshDefinitions__List_hkgpMeshBase__Triangle_hkgpAbstractMeshDefinitions__List_hkgpMeshBase__Vertex_hkgpMeshBase__BaseVertex_hkGeometryProcessing__PoolAllocator_hkgpMeshBase__Vertex_32_hkContainerHeapAllocator_____Item_hkGeometryProcessing__PoolAllocator_hkgpMeshBase__Triangle_32_hkContainerHeapAllocator_____Item
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__CollapseEdgePolicy__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__FanEdgeCollector__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__CollapseMetric__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__SimplifyConfig__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__SurfaceSamplingConfig__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__HoleFillingConfig__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__PointShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__LineShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__ExtrudeShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__TriangleShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__ExternShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__ConvexHullShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__Location__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpMeshBase__Triangle_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpMeshBase__Triangle___hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpMeshBase__Triangle___hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpMeshBase__Edge_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpMeshBase__Edge_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpMesh__Location__Region__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkgpMeshBase__Edge_16_hkContainerHeapAllocator___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpMeshBase__Edge___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkFourTransposedPointsf_2_hkContainerHeapAllocator___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkVector4f_6_hkContainerHeapAllocator___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMeshDefinitions__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMeshDefinitions__Vertex__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpAbstractMeshDefinitions__Vertex_hkgpIndexedMeshDefinitions__Vertex_hkgpIndexedMeshDefinitions__VertexBase___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpAbstractMeshDefinitions__List_hkgpIndexedMeshDefinitions__Vertex_hkgpIndexedMeshDefinitions__VertexBase_hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Vertex_32_hkContainerHeapAllocator_____Item__MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMeshDefinitions__Triangle__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpAbstractMeshDefinitions__Triangle_hkgpIndexedMeshDefinitions__Triangle_hkgpIndexedMeshDefinitions__BaseTriangle_hkgpIndexedMeshDefinitions__Vertex_____MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpAbstractMeshDefinitions__List_hkgpIndexedMeshDefinitions__Triangle_hkgpIndexedMeshDefinitions__BaseTriangle_hkGeometryProcessing__PoolAllocator_hkgpIndexedMeshDefinitions__Triangle_32_hkContainerHeapAllocator_____Item__MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMesh__EdgeMatch__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMesh__SetInfos__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMesh__EdgeBarrier__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMesh__IVertexRemoval__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMesh__ITriangleRemoval__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpIndexedMesh__IEdgeCollapse__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkAabbHalf__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkAabb16__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkAabb16__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdDynamicTree__CodecRawUlong__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdDynamicTree__CodecRawUlong__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdDynamicTree__CodecRaw_unsigned_long___DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdDynamicTree__CodecRaw_unsigned_long___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdDynamicTree__CodecRawUint__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdDynamicTree__CodecRawUint__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdDynamicTree__CodecRaw_unsigned_int___DefaultStruct {
     _opaque: [u8; 0],
 }

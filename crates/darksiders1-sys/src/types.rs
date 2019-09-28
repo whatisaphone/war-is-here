@@ -1,9 +1,10 @@
-#![allow(non_snake_case, unused_imports)]
+#![allow(non_camel_case_types, non_snake_case, unused_imports)]
 
 use super::{
     types10::*,
     types11::*,
     types12::*,
+    types13::*,
     types2::*,
     types3::*,
     types4::*,
@@ -188,12 +189,6 @@ pub struct ISteamUserStats {
 
 #[repr(C)]
 pub struct ISteamUserStats____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field FindOrCreateLeaderboard")]
-#[repr(C)]
-pub struct ISteamUserStats____vftable {
     pub RequestCurrentStats: unsafe extern "thiscall" fn(this: *mut ISteamUserStats) -> bool,
     pub __: *const (),
     pub ___2: *const (),
@@ -252,12 +247,11 @@ pub struct ISteamUserStats____vftable {
         _: *mut u32,
     ) -> bool,
     pub ResetAllStats: unsafe extern "thiscall" fn(this: *mut ISteamUserStats, _: bool) -> bool,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub FindOrCreateLeaderboard: unsafe extern "thiscall" fn(
         this: *mut ISteamUserStats,
         _: *const i8,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: ELeaderboardSortMethod,
+        _: ELeaderboardDisplayType,
     ) -> u64,
     pub FindLeaderboard:
         unsafe extern "thiscall" fn(this: *mut ISteamUserStats, _: *const i8) -> u64,
@@ -265,25 +259,14 @@ pub struct ISteamUserStats____vftable {
         unsafe extern "thiscall" fn(this: *mut ISteamUserStats, _: u64) -> *const i8,
     pub GetLeaderboardEntryCount:
         unsafe extern "thiscall" fn(this: *mut ISteamUserStats, _: u64) -> i32,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub GetLeaderboardSortMethod: unsafe extern "thiscall" fn(
-        this: *mut ISteamUserStats,
-        _: u64,
-    ) -> compile_error!(
-        "unimplemented feature: type kind 0x1507"
-    ),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub GetLeaderboardDisplayType: unsafe extern "thiscall" fn(
-        this: *mut ISteamUserStats,
-        _: u64,
-    ) -> compile_error!(
-        "unimplemented feature: type kind 0x1507"
-    ),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
+    pub GetLeaderboardSortMethod:
+        unsafe extern "thiscall" fn(this: *mut ISteamUserStats, _: u64) -> ELeaderboardSortMethod,
+    pub GetLeaderboardDisplayType:
+        unsafe extern "thiscall" fn(this: *mut ISteamUserStats, _: u64) -> ELeaderboardDisplayType,
     pub DownloadLeaderboardEntries: unsafe extern "thiscall" fn(
         this: *mut ISteamUserStats,
         _: u64,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: ELeaderboardDataRequest,
         _: i32,
         _: i32,
     ) -> u64,
@@ -301,11 +284,10 @@ pub struct ISteamUserStats____vftable {
         _: *mut i32,
         _: i32,
     ) -> bool,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub UploadLeaderboardScore: unsafe extern "thiscall" fn(
         this: *mut ISteamUserStats,
         _: u64,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: ELeaderboardUploadScoreMethod,
         _: i32,
         _: *const i32,
         _: i32,
@@ -347,20 +329,11 @@ pub struct keen__Array_unsigned_char_ {
 
 #[repr(C)]
 pub struct keen__SaveDataSystem {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field saveDataSystemWin32Type")]
-#[repr(C)]
-pub struct keen__SaveDataSystem {
     pub pAllocator: *mut keen__MemoryAllocator,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub saveDataSystemWin32Type: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub saveDataSystemWin32Type: keen__SaveData__SaveDataSystemType,
     pub pProvider: *mut keen__SaveData__SaveDataProviderWin32Interface,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub currentOperation: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub currentOperationStatus: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub currentOperation: keen__SaveData__CurrentOperation,
+    pub currentOperationStatus: keen__SaveData__OperationStatus,
     pub operationProfileIndex: u32,
     pub pOperationProfile: *const keen__SaveData__Profile,
     pub pOperationSaveDataInput: *const keen__SaveData__SaveData,
@@ -374,12 +347,12 @@ pub struct keen__SaveDataHandler {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field m_state")]
+#[cfg(pdb_issue = "error in field m_currentUserInteraction")]
 #[repr(C)]
 pub struct keen__SaveDataHandler {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub m_state: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub m_state: keen__SaveFlowState,
     pub m_activeClientIndex: u32,
+    #[cfg(pdb_issue = "error in keen__SaveDataInteractionData")]
     pub m_currentUserInteraction: keen__SaveDataInteractionData,
     pub m_pSaveDataSystem: *mut keen__SaveDataSystem,
     pub m_saveDataForIO: keen__SaveDataHandler__SaveGameData,
@@ -393,18 +366,11 @@ pub struct keen__SaveDataHandler {
 
 #[repr(C)]
 pub struct keen__SaveDataHandler__SaveGameClientData {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field state")]
-#[repr(C)]
-pub struct keen__SaveDataHandler__SaveGameClientData {
     pub currentSaveDatas: keen__SizedArray_keen__SaveData__SaveData_,
     pub saveData: keen__SaveDataHandler__SaveGameData,
     pub userAccountId: keen__UserAccountId,
     pub lastSavedDataId: u32,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub state: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub state: keen__SaveDataHandler__SaveGameClientState,
     pub isSaveEnabled: bool,
     pub isShutdownRequested: bool,
     pub isNewlyCreatedSaveGame: bool,
@@ -428,13 +394,12 @@ pub struct keen__SaveDataInteractionData {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field id")]
+#[cfg(pdb_issue = "error in field responseOptions")]
 #[repr(C)]
 pub struct keen__SaveDataInteractionData {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub id: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub responseOptions: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub id: kaiko__LocalGameSessionInteractionId,
+    #[cfg(pdb_issue = "unimplemented feature: enum layout 0x0")]
+    pub responseOptions: compile_error!("unimplemented feature: enum layout 0x0"),
     pub responseOptionCount: u32,
 }
 
@@ -443,12 +408,6 @@ pub struct keen__SaveData__SaveDataProviderWin32Interface {
     pub __vfptr: *const keen__SaveData__SaveDataProviderWin32Interface____vftable,
 }
 
-#[repr(C)]
-pub struct keen__SaveData__SaveDataProviderWin32Interface____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field getOperationResult")]
 #[repr(C)]
 pub struct keen__SaveData__SaveDataProviderWin32Interface____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(
@@ -549,12 +508,9 @@ pub struct keen__SaveData__SaveDataProviderWin32Interface____vftable {
     pub hasFinishedOperation: unsafe extern "thiscall" fn(
         this: *mut keen__SaveData__SaveDataProviderWin32Interface,
     ) -> bool,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub getOperationResult: unsafe extern "thiscall" fn(
         this: *mut keen__SaveData__SaveDataProviderWin32Interface,
-    ) -> compile_error!(
-        "unimplemented feature: type kind 0x1507"
-    ),
+    ) -> keen__SaveData__OperationResult,
     pub getSegmentCount: unsafe extern "thiscall" fn(
         this: *const keen__SaveData__SaveDataProviderWin32Interface,
         _: u32,
@@ -572,14 +528,7 @@ pub struct keen__SaveData__SaveDataSystemCreationProviderParameters {}
 
 #[repr(C)]
 pub struct keen__SaveData__SaveDataSystemCreationParameters {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field saveDataSystemType")]
-#[repr(C)]
-pub struct keen__SaveData__SaveDataSystemCreationParameters {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub saveDataSystemType: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub saveDataSystemType: keen__SaveData__SaveDataSystemType,
     pub maxProfileCount: u32,
     pub pSaveDataFormats: *const keen__SaveData__SaveDataFormat,
     pub saveDataFormatCount: u32,
@@ -624,6 +573,35 @@ pub struct keen__Array_keen__SaveDataHandler__SaveGameClientData_ {
 }
 
 #[repr(C)]
+pub struct _LIST_ENTRY {
+    pub Flink: *mut _LIST_ENTRY,
+    pub Blink: *mut _LIST_ENTRY,
+}
+
+#[repr(C)]
+pub struct _RTL_CRITICAL_SECTION {
+    pub DebugInfo: *mut _RTL_CRITICAL_SECTION_DEBUG,
+    pub LockCount: i32,
+    pub RecursionCount: i32,
+    pub OwningThread: *mut (),
+    pub LockSemaphore: *mut (),
+    pub SpinCount: u32,
+}
+
+#[repr(C)]
+pub struct _RTL_CRITICAL_SECTION_DEBUG {
+    pub Type: u16,
+    pub CreatorBackTraceIndex: u16,
+    pub CriticalSection: *mut _RTL_CRITICAL_SECTION,
+    pub ProcessLocksList: _LIST_ENTRY,
+    pub EntryCount: u32,
+    pub ContentionCount: u32,
+    pub Flags: u32,
+    pub CreatorBackTraceIndexHigh: u16,
+    pub SpareWORD: u16,
+}
+
+#[repr(C)]
 pub struct IDirectInput8A {
     pub lpVtbl: *mut IUnknownVtbl,
 }
@@ -651,8 +629,7 @@ pub struct keen__InputSystem {
     pub storedEvents: keen__SizedArray_keen__InputEvent_,
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub controllerInfos: compile_error!("unimplemented feature: class layout 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub autoCatchType: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub autoCatchType: keen__InputSystemControllerAutoCatchType,
     pub autoCatchPlayerId: *const keen__LocalPlayerIdStructureType,
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub mappedAxisButtonStates: compile_error!("unimplemented feature: class layout 0x0"),
@@ -661,16 +638,8 @@ pub struct keen__InputSystem {
 
 #[repr(C)]
 pub struct keen__ControllerInfo {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field controllerClass")]
-#[repr(C)]
-pub struct keen__ControllerInfo {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub controllerClass: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub r#type: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub controllerClass: keen__ControllerClass,
+    pub r#type: keen__ControllerType,
     pub features: u32,
     pub buttonCount: u32,
     pub axisCount: u32,
@@ -936,14 +905,7 @@ pub struct gfc__Event {
 
 #[repr(C)]
 pub struct gfc__ThreadSafeBool {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mValue")]
-#[repr(C)]
-pub struct gfc__ThreadSafeBool {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mValue: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mValue: bool,
 }
 
 #[repr(C)]
@@ -953,14 +915,7 @@ pub struct gfc__WString {
 
 #[repr(C)]
 pub struct gfc__WString__StringData {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mRefCount")]
-#[repr(C)]
-pub struct gfc__WString__StringData {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mRefCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mRefCount: i32,
     pub mCapacity: u16,
     pub mCurrentSize: u16,
     pub mData: [u16; 1],
@@ -988,6 +943,72 @@ pub struct gfc__Vector_int_0_gfc__CAllocator_ {
     pub mData: *mut i32,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Half {
+    pub value: u16,
+}
+
+#[repr(C)]
+pub struct gfc__SoundDesc {
+    pub __vfptr: *const gfc__SoundDesc____vftable,
+    pub ReferenceCount: i32,
+    pub mSounds: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mName: gfc__HString,
+    pub mGroup: gfc__HString,
+    pub mID: i32,
+    pub mPackageID: i32,
+    pub mFadeInTime: gfc__Half,
+    pub mFadeOutTime: gfc__Half,
+    pub mEventFadeTime: gfc__Half,
+    pub mDuration: gfc__Half,
+    pub mDelay: gfc__Half,
+    pub mVolume: gfc__Half,
+    pub mRandomVolume: gfc__Half,
+    pub mPitch: gfc__Half,
+    pub mRandomPitch: gfc__Half,
+    pub mMin: gfc__Half,
+    pub mMax: gfc__Half,
+    pub mIndex: i8,
+    pub mChance: u8,
+    pub mPriority: u8,
+    pub mRandomBits: u32,
+    pub mFlags: gfc__TFlags_unsigned_short_,
+}
+
+impl gfc__SoundDesc {
+    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__SoundDesc____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__TFlags_unsigned_short_ {
+    pub flags: u16,
 }
 
 #[repr(C)]
@@ -1079,15 +1100,8 @@ pub struct gfc__AutoRef_gfc__Object_ {
 
 #[repr(C)]
 pub struct gfc__IRefObject {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__IRefObject {
     pub __vfptr: *const gfc__IRefObject____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
 }
 
 #[repr(C)]
@@ -1113,6 +1127,11 @@ pub struct gfc__Thread {
 }
 
 #[repr(C)]
+pub struct gfc__TFlags_unsigned_char_ {
+    pub flags: u8,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__IVoidDelegate_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -1131,15 +1150,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Property__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Object {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Object {
     pub __vfptr: *const gfc__Object____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
 }
 
 impl gfc__Object {
@@ -1187,15 +1199,8 @@ pub struct gfc__Mutex {
 
 #[repr(C)]
 pub struct gfc__Property {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Property {
     pub __vfptr: *const gfc__Property____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mName: gfc__HString,
     pub mAnnotation: gfc__HString,
     pub mContextFlags: u8,
@@ -1294,6 +1299,11 @@ pub struct gfc__Property____vftable {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__SoundList_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__HString_0_gfc__CAllocator_ {
     pub mData: *mut gfc__HString,
     pub mSize: i32,
@@ -1307,15 +1317,8 @@ pub struct gfc__AutoRef_gfc__Class_ {
 
 #[repr(C)]
 pub struct gfc__Class {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Class {
     pub __vfptr: *const gfc__Class____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mParent: gfc__AutoRef_gfc__Class_,
     pub mName: gfc__HString,
     pub mConstructor: gfc__AutoRef_gfc__Constructor_,
@@ -1359,15 +1362,8 @@ pub struct gfc__Class____vftable {
 
 #[repr(C)]
 pub struct gfc__Environment {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Environment {
     pub __vfptr: *const gfc__Environment____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mParent: gfc__AutoRef_gfc__Environment_,
     pub mSymbols: *mut gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_,
     pub mContextFlags: u8,
@@ -1405,15 +1401,8 @@ pub struct gfc__AutoRef_gfc__Constructor_ {
 
 #[repr(C)]
 pub struct gfc__Method {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Method {
     pub __vfptr: *const gfc__Method____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mName: gfc__HString,
     pub mContextFlags: u8,
 }
@@ -1508,18 +1497,10 @@ impl std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__
 }
 
 #[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node
-{
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field _Myval")]
-#[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node {
     pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
     pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
     pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
-    #[cfg(pdb_issue = "error in std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___")]
     pub _Myval: std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___,
     pub _Color: i8,
     pub _Isnil: i8,
@@ -1597,14 +1578,7 @@ impl std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_g
 
 #[repr(C)]
 pub struct std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field first")]
-#[repr(C)]
-pub struct std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub first: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub first: gfc__AutoRef_gfc__Object_,
     pub second: gfc__AutoRef_gfc__Object_,
 }
 
@@ -1665,14 +1639,7 @@ pub struct std__binary_function_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Obje
 
 #[repr(C)]
 pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field first")]
-#[repr(C)]
-pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub first: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub first: gfc__HString,
     pub second: gfc__AutoRef_gfc__Parameter_,
 }
 
@@ -1729,18 +1696,10 @@ impl std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc
 }
 
 #[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node
-{
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field _Myval")]
-#[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node {
     pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
     pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
     pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
-    #[cfg(pdb_issue = "error in std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___")]
     pub _Myval: std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___,
     pub _Color: i8,
     pub _Isnil: i8,
@@ -1800,14 +1759,7 @@ impl std__less_gfc__Class___ {
 
 #[repr(C)]
 pub struct std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field first")]
-#[repr(C)]
-pub struct std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub first: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub first: gfc__AutoRef_gfc__Object_,
     pub second: gfc__AutoRef_gfc__Object_,
 }
 
@@ -1983,14 +1935,7 @@ impl std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__g
 
 #[repr(C)]
 pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field first")]
-#[repr(C)]
-pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub first: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub first: gfc__HString,
     pub second: gfc__AutoRef_gfc__Parameter_,
 }
 
@@ -2059,6 +2004,13 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__HDRDesc_,
     pub mSize: i32,
@@ -2121,15 +2073,8 @@ pub struct gfc__AutoRef_gfc__RenderTexture_ {
 
 #[repr(C)]
 pub struct gfc__VertexBuffer {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__VertexBuffer {
     pub __vfptr: *const gfc__VertexBuffer____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
 }
 
 impl gfc__VertexBuffer {
@@ -2181,15 +2126,8 @@ pub struct gfc__Vector_gfc__UIRenderer__Clip_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__IndexBuffer {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__IndexBuffer {
     pub __vfptr: *const gfc__IndexBuffer____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
 }
 
 impl gfc__IndexBuffer {
@@ -2250,6 +2188,36 @@ pub struct gfc__MeshFormat__DynamicVertex__Stream0 {
 }
 
 #[repr(C)]
+pub struct gfc__Hierarchical_gfc__Node3D_ {
+    pub __vfptr: *const gfc__Hierarchical_gfc__Node3D_____vftable,
+    pub mParent: *mut gfc__Node3D,
+    pub mHead: gfc__AutoRef_gfc__Node3D_,
+    pub mTail: gfc__AutoRef_gfc__Node3D_,
+    pub mNext: gfc__AutoRef_gfc__Node3D_,
+    pub mPrev: gfc__AutoRef_gfc__Node3D_,
+}
+
+#[repr(C)]
+pub struct gfc__Hierarchical_gfc__Node3D_____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: u32) -> *mut (),
+    pub addFront:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub addBack:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub add:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
+    pub added:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub removed:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub invalidateHierarchy: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__HDRDesc_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -2272,15 +2240,8 @@ pub struct gfc__DynamicRenderer {
 
 #[repr(C)]
 pub struct gfc__FogDesc {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__FogDesc {
     pub __vfptr: *const gfc__FogDesc____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mApplied: bool,
     pub mBlendDuration: f32,
     pub mType: i32,
@@ -2335,12 +2296,6 @@ pub struct gfc__Graphics {
     pub __vfptr: *const gfc__Graphics____vftable,
 }
 
-#[repr(C)]
-pub struct gfc__Graphics____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field setVertexBufferMasked")]
 #[repr(C)]
 pub struct gfc__Graphics____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32) -> *mut (),
@@ -2416,12 +2371,8 @@ pub struct gfc__Graphics____vftable {
         unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__IndexBuffer),
     pub setVertexBuffer:
         unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexBuffer),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub setVertexBufferMasked: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
-        _: *mut gfc__VertexBuffer,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
-    ),
+    pub setVertexBufferMasked:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexBuffer, _: u32),
     pub drawFullScreenQuad: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
     pub drawRect:
         unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32, _: i32, _: i32, _: i32),
@@ -2448,12 +2399,11 @@ pub struct gfc__Graphics____vftable {
         _: u32,
         _: u32,
     ),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
     pub setRenderTarget: unsafe extern "thiscall" fn(
         this: *mut gfc__Graphics,
         _: *mut gfc__Texture,
         _: *mut gfc__Texture,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
+        _: i32,
     ),
     pub setDefaultRenderTarget: unsafe extern "thiscall" fn(this: *const gfc__Graphics),
     pub setDefaultDepthStencilTarget: unsafe extern "thiscall" fn(this: *const gfc__Graphics),
@@ -2475,45 +2425,40 @@ pub struct gfc__Graphics____vftable {
     pub ___6: *const (),
     pub ___7: *const (),
     pub ___8: *const (),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub createRenderTexture: unsafe extern "thiscall" fn(
         this: *mut gfc__Graphics,
         _: u16,
         _: u16,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: gfc__ImageFormat,
     ) -> gfc__AutoRef_gfc__RenderTexture_,
     pub ___9: *const (),
     pub ___10: *const (),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub createRenderDepth: unsafe extern "thiscall" fn(
         this: *mut gfc__Graphics,
         _: u16,
         _: u16,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: gfc__ImageFormat,
     ) -> gfc__AutoRef_gfc__Texture_,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub createRenderCubemap: unsafe extern "thiscall" fn(
         this: *mut gfc__Graphics,
         _: u16,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: gfc__ImageFormat,
     ) -> gfc__AutoRef_gfc__Texture_,
     pub ___11: *const (),
     pub ___12: *const (),
     pub ___13: *const (),
     pub ___14: *const (),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub createCubemap: unsafe extern "thiscall" fn(
         this: *mut gfc__Graphics,
         _: i32,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: gfc__ImageFormat,
         _: bool,
     ) -> gfc__AutoRef_gfc__Texture_,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
     pub createLightmap: unsafe extern "thiscall" fn(
         this: *mut gfc__Graphics,
         _: i32,
         _: i32,
-        _: compile_error!("unimplemented feature: type kind 0x1507"),
+        _: gfc__ImageFormat,
     ) -> gfc__AutoRef_gfc__Texture_,
     pub createShader:
         unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> gfc__AutoRef_gfc__Shader_,
@@ -2573,12 +2518,11 @@ pub struct gfc__Camera3D {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field ReferenceCount")]
+#[cfg(pdb_issue = "error in field mCameraMatrix")]
 #[repr(C)]
 pub struct gfc__Camera3D {
     pub __vfptr: *const gfc__Camera3D____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mFrameID: i32,
     pub mInsideOutside: i32,
     pub mUnderwater: bool,
@@ -2611,21 +2555,17 @@ pub struct gfc__Camera3D {
     pub mNumUsedVisibleNodes: u32,
     pub mRenderNodePool: *mut gfc__RenderNode,
     pub mNumRenderNodes: u32,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mNumUsedRenderNodes: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mNumUsedRenderNodes: u32,
     pub mLightNodePool: *mut gfc__LightNode,
     pub mNumLightNodes: u32,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mNumUsedLightNodes: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mNumUsedLightNodes: u32,
     pub mDynMeshNodePool: *mut gfc__DynMeshNode,
     pub mNumDynMeshNodes: u32,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mNumUsedDynMeshNodes: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mNumUsedDynMeshNodes: u32,
     pub mDynMeshMutex: gfc__Mutex,
     pub mDynMeshNodes: gfc__ThreadSafeVector_gfc__DynMeshNode___,
     pub mDynMeshBuffers: gfc__ThreadSafeVector_gfc__DynMeshBuffer___,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mCurrentDynMeshBuffer: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mCurrentDynMeshBuffer: i32,
     pub mMatrixPool: gfc__MatrixArrayPool,
     pub mTerrainChunkSize: i32,
     pub mTerrainHeightMapSize: i32,
@@ -2657,15 +2597,8 @@ pub struct gfc__Camera3D____vftable {
 
 #[repr(C)]
 pub struct gfc__DepthOfFieldDesc {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__DepthOfFieldDesc {
     pub __vfptr: *const gfc__DepthOfFieldDesc____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mApplied: bool,
     pub mFocusDistance: f32,
     pub mBlurStart: f32,
@@ -2849,15 +2782,8 @@ pub struct gfc__Renderer____vftable {
 
 #[repr(C)]
 pub struct gfc__CameraBlurDesc {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__CameraBlurDesc {
     pub __vfptr: *const gfc__CameraBlurDesc____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mApplied: bool,
     pub mScale: f32,
     pub mSampleCount: u32,
@@ -2933,15 +2859,8 @@ pub struct gfc__TRect_long_ {
 
 #[repr(C)]
 pub struct gfc__Shader {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Shader {
     pub __vfptr: *const gfc__Shader____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mName: gfc__HString,
     pub mLocked: bool,
 }
@@ -2958,12 +2877,6 @@ impl gfc__Shader {
 
 #[repr(C)]
 pub struct gfc__Shader____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field hasPass")]
-#[repr(C)]
-pub struct gfc__Shader____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
     pub createFromDesc: unsafe extern "thiscall" fn(
         this: *mut gfc__Shader,
@@ -2977,26 +2890,13 @@ pub struct gfc__Shader____vftable {
     pub getDesc:
         unsafe extern "thiscall" fn(this: *mut gfc__Shader) -> gfc__AutoRef_gfc__ShaderDesc_,
     pub isUsed: unsafe extern "thiscall" fn(this: *const gfc__Shader) -> bool,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub hasPass: unsafe extern "thiscall" fn(
-        this: *const gfc__Shader,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
-    ) -> bool,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub beginPass: unsafe extern "thiscall" fn(
-        this: *mut gfc__Shader,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
-    ),
+    pub hasPass: unsafe extern "thiscall" fn(this: *const gfc__Shader, _: i32) -> bool,
+    pub beginPass: unsafe extern "thiscall" fn(this: *mut gfc__Shader, _: i32, _: i32),
     pub endPass: unsafe extern "thiscall" fn(this: *mut gfc__Shader),
     pub setWorldMatrix: unsafe extern "thiscall" fn(this: *mut gfc__Shader, _: *const gfc__Matrix4),
     pub setDefaultValues: unsafe extern "thiscall" fn(this: *const gfc__Shader),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub setMaterialParams: unsafe extern "thiscall" fn(
-        this: *mut gfc__Shader,
-        _: *mut gfc__Material,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
-    ),
+    pub setMaterialParams:
+        unsafe extern "thiscall" fn(this: *mut gfc__Shader, _: *mut gfc__Material, _: f32),
     pub __: *const (),
     pub ___2: *const (),
     pub ___3: *const (),
@@ -3020,15 +2920,8 @@ pub struct gfc__AutoRef_gfc__ShaderCompiler_ {
 
 #[repr(C)]
 pub struct gfc__WorldObject {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__WorldObject {
     pub __vfptr: *const gfc__WorldObject____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -3053,12 +2946,6 @@ impl gfc__WorldObject {
     }
 }
 
-#[repr(C)]
-pub struct gfc__WorldObject____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field getAnimation")]
 #[repr(C)]
 pub struct gfc__WorldObject____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
@@ -3135,10 +3022,9 @@ pub struct gfc__WorldObject____vftable {
     pub getGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__WorldObject,
     pub getObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__Object3D,
     pub setObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__Object3D),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
     pub getAnimation: unsafe extern "thiscall" fn(
         this: *const gfc__WorldObject,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
+        _: i32,
     ) -> gfc__AutoRef_gfc__Animation_,
     pub addObjectToWorld:
         unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__World),
@@ -3239,14 +3125,7 @@ pub struct gfc__TSphere_float_gfc__FloatMath_ {
 
 #[repr(C)]
 pub struct gfc__HDRBase {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mDesc")]
-#[repr(C)]
-pub struct gfc__HDRBase {
     pub __vfptr: *const gfc__HDRBase____vftable,
-    #[cfg(pdb_issue = "error in gfc__HDRDesc")]
     pub mDesc: gfc__HDRDesc,
 }
 
@@ -3317,12 +3196,11 @@ pub struct gfc__World {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field ReferenceCount")]
+#[cfg(pdb_issue = "error in field mPath")]
 #[repr(C)]
 pub struct gfc__World {
     pub __vfptr: *const gfc__World____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mName: gfc__HString,
     pub mDefaultRegionIdx: i32,
     pub mNextRegionID: i32,
@@ -3420,15 +3298,8 @@ pub struct gfc__ObjectCloner {
 
 #[repr(C)]
 pub struct gfc__AmbientDesc {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__AmbientDesc {
     pub __vfptr: *const gfc__AmbientDesc____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mApplied: bool,
     pub mBlendDuration: f32,
     pub mLowerAmbientColor: gfc__TVector4_float_gfc__FloatMath_,
@@ -3478,15 +3349,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Texture {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Texture {
     pub __vfptr: *const gfc__Texture____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mName: gfc__HString,
 }
 
@@ -3502,25 +3366,9 @@ impl gfc__Texture {
 
 #[repr(C)]
 pub struct gfc__Texture____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field getType")]
-#[repr(C)]
-pub struct gfc__Texture____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub getType: unsafe extern "thiscall" fn(
-        this: *const gfc__Texture,
-    ) -> compile_error!(
-        "unimplemented feature: type kind 0x1507"
-    ),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub getFormat: unsafe extern "thiscall" fn(
-        this: *const gfc__Texture,
-    ) -> compile_error!(
-        "unimplemented feature: type kind 0x1507"
-    ),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> gfc__Texture__Type,
+    pub getFormat: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> gfc__ImageFormat,
     pub getWidth: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> u16,
     pub getHeight: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> u16,
     pub getDepth: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> u16,
@@ -3600,11 +3448,10 @@ pub struct gfc__MatrixArray {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field mCount")]
+#[cfg(pdb_issue = "error in field mFirstMatrix")]
 #[repr(C)]
 pub struct gfc__MatrixArray {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mCount: u32,
     pub mPad: [u32; 3],
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub mFirstMatrix: compile_error!("unimplemented feature: class layout 0x0"),
@@ -3719,15 +3566,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__MeshInstance {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__MeshInstance {
     pub __vfptr: *const gfc__MeshInstance____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mLocked: bool,
 }
 
@@ -3757,22 +3597,27 @@ pub struct gfc__AutoRef_gfc__SkyDesc_ {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__Node3D___0_gfc__CAllocator_ {
+    pub mData: *mut *mut gfc__Node3D,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__ThreadSafeVector_gfc__DynMeshNode___ {
     pub m_vector: gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator_,
     pub m_mutex: gfc__Mutex,
 }
 
 #[repr(C)]
-pub struct gfc__Material {
-    _opaque: [u8; 0],
+pub struct gfc__Quaternion {
+    pub q: gfc__TVector4_float_gfc__FloatMath_,
 }
 
-#[cfg(pdb_issue = "error in field ReferenceCount")]
 #[repr(C)]
 pub struct gfc__Material {
     pub __vfptr: *const gfc__Material____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mLocked: bool,
     pub mName: gfc__HString,
     pub mLightingModel: u8,
@@ -3975,15 +3820,8 @@ pub struct gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__VertexDeclaration {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__VertexDeclaration {
     pub __vfptr: *const gfc__VertexDeclaration____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
 }
 
 impl gfc__VertexDeclaration {
@@ -4025,17 +3863,10 @@ impl gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__DynMeshBuffer {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mNumVerticesUsed")]
-#[repr(C)]
-pub struct gfc__DynMeshBuffer {
     pub mVertices: *mut gfc__MeshFormat__DynamicVertex__Stream0,
     pub mVertexCount: u32,
     pub mSlot: u32,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mNumVerticesUsed: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mNumVerticesUsed: u32,
 }
 
 #[repr(C)]
@@ -4101,16 +3932,84 @@ pub struct gfc__BoundingVolume {
 }
 
 #[repr(C)]
-pub struct gfc__HDRDesc {
+pub struct gfc__Node3D {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field ReferenceCount")]
+#[cfg(pdb_issue = "error in field mWorldMatrix")]
+#[repr(C)]
+pub struct gfc__Node3D {
+    pub __vfptr: *const gfc__Node3D____vftable,
+    pub ReferenceCount: i32,
+    pub __vfptr_2: *const gfc__Node3D____vftable,
+    pub mParent: *mut gfc__Node3D,
+    pub mHead: gfc__AutoRef_gfc__Node3D_,
+    pub mTail: gfc__AutoRef_gfc__Node3D_,
+    pub mNext: gfc__AutoRef_gfc__Node3D_,
+    pub mPrev: gfc__AutoRef_gfc__Node3D_,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mVersion: i32,
+    pub o: gfc__Node3D___o,
+    pub mVisibility: f32,
+    pub mHVisibility: f32,
+    #[cfg(pdb_issue = "error in gfc__Matrix4")]
+    pub mWorldMatrix: gfc__Matrix4,
+    pub mBlendWeight: f32,
+    pub mHashNext: *mut gfc__Node3D,
+    pub mName: gfc__HString,
+}
+
+impl gfc__Node3D {
+    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
+        self as *mut _ as _
+    }
+
+    pub fn as_gfc__Hierarchical_gfc__Node3D__ptr(&self) -> *const gfc__Hierarchical_gfc__Node3D_ {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Hierarchical_gfc__Node3D__mut_ptr(
+        &mut self,
+    ) -> *mut gfc__Hierarchical_gfc__Node3D_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Node3D____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__Node3D___o {
+    pub p: gfc__TVector3_float_gfc__FloatMath_,
+    pub r: gfc__TVector3_float_gfc__FloatMath_,
+    pub s: gfc__TVector3_float_gfc__FloatMath_,
+    pub q: gfc__Quaternion,
+}
+
 #[repr(C)]
 pub struct gfc__HDRDesc {
     pub __vfptr: *const gfc__HDRDesc____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mApplied: bool,
     pub mToneMap: bool,
     pub mMidTone: f32,
@@ -4159,15 +4058,8 @@ pub struct gfc__HDRDesc____vftable {
 
 #[repr(C)]
 pub struct gfc__EnvironmentDesc {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__EnvironmentDesc {
     pub __vfptr: *const gfc__EnvironmentDesc____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mApplied: bool,
 }
 
@@ -4215,13 +4107,8 @@ pub struct gfc__AutoRef_gfc___UIControl_ {
 
 #[repr(C)]
 pub struct gfc__Darksiders {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mRenderThreadRunning")]
-#[repr(C)]
-pub struct gfc__Darksiders {
     pub __vfptr: *const gfc__Darksiders____vftable,
+    ________: *const (),
     pub mpLocalGameSession: *mut unit4__LocalGameSession,
     pub mpInputSystem: *mut keen__InputSystem,
     pub mDisplayReady: bool,
@@ -4256,7 +4143,6 @@ pub struct gfc__Darksiders {
     pub mLoadWorld: gfc__HString,
     pub mLoadRegion: gfc__HString,
     pub mLastActiveRegionIdx: i32,
-    #[cfg(pdb_issue = "error in gfc__ThreadSafeBool")]
     pub mRenderThreadRunning: gfc__ThreadSafeBool,
     pub mRenderThreadWaitFrame: u32,
     pub mRenderThreadDone: gfc__Event,
@@ -4269,10 +4155,8 @@ pub struct gfc__Darksiders {
     pub mDefaultPackageMarker: gfc__AutoRef_gfc__PackageMarker_,
     pub mVideoIsQueued: bool,
     pub mLockedQueue: bool,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mApplicationSuspended: compile_error!("unimplemented feature: type kind 0x1001"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mGraphicsSuspended: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mApplicationSuspended: bool,
+    pub mGraphicsSuspended: bool,
     pub mGameSessionHasPlayer: bool,
     pub mFailedScriptModules: gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_,
     pub mWaitingForFailedScripts: bool,
@@ -4312,8 +4196,7 @@ pub struct gfc__Darksiders {
     pub mLastDPadState: i32,
     pub mCurrentActivePad: i32,
     pub mArmorLoadMarker: gfc__AutoRef_gfc__PackageMarker_,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mLoadState: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub mLoadState: gfc__Darksiders__LoadState,
     pub mLogoMarker: gfc__AutoRef_gfc__PackageMarker_,
     pub mUIMarker: gfc__AutoRef_gfc__PackageMarker_,
     pub mGameMarker: gfc__AutoRef_gfc__PackageMarker_,
@@ -4428,18 +4311,10 @@ pub struct gfc__AutoRef_gfc__Camera3D_ {
 
 #[repr(C)]
 pub struct gfc__WorldManager {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__WorldManager {
     pub __vfptr: *const gfc__WorldManager____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mWorld: gfc__AutoRef_gfc__World_,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mWorldState: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub mWorldState: gfc__WorldManager__WorldState,
     pub mActiveRegionIdx: i32,
     pub mActiveRegionIdxOverride: i32,
     pub mNumRequired: i32,
@@ -4703,15 +4578,8 @@ pub struct gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Helper {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Helper {
     pub __vfptr: *const gfc__Helper____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mIsIterating: bool,
     pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
     pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
@@ -4759,12 +4627,6 @@ pub struct gfc__Helper__QueuedListenerInfo {
 
 #[repr(C)]
 pub struct gfc__OblivionGame {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mRenderThreadRunning")]
-#[repr(C)]
-pub struct gfc__OblivionGame {
     pub __vfptr: *const gfc__OblivionGame____vftable,
     pub mpLocalGameSession: *mut unit4__LocalGameSession,
     pub mpInputSystem: *mut keen__InputSystem,
@@ -4800,7 +4662,6 @@ pub struct gfc__OblivionGame {
     pub mLoadWorld: gfc__HString,
     pub mLoadRegion: gfc__HString,
     pub mLastActiveRegionIdx: i32,
-    #[cfg(pdb_issue = "error in gfc__ThreadSafeBool")]
     pub mRenderThreadRunning: gfc__ThreadSafeBool,
     pub mRenderThreadWaitFrame: u32,
     pub mRenderThreadDone: gfc__Event,
@@ -4813,10 +4674,8 @@ pub struct gfc__OblivionGame {
     pub mDefaultPackageMarker: gfc__AutoRef_gfc__PackageMarker_,
     pub mVideoIsQueued: bool,
     pub mLockedQueue: bool,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mApplicationSuspended: compile_error!("unimplemented feature: type kind 0x1001"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub mGraphicsSuspended: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub mApplicationSuspended: bool,
+    pub mGraphicsSuspended: bool,
     pub mGameSessionHasPlayer: bool,
     pub mFailedScriptModules: gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_,
     pub mWaitingForFailedScripts: bool,
@@ -4926,15 +4785,8 @@ pub struct gfc__AutoRef_gfc__RichPresenceManager_ {
 
 #[repr(C)]
 pub struct gfc___UIControl {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc___UIControl {
     pub __vfptr: *const gfc___UIControl____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub __vfptr_2: *const gfc___UIControl____vftable,
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
@@ -4999,12 +4851,6 @@ impl gfc___UIControl {
     }
 }
 
-#[repr(C)]
-pub struct gfc___UIControl____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field setAnchorOffset")]
 #[repr(C)]
 pub struct gfc___UIControl____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
@@ -5077,10 +4923,9 @@ pub struct gfc___UIControl____vftable {
     pub invalidateLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
     pub doAnchorLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
     pub doLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
     pub setAnchorOffset: unsafe extern "thiscall" fn(
         this: *mut gfc___UIControl,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
+        _: gfc__TVector2_float_gfc__FloatMath_,
     ),
     pub getAnchorOffset: unsafe extern "thiscall" fn(
         this: *mut gfc___UIControl,
@@ -5224,12 +5069,6 @@ pub struct gfc__AutoRef_gfc__GameCamera_ {
 
 #[repr(C)]
 pub struct unit4__LocalGameSession {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field m_lastUsedControllerInfo")]
-#[repr(C)]
-pub struct unit4__LocalGameSession {
     pub m_pSaveDataInterface: *mut unit4__SaveDataDescriptionInterface,
     pub m_pSaveDataHandler: *mut keen__SaveDataHandler,
     pub m_pUserAccountSystem: *mut keen__UserAccountSystem,
@@ -5238,29 +5077,18 @@ pub struct unit4__LocalGameSession {
     pub m_showingSignInUi: bool,
     pub m_userData: keen__Array_unit4__LocalGameSession__LocalUserData_,
     pub m_userAccountOperationHandle: u32,
-    #[cfg(pdb_issue = "error in keen__ControllerInfo")]
     pub m_lastUsedControllerInfo: keen__ControllerInfo,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub m_lastInteractionStartedBy: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub m_lastInteractionStartedBy: unit4__LocalGameSession__InteractionStarter,
 }
 
-#[repr(C)]
-pub struct unit4__LocalGameSession__LocalUserData {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field state")]
 #[repr(C)]
 pub struct unit4__LocalGameSession__LocalUserData {
     pub skippedSignIn: bool,
     pub hasExpectedUserId: bool,
     pub expectedUser: keen__UserAccount,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub state: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub stateBeforeProfileChange: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub playerType: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub state: unit4__LocalGameSession__LocalUserState,
+    pub stateBeforeProfileChange: unit4__LocalGameSession__LocalUserState,
+    pub playerType: unit4__LocalPlayerType,
     pub saveProfileIndex: u32,
     pub controllerDisconnected: bool,
 }
@@ -5290,6 +5118,187 @@ pub struct unit4__SaveDataDescriptionInterface____vftable {
 pub struct keen__Array_unit4__LocalGameSession__LocalUserData_ {
     pub m_pData: *mut unit4__LocalGameSession__LocalUserData,
     pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpActionListener___ {
+    pub m_data: *mut *mut hkpActionListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkJobQueue__CustomJobTypeSetup_ {
+    pub m_data: *mut hkJobQueue__CustomJobTypeSetup,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpWorldExtension___ {
+    pub m_data: *mut *mut hkpWorldExtension,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpIslandPostIntegrateListener___ {
+    pub m_data: *mut *mut hkpIslandPostIntegrateListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpContactImpulseLimitBreachedListener___ {
+    pub m_data: *mut *mut hkpContactImpulseLimitBreachedListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpConstraintListener___ {
+    pub m_data: *mut *mut hkpConstraintListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpIslandPostCollideListener___ {
+    pub m_data: *mut *mut hkpIslandPostCollideListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpWorldPostCollideListener___ {
+    pub m_data: *mut *mut hkpWorldPostCollideListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkMemoryAllocator__MemoryStatistics {
+    pub m_allocated: i32,
+    pub m_inUse: i32,
+    pub m_peakInUse: i32,
+    pub m_available: i32,
+    pub m_totalAvailable: i32,
+    pub m_largestBlock: i32,
+}
+
+#[repr(C)]
+pub struct hkPadSpu_float_ {
+    pub m_storage: f32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_unsigned_char_ {
+    pub m_data: *mut u8,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkpPhantomOverlapListener {
+    pub __vfptr: *const hkpPhantomOverlapListener____vftable,
+}
+
+#[repr(C)]
+pub struct hkpPhantomOverlapListener____vftable {
+    pub collidableAddedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpPhantomOverlapListener,
+        _: *const hkpCollidableAddedEvent,
+    ),
+    pub collidableRemovedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpPhantomOverlapListener,
+        _: *const hkpCollidableRemovedEvent,
+    ),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpPhantomOverlapListener, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpWorldPostIntegrateListener___ {
+    pub m_data: *mut *mut hkpWorldPostIntegrateListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpWorldPostSimulationListener___ {
+    pub m_data: *mut *mut hkpWorldPostSimulationListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkSmallArray_hkpEntityListener___ {
+    pub m_data: *mut *mut hkpEntityListener,
+    pub m_size: u16,
+    pub m_capacityAndFlags: u16,
+}
+
+#[repr(C)]
+pub struct hkSimplePropertyValue {
+    pub m_data: u64,
+}
+
+#[repr(C)]
+pub struct hkpShapeCollectionFilter {
+    pub __vfptr: *const hkpShapeCollectionFilter____vftable,
+}
+
+#[repr(C)]
+pub struct hkpShapeCollectionFilter____vftable {
+    pub __: *const (),
+    pub ___2: *const (),
+    pub numShapeKeyHitsLimitBreached: unsafe extern "thiscall" fn(
+        this: *const hkpShapeCollectionFilter,
+        _: *const hkpCollisionInput,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpBvTreeShape,
+        _: *mut hkAabb,
+        _: *mut u32,
+        _: i32,
+    ) -> i32,
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpShapeCollectionFilter, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct hkpEntity__ExtendedListeners {
+    pub m_activationListeners: hkSmallArray_hkpEntityActivationListener___,
+    pub m_entityListeners: hkSmallArray_hkpEntityListener___,
+}
+
+#[repr(C)]
+pub struct hkpEntity__SpuCollisionCallback {
+    pub m_util: *mut hkSpuCollisionCallbackUtil,
+    pub m_capacity: u16,
+    pub m_eventFilter: u8,
+    pub m_userFilter: u8,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpWorldExtension___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpWorldExtension,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpWorldExtension___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpWorldExtension____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpWorldExtension___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpWorldExtension____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpWorldExtension___ {
+        self as *mut _ as _
+    }
 }
 
 #[repr(C)]
@@ -5459,6 +5468,804 @@ impl std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent___ {
 }
 
 #[repr(C)]
+pub struct hkSmallArray_hkConstraintInternal_ {
+    pub m_data: *mut hkConstraintInternal,
+    pub m_size: u16,
+    pub m_capacityAndFlags: u16,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpWorldPostIntegrateListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpWorldPostIntegrateListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpWorldPostIntegrateListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpWorldPostIntegrateListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpWorldPostIntegrateListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpWorldPostIntegrateListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpWorldPostIntegrateListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArray_hkpWorldPostSimulationListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpWorldPostSimulationListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpWorldPostSimulationListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpWorldPostSimulationListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpWorldPostSimulationListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpWorldPostSimulationListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpWorldPostSimulationListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpSimpleContactConstraintDataInfo {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_rhsRolling")]
+#[repr(C)]
+pub struct hkpSimpleContactConstraintDataInfo {
+    pub m_flags: u16,
+    pub m_biNormalAxis: u16,
+    pub m_rollingFrictionMultiplier: hkHalf,
+    pub m_internalData1: hkHalf,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_rhsRolling: compile_error!("unimplemented feature: class layout 0x0"),
+    pub m_contactRadius: f32,
+    pub m_data: [f32; 4],
+}
+
+#[repr(C)]
+pub struct hkpSimpleContactConstraintAtom {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_info")]
+#[repr(C)]
+pub struct hkpSimpleContactConstraintAtom {
+    pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
+    pub m_sizeOfAllAtoms: u16,
+    pub m_numContactPoints: u16,
+    pub m_numReservedContactPoints: u16,
+    pub m_numUserDatasForBodyA: u8,
+    pub m_numUserDatasForBodyB: u8,
+    pub m_contactPointPropertiesStriding: u8,
+    pub m_maxNumContactPoints: u16,
+    #[cfg(pdb_issue = "error in hkpSimpleContactConstraintDataInfo")]
+    pub m_info: hkpSimpleContactConstraintDataInfo,
+}
+
+impl hkpSimpleContactConstraintAtom {
+    pub fn as_hkpConstraintAtom_ptr(&self) -> *const hkpConstraintAtom {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpConstraintAtom_mut_ptr(&mut self) -> *mut hkpConstraintAtom {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpRayShapeCollectionFilter {
+    pub __vfptr: *const hkpRayShapeCollectionFilter____vftable,
+}
+
+#[repr(C)]
+pub struct hkpRayShapeCollectionFilter____vftable {
+    pub isCollisionEnabled: unsafe extern "thiscall" fn(
+        this: *const hkpRayShapeCollectionFilter,
+        _: *const hkpShapeRayCastInput,
+        _: *const hkpShapeContainer,
+        _: u32,
+    ) -> hkBool,
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpRayShapeCollectionFilter, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpPhantomOverlapListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpPhantomOverlapListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpPhantomOverlapListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpPhantomOverlapListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpPhantomOverlapListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpCollidableRemovedEvent {
+    pub m_phantom: *const hkpPhantom,
+    pub m_collidable: *const hkpCollidable,
+    pub m_collidableWasAdded: hkBool,
+}
+
+#[repr(C)]
+pub struct hkSmallArray_hkpAction___ {
+    pub m_data: *mut *mut hkpAction,
+    pub m_size: u16,
+    pub m_capacityAndFlags: u16,
+}
+
+#[repr(C)]
+pub struct hkpLinkedCollidable {
+    pub m_shape: *const hkpShape,
+    pub m_shapeKey: u32,
+    pub m_motion: *const (),
+    pub m_parent: *const hkpCdBody,
+    pub m_ownerOffset: i8,
+    pub m_forceCollideOntoPpu: u8,
+    pub m_shapeSizeOnSpu: u16,
+    pub m_broadPhaseHandle: hkpTypedBroadPhaseHandle,
+    pub m_boundingVolumeData: hkpCollidable__BoundingVolumeData,
+    pub m_allowedPenetrationDepth: f32,
+    pub m_collisionEntries: hkArray_hkpLinkedCollidable__CollisionEntry_hkContainerHeapAllocator_,
+}
+
+impl hkpLinkedCollidable {
+    pub fn as_hkpCollidable_ptr(&self) -> *const hkpCollidable {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpCollidable_mut_ptr(&mut self) -> *mut hkpCollidable {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpLinkedCollidable__CollisionEntry {
+    pub m_agentEntry: *mut hkpAgentNnEntry,
+    pub m_partner: *mut hkpLinkedCollidable,
+}
+
+#[repr(C)]
+pub struct hkpProcessCollisionOutput__PotentialInfo {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_potentialContacts")]
+#[repr(C)]
+pub struct hkpProcessCollisionOutput__PotentialInfo {
+    pub m_firstFreePotentialContact: *mut hkpProcessCollisionOutput__ContactRef,
+    pub m_firstFreeRepresentativeContact: *mut *mut hkpProcessCdPoint,
+    pub m_representativeContacts: [*mut hkpProcessCdPoint; 256],
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_potentialContacts: compile_error!("unimplemented feature: class layout 0x0"),
+}
+
+#[repr(C)]
+pub struct hkpProcessCollisionOutput__ContactRef {
+    pub m_contactPoint: *mut hkpProcessCdPoint,
+    pub m_agentEntry: *mut hkpAgentEntry,
+    pub m_agentData: *mut (),
+}
+
+#[repr(C)]
+pub struct hkArray_hkpConstraintListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpConstraintListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpConstraintListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpConstraintListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpConstraintListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpConstraintListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpConstraintListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkArray_int_hkContainerHeapAllocator___ {
+    pub m_data: *mut hkArray_int_hkContainerHeapAllocator_,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_unsigned_short_ {
+    pub m_data: *mut u16,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpAction___ {
+    pub m_data: *mut *mut hkpAction,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpContactImpulseLimitBreachedListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpContactImpulseLimitBreachedListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpContactImpulseLimitBreachedListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpContactImpulseLimitBreachedListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpContactImpulseLimitBreachedListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpContactImpulseLimitBreachedListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpContactImpulseLimitBreachedListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpMaxSizeMotion {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_deactivationRefPosition")]
+#[repr(C)]
+pub struct hkpMaxSizeMotion {
+    pub __vfptr: *const hkpMaxSizeMotion____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkEnum_enum_hkpMotion__MotionType_unsigned_char_,
+    pub m_deactivationIntegrateCounter: u8,
+    pub m_deactivationNumInactiveFrames: [u16; 2],
+    pub m_motionState: hkMotionState,
+    pub m_inertiaAndMassInv: hkVector4f,
+    pub m_linearVelocity: hkVector4f,
+    pub m_angularVelocity: hkVector4f,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_deactivationRefPosition: compile_error!("unimplemented feature: class layout 0x0"),
+    pub m_deactivationRefOrientation: [u32; 2],
+    pub m_savedMotion: *mut hkpMaxSizeMotion,
+    pub m_savedQualityTypeIndex: u16,
+    pub m_gravityFactor: hkHalf,
+}
+
+impl hkpMaxSizeMotion {
+    pub fn as_hkpKeyframedRigidMotion_ptr(&self) -> *const hkpKeyframedRigidMotion {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpKeyframedRigidMotion_mut_ptr(&mut self) -> *mut hkpKeyframedRigidMotion {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpMaxSizeMotion____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub ___3: *const (),
+    pub ___4: *const (),
+    pub getInertiaLocal: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
+    pub getInertiaWorld: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
+    pub setInertiaLocal: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkMatrix3f),
+    pub setInertiaInvLocal: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkMatrix3f),
+    pub getInertiaInvLocal: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
+    pub getInertiaInvWorld: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
+    pub setCenterOfMassInLocal:
+        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
+    pub setPosition: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
+    pub setRotation: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkQuaternionf),
+    pub setPositionAndRotation: unsafe extern "thiscall" fn(
+        this: *mut hkpMotion,
+        _: *const hkVector4f,
+        _: *const hkQuaternionf,
+    ),
+    pub setTransform: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkTransformf),
+    pub setLinearVelocity: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
+    pub setAngularVelocity: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
+    pub getProjectedPointVelocity: unsafe extern "thiscall" fn(
+        this: *const hkpMotion,
+        _: *const hkVector4f,
+        _: *const hkVector4f,
+        _: *mut f32,
+        _: *mut f32,
+    ),
+    pub getProjectedPointVelocitySimd: unsafe extern "thiscall" fn(
+        this: *const hkpMotion,
+        _: *const hkVector4f,
+        _: *const hkVector4f,
+        _: *mut hkSimdFloat32,
+        _: *mut hkSimdFloat32,
+    ),
+    pub applyLinearImpulse: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
+    pub applyPointImpulse: unsafe extern "thiscall" fn(
+        this: *mut hkpMotion,
+        _: *const hkVector4f,
+        _: *const hkVector4f,
+    ),
+    pub applyAngularImpulse:
+        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
+    pub ___5: *const (),
+    pub ___6: *const (),
+    pub applyTorque:
+        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32, _: *const hkVector4f),
+    pub getMotionStateAndVelocitiesAndDeactivationType:
+        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *mut hkpMotion),
+    pub setStepPosition:
+        unsafe extern "thiscall" fn(this: *mut hkpKeyframedRigidMotion, _: f32, _: f32),
+    pub setStoredMotion:
+        unsafe extern "thiscall" fn(this: *mut hkpKeyframedRigidMotion, _: *mut hkpMaxSizeMotion),
+}
+
+#[repr(C)]
+pub struct hkpTypedBroadPhaseHandle {
+    pub m_id: u32,
+    pub m_type: i8,
+    pub m_ownerOffset: i8,
+    pub m_objectQualityType: i8,
+    pub m_collisionFilterInfo: u32,
+}
+
+impl hkpTypedBroadPhaseHandle {
+    pub fn as_hkpBroadPhaseHandle_ptr(&self) -> *const hkpBroadPhaseHandle {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpBroadPhaseHandle_mut_ptr(&mut self) -> *mut hkpBroadPhaseHandle {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_unsigned_char_8_hkContainerHeapAllocator_ {
+    pub m_data: *mut u8,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    pub m_storage: [u8; 8],
+}
+
+impl hkInplaceArray_unsigned_char_8_hkContainerHeapAllocator_ {
+    pub fn as_hkArray_unsigned_char_hkContainerHeapAllocator__ptr(
+        &self,
+    ) -> *const hkArray_unsigned_char_hkContainerHeapAllocator_ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArray_unsigned_char_hkContainerHeapAllocator__mut_ptr(
+        &mut self,
+    ) -> *mut hkArray_unsigned_char_hkContainerHeapAllocator_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpCollidable__BoundingVolumeData {
+    pub m_min: [u32; 3],
+    pub m_expansionMin: [u8; 3],
+    pub m_expansionShift: u8,
+    pub m_max: [u32; 3],
+    pub m_expansionMax: [u8; 3],
+    pub m_padding: u8,
+    pub m_numChildShapeAabbs: u16,
+    pub m_capacityChildShapeAabbs: u16,
+    pub m_childShapeAabbs: *mut hkAabbUint32,
+    pub m_childShapeKeys: *mut u32,
+}
+
+#[repr(C)]
+pub struct hkpContactListener {
+    pub __vfptr: *const hkpContactListener____vftable,
+}
+
+#[repr(C)]
+pub struct hkpContactListener____vftable {
+    pub contactPointCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *const hkpContactPointEvent),
+    pub collisionAddedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *const hkpCollisionEvent),
+    pub collisionRemovedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *const hkpCollisionEvent),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: u32) -> *mut (),
+    pub contactPointAddedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpContactListener,
+        _: *mut hkpContactPointAddedEvent,
+    ),
+    pub contactPointRemovedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpContactListener,
+        _: *mut hkpContactPointRemovedEvent,
+    ),
+    pub contactProcessCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *mut hkpContactProcessEvent),
+}
+
+#[repr(C)]
+pub struct hkJobQueue__JobQueueEntryInput {
+    pub m_jobPriority: hkPadSpu_unsigned_int_,
+    pub m_job: hkJobQueue__JobQueueEntry,
+}
+
+#[repr(C)]
+pub struct hkJobQueue__JobQueueEntry {
+    pub m_jobSubType: u8,
+    pub m_jobType: hkEnum_enum_hkJobType_unsigned_char_,
+    pub m_jobSpuType: hkEnum_enum_hkJobSpuType_unsigned_char_,
+    pub m_size: u16,
+    pub m_threadAffinity: i16,
+    pub m_data: [u8; 112],
+}
+
+impl hkJobQueue__JobQueueEntry {
+    pub fn as_hkJob_ptr(&self) -> *const hkJob {
+        self as *const _ as _
+    }
+
+    pub fn as_hkJob_mut_ptr(&mut self) -> *mut hkJob {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkSmallArray_hkpEntityActivationListener___ {
+    pub m_data: *mut *mut hkpEntityActivationListener,
+    pub m_size: u16,
+    pub m_capacityAndFlags: u16,
+}
+
+#[repr(C)]
+pub struct hkpAgentNnSector {
+    pub m_data: [u8; 512],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpContactListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpContactListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpContactListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpContactListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpContactListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpContactListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpContactListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpContactListener___ {
+    pub m_data: *mut *mut hkpContactListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkGskCache16 {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_maxDimA")]
+#[repr(C)]
+pub struct hkGskCache16 {
+    pub m_vertices: [u16; 4],
+    pub m_dimA: u8,
+    pub m_dimB: u8,
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_maxDimA: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_maxDimB: compile_error!("unimplemented feature: type kind 0x1205"),
+    pub m_gskFlags: u8,
+}
+
+impl hkGskCache16 {
+    pub fn as_hkpGskCache_ptr(&self) -> *const hkpGskCache {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpGskCache_mut_ptr(&mut self) -> *mut hkpGskCache {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArray_hkJobQueue__CustomJobTypeSetup_hkContainerHeapAllocator_ {
+    pub m_data: *mut hkJobQueue__CustomJobTypeSetup,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkJobQueue__CustomJobTypeSetup_hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkJobQueue__CustomJobTypeSetup__ptr(
+        &self,
+    ) -> *const hkArrayBase_hkJobQueue__CustomJobTypeSetup_ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkJobQueue__CustomJobTypeSetup__mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkJobQueue__CustomJobTypeSetup_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpIslandActivationListener___ {
+    pub m_data: *mut *mut hkpIslandActivationListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkViewPtr_hkpConstraintInstance___ {
+    pub m_data: *mut hkViewPtr_hkpConstraintInstance_,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkAabbUint32 {
+    pub m_min: [u32; 3],
+    pub m_expansionMin: [u8; 3],
+    pub m_expansionShift: u8,
+    pub m_max: [u32; 3],
+    pub m_expansionMax: [u8; 3],
+    pub m_shapeKeyByte: u8,
+}
+
+#[repr(C)]
+pub struct hkSemaphore {
+    pub m_semaphore: *mut (),
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkWorldMemoryAvailableWatchDog_ {
+    pub m_pntr: *mut hkWorldMemoryAvailableWatchDog,
+}
+
+#[repr(C)]
+pub struct hkpConstraintOwner {
+    pub __vfptr: *const hkpConstraintOwner____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_constraintInfo: hkpConstraintInfo,
+}
+
+impl hkpConstraintOwner {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpConstraintOwner____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub addConstraintToCriticalLockedIsland:
+        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
+    pub removeConstraintFromCriticalLockedIsland:
+        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
+    pub addCallbackRequest: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintOwner,
+        _: *mut hkpConstraintInstance,
+        _: i32,
+    ),
+    pub checkAccessRw: unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner),
+}
+
+#[repr(C)]
+pub struct hkBool {
+    pub m_bool: i8,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpLinkedCollidable__CollisionEntry_ {
+    pub m_data: *mut hkpLinkedCollidable__CollisionEntry,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkStackTracer__CallTree {
+    pub m_nodes: hkArrayBase_hkStackTracer__CallTree__Node_,
+    pub m_allocator: *mut hkMemoryAllocator,
+    pub m_rootNode: i32,
+    pub m_firstFreeNode: i32,
+}
+
+#[repr(C)]
+pub struct hkStackTracer__CallTree__Node {
+    pub m_value: u32,
+    pub m_parent: i32,
+    pub m_firstChild: i32,
+    pub m_next: i32,
+    pub m_usageCount: i32,
+}
+
+#[repr(C)]
+pub struct hkArray_char_hkContainerTempAllocator_ {
+    pub m_data: *mut i8,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_char_hkContainerTempAllocator_ {
+    pub fn as_hkArrayBase_char__ptr(&self) -> *const hkArrayBase_char_ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_char__mut_ptr(&mut self) -> *mut hkArrayBase_char_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpCdBody {
+    pub m_shape: *const hkpShape,
+    pub m_shapeKey: u32,
+    pub m_motion: *const (),
+    pub m_parent: *const hkpCdBody,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpActionListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpActionListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpActionListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpActionListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpActionListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpActionListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpActionListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpPhantomListener___ {
+    pub m_data: *mut *mut hkpPhantomListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpProcessCdPoint___ {
+    pub m_storage: *mut hkpProcessCdPoint,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpWorldDeletionListener___ {
+    pub m_data: *mut *mut hkpWorldDeletionListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkpRayCollidableFilter {
+    pub __vfptr: *const hkpRayCollidableFilter____vftable,
+}
+
+#[repr(C)]
+pub struct hkpRayCollidableFilter____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpRayCollidableFilter, _: u32) -> *mut (),
+    pub isCollisionEnabled: unsafe extern "thiscall" fn(
+        this: *const hkpRayCollidableFilter,
+        _: *const hkpWorldRayCastInput,
+        _: *const hkpCollidable,
+    ) -> hkBool,
+}
+
+#[repr(C)]
+pub struct hkpConstraintInfo {
+    pub m_maxSizeOfSchema: i32,
+    pub m_sizeOfSchemas: i32,
+    pub m_numSolverResults: i32,
+    pub m_numSolverElemTemps: i32,
+}
+
+#[repr(C)]
+pub struct hkpBroadPhaseListener {
+    pub __vfptr: *const hkpBroadPhaseListener____vftable,
+}
+
+#[repr(C)]
+pub struct hkpBroadPhaseListener____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpBroadPhaseListener, _: u32) -> *mut (),
+    pub addCollisionPair: unsafe extern "thiscall" fn(
+        this: *mut hkpBroadPhaseListener,
+        _: *mut hkpTypedBroadPhaseHandlePair,
+    ),
+    pub removeCollisionPair: unsafe extern "thiscall" fn(
+        this: *mut hkpBroadPhaseListener,
+        _: *mut hkpTypedBroadPhaseHandlePair,
+    ),
+}
+
+#[repr(C)]
+pub struct hkpContactPointRemovedEvent {
+    pub m_contactPointId: u16,
+    pub m_contactPointProperties: *mut hkpContactPointProperties,
+    pub m_entityA: *mut hkpEntity,
+    pub m_entityB: *mut hkpEntity,
+    pub m_callbackFiredFrom: *mut hkpEntity,
+    pub m_internalContactMgr: *mut hkpDynamicsContactMgr,
+    pub m_constraintOwner: *mut hkpConstraintOwner,
+}
+
+#[repr(C)]
+pub struct hkArray_hkViewPtr_hkpConstraintInstance__hkContainerHeapAllocator_ {
+    pub m_data: *mut hkViewPtr_hkpConstraintInstance_,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkViewPtr_hkpConstraintInstance__hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkViewPtr_hkpConstraintInstance____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkViewPtr_hkpConstraintInstance___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkViewPtr_hkpConstraintInstance____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkViewPtr_hkpConstraintInstance___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__Occluder___0_gfc__CAllocator_ {
     pub mData: *mut *mut gfc__Occluder,
     pub mSize: i32,
@@ -5481,15 +6288,8 @@ pub struct gfc__Clipper {
 
 #[repr(C)]
 pub struct gfc__VisScriptVariable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__VisScriptVariable {
     pub __vfptr: *const gfc__VisScriptVariable____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mID: u32,
     pub mComment: gfc__HString,
     pub mLocationX: i32,
@@ -5515,12 +6315,6 @@ impl gfc__VisScriptVariable {
 
 #[repr(C)]
 pub struct gfc__VisScriptVariable____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field getColor")]
-#[repr(C)]
-pub struct gfc__VisScriptVariable____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
@@ -5543,12 +6337,9 @@ pub struct gfc__VisScriptVariable____vftable {
     pub end: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity),
     pub clearDeadLinks:
         unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity, _: *mut gfc__ModuleSystem),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
     pub getColor: unsafe extern "thiscall" fn(
         this: *const gfc__VisScriptVariable,
-    ) -> compile_error!(
-        "unimplemented feature: type kind 0x1001"
-    ),
+    ) -> gfc__TVector4_float_gfc__FloatMath_,
     pub getVariableType: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptVariable) -> i32,
     pub isArray: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptVariable) -> bool,
     pub getVariableValue: unsafe extern "thiscall" fn(
@@ -5563,11 +6354,10 @@ pub struct gfc__StateMapValue {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field mValueMode")]
+#[cfg(pdb_issue = "error in field mStringValue")]
 #[repr(C)]
 pub struct gfc__StateMapValue {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mValueMode: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub mValueMode: gfc__StateMapValue__ValueMode,
     #[cfg(pdb_issue = "error in gfc__String")]
     pub mStringValue: gfc__String,
     pub mNumberValue: f64,
@@ -5599,15 +6389,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__FullScreenFXGroup__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__ModuleSystem {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__ModuleSystem {
     pub __vfptr: *const gfc__ModuleSystem____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mViewXOffset: f32,
     pub mViewYOffset: f32,
     pub mViewZoom: f32,
@@ -5660,15 +6443,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__CameraCinematicGroup__0_gfc__CAllocator
 
 #[repr(C)]
 pub struct gfc__VisScriptModule {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__VisScriptModule {
     pub __vfptr: *const gfc__VisScriptModule____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mID: u32,
     pub mComment: gfc__HString,
     pub mLocationX: i32,
@@ -5751,15 +6527,8 @@ pub struct gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__VisScriptEntity {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__VisScriptEntity {
     pub __vfptr: *const gfc__VisScriptEntity____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mID: u32,
     pub mComment: gfc__HString,
     pub mLocationX: i32,
@@ -5845,10 +6614,27 @@ pub struct gfc__AutoRef_gfc__DirectorCinematicGroup_ {
 }
 
 #[repr(C)]
+pub struct gfc__ResourceListener {
+    pub __vfptr: *const gfc__ResourceListener____vftable,
+}
+
+#[repr(C)]
+pub struct gfc__ResourceListener____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceListener, _: u32) -> *mut (),
+    pub packageUnloading: unsafe extern "thiscall" fn(this: *mut gfc__ResourceListener, _: i32),
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__SceneOccluder___0_gfc__CAllocator_ {
     pub mData: *mut *mut gfc__SceneOccluder,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Object3D_ {
+    pub p: *mut gfc__IRefObject,
 }
 
 #[repr(C)]
@@ -5860,15 +6646,8 @@ pub struct gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__SceneObject {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mType")]
-#[repr(C)]
-pub struct gfc__SceneObject {
     pub __vfptr: *const gfc__SceneObject____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mType: compile_error!("unimplemented feature: type kind 0x1507"),
+    pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
     pub mFlags: gfc__TFlags_unsigned_long_,
@@ -5953,12 +6732,11 @@ pub struct gfc__SceneManager {
     _opaque: [u8; 0],
 }
 
-#[cfg(pdb_issue = "error in field ReferenceCount")]
+#[cfg(pdb_issue = "error in field mClipper")]
 #[repr(C)]
 pub struct gfc__SceneManager {
     pub __vfptr: *const gfc__SceneManager____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mDrawCounter: u32,
     pub mPortalDrawCounter: u32,
     pub mInsideOutside: i32,
@@ -6015,15 +6793,8 @@ pub struct gfc__SceneManager____vftable {
 
 #[repr(C)]
 pub struct gfc__Cinematic {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Cinematic {
     pub __vfptr: *const gfc__Cinematic____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
+    pub ReferenceCount: i32,
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -6065,12 +6836,6 @@ impl gfc__Cinematic {
     }
 }
 
-#[repr(C)]
-pub struct gfc__Cinematic____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field getAnimation")]
 #[repr(C)]
 pub struct gfc__Cinematic____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
@@ -6147,10 +6912,9 @@ pub struct gfc__Cinematic____vftable {
     pub getGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__WorldObject,
     pub getObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__Object3D,
     pub setObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__Object3D),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
     pub getAnimation: unsafe extern "thiscall" fn(
         this: *const gfc__WorldObject,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
+        _: i32,
     ) -> gfc__AutoRef_gfc__Animation_,
     pub addObjectToWorld:
         unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__World),
@@ -6201,2053 +6965,257 @@ pub struct gfc__Vector_gfc__ScenePortal___0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
-pub struct keen__FixedSizedArray_gfc__SceneManager__DistributedCulling_1024_ {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field m_data")]
-#[repr(C)]
-pub struct keen__FixedSizedArray_gfc__SceneManager__DistributedCulling_1024_ {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_data: compile_error!("unimplemented feature: class layout 0x0"),
-    pub m_size: u32,
-}
-
-#[repr(C)]
-pub struct gfc__StaticLightingVisualOpt {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__StaticLightingVisualOpt {
-    pub __vfptr: *const gfc__StaticLightingVisualOpt____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub mLightTable: *mut gfc__VertexBuffer,
-    pub mUVTable: *mut gfc__VertexBuffer,
-    pub mColorMap: *mut gfc__Texture,
-    pub mDirMap: *mut gfc__Texture,
-    pub mAOMap: *mut gfc__Texture,
-    pub mColorMapID: u8,
-    pub mDirMapID: u8,
-    pub mAOMapID: u8,
-    pub mUseLightMaps: bool,
-    pub mID: i32,
-    pub mChecksum: u32,
-    pub mLightTableBase: u32,
-    pub mUVTableBase: u32,
-    pub mColorMapMult: f32,
-}
-
-impl gfc__StaticLightingVisualOpt {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__StaticLightingVisualOpt____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub __: *const (),
-    pub ___2: *const (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-}
-
-#[repr(C)]
-pub struct gfc__CollisionObject {
-    pub __vfptr: *const gfc__CollisionObject____vftable,
-    pub mCollisionManager: *mut gfc__CollisionManager,
-}
-
-#[repr(C)]
-pub struct gfc__CollisionObject____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut gfc__CollisionObject, _: u32) -> *mut (),
-    pub getShape:
-        unsafe extern "thiscall" fn(this: *const gfc__CollisionObject) -> gfc__AutoRef_gfc__CShape_,
-    pub getMatrix:
-        unsafe extern "thiscall" fn(this: *mut gfc__CollisionObject, _: *mut gfc__Matrix4),
-    pub getContext:
-        unsafe extern "thiscall" fn(this: *mut gfc__CollisionObject) -> *mut gfc__Object,
-    pub getGroupContext: unsafe extern "thiscall" fn(this: *mut gfc__CollisionObject) -> *mut (),
-    pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *mut gfc__CollisionObject,
-        _: *mut gfc__TBox_float_gfc__FloatMath_,
-    ),
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Visual__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__Visual_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__StaticLightingObjectOpt {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__StaticLightingObjectOpt {
-    pub __vfptr: *const gfc__StaticLightingObjectOpt____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub mLayerID: u32,
-    pub mObjectID: u32,
-    pub mDataElementCount: u32,
-    pub mData: *mut *mut gfc__StaticLightingVisualOpt,
-}
-
-impl gfc__StaticLightingObjectOpt {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__StaticLightingObjectOpt____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub __: *const (),
-    pub ___2: *const (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Body__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__Body_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Body_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__ParticleController_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__CShape_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__AnimationController_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__IconGizmo {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mType")]
-#[repr(C)]
-pub struct gfc__IconGizmo {
-    pub __vfptr: *const gfc__IconGizmo____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mType: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub mDrawCounter: u32,
-    pub mCachedBoundingVolume: gfc__BoundingVolume,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
-    pub mHashID: u32,
-    pub __vfptr_2: *const gfc__Gizmo____vftable,
-    pub mLocked: bool,
-    pub mObject: *mut gfc__WorldObject,
-    pub mMaterial: gfc__AutoRef_gfc__Material_,
-}
-
-impl gfc__IconGizmo {
-    pub fn as_gfc__Gizmo_ptr(&self) -> *const gfc__Gizmo {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Gizmo_mut_ptr(&mut self) -> *mut gfc__Gizmo {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__IconGizmo____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: u32) -> *mut (),
-    pub removeFromScene: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub cacheBoundingVolume: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__TBox_float_gfc__FloatMath_,
-    ) -> bool,
-    pub getBoundingVolume: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__BoundingVolume,
-    ) -> bool,
-    pub cull:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *const gfc__Clipper) -> bool,
-    pub cullAndSubmit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__Clipper,
-        _: *mut gfc__Camera3D,
-        _: u32,
-    ),
-    pub submit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__Camera3D,
-        _: bool,
-        _: u32,
-    ),
-    pub submitHidden:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *mut gfc__Camera3D, _: u32),
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> *mut gfc__Object,
-    pub pickObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut f32,
-        _: bool,
-    ) -> bool,
-    pub isStatic: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub isHighPriority: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub writeText: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__AutoRef_gfc__OutputStream_,
-    ),
-    pub setIsSky: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: bool),
-    pub getIsSky: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__Object3D {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Object3D {
-    pub __vfptr: *const gfc__Object3D____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub mWorld: *mut gfc__World,
-    pub mWorldObject: *mut gfc__WorldObject,
-    pub mSkeleton: gfc__AutoRef_gfc__Skeleton3D_,
-    pub mVisuals: gfc__Vector_gfc__AutoRef_gfc__Visual__0_gfc__CAllocator_,
-    pub mBodies: gfc__Vector_gfc__AutoRef_gfc__Body__0_gfc__CAllocator_,
-    pub mConstraints: gfc__Vector_gfc__AutoRef_gfc__Constraint__0_gfc__CAllocator_,
-    pub mRagdoll: gfc__AutoRef_gfc__RagdollMapper_,
-    pub mLODDistances: gfc__Vector_float_0_gfc__CAllocator_,
-    pub mLODFloor: u32,
-    pub mAnimationController: gfc__AutoRef_gfc__AnimationController_,
-    pub mParticleController: gfc__AutoRef_gfc__ParticleController_,
-    pub mPackageID: i32,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-}
-
-impl gfc__Object3D {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Object3D____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub __: *const (),
-    pub ___2: *const (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-}
-
-#[repr(C)]
-pub struct gfc__ScenePortal {
-    pub __vfptr: *const gfc__ScenePortal____vftable,
-    pub mCellAID: u32,
-    pub mCellBID: u32,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mCellA: *mut gfc__SceneCell,
-    pub mCellB: *mut gfc__SceneCell,
-    pub mDrawCounter: u32,
-}
-
-#[repr(C)]
-pub struct gfc__ScenePortal____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal, _: u32) -> *mut (),
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal) -> *mut gfc__Object,
-    pub pickObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__ScenePortal,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut f32,
-        _: bool,
-    ) -> bool,
-    pub isVisible:
-        unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal, _: *mut gfc__Clipper) -> bool,
-    pub addClippingPlanes: unsafe extern "thiscall" fn(
-        this: *mut gfc__ScenePortal,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut gfc__Clipper,
-    ),
-    pub testCollision: unsafe extern "thiscall" fn(
-        this: *mut gfc__ScenePortal,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: f32,
-    ) -> bool,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal) -> bool,
-    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal) -> bool,
-    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__SceneLight {
-    pub __vfptr: *const gfc__SceneLight____vftable,
-    pub mDrawCounter: u32,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
-    pub mDynamicVis: bool,
-    pub mVisible: bool,
-}
-
-#[repr(C)]
-pub struct gfc__SceneLight____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight, _: u32) -> *mut (),
-    pub getLightType: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight) -> u8,
-    pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneLight,
-        _: *mut gfc__TBox_float_gfc__FloatMath_,
-    ) -> bool,
-    pub getBoundingVolume: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneLight,
-        _: *mut gfc__BoundingVolume,
-    ) -> bool,
-    pub submit: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight, _: *mut gfc__Camera3D),
-    pub getVisType: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight) -> i32,
-    pub getVisSphere: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneLight,
-        _: *mut gfc__TSphere_float_gfc__FloatMath_,
-    ),
-    pub getVisFrustum:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneLight, _: *mut gfc__Frustum),
-    pub isStatic: unsafe extern "thiscall" fn(this: *const gfc__SceneLight) -> bool,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight) -> bool,
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight) -> *mut gfc__Object,
-}
-
-#[repr(C)]
-pub struct gfc__Body {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__Body {
-    pub __vfptr: *const gfc__Body____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub __vfptr_2: *const gfc__Body____vftable,
-    pub mCollisionManager: *mut gfc__CollisionManager,
-    pub mObject: *mut gfc__Object3D,
-    pub mNode: gfc__AutoRef_gfc__Node3D_,
-    pub mNodeName: gfc__HString,
-    pub mShape: gfc__AutoRef_gfc__CShape_,
-    pub mElementData: gfc__AutoRef_gfc__Object_,
-    pub mElementType: u16,
-    pub mAutoActivate: bool,
-    pub mBodyType: u8,
-}
-
-impl gfc__Body {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
-    }
-
-    pub fn as_gfc__CollisionObject_ptr(&self) -> *const gfc__CollisionObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__CollisionObject_mut_ptr(&mut self) -> *mut gfc__CollisionObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Body____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub __: *const (),
-    pub ___2: *const (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-    pub setBodyType: unsafe extern "thiscall" fn(this: *mut gfc__Body, _: u8),
-    pub attach: unsafe extern "thiscall" fn(this: *mut gfc__Body, _: *mut gfc__Object3D),
-    pub detach: unsafe extern "thiscall" fn(this: *mut gfc__Body),
-    pub invalidateNode: unsafe extern "thiscall" fn(this: *mut gfc__Body),
-    pub addToWorld: unsafe extern "thiscall" fn(this: *mut gfc__Body),
-    pub removeFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__Body),
-    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__Body, _: i32),
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__SceneObserver___0_gfc__CAllocator_ {
-    pub mData: *mut *mut gfc__SceneObserver,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__WorldObjectGizmo {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mType")]
-#[repr(C)]
-pub struct gfc__WorldObjectGizmo {
-    pub __vfptr: *const gfc__WorldObjectGizmo____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mType: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub mDrawCounter: u32,
-    pub mCachedBoundingVolume: gfc__BoundingVolume,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
-    pub mHashID: u32,
-    pub __vfptr_2: *const gfc__Gizmo____vftable,
-    pub mLocked: bool,
-    pub mObject: *mut gfc__WorldObject,
-    pub mGizmoColor: gfc__TVector4_float_gfc__FloatMath_,
-}
-
-impl gfc__WorldObjectGizmo {
-    pub fn as_gfc__Gizmo_ptr(&self) -> *const gfc__Gizmo {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Gizmo_mut_ptr(&mut self) -> *mut gfc__Gizmo {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__WorldObjectGizmo____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: u32) -> *mut (),
-    pub removeFromScene: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub cacheBoundingVolume: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__TBox_float_gfc__FloatMath_,
-    ) -> bool,
-    pub getBoundingVolume: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__BoundingVolume,
-    ) -> bool,
-    pub cull:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *const gfc__Clipper) -> bool,
-    pub cullAndSubmit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__Clipper,
-        _: *mut gfc__Camera3D,
-        _: u32,
-    ),
-    pub submit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__Camera3D,
-        _: bool,
-        _: u32,
-    ),
-    pub submitHidden:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *mut gfc__Camera3D, _: u32),
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> *mut gfc__Object,
-    pub pickObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut f32,
-        _: bool,
-    ) -> bool,
-    pub isStatic: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub isHighPriority: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub writeText: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__AutoRef_gfc__OutputStream_,
-    ),
-    pub setIsSky: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: bool),
-    pub getIsSky: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Skeleton3D_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Gizmo {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mType")]
-#[repr(C)]
-pub struct gfc__Gizmo {
-    pub __vfptr: *const gfc__Gizmo____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mType: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub mDrawCounter: u32,
-    pub mCachedBoundingVolume: gfc__BoundingVolume,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
-    pub mHashID: u32,
-    pub __vfptr_2: *const gfc__Gizmo____vftable,
-    pub mLocked: bool,
-    pub mObject: *mut gfc__WorldObject,
-}
-
-impl gfc__Gizmo {
-    pub fn as_gfc__SceneObject_ptr(&self) -> *const gfc__SceneObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__SceneObject_mut_ptr(&mut self) -> *mut gfc__SceneObject {
-        self as *mut _ as _
-    }
-
-    pub fn as_gfc__IRenderCallback_ptr(&self) -> *const gfc__IRenderCallback {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRenderCallback_mut_ptr(&mut self) -> *mut gfc__IRenderCallback {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Gizmo____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: u32) -> *mut (),
-    pub removeFromScene: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub cacheBoundingVolume: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__TBox_float_gfc__FloatMath_,
-    ) -> bool,
-    pub getBoundingVolume: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__BoundingVolume,
-    ) -> bool,
-    pub cull:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *const gfc__Clipper) -> bool,
-    pub cullAndSubmit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__Clipper,
-        _: *mut gfc__Camera3D,
-        _: u32,
-    ),
-    pub submit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__Camera3D,
-        _: bool,
-        _: u32,
-    ),
-    pub submitHidden:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *mut gfc__Camera3D, _: u32),
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> *mut gfc__Object,
-    pub pickObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut f32,
-        _: bool,
-    ) -> bool,
-    pub isStatic: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub isHighPriority: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub writeText: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__AutoRef_gfc__OutputStream_,
-    ),
-    pub setIsSky: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: bool),
-    pub getIsSky: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__RagdollMapper_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Constraint__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__Constraint_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__SceneCell {
-    pub __vfptr: *const gfc__SceneCell____vftable,
-    pub mObjects: gfc__Vector_gfc__SceneObject___0_gfc__CAllocator_,
-    pub mLights: gfc__Vector_gfc__SceneLight___0_gfc__CAllocator_,
-    pub mPortals: gfc__Vector_gfc__ScenePortal___0_gfc__CAllocator_,
-    pub mObservers: gfc__Vector_gfc__SceneObserver___0_gfc__CAllocator_,
-    pub m_ID: u32,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mDrawCounter: u32,
-    pub mInCell: bool,
-}
-
-#[repr(C)]
-pub struct gfc__SceneCell____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell) -> i32,
-    pub pointInCell: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneCell,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-    ) -> bool,
-    pub testOverlapSphere: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneCell,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: f32,
-    ) -> bool,
-    pub testOverlapFrustum:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneCell, _: *const gfc__Frustum) -> bool,
-    pub testOverlapAABB: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneCell,
-        _: *const gfc__TBox_float_gfc__FloatMath_,
-    ) -> bool,
-    pub testOverlapOBB: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneCell,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__Matrix4,
-    ) -> bool,
-    pub pickObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneCell,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut f32,
-        _: bool,
-    ) -> bool,
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell) -> *mut gfc__Object,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell) -> bool,
-    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell) -> bool,
-    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Visual_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__ModuleSystem_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__LayerLoadRequest_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__LayerLoadRequest,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__TraversalWaypoint_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__WorldQueueItem {
-    pub load: gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-    pub unload: gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-    pub required: bool,
-    pub allowGlobal: bool,
-}
-
-#[repr(C)]
-pub struct gfc__LayerLoadRequest {
-    pub LayerID: i32,
-    pub Layer: gfc__AutoRef_gfc__RegionLayer_,
-}
-
-#[repr(C)]
-pub struct gfc__RegionLoadRequest {
-    pub RegionData: gfc__AutoRef_gfc__WorldRegionData_,
-    pub Region: gfc__AutoRef_gfc__WorldRegion_,
-    pub Layers: gfc__Vector_gfc__LayerLoadRequest_0_gfc__CAllocator_,
-    pub RegionAlreadyLoaded: bool,
-}
-
-#[repr(C)]
-pub struct gfc__SceneOccluder {
-    pub __vfptr: *const gfc__SceneOccluder____vftable,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mDrawCounter: u32,
-}
-
-#[repr(C)]
-pub struct gfc__SceneOccluder____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder, _: u32) -> *mut (),
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder) -> *mut gfc__Object,
-    pub pickObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneOccluder,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut f32,
-        _: bool,
-    ) -> bool,
-    pub isVisible:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder, _: *mut gfc__Clipper) -> bool,
-    pub getOccluder: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneOccluder,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-    ) -> *mut gfc__Occluder,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder) -> bool,
-    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder) -> bool,
-    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__RegionLoadRequest_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__RegionLoadRequest,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__RegionLoadInfo,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__TraversalLink_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__TraversalLink__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__TraversalLink_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__WorldLoadRequest {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field State")]
-#[repr(C)]
-pub struct gfc__WorldLoadRequest {
-    pub Regions: gfc__Vector_gfc__RegionLoadRequest_0_gfc__CAllocator_,
-    pub Marker: gfc__AutoRef_gfc__PackageMarker_,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub State: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub Required: bool,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Constraint_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__SceneObserver {
-    pub __vfptr: *const gfc__SceneObserver____vftable,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
-    pub mInvalid: bool,
-    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
-    pub mWarpDistanceThreshold: f32,
-}
-
-#[repr(C)]
-pub struct gfc__SceneObserver____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObserver, _: u32) -> *mut (),
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObserver) -> *mut gfc__Object,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Actor_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__TraversalWaypoint__UnreachableWaypoint_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__TraversalWaypoint__UnreachableWaypoint,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__TraversalWaypoint {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__TraversalWaypoint {
-    pub __vfptr: *const gfc__TraversalWaypoint____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub mObjectID: u32,
-    pub mRegionID: u16,
-    pub mLayerID: u16,
-    pub mName: gfc__HString,
-    pub mEventGroupID: i32,
-    pub mWorld: *mut gfc__World,
-    pub mGroup: *mut gfc__WorldObject,
-    pub mLightGroup: u32,
-    pub mEventHandlers: *mut gfc__WorldObject__EventHandlerNode,
-    pub mEventHandlerLocks: i32,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mPackageID: i32,
-    pub mSeed: i32,
-    pub mWaypointType: i32,
-    pub mOpenSpaceID: i32,
-    pub mLinks: gfc__Vector_gfc__AutoRef_gfc__TraversalLink__0_gfc__CAllocator_,
-    pub mUnreachableWaypoints:
-        gfc__Vector_gfc__TraversalWaypoint__UnreachableWaypoint_0_gfc__CAllocator_,
-    pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
-    pub mRotation: gfc__TVector3_float_gfc__FloatMath_,
-    pub mUpVector: gfc__TVector3_float_gfc__FloatMath_,
-    #[cfg(pdb_issue = "error in gfc__Matrix4")]
-    pub mInvTransform: gfc__Matrix4,
-    pub mBoundingBox: gfc__TBox_float_gfc__FloatMath_,
-    pub mScale: f32,
-    pub mGizmo: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
-}
-
-impl gfc__TraversalWaypoint {
-    pub fn as_gfc__WorldObject_ptr(&self) -> *const gfc__WorldObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__WorldObject_mut_ptr(&mut self) -> *mut gfc__WorldObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__TraversalWaypoint____vftable {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field getAnimation")]
-#[repr(C)]
-pub struct gfc__TraversalWaypoint____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub __: *const (),
-    pub ___2: *const (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-    pub ___3: *const (),
-    pub getPosition: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-    ) -> gfc__TVector3_float_gfc__FloatMath_,
-    pub setRotation: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-    ),
-    pub getRotation: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-    ) -> gfc__TVector3_float_gfc__FloatMath_,
-    pub setScale: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-    ),
-    pub getScale: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-    ) -> gfc__TVector3_float_gfc__FloatMath_,
-    pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-        _: *mut gfc__TBox_float_gfc__FloatMath_,
-    ),
-    pub doAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub doRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub placedInEditor: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub droppedToGroundInEditor: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub update: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: f32),
-    pub updatePost: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: f32),
-    pub render: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-        _: *mut gfc__Renderer,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-    ),
-    pub drawDebug: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub getPackageID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> i32,
-    pub ___4: *const (),
-    pub ___5: *const (),
-    pub stopSound: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: i32),
-    pub setHide: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub setFreeze: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub setLocked: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub setSelected: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub setDisabled: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub setDisplayNames: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub setError: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub setSettled: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: bool),
-    pub isGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> bool,
-    pub addObject:
-        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: gfc__AutoRef_gfc__WorldObject_),
-    pub removeObject:
-        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: gfc__AutoRef_gfc__WorldObject_),
-    pub inGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> bool,
-    pub isRoot: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> bool,
-    pub removeFromGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub getGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__WorldObject,
-    pub getObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__Object3D,
-    pub setObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__Object3D),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub getAnimation: unsafe extern "thiscall" fn(
-        this: *const gfc__WorldObject,
-        _: compile_error!("unimplemented feature: type kind 0x1001"),
-    ) -> gfc__AutoRef_gfc__Animation_,
-    pub addObjectToWorld:
-        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__World),
-    pub addToLayer: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub removeFromPathFinding:
-        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__TraversalWaypoint),
-    pub detachFromObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-    pub onAttachedToObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-        _: *mut gfc__WorldObject,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-    ),
-    pub onDetachedFromObject:
-        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__WorldObject),
-    pub onChildDetachedFromObject:
-        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__WorldObject),
-    pub overrideHitEffect:
-        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: f32, _: *mut gfc__Body) -> bool,
-    pub supportsStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> bool,
-    pub staticLightingIsDynamic: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> bool,
-    pub getAORayLength: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> i32,
-    pub initStaticLighting: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldObject,
-        _: *mut gfc__StaticLightingObjectOpt,
-    ) -> bool,
-    pub clearStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject),
-}
-
-#[repr(C)]
-pub struct gfc__TraversalWaypoint__UnreachableWaypoint {
-    pub waypoint: gfc__AutoRef_gfc__TraversalWaypoint_,
-    pub pathFlags: u32,
-}
-
-#[repr(C)]
-pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field mType")]
-#[repr(C)]
-pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo {
-    pub __vfptr: *const gfc__TraversalWaypoint__TraversalWaypointGizmo____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub mType: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub mDrawCounter: u32,
-    pub mCachedBoundingVolume: gfc__BoundingVolume,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mSceneManager: *mut gfc__SceneManager,
-    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
-    pub mHashID: u32,
-    pub __vfptr_2: *const gfc__Gizmo____vftable,
-    pub mLocked: bool,
-    pub mObject: *mut gfc__WorldObject,
-    pub mGizmoColor: gfc__TVector4_float_gfc__FloatMath_,
-}
-
-impl gfc__TraversalWaypoint__TraversalWaypointGizmo {
-    pub fn as_gfc__WorldObjectGizmo_ptr(&self) -> *const gfc__WorldObjectGizmo {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__WorldObjectGizmo_mut_ptr(&mut self) -> *mut gfc__WorldObjectGizmo {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: u32) -> *mut (),
-    pub removeFromScene: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub cacheBoundingVolume: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
-    pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__TBox_float_gfc__FloatMath_,
-    ) -> bool,
-    pub getBoundingVolume: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__BoundingVolume,
-    ) -> bool,
-    pub cull:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *const gfc__Clipper) -> bool,
-    pub cullAndSubmit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__Clipper,
-        _: *mut gfc__Camera3D,
-        _: u32,
-    ),
-    pub submit: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__Camera3D,
-        _: bool,
-        _: u32,
-    ),
-    pub submitHidden:
-        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *mut gfc__Camera3D, _: u32),
-    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> *mut gfc__Object,
-    pub pickObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *const gfc__TVector3_float_gfc__FloatMath_,
-        _: *mut f32,
-        _: bool,
-    ) -> bool,
-    pub isStatic: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub isHighPriority: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub writeText: unsafe extern "thiscall" fn(
-        this: *mut gfc__SceneObject,
-        _: *mut gfc__AutoRef_gfc__OutputStream_,
-    ),
-    pub setIsSky: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: bool),
-    pub getIsSky: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
-    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_ {
-    pub mData: *mut *mut gfc__CollisionObject,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__CollisionManager {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__CollisionManager {
-    pub __vfptr: *const gfc__CollisionManager____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub mObjects: gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_,
-    pub mQueryResult: gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_,
-}
-
-impl gfc__CollisionManager {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__CollisionManager____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__CameraCinematicGroup_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__FullScreenFXGroup_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__CinematicGroup_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct std___Pair_base_gfc__String_const__gfc__StateMapValue_ {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field first")]
-#[repr(C)]
-pub struct std___Pair_base_gfc__String_const__gfc__StateMapValue_ {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub first: compile_error!("unimplemented feature: type kind 0x1001"),
-    #[cfg(pdb_issue = "error in gfc__StateMapValue")]
-    pub second: gfc__StateMapValue,
-}
-
-#[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node
-{
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field _Myval")]
-#[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node {
-    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    #[cfg(pdb_issue = "error in std__pair_gfc__String_const__gfc__StateMapValue_")]
-    pub _Myval: std__pair_gfc__String_const__gfc__StateMapValue_,
-    pub _Color: i8,
-    pub _Isnil: i8,
-}
-
-#[repr(C)]
-pub struct std__pair_gfc__String_const__gfc__StateMapValue_ {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field first")]
-#[repr(C)]
-pub struct std__pair_gfc__String_const__gfc__StateMapValue_ {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub first: compile_error!("unimplemented feature: type kind 0x1001"),
-    #[cfg(pdb_issue = "error in gfc__StateMapValue")]
-    pub second: gfc__StateMapValue,
-}
-
-impl std__pair_gfc__String_const__gfc__StateMapValue_ {
-    pub fn as_std___Pair_base_gfc__String_const__gfc__StateMapValue__ptr(
+pub struct hkInplaceArray_hkpAgentNnSector___1_hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpAgentNnSector,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    pub m_storage: [*mut hkpAgentNnSector; 1],
+}
+
+impl hkInplaceArray_hkpAgentNnSector___1_hkContainerHeapAllocator_ {
+    pub fn as_hkArray_hkpAgentNnSector___hkContainerHeapAllocator__ptr(
         &self,
-    ) -> *const std___Pair_base_gfc__String_const__gfc__StateMapValue_ {
+    ) -> *const hkArray_hkpAgentNnSector___hkContainerHeapAllocator_ {
         self as *const _ as _
     }
 
-    pub fn as_std___Pair_base_gfc__String_const__gfc__StateMapValue__mut_ptr(
+    pub fn as_hkArray_hkpAgentNnSector___hkContainerHeapAllocator__mut_ptr(
         &mut self,
-    ) -> *mut std___Pair_base_gfc__String_const__gfc__StateMapValue_ {
+    ) -> *mut hkArray_hkpAgentNnSector___hkContainerHeapAllocator_ {
         self as *mut _ as _
     }
 }
 
 #[repr(C)]
-pub struct gfc__ModSysContainerModule {
-    _opaque: [u8; 0],
+pub struct hkInplaceArray_char_128_hkContainerTempAllocator_ {
+    pub m_data: *mut i8,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    pub m_storage: [i8; 128],
 }
 
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__ModSysContainerModule {
-    pub __vfptr: *const gfc__ModSysContainerModule____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub mID: u32,
-    pub mComment: gfc__HString,
-    pub mLocationX: i32,
-    pub mLocationY: i32,
-    pub mModuleSystem: *mut gfc__ModuleSystem,
-    pub mEventLinks: gfc__Vector_gfc__ModuleEventLink_0_gfc__CAllocator_,
-    pub mInputLinks: gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_,
-    pub mVariableLinks: gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator_,
-    pub mEnable: bool,
-    pub mIncludeName: gfc__HString,
-    pub mInternalModuleSystem: gfc__AutoRef_gfc__ModuleSystem_,
-    pub mInputModule: gfc__AutoRef_gfc__InputModule_,
-    pub mActionNames: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
-    pub mEventNames: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
-    pub mVariableConnections:
-        gfc__Vector_gfc__AutoRef_gfc__VariableConnectionInfo__0_gfc__CAllocator_,
-}
-
-impl gfc__ModSysContainerModule {
-    pub fn as_gfc__VisScriptModule_ptr(&self) -> *const gfc__VisScriptModule {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__VisScriptModule_mut_ptr(&mut self) -> *mut gfc__VisScriptModule {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__ModSysContainerModule____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub __: *const (),
-    pub ___2: *const (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
-    pub getScriptEnvironment: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *mut gfc__ObjectCloner, _: gfc__AutoRef_gfc__Object_),
-    pub getUILabel: unsafe extern "thiscall" fn(this: *const gfc__VisScriptEntity) -> *const i8,
-    pub compile: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity, _: *mut gfc__ModuleSystem),
-    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity, _: *mut gfc__Object),
-    pub end: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity),
-    pub clearDeadLinks: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity, _: *mut gfc__ModuleSystem),
-    pub getCategory: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule) -> i32,
-    pub getNumActions: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule) -> i32,
-    pub getActionID: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule, _: i32) -> u32,
-    pub getActionName: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule, _: i32) -> *const i8,
-    pub getNumEvents: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule) -> i32,
-    pub getEventID: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule, _: i32) -> u32,
-    pub getEventName: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule, _: i32) -> *const i8,
-    pub getNumVariableConnections: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule) -> i32,
-    pub getVariableConnectionID: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule, _: i32) -> u32,
-    pub getVariableConnectionInfo: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule, _: i32) -> gfc__AutoRef_gfc__VariableConnectionInfo_,
-    pub doEvent: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32),
-    pub execute: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32),
-    pub getVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32) -> gfc__AutoRef_gfc__Value_,
-    pub setVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32, _: gfc__AutoRef_gfc__Value_),
-    pub tryAgain: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule),
-    pub getVariablesIn: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32) -> gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
-    pub getVariablesOut: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32) -> gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
-    pub executeInternal: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32),
-    pub hasVariableIn: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32) -> bool,
-    pub hasVariableOut: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__VisScriptVariable_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__InputModule_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__VariableConnectionInfo__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__VisScriptVariable_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_ {
-    pub mHashSize: u32,
-    pub mpHashTable: *mut u32,
-    pub mPairs: gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_,
-    pub mNextAvailable: u32,
-    pub mCount: u32,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
-{
-    pub mNext: u32,
-    pub mKey: u64,
-    pub mValue: gfc__AutoRef_gfc__Variable_,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Property__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
-{
-    pub mNext: u32,
-    pub mKey: u64,
-    pub mValue: gfc__AutoRef_gfc__Property_,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Method__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
-{
-    pub mNext: u32,
-    pub mKey: u64,
-    pub mValue: gfc__AutoRef_gfc__Method_,
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
-    pub __vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_____vftable,
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    pub m_pObj: *mut keen__ISteamStatsCallback,
-    pub m_Func: *mut unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsReceived_t,
-    ),
-}
-
-impl CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
-    pub fn as_CCallbackImpl_24__ptr(&self) -> *const CCallbackImpl_24_ {
-        self as *const _ as _
-    }
-
-    pub fn as_CCallbackImpl_24__mut_ptr(&mut self) -> *mut CCallbackImpl_24_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_____vftable {
-    pub __: *const (),
-    pub ___2: *const (),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackBase) -> i32,
-}
-
-#[repr(C)]
-pub struct UserStatsReceived_t {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field m_eResult")]
-#[repr(C)]
-pub struct UserStatsReceived_t {
-    pub m_nGameID: u64,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub m_eResult: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "error in CSteamID")]
-    pub m_steamIDUser: CSteamID,
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_16_ {
-    pub __vfptr: *const CCallbackImpl_16_____vftable,
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-}
-
-impl CCallbackImpl_16_ {
-    pub fn as_CCallbackBase_ptr(&self) -> *const CCallbackBase {
-        self as *const _ as _
-    }
-
-    pub fn as_CCallbackBase_mut_ptr(&mut self) -> *mut CCallbackBase {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_16_____vftable {
-    pub __: *const (),
-    pub ___2: *const (),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackBase) -> i32,
-}
-
-#[repr(C)]
-pub struct UserAchievementStored_t {
-    pub m_nGameID: u64,
-    pub m_bGroupAchievement: bool,
-    pub m_rgchAchievementName: [i8; 128],
-    pub m_nCurProgress: u32,
-    pub m_nMaxProgress: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesUserId {
-    pub providerData: [i8; 36],
-    pub guestIndex: u8,
-    pub isValid: bool,
-}
-
-#[repr(C)]
-pub struct unit4__RankingReceiveData {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field r#type")]
-#[repr(C)]
-pub struct unit4__RankingReceiveData {
-    pub cachedBoards: keen__Array_unit4__RankingBoardCacheEntry_,
-    pub servingFromCache: bool,
-    pub downloadInProgress: bool,
-    pub tableId: u16,
-    pub user: keen__UserAccount,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub r#type: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub offset: u32,
-    pub entriesToQuery: u32,
-    pub cacheToUseForResult: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesUserInfo {
-    pub id: unit4__SystemServicesUserId,
-    pub localAccountId: keen__UserAccountId,
-    pub displayName: [i8; 64],
-}
-
-#[repr(C)]
-pub struct unit4__RankingListEntry {
-    pub userInfo: unit4__SystemServicesUserInfo,
-    pub rank: u32,
-    pub score: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesInteractionData {
-    pub id: u32,
-    pub responseOptions: [u32; 2],
-    pub responseOptionCount: u32,
-    pub user: keen__UserAccountId,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesBase {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field rankingReceiveData")]
-#[repr(C)]
-pub struct unit4__SystemServicesBase {
-    pub currentTimeInMs: u32,
-    pub rankingSendData: unit4__RankingSendData,
-    #[cfg(pdb_issue = "error in unit4__RankingReceiveData")]
-    pub rankingReceiveData: unit4__RankingReceiveData,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub currentRankingError: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub rankingSendInteraction: unit4__SystemServicesInteractionData,
-    pub onlineInteraction: unit4__SystemServicesInteractionData,
-}
-
-#[repr(C)]
-pub struct unit4__RankingSendData {
-    pub sendInPogress: bool,
-    pub tableId: u16,
-    pub user: keen__UserAccount,
-    pub score: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServices {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field rankingReceiveData")]
-#[repr(C)]
-pub struct unit4__SystemServices {
-    pub currentTimeInMs: u32,
-    pub rankingSendData: unit4__RankingSendData,
-    #[cfg(pdb_issue = "error in unit4__RankingReceiveData")]
-    pub rankingReceiveData: unit4__RankingReceiveData,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub currentRankingError: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub rankingSendInteraction: unit4__SystemServicesInteractionData,
-    pub onlineInteraction: unit4__SystemServicesInteractionData,
-    pub steamAchievements: keen__SteamAchievements,
-    pub steamStats: keen__SteamStats,
-    pub pPresenceStrings: [*const i8; 64],
-    pub presenceStringCount: u32,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub sendRankingStep: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub sendRankingCall: u64,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub receiveRankingStep: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub receiveRankingCall: u64,
-}
-
-impl unit4__SystemServices {
-    pub fn as_unit4__SystemServicesBase_ptr(&self) -> *const unit4__SystemServicesBase {
-        self as *const _ as _
-    }
-
-    pub fn as_unit4__SystemServicesBase_mut_ptr(&mut self) -> *mut unit4__SystemServicesBase {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct unit4__RankingBoardCacheEntry {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field r#type")]
-#[repr(C)]
-pub struct unit4__RankingBoardCacheEntry {
-    pub tableId: u16,
-    pub user: keen__UserAccount,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub r#type: compile_error!("unimplemented feature: type kind 0x1507"),
-    pub entries: keen__SizedArray_unit4__RankingListEntry_,
-    pub totalEntriesOnBoard: u32,
-    pub downloadTimeInMs: u32,
-}
-
-#[repr(C)]
-pub struct keen__ISteamAchievementsCallback {
-    pub __vfptr: *const keen__ISteamAchievementsCallback____vftable,
-    pub m_onUserAchievementStored:
-        CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-}
-
-#[repr(C)]
-pub struct keen__ISteamAchievementsCallback____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__ISteamAchievementsCallback, _: u32) -> *mut (),
-    pub onUserAchievementStored: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamAchievementsCallback,
-        _: *mut UserAchievementStored_t,
-    ),
-}
-
-#[repr(C)]
-pub struct keen__SteamStats {
-    pub __vfptr: *const keen__SteamStats____vftable,
-    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-    pub m_pSteamUserStats: *mut ISteamUserStats,
-    pub m_gameSteamID64: u64,
-    pub m_pStatUpdateMap: *const unit4__StatUpdateData,
-    pub m_statUpdateCount: u32,
-    pub m_requestingUserStats: bool,
-    pub m_statsAvailable: bool,
-    pub m_storingStats: bool,
-    pub m_hasUnstoredStats: bool,
-    pub m_secondsSinceLastUpdate: f32,
-    pub m_hasCached: bool,
-    pub m_cachedAdds: [f64; 64],
-}
-
-impl keen__SteamStats {
-    pub fn as_keen__ISteamStatsCallback_ptr(&self) -> *const keen__ISteamStatsCallback {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__ISteamStatsCallback_mut_ptr(&mut self) -> *mut keen__ISteamStatsCallback {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct keen__SteamStats____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__ISteamStatsCallback, _: u32) -> *mut (),
-    pub onUserStatsReceived: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsReceived_t,
-    ),
-    pub onUserStatsStored: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsStored_t,
-    ),
-}
-
-#[repr(C)]
-pub struct keen__Array_unit4__RankingBoardCacheEntry_ {
-    pub m_pData: *mut unit4__RankingBoardCacheEntry,
-    pub m_size: u32,
-}
-
-#[repr(C)]
-pub struct keen__SteamAchievements {
-    pub __vfptr: *const keen__SteamAchievements____vftable,
-    pub m_onUserAchievementStored:
-        CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-    pub __vfptr_2: *const keen__SteamAchievements____vftable,
-    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-    pub m_pSteamUserStats: *mut ISteamUserStats,
-    pub m_gameSteamID64: u64,
-    pub m_pAchievementIdMap: *const u32,
-    pub m_pAchievementUnlockCountMap: *const u32,
-    pub m_achievementCount: u32,
-    pub m_platinumAchievementId: u32,
-    pub m_platinumAchievementUnlocked: bool,
-}
-
-impl keen__SteamAchievements {
-    pub fn as_keen__ISteamAchievementsCallback_ptr(
+impl hkInplaceArray_char_128_hkContainerTempAllocator_ {
+    pub fn as_hkArray_char_hkContainerTempAllocator__ptr(
         &self,
-    ) -> *const keen__ISteamAchievementsCallback {
+    ) -> *const hkArray_char_hkContainerTempAllocator_ {
         self as *const _ as _
     }
 
-    pub fn as_keen__ISteamAchievementsCallback_mut_ptr(
+    pub fn as_hkArray_char_hkContainerTempAllocator__mut_ptr(
         &mut self,
-    ) -> *mut keen__ISteamAchievementsCallback {
-        self as *mut _ as _
-    }
-
-    pub fn as_keen__ISteamStatsCallback_ptr(&self) -> *const keen__ISteamStatsCallback {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__ISteamStatsCallback_mut_ptr(&mut self) -> *mut keen__ISteamStatsCallback {
+    ) -> *mut hkArray_char_hkContainerTempAllocator_ {
         self as *mut _ as _
     }
 }
 
 #[repr(C)]
-pub struct keen__SteamAchievements____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__ISteamAchievementsCallback, _: u32) -> *mut (),
-    pub onUserAchievementStored: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamAchievementsCallback,
-        _: *mut UserAchievementStored_t,
+pub struct hkContactPointPropertiesWithExtendedUserData16 {
+    pub m_impulseApplied: f32,
+    pub m_internalSolverData: f32,
+    pub m_userData: u32,
+    pub m_friction: hkUFloat8,
+    pub m_restitution: u8,
+    pub m_maxImpulse: hkUFloat8,
+    pub m_flags: u8,
+    pub m_internalDataA: f32,
+    pub m_extendedUserDatas: [u32; 7],
+}
+
+impl hkContactPointPropertiesWithExtendedUserData16 {
+    pub fn as_hkpContactPointProperties_ptr(&self) -> *const hkpContactPointProperties {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpContactPointProperties_mut_ptr(&mut self) -> *mut hkpContactPointProperties {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkTransformf_const___ {
+    pub m_storage: *const hkTransformf,
+}
+
+#[repr(C)]
+pub struct hkpSolverResults {
+    pub m_impulseApplied: f32,
+    pub m_internalSolverData: f32,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpIslandActivationListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpIslandActivationListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpIslandActivationListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpIslandActivationListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpIslandActivationListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpIslandActivationListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpIslandActivationListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArray_hkpAction___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpAction,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpAction___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpAction____ptr(&self) -> *const hkArrayBase_hkpAction___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpAction____mut_ptr(&mut self) -> *mut hkArrayBase_hkpAction___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArray_int_hkContainerHeapAllocator_ {
+    pub m_data: *mut i32,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_int_hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_int__ptr(&self) -> *const hkArrayBase_int_ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_int__mut_ptr(&mut self) -> *mut hkArrayBase_int_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArray_hkArray_int_hkContainerHeapAllocator__hkContainerHeapAllocator_ {
+    pub m_data: *mut hkArray_int_hkContainerHeapAllocator_,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkArray_int_hkContainerHeapAllocator__hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkArray_int_hkContainerHeapAllocator____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkArray_int_hkContainerHeapAllocator___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkArray_int_hkContainerHeapAllocator____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkArray_int_hkContainerHeapAllocator___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpPhantomOverlapListener___ {
+    pub m_data: *mut *mut hkpPhantomOverlapListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkpBroadPhaseHandle {
+    pub m_id: u32,
+}
+
+#[repr(C)]
+pub struct hkpDynamicsCpIdMgr {
+    pub m_values: hkInplaceArray_unsigned_char_8_hkContainerHeapAllocator_,
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpConstraintOwner___ {
+    pub m_storage: *mut hkpConstraintOwner,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpIslandPostCollideListener___hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpIslandPostCollideListener,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpIslandPostCollideListener___hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpIslandPostCollideListener____ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpIslandPostCollideListener___ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpIslandPostCollideListener____mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpIslandPostCollideListener___ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkLocalFrameCollector {
+    pub __vfptr: *const hkLocalFrameCollector____vftable,
+    pub m_memSizeAndRefCount: u32,
+}
+
+impl hkLocalFrameCollector {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkLocalFrameCollector____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub addFrame: unsafe extern "thiscall" fn(
+        this: *mut hkLocalFrameCollector,
+        _: *const hkLocalFrame,
+        _: f32,
     ),
 }
 
 #[repr(C)]
-pub struct keen__SizedArray_unit4__RankingListEntry_ {
-    pub m_pData: *mut unit4__RankingListEntry,
-    pub m_size: u32,
-    pub m_capacity: u32,
+pub struct hkInplaceArray_hkpEntity___1_hkContainerHeapAllocator_ {
+    pub m_data: *mut *mut hkpEntity,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    pub m_storage: [*mut hkpEntity; 1],
 }
 
-#[repr(C)]
-pub struct keen__ISteamStatsCallback {
-    pub __vfptr: *const keen__ISteamStatsCallback____vftable,
-    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-}
-
-#[repr(C)]
-pub struct keen__ISteamStatsCallback____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__ISteamStatsCallback, _: u32) -> *mut (),
-    pub onUserStatsReceived: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsReceived_t,
-    ),
-    pub onUserStatsStored: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsStored_t,
-    ),
-}
-
-#[repr(C)]
-pub struct UserStatsStored_t {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field m_eResult")]
-#[repr(C)]
-pub struct UserStatsStored_t {
-    pub m_nGameID: u64,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub m_eResult: compile_error!("unimplemented feature: type kind 0x1507"),
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_152_ {
-    pub __vfptr: *const CCallbackImpl_152_____vftable,
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-}
-
-impl CCallbackImpl_152_ {
-    pub fn as_CCallbackBase_ptr(&self) -> *const CCallbackBase {
+impl hkInplaceArray_hkpEntity___1_hkContainerHeapAllocator_ {
+    pub fn as_hkArray_hkpEntity___hkContainerHeapAllocator__ptr(
+        &self,
+    ) -> *const hkArray_hkpEntity___hkContainerHeapAllocator_ {
         self as *const _ as _
     }
 
-    pub fn as_CCallbackBase_mut_ptr(&mut self) -> *mut CCallbackBase {
+    pub fn as_hkArray_hkpEntity___hkContainerHeapAllocator__mut_ptr(
+        &mut self,
+    ) -> *mut hkArray_hkpEntity___hkContainerHeapAllocator_ {
         self as *mut _ as _
     }
 }
 
 #[repr(C)]
-pub struct CCallbackImpl_152_____vftable {
-    pub __: *const (),
-    pub ___2: *const (),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackBase) -> i32,
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
-    pub __vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_____vftable,
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    pub m_pObj: *mut keen__ISteamStatsCallback,
-    pub m_Func: *mut unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsStored_t,
-    ),
-}
-
-impl CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
-    pub fn as_CCallbackImpl_16__ptr(&self) -> *const CCallbackImpl_16_ {
-        self as *const _ as _
-    }
-
-    pub fn as_CCallbackImpl_16__mut_ptr(&mut self) -> *mut CCallbackImpl_16_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_____vftable {
-    pub __: *const (),
-    pub ___2: *const (),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackBase) -> i32,
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
-    pub __vfptr:
-        *const CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_____vftable,
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    pub m_pObj: *mut keen__ISteamAchievementsCallback,
-    pub m_Func: *mut unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamAchievementsCallback,
-        _: *mut UserAchievementStored_t,
-    ),
-}
-
-impl CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
-    pub fn as_CCallbackImpl_152__ptr(&self) -> *const CCallbackImpl_152_ {
-        self as *const _ as _
-    }
-
-    pub fn as_CCallbackImpl_152__mut_ptr(&mut self) -> *mut CCallbackImpl_152_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_____vftable {
-    pub __: *const (),
-    pub ___2: *const (),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackBase) -> i32,
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_24_ {
-    pub __vfptr: *const CCallbackImpl_24_____vftable,
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-}
-
-impl CCallbackImpl_24_ {
-    pub fn as_CCallbackBase_ptr(&self) -> *const CCallbackBase {
-        self as *const _ as _
-    }
-
-    pub fn as_CCallbackBase_mut_ptr(&mut self) -> *mut CCallbackBase {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_24_____vftable {
-    pub __: *const (),
-    pub ___2: *const (),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackBase) -> i32,
-}
-
-#[repr(C)]
-pub struct gfc__ActorTarget {
-    pub Actor: gfc__AutoRef_gfc__Actor_,
-    pub Body: gfc__AutoRef_gfc__Body_,
-    pub WorldObject: gfc__AutoRef_gfc__WorldObject_,
-    pub Position: gfc__TVector3_float_gfc__FloatMath_,
-    pub Normal: gfc__TVector3_float_gfc__FloatMath_,
-}
-
-#[repr(C)]
-pub struct gfc__MoveInput {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field CameraMatrix")]
-#[repr(C)]
-pub struct gfc__MoveInput {
-    pub MoveLR: f32,
-    pub MoveUD: f32,
-    pub MoveLRRaw: f32,
-    pub MoveUDRaw: f32,
-    pub MoveDirection: f32,
-    pub MoveSpeed: f32,
-    #[cfg(pdb_issue = "error in gfc__Matrix4")]
-    pub CameraMatrix: gfc__Matrix4,
-    pub CameraYaw: f32,
-    pub CameraPitch: f32,
-    pub CameraYawRaw: f32,
-    pub CameraPitchRaw: f32,
-    pub TargetYaw: f32,
-    pub TargetPitch: f32,
-    pub MoveDirectionChanged: bool,
-    pub Strafe: bool,
-    pub Move: bool,
-    pub MoveDown: bool,
-    pub WalkToggleDown: bool,
-    pub Block: bool,
-    pub BlockDown: bool,
-    pub BlockUp: bool,
-    pub BlockHeld: bool,
-    pub Jump: bool,
-    pub JumpDown: bool,
-    pub Context: bool,
-    pub ContextDown: bool,
-    pub DraggableToggle: bool,
-    pub Release: bool,
-    pub ReleaseDown: bool,
-    pub Attack: bool,
-    pub AttackDown: bool,
-    pub Activate: bool,
-    pub ActivateDown: bool,
-    pub PowerAttack: bool,
-    pub PowerAttackDown: bool,
-    pub WeaponFire: bool,
-    pub WeaponFireDown: bool,
-    pub WeaponFireSecondary: bool,
-    pub WeaponFireSecondaryDown: bool,
-    pub WeaponFireTertiary: bool,
-    pub WeaponFireTertiaryDown: bool,
-    pub SwimUp: bool,
-    pub SwimUpDown: bool,
-    pub SwimDown: bool,
-    pub SwimDownDown: bool,
-    pub Focus: bool,
-    pub FocusDown: bool,
-    pub Wrath: bool,
-    pub WrathDown: bool,
-    pub LThumb: bool,
-    pub LThumbDown: bool,
-    pub RThumb: bool,
-    pub RThumbDown: bool,
-    pub DPadUp: bool,
-    pub DPadUpDown: bool,
-    pub DPadLeft: bool,
-    pub DPadLeftDown: bool,
-    pub DPadDown: bool,
-    pub DPadDownDown: bool,
-    pub DPadRight: bool,
-    pub DPadRightDown: bool,
-    pub GearScrollUp: bool,
-    pub GearScrollUpDown: bool,
-    pub GearScrollDown: bool,
-    pub GearScrollDownDown: bool,
-    pub HasTarget: bool,
-    pub Target: gfc__ActorTarget,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub MoveDirectionQuad: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub MoveFBHemisphere: compile_error!("unimplemented feature: type kind 0x1507"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1507")]
-    pub MoveLRHemisphere: compile_error!("unimplemented feature: type kind 0x1507"),
-}
-
-#[repr(C)]
-pub struct gfc__WindowHelper {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__WindowHelper {
-    pub __vfptr: *const gfc__WindowHelper____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub mIsIterating: bool,
-    pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
-    pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
-    pub mQueuedListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
-    pub mQueuedSystemListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
-    pub mWindowStack: gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_,
-    pub mOverlayWindow: gfc__AutoRef_gfc___UIControl_,
-    pub mEvenOverlayederWindow: gfc__AutoRef_gfc___UIControl_,
-    pub mWindow: gfc__AutoRef_gfc___UIControl_,
-    pub mRootWindow: gfc__AutoRef_gfc___UIControl_,
-}
-
-impl gfc__WindowHelper {
-    pub fn as_gfc__Helper_ptr(&self) -> *const gfc__Helper {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Helper_mut_ptr(&mut self) -> *mut gfc__Helper {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__WindowHelper____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub __: *const (),
-    pub ___2: *const (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-    pub init: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
-    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
-    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc___UIControl_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__LiquidRegionDesc_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__LoadMapMenu {
-    _opaque: [u8; 0],
-}
-
-#[cfg(pdb_issue = "error in field ReferenceCount")]
-#[repr(C)]
-pub struct gfc__LoadMapMenu {
-    pub __vfptr: *const gfc__LoadMapMenu____vftable,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1001")]
-    pub ReferenceCount: compile_error!("unimplemented feature: type kind 0x1001"),
-    pub __vfptr_2: *const gfc___UIControl____vftable,
-    pub mParent: *mut gfc___UIControl,
-    pub mHead: gfc__AutoRef_gfc___UIControl_,
-    pub mTail: gfc__AutoRef_gfc___UIControl_,
-    pub mNext: gfc__AutoRef_gfc___UIControl_,
-    pub mPrev: gfc__AutoRef_gfc___UIControl_,
-    pub mID: i32,
-    pub mName: gfc__HString,
-    pub mOpacity: f32,
-    pub mContext: i32,
-    pub mWindowSize: i32,
-    pub mVisual: gfc__AutoRef_gfc___UIVisual_,
-    pub mClipMask: gfc__HString,
-    pub mIgnoreHideUI: bool,
-    pub mAnchorPoint: u8,
-    pub mAnchorRelativePoint: u8,
-    pub mAnchorRelativeCtrl: gfc__HString,
-    pub mAnchorRelSize: gfc__TVector2_float_gfc__FloatMath_,
-    pub mAnchorRelOffset: gfc__TVector2_float_gfc__FloatMath_,
-    pub OnEvent: gfc__TUIEventBroadcaster_gfc___UIEvent_,
-    pub OnAction: gfc__TUIEventBroadcaster_gfc___UIEvent_,
-    pub OnMouse: gfc__TUIEventBroadcaster_gfc__MouseEvent_,
-    pub OnKeyboard: gfc__TUIEventBroadcaster_gfc__KeyboardEvent_,
-    pub OnFocus: gfc__TUIEventBroadcaster_gfc__FocusEvent_,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mLastVisibilityState: bool,
-    pub mPackageID: i32,
-    pub mIndents: gfc__TRect_float_,
-    pub mPosition: gfc__TVector2_float_gfc__FloatMath_,
-    pub mSize: gfc__TVector2_float_gfc__FloatMath_,
-    pub mAnchorOffset: gfc__TVector2_float_gfc__FloatMath_,
-    pub mRotation: f32,
-    pub mScale: gfc__TVector2_float_gfc__FloatMath_,
-    pub mLayoutManager: gfc__AutoRef_gfc__UILayoutManager_,
-    pub mLayoutHint: f32,
-    pub mCurrentActions: gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_,
-    pub mClipMaterial: gfc__AutoRef_gfc__Material_,
-    pub mOnInitCalledAlready: bool,
-    pub mFirstDraw: bool,
-    pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
-    pub mListItems: gfc__Vector_gfc__String_0_gfc__CAllocator_,
-    pub mMaps: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
-    pub mSelectedMapType: i32,
-    pub mSelectedMapIdx: i32,
-    #[cfg(pdb_issue = "error in gfc__String")]
-    pub mLastMapName: gfc__String,
-    #[cfg(pdb_issue = "error in gfc__String")]
-    pub mLastMapRegion: gfc__String,
-    pub mHasLastMap: bool,
-}
-
-impl gfc__LoadMapMenu {
-    pub fn as_gfc___UIControl_ptr(&self) -> *const gfc___UIControl {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc___UIControl_mut_ptr(&mut self) -> *mut gfc___UIControl {
-        self as *mut _ as _
-    }
+pub struct hkArrayBase_char_ {
+    pub m_data: *mut i8,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
 }

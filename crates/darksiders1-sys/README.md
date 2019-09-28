@@ -12,9 +12,30 @@ pdbindgen \
     -o src \
     /s/Games/Darksiders/Builds/Darksiders\ Warmastered\ Edition/darksiders1.pdb \
     -o ../war-is-here/crates/darksiders1-sys/src \
-    -i ^gfc__HString__HString$ \
-    -i ^gfc__Singleton_gfc__WindowHelper_.+___InstanceHandle$ \
-    -i ^gfc__Darksiders__onPostUpdateInterval$ \
-    -i ^gfc__LoadMapMenu__LoadMapMenu$ \
-    -i ^gfc__WindowHelper__pushWindow$
+    -i ^gfc::HString::HString$ \
+    -i ^gfc::Singleton_gfc::WindowHelper_.+::_InstanceHandle$ \
+    -i ^gfc::Darksiders::onPostUpdateInterval$ \
+    -i ^gfc::Graphics::getInstance$ \
+    -i ^gfc::LoadMapMenu::LoadMapMenu$ \
+    -i ^gfc::WindowHelper::pushWindow$
+```
+
+Or, if you're a pdbindgen developer:
+
+```sh
+cargo run --release \
+    /s/Games/Darksiders/Builds/Darksiders\ Warmastered\ Edition/darksiders1.pdb \
+    -o ../war-is-here/crates/darksiders1-sys/src \
+    -i '^gfc::HString::HString$' \
+    -i '^gfc::Player::Player$' \
+    -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
+    -i '^gfc::Darksiders::onPostUpdateInterval$' \
+    -i '^gfc::Graphics::getInstance$' \
+    -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::OmniLight::OmniLight$' \
+    -i '^gfc::OmniLight::\w+$' \
+    -i '^gfc::WindowHelper::pushWindow$' \
+    -i '^gfc::WorldObject::addToWorld$' \
+    -i '^gfc::WorldObject::setPosition$'
 ```
