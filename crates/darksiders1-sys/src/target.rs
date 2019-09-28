@@ -90,6 +90,7 @@ symbols! {
     pub fn gfc__HString__HString_4;
     pub fn gfc__HString__HString_5;
     pub fn gfc__HString__HString_6;
+    pub fn gfc__MemAlloc;
     pub fn gfc__WorldObject__setPosition_2;
     pub fn gfc__Player__Player;
     pub fn gfc__Darksiders__onPostUpdateInterval;

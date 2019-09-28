@@ -70,6 +70,7 @@ symbols! {
     pub static gfc__HString__HString_4: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: u64) = Text(0xa6e600);
     pub static gfc__HString__HString_5: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: *const gfc__HString) = Text(0xa6e690);
     pub static gfc__HString__HString_6: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: u64, _: *const i8, _: i32) = Text(0xa6e720);
+    pub static gfc__MemAlloc: unsafe extern "C" fn(_: u32, _: *mut (), _: u32, _: u32, _: u32, _: u32, _: *const i8, _: u32) -> *mut () = Text(0xa37580);
     pub static gfc__WorldObject__setPosition_2: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *const gfc__TVector3_float_gfc__FloatMath_) = Text(0x908fc0);
     pub static gfc__Player__Player: unsafe extern "thiscall" fn(this: *mut gfc__Player) = Text(0x8593b0);
     pub static gfc__Darksiders__onPostUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: f32) = Text(0x295c90);

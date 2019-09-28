@@ -1,13 +1,24 @@
+use darksiders1_sys::target;
 use std::{
+    convert::TryInto,
     mem,
+    ptr,
     sync::atomic::{AtomicI32, Ordering},
 };
 
 pub unsafe fn new<T>(ctor: impl FnOnce(*mut T)) -> *mut T {
-    // BAD: this allocates memory on the wrong heap.
-    let mut boxx = Box::new(mem::MaybeUninit::uninit());
-    ctor(boxx.as_mut_ptr());
-    &mut *mem::transmute::<Box<mem::MaybeUninit<T>>, Box<T>>(boxx)
+    let alloc = target::gfc__MemAlloc(
+        1,
+        ptr::null_mut(),
+        mem::size_of::<T>().try_into().unwrap(),
+        mem::align_of::<T>().try_into().unwrap(),
+        0,
+        0,
+        ptr::null(),
+        0,
+    ) as *mut T;
+    ctor(alloc);
+    alloc
 }
 
 pub fn lock_xadd(target: &mut i32, n: i32) -> i32 {

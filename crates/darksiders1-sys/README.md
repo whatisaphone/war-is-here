@@ -30,6 +30,7 @@ cargo run --release \
     -i '^gfc::Player::Player$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
+    -i '^gfc::MemAlloc$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Graphics::getInstance$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \

@@ -49,6 +49,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__HString__HString_4);
     bind!(text, gfc__HString__HString_5);
     bind!(text, gfc__HString__HString_6);
+    bind!(text, gfc__MemAlloc);
     bind!(text, gfc__WorldObject__setPosition_2);
     bind!(text, gfc__Player__Player);
     bind!(text, gfc__Darksiders__onPostUpdateInterval);
