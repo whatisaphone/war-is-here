@@ -1,5 +1,6 @@
+use crate::utils::mem::init_with;
 use darksiders1_sys::target;
-use std::{ffi::CString, mem};
+use std::ffi::CString;
 
 #[repr(transparent)]
 pub struct HString {
@@ -9,16 +10,19 @@ pub struct HString {
 impl HString {
     pub fn from_str(s: &str) -> Self {
         let cstring = CString::new(s).unwrap();
-
         let inner = unsafe {
-            let mut inner = mem::MaybeUninit::uninit();
-            target::gfc__HString__HString_3(inner.as_mut_ptr(), cstring.as_ptr(), true);
-            inner.assume_init()
+            init_with(|this| target::gfc__HString__HString_3(this, cstring.as_ptr(), true))
         };
         Self { inner }
     }
 
     pub fn as_ref(&self) -> &target::gfc__HString {
         &self.inner
+    }
+}
+
+impl Drop for HString {
+    fn drop(&mut self) {
+        unsafe { target::gfc__HString___HString(&mut self.inner) }
     }
 }

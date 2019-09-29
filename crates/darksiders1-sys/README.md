@@ -26,7 +26,7 @@ Or, if you're a pdbindgen developer:
 cargo run --release \
     /s/Games/Darksiders/Builds/Darksiders\ Warmastered\ Edition/darksiders1.pdb \
     -o ../war-is-here/crates/darksiders1-sys/src \
-    -i '^gfc::HString::HString$' \
+    -i '^gfc::HString::~?HString$' \
     -i '^gfc::Player::Player$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \

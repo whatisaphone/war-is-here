@@ -219,6 +219,7 @@ symbols! {
     pub fn gfc__HString__HString_4;
     pub fn gfc__HString__HString_5;
     pub fn gfc__HString__HString_6;
+    pub fn gfc__HString___HString;
     pub fn gfc__Class__getMethodCount;
     pub fn gfc__Class__getMethodAt;
     pub fn gfc__MemAlloc;

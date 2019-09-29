@@ -59,10 +59,6 @@ unsafe fn go(args: &Args) {
 }
 
 unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
-    eprintln!(
-        "(args, region_id, layer_id) = {:?}",
-        (args, region_id, layer_id)
-    );
     let darksiders = *target::gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     #[allow(clippy::cast_ptr_alignment)]
     let world_mgr = (*darksiders).mWorldMgr.p as *mut target::gfc__WorldManager;

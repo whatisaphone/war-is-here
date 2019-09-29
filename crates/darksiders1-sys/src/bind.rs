@@ -178,6 +178,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__HString__HString_4);
     bind!(text, gfc__HString__HString_5);
     bind!(text, gfc__HString__HString_6);
+    bind!(text, gfc__HString___HString);
     bind!(text, gfc__Class__getMethodCount);
     bind!(text, gfc__Class__getMethodAt);
     bind!(text, gfc__MemAlloc);
