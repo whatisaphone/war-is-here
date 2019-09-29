@@ -1,6 +1,10 @@
 #![allow(clippy::similar_names)]
 
-use crate::{darksiders1::gfc, hooks::GOD_LOCK, utils::ffi::lock_xadd};
+use crate::{
+    darksiders1::gfc,
+    hooks::GOD_LOCK,
+    utils::{ffi::lock_xadd, mem::init_with},
+};
 use darksiders1_sys::target;
 use std::mem;
 
@@ -49,10 +53,10 @@ unsafe fn go(args: &Args) {
     let class =
         target::gfc__ClassRegistry__classForName(class_registry, classname.as_ref(), true, false);
 
-    let mut obj = mem::MaybeUninit::uninit();
-    let new_instance = cast_away_pdbindgen_bug((*(*class).__vfptr).newInstance);
-    new_instance(class, obj.as_mut_ptr());
-    let obj = obj.assume_init();
+    let obj = init_with(|this| {
+        let new_instance = cast_away_pdbindgen_bug((*(*class).__vfptr).newInstance);
+        new_instance(class, this);
+    });
     lock_xadd(&mut (*obj.p).ReferenceCount, 1);
     #[allow(clippy::cast_ptr_alignment)]
     let obj = obj.p as *mut target::gfc__KinematicActor;

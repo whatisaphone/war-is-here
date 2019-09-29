@@ -1,11 +1,10 @@
-#[allow(unused_macros)]
 macro_rules! hstring {
     ($str:literal) => {{
-        use std::mem;
+        use std::os::raw::c_char;
+        use $crate::utils::mem::init_with;
 
-        let string = concat!($str, "\0");
-        let mut hstring = mem::MaybeUninit::uninit();
-        target::gfc__HString__HString_3(hstring.as_mut_ptr(), string.as_ptr() as *const i8, false);
-        hstring.assume_init()
+        let zstr = concat!($str, "\0");
+        let cstr = zstr.as_ptr() as *const c_char;
+        init_with(|this| target::gfc__HString__HString_3(this, cstr, false))
     }};
 }
