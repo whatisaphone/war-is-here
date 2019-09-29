@@ -4,7 +4,7 @@
 // #![warn(clippy::cargo)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
-use std::{thread, time::Duration};
+use std::thread;
 use winapi::{
     shared::minwindef::{BOOL, DWORD, HINSTANCE, LPVOID, TRUE},
     um::{
@@ -17,6 +17,8 @@ use winapi::{
 
 #[macro_use]
 mod macros;
+mod commands;
+mod control;
 mod hooks;
 mod utils;
 
@@ -45,14 +47,10 @@ fn init(hinst: HINSTANCE) {
     }
 
     println!("Hello world :)");
-    thread::sleep(Duration::from_millis(3000));
     hooks::install();
-
-    thread::sleep(Duration::from_millis(5000));
-
+    control::start();
     println!("Goodbye world :(");
     hooks::uninstall();
-    thread::sleep(Duration::from_millis(100));
 
     unsafe {
         FreeConsole();
