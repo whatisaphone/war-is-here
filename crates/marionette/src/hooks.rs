@@ -91,8 +91,9 @@ unsafe fn shine_a_light() {
         -28000.0,
         100.0,
     );
-    target::gfc__OmniLight__setPower(&mut *light, 300.0);
-    target::gfc__OmniLight__setAttenEnd(&mut *light, 1000.0);
+    target::gfc__OmniLight__setPower(light, 3.0);
+    target::gfc__OmniLight__setAttenEnd(light, 10000.0);
+    target::gfc__OmniLight__setCastShadows(light, true);
 
     target::gfc__WorldObject__addToWorld(
         (*(*light).as_gfc__WorldLight_mut_ptr()).as_gfc__WorldObject_mut_ptr(),
