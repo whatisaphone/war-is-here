@@ -16,6 +16,1360 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpWorld {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_gravity")]
+#[repr(C)]
+pub struct hkpWorld {
+    pub __vfptr: *const hkpWorld____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_simulation: *mut hkpSimulation,
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_gravity: hkVector4f,
+    pub m_fixedIsland: *mut hkpSimulationIsland,
+    pub m_fixedRigidBody: *mut hkpRigidBody,
+    pub m_activeSimulationIslands: hkArray_hkpSimulationIsland___hkContainerHeapAllocator_,
+    pub m_inactiveSimulationIslands: hkArray_hkpSimulationIsland___hkContainerHeapAllocator_,
+    pub m_dirtySimulationIslands: hkArray_hkpSimulationIsland___hkContainerHeapAllocator_,
+    pub m_maintenanceMgr: *mut hkpWorldMaintenanceMgr,
+    pub m_memoryWatchDog: hkRefPtr_hkWorldMemoryAvailableWatchDog_,
+    pub m_assertOnRunningOutOfSolverMemory: hkBool,
+    pub m_broadPhaseType: hkEnum_enum_hkpWorldCinfo__BroadPhaseType_signed_char_,
+    pub m_broadPhase: *mut hkpBroadPhase,
+    pub m_broadPhaseDispatcher: *mut hkpTypedBroadPhaseDispatcher,
+    pub m_phantomBroadPhaseListener: *mut hkpPhantomBroadPhaseListener,
+    pub m_entityEntityBroadPhaseListener: *mut hkpEntityEntityBroadPhaseListener,
+    pub m_broadPhaseBorderListener: *mut hkpBroadPhaseBorderListener,
+    pub m_multithreadedSimulationJobData: *mut hkpMtThreadStructure,
+    pub m_collisionInput: *mut hkpProcessCollisionInput,
+    pub m_collisionFilter: *mut hkpCollisionFilter,
+    pub m_collisionDispatcher: *mut hkpCollisionDispatcher,
+    pub m_convexListFilter: *mut hkpConvexListFilter,
+    pub m_pendingOperations: *mut hkpWorldOperationQueue,
+    pub m_pendingOperationsCount: i32,
+    pub m_pendingBodyOperationsCount: i32,
+    pub m_criticalOperationsLockCount: i32,
+    pub m_criticalOperationsLockCountForPhantoms: i32,
+    pub m_blockExecutingPendingOperations: hkBool,
+    pub m_criticalOperationsAllowed: hkBool,
+    pub m_pendingOperationQueues: *mut hkpDebugInfoOnPendingOperationQueues,
+    pub m_pendingOperationQueueCount: i32,
+    pub m_multiThreadCheck: hkMultiThreadCheck,
+    pub m_processActionsInSingleThread: hkBool,
+    pub m_allowIntegrationOfIslandsWithoutConstraintsInASeparateJob: hkBool,
+    pub m_minDesiredIslandSize: u32,
+    pub m_modifyConstraintCriticalSection: *mut hkCriticalSection,
+    pub m_isLocked: i32,
+    pub m_islandDirtyListCriticalSection: *mut hkCriticalSection,
+    pub m_propertyMasterLock: *mut hkCriticalSection,
+    pub m_wantSimulationIslands: hkBool,
+    pub m_snapCollisionToConvexEdgeThreshold: f32,
+    pub m_snapCollisionToConcaveEdgeThreshold: f32,
+    pub m_enableToiWeldRejection: hkBool,
+    pub m_wantDeactivation: hkBool,
+    pub m_shouldActivateOnRigidBodyTransformChange: hkBool,
+    pub m_deactivationReferenceDistance: f32,
+    pub m_toiCollisionResponseRotateNormal: f32,
+    pub m_maxSectorsPerMidphaseCollideTask: i32,
+    pub m_maxSectorsPerNarrowphaseCollideTask: i32,
+    pub m_processToisMultithreaded: hkBool,
+    pub m_maxEntriesPerToiMidphaseCollideTask: i32,
+    pub m_maxEntriesPerToiNarrowphaseCollideTask: i32,
+    pub m_maxNumToiCollisionPairsSinglethreaded: i32,
+    pub m_simulationType: hkEnum_enum_hkpWorldCinfo__SimulationType_int_,
+    pub m_numToisTillAllowedPenetrationSimplifiedToi: f32,
+    pub m_numToisTillAllowedPenetrationToi: f32,
+    pub m_numToisTillAllowedPenetrationToiHigher: f32,
+    pub m_numToisTillAllowedPenetrationToiForced: f32,
+    pub m_lastEntityUid: u32,
+    pub m_lastIslandUid: u32,
+    pub m_lastConstraintUid: u32,
+    pub m_phantoms: hkArray_hkpPhantom___hkContainerHeapAllocator_,
+    pub m_actionListeners: hkArray_hkpActionListener___hkContainerHeapAllocator_,
+    pub m_entityListeners: hkArray_hkpEntityListener___hkContainerHeapAllocator_,
+    pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
+    pub m_constraintListeners: hkArray_hkpConstraintListener___hkContainerHeapAllocator_,
+    pub m_worldDeletionListeners: hkArray_hkpWorldDeletionListener___hkContainerHeapAllocator_,
+    pub m_islandActivationListeners:
+        hkArray_hkpIslandActivationListener___hkContainerHeapAllocator_,
+    pub m_worldPostSimulationListeners:
+        hkArray_hkpWorldPostSimulationListener___hkContainerHeapAllocator_,
+    pub m_worldPostIntegrateListeners:
+        hkArray_hkpWorldPostIntegrateListener___hkContainerHeapAllocator_,
+    pub m_worldPostCollideListeners:
+        hkArray_hkpWorldPostCollideListener___hkContainerHeapAllocator_,
+    pub m_islandPostIntegrateListeners:
+        hkArray_hkpIslandPostIntegrateListener___hkContainerHeapAllocator_,
+    pub m_islandPostCollideListeners:
+        hkArray_hkpIslandPostCollideListener___hkContainerHeapAllocator_,
+    pub m_contactListeners: hkArray_hkpContactListener___hkContainerHeapAllocator_,
+    pub m_contactImpulseLimitBreachedListeners:
+        hkArray_hkpContactImpulseLimitBreachedListener___hkContainerHeapAllocator_,
+    pub m_worldExtensions: hkArray_hkpWorldExtension___hkContainerHeapAllocator_,
+    pub m_violatedConstraintArray: *mut hkpViolatedConstraintArray,
+    pub m_broadPhaseBorder: *mut hkpBroadPhaseBorder,
+    pub m_destructionWorld: *mut hkdWorld,
+    pub m_npWorld: *mut hknpWorld,
+    pub m_dynamicsStepInfo: hkpWorldDynamicsStepInfo,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_broadPhaseExtents: compile_error!("unimplemented feature: class layout 0x0"),
+    pub m_broadPhaseNumMarkers: i32,
+    pub m_sizeOfToiEventQueue: i32,
+    pub m_broadPhaseQuerySize: i32,
+    pub m_broadPhaseUpdateSize: i32,
+    pub m_contactPointGeneration: hkEnum_enum_hkpWorldCinfo__ContactPointGeneration_signed_char_,
+    pub m_useCompoundSpuElf: hkBool,
+}
+
+impl hkpWorld {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpWorld____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+}
+
+#[repr(C)]
+pub struct hkpWorldDynamicsStepInfo {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_solverInfo")]
+#[repr(C)]
+pub struct hkpWorldDynamicsStepInfo {
+    pub m_stepInfo: hkStepInfo,
+    #[cfg(pdb_issue = "error in hkpSolverInfo")]
+    pub m_solverInfo: hkpSolverInfo,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpWorldCinfo__SimulationType_int_ {
+    pub m_storage: i32,
+}
+
+#[repr(C)]
+pub struct hkpRigidBody {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_motion")]
+#[repr(C)]
+pub struct hkpRigidBody {
+    pub __vfptr: *const hkpRigidBody____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_world: *mut hkpWorld,
+    pub m_userData: u32,
+    pub m_collidable: hkpLinkedCollidable,
+    pub m_multiThreadCheck: hkMultiThreadCheck,
+    pub m_name: hkStringPtr,
+    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    pub m_material: hkpMaterial,
+    pub m_limitContactImpulseUtilAndFlag: *mut (),
+    pub m_damageMultiplier: f32,
+    pub m_breakableBody: *mut hkpBreakableBody,
+    pub m_solverData: u32,
+    pub m_storageIndex: u16,
+    pub m_contactPointCallbackDelay: u16,
+    pub m_constraintsMaster: hkSmallArray_hkConstraintInternal_,
+    pub m_constraintsSlave: hkArray_hkViewPtr_hkpConstraintInstance__hkContainerHeapAllocator_,
+    pub m_constraintRuntime: hkArray_unsigned_char_hkContainerHeapAllocator_,
+    pub m_simulationIsland: *mut hkpSimulationIsland,
+    pub m_autoRemoveLevel: i8,
+    pub m_numShapeKeysInContactPointProperties: u8,
+    pub m_responseModifierFlags: u8,
+    pub m_uid: u32,
+    pub m_spuCollisionCallback: hkpEntity__SpuCollisionCallback,
+    #[cfg(pdb_issue = "error in hkpMaxSizeMotion")]
+    pub m_motion: hkpMaxSizeMotion,
+    pub m_contactListeners: hkSmallArray_hkpContactListener___,
+    pub m_actions: hkSmallArray_hkpAction___,
+    pub m_localFrame: hkRefPtr_hkLocalFrame_,
+    pub m_extendedListeners: *mut hkpEntity__ExtendedListeners,
+    pub m_npData: u32,
+}
+
+impl hkpRigidBody {
+    pub fn as_hkpEntity_ptr(&self) -> *const hkpEntity {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpEntity_mut_ptr(&mut self) -> *mut hkpEntity {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpRigidBody____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub setShape: unsafe extern "thiscall" fn(
+        this: *mut hkpWorldObject,
+        _: *const hkpShape,
+    ) -> hkWorldOperation__Result,
+    pub updateShape: unsafe extern "thiscall" fn(
+        this: *mut hkpWorldObject,
+        _: *mut hkpShapeModifier,
+    ) -> hkWorldOperation__Result,
+    pub getMotionState:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldObject) -> *mut hkMotionState,
+    pub deallocateInternalArrays: unsafe extern "thiscall" fn(this: *mut hkpEntity),
+    pub clone: unsafe extern "thiscall" fn(this: *const hkpRigidBody) -> *mut hkpRigidBody,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpAgentNnTrackType_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkpAgentNnTrack {
+    pub m_bytesUsedInLastSector: u16,
+    pub m_nnTrackType: hkEnum_enum_hkpAgentNnTrackType_unsigned_char_,
+    pub m_padding: u8,
+    pub m_sectors: hkInplaceArray_hkpAgentNnSector___1_hkContainerHeapAllocator_,
+}
+
+#[repr(C)]
+pub struct hkpSimulationIsland {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_splitCheckRequested")]
+#[repr(C)]
+pub struct hkpSimulationIsland {
+    pub __vfptr: *const hkpSimulationIsland____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_constraintInfo: hkpConstraintInfo,
+    pub m_world: *mut hkpWorld,
+    pub m_numConstraints: i32,
+    pub m_storageIndex: u16,
+    pub m_dirtyListIndex: u16,
+    pub m_splitCheckFrameCounter: u8,
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_splitCheckRequested: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_isSparse: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_actionListCleanupNeeded: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_allowIslandLocking: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_isInActiveIslandsArray: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_activeMark: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_tryToIncreaseIslandSizeMark: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_inIntegrateJob: compile_error!("unimplemented feature: type kind 0x1205"),
+    pub m_multiThreadCheck: hkMultiThreadCheck,
+    pub m_timeSinceLastHighFrequencyCheck: f32,
+    pub m_timeSinceLastLowFrequencyCheck: f32,
+    pub m_actions: hkArray_hkpAction___hkContainerHeapAllocator_,
+    pub m_timeOfDeactivation: f32,
+    pub m_entities: hkInplaceArray_hkpEntity___1_hkContainerHeapAllocator_,
+    pub m_midphaseAgentTrack: hkpAgentNnTrack,
+    pub m_narrowphaseAgentTrack: hkpAgentNnTrack,
+}
+
+impl hkpSimulationIsland {
+    pub fn as_hkpConstraintOwner_ptr(&self) -> *const hkpConstraintOwner {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpConstraintOwner_mut_ptr(&mut self) -> *mut hkpConstraintOwner {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpSimulationIsland____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub addConstraintToCriticalLockedIsland:
+        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
+    pub removeConstraintFromCriticalLockedIsland:
+        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
+    pub addCallbackRequest: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintOwner,
+        _: *mut hkpConstraintInstance,
+        _: i32,
+    ),
+    pub checkAccessRw: unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner),
+}
+
+#[repr(C)]
+pub struct hkpCollisionEvent {
+    pub m_source: hkpCollisionEvent__CallbackSource,
+    pub m_bodies: [*mut hkpRigidBody; 2],
+    pub m_contactMgr: *mut hkpSimpleConstraintContactMgr,
+}
+
+#[repr(C)]
+pub struct hkpContactPointEvent {
+    pub m_source: hkpCollisionEvent__CallbackSource,
+    pub m_bodies: [*mut hkpRigidBody; 2],
+    pub m_contactMgr: *mut hkpSimpleConstraintContactMgr,
+    pub m_type: hkpContactPointEvent__Type,
+    pub m_contactPoint: *mut hkContactPoint,
+    pub m_contactPointProperties: *mut hkpContactPointProperties,
+    pub m_firingCallbacksForFullManifold: hkBool,
+    pub m_firstCallbackForFullManifold: hkBool,
+    pub m_lastCallbackForFullManifold: hkBool,
+    pub m_separatingVelocity: *mut f32,
+    pub m_rotateNormal: *mut f32,
+    pub m_shapeKeyStorage: *mut u32,
+    pub m_accumulators: [*mut hkpVelocityAccumulator; 2],
+}
+
+impl hkpContactPointEvent {
+    pub fn as_hkpCollisionEvent_ptr(&self) -> *const hkpCollisionEvent {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpCollisionEvent_mut_ptr(&mut self) -> *mut hkpCollisionEvent {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpDynamicsContactMgr {
+    pub __vfptr: *const hkpDynamicsContactMgr____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkpContactMgr__Type,
+    pub m_world: *mut hkpWorld,
+}
+
+impl hkpDynamicsContactMgr {
+    pub fn as_hkpContactMgr_ptr(&self) -> *const hkpContactMgr {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpContactMgr_mut_ptr(&mut self) -> *mut hkpContactMgr {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpDynamicsContactMgr____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub addContactPointImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpProcessCollisionInput,
+        _: *mut hkpProcessCollisionOutput,
+        _: *const hkpGskCache,
+        _: *mut hkContactPoint,
+    ) -> u16,
+    pub reserveContactPointsImpl:
+        unsafe extern "thiscall" fn(this: *mut hkpContactMgr, _: i32) -> hkResult,
+    pub removeContactPointImpl:
+        unsafe extern "thiscall" fn(this: *mut hkpContactMgr, _: u16, _: *mut hkpConstraintOwner),
+    pub processContactImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *const hkpCollidable,
+        _: *const hkpCollidable,
+        _: *const hkpProcessCollisionInput,
+        _: *mut hkpProcessCollisionData,
+    ),
+    pub addToiImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpProcessCollisionInput,
+        _: *mut hkpProcessCollisionOutput,
+        _: f32,
+        _: *mut hkContactPoint,
+        _: *const hkpGskCache,
+        _: *mut f32,
+        _: *mut hkpContactPointProperties,
+    ) -> hkpContactMgr__ToiAccept,
+    pub removeToiImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *mut hkpConstraintOwner,
+        _: *mut hkpContactPointProperties,
+    ),
+    pub cleanup: unsafe extern "thiscall" fn(this: *mut hkpContactMgr),
+    pub getContactPointProperties: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: u16,
+    )
+        -> *mut hkpContactPointProperties,
+    pub getContactPoint: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: u16,
+    ) -> *mut hkContactPoint,
+    pub getAllContactPointIds: unsafe extern "thiscall" fn(
+        this: *const hkpDynamicsContactMgr,
+        _: *mut hkArray_unsigned_short_hkContainerHeapAllocator_,
+    ),
+    pub getType:
+        unsafe extern "thiscall" fn(this: *const hkpDynamicsContactMgr) -> hkpContactMgr__Type,
+    pub toiCollisionResponseBeginCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *const hkContactPoint,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+    ),
+    pub toiCollisionResponseEndCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *const hkContactPoint,
+        _: f32,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+    ),
+    pub getConstraintInstance:
+        unsafe extern "thiscall" fn(this: *mut hkpDynamicsContactMgr) -> *mut hkpConstraintInstance,
+    pub fireCallbacksForEarliestToi: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *mut hkpToiEvent,
+        _: *mut f32,
+    ) -> hkBool,
+    pub confirmToi: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *mut hkpToiEvent,
+        _: f32,
+        _: *mut hkArray_hkpEntity___hkContainerHeapAllocator_,
+    ),
+}
+
+#[repr(C)]
+pub struct hkpModifierConstraintAtom {
+    pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
+    pub m_modifierAtomSize: u16,
+    pub m_childSize: u16,
+    pub m_child: *mut hkpConstraintAtom,
+    pub m_pad: [u32; 2],
+}
+
+impl hkpModifierConstraintAtom {
+    pub fn as_hkpConstraintAtom_ptr(&self) -> *const hkpConstraintAtom {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpConstraintAtom_mut_ptr(&mut self) -> *mut hkpConstraintAtom {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpSimpleConstraintContactMgr {
+    pub __vfptr: *const hkpSimpleConstraintContactMgr____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkpContactMgr__Type,
+    pub m_world: *mut hkpWorld,
+    pub m_reservedContactPoints: u16,
+    pub m_contactPointCallbackDelay: u16,
+    pub m_contactConstraintData: hkpSimpleContactConstraintData,
+    pub m_constraint: hkpConstraintInstance,
+    pub m_pad: [u32; 1],
+}
+
+impl hkpSimpleConstraintContactMgr {
+    pub fn as_hkpDynamicsContactMgr_ptr(&self) -> *const hkpDynamicsContactMgr {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpDynamicsContactMgr_mut_ptr(&mut self) -> *mut hkpDynamicsContactMgr {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpSimpleConstraintContactMgr____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub addContactPointImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpProcessCollisionInput,
+        _: *mut hkpProcessCollisionOutput,
+        _: *const hkpGskCache,
+        _: *mut hkContactPoint,
+    ) -> u16,
+    pub reserveContactPointsImpl:
+        unsafe extern "thiscall" fn(this: *mut hkpContactMgr, _: i32) -> hkResult,
+    pub removeContactPointImpl:
+        unsafe extern "thiscall" fn(this: *mut hkpContactMgr, _: u16, _: *mut hkpConstraintOwner),
+    pub processContactImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *const hkpCollidable,
+        _: *const hkpCollidable,
+        _: *const hkpProcessCollisionInput,
+        _: *mut hkpProcessCollisionData,
+    ),
+    pub addToiImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpProcessCollisionInput,
+        _: *mut hkpProcessCollisionOutput,
+        _: f32,
+        _: *mut hkContactPoint,
+        _: *const hkpGskCache,
+        _: *mut f32,
+        _: *mut hkpContactPointProperties,
+    ) -> hkpContactMgr__ToiAccept,
+    pub removeToiImpl: unsafe extern "thiscall" fn(
+        this: *mut hkpContactMgr,
+        _: *mut hkpConstraintOwner,
+        _: *mut hkpContactPointProperties,
+    ),
+    pub cleanup: unsafe extern "thiscall" fn(this: *mut hkpContactMgr),
+    pub getContactPointProperties: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: u16,
+    )
+        -> *mut hkpContactPointProperties,
+    pub getContactPoint: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: u16,
+    ) -> *mut hkContactPoint,
+    pub getAllContactPointIds: unsafe extern "thiscall" fn(
+        this: *const hkpDynamicsContactMgr,
+        _: *mut hkArray_unsigned_short_hkContainerHeapAllocator_,
+    ),
+    pub getType:
+        unsafe extern "thiscall" fn(this: *const hkpDynamicsContactMgr) -> hkpContactMgr__Type,
+    pub toiCollisionResponseBeginCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *const hkContactPoint,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+    ),
+    pub toiCollisionResponseEndCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *const hkContactPoint,
+        _: f32,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+        _: *mut hkpSimpleConstraintInfoInitInput,
+        _: *mut hkpBodyVelocity,
+    ),
+    pub getConstraintInstance:
+        unsafe extern "thiscall" fn(this: *mut hkpDynamicsContactMgr) -> *mut hkpConstraintInstance,
+    pub fireCallbacksForEarliestToi: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *mut hkpToiEvent,
+        _: *mut f32,
+    ) -> hkBool,
+    pub confirmToi: unsafe extern "thiscall" fn(
+        this: *mut hkpDynamicsContactMgr,
+        _: *mut hkpToiEvent,
+        _: f32,
+        _: *mut hkArray_hkpEntity___hkContainerHeapAllocator_,
+    ),
+    pub __: *const (),
+}
+
+#[repr(C)]
+pub struct hkpContactPointAddedEvent {
+    pub m_bodyA: *const hkpCdBody,
+    pub m_bodyB: *const hkpCdBody,
+    pub m_type: hkEnum_enum_hkpContactPointAddedEvent__Type_int_,
+    pub m_callbackFiredFrom: *mut hkpEntity,
+    pub m_contactPoint: *const hkContactPoint,
+    pub m_gskCache: *const hkpGskCache,
+    pub m_contactPointProperties: *mut hkpContactPointProperties,
+    pub m_projectedVelocity: f32,
+    pub m_status: hkpContactPointAccept,
+    pub m_internalContactMgr: *mut hkpDynamicsContactMgr,
+    pub m_collisionInput: *const hkpProcessCollisionInput,
+    pub m_collisionOutput: *mut hkpProcessCollisionOutput,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpContactPointAddedEvent__Type_int_ {
+    pub m_storage: i32,
+}
+
+#[repr(C)]
+pub struct hkpCollisionAgentConfig {
+    pub m_iterativeLinearCastEarlyOutDistance: f32,
+    pub m_iterativeLinearCastMaxIterations: i32,
+}
+
+#[repr(C)]
+pub struct hkpLinearCastCollisionInput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_path")]
+#[repr(C)]
+pub struct hkpLinearCastCollisionInput {
+    pub m_dispatcher: hkPadSpu_hkpCollisionDispatcher___,
+    pub m_weldClosestPoints: hkPadSpu_unsigned_int_,
+    pub m_forceAcceptContactPoints: hkPadSpu_unsigned_int_,
+    pub m_tolerance: hkPadSpu_float_,
+    pub m_filter: hkPadSpu_hkpCollisionFilter_const___,
+    pub m_convexListFilter: hkPadSpu_hkpConvexListFilter_const___,
+    pub m_createPredictiveAgents: hkPadSpu_unsigned_int_,
+    pub m_aabb32Info: hkpCollisionInput__Aabb32Info,
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_path: hkVector4f,
+    pub m_maxExtraPenetration: f32,
+    pub m_cachedPathLength: f32,
+    pub m_config: *mut hkpCollisionAgentConfig,
+}
+
+impl hkpLinearCastCollisionInput {
+    pub fn as_hkpCollisionInput_ptr(&self) -> *const hkpCollisionInput {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpCollisionInput_mut_ptr(&mut self) -> *mut hkpCollisionInput {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpShapeRayCastOutput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_normal")]
+#[repr(C)]
+pub struct hkpShapeRayCastOutput {
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_normal: hkVector4f,
+    pub m_hitFraction: f32,
+    pub m_extraInfo: i32,
+    pub m_pad: [i32; 2],
+    pub m_shapeKeys: [u32; 8],
+    pub m_shapeKeyIndex: i32,
+}
+
+impl hkpShapeRayCastOutput {
+    pub fn as_hkpShapeRayCastCollectorOutput_ptr(&self) -> *const hkpShapeRayCastCollectorOutput {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpShapeRayCastCollectorOutput_mut_ptr(
+        &mut self,
+    ) -> *mut hkpShapeRayCastCollectorOutput {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpCollisionInput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_aabb32Info")]
+#[repr(C)]
+pub struct hkpCollisionInput {
+    pub m_dispatcher: hkPadSpu_hkpCollisionDispatcher___,
+    pub m_weldClosestPoints: hkPadSpu_unsigned_int_,
+    pub m_forceAcceptContactPoints: hkPadSpu_unsigned_int_,
+    pub m_tolerance: hkPadSpu_float_,
+    pub m_filter: hkPadSpu_hkpCollisionFilter_const___,
+    pub m_convexListFilter: hkPadSpu_hkpConvexListFilter_const___,
+    pub m_createPredictiveAgents: hkPadSpu_unsigned_int_,
+    #[cfg(pdb_issue = "error in hkpCollisionInput__Aabb32Info")]
+    pub m_aabb32Info: hkpCollisionInput__Aabb32Info,
+}
+
+#[repr(C)]
+pub struct hkThreadPool {
+    pub __vfptr: *const hkThreadPool____vftable,
+    pub m_memSizeAndRefCount: u32,
+}
+
+impl hkThreadPool {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkThreadPool____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub processJobQueue:
+        unsafe extern "thiscall" fn(this: *mut hkThreadPool, _: *mut hkJobQueue, _: hkJobType),
+    pub processTaskQueue:
+        unsafe extern "thiscall" fn(this: *mut hkThreadPool, _: *mut hkDefaultTaskQueue),
+    pub isProcessing: unsafe extern "thiscall" fn(this: *const hkThreadPool) -> bool,
+    pub waitForCompletion: unsafe extern "thiscall" fn(this: *mut hkThreadPool),
+    pub getNumThreads: unsafe extern "thiscall" fn(this: *const hkThreadPool) -> i32,
+    pub setNumThreads: unsafe extern "thiscall" fn(this: *mut hkThreadPool, _: i32),
+    pub appendTimerData: unsafe extern "thiscall" fn(
+        this: *mut hkThreadPool,
+        _: *mut hkArrayBase_hkTimerData_,
+        _: *mut hkMemoryAllocator,
+    ),
+    pub clearTimerData: unsafe extern "thiscall" fn(this: *mut hkThreadPool),
+    pub gcThreadMemoryOnNextCompletion: unsafe extern "thiscall" fn(this: *mut hkThreadPool),
+}
+
+#[repr(C)]
+pub struct hkpProcessCollisionOutput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_contactPoints")]
+#[repr(C)]
+pub struct hkpProcessCollisionOutput {
+    pub m_firstFreeContactPoint: hkPadSpu_hkpProcessCdPoint___,
+    pub m_constraintOwner: hkPadSpu_hkpConstraintOwner___,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_contactPoints: compile_error!("unimplemented feature: class layout 0x0"),
+    pub m_toi: hkpProcessCollisionData__ToiInfo,
+    pub m_potentialContacts: hkPadSpu_hkpProcessCollisionOutput__PotentialInfo___,
+}
+
+impl hkpProcessCollisionOutput {
+    pub fn as_hkpProcessCollisionData_ptr(&self) -> *const hkpProcessCollisionData {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpProcessCollisionData_mut_ptr(&mut self) -> *mut hkpProcessCollisionData {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpGskCache {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_maxDimA")]
+#[repr(C)]
+pub struct hkpGskCache {
+    pub m_vertices: [u16; 4],
+    pub m_dimA: u8,
+    pub m_dimB: u8,
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_maxDimA: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
+    pub m_maxDimB: compile_error!("unimplemented feature: type kind 0x1205"),
+    pub m_gskFlags: u8,
+}
+
+#[repr(C)]
+pub struct hkpWorldRayCastInput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_from")]
+#[repr(C)]
+pub struct hkpWorldRayCastInput {
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_from: hkVector4f,
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_to: hkVector4f,
+    pub m_enableShapeCollectionFilter: hkBool,
+    pub m_filterInfo: u32,
+    pub m_userData: u32,
+}
+
+#[repr(C)]
+pub struct hkpShapeRayCastCollectorOutput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_normal")]
+#[repr(C)]
+pub struct hkpShapeRayCastCollectorOutput {
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_normal: hkVector4f,
+    pub m_hitFraction: f32,
+    pub m_extraInfo: i32,
+    pub m_pad: [i32; 2],
+}
+
+#[repr(C)]
+pub struct hkpCollidable {
+    pub m_shape: *const hkpShape,
+    pub m_shapeKey: u32,
+    pub m_motion: *const (),
+    pub m_parent: *const hkpCdBody,
+    pub m_ownerOffset: i8,
+    pub m_forceCollideOntoPpu: u8,
+    pub m_shapeSizeOnSpu: u16,
+    pub m_broadPhaseHandle: hkpTypedBroadPhaseHandle,
+    pub m_boundingVolumeData: hkpCollidable__BoundingVolumeData,
+    pub m_allowedPenetrationDepth: f32,
+}
+
+impl hkpCollidable {
+    pub fn as_hkpCdBody_ptr(&self) -> *const hkpCdBody {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpCdBody_mut_ptr(&mut self) -> *mut hkpCdBody {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpCollisionDispatcher__ShapeInheritance {
+    pub m_primaryType: hkcdShapeType__ShapeTypeEnum,
+    pub m_alternateType: hkcdShapeType__ShapeTypeEnum,
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterial {
+    pub __vfptr: *const hkpBreakableMaterial____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_strength: f32,
+    pub m_typeAndFlags: i32,
+    pub m_properties: *mut hkRefCountedProperties,
+}
+
+impl hkpBreakableMaterial {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterial____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub createInverseMapping:
+        unsafe extern "thiscall" fn(this: *mut hkpBreakableMaterial, _: *const hkcdShape),
+    pub duplicate:
+        unsafe extern "thiscall" fn(this: *mut hkpBreakableMaterial) -> *mut hkpBreakableMaterial,
+    pub setDefaultMapping: unsafe extern "thiscall" fn(this: *mut hkpBreakableMaterial),
+    pub getSubShapeMaterialIndex: unsafe extern "thiscall" fn(
+        this: *const hkpBreakableMaterial,
+        _: *const hkcdShape,
+        _: u32,
+    ) -> i16,
+    pub getShapeKeyMaterial: unsafe extern "thiscall" fn(
+        this: *const hkpBreakableMaterial,
+        _: *const hkcdShape,
+        _: u32,
+    ) -> *mut hkpBreakableMaterial,
+    pub convertShapeKeyToSubShapeId:
+        unsafe extern "thiscall" fn(this: *const hkpBreakableMaterial, _: u32) -> u32,
+    pub convertShapeKeysToSubShapeIds: unsafe extern "thiscall" fn(
+        this: *const hkpBreakableMaterial,
+        _: *mut hkArray_unsigned_int_hkContainerHeapAllocator_,
+    ),
+    pub disableSubShapes: unsafe extern "thiscall" fn(
+        this: *mut hkpBreakableMaterial,
+        _: *mut hkcdShape,
+        _: *const i16,
+        _: i32,
+    ),
+    pub getNumSubMaterials: unsafe extern "thiscall" fn(this: *const hkpBreakableMaterial) -> i32,
+    pub getShapeKeysForSubShapes: unsafe extern "thiscall" fn(
+        this: *const hkpBreakableMaterial,
+        _: *const hkcdShape,
+        _: *const u32,
+        _: i32,
+        _: *mut hkpBreakableMaterial__ShapeKeyCollector,
+    ),
+    pub getSubShapeMaterialIndices: unsafe extern "thiscall" fn(
+        this: *const hkpBreakableMaterial,
+        _: *const hkcdShape,
+        _: *const hkArray_unsigned_int_hkContainerHeapAllocator_,
+        _: *mut hkArray_short_hkContainerHeapAllocator_,
+    ),
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterial__ShapeKeyCollector {
+    pub __vfptr: *const hkpBreakableMaterial__ShapeKeyCollector____vftable,
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterial__ShapeKeyCollector____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(
+        this: *mut hkpBreakableMaterial__ShapeKeyCollector,
+        _: u32,
+    ) -> *mut (),
+    pub addShapeKey:
+        unsafe extern "thiscall" fn(this: *mut hkpBreakableMaterial__ShapeKeyCollector, _: u32),
+    pub addShapeKeyBatch: unsafe extern "thiscall" fn(
+        this: *mut hkpBreakableMaterial__ShapeKeyCollector,
+        _: *const u32,
+        _: i32,
+    ),
+    pub addContiguousShapeKeyRange: unsafe extern "thiscall" fn(
+        this: *mut hkpBreakableMaterial__ShapeKeyCollector,
+        _: u32,
+        _: i32,
+    ),
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkpBreakableMaterial_ {
+    pub m_pntr: *mut hkpBreakableMaterial,
+}
+
+#[repr(C)]
+pub struct hkpBreakableShape {
+    pub __vfptr: *const hkpBreakableShape____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_physicsShape: hkRefPtr_hkcdShape_const__,
+    pub m_material: hkRefPtr_hkpBreakableMaterial_,
+}
+
+impl hkpBreakableShape {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpBreakableShape____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkcdShape_const__ {
+    pub m_pntr: *const hkcdShape,
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody {
+    pub __vfptr: *const hkpBreakableBody____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_controller: hkRefPtr_hkpBreakableBody__Controller_,
+    pub m_breakableShape: hkRefPtr_hkpBreakableShape_const__,
+    pub m_bodyTypeAndFlags: u8,
+    pub m_constraintStrength: hkHalf,
+}
+
+impl hkpBreakableBody {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub cloneBreakableBody: unsafe extern "thiscall" fn(
+        this: *const hkpBreakableBody,
+        _: *mut hkpRigidBody,
+    ) -> *mut hkpBreakableBody,
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody__Controller {
+    pub __vfptr: *const hkpBreakableBody__Controller____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_breakingImpulse: f32,
+}
+
+impl hkpBreakableBody__Controller {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody__Controller____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkpBreakableBody__Controller_ {
+    pub m_pntr: *mut hkpBreakableBody__Controller,
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkpBreakableShape_const__ {
+    pub m_pntr: *const hkpBreakableShape,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpBodyOperationEntry_hkContainerHeapAllocator_ {
+    pub m_data: *mut hkpBodyOperationEntry,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkpBodyOperationEntry_hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkpBodyOperationEntry__ptr(
+        &self,
+    ) -> *const hkArrayBase_hkpBodyOperationEntry_ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkpBodyOperationEntry__mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkpBodyOperationEntry_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpBodyOperation__UpdateInfo {
+    pub m_bodyIsDeleted: hkBool,
+    pub m_bodyIsInWorld: hkBool,
+}
+
+#[repr(C)]
+pub struct hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_ {
+    pub m_data: *mut hkWorldOperation__BiggestOperation,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_ {
+    pub fn as_hkArrayBase_hkWorldOperation__BiggestOperation__ptr(
+        &self,
+    ) -> *const hkArrayBase_hkWorldOperation__BiggestOperation_ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_hkWorldOperation__BiggestOperation__mut_ptr(
+        &mut self,
+    ) -> *mut hkArrayBase_hkWorldOperation__BiggestOperation_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkWorldOperation__BiggestOperation {
+    pub m_type: hkEnum_enum_hkWorldOperation__Type_unsigned_char_,
+    pub dummy: [u32; 7],
+}
+
+impl hkWorldOperation__BiggestOperation {
+    pub fn as_hkWorldOperation__BaseOperation_ptr(&self) -> *const hkWorldOperation__BaseOperation {
+        self as *const _ as _
+    }
+
+    pub fn as_hkWorldOperation__BaseOperation_mut_ptr(
+        &mut self,
+    ) -> *mut hkWorldOperation__BaseOperation {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkWorldOperation__BaseOperation {
+    pub m_type: hkEnum_enum_hkWorldOperation__Type_unsigned_char_,
+}
+
+#[repr(C)]
+pub struct hkpBodyOperation {
+    pub __vfptr: *const hkpBodyOperation____vftable,
+    pub m_memSizeAndRefCount: u32,
+}
+
+impl hkpBodyOperation {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpBodyOperation____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub execute: unsafe extern "thiscall" fn(
+        this: *mut hkpBodyOperation,
+        _: *mut hkpRigidBody,
+        _: *mut hkpBodyOperation__UpdateInfo,
+    ),
+}
+
+#[repr(C)]
+pub struct hkpSimulation {
+    pub __vfptr: *const hkpSimulation____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_determinismCheckFrameCounter: u32,
+    pub m_world: *mut hkpWorld,
+    pub m_lastProcessingStep: hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_,
+    pub m_currentTime: f32,
+    pub m_currentPsiTime: f32,
+    pub m_physicsDeltaTime: f32,
+    pub m_simulateUntilTime: f32,
+    pub m_frameMarkerPsiSnap: f32,
+    pub m_previousStepResult: u32,
+}
+
+impl hkpSimulation {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpSimulation____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub stepDeltaTime:
+        unsafe extern "thiscall" fn(this: *mut hkpSimulation, _: f32) -> hkpStepResult,
+    pub integrate: unsafe extern "thiscall" fn(this: *mut hkpSimulation, _: f32) -> hkpStepResult,
+    pub collide: unsafe extern "thiscall" fn(this: *mut hkpSimulation) -> hkpStepResult,
+    pub advanceTime: unsafe extern "thiscall" fn(this: *mut hkpSimulation) -> hkpStepResult,
+    pub stepBeginSt: unsafe extern "thiscall" fn(
+        this: *mut hkpSimulation,
+        _: *mut hkJobQueue,
+        _: f32,
+    ) -> hkpStepResult,
+    pub finishMtStep: unsafe extern "thiscall" fn(
+        this: *mut hkpSimulation,
+        _: *mut hkJobQueue,
+        _: *mut hkThreadPool,
+    ) -> hkpStepResult,
+    pub getMultithreadConfig:
+        unsafe extern "thiscall" fn(this: *mut hkpSimulation, _: *mut hkpMultithreadConfig),
+    pub setMultithreadConfig: unsafe extern "thiscall" fn(
+        this: *mut hkpSimulation,
+        _: *const hkpMultithreadConfig,
+        _: *mut hkJobQueue,
+    ),
+    pub collideEntitiesDiscrete: unsafe extern "thiscall" fn(
+        this: *mut hkpSimulation,
+        _: *mut *mut hkpEntity,
+        _: i32,
+        _: *mut hkpWorld,
+        _: *const hkStepInfo,
+        _: hkpSimulation__FindContacts,
+    ),
+    pub resetCollisionInformationForEntities: unsafe extern "thiscall" fn(
+        this: *mut hkpSimulation,
+        _: *mut *mut hkpEntity,
+        _: i32,
+        _: *mut hkpWorld,
+        _: hkpSimulation__ResetCollisionInformation,
+    ),
+    pub assertThereIsNoCollisionInformationForEntities: unsafe extern "thiscall" fn(
+        this: *mut hkpSimulation,
+        _: *mut *mut hkpEntity,
+        _: i32,
+        _: *mut hkpWorld,
+    ),
+    pub removeCollisionInformationForAgent:
+        unsafe extern "thiscall" fn(this: *mut hkpSimulation, _: *mut hkpAgentNnEntry),
+    pub assertThereIsNoCollisionInformationForAgent:
+        unsafe extern "thiscall" fn(this: *mut hkpSimulation, _: *mut hkpAgentNnEntry),
+    pub reintegrateAndRecollideEntities: unsafe extern "thiscall" fn(
+        this: *mut hkpSimulation,
+        _: *mut *mut hkpEntity,
+        _: i32,
+        _: *mut hkpWorld,
+        _: i32,
+    ),
+    pub collideInternal:
+        unsafe extern "thiscall" fn(this: *mut hkpSimulation, _: *const hkStepInfo),
+    pub warpTime: unsafe extern "thiscall" fn(this: *mut hkpSimulation, _: f32),
+}
+
+#[repr(C)]
+pub struct hkpWorldOperationQueue {
+    pub m_pending: hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_,
+    pub m_world: *mut hkpWorld,
+    pub m_islandMerges: hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_,
+    pub m_pendingBodyOperations: hkArray_hkpBodyOperationEntry_hkContainerHeapAllocator_,
+}
+
+#[repr(C)]
+pub struct hkpDebugInfoOnPendingOperationQueues {
+    pub m_pending: *mut hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_,
+    pub m_nextPendingOperationIndex: i32,
+    pub m_nextQueue: *mut hkpDebugInfoOnPendingOperationQueues,
+    pub m_prevQueue: *mut hkpDebugInfoOnPendingOperationQueues,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkWorldOperation__Type_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkpBodyOperationEntry {
+    pub m_entity: *mut hkpEntity,
+    pub m_operation: *mut hkpBodyOperation,
+    pub m_priority: i32,
+    pub m_hint: hkpBodyOperation__ExecutionState,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkWorldOperation__BiggestOperation_ {
+    pub m_data: *mut hkWorldOperation__BiggestOperation,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpBodyOperationEntry_ {
+    pub m_data: *mut hkpBodyOperationEntry,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkpConstraintTrackerData {
+    pub __vfptr: *const hkpConstraintTrackerData____vftable,
+    pub m_memSizeAndRefCount: u32,
+}
+
+impl hkpConstraintTrackerData {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpConstraintTrackerData____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub print:
+        unsafe extern "thiscall" fn(this: *const hkpConstraintTrackerData, _: *mut hkStringBuf),
+}
+
+#[repr(C)]
+pub struct hkpConstraintBrokenEvent {
+    pub m_world: *mut hkpWorld,
+    pub m_constraintInstance: *mut hkpConstraintInstance,
+    pub m_eventSource: *const hkClass,
+    pub m_eventSourceDetails: *mut hkpConstraintTrackerData,
+    pub m_actualImpulse: f32,
+    pub m_impulseLimit: f32,
+}
+
+#[repr(C)]
+pub struct hkpConstraintRepairedEvent {
+    pub m_world: *mut hkpWorld,
+    pub m_constraintInstance: *mut hkpConstraintInstance,
+    pub m_eventSource: *const hkClass,
+    pub m_eventSourceDetails: *mut hkpConstraintTrackerData,
+}
+
+#[repr(C)]
+pub struct hkpConstraintListener {
+    pub __vfptr: *const hkpConstraintListener____vftable,
+}
+
+#[repr(C)]
+pub struct hkpConstraintListener____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpConstraintListener, _: u32) -> *mut (),
+    pub constraintAddedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintListener,
+        _: *mut hkpConstraintInstance,
+    ),
+    pub constraintRemovedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintListener,
+        _: *mut hkpConstraintInstance,
+    ),
+    pub constraintDeletedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintListener,
+        _: *mut hkpConstraintInstance,
+    ),
+    pub constraintViolatedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintListener,
+        _: *mut hkpConstraintInstance,
+    ),
+    pub constraintBreakingCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintListener,
+        _: *const hkpConstraintBrokenEvent,
+    ),
+    pub constraintRepairedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintListener,
+        _: *const hkpConstraintRepairedEvent,
+    ),
+}
+
+#[repr(C)]
 pub struct hkContactPointMaterial {
     pub m_userData: u32,
     pub m_friction: hkUFloat8,
@@ -1691,6 +3045,8 @@ pub type keen__InputSystemControllerAutoCatchType = i32;
 
 pub type gfc__ImageFormat = i32;
 
+pub type gfc__WorldObject__Flags = i32;
+
 pub type gfc__Texture__Type = i32;
 
 pub type gfc__Darksiders__LoadState = i32;
@@ -1744,6 +3100,8 @@ pub type hkJobQueueHwSetup__SpuSchedulePolicy = i32;
 pub type hkJobQueueHwSetup__CellRules = i32;
 
 pub type hkpConstraintData__UpdateAtomsResult__Enum = i32;
+
+pub type gfc__StaticObject__Flags = i32;
 
 pub type hkpBroadPhase__Capabilities = i32;
 
@@ -3334,375 +4692,6 @@ pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__fmStreamInfo_gfc__Hash_u
 
 #[repr(C)]
 pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__fmStreamInfo_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Method__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Method__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__OCClassManager__ScriptInfo_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__OCClassManager__ScriptInfo_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__AutoRef_gfc__Value__gfc__AutoRef_gfc__Value__gfc__ValueCompare___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__String_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__fmSound__DSPUnitInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__fmSoundCache___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_gfc__HString_gfc__fmStreamInfo_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourceCache___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourceCache___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_void___gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_void___gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourceListener___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourceListener___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__PackageMarker__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__ResourceManager__ShaderState_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__ResourceManager__ShaderState_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_int_gfc__AutoRef_gfc__fmAudioChannel__gfc__Hash_unsigned_long_int__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_int_gfc__AutoRef_gfc__fmAudioChannel__gfc__Hash_unsigned_long_int__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_gfc__AutoRef_gfc__OverrideResources__std__less_int_____Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_gfc__AutoRef_gfc__OverrideResources__std__less_int_____ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_gfc__AutoRef_gfc__OverrideResources__std__less_int_____KeyIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Method__0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Method__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__Random___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__Vector_gfc__HString_0_gfc__CAllocator__std__less_gfc__HString_____Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__Vector_gfc__HString_0_gfc__CAllocator__std__less_gfc__HString_____ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__Vector_gfc__HString_0_gfc__CAllocator__std__less_gfc__HString_____KeyIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Property__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Property__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__fmSound__SoundGroupInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__WorldManager___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__WorldManager___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__DSPEffect__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Property__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__SoundDesc__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourcePackageInfo___0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourcePackageInfo___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Property__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Method__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_int_FMOD__Geometry___gfc__Hash_unsigned_long_int__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_int_FMOD__Geometry___gfc__Hash_unsigned_long_int__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__OCClassManager__ScriptInfo___0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__ClassLoader__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__SoundManager__StreamsPendingInfo_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__SoundManager__StreamsPendingInfo_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__OCClassManager___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Value__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__ClassRegistry___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__SoundDsp__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__fmSound___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__DebugTable {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_long_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__ResourceManager___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_float_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__SoundGroup__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__ResourceCache___std__less_gfc__HString_____Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__ResourceCache___std__less_gfc__HString_____ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__HString_gfc__ResourceCache___std__less_gfc__HString_____KeyIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__OCParser__Token_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__OCParser__Token_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__ResourceBuffer_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_unsigned___int64_gfc__AutoRef_gfc__ShaderBuffer___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tmap_traits_unsigned___int64_gfc__AutoRef_gfc__ShaderBuffer__std__less_unsigned___int64__std__allocator_std__pair_unsigned___int64_const__gfc__AutoRef_gfc__ShaderBuffer______0___value_compare
 {
     _opaque: [u8; 0],
 }

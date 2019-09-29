@@ -1,12 +1,10 @@
 #![allow(non_snake_case)]
 
-use crate::utils::{
-    detour::TypedDetour,
-    ffi::{lock_xadd, new},
-};
+use crate::utils::{detour::TypedDetour, ffi::lock_xadd};
 use darksiders1_sys::target;
 use parking_lot::Mutex;
 use pdbindgen_runtime::BindArgs;
+use std::mem;
 
 static GOD_LOCK: Mutex<Option<GodObject>> = Mutex::new(None);
 
@@ -54,49 +52,48 @@ extern "thiscall" fn hook_gfc__Darksiders__onPostUpdateInterval(
         static mut OPENED: bool = false;
         if !OPENED {
             OPENED = true;
-            shine_a_light();
+            conjure_object();
         }
     }
 
     unsafe { (god.gfc__Darksiders__onPostUpdateInterval)(this, deltat) }
 }
 
-#[allow(dead_code)]
-unsafe fn player_pos() {
-    let darksiders = *target::gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
-    #[allow(clippy::cast_ptr_alignment)]
-    let player = (*darksiders).mPlayerActor.p as *mut target::gfc__Player;
-    let position = ((*(*player).__vfptr).getPosition)(player as *mut _);
-    eprintln!("position.x = {:?}", position.x);
-    eprintln!("position.y = {:?}", position.y);
-    eprintln!("position.z = {:?}", position.z);
-}
-
-unsafe fn shine_a_light() {
+unsafe fn conjure_object() {
     let darksiders = *target::gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     #[allow(clippy::cast_ptr_alignment)]
     let world_mgr = (*darksiders).mWorldMgr.p as *mut target::gfc__WorldManager;
     let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
 
-    let light = new(|this| target::gfc__OmniLight__OmniLight(this));
-    lock_xadd(&mut (*light).ReferenceCount, 100); // huge number so memory isn't freed (workaround for bug in `new`)
-
-    eprintln!("light.mName.mHash = {:016x}", (*light).mName.mHash);
-    eprintln!("light.mWorld as u32 = {:08x}", (*light).mWorld as u32);
-    eprintln!("light.mEnabled = {:?}", (*light).mEnabled);
-
-    target::gfc__WorldObject__setPosition(
-        (*(*light).as_gfc__WorldLight_mut_ptr()).as_gfc__WorldObject_mut_ptr(),
-        -4000.0,
-        -28000.0,
-        100.0,
+    let class_registry = *target::gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
+    let class = target::gfc__ClassRegistry__classForName(
+        class_registry,
+        &hstring!("vulgrim_chime/vulgrim_chime_medium"),
+        true,
+        false,
     );
-    target::gfc__OmniLight__setPower(light, 3.0);
-    target::gfc__OmniLight__setAttenEnd(light, 10000.0);
-    target::gfc__OmniLight__setCastShadows(light, true);
+    let mut chime = mem::MaybeUninit::uninit();
+    let newInstance = mem::transmute::<
+        unsafe extern "thiscall" fn(
+            this: *mut target::gfc__Class,
+        ) -> target::gfc__AutoRef_gfc__Object_,
+        unsafe extern "thiscall" fn(
+            this: *mut target::gfc__Class,
+            result: *mut target::gfc__AutoRef_gfc__Object_,
+        ) -> *mut target::gfc__AutoRef_gfc__Object_,
+    >((*(*class).__vfptr).newInstance);
+    newInstance(class, chime.as_mut_ptr());
+    let chime = chime.assume_init();
+    lock_xadd(&mut (*chime.p).ReferenceCount, 1);
 
-    target::gfc__WorldObject__addToWorld(
-        (*(*light).as_gfc__WorldLight_mut_ptr()).as_gfc__WorldObject_mut_ptr(),
-        world,
-    );
+    #[allow(clippy::cast_ptr_alignment)]
+    let chime = chime.p as *mut target::gfc__Actor;
+
+    target::gfc__Actor__setPosition(chime, &target::gfc__TVector3_float_gfc__FloatMath_ {
+        x: -4000.0,
+        y: -28000.0,
+        z: 200.0,
+    });
+
+    ((*(*chime).__vfptr).addObjectToWorld)((*chime).as_gfc__WorldObject_mut_ptr(), world);
 }

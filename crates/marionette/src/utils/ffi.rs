@@ -6,6 +6,7 @@ use std::{
     sync::atomic::{AtomicI32, Ordering},
 };
 
+#[allow(dead_code)]
 pub unsafe fn new<T>(ctor: impl FnOnce(*mut T)) -> *mut T {
     let alloc = target::gfc__MemAlloc(
         1,

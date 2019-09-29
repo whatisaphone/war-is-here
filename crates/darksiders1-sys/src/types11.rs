@@ -16,6 +16,353 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpMoppTreeNode__hkpMopp3DOPExtents__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppTreeInternalNode__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppTreeTerminal__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppBasicNode__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppBasicNode__hkpMoppCostInfo__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppMediator__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCachedShapeMediator__hkpConvexShapeData__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCostFunction__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCostFunction__hkpPlaneRightParams__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCostFunction__hkpPlanesParams__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppNodeMgr__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppSplitter__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppSplitter__hkpMoppScratchArea__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppAssembler__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCompilerChunkInfo__Chunk__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpMoppCodeReindexedTerminal_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpMoppCodeReindexedTerminal_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpMoppCompilerChunkInfo__Chunk_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpMoppCompilerChunkInfo__Chunk_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpMoppCodeReindexedTerminal___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpMoppCompilerChunkInfo__Chunk___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpMoppCachedShapeMediator__hkpConvexShapeData___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpMoppCachedShapeMediator__hkpConvexShapeData_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpMoppCachedShapeMediator__hkpConvexShapeData_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkpVelocityAccumulatorOffset_32_hkContainerHeapAllocator___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkpVelocityAccumulatorOffset_1024_hkContainerHeapAllocator___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpConstraintChainInstanceAction__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpConstraintChainInstanceAction__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpVelocityAccumulatorOffset_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpVelocityAccumulatorOffset_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpVelocityAccumulatorOffset___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterial__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterial__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterial__ShapeKeyCollector__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSimpleBreakableMaterial__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSimpleBreakableMaterial__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMultiMaterial__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMultiMaterial__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMultiMaterial__InverseMappingDescriptor__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMultiMaterial__InverseMappingDescriptor__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMultiMaterial__InverseMapping__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMultiMaterial__InverseMapping__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkRefPtr_hkpBreakableMaterial__hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkRefPtr_hkpBreakableMaterial__hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkpBreakableMultiMaterial__InverseMapping___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkpBreakableMaterial___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkRefPtr_hkpBreakableMaterial_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpBreakableMultiMaterial__InverseMappingDescriptor___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpBreakableMultiMaterial__InverseMappingDescriptor_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpBreakableMultiMaterial__InverseMappingDescriptor_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpListShapeBreakableMaterial__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpListShapeBreakableMaterial__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpExtendedMeshShapeBreakableMaterial__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpExtendedMeshShapeBreakableMaterial__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpStaticCompoundShapeBreakableMaterial__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpStaticCompoundShapeBreakableMaterial__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableMaterialUtil__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpBreakableMaterial_const___hkContainerHeapAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableShape__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkcdShape_const____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody__Controller__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBreakableBody__Controller__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkpBreakableBody__Controller___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkpBreakableShape_const____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpBodyOperationEntry_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpBodyOperationEntry_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkArray_hkWorldOperation__BiggestOperation_hkContainerTempAllocator_ {
     _opaque: [u8; 0],
 }
@@ -2190,390 +2537,5 @@ pub struct hkcdStaticMeshTreeBase__Connectivity__SectionHeader__DefaultStruct {
 
 #[repr(C)]
 pub struct hkArray_hkcdStaticMeshTreeBase__Connectivity__SectionHeader_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticMeshTreeBase__Connectivity__SectionHeader_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticMeshTreeBase__Connectivity__SectionHeader___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__BuildMapping__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkFixedInplaceArray_unsigned_short_3___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticMeshTreeBase__Section_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticMeshTreeBase__Section_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticMeshTreeBase__Primitive_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticMeshTreeBase__Primitive_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticMeshTreeBase__Section___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticMeshTreeBase__Primitive___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBvCompressedMeshShapeTree__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBvCompressedMeshShapeTree__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___DefaultStruct
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___DefaultGeometryProvider
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___TriangleRef
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___MortonSorter
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___BuildEdge
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticMeshTreeBase__Links_hkContainerHeapAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___BaseBinaryQuery
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___OcclusionQuery
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___RayCastQuery
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___UnsignedDistanceQuery
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___UnsignedDistanceQueryWithNmp
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTree_hkcdStaticMeshTreeCommonConfig_unsigned_int_unsigned___int64_11_21__hkpBvCompressedMeshShapeTreeDataRun___CollectInRangeQuery
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBvCompressedMeshShapeTreeDataRun__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_unsigned___int64_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_unsigned___int64_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpBvCompressedMeshShapeTreeDataRun_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpBvCompressedMeshShapeTreeDataRun_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_unsigned___int64___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpBvCompressedMeshShapeTreeDataRun___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBvCompressedMeshShape_Internals__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBvCompressedMeshShape_Internals__GeometryProvider__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBvCompressedMeshShape_Internals__GeometryProvider__Cache__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpBvCompressedMeshShape_Internals__GeometryProvider__Cache___hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpBvCompressedMeshShape_Internals__GeometryProvider__Cache___hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpBvCompressedMeshShape_Internals__GeometryProvider__Cache_____MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBvCompressedMeshShape_Internals__BaseQuery__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticTree__Codec3Axis4___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticTree__Codec3Axis5___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticTree__Codec3Axis6___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticTree__CodecRaw___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__PrimitiveDataRunBase_unsigned_int___DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkLocalArray_hkcdStaticTree__Tree_hkcdStaticTree__DynamicStorage5___Slot___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticTree__Tree_hkcdStaticTree__DynamicStorage5___Slot_hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticTree__Tree_hkcdStaticTree__DynamicStorage5___Slot_hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdStaticTree__Tree_hkcdStaticTree__DynamicStorage5___Slot___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfBeginFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfGetFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfProcessChildren_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery__hkpBvCompressedMeshShapeTree___Operand_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery__0_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfProcessChildren_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery__hkpBvCompressedMeshShapeTree___Default
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfPushFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfSelect_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery_____Operand_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery__1_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfSelect_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery_____Default
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfPopNode_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfEndFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___RayCastWrapper_hkpBvCompressedMeshShape_Internals__RayCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfBeginFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfGetFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfProcessChildren_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery__hkpBvCompressedMeshShapeTree___Operand_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery__0_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfProcessChildren_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery__hkpBvCompressedMeshShapeTree___Default
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfPushFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfSelect_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery_____Operand_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery__1_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfSelect_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery_____Default
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfPopNode_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfEndFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbCastWrapper_hkpBvCompressedMeshShape_Internals__AabbCastQuery_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfBeginFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbOverlapsNoEarlyExitWrapper_hkpBvCompressedMeshShape_Internals__AabbOverlaps_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfGetFront_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbOverlapsNoEarlyExitWrapper_hkpBvCompressedMeshShape_Internals__AabbOverlaps_____Member
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___IfProcessChildren_hkcdTreeQueries_hkcdTreeQueriesStacks__Dynamic_64_0___AabbOverlapsNoEarlyExitWrapper_hkpBvCompressedMeshShape_Internals__AabbOverlaps__hkpBvCompressedMeshShapeTree___Member
-{
     _opaque: [u8; 0],
 }
