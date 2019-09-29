@@ -6,9 +6,9 @@ use parking_lot::Mutex;
 use pdbindgen_runtime::BindArgs;
 use std::collections::VecDeque;
 
-static GOD_LOCK: Mutex<Option<GodObject>> = Mutex::new(None);
+pub static GOD_LOCK: Mutex<Option<GodObject>> = Mutex::new(None);
 
-struct GodObject {
+pub struct GodObject {
     gfc__Darksiders__onPostUpdateInterval: target::gfc__Darksiders__onPostUpdateInterval,
     _cleanup: Vec<Box<dyn Send>>,
     pub on_post_update_queue: VecDeque<Box<dyn FnOnce() + Send>>,

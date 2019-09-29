@@ -23,31 +23,61 @@ pub fn run(command: &str) {
 fn parse(command: &str) -> Result<Args, ()> {
     let mut words = command.split_ascii_whitespace();
     words.next().ok_or(())?;
-    let classname = words.next().ok_or(())?.to_string();
+    let package_name = words.next().ok_or(())?.to_string();
+    let object_name = words.next().ok_or(())?.to_string();
     let x = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
     let y = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
     let z = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
-    Ok(Args { classname, x, y, z })
+    let scale = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
+    Ok(Args {
+        package_name,
+        object_name,
+        x,
+        y,
+        z,
+        scale,
+    })
 }
 
+#[derive(Debug)]
 struct Args {
-    classname: String,
+    package_name: String,
+    object_name: String,
     x: f32,
     y: f32,
     z: f32,
+    scale: f32,
 }
 
 unsafe fn go(args: &Args) {
+    // I have no idea what region or layer to use, so let's try them all!
+    for r in 0..10 {
+        for l in 0..10 {
+            once(args, r, l);
+        }
+    }
+}
+
+unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
+    eprintln!(
+        "(args, region_id, layer_id) = {:?}",
+        (args, region_id, layer_id)
+    );
     let darksiders = *target::gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     #[allow(clippy::cast_ptr_alignment)]
     let world_mgr = (*darksiders).mWorldMgr.p as *mut target::gfc__WorldManager;
     let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
 
-    let classname = gfc::HString::from_str(&args.classname);
+    let package_name = gfc::HString::from_str(&args.package_name);
+    let object_name = gfc::HString::from_str(&args.package_name);
 
     let class_registry = *target::gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
-    let class =
-        target::gfc__ClassRegistry__classForName(class_registry, classname.as_ref(), true, false);
+    let class = target::gfc__ClassRegistry__classForName(
+        class_registry,
+        &hstring!("StaticObject"),
+        true,
+        false,
+    );
 
     let mut obj = mem::MaybeUninit::uninit();
     let new_instance = cast_away_pdbindgen_bug((*(*class).__vfptr).newInstance);
@@ -55,21 +85,24 @@ unsafe fn go(args: &Args) {
     let obj = obj.assume_init();
     lock_xadd(&mut (*obj.p).ReferenceCount, 1);
     #[allow(clippy::cast_ptr_alignment)]
-    let obj = obj.p as *mut target::gfc__KinematicActor;
+    let obj = obj.p as *mut target::gfc__StaticObject;
 
-    target::gfc__Actor__setPosition(
-        (*obj).as_gfc__Actor_mut_ptr(),
-        &target::gfc__TVector3_float_gfc__FloatMath_ {
-            x: args.x,
-            y: args.y,
-            z: args.z,
-        },
-    );
+    target::gfc__WorldObject__setRegionID((*obj).as_gfc__WorldObject_mut_ptr(), region_id);
+    target::gfc__WorldObject__setLayerID((*obj).as_gfc__WorldObject_mut_ptr(), layer_id);
+    target::gfc__StaticObject__setPackageName(obj, package_name.as_ref());
+    target::gfc__StaticObject__setObjectName(obj, object_name.as_ref());
+    target::gfc__StaticObject__setPosition(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+        x: args.x,
+        y: args.y,
+        z: args.z,
+    });
+    target::gfc__StaticObject__setScale(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+        x: args.scale,
+        y: args.scale,
+        z: args.scale,
+    });
 
-    ((*(*obj).__vfptr).addObjectToWorld)(
-        (*(*obj).as_gfc__Actor_mut_ptr()).as_gfc__WorldObject_mut_ptr(),
-        world,
-    );
+    ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world);
 }
 
 type NewInstanceWrong =

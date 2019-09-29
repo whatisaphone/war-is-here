@@ -19,6 +19,7 @@ use winapi::{
 mod macros;
 mod commands;
 mod control;
+mod darksiders1;
 mod hooks;
 mod utils;
 
@@ -30,6 +31,7 @@ pub extern "system" fn DllMain(
 ) -> BOOL {
     match fdw_reason {
         DLL_PROCESS_ATTACH => {
+            #[repr(transparent)]
             struct UnsafeSend<T>(T);
             unsafe impl<T> Send for UnsafeSend<T> {}
 
