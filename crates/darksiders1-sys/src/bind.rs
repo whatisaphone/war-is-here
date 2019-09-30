@@ -172,6 +172,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__Object3D__removeFromWorld);
     bind!(text, gfc__Object3D__playEffect);
     bind!(text, gfc__Object3D__setWorld);
+    bind!(text, gfc__ResourceCache__getResource);
     bind!(text, gfc__Object3D__getWorldObject);
     bind!(text, gfc__Object3D__getConstraints);
     bind!(text, gfc__Object3D__getIsAggregatable);
@@ -183,6 +184,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__HString__HString_5);
     bind!(text, gfc__HString__HString_6);
     bind!(text, gfc__HString___HString);
+    bind!(text, gfc__HString__c_str);
     bind!(text, gfc__Class__getMethodCount);
     bind!(text, gfc__Class__getMethodAt);
     bind!(text, gfc__MemAlloc);
@@ -215,7 +217,6 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__WorldObject__getLocked);
     bind!(text, gfc__WorldObject__getSelected);
     bind!(text, gfc__Object3D__getWorld);
-    bind!(text, gfc__Player__Player);
     bind!(text, gfc__WorldObject__getLightGroup);
     bind!(text, gfc__Object3D__setWorldObject);
     bind!(text, gfc__Object3D__getClass);

@@ -16,6 +16,96 @@ use super::{
 };
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__Vector_gfc__Interpolator_float_gfc__LinearInterpolator_float_____Key_0_gfc__CAllocator__0_gfc__CAllocator___Iterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__Vector_gfc__Interpolator_float_gfc__LinearInterpolator_float_____Key_0_gfc__CAllocator__0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__DarksidersWorldFactory___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__Mob__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__KillRegionHelper___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__DamageThresholdCallback_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__GameHelper___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__InputWindow__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__MapTile__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__InteractiveRegion__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__CharTransitionDesc__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__MaskOfShadowsManager__MaterialAssignCache_0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__InteractiveTransition__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__HorseShootSegmentAnimController__0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_int_gfc__AutoRef_gfc__MapManager__DungeonMap__std__less_int__std__allocator_std__pair_int_const__gfc__AutoRef_gfc__MapManager__DungeonMap______0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__ChaosLevel__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__PlayerAirMountDesc__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct gfc__CreateStatic_gfc__SaveGameHelper___MaxAlign__Test {
     _opaque: [u8; 0],
 }
@@ -2509,90 +2599,5 @@ pub struct hkPointerMap_unsigned_long_unsigned_long_hkContainerHeapAllocator___M
 
 #[repr(C)]
 pub struct hkPointerMap_unsigned_long_unsigned_long_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkPointerMap_unsigned_long_unsigned_long_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpConvexHullImpl__SortedEdge_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpConvexHullImpl__SortedEdge_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpConvexHullImpl__SortedEdge___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpConvexHullImpl__Vertex___hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkgpConvexHullImpl__Vertex___hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpConvexHullImpl__Vertex_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkMxSinglef_4___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkLocalBuffer_hkVector4f___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkFixedArray_hkVector4f___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkLocalBuffer_hkMxVector_4_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkFixedArray_hkMxVector_4_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkArray_hkVector4f_hkContainerHeapAllocator__hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkArray_hkVector4f_hkContainerHeapAllocator__hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkArray_hkVector4f_hkContainerHeapAllocator_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase__anonymous_namespace___EdgeCollapseData___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkSphere___MustEndWithSemiColon {
     _opaque: [u8; 0],
 }

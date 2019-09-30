@@ -210,6 +210,7 @@ symbols! {
     pub fn gfc__Object3D__removeFromWorld;
     pub fn gfc__Object3D__playEffect;
     pub fn gfc__Object3D__setWorld;
+    pub fn gfc__ResourceCache__getResource;
     pub fn gfc__Object3D__getWorldObject;
     pub fn gfc__Object3D__getConstraints;
     pub fn gfc__Object3D__getIsAggregatable;
@@ -221,6 +222,7 @@ symbols! {
     pub fn gfc__HString__HString_5;
     pub fn gfc__HString__HString_6;
     pub fn gfc__HString___HString;
+    pub fn gfc__HString__c_str;
     pub fn gfc__Class__getMethodCount;
     pub fn gfc__Class__getMethodAt;
     pub fn gfc__MemAlloc;
@@ -253,7 +255,6 @@ symbols! {
     pub fn gfc__WorldObject__getLocked;
     pub fn gfc__WorldObject__getSelected;
     pub fn gfc__Object3D__getWorld;
-    pub fn gfc__Player__Player;
     pub fn gfc__WorldObject__getLightGroup;
     pub fn gfc__Object3D__setWorldObject;
     pub fn gfc__Object3D__getClass;

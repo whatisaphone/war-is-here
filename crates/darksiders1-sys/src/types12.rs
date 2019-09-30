@@ -16,6 +16,91 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkArray_hkcdDynamicSimdTree__Location_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkcdDynamicSimdTree__Location___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__PrimitiveDataRunBase_unsigned_short___DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Section__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Section__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Section__SharedVertices__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Section__Primitives__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Section__DataRuns__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Primitive__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Edge__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Edge__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Links__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Links__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Connectivity__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Connectivity__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkcdStaticMeshTreeBase__Connectivity__SectionHeader__DefaultStruct {
     _opaque: [u8; 0],
 }
@@ -2750,90 +2835,5 @@ pub struct hkxMeshSection__MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkxMeshSection__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkxAttributeGroup_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkxAttributeGroup_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkxAttribute__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkxAttribute__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkxSparselyAnimatedInt__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkxSparselyAnimatedInt__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefPtr_hkxMaterial___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkMeshBoneIndexMapping__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkMeshBoneIndexMapping__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefPtr_hkxIndexBuffer___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefNew_hkxIndexBuffer_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefLoan_hkxIndexBuffer_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefPtr_hkxMeshSection___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefNew_hkxMeshSection_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefLoan_hkxMeshSection_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkxAnimatedQuaternion__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkxAnimatedQuaternion__DefaultStruct {
     _opaque: [u8; 0],
 }

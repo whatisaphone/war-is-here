@@ -16,6 +16,92 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpBroadPhase__Enable32BitTreeBroadPhase__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBroadPhase__Enable32BitBroadPhase__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBroadPhase__hkpCastAabbInput__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBroadPhase__hkpCastRayInput__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMoppBvTreeShapeBase__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMoppBvTreeShapeBase__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpBroadPhaseHandlePair__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMemoryInitUtil__SyncInfo__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__DebrisManager__Debris_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_int_int_std__less_int_____Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_int_int_std__less_int_____ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Map_int_int_std__less_int_____KeyIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__Havok___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__PhysicsMaterialInteraction__0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__HavokLimitedMemoryListener__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_hkFourTransposedPointsf_0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_hkFourTransposedPointsf_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__PhysMeshCache__ReloadInfo_0_gfc__CAllocator___Iterator {
     _opaque: [u8; 0],
 }
@@ -2576,95 +2662,5 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__TransitionConditional__0_gfc__CAllocato
 
 #[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__WorldData__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__Vector_gfc__Interpolator_float_gfc__LinearInterpolator_float_____Key_0_gfc__CAllocator__0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__Vector_gfc__Interpolator_float_gfc__LinearInterpolator_float_____Key_0_gfc__CAllocator__0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__DarksidersWorldFactory___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Mob__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__KillRegionHelper___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__DamageThresholdCallback_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__GameHelper___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__InputWindow__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__MapTile__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__InteractiveRegion__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__CharTransitionDesc__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__MaskOfShadowsManager__MaterialAssignCache_0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__InteractiveTransition__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__HorseShootSegmentAnimController__0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_int_gfc__AutoRef_gfc__MapManager__DungeonMap__std__less_int__std__allocator_std__pair_int_const__gfc__AutoRef_gfc__MapManager__DungeonMap______0_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__ChaosLevel__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__PlayerAirMountDesc__0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }

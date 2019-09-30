@@ -2,7 +2,7 @@
 
 use crate::{
     darksiders1::gfc,
-    hooks::GOD_LOCK,
+    hooks::ON_POST_UPDATE_QUEUE,
     utils::{ffi::lock_xadd, mem::init_with},
 };
 use darksiders1_sys::target;
@@ -16,11 +16,10 @@ pub fn run(command: &str) {
             return;
         }
     };
-    let mut guard = GOD_LOCK.lock();
+    let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard
         .as_mut()
         .unwrap()
-        .on_post_update_queue
         .push_back(Box::new(move || unsafe { go(&args) }));
 }
 
@@ -69,7 +68,7 @@ unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
     let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
 
     let package_name = gfc::HString::from_str(&args.package_name);
-    let object_name = gfc::HString::from_str(&args.package_name);
+    let object_name = gfc::HString::from_str(&args.object_name);
 
     let class_registry = *target::gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     let class = target::gfc__ClassRegistry__classForName(

@@ -16,6 +16,92 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkArray_hkpMoppDebugger__hkpMoppPath_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpMoppDebugger__hkpMoppPath_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppDebugger__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppDebugger__hkpMoppPath__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppDebugger__hkpDbgQuery__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkpMultiRayShape__Ray_16_hkContainerHeapAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArrayAligned16_hkpMultiRayShape__Ray_16_hkContainerHeapAllocator___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCompiler__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCompilerChunkInfo__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCostFunction__hkpMoppSplitCostParams__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppAssembler__hkpMoppAssemblerParams__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppSplitter__hkpMoppSplitParams__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCachedShapeMediator__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppShapeMediator__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppExtent__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppCompilerPrimitive__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppSplittingPlaneDirection__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkpMoppAssemblerData__MustEndWithSemiColon {
     _opaque: [u8; 0],
 }
@@ -2452,90 +2538,5 @@ pub struct hkcdDynamicSimdTree__ThreadContext__MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkArray_hkcdDynamicSimdTree__Location_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdDynamicSimdTree__Location_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkcdDynamicSimdTree__Location___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__PrimitiveDataRunBase_unsigned_short___DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Section__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Section__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Section__SharedVertices__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Section__Primitives__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Section__DataRuns__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Primitive__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Edge__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Edge__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Links__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Links__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Connectivity__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Connectivity__DefaultStruct {
     _opaque: [u8; 0],
 }

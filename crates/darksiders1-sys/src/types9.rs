@@ -16,6 +16,91 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkPointerMap_unsigned_long_unsigned_long_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpConvexHullImpl__SortedEdge_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpConvexHullImpl__SortedEdge_hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpConvexHullImpl__SortedEdge___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpConvexHullImpl__Vertex___hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkgpConvexHullImpl__Vertex___hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpConvexHullImpl__Vertex_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMxSinglef_4___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkLocalBuffer_hkVector4f___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkFixedArray_hkVector4f___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkLocalBuffer_hkMxVector_4_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkFixedArray_hkMxVector_4_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkArray_hkVector4f_hkContainerHeapAllocator__hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkArray_hkVector4f_hkContainerHeapAllocator__hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkArray_hkVector4f_hkContainerHeapAllocator_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase__anonymous_namespace___EdgeCollapseData___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkSphere___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkArrayBase__anonymous_namespace___EdgeData___MustEndWithSemiColon {
     _opaque: [u8; 0],
 }
@@ -2614,94 +2699,5 @@ pub struct hkArray_hkgpCgoInternal__Set_hkContainerDebugAllocator_ {
 
 #[repr(C)]
 pub struct hkArrayBase_hkgpCgoInternal__VertexInfo___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpCgoInternal__TriangleInfo___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpCgoInternal__EdgeInfo___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkSortedTree_hkgpCgoInternal__EdgeInfo___hkgpCgoInternal__EdgeInfo_int_16___Node_hkContainerTempAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkSortedTree_hkgpCgoInternal__EdgeInfo___hkgpCgoInternal__EdgeInfo_int_16___Node_hkContainerDebugAllocator_
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpCgoInternal__EdgeInfo_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpCgoInternal__Set___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkSortedTree_hkgpCgoInternal__EdgeInfo___hkgpCgoInternal__EdgeInfo_int_16___Node___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkgpCgo__ClusterData___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkgpJobQueue__Box_hkgpCgoInternal__UpdateJob___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_hkGeomEdge___1024_hkContainerHeapAllocator___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkGeomEdge___hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkGeomEdge___hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkGeomEdge_____MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_int_64_hkContainerHeapAllocator___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkLocalArray_int___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkLocalArray_unsigned_short___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_hkGeomConvexHullBuilder__WeightedNeighbour_2_hkContainerHeapAllocator___MustEndWithSemiColon
-{
     _opaque: [u8; 0],
 }

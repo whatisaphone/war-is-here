@@ -26,8 +26,7 @@ Or, if you're a pdbindgen developer:
 cargo run --release \
     /s/Games/Darksiders/Builds/Darksiders\ Warmastered\ Edition/darksiders1.pdb \
     -o ../war-is-here/crates/darksiders1-sys/src \
-    -i '^gfc::HString::~?HString$' \
-    -i '^gfc::Player::Player$' \
+    -i '^gfc::Player$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
@@ -39,9 +38,12 @@ cargo run --release \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::Graphics::getInstance$' \
+    -i '^gfc::HString::~?HString$' \
+    -i '^gfc::HString::c_str$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
     -i '^gfc::Object3D::\w+$' \
     -i '^gfc::OmniLight::\w+$' \
+    -i '^gfc::ResourceCache::getResource$' \
     -i '^gfc::StaticObject::\w+$' \
     -i '^gfc::TeleportHelper::warpToMap$' \
     -i '^gfc::Value$' \

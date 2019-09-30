@@ -16,6 +16,378 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpBroadPhase__hkpCastAabbInput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_from")]
+#[repr(C)]
+pub struct hkpBroadPhase__hkpCastAabbInput {
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_from: hkVector4f,
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_to: hkVector4f,
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_halfExtents: hkVector4f,
+    pub m_aabbCacheInfo: *const i8,
+}
+
+#[repr(C)]
+pub struct hkpCollisionFilter {
+    pub __vfptr: *const hkpCollisionFilter____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub __vfptr_2: *const hkpCollisionFilter____vftable,
+    pub __vfptr_3: *const hkpCollisionFilter____vftable,
+    pub __vfptr_4: *const hkpCollisionFilter____vftable,
+    pub __vfptr_5: *const hkpCollisionFilter____vftable,
+    pub m_prepad: [u32; 2],
+    pub m_type: hkEnum_enum_hkpCollisionFilter__hkpFilterType_unsigned_int_,
+    pub m_postpad: [u32; 3],
+}
+
+impl hkpCollisionFilter {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+
+    pub fn as_hkpCollidableCollidableFilter_ptr(&self) -> *const hkpCollidableCollidableFilter {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpCollidableCollidableFilter_mut_ptr(
+        &mut self,
+    ) -> *mut hkpCollidableCollidableFilter {
+        self as *mut _ as _
+    }
+
+    pub fn as_hkpShapeCollectionFilter_ptr(&self) -> *const hkpShapeCollectionFilter {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpShapeCollectionFilter_mut_ptr(&mut self) -> *mut hkpShapeCollectionFilter {
+        self as *mut _ as _
+    }
+
+    pub fn as_hkpRayShapeCollectionFilter_ptr(&self) -> *const hkpRayShapeCollectionFilter {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpRayShapeCollectionFilter_mut_ptr(&mut self) -> *mut hkpRayShapeCollectionFilter {
+        self as *mut _ as _
+    }
+
+    pub fn as_hkpRayCollidableFilter_ptr(&self) -> *const hkpRayCollidableFilter {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpRayCollidableFilter_mut_ptr(&mut self) -> *mut hkpRayCollidableFilter {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpCollisionFilter____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub init: unsafe extern "thiscall" fn(this: *mut hkpCollisionFilter, _: *mut hkpWorld),
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpCollisionFilter__hkpFilterType_unsigned_int_ {
+    pub m_storage: u32,
+}
+
+#[repr(C)]
+pub struct hkpCdPoint {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_unweldedNormal")]
+#[repr(C)]
+pub struct hkpCdPoint {
+    pub m_contact: hkContactPoint,
+    #[cfg(pdb_issue = "error in hkVector4f")]
+    pub m_unweldedNormal: hkVector4f,
+    pub m_cdBodyA: *const hkpCdBody,
+    pub m_cdBodyB: *const hkpCdBody,
+}
+
+#[repr(C)]
+pub struct hkpSphereRepShape {
+    pub __vfptr: *const hkpSphereRepShape____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    pub m_userData: u32,
+}
+
+impl hkpSphereRepShape {
+    pub fn as_hkpShape_ptr(&self) -> *const hkpShape {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpShape_mut_ptr(&mut self) -> *mut hkpShape {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpSphereRepShape____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> bool,
+    pub getAabb: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkTransformf,
+        _: f32,
+        _: *mut hkAabb,
+    ),
+    pub castRay: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayCastInput,
+        _: *mut hkpShapeRayCastOutput,
+    ) -> hkBool,
+    pub castRayWithCollector: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayCastInput,
+        _: *const hkpCdBody,
+        _: *mut hkpRayHitCollector,
+    ),
+    pub castRayBundle: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayBundleCastInput,
+        _: *mut hkpShapeRayBundleCastOutput,
+        _: *const hkVector4fComparison,
+    ) -> hkVector4fComparison,
+    pub getSupportingVertex: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkVector4f,
+        _: *mut hkcdVertex,
+    ),
+    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const u16,
+        _: i32,
+        _: *mut hkcdVertex,
+    ),
+    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkVector4f),
+    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> i32,
+    pub getCollisionSpheres:
+        unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkSphere) -> *const hkSphere,
+    pub weldContactPoint: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *mut u16,
+        _: *mut u8,
+        _: *mut hkVector4f,
+        _: *const hkTransformf,
+        _: *const hkpConvexShape,
+        _: *const hkTransformf,
+        _: *mut hkVector4f,
+    ) -> i32,
+    pub getContainer:
+        unsafe extern "thiscall" fn(this: *const hkpShape) -> *const hkpShapeContainer,
+    pub getMaximumProjection:
+        unsafe extern "thiscall" fn(this: *const hkpShape, _: *const hkVector4f) -> f32,
+    pub calcSizeForSpu: unsafe extern "thiscall" fn(
+        this: *const hkpShape,
+        _: *const hkpShape__CalcSizeForSpuInput,
+        _: i32,
+    ) -> i32,
+}
+
+#[repr(C)]
+pub struct hkpConvexShape {
+    pub __vfptr: *const hkpConvexShape____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    pub m_userData: u32,
+    pub m_radius: f32,
+}
+
+impl hkpConvexShape {
+    pub fn as_hkpSphereRepShape_ptr(&self) -> *const hkpSphereRepShape {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpSphereRepShape_mut_ptr(&mut self) -> *mut hkpSphereRepShape {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpConvexShape____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> bool,
+    pub getAabb: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkTransformf,
+        _: f32,
+        _: *mut hkAabb,
+    ),
+    pub castRay: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayCastInput,
+        _: *mut hkpShapeRayCastOutput,
+    ) -> hkBool,
+    pub castRayWithCollector: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayCastInput,
+        _: *const hkpCdBody,
+        _: *mut hkpRayHitCollector,
+    ),
+    pub castRayBundle: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayBundleCastInput,
+        _: *mut hkpShapeRayBundleCastOutput,
+        _: *const hkVector4fComparison,
+    ) -> hkVector4fComparison,
+    pub getSupportingVertex: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkVector4f,
+        _: *mut hkcdVertex,
+    ),
+    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const u16,
+        _: i32,
+        _: *mut hkcdVertex,
+    ),
+    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkVector4f),
+    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> i32,
+    pub getCollisionSpheres:
+        unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkSphere) -> *const hkSphere,
+    pub weldContactPoint: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *mut u16,
+        _: *mut u8,
+        _: *mut hkVector4f,
+        _: *const hkTransformf,
+        _: *const hkpConvexShape,
+        _: *const hkTransformf,
+        _: *mut hkVector4f,
+    ) -> i32,
+    pub getContainer:
+        unsafe extern "thiscall" fn(this: *const hkpShape) -> *const hkpShapeContainer,
+    pub getMaximumProjection:
+        unsafe extern "thiscall" fn(this: *const hkpShape, _: *const hkVector4f) -> f32,
+    pub calcSizeForSpu: unsafe extern "thiscall" fn(
+        this: *const hkpShape,
+        _: *const hkpShape__CalcSizeForSpuInput,
+        _: i32,
+    ) -> i32,
+    pub getFirstVertex:
+        unsafe extern "thiscall" fn(this: *const hkpConvexShape, _: *mut hkVector4f),
+    pub getSize: unsafe extern "thiscall" fn(this: *const hkpConvexShape) -> i32,
+}
+
+#[repr(C)]
+pub struct hkpShapeRayBundleCastInput {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_from")]
+#[repr(C)]
+pub struct hkpShapeRayBundleCastInput {
+    #[cfg(pdb_issue = "error in hkFourTransposedPointsf")]
+    pub m_from: hkFourTransposedPointsf,
+    #[cfg(pdb_issue = "error in hkFourTransposedPointsf")]
+    pub m_to: hkFourTransposedPointsf,
+    pub m_filterInfo: u32,
+    pub m_userData: u32,
+    pub m_rayShapeCollectionFilter: *const hkpRayShapeCollectionFilter,
+}
+
+#[repr(C)]
+pub struct hkpAabbCastCollector {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field m_earlyOutFraction")]
+#[repr(C)]
+pub struct hkpAabbCastCollector {
+    pub __vfptr: *const hkpAabbCastCollector____vftable,
+    #[cfg(pdb_issue = "error in hkSimdFloat32")]
+    pub m_earlyOutFraction: hkSimdFloat32,
+}
+
+#[repr(C)]
+pub struct hkpAabbCastCollector____vftable {
+    pub addHit: unsafe extern "thiscall" fn(this: *mut hkpAabbCastCollector, _: u32),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpAabbCastCollector, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct hkpConvexListFilter {
+    pub __vfptr: *const hkpConvexListFilter____vftable,
+    pub m_memSizeAndRefCount: u32,
+}
+
+impl hkpConvexListFilter {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpConvexListFilter____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub getConvexListCollisionType:
+        unsafe extern "thiscall" fn(
+            this: *const hkpConvexListFilter,
+            _: *const hkpCdBody,
+            _: *const hkpCdBody,
+            _: *const hkpCollisionInput,
+        ) -> hkpConvexListFilter__ConvexListCollisionType,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpWorldCinfo__BroadPhaseType_signed_char_ {
+    pub m_storage: i8,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpWorldCinfo__ContactPointGeneration_signed_char_ {
+    pub m_storage: i8,
+}
+
+#[repr(C)]
+pub struct hkpCollidableAddedEvent {
+    pub m_phantom: *const hkpPhantom,
+    pub m_collidable: *const hkpCollidable,
+    pub m_collidableAccept: hkpCollidableAccept,
+}
+
+#[repr(C)]
 pub struct hkpPhantom {
     pub __vfptr: *const hkpPhantom____vftable,
     pub m_memSizeAndRefCount: u32,
@@ -4635,106 +5007,5 @@ pub struct std___Tmap_traits_gfc__HString_gfc__ResourceCache___std__less_gfc__HS
 
 #[repr(C)]
 pub struct std___String_iterator_wchar_t_std__char_traits_wchar_t__std__allocator_wchar_t___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___String_iterator_wchar_t_std__char_traits_wchar_t__std__allocator_wchar_t_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___String_const_iterator_wchar_t_std__char_traits_wchar_t__std__allocator_wchar_t_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__ResourceCache___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__ResourceCache______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__ResourceCache___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__ResourceCache______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tmap_traits_gfc__AutoRef_gfc__Value__gfc__AutoRef_gfc__Value__gfc__ValueCompare_std__allocator_std__pair_gfc__AutoRef_gfc__Value__const__gfc__AutoRef_gfc__Value______0___value_compare
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_iterator_std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Value__gfc__AutoRef_gfc__Value__gfc__ValueCompare_std__allocator_std__pair_gfc__AutoRef_gfc__Value__const__gfc__AutoRef_gfc__Value______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Value__gfc__AutoRef_gfc__Value__gfc__ValueCompare_std__allocator_std__pair_gfc__AutoRef_gfc__Value__const__gfc__AutoRef_gfc__Value______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Value__gfc__AutoRef_gfc__Value__gfc__ValueCompare_std__allocator_std__pair_gfc__AutoRef_gfc__Value__const__gfc__AutoRef_gfc__Value______0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Value__gfc__AutoRef_gfc__Value__gfc__ValueCompare_std__allocator_std__pair_gfc__AutoRef_gfc__Value__const__gfc__AutoRef_gfc__Value______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_std___Tree_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__HString_0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__HString_0_gfc__CAllocator______0______std___Tree_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__HString_0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__HString_0_gfc__CAllocator______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__HString_0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__HString_0_gfc__CAllocator______0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__Vector_gfc__HString_0_gfc__CAllocator__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__Vector_gfc__HString_0_gfc__CAllocator______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__ResourceCache___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__ResourceCache______0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__ResourceCache___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__ResourceCache______0_______
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Vector_iterator_std___Vector_val_gfc__SingletonImplementation__LifetimeTracker___std__allocator_gfc__SingletonImplementation__LifetimeTracker_________
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___Vector_const_iterator_std___Vector_val_gfc__SingletonImplementation__LifetimeTracker___std__allocator_gfc__SingletonImplementation__LifetimeTracker_________
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___String_iterator_char_std__char_traits_char__std__allocator_char_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__reverse_iterator_std___String_const_iterator_char_std__char_traits_char__std__allocator_char_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__ostreambuf_iterator_unsigned_short_std__char_traits_unsigned_short___ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std__num_put_unsigned_short_std__ostreambuf_iterator_unsigned_short_std__char_traits_unsigned_short_____
-{
     _opaque: [u8; 0],
 }

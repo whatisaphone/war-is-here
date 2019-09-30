@@ -1,6 +1,6 @@
 #![allow(clippy::similar_names)]
 
-use crate::{darksiders1::gfc, hooks::GOD_LOCK};
+use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
 
 pub fn run(command: &str) {
@@ -11,11 +11,10 @@ pub fn run(command: &str) {
             return;
         }
     };
-    let mut guard = GOD_LOCK.lock();
+    let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard
         .as_mut()
         .unwrap()
-        .on_post_update_queue
         .push_back(Box::new(move || unsafe { go(&args) }));
 }
 

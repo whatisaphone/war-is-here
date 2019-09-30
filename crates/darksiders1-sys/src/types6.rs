@@ -16,6 +16,93 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpWorldObject__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkStreamWriter__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpModifierConstraintAtom__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpModifierConstraintAtom__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpContactPointConfirmedEvent__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpConstraintQueryIn__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSimpleConstraintContactMgr__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSimpleConstraintContactMgr__Factory__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMxMaskf_2___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpProcessCdPoint__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpShape__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpShape__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpShape__CalcSizeForSpuInput__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkBaseObject__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkBaseObject__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Value__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Value______0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__WorldObject___gfc__AttachManager__Attachment_std__less_gfc__WorldObject____std__allocator_std__pair_gfc__WorldObject___const_gfc__AttachManager__Attachment____0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct gfc__CreateStatic_gfc__ParticleSystemCache___MaxAlign__Test {
     _opaque: [u8; 0],
 }
@@ -2527,91 +2614,5 @@ pub struct hkpBroadPhase__MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkpBroadPhase__Enable32BitHybridBroadPhase__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBroadPhase__Enable32BitTreeBroadPhase__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBroadPhase__Enable32BitBroadPhase__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBroadPhase__hkpCastAabbInput__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBroadPhase__hkpCastRayInput__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkMoppBvTreeShapeBase__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkMoppBvTreeShapeBase__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpBroadPhaseHandlePair__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkMemoryInitUtil__SyncInfo__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__DebrisManager__Debris_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_int_std__less_int_____Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_int_std__less_int_____ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Map_int_int_std__less_int_____KeyIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__Havok___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__PhysicsMaterialInteraction__0_gfc__CAllocator___ConstIterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__HavokLimitedMemoryListener__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_hkFourTransposedPointsf_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_hkFourTransposedPointsf_0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }

@@ -16,6 +16,93 @@ use super::{
 };
 
 #[repr(C)]
+pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_unsigned___int64_gfc__AutoRef_gfc__FloraPattern__std__less_unsigned___int64__std__allocator_std__pair_unsigned___int64_const__gfc__AutoRef_gfc__FloraPattern______0_____
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct std__pair_std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_unsigned___int64_gfc__AutoRef_gfc__FloraPattern__std__less_unsigned___int64__std__allocator_std__pair_unsigned___int64_const__gfc__AutoRef_gfc__FloraPattern______0______std___Tree_const_iterator_std___Tree_val_std___Tmap_traits_unsigned___int64_gfc__AutoRef_gfc__FloraPattern__std__less_unsigned___int64__std__allocator_std__pair_unsigned___int64_const__gfc__AutoRef_gfc__FloraPattern______0_______
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMxVectorf_3___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMxQuaternionf_3_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkSmallArray_hkConstraintInternal___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSetLocalRotationsConstraintAtom__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSetLocalRotationsConstraintAtom__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpManifoldPointAddedEvent__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpWorldPostIntegrateListener___hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpWorldPostIntegrateListener___hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMxVectord_1___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkMxQuaterniond_1_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpWorldPostSimulationListener___hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkpWorldPostSimulationListener___hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkCriticalSectionLock__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSimpleContactConstraintDataInfo__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSimpleContactConstraintDataInfo__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkpSimpleContactConstraintAtom__DefaultStruct {
     _opaque: [u8; 0],
 }
@@ -2441,92 +2528,5 @@ pub struct hkpIgnoreModifierConstraintAtom__DefaultStruct {
 
 #[repr(C)]
 pub struct hkpWorldObject__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpWorldObject__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkStreamWriter__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpModifierConstraintAtom__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpModifierConstraintAtom__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpContactPointConfirmedEvent__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpConstraintQueryIn__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpSimpleConstraintContactMgr__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpSimpleConstraintContactMgr__Factory__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkMxMaskf_2___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpProcessCdPoint__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpShape__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpShape__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpShape__CalcSizeForSpuInput__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkBaseObject__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkBaseObject__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Value__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Value______0_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__WorldObject___gfc__AttachManager__Attachment_std__less_gfc__WorldObject____std__allocator_std__pair_gfc__WorldObject___const_gfc__AttachManager__Attachment____0_____
-{
     _opaque: [u8; 0],
 }

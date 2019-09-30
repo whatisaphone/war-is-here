@@ -16,6 +16,95 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkArrayBase_hkgpCgoInternal__TriangleInfo___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpCgoInternal__EdgeInfo___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkSortedTree_hkgpCgoInternal__EdgeInfo___hkgpCgoInternal__EdgeInfo_int_16___Node_hkContainerTempAllocator_
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkSortedTree_hkgpCgoInternal__EdgeInfo___hkgpCgoInternal__EdgeInfo_int_16___Node_hkContainerDebugAllocator_
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpCgoInternal__EdgeInfo_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpCgoInternal__Set___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkSortedTree_hkgpCgoInternal__EdgeInfo___hkgpCgoInternal__EdgeInfo_int_16___Node___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkgpCgo__ClusterData___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkgpJobQueue__Box_hkgpCgoInternal__UpdateJob___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkGeomEdge___1024_hkContainerHeapAllocator___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkGeomEdge___hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkGeomEdge___hkContainerDebugAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkGeomEdge_____MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_int_64_hkContainerHeapAllocator___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkLocalArray_int___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkLocalArray_unsigned_short___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkGeomConvexHullBuilder__WeightedNeighbour_2_hkContainerHeapAllocator___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkInplaceArray_hkGeomEdge___128_hkContainerHeapAllocator___MustEndWithSemiColon {
     _opaque: [u8; 0],
 }
@@ -2441,91 +2530,5 @@ pub struct hkpMoppSphereVirtualMachine__hkpMoppSphereVirtualMachineQuery__MustEn
 
 #[repr(C)]
 pub struct hkArrayBase_hkpMoppDebugger__hkpMoppPath___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpMoppDebugger__hkpMoppPath_hkContainerTempAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpMoppDebugger__hkpMoppPath_hkContainerDebugAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppDebugger__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppDebugger__hkpMoppPath__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppDebugger__hkpDbgQuery__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_hkpMultiRayShape__Ray_16_hkContainerHeapAllocator_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArrayAligned16_hkpMultiRayShape__Ray_16_hkContainerHeapAllocator___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppCompiler__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppCompilerChunkInfo__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppCostFunction__hkpMoppSplitCostParams__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppAssembler__hkpMoppAssemblerParams__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppSplitter__hkpMoppSplitParams__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppCachedShapeMediator__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppShapeMediator__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppExtent__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppCompilerPrimitive__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppSplittingPlaneDirection__MustEndWithSemiColon {
     _opaque: [u8; 0],
 }

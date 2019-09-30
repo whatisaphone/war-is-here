@@ -2,7 +2,7 @@
 
 use crate::{
     darksiders1::gfc,
-    hooks::GOD_LOCK,
+    hooks::ON_POST_UPDATE_QUEUE,
     utils::{ffi::lock_xadd, mem::init_with},
 };
 use darksiders1_sys::target;
@@ -16,11 +16,10 @@ pub fn run(command: &str) {
             return;
         }
     };
-    let mut guard = GOD_LOCK.lock();
+    let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard
         .as_mut()
         .unwrap()
-        .on_post_update_queue
         .push_back(Box::new(move || unsafe { go(&args) }));
 }
 

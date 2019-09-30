@@ -190,6 +190,7 @@ symbols! {
     pub static gfc__Object3D__removeFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) = Text(0xdc2650);
     pub static gfc__Object3D__playEffect: unsafe extern "thiscall" fn(this: *mut gfc__Object3D, _: *const gfc__HString) -> i32 = Text(0xdc2820);
     pub static gfc__Object3D__setWorld: unsafe extern "thiscall" fn(this: *mut gfc__Object3D, _: *mut gfc__World) = Text(0xcd7af0);
+    pub static gfc__ResourceCache__getResource: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: i32, _: *const gfc__HString) -> *mut () = Text(0xca0750);
     pub static gfc__Object3D__getWorldObject: unsafe extern "thiscall" fn(this: *const gfc__Object3D) -> *mut gfc__WorldObject = Text(0xc21be0);
     pub static gfc__Object3D__getConstraints: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) -> *mut gfc__Vector_gfc__AutoRef_gfc__Constraint__0_gfc__CAllocator_ = Text(0xc21bf0);
     pub static gfc__Object3D__getIsAggregatable: unsafe extern "thiscall" fn(this: *const gfc__Object3D) -> bool = Text(0xc32370);
@@ -201,6 +202,7 @@ symbols! {
     pub static gfc__HString__HString_5: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: *const gfc__HString) = Text(0xa6e690);
     pub static gfc__HString__HString_6: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: u64, _: *const i8, _: i32) = Text(0xa6e720);
     pub static gfc__HString___HString: unsafe extern "thiscall" fn(this: *mut gfc__HString) = Text(0xa6e790);
+    pub static gfc__HString__c_str: unsafe extern "thiscall" fn(this: *const gfc__HString) -> *const i8 = Text(0xa6e8d0);
     pub static gfc__Class__getMethodCount: unsafe extern "thiscall" fn(this: *const gfc__Class) -> i32 = Text(0xa39ce0);
     pub static gfc__Class__getMethodAt: unsafe extern "thiscall" fn(this: *const gfc__Class, _: i32) -> *mut gfc__Method = Text(0xa39cf0);
     pub static gfc__MemAlloc: unsafe extern "C" fn(_: u32, _: *mut (), _: u32, _: u32, _: u32, _: u32, _: *const i8, _: u32) -> *mut () = Text(0xa37580);
@@ -233,7 +235,6 @@ symbols! {
     pub static gfc__WorldObject__getLocked: unsafe extern "thiscall" fn(this: *const gfc__WorldObject) -> bool = Text(0x8e8240);
     pub static gfc__WorldObject__getSelected: unsafe extern "thiscall" fn(this: *const gfc__WorldObject) -> bool = Text(0x8e8250);
     pub static gfc__Object3D__getWorld: unsafe extern "thiscall" fn(this: *const gfc__Object3D) -> *mut gfc__World = Text(0x81c7b0);
-    pub static gfc__Player__Player: unsafe extern "thiscall" fn(this: *mut gfc__Player) = Text(0x8593b0);
     pub static gfc__WorldObject__getLightGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> u32 = Text(0x755d10);
     pub static gfc__Object3D__setWorldObject: unsafe extern "thiscall" fn(this: *mut gfc__Object3D, _: *mut gfc__WorldObject) = Text(0x756040);
     pub static gfc__Object3D__getClass: unsafe extern "thiscall" fn(this: *const gfc__Object3D) -> *mut gfc__Class = Text(0x764160);
