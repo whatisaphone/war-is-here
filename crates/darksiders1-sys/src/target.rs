@@ -310,6 +310,7 @@ symbols! {
     pub fn gfc__WorldObject__setLayerID;
     pub fn gfc__WorldObject__getLayerID;
     pub fn gfc__WorldObject__setName;
+    pub fn gfc__Darksiders__processInputEvent;
     pub fn gfc__Darksiders__onPostUpdateInterval;
     pub fn gfc__WorldObject__getName;
     pub fn gfc__LoadMapMenu__LoadMapMenu;

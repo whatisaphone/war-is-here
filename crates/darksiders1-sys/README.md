@@ -36,6 +36,7 @@ cargo run --release \
     -i '^gfc::Class::\w+$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
+    -i '^gfc::Darksiders::processInputEvent' \
     -i '^gfc::Graphics::getInstance$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
     -i '^gfc::Object3D::\w+$' \

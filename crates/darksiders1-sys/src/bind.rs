@@ -269,6 +269,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__WorldObject__setLayerID);
     bind!(text, gfc__WorldObject__getLayerID);
     bind!(text, gfc__WorldObject__setName);
+    bind!(text, gfc__Darksiders__processInputEvent);
     bind!(text, gfc__Darksiders__onPostUpdateInterval);
     bind!(text, gfc__WorldObject__getName);
     bind!(text, gfc__LoadMapMenu__LoadMapMenu);

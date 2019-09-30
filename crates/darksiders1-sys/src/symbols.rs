@@ -290,6 +290,7 @@ symbols! {
     pub static gfc__WorldObject__setLayerID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20aca0);
     pub static gfc__WorldObject__getLayerID: unsafe extern "thiscall" fn(this: *const gfc__WorldObject) -> u16 = Text(0x20acb0);
     pub static gfc__WorldObject__setName: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *const gfc__HString) = Text(0x20acc0);
+    pub static gfc__Darksiders__processInputEvent: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent) -> bool = Text(0x27b4b0);
     pub static gfc__Darksiders__onPostUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: f32) = Text(0x295c90);
     pub static gfc__WorldObject__getName: unsafe extern "thiscall" fn(this: *const gfc__WorldObject) -> *const gfc__HString = Text(0x1e40b0);
     pub static gfc__LoadMapMenu__LoadMapMenu: unsafe extern "thiscall" fn(this: *mut gfc__LoadMapMenu) = Text(0x201d50);
