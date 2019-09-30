@@ -7586,6 +7586,50 @@ pub struct gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
+pub struct gfc__TeleportHelper {
+    pub __vfptr: *const gfc__TeleportHelper____vftable,
+    pub ReferenceCount: i32,
+    pub mIsIterating: bool,
+    pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    pub mQueuedListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+    pub mQueuedSystemListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+    pub mTeleportTransition: bool,
+}
+
+impl gfc__TeleportHelper {
+    pub fn as_gfc__Helper_ptr(&self) -> *const gfc__Helper {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Helper_mut_ptr(&mut self) -> *mut gfc__Helper {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__TeleportHelper____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub __: *const (),
+    pub ___2: *const (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub init: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
+}
+
+#[repr(C)]
 pub struct gfc__DraggableActor {
     _opaque: [u8; 0],
 }
@@ -9789,59 +9833,4 @@ pub struct hkpCollidableAddedEvent {
     pub m_phantom: *const hkpPhantom,
     pub m_collidable: *const hkpCollidable,
     pub m_collidableAccept: hkpCollidableAccept,
-}
-
-#[repr(C)]
-pub struct hkpPhantom {
-    pub __vfptr: *const hkpPhantom____vftable,
-    pub m_memSizeAndRefCount: u32,
-    pub m_world: *mut hkpWorld,
-    pub m_userData: u32,
-    pub m_collidable: hkpLinkedCollidable,
-    pub m_multiThreadCheck: hkMultiThreadCheck,
-    pub m_name: hkStringPtr,
-    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
-    pub m_overlapListeners: hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_,
-    pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
-}
-
-impl hkpPhantom {
-    pub fn as_hkpWorldObject_ptr(&self) -> *const hkpWorldObject {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpWorldObject_mut_ptr(&mut self) -> *mut hkpWorldObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpPhantom____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-    pub setShape: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldObject,
-        _: *const hkpShape,
-    ) -> hkWorldOperation__Result,
-    pub updateShape: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldObject,
-        _: *mut hkpShapeModifier,
-    ) -> hkWorldOperation__Result,
-    pub getMotionState:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldObject) -> *mut hkMotionState,
-    pub getType: unsafe extern "thiscall" fn(this: *const hkpPhantom) -> hkpPhantomType,
-    pub calcAabb: unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkAabb),
-    pub addOverlappingCollidable:
-        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkpCollidable),
-    pub isOverlappingCollidableAdded:
-        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *const hkpCollidable) -> hkBool,
-    pub removeOverlappingCollidable:
-        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkpCollidable),
-    pub ensureDeterministicOrder: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
-    pub clone: unsafe extern "thiscall" fn(this: *const hkpPhantom) -> *mut hkpPhantom,
-    pub updateShapeCollectionFilter: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
-    pub deallocateInternalArrays: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
 }

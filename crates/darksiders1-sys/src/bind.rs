@@ -17,6 +17,10 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__Object3D___Class);
     bind!(
         data,
+        gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
+    );
+    bind!(
+        data,
         gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
     );
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
@@ -274,6 +278,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__WorldObject__getName);
     bind!(text, gfc__LoadMapMenu__LoadMapMenu);
     bind!(text, gfc__WindowHelper__pushWindow);
+    bind!(text, gfc__TeleportHelper__warpToMap);
     bind!(text, gfc__WorldObject__getWorld_2);
     bind!(text, gfc__Object3D__getBodies);
     bind!(text, gfc__Object3D__getVisuals);

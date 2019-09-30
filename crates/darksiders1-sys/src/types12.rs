@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkcdStaticMeshTreeBase__Connectivity__SectionHeader__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray_hkcdStaticMeshTreeBase__Connectivity__SectionHeader_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkArray_hkcdStaticMeshTreeBase__Connectivity__SectionHeader_hkContainerDebugAllocator_ {
     _opaque: [u8; 0],
 }
@@ -2825,15 +2835,5 @@ pub struct hkxAnimatedQuaternion__MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkxAnimatedQuaternion__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkxAttributeGroup___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkRefPtr_hkxVertexAnimation___MustEndWithSemiColon {
     _opaque: [u8; 0],
 }

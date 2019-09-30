@@ -16,6 +16,18 @@ use super::{
 };
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__fmStreamInfo_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__fmStreamInfo_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Method__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
 {
     _opaque: [u8; 0],
@@ -2695,15 +2707,5 @@ pub struct hkpSimpleContactConstraintDataInfo__DefaultStruct {
 
 #[repr(C)]
 pub struct hkpSimpleContactConstraintDataInfo__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpSimpleContactConstraintAtom__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpSimpleContactConstraintAtom__MustEndWithSemiColon {
     _opaque: [u8; 0],
 }

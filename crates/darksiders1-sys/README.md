@@ -30,18 +30,20 @@ cargo run --release \
     -i '^gfc::Player::Player$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::Actor::setPosition$' \
     -i '^gfc::Class::\w+$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
-    -i '^gfc::Darksiders::processInputEvent' \
+    -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::Graphics::getInstance$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
     -i '^gfc::Object3D::\w+$' \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::StaticObject::\w+$' \
+    -i '^gfc::TeleportHelper::warpToMap$' \
     -i '^gfc::Value$' \
     -i '^gfc::WindowHelper::pushWindow$' \
     -i '^gfc::WorldObject::\w+$'

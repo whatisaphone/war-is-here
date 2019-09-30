@@ -16,6 +16,61 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpPhantom {
+    pub __vfptr: *const hkpPhantom____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_world: *mut hkpWorld,
+    pub m_userData: u32,
+    pub m_collidable: hkpLinkedCollidable,
+    pub m_multiThreadCheck: hkMultiThreadCheck,
+    pub m_name: hkStringPtr,
+    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    pub m_overlapListeners: hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_,
+    pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
+}
+
+impl hkpPhantom {
+    pub fn as_hkpWorldObject_ptr(&self) -> *const hkpWorldObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpWorldObject_mut_ptr(&mut self) -> *mut hkpWorldObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpPhantom____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub setShape: unsafe extern "thiscall" fn(
+        this: *mut hkpWorldObject,
+        _: *const hkpShape,
+    ) -> hkWorldOperation__Result,
+    pub updateShape: unsafe extern "thiscall" fn(
+        this: *mut hkpWorldObject,
+        _: *mut hkpShapeModifier,
+    ) -> hkWorldOperation__Result,
+    pub getMotionState:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldObject) -> *mut hkMotionState,
+    pub getType: unsafe extern "thiscall" fn(this: *const hkpPhantom) -> hkpPhantomType,
+    pub calcAabb: unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkAabb),
+    pub addOverlappingCollidable:
+        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkpCollidable),
+    pub isOverlappingCollidableAdded:
+        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *const hkpCollidable) -> hkBool,
+    pub removeOverlappingCollidable:
+        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkpCollidable),
+    pub ensureDeterministicOrder: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
+    pub clone: unsafe extern "thiscall" fn(this: *const hkpPhantom) -> *mut hkpPhantom,
+    pub updateShapeCollectionFilter: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
+    pub deallocateInternalArrays: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
+}
+
+#[repr(C)]
 pub struct hkpWorld {
     _opaque: [u8; 0],
 }
@@ -4680,18 +4735,6 @@ pub struct std__ostreambuf_iterator_unsigned_short_std__char_traits_unsigned_sho
 
 #[repr(C)]
 pub struct std__num_put_unsigned_short_std__ostreambuf_iterator_unsigned_short_std__char_traits_unsigned_short_____
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__fmStreamInfo_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___Iterator
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__fmStreamInfo_gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator___ConstIterator
 {
     _opaque: [u8; 0],
 }

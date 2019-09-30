@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkArrayBase_hkxAttributeGroup___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkxVertexAnimation___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkRefNew_hkxVertexAnimation_ {
     _opaque: [u8; 0],
 }

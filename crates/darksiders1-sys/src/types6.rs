@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct gfc__CreateStatic_gfc__ParticleSystemCache___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__CreateStatic_gfc__AnimationCache___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__Body__0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }
@@ -2603,15 +2613,5 @@ pub struct gfc__Vector_hkFourTransposedPointsf_0_gfc__CAllocator___Iterator {
 
 #[repr(C)]
 pub struct gfc__Vector_hkFourTransposedPointsf_0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__PhysMeshCache__ReloadInfo_0_gfc__CAllocator___Iterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__PhysMeshCache__ReloadInfo_0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }

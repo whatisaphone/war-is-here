@@ -39,6 +39,7 @@ symbols! {
     pub static gfc__OmniLight___Class: *mut gfc__Class = Data(0x88cf24);
     pub static gfc__WorldObject___Class: *mut gfc__Class = Data(0x88ba8c);
     pub static gfc__Object3D___Class: *mut gfc__Class = Data(0x88a3e0);
+    pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__Darksiders = Data(0xa1afc);
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle: *mut gfc__ClassRegistry = Data(0xa4230);
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__WindowHelper = Data(0xa1b0c);
@@ -295,6 +296,7 @@ symbols! {
     pub static gfc__WorldObject__getName: unsafe extern "thiscall" fn(this: *const gfc__WorldObject) -> *const gfc__HString = Text(0x1e40b0);
     pub static gfc__LoadMapMenu__LoadMapMenu: unsafe extern "thiscall" fn(this: *mut gfc__LoadMapMenu) = Text(0x201d50);
     pub static gfc__WindowHelper__pushWindow: unsafe extern "thiscall" fn(this: *mut gfc__WindowHelper, _: *const gfc__HString) = Text(0x1bc090);
+    pub static gfc__TeleportHelper__warpToMap: unsafe extern "thiscall" fn(this: *mut gfc__TeleportHelper, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString) = Text(0x1bcf30);
     pub static gfc__WorldObject__getWorld_2: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__World = Text(0xed660);
     pub static gfc__Object3D__getBodies: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) -> *mut gfc__Vector_gfc__AutoRef_gfc__Body__0_gfc__CAllocator_ = Text(0xee3a0);
     pub static gfc__Object3D__getVisuals: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) -> *mut gfc__Vector_gfc__AutoRef_gfc__Visual__0_gfc__CAllocator_ = Text(0xee3b0);

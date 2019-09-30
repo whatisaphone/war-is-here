@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpMoppAssemblerData__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpMoppTreeNode__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkpMoppTreeNode__hkpMopp3DOPExtents__MustEndWithSemiColon {
     _opaque: [u8; 0],
 }
@@ -2527,15 +2537,5 @@ pub struct hkcdStaticMeshTreeBase__Connectivity__MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkcdStaticMeshTreeBase__Connectivity__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkcdStaticMeshTreeBase__Connectivity__SectionHeader__DefaultStruct {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray_hkcdStaticMeshTreeBase__Connectivity__SectionHeader_hkContainerTempAllocator_ {
     _opaque: [u8; 0],
 }

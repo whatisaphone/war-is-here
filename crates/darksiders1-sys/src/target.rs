@@ -59,6 +59,7 @@ symbols! {
     pub static gfc__OmniLight___Class;
     pub static gfc__WorldObject___Class;
     pub static gfc__Object3D___Class;
+    pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
@@ -315,6 +316,7 @@ symbols! {
     pub fn gfc__WorldObject__getName;
     pub fn gfc__LoadMapMenu__LoadMapMenu;
     pub fn gfc__WindowHelper__pushWindow;
+    pub fn gfc__TeleportHelper__warpToMap;
     pub fn gfc__WorldObject__getWorld_2;
     pub fn gfc__Object3D__getBodies;
     pub fn gfc__Object3D__getVisuals;

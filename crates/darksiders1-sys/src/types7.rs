@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__PhysMeshCache__ReloadInfo_0_gfc__CAllocator___Iterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__PhysMeshCache__ReloadInfo_0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__PhysicsMesh__0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }
@@ -2656,15 +2666,5 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__ChaosLevel__0_gfc__CAllocator___ConstIt
 
 #[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__PlayerAirMountDesc__0_gfc__CAllocator___ConstIterator {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__SaveGameHelper___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__Container__0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }

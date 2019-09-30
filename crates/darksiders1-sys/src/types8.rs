@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct gfc__CreateStatic_gfc__SaveGameHelper___MaxAlign__Test {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__Container__0_gfc__CAllocator___ConstIterator {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__Item__0_gfc__CAllocator___ConstIterator {
     _opaque: [u8; 0],
 }
@@ -2584,15 +2594,5 @@ pub struct hkArrayBase__anonymous_namespace___EdgeCollapseData___MustEndWithSemi
 
 #[repr(C)]
 pub struct hkArrayBase_hkSphere___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase__anonymous_namespace___EdgeData___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArray__anonymous_namespace___VertexInfo_hkContainerTempAllocator_ {
     _opaque: [u8; 0],
 }

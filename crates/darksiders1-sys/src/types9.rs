@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkArrayBase__anonymous_namespace___EdgeData___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkArray__anonymous_namespace___VertexInfo_hkContainerTempAllocator_ {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkArray__anonymous_namespace___VertexInfo_hkContainerDebugAllocator_ {
     _opaque: [u8; 0],
 }
@@ -2692,17 +2702,6 @@ pub struct hkLocalArray_unsigned_short___MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkInplaceArray_hkGeomConvexHullBuilder__WeightedNeighbour_2_hkContainerHeapAllocator___MustEndWithSemiColon
-{
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_hkGeomEdge___128_hkContainerHeapAllocator___MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_hkGeomConvexHullBuilder__WeightedNeighbour_64_hkContainerHeapAllocator___MustEndWithSemiColon
 {
     _opaque: [u8; 0],
 }

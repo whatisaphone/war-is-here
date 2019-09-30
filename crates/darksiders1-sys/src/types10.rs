@@ -16,6 +16,17 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkInplaceArray_hkGeomEdge___128_hkContainerHeapAllocator___MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkInplaceArray_hkGeomConvexHullBuilder__WeightedNeighbour_64_hkContainerHeapAllocator___MustEndWithSemiColon
+{
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkInplaceArray_hkGeomConvexHullBuilder__WeightedLine_16_hkContainerHeapAllocator___MustEndWithSemiColon
 {
     _opaque: [u8; 0],
@@ -2516,15 +2527,5 @@ pub struct hkpMoppCompilerPrimitive__MustEndWithSemiColon {
 
 #[repr(C)]
 pub struct hkpMoppSplittingPlaneDirection__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppAssemblerData__MustEndWithSemiColon {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpMoppTreeNode__MustEndWithSemiColon {
     _opaque: [u8; 0],
 }

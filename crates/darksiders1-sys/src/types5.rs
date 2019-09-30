@@ -16,6 +16,16 @@ use super::{
 };
 
 #[repr(C)]
+pub struct hkpSimpleContactConstraintAtom__DefaultStruct {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
+pub struct hkpSimpleContactConstraintAtom__MustEndWithSemiColon {
+    _opaque: [u8; 0],
+}
+
+#[repr(C)]
 pub struct hkpRayShapeCollectionFilter__DefaultStruct {
     _opaque: [u8; 0],
 }
@@ -2518,15 +2528,5 @@ pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__H
 #[repr(C)]
 pub struct std___Tree_unchecked_iterator_std___Tree_val_std___Tmap_traits_gfc__WorldObject___gfc__AttachManager__Attachment_std__less_gfc__WorldObject____std__allocator_std__pair_gfc__WorldObject___const_gfc__AttachManager__Attachment____0_____
 {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__ParticleSystemCache___MaxAlign__Test {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__CreateStatic_gfc__AnimationCache___MaxAlign__Test {
     _opaque: [u8; 0],
 }
