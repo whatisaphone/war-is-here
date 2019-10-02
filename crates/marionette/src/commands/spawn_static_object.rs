@@ -73,7 +73,7 @@ unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
     let class_registry = *target::gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     let class = target::gfc__ClassRegistry__classForName(
         class_registry,
-        &hstring!("StaticObject"),
+        hstring!("StaticObject").as_ptr(),
         true,
         false,
     );
@@ -88,8 +88,8 @@ unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
 
     target::gfc__WorldObject__setRegionID((*obj).as_gfc__WorldObject_mut_ptr(), region_id);
     target::gfc__WorldObject__setLayerID((*obj).as_gfc__WorldObject_mut_ptr(), layer_id);
-    target::gfc__StaticObject__setPackageName(obj, package_name.as_ref());
-    target::gfc__StaticObject__setObjectName(obj, object_name.as_ref());
+    target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
+    target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
     target::gfc__StaticObject__setPosition(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.x,
         y: args.y,

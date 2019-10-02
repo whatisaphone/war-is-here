@@ -8,19 +8,22 @@ pub struct HString {
 }
 
 impl HString {
+    pub fn from_str(s: &str) -> Self {
+        let cstring = CString::new(s).unwrap();
+        Self::from_cstr(&cstring)
+    }
+
+    pub fn from_cstr(s: &CStr) -> Self {
+        let inner =
+            unsafe { init_with(|this| target::gfc__HString__HString_3(this, s.as_ptr(), true)) };
+        Self { inner }
+    }
+
     pub unsafe fn from_ptr<'a>(inner: *const target::gfc__HString) -> &'a Self {
         &*(inner as *const _)
     }
 
-    pub fn from_str(s: &str) -> Self {
-        let cstring = CString::new(s).unwrap();
-        let inner = unsafe {
-            init_with(|this| target::gfc__HString__HString_3(this, cstring.as_ptr(), true))
-        };
-        Self { inner }
-    }
-
-    pub fn as_ref(&self) -> &target::gfc__HString {
+    pub fn as_ptr(&self) -> *const target::gfc__HString {
         &self.inner
     }
 

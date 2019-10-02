@@ -50,7 +50,7 @@ unsafe fn go(args: &Args) {
 
     let class_registry = *target::gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     let class =
-        target::gfc__ClassRegistry__classForName(class_registry, classname.as_ref(), true, false);
+        target::gfc__ClassRegistry__classForName(class_registry, classname.as_ptr(), true, false);
 
     let obj = init_with(|this| {
         let new_instance = cast_away_pdbindgen_bug((*(*class).__vfptr).newInstance);

@@ -48,9 +48,9 @@ unsafe fn go(args: &Args) {
     let start_load_region = gfc::HString::from_str(&args.start_load_region);
     target::gfc__TeleportHelper__warpToMap(
         teleport_helper,
-        world.as_ref(),
-        start_region.as_ref(),
-        start_point.as_ref(),
-        start_load_region.as_ref(),
+        world.as_ptr(),
+        start_region.as_ptr(),
+        start_point.as_ptr(),
+        start_load_region.as_ptr(),
     );
 }
