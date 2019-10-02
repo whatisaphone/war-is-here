@@ -31,6 +31,7 @@ cargo run --release \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
+    -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::Actor::setPosition$' \
     -i '^gfc::Class::\w+$' \

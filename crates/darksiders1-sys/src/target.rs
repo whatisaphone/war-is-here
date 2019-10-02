@@ -48,6 +48,7 @@ symbols! {
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+    pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_;
     pub fn gfc__OmniLight__setStaticOnly;
     pub fn gfc__OmniLight__getStaticOnly;
     pub fn gfc__OmniLight__doRemoveFromWorld;
@@ -116,6 +117,8 @@ symbols! {
     pub fn gfc__WorldObject__getWorldObjectID;
     pub fn gfc__WorldObject__getScriptEnvironment;
     pub fn gfc__WorldObject__onChildDetachedFromObject;
+    pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2;
+    pub fn gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_;
     pub fn gfc__WorldObject__setPosition;
     pub fn gfc__WorldObject__WorldObject;
     pub fn gfc__WorldObject__removeFromGroup;

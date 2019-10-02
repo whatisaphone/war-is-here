@@ -1,10 +1,5 @@
 use darksiders1_sys::target;
-use std::{
-    convert::TryInto,
-    mem,
-    ptr,
-    sync::atomic::{AtomicI32, Ordering},
-};
+use std::{convert::TryInto, mem, ptr};
 
 #[allow(dead_code)]
 pub unsafe fn new<T>(ctor: impl FnOnce(*mut T)) -> *mut T {
@@ -20,12 +15,4 @@ pub unsafe fn new<T>(ctor: impl FnOnce(*mut T)) -> *mut T {
     ) as *mut T;
     ctor(alloc);
     alloc
-}
-
-pub fn lock_xadd(target: &mut i32, n: i32) -> i32 {
-    atomic(target).fetch_add(n, Ordering::SeqCst)
-}
-
-pub fn atomic(x: &mut i32) -> &mut AtomicI32 {
-    unsafe { &mut *(x as *mut i32 as *mut AtomicI32) }
 }

@@ -29,6 +29,7 @@ symbols! {
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__Darksiders = Data(0xa1afc);
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle: *mut gfc__ClassRegistry = Data(0xa4230);
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__WindowHelper = Data(0xa1b0c);
+    pub static gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_, _: *mut gfc__IRefObject) = Text(0xf1b740);
     pub static gfc__OmniLight__setStaticOnly: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight, _: bool) = Text(0xe26960);
     pub static gfc__OmniLight__getStaticOnly: unsafe extern "thiscall" fn(this: *const gfc__OmniLight) -> bool = Text(0xe26970);
     pub static gfc__OmniLight__doRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight) = Text(0xe271c0);
@@ -97,6 +98,8 @@ symbols! {
     pub static gfc__WorldObject__getWorldObjectID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> gfc__WorldObject__ID = Text(0xdcc390);
     pub static gfc__WorldObject__getScriptEnvironment: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__Environment = Text(0xdcc3b0);
     pub static gfc__WorldObject__onChildDetachedFromObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__WorldObject) = Text(0xdcc3d0);
+    pub static gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_) = Text(0xdd24b0);
+    pub static gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_) = Text(0xdd24c0);
     pub static gfc__WorldObject__setPosition: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: f32, _: f32, _: f32) = Text(0xdd6260);
     pub static gfc__WorldObject__WorldObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) = Text(0xdd86d0);
     pub static gfc__WorldObject__removeFromGroup: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) = Text(0xdd87d0);

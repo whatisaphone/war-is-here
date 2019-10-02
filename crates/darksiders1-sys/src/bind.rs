@@ -25,6 +25,10 @@ pub unsafe fn bind(args: &BindArgs) {
     );
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
+    bind!(
+        text,
+        gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_
+    );
     bind!(text, gfc__OmniLight__setStaticOnly);
     bind!(text, gfc__OmniLight__getStaticOnly);
     bind!(text, gfc__OmniLight__doRemoveFromWorld);
@@ -93,6 +97,14 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__WorldObject__getWorldObjectID);
     bind!(text, gfc__WorldObject__getScriptEnvironment);
     bind!(text, gfc__WorldObject__onChildDetachedFromObject);
+    bind!(
+        text,
+        gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2
+    );
+    bind!(
+        text,
+        gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_
+    );
     bind!(text, gfc__WorldObject__setPosition);
     bind!(text, gfc__WorldObject__WorldObject);
     bind!(text, gfc__WorldObject__removeFromGroup);

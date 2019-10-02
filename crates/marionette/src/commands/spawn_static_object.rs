@@ -1,12 +1,7 @@
 #![allow(clippy::similar_names)]
 
-use crate::{
-    darksiders1::gfc,
-    hooks::ON_POST_UPDATE_QUEUE,
-    utils::{ffi::lock_xadd, mem::init_with},
-};
+use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
-use std::mem;
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -77,14 +72,11 @@ unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
         true,
         false,
     );
+    let class = gfc::Class::from_ptr(class);
 
-    let obj = init_with(|this| {
-        let new_instance = cast_away_pdbindgen_bug((*(*class).__vfptr).newInstance);
-        new_instance(class, this);
-    });
-    lock_xadd(&mut (*obj.p).ReferenceCount, 1);
+    let obj = class.new_instance();
     #[allow(clippy::cast_ptr_alignment)]
-    let obj = obj.p as *mut target::gfc__StaticObject;
+    let obj = obj.as_ptr() as *mut target::gfc__StaticObject;
 
     target::gfc__WorldObject__setRegionID((*obj).as_gfc__WorldObject_mut_ptr(), region_id);
     target::gfc__WorldObject__setLayerID((*obj).as_gfc__WorldObject_mut_ptr(), layer_id);
@@ -102,15 +94,4 @@ unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
     });
 
     ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world);
-}
-
-type NewInstanceWrong =
-    unsafe extern "thiscall" fn(this: *mut target::gfc__Class) -> target::gfc__AutoRef_gfc__Object_;
-type NewInstanceRight = unsafe extern "thiscall" fn(
-    this: *mut target::gfc__Class,
-    result: *mut target::gfc__AutoRef_gfc__Object_,
-) -> *mut target::gfc__AutoRef_gfc__Object_;
-
-unsafe fn cast_away_pdbindgen_bug(new_instance: NewInstanceWrong) -> NewInstanceRight {
-    mem::transmute(new_instance)
 }

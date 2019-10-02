@@ -1,1 +1,4 @@
-pub use crate::darksiders1::code::vigil::gfc::util::hstring::HString;
+pub use crate::darksiders1::code::vigil::gfc::{
+    base::{autoref::AutoRefObject, object::Object, reflection::Class},
+    util::hstring::HString,
+};
