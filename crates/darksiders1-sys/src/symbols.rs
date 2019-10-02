@@ -1,21 +1,7 @@
 #![allow(non_camel_case_types, non_upper_case_globals, unused_imports)]
 #![allow(clippy::unreadable_literal)]
 
-use super::{
-    types::*,
-    types10::*,
-    types11::*,
-    types12::*,
-    types13::*,
-    types2::*,
-    types3::*,
-    types4::*,
-    types5::*,
-    types6::*,
-    types7::*,
-    types8::*,
-    types9::*,
-};
+use super::{types::*, types2::*, types3::*};
 
 macro_rules! symbols {
     () => {};
