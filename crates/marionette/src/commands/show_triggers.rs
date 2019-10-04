@@ -68,10 +68,13 @@ unsafe fn scan(group: *mut target::gfc__WorldGroup) {
     let objects = List::<target::gfc__AutoRef_gfc__WorldObject_>::from_ptr(objects);
     for (i, object) in objects.iter().enumerate() {
         let object = gfc::Object::from_ptr(object.p as *mut target::gfc__Object);
-        println!("{}: {:?}", i, object.class().name().c_str());
 
         if let Some(group) = gfc::object_safecast::<gfc::WorldGroup>(object) {
             scan(group.as_ptr());
+        }
+
+        if let Some(_trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
+            println!("{}: {:?}", i, object.class().name().c_str());
         }
     }
 }

@@ -7,6 +7,6 @@ pub use crate::darksiders1::code::vigil::{
             reflection::Class,
         },
         util::{hstring::HString, singleton::Singleton, vector::Vector},
-        world::worldgroup::WorldGroup,
+        world::{triggerregion::TriggerRegion, worldgroup::WorldGroup},
     },
 };

@@ -23,15 +23,3 @@ pub fn object_safecast<To: Reflect>(p: &Object) -> Option<gfc::AutoRef<To>> {
 pub unsafe trait Reflect {
     fn class() -> &'static gfc::Class;
 }
-
-macro_rules! impl_reflect {
-    ($type:ty, $class:expr) => {
-        unsafe impl Reflect for $type {
-            fn class() -> &'static gfc::Class {
-                unsafe { gfc::Class::from_ptr(*$class) }
-            }
-        }
-    };
-}
-
-impl_reflect!(gfc::WorldGroup, target::gfc__WorldGroup___Class);

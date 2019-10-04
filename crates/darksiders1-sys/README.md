@@ -29,10 +29,12 @@ cargo run --release \
     -i '^gfc::WorldRegion$' \
     -i '^gfc::Player$' \
     -i '^gfc::RegionLayer$' \
+    -i '^gfc::TriggerRegion$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
+    -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \

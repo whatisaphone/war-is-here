@@ -29,6 +29,18 @@ macro_rules! struct_wrapper {
     };
 }
 
+macro_rules! impl_reflection {
+    ($type:ty, $class:expr) => {
+        use $crate::darksiders1::{code::vigil::gfc::base::object::Reflect, gfc};
+
+        unsafe impl Reflect for $type {
+            fn class() -> &'static gfc::Class {
+                unsafe { gfc::Class::from_ptr(*$class) }
+            }
+        }
+    };
+}
+
 macro_rules! autoref_transmute {
     ($autoref:expr) => {
         target::gfc__AutoRef_gfc__IRefObject_ { p: $autoref.p }

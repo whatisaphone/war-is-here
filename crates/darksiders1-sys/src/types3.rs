@@ -3,6 +3,271 @@
 use super::{types::*, types2::*};
 
 #[repr(C)]
+pub struct hkpCollisionFilter____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpRayCollidableFilter, _: u32) -> *mut (),
+    pub isCollisionEnabled: unsafe extern "thiscall" fn(
+        this: *const hkpRayCollidableFilter,
+        result: *mut hkBool,
+        _: *const hkpWorldRayCastInput,
+        _: *const hkpCollidable,
+    ) -> *mut hkBool,
+    pub numShapeKeyHitsLimitBreached: unsafe extern "thiscall" fn(
+        this: *const hkpShapeCollectionFilter,
+        _: *const hkpCollisionInput,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpBvTreeShape,
+        _: *mut hkAabb,
+        _: *mut u32,
+        _: i32,
+    ) -> i32,
+    pub __vecDelDtor_2:
+        unsafe extern "thiscall" fn(this: *mut hkpShapeCollectionFilter, _: u32) -> *mut (),
+    pub init: unsafe extern "thiscall" fn(this: *mut hkpCollisionFilter, _: *mut hkpWorld),
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpCollisionFilter__hkpFilterType_unsigned_int_ {
+    pub m_storage: u32,
+}
+
+#[repr(C)]
+pub struct hkpCdPoint {
+    pub m_contact: hkContactPoint,
+    pub m_unweldedNormal: hkVector4f,
+    pub m_cdBodyA: *const hkpCdBody,
+    pub m_cdBodyB: *const hkpCdBody,
+    __pdbindgen_padding: [u8; 8],
+}
+
+#[repr(C)]
+pub struct hkpSphereRepShape {
+    pub __vfptr: *const hkpSphereRepShape____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    pub m_userData: u32,
+}
+
+impl hkpSphereRepShape {
+    pub fn as_hkpShape_ptr(&self) -> *const hkpShape {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpShape_mut_ptr(&mut self) -> *mut hkpShape {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpSphereRepShape____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> bool,
+    pub getAabb: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkTransformf,
+        _: f32,
+        _: *mut hkAabb,
+    ),
+    pub castRay: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        result: *mut hkBool,
+        _: *const hkpShapeRayCastInput,
+        _: *mut hkpShapeRayCastOutput,
+    ) -> *mut hkBool,
+    pub castRayWithCollector: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayCastInput,
+        _: *const hkpCdBody,
+        _: *mut hkpRayHitCollector,
+    ),
+    pub castRayBundle: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        result: *mut hkVector4fComparison,
+        _: *const hkpShapeRayBundleCastInput,
+        _: *mut hkpShapeRayBundleCastOutput,
+        _: *const hkVector4fComparison,
+    ) -> *mut hkVector4fComparison,
+    pub getSupportingVertex: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkVector4f,
+        _: *mut hkcdVertex,
+    ),
+    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const u16,
+        _: i32,
+        _: *mut hkcdVertex,
+    ),
+    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkVector4f),
+    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> i32,
+    pub getCollisionSpheres:
+        unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkSphere) -> *const hkSphere,
+    pub weldContactPoint: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *mut u16,
+        _: *mut u8,
+        _: *mut hkVector4f,
+        _: *const hkTransformf,
+        _: *const hkpConvexShape,
+        _: *const hkTransformf,
+        _: *mut hkVector4f,
+    ) -> i32,
+    pub getContainer:
+        unsafe extern "thiscall" fn(this: *const hkpShape) -> *const hkpShapeContainer,
+    pub getMaximumProjection:
+        unsafe extern "thiscall" fn(this: *const hkpShape, _: *const hkVector4f) -> f32,
+    pub calcSizeForSpu: unsafe extern "thiscall" fn(
+        this: *const hkpShape,
+        _: *const hkpShape__CalcSizeForSpuInput,
+        _: i32,
+    ) -> i32,
+}
+
+#[repr(C)]
+pub struct hkpConvexShape {
+    pub __vfptr: *const hkpConvexShape____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    pub m_userData: u32,
+    pub m_radius: f32,
+}
+
+impl hkpConvexShape {
+    pub fn as_hkpSphereRepShape_ptr(&self) -> *const hkpSphereRepShape {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpSphereRepShape_mut_ptr(&mut self) -> *mut hkpSphereRepShape {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpConvexShape____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> bool,
+    pub getAabb: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkTransformf,
+        _: f32,
+        _: *mut hkAabb,
+    ),
+    pub castRay: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        result: *mut hkBool,
+        _: *const hkpShapeRayCastInput,
+        _: *mut hkpShapeRayCastOutput,
+    ) -> *mut hkBool,
+    pub castRayWithCollector: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkpShapeRayCastInput,
+        _: *const hkpCdBody,
+        _: *mut hkpRayHitCollector,
+    ),
+    pub castRayBundle: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        result: *mut hkVector4fComparison,
+        _: *const hkpShapeRayBundleCastInput,
+        _: *mut hkpShapeRayBundleCastOutput,
+        _: *const hkVector4fComparison,
+    ) -> *mut hkVector4fComparison,
+    pub getSupportingVertex: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const hkVector4f,
+        _: *mut hkcdVertex,
+    ),
+    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *const u16,
+        _: i32,
+        _: *mut hkcdVertex,
+    ),
+    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkVector4f),
+    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> i32,
+    pub getCollisionSpheres:
+        unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkSphere) -> *const hkSphere,
+    pub weldContactPoint: unsafe extern "thiscall" fn(
+        this: *const hkpShapeBase,
+        _: *mut u16,
+        _: *mut u8,
+        _: *mut hkVector4f,
+        _: *const hkTransformf,
+        _: *const hkpConvexShape,
+        _: *const hkTransformf,
+        _: *mut hkVector4f,
+    ) -> i32,
+    pub getContainer:
+        unsafe extern "thiscall" fn(this: *const hkpShape) -> *const hkpShapeContainer,
+    pub getMaximumProjection:
+        unsafe extern "thiscall" fn(this: *const hkpShape, _: *const hkVector4f) -> f32,
+    pub calcSizeForSpu: unsafe extern "thiscall" fn(
+        this: *const hkpShape,
+        _: *const hkpShape__CalcSizeForSpuInput,
+        _: i32,
+    ) -> i32,
+    pub getFirstVertex:
+        unsafe extern "thiscall" fn(this: *const hkpConvexShape, _: *mut hkVector4f),
+    pub getSize: unsafe extern "thiscall" fn(this: *const hkpConvexShape) -> i32,
+}
+
+#[repr(C)]
+pub struct hkpShapeRayBundleCastInput {
+    pub m_from: hkFourTransposedPointsf,
+    pub m_to: hkFourTransposedPointsf,
+    pub m_filterInfo: u32,
+    pub m_userData: u32,
+    pub m_rayShapeCollectionFilter: *const hkpRayShapeCollectionFilter,
+    __pdbindgen_padding: [u8; 4],
+}
+
+#[repr(C)]
+pub struct hkpAabbCastCollector {
+    pub __vfptr: *const hkpAabbCastCollector____vftable,
+    __pdbindgen_padding: [u8; 12],
+    pub m_earlyOutFraction: hkSimdFloat32,
+}
+
+#[repr(C)]
+pub struct hkpAabbCastCollector____vftable {
+    pub addHit: unsafe extern "thiscall" fn(this: *mut hkpAabbCastCollector, _: u32),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpAabbCastCollector, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct hkpConvexListFilter {
+    pub __vfptr: *const hkpConvexListFilter____vftable,
+    pub m_memSizeAndRefCount: u32,
+}
+
+impl hkpConvexListFilter {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
 pub struct hkpConvexListFilter____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),

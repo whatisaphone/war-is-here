@@ -14,6 +14,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__StaticObject___Class);
     bind!(data, gfc__OmniLight___Class);
     bind!(data, gfc__WorldGroup___Class);
+    bind!(data, gfc__TriggerRegion___Class);
     bind!(
         data,
         gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle

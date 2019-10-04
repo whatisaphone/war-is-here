@@ -43,6 +43,7 @@ symbols! {
     pub static gfc__StaticObject___Class;
     pub static gfc__OmniLight___Class;
     pub static gfc__WorldGroup___Class;
+    pub static gfc__TriggerRegion___Class;
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
