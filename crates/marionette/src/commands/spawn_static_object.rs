@@ -47,19 +47,19 @@ struct Args {
     scale: f32,
 }
 
+#[allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 unsafe fn go(args: &Args) {
-    // I have no idea what region or layer to use, so let's try them all!
-    for r in 0..10 {
-        for l in 0..10 {
-            once(args, r, l);
+    for x in (args.x as i32 - 50..=args.x as i32 + 50).step_by(50) {
+        for y in (args.y as i32 - 50..=args.y as i32 + 50).step_by(50) {
+            once(args, x as f32, y as f32, args.z);
         }
     }
 }
 
-unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
-    let darksiders = *target::gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
+unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
+    let darksiders = gfc::Singleton::<gfc::Darksiders>::get_instance();
     #[allow(clippy::cast_ptr_alignment)]
-    let world_mgr = (*darksiders).mWorldMgr.p as *mut target::gfc__WorldManager;
+    let world_mgr = (*darksiders.as_ptr()).mWorldMgr.p as *mut target::gfc__WorldManager;
     #[allow(clippy::cast_ptr_alignment)]
     let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
 
@@ -79,20 +79,23 @@ unsafe fn once(args: &Args, region_id: u16, layer_id: u16) {
     #[allow(clippy::cast_ptr_alignment)]
     let obj = obj.as_ptr() as *mut target::gfc__StaticObject;
 
-    target::gfc__WorldObject__setRegionID((*obj).as_gfc__WorldObject_mut_ptr(), region_id);
-    target::gfc__WorldObject__setLayerID((*obj).as_gfc__WorldObject_mut_ptr(), layer_id);
     target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
     target::gfc__StaticObject__setPosition(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
-        x: args.x,
-        y: args.y,
-        z: args.z,
+        x,
+        y,
+        z,
     });
     target::gfc__StaticObject__setScale(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.scale,
         y: args.scale,
         z: args.scale,
     });
+    target::gfc__StaticObject__preload(obj);
+    if x >= -4000.0 {
+        let object_3d: *mut target::gfc__Object3D = target::gfc__StaticObject__getObject(obj);
+        (*object_3d).mVisuals.mSize = 0;
+    }
 
     ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world);
 }

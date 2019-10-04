@@ -1,33 +1,51 @@
-use crate::darksiders1::gfc;
+use crate::utils::mem::init_with;
 use darksiders1_sys::target;
-use std::{mem, ops::Deref};
+use std::{marker::PhantomData, ops::Deref};
 
-pub struct AutoRefObject {
-    inner: target::gfc__AutoRef_gfc__IRefObject_,
+// These binding names are a little bit ridiculous.
+macro_rules! constructor {
+    () => {
+        target::gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_
+    };
+}
+macro_rules! destructor {
+    () => {
+        target::gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_
+    };
 }
 
-impl AutoRefObject {
-    pub unsafe fn from_raw(inner: target::gfc__AutoRef_gfc__Object_) -> Self {
-        let inner = mem::transmute::<
-            target::gfc__AutoRef_gfc__Object_,
-            target::gfc__AutoRef_gfc__IRefObject_,
-        >(inner);
-        Self { inner }
+pub struct AutoRef<T> {
+    inner: target::gfc__AutoRef_gfc__IRefObject_,
+    phantom: PhantomData<T>,
+}
+
+impl<T> AutoRef<T> {
+    pub unsafe fn from_ptr(p: *mut target::gfc__IRefObject) -> Self {
+        Self::from_raw(init_with(|this| {
+            constructor!()(this, p);
+        }))
+    }
+
+    pub unsafe fn from_raw(inner: target::gfc__AutoRef_gfc__IRefObject_) -> Self {
+        Self {
+            inner,
+            phantom: PhantomData,
+        }
     }
 }
 
-impl Deref for AutoRefObject {
-    type Target = gfc::Object;
+impl<T> Deref for AutoRef<T> {
+    type Target = T;
 
     fn deref(&self) -> &Self::Target {
-        unsafe { gfc::Object::from_ptr(self.inner.p as *mut _) }
+        unsafe { &*(self.inner.p as *mut T) }
     }
 }
 
-impl Drop for AutoRefObject {
+impl<T> Drop for AutoRef<T> {
     fn drop(&mut self) {
         unsafe {
-            target::gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_(&mut self.inner);
+            destructor!()(&mut self.inner);
         }
     }
 }

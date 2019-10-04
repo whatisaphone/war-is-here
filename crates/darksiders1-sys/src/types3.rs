@@ -3,6 +3,97 @@
 use super::{types::*, types2::*};
 
 #[repr(C)]
+pub struct hkpConvexListFilter____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub getConvexListCollisionType:
+        unsafe extern "thiscall" fn(
+            this: *const hkpConvexListFilter,
+            _: *const hkpCdBody,
+            _: *const hkpCdBody,
+            _: *const hkpCollisionInput,
+        ) -> hkpConvexListFilter__ConvexListCollisionType,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpWorldCinfo__BroadPhaseType_signed_char_ {
+    pub m_storage: i8,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpWorldCinfo__ContactPointGeneration_signed_char_ {
+    pub m_storage: i8,
+}
+
+#[repr(C)]
+pub struct hkpCollidableAddedEvent {
+    pub m_phantom: *const hkpPhantom,
+    pub m_collidable: *const hkpCollidable,
+    pub m_collidableAccept: hkpCollidableAccept,
+}
+
+#[repr(C)]
+pub struct hkpPhantom {
+    pub __vfptr: *const hkpPhantom____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_world: *mut hkpWorld,
+    pub m_userData: u32,
+    pub m_collidable: hkpLinkedCollidable,
+    pub m_multiThreadCheck: hkMultiThreadCheck,
+    pub m_name: hkStringPtr,
+    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    pub m_overlapListeners: hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_,
+    pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
+}
+
+impl hkpPhantom {
+    pub fn as_hkpWorldObject_ptr(&self) -> *const hkpWorldObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkpWorldObject_mut_ptr(&mut self) -> *mut hkpWorldObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpPhantom____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub setShape: unsafe extern "thiscall" fn(
+        this: *mut hkpWorldObject,
+        _: *const hkpShape,
+    ) -> hkWorldOperation__Result,
+    pub updateShape: unsafe extern "thiscall" fn(
+        this: *mut hkpWorldObject,
+        _: *mut hkpShapeModifier,
+    ) -> hkWorldOperation__Result,
+    pub getMotionState:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldObject) -> *mut hkMotionState,
+    pub getType: unsafe extern "thiscall" fn(this: *const hkpPhantom) -> hkpPhantomType,
+    pub calcAabb: unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkAabb),
+    pub addOverlappingCollidable:
+        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkpCollidable),
+    pub isOverlappingCollidableAdded: unsafe extern "thiscall" fn(
+        this: *mut hkpPhantom,
+        result: *mut hkBool,
+        _: *const hkpCollidable,
+    ) -> *mut hkBool,
+    pub removeOverlappingCollidable:
+        unsafe extern "thiscall" fn(this: *mut hkpPhantom, _: *mut hkpCollidable),
+    pub ensureDeterministicOrder: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
+    pub clone: unsafe extern "thiscall" fn(this: *const hkpPhantom) -> *mut hkpPhantom,
+    pub updateShapeCollectionFilter: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
+    pub deallocateInternalArrays: unsafe extern "thiscall" fn(this: *mut hkpPhantom),
+}
+
+#[repr(C)]
 pub struct hkpWorld {
     pub __vfptr: *const hkpWorld____vftable,
     pub m_memSizeAndRefCount: u32,
@@ -567,6 +658,9 @@ pub struct hkpSimpleConstraintContactMgr____vftable {
         _: f32,
         _: *mut hkArray_hkpEntity___hkContainerHeapAllocator_,
     ),
+    pub getConstraintInstance_2: unsafe extern "thiscall" fn(
+        this: *const hkpSimpleConstraintContactMgr,
+    ) -> *const hkpConstraintInstance,
 }
 
 #[repr(C)]
@@ -2717,7 +2811,10 @@ pub struct hkpMotion____vftable {
     pub getClassType:
         unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
     pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-    __pdbindgen_padding: [u8; 16],
+    pub setMass: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkSimdFloat32),
+    pub setMass_2: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32),
+    pub setMassInv: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkSimdFloat32),
+    pub setMassInv_2: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32),
     pub getInertiaLocal: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
     pub getInertiaWorld: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
     pub setInertiaLocal: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkMatrix3f),
@@ -2758,7 +2855,14 @@ pub struct hkpMotion____vftable {
     ),
     pub applyAngularImpulse:
         unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    __pdbindgen_padding_2: [u8; 8],
+    pub applyForce: unsafe extern "thiscall" fn(
+        this: *mut hkpMotion,
+        _: f32,
+        _: *const hkVector4f,
+        _: *const hkVector4f,
+    ),
+    pub applyForce_2:
+        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32, _: *const hkVector4f),
     pub applyTorque:
         unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32, _: *const hkVector4f),
     pub getMotionStateAndVelocitiesAndDeactivationType:
@@ -2932,9 +3036,9 @@ pub type keen__ControllerClass = i32;
 
 pub type keen__InputSystemControllerAutoCatchType = i32;
 
-pub type gfc__ImageFormat = i32;
+pub type gfc__ImageType = i32;
 
-pub type gfc__WorldObject__Flags = i32;
+pub type gfc__ImageFormat = i32;
 
 pub type gfc__Texture__Type = i32;
 

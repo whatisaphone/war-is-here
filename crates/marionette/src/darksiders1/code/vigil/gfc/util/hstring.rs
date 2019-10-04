@@ -2,10 +2,7 @@ use crate::utils::mem::init_with;
 use darksiders1_sys::target;
 use std::ffi::{CStr, CString};
 
-#[repr(transparent)]
-pub struct HString {
-    inner: target::gfc__HString,
-}
+struct_wrapper!(HString, target::gfc__HString);
 
 impl HString {
     pub fn from_str(s: &str) -> Self {
@@ -17,14 +14,6 @@ impl HString {
         let inner =
             unsafe { init_with(|this| target::gfc__HString__HString_3(this, s.as_ptr(), true)) };
         Self { inner }
-    }
-
-    pub unsafe fn from_ptr<'a>(inner: *const target::gfc__HString) -> &'a Self {
-        &*(inner as *const _)
-    }
-
-    pub fn as_ptr(&self) -> *const target::gfc__HString {
-        &self.inner
     }
 
     pub fn c_str(&self) -> &CStr {

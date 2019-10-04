@@ -8,3 +8,29 @@ macro_rules! hstring {
         HString::from_cstr(cstr)
     }};
 }
+
+macro_rules! struct_wrapper {
+    ($name:ident, $inner:ty) => {
+        #[repr(transparent)]
+        pub struct $name {
+            inner: $inner,
+        }
+
+        #[allow(dead_code)]
+        impl $name {
+            pub unsafe fn from_ptr<'a>(inner: *const $inner) -> &'a Self {
+                &*(inner as *const Self)
+            }
+
+            pub fn as_ptr(&self) -> *mut $inner {
+                &self.inner as *const $inner as *mut $inner
+            }
+        }
+    };
+}
+
+macro_rules! autoref_transmute {
+    ($autoref:expr) => {
+        target::gfc__AutoRef_gfc__IRefObject_ { p: $autoref.p }
+    };
+}
