@@ -24,3 +24,23 @@ impl Class {
         unsafe { ((*self.inner.__vfptr).instanceof)(self.as_ptr(), class.as_ptr()) }
     }
 }
+
+struct_wrapper!(ClassRegistry, target::gfc__ClassRegistry);
+
+impl ClassRegistry {
+    pub fn class_for_name(
+        &self,
+        classname: &gfc::HString,
+        use_loaders: bool,
+    ) -> Option<&gfc::Class> {
+        unsafe {
+            let result = target::gfc__ClassRegistry__classForName(
+                self.as_ptr(),
+                classname.as_ptr(),
+                use_loaders,
+                false, // The `quiet` param has no effect. Probably #ifdef'd away.
+            );
+            result.as_ref().map(|p| gfc::Class::from_ptr(p))
+        }
+    }
+}

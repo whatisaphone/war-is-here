@@ -4,7 +4,7 @@ pub use crate::darksiders1::code::vigil::{
         base::{
             autoref::AutoRef,
             object::{object_safecast, Object},
-            reflection::Class,
+            reflection::{Class, ClassRegistry},
         },
         util::{hstring::HString, singleton::Singleton, vector::Vector},
         world::{triggerregion::TriggerRegion, worldgroup::WorldGroup},

@@ -36,18 +36,16 @@ struct Args {
 }
 
 unsafe fn go(args: &Args) {
+    let classname = gfc::HString::from_str(&args.classname);
+
     let darksiders = gfc::Singleton::<gfc::Darksiders>::get_instance();
     #[allow(clippy::cast_ptr_alignment)]
     let world_mgr = (*darksiders.as_ptr()).mWorldMgr.p as *mut target::gfc__WorldManager;
     #[allow(clippy::cast_ptr_alignment)]
     let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
 
-    let classname = gfc::HString::from_str(&args.classname);
-
-    let class_registry = *target::gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
-    let class =
-        target::gfc__ClassRegistry__classForName(class_registry, classname.as_ptr(), true, false);
-    let class = gfc::Class::from_ptr(class);
+    let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();
+    let class = class_registry.class_for_name(&classname, true).unwrap();
 
     let obj = class.new_instance();
     #[allow(clippy::cast_ptr_alignment)]

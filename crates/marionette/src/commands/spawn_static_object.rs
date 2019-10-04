@@ -57,23 +57,19 @@ unsafe fn go(args: &Args) {
 }
 
 unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
+    let package_name = gfc::HString::from_str(&args.package_name);
+    let object_name = gfc::HString::from_str(&args.object_name);
+
     let darksiders = gfc::Singleton::<gfc::Darksiders>::get_instance();
     #[allow(clippy::cast_ptr_alignment)]
     let world_mgr = (*darksiders.as_ptr()).mWorldMgr.p as *mut target::gfc__WorldManager;
     #[allow(clippy::cast_ptr_alignment)]
     let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
 
-    let package_name = gfc::HString::from_str(&args.package_name);
-    let object_name = gfc::HString::from_str(&args.object_name);
-
-    let class_registry = *target::gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
-    let class = target::gfc__ClassRegistry__classForName(
-        class_registry,
-        hstring!("StaticObject").as_ptr(),
-        true,
-        false,
-    );
-    let class = gfc::Class::from_ptr(class);
+    let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();
+    let class = class_registry
+        .class_for_name(&hstring!("StaticObject"), true)
+        .unwrap();
 
     let obj = class.new_instance();
     #[allow(clippy::cast_ptr_alignment)]
