@@ -39,6 +39,7 @@ unsafe fn go(args: &Args) {
     let darksiders = *target::gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     #[allow(clippy::cast_ptr_alignment)]
     let world_mgr = (*darksiders).mWorldMgr.p as *mut target::gfc__WorldManager;
+    #[allow(clippy::cast_ptr_alignment)]
     let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
 
     let classname = gfc::HString::from_str(&args.classname);
