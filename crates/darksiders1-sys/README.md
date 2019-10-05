@@ -22,7 +22,6 @@ pdbindgen \
     -i '^gfc::WorldGroup::_Class$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
-    -i '^gfc::Actor::setPosition$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Darksiders::processInputEvent$' \
@@ -33,7 +32,8 @@ pdbindgen \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
-    -i '^gfc::StaticObject::\w+$' \
+    -i '^gfc::StaticObject::setObjectName$' \
+    -i '^gfc::StaticObject::setPackageName$' \
     -i '^gfc::TeleportHelper::warpToMap$' \
     -i '^gfc::WindowHelper::pushWindow$' \
     -i '^gfc::World::getRegion$' \

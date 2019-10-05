@@ -74,19 +74,21 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
 
     target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
-    target::gfc__StaticObject__setPosition(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
-        x,
-        y,
-        z,
-    });
-    target::gfc__StaticObject__setScale(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
-        x: args.scale,
-        y: args.scale,
-        z: args.scale,
-    });
-    target::gfc__StaticObject__preload(obj);
+    ((*(*obj).__vfptr).setPosition)(
+        (*obj).as_gfc__WorldObject_mut_ptr(),
+        &target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z },
+    );
+    ((*(*obj).__vfptr).setScale)(
+        (*obj).as_gfc__WorldObject_mut_ptr(),
+        &target::gfc__TVector3_float_gfc__FloatMath_ {
+            x: args.scale,
+            y: args.scale,
+            z: args.scale,
+        },
+    );
+    ((*(*obj).__vfptr).preload)((*obj).as_gfc__WorldObject_mut_ptr());
     if x >= -4000.0 {
-        let object_3d: *mut target::gfc__Object3D = target::gfc__StaticObject__getObject(obj);
+        let object_3d: *mut target::gfc__Object3D = (*obj).mObject.p as *mut target::gfc__Object3D;
         (*object_3d).mVisuals.mSize = 0;
     }
 

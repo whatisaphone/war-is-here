@@ -3359,8 +3359,6 @@ pub type hkJobQueueHwSetup__CellRules = i32;
 
 pub type hkpConstraintData__UpdateAtomsResult__Enum = i32;
 
-pub type gfc__StaticObject__Flags = i32;
-
 pub type hkpBroadPhase__Capabilities = i32;
 
 pub type hkpBroadPhase__BroadPhaseType = i32;

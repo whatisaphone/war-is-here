@@ -40,7 +40,6 @@ macro_rules! symbols {
 }
 
 symbols! {
-    pub static gfc__StaticObject___Class;
     pub static gfc__OmniLight___Class;
     pub static gfc__WorldGroup___Class;
     pub static gfc__TriggerRegion___Class;
@@ -54,13 +53,7 @@ symbols! {
     pub fn gfc__OmniLight__getStaticOnly;
     pub fn gfc__OmniLight__doRemoveFromWorld;
     pub fn gfc__StaticObject__setObjectName;
-    pub fn gfc__StaticObject__getObjectName;
     pub fn gfc__StaticObject__setPackageName;
-    pub fn gfc__StaticObject__getPackageName;
-    pub fn gfc__StaticObject__setAORayLength;
-    pub fn gfc__StaticObject__getNoShadows;
-    pub fn gfc__StaticObject__setBakeLighting;
-    pub fn gfc__StaticObject__getBakeLighting;
     pub fn gfc__OmniLight__getClass;
     pub fn gfc__OmniLight__setStatic;
     pub fn gfc__OmniLight__getStatic;
@@ -79,34 +72,9 @@ symbols! {
     pub fn gfc__OmniLight__setSize;
     pub fn gfc__OmniLight__getSize;
     pub fn gfc__OmniLight__preload;
-    pub fn gfc__StaticObject__init;
-    pub fn gfc__StaticObject__setNoShadows;
-    pub fn gfc__StaticObject__setPosition;
-    pub fn gfc__StaticObject__setRotation;
-    pub fn gfc__StaticObject__setScale;
-    pub fn gfc__StaticObject__doAddToWorld;
-    pub fn gfc__StaticObject__supportsStaticLighting;
     pub fn gfc__OmniLight__OmniLight;
     pub fn gfc__OmniLight__getBoundingBox;
     pub fn gfc__OmniLight__doAddToWorld;
-    pub fn gfc__StaticObject__StaticObject;
-    pub fn gfc__StaticObject__getClass;
-    pub fn gfc__StaticObject__getPosition;
-    pub fn gfc__StaticObject__getRotation;
-    pub fn gfc__StaticObject__getScale;
-    pub fn gfc__StaticObject__getObject;
-    pub fn gfc__StaticObject__staticLightingIsDynamic;
-    pub fn gfc__StaticObject__getAORayLength;
-    pub fn gfc__StaticObject__StaticObject_2;
-    pub fn gfc__StaticObject__StaticObject_3;
-    pub fn gfc__StaticObject__setObject;
-    pub fn gfc__StaticObject__getBoundingBox;
-    pub fn gfc__StaticObject__doRemoveFromWorld;
-    pub fn gfc__StaticObject__invalidateRenderNodes;
-    pub fn gfc__StaticObject__initStaticLighting;
-    pub fn gfc__StaticObject__clearStaticLighting;
-    pub fn gfc__StaticObject__preload;
-    pub fn gfc__StaticObject__getPackageID;
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2;
     pub fn gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_;
     pub fn gfc__World__getRegion;
@@ -124,7 +92,6 @@ symbols! {
     pub fn gfc__ClassRegistry__classForName;
     pub fn gfc__RegionLayer__getRoot;
     pub fn gfc__WorldRegion__getLayer;
-    pub fn gfc__Actor__setPosition;
     pub fn gfc__WorldObject__setRegionID;
     pub fn gfc__WorldObject__setLayerID;
     pub fn gfc__World__getRegion_2;

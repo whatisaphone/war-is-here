@@ -11,7 +11,6 @@ pub unsafe fn bind(args: &BindArgs) {
         };
     }
 
-    bind!(data, gfc__StaticObject___Class);
     bind!(data, gfc__OmniLight___Class);
     bind!(data, gfc__WorldGroup___Class);
     bind!(data, gfc__TriggerRegion___Class);
@@ -34,13 +33,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__OmniLight__getStaticOnly);
     bind!(text, gfc__OmniLight__doRemoveFromWorld);
     bind!(text, gfc__StaticObject__setObjectName);
-    bind!(text, gfc__StaticObject__getObjectName);
     bind!(text, gfc__StaticObject__setPackageName);
-    bind!(text, gfc__StaticObject__getPackageName);
-    bind!(text, gfc__StaticObject__setAORayLength);
-    bind!(text, gfc__StaticObject__getNoShadows);
-    bind!(text, gfc__StaticObject__setBakeLighting);
-    bind!(text, gfc__StaticObject__getBakeLighting);
     bind!(text, gfc__OmniLight__getClass);
     bind!(text, gfc__OmniLight__setStatic);
     bind!(text, gfc__OmniLight__getStatic);
@@ -59,34 +52,9 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__OmniLight__setSize);
     bind!(text, gfc__OmniLight__getSize);
     bind!(text, gfc__OmniLight__preload);
-    bind!(text, gfc__StaticObject__init);
-    bind!(text, gfc__StaticObject__setNoShadows);
-    bind!(text, gfc__StaticObject__setPosition);
-    bind!(text, gfc__StaticObject__setRotation);
-    bind!(text, gfc__StaticObject__setScale);
-    bind!(text, gfc__StaticObject__doAddToWorld);
-    bind!(text, gfc__StaticObject__supportsStaticLighting);
     bind!(text, gfc__OmniLight__OmniLight);
     bind!(text, gfc__OmniLight__getBoundingBox);
     bind!(text, gfc__OmniLight__doAddToWorld);
-    bind!(text, gfc__StaticObject__StaticObject);
-    bind!(text, gfc__StaticObject__getClass);
-    bind!(text, gfc__StaticObject__getPosition);
-    bind!(text, gfc__StaticObject__getRotation);
-    bind!(text, gfc__StaticObject__getScale);
-    bind!(text, gfc__StaticObject__getObject);
-    bind!(text, gfc__StaticObject__staticLightingIsDynamic);
-    bind!(text, gfc__StaticObject__getAORayLength);
-    bind!(text, gfc__StaticObject__StaticObject_2);
-    bind!(text, gfc__StaticObject__StaticObject_3);
-    bind!(text, gfc__StaticObject__setObject);
-    bind!(text, gfc__StaticObject__getBoundingBox);
-    bind!(text, gfc__StaticObject__doRemoveFromWorld);
-    bind!(text, gfc__StaticObject__invalidateRenderNodes);
-    bind!(text, gfc__StaticObject__initStaticLighting);
-    bind!(text, gfc__StaticObject__clearStaticLighting);
-    bind!(text, gfc__StaticObject__preload);
-    bind!(text, gfc__StaticObject__getPackageID);
     bind!(
         text,
         gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2
@@ -110,7 +78,6 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ClassRegistry__classForName);
     bind!(text, gfc__RegionLayer__getRoot);
     bind!(text, gfc__WorldRegion__getLayer);
-    bind!(text, gfc__Actor__setPosition);
     bind!(text, gfc__WorldObject__setRegionID);
     bind!(text, gfc__WorldObject__setLayerID);
     bind!(text, gfc__World__getRegion_2);
