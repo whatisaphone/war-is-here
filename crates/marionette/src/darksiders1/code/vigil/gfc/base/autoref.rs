@@ -21,14 +21,8 @@ pub struct AutoRef<T> {
 
 impl<T> AutoRef<T> {
     pub unsafe fn from_ptr(p: *mut target::gfc__IRefObject) -> Self {
-        Self::from_raw(init_with(|this| {
-            constructor!()(this, p);
-        }))
-    }
-
-    pub unsafe fn from_raw(inner: target::gfc__AutoRef_gfc__IRefObject_) -> Self {
         Self {
-            inner,
+            inner: init_with(|this| constructor!()(this, p)),
             phantom: PhantomData,
         }
     }

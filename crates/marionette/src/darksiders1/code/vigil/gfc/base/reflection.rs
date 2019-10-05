@@ -9,7 +9,7 @@ impl Class {
             let obj = init_with(|this| {
                 ((*self.inner.__vfptr).newInstance)(self.as_ptr(), this);
             });
-            gfc::AutoRef::from_raw(autoref_transmute!(obj))
+            gfc::AutoRef::from_ptr(obj.p)
         }
     }
 

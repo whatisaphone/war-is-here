@@ -53,9 +53,3 @@ macro_rules! impl_reflection {
         }
     };
 }
-
-macro_rules! autoref_transmute {
-    ($autoref:expr) => {
-        target::gfc__AutoRef_gfc__IRefObject_ { p: $autoref.p }
-    };
-}
