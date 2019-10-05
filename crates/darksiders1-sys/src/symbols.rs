@@ -25,9 +25,13 @@ symbols! {
     pub static gfc__WorldGroup___Class: *mut gfc__Class = Data(0x88ba80);
     pub static gfc__TriggerRegion___Class: *mut gfc__Class = Data(0x58c510);
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);
+    pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__KGMeshCache = Data(0x5559f4);
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__Darksiders = Data(0xa1afc);
+    pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle: *mut gfc__Object3DCache = Data(0xa1a8c);
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle: *mut gfc__ClassRegistry = Data(0xa4230);
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__WindowHelper = Data(0xa1b0c);
+    pub static gfc__MeshCache__getStaticMesh: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: i32, _: *const gfc__HString, _: i32) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xf68630);
+    pub static gfc__MeshCache__getStaticMesh_2: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: *const gfc__HString, _: *const gfc__HString, _: i32) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xf6fd90);
     pub static gfc__MeshReader__readObject: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader, result: *mut gfc__AutoRef_gfc__Object_, _: gfc__AutoRef_gfc__InputStream_, _: *mut bool) -> *mut gfc__AutoRef_gfc__Object_ = Text(0xf91000);
     pub static gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_, _: *mut gfc__IRefObject) = Text(0xf1b740);
     pub static gfc__OblivionGame__getWorld: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> *mut gfc__World = Text(0xe816a0);
@@ -60,6 +64,8 @@ symbols! {
     pub static gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_) = Text(0xdd24b0);
     pub static gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_) = Text(0xdd24c0);
     pub static gfc__World__getRegion: unsafe extern "thiscall" fn(this: *const gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0xdd61f0);
+    pub static gfc__Object3DCache__get: unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, result: *mut gfc__AutoRef_gfc__Object3D_, _: i32, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Object3D_ = Text(0xd889c0);
+    pub static gfc__Object3DCache__get_2: unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, result: *mut gfc__AutoRef_gfc__Object3D_, _: *const gfc__HString, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Object3D_ = Text(0xd9deb0);
     pub static gfc__ResourceCache__getResource: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: i32, _: *const gfc__HString) -> *mut () = Text(0xca0750);
     pub static gfc__WorldGroup__getObjects: unsafe extern "thiscall" fn(this: *mut gfc__WorldGroup) -> *mut List_gfc__AutoRef_gfc__WorldObject___ = Text(0xb27f30);
     pub static gfc__HString__HString: unsafe extern "thiscall" fn(this: *mut gfc__HString) = Text(0xa63b40);

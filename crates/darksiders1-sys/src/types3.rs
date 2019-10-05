@@ -3,6 +3,271 @@
 use super::{types::*, types2::*};
 
 #[repr(C)]
+pub struct hkRotationf {
+    pub m_col0: hkVector4f,
+    pub m_col1: hkVector4f,
+    pub m_col2: hkVector4f,
+}
+
+impl hkRotationf {
+    pub fn as_hkMatrix3f_ptr(&self) -> *const hkMatrix3f {
+        self as *const _ as _
+    }
+
+    pub fn as_hkMatrix3f_mut_ptr(&mut self) -> *mut hkMatrix3f {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkMatrix3f {
+    pub m_col0: hkVector4f,
+    pub m_col1: hkVector4f,
+    pub m_col2: hkVector4f,
+}
+
+#[repr(C)]
+pub struct hkVector4fComparison {
+    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
+    pub m_mask: compile_error!("unimplemented feature: type kind 0x1506"),
+    __pdbindgen_padding: [u8; 16],
+}
+
+#[repr(C)]
+pub struct hkStringPtr {
+    pub m_stringAndFlag: *const i8,
+}
+
+#[repr(C)]
+pub struct hkSphere {
+    pub m_pos: hkVector4f,
+}
+
+#[repr(C)]
+pub struct hkcdShape {
+    pub __vfptr: *const hkcdShape____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+}
+
+impl hkcdShape {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkcdShape____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkReferencedObject {
+    pub __vfptr: *const hkReferencedObject____vftable,
+    pub m_memSizeAndRefCount: u32,
+}
+
+impl hkReferencedObject {
+    pub fn as_hkBaseObject_ptr(&self) -> *const hkBaseObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkBaseObject_mut_ptr(&mut self) -> *mut hkBaseObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkReferencedObject____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+}
+
+#[repr(C)]
+pub struct hkpConstraintAtom {
+    pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
+}
+
+#[repr(C)]
+pub struct hkpSolverInfo {
+    pub m_padding: f32,
+    pub m_tau: f32,
+    pub m_damping: f32,
+    pub m_frictionTau: f32,
+    pub m_globalAccelerationPerSubStep: hkVector4f,
+    pub m_globalAccelerationPerStep: hkVector4f,
+    pub m_integrateVelocityFactor: hkVector4f,
+    pub m_invIntegrateVelocityFactor: hkVector4f,
+    pub m_dampDivTau: f32,
+    pub m_tauDivDamp: f32,
+    pub m_dampDivFrictionTau: f32,
+    pub m_frictionTauDivDamp: f32,
+    pub m_contactRestingVelocity: f32,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_deactivationInfo: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 192],
+    pub m_deltaTime: f32,
+    pub m_invDeltaTime: f32,
+    pub m_numSteps: i32,
+    pub m_numMicroSteps: i32,
+    pub m_invNumMicroSteps: f32,
+    pub m_invNumSteps: f32,
+    pub m_forceCoherentConstraintOrderingInSolver: hkBool,
+    pub m_deactivationNumInactiveFramesSelectFlag: [u8; 2],
+    pub m_deactivationIntegrateCounter: u8,
+    pub m_maxConstraintViolationSqrd: f32,
+    __pdbindgen_padding_2: [u8; 12],
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_ {
+    pub m_storage: u16,
+}
+
+#[repr(C)]
+pub struct hkpConstraintData {
+    pub __vfptr: *const hkpConstraintData____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_userData: u32,
+}
+
+impl hkpConstraintData {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpConstraintData____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub getType: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> i32,
+    pub getConstraintInfo: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        _: *mut hkpConstraintData__ConstraintInfo,
+    ),
+    pub isValid: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        result: *mut hkBool,
+    ) -> *mut hkBool,
+    pub setMaximumLinearImpulse: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: f32),
+    pub setMaximumAngularImpulse: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: f32),
+    pub setBreachImpulse: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: f32),
+    pub getMaximumLinearImpulse: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> f32,
+    pub getMaximumAngularImpulse:
+        unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> f32,
+    pub getBreachImpulse: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> f32,
+    pub setBodyToNotify: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: i32),
+    pub getNotifiedBodyIndex: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> u8,
+    pub setSolvingMethod: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintData,
+        _: hkpConstraintAtom__SolvingMethod,
+    ),
+    pub setInertiaStabilizationFactor: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintData,
+        result: *mut hkResult,
+        _: f32,
+    ) -> *mut hkResult,
+    pub getInertiaStabilizationFactor: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        result: *mut hkResult,
+        _: *mut f32,
+    ) -> *mut hkResult,
+    pub getAppliedLinearImpulse: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        _: *const hkTransformf,
+        _: *const hkTransformf,
+        _: *const hkpConstraintRuntime,
+        _: *mut hkVector4f,
+    ),
+    pub getRuntimeInfo: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        _: hkBool,
+        _: *mut hkpConstraintData__RuntimeInfo,
+    ),
+    pub getSolverResults: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        _: *mut hkpConstraintRuntime,
+    ) -> *mut hkpSolverResults,
+    pub addInstance: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        _: *mut hkpConstraintRuntime,
+        _: i32,
+    ),
+    pub updateDirtyAtoms: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintData,
+    )
+        -> hkpConstraintData__UpdateAtomsResult__Enum,
+    pub buildJacobian: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintData,
+        _: *const hkpConstraintQueryIn,
+        _: *mut hkpConstraintQueryOut,
+    ),
+    pub isBuildJacobianCallbackRequired: unsafe extern "thiscall" fn(
+        this: *const hkpConstraintData,
+        result: *mut hkBool,
+    ) -> *mut hkBool,
+    pub buildJacobianCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintData,
+        _: *const hkpConstraintQueryIn,
+        _: *const hkpConstraintQueryOut,
+    ),
+}
+
+#[repr(C)]
+pub struct hkpVelocityAccumulator {
+    pub m_type: hkEnum_enum_hkpVelocityAccumulator__hkpAccumulatorType_unsigned_char_,
+    pub m_context: hkEnum_enum_hkpVelocityAccumulator__hkpAccumulatorContext_unsigned_char_,
+    pub m_deactivationClass: u32,
+    pub m_gravityFactor: f32,
+    __pdbindgen_padding: [u8; 4],
+    pub m_linearVel: hkVector4f,
+    pub m_angularVel: hkVector4f,
+    pub m_invMasses: hkVector4f,
+    pub m_scratch0: hkVector4f,
+    pub m_scratch1: hkVector4f,
+    pub m_scratch2: hkVector4f,
+    pub m_scratch3: hkVector4f,
+}
+
+#[repr(C)]
 pub struct hkEnum_enum_hkpVelocityAccumulator__hkpAccumulatorType_unsigned_char_ {
     pub m_storage: u8,
 }
@@ -3720,6 +3985,8 @@ pub type gfc__ImageType = i32;
 pub type gfc__ImageFormat = i32;
 
 pub type gfc__Texture__Type = i32;
+
+pub type gfc__Mesh__Type = i32;
 
 pub type gfc__Darksiders__LoadState = i32;
 

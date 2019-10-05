@@ -12,10 +12,14 @@ pdbindgen \
     -o src \
     -i '^gfc::Player$' \
     -i '^gfc::RegionLayer$' \
+    -i '^gfc::StaticMesh$' \
+    -i '^gfc::StaticMeshVisual$' \
     -i '^gfc::TriggerRegion$' \
     -i '^gfc::WorldRegion$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::KGMeshCache,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::Object3DCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
     -i '^gfc::TriggerRegion::_Class$' \
@@ -31,7 +35,9 @@ pdbindgen \
     -i '^gfc::HString::~?HString$' \
     -i '^gfc::HString::c_str$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::MeshCache::getStaticMesh$' \
     -i '^gfc::MeshReader::readObject$' \
+    -i '^gfc::Object3DCache::get$' \
     -i '^gfc::ObjectWriter::~?ObjectWriter$' \
     -i '^gfc::OOObjectWriter::writeObject$' \
     -i '^gfc::OblivionGame::getWorld$' \

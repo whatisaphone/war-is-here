@@ -44,9 +44,13 @@ symbols! {
     pub static gfc__WorldGroup___Class;
     pub static gfc__TriggerRegion___Class;
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
+    pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
+    pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+    pub fn gfc__MeshCache__getStaticMesh;
+    pub fn gfc__MeshCache__getStaticMesh_2;
     pub fn gfc__MeshReader__readObject;
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_;
     pub fn gfc__OblivionGame__getWorld;
@@ -79,6 +83,8 @@ symbols! {
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2;
     pub fn gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_;
     pub fn gfc__World__getRegion;
+    pub fn gfc__Object3DCache__get;
+    pub fn gfc__Object3DCache__get_2;
     pub fn gfc__ResourceCache__getResource;
     pub fn gfc__WorldGroup__getObjects;
     pub fn gfc__HString__HString;

@@ -14,7 +14,9 @@ pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>
 pub struct GodObject {
     gfc__Darksiders__onPostUpdateInterval: target::gfc__Darksiders__onPostUpdateInterval,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
+    gfc__MeshCache__getStaticMesh: target::gfc__MeshCache__getStaticMesh,
     gfc__MeshReader__readObject: target::gfc__MeshReader__readObject,
+    gfc__Object3DCache__get: target::gfc__Object3DCache__get,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
     _cleanup: Vec<Box<dyn Send + Sync>>,
 }
@@ -34,19 +36,25 @@ pub fn install() {
 
         let gfc__Darksiders__onPostUpdateInterval = hook!(gfc__Darksiders__onPostUpdateInterval);
         let gfc__Darksiders__processInputEvent = hook!(gfc__Darksiders__processInputEvent);
+        let gfc__MeshCache__getStaticMesh = hook!(gfc__MeshCache__getStaticMesh);
         let gfc__MeshReader__readObject = hook!(gfc__MeshReader__readObject);
+        let gfc__Object3DCache__get = hook!(gfc__Object3DCache__get);
         let gfc__ResourceCache__getResource = hook!(gfc__ResourceCache__getResource);
 
         *guard = Some(GodObject {
             gfc__Darksiders__onPostUpdateInterval: gfc__Darksiders__onPostUpdateInterval
                 .trampoline(),
             gfc__Darksiders__processInputEvent: gfc__Darksiders__processInputEvent.trampoline(),
+            gfc__MeshCache__getStaticMesh: gfc__MeshCache__getStaticMesh.trampoline(),
             gfc__MeshReader__readObject: gfc__MeshReader__readObject.trampoline(),
+            gfc__Object3DCache__get: gfc__Object3DCache__get.trampoline(),
             gfc__ResourceCache__getResource: gfc__ResourceCache__getResource.trampoline(),
             _cleanup: vec![
                 Box::new(gfc__Darksiders__onPostUpdateInterval),
                 Box::new(gfc__Darksiders__processInputEvent),
+                Box::new(gfc__MeshCache__getStaticMesh),
                 Box::new(gfc__MeshReader__readObject),
+                Box::new(gfc__Object3DCache__get),
                 Box::new(gfc__ResourceCache__getResource),
             ],
         });
@@ -64,6 +72,7 @@ pub fn uninstall() {
 
 mod hook {
     use crate::{
+        commands::spawn_cube::{override_get_object3d, override_get_static_mesh},
         darksiders1::gfc,
         hooks::{GOD_LOCK, ON_POST_UPDATE_QUEUE},
         utils::exfil::dump_object,
@@ -108,6 +117,29 @@ mod hook {
         result
     }
 
+    pub extern "thiscall" fn gfc__MeshCache__getStaticMesh(
+        this: *mut target::gfc__MeshCache,
+        result: *mut target::gfc__AutoRef_gfc__StaticMesh_,
+        packageID: i32,
+        meshName: *const target::gfc__HString,
+        idx: i32,
+    ) -> *mut target::gfc__AutoRef_gfc__StaticMesh_ {
+        let guard = GOD_LOCK.read();
+        let god = guard.as_ref().unwrap();
+
+        {
+            let mesh_name = unsafe { gfc::HString::from_ptr(meshName) };
+            if let Some(ovurride) = override_get_static_mesh(packageID, mesh_name, idx) {
+                unsafe {
+                    *result = autoref_cast!(ovurride, target::gfc__AutoRef_gfc__StaticMesh_);
+                }
+                return result;
+            }
+        }
+
+        unsafe { (god.gfc__MeshCache__getStaticMesh)(this, result, packageID, meshName, idx) }
+    }
+
     pub extern "thiscall" fn gfc__MeshReader__readObject(
         this: *mut target::gfc__MeshReader,
         result: *mut target::gfc__AutoRef_gfc__Object_,
@@ -119,11 +151,35 @@ mod hook {
 
         let result = unsafe { (god.gfc__MeshReader__readObject)(this, result, r#in, valid) };
 
-        unsafe {
-            dump_object(gfc::Object::from_ptr((*result).p.cast()));
+        if false {
+            unsafe {
+                dump_object(gfc::Object::from_ptr((*result).p.cast()));
+            }
         }
 
         result
+    }
+
+    pub extern "thiscall" fn gfc__Object3DCache__get(
+        this: *mut target::gfc__Object3DCache,
+        result: *mut target::gfc__AutoRef_gfc__Object3D_,
+        packageID: i32,
+        objectName: *const target::gfc__HString,
+    ) -> *mut target::gfc__AutoRef_gfc__Object3D_ {
+        let guard = GOD_LOCK.read();
+        let god = guard.as_ref().unwrap();
+
+        {
+            let object_name = unsafe { gfc::HString::from_ptr(objectName) };
+            if let Some(ovurride) = override_get_object3d(packageID, object_name) {
+                unsafe {
+                    *result = autoref_cast!(ovurride, target::gfc__AutoRef_gfc__Object3D_);
+                }
+                return result;
+            }
+        }
+
+        unsafe { (god.gfc__Object3DCache__get)(this, result, packageID, objectName) }
     }
 
     pub extern "thiscall" fn gfc__ResourceCache__getResource(

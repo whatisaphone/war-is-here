@@ -3,6 +3,98 @@
 use super::{types::*, types3::*};
 
 #[repr(C)]
+pub struct hkSemaphore {
+    pub m_semaphore: *mut (),
+}
+
+#[repr(C)]
+pub struct hkRefPtr_hkWorldMemoryAvailableWatchDog_ {
+    pub m_pntr: *mut hkWorldMemoryAvailableWatchDog,
+}
+
+#[repr(C)]
+pub struct hkpConstraintOwner {
+    pub __vfptr: *const hkpConstraintOwner____vftable,
+    pub m_memSizeAndRefCount: u32,
+    pub m_constraintInfo: hkpConstraintInfo,
+}
+
+impl hkpConstraintOwner {
+    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
+        self as *const _ as _
+    }
+
+    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct hkpConstraintOwner____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
+    pub addConstraintToCriticalLockedIsland:
+        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
+    pub removeConstraintFromCriticalLockedIsland:
+        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
+    pub addCallbackRequest: unsafe extern "thiscall" fn(
+        this: *mut hkpConstraintOwner,
+        _: *mut hkpConstraintInstance,
+        _: i32,
+    ),
+    pub checkAccessRw: unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner),
+}
+
+#[repr(C)]
+pub struct hkBool {
+    pub m_bool: i8,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpLinkedCollidable__CollisionEntry_ {
+    pub m_data: *mut hkpLinkedCollidable__CollisionEntry,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkStackTracer__CallTree {
+    pub m_nodes: hkArrayBase_hkStackTracer__CallTree__Node_,
+    pub m_allocator: *mut hkMemoryAllocator,
+    pub m_rootNode: i32,
+    pub m_firstFreeNode: i32,
+}
+
+#[repr(C)]
+pub struct hkStackTracer__CallTree__Node {
+    pub m_value: u32,
+    pub m_parent: i32,
+    pub m_firstChild: i32,
+    pub m_next: i32,
+    pub m_usageCount: i32,
+}
+
+#[repr(C)]
+pub struct hkArray_char_hkContainerTempAllocator_ {
+    pub m_data: *mut i8,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+impl hkArray_char_hkContainerTempAllocator_ {
+    pub fn as_hkArrayBase_char__ptr(&self) -> *const hkArrayBase_char_ {
+        self as *const _ as _
+    }
+
+    pub fn as_hkArrayBase_char__mut_ptr(&mut self) -> *mut hkArrayBase_char_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
 pub struct hkpCdBody {
     pub m_shape: *const hkpShape,
     pub m_shapeKey: u32,
@@ -450,6 +542,98 @@ pub struct gfc__AutoRef_gfc__VariableConnectionInfo_ {
 }
 
 #[repr(C)]
+pub struct gfc__Visual {
+    pub __vfptr: *const gfc__Visual____vftable,
+    pub ReferenceCount: i32,
+    pub mFadeStartDistance: f32,
+    pub mFadeEndDistance: f32,
+    pub mInvertFade: bool,
+    pub mLightGroup: u32,
+    pub mCharacterShadow: bool,
+    pub mForceFade: f32,
+    pub mObjectColor: gfc__TVector3_float_gfc__FloatMath_,
+    pub mObject: *mut gfc__Object3D,
+}
+
+impl gfc__Visual {
+    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Visual____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Object,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub isStatic: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> bool,
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: i32),
+    pub setMaterialOverride: unsafe extern "thiscall" fn(
+        this: *mut gfc__Visual,
+        _: *const gfc__HString,
+        _: gfc__AutoRef_gfc__Material_,
+    ),
+    pub setMaterial: unsafe extern "thiscall" fn(
+        this: *mut gfc__Visual,
+        _: *const gfc__HString,
+        _: gfc__AutoRef_gfc__Material_,
+    ),
+    pub clearMaterialOverride: unsafe extern "thiscall" fn(this: *mut gfc__Visual),
+    pub getMaterialCount: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> i32,
+    pub getMaterialAt: unsafe extern "thiscall" fn(
+        this: *const gfc__Visual,
+        result: *mut gfc__AutoRef_gfc__Material_,
+        _: i32,
+    ) -> *mut gfc__AutoRef_gfc__Material_,
+    pub setMaterialAt:
+        unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: i32, _: gfc__AutoRef_gfc__Material_),
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *mut gfc__Visual,
+        _: *mut gfc__TBox_float_gfc__FloatMath_,
+    ) -> bool,
+    pub getBoundingVolume:
+        unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: *mut gfc__BoundingVolume) -> bool,
+    pub getForceFade: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> f32,
+    pub setForceFade: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: f32),
+    pub getObjectColor: unsafe extern "thiscall" fn(
+        this: *const gfc__Visual,
+    )
+        -> *const gfc__TVector3_float_gfc__FloatMath_,
+    pub setObjectColor: unsafe extern "thiscall" fn(
+        this: *mut gfc__Visual,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getRenderLightGroup: unsafe extern "thiscall" fn(this: *mut gfc__Visual) -> u32,
+    pub setCastShadows: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: bool),
+    pub getCastShadows: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> bool,
+    pub setAlphaShadows: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: bool),
+    pub getAlphaShadows: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> bool,
+    pub attach: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: *mut gfc__Object3D),
+    pub detach: unsafe extern "thiscall" fn(this: *mut gfc__Visual),
+    pub addToWorld: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: bool),
+    pub removeFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__Visual),
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__CinematicGroup__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__CinematicGroup_,
     pub mSize: i32,
@@ -483,6 +667,155 @@ pub struct gfc__ResourceListener____vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__ResourceListener, _: u32) -> *mut (),
     pub packageUnloading: unsafe extern "thiscall" fn(this: *mut gfc__ResourceListener, _: i32),
+}
+
+#[repr(C)]
+pub struct gfc__StaticMeshVisual {
+    pub __vfptr: *const gfc__StaticMeshVisual____vftable,
+    pub ReferenceCount: i32,
+    pub mFadeStartDistance: f32,
+    pub mFadeEndDistance: f32,
+    pub mInvertFade: bool,
+    pub mLightGroup: u32,
+    pub mCharacterShadow: bool,
+    pub mForceFade: f32,
+    pub mObjectColor: gfc__TVector3_float_gfc__FloatMath_,
+    pub mObject: *mut gfc__Object3D,
+    pub __vfptr_2: *const gfc__SceneObject____vftable,
+    pub mType: gfc__SceneObject__Type,
+    pub mDrawCounter: u32,
+    pub mCachedBoundingVolume: gfc__BoundingVolume,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mSceneManager: *mut gfc__SceneManager,
+    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
+    pub mHashID: u32,
+    pub __vfptr_3: *const gfc__IRenderCallback____vftable,
+    pub mLocked: bool,
+    pub mChecksum: u32,
+    pub mRefNode: gfc__HString,
+    pub mMeshName: gfc__HString,
+    pub mMeshID: i32,
+    pub mFade: f32,
+    pub mWorldBBoxVersion: i32,
+    pub mDrawOrder: u32,
+    pub mDecalOrder: u32,
+    pub mDecalBias: f32,
+    pub mMesh: gfc__AutoRef_gfc__StaticMesh_,
+    pub mRenderNodes: *mut gfc__RenderNode,
+    pub mMaterials: *mut gfc__StaticMeshVisual__MeshMaterial,
+    pub mMaterialCount: i32,
+    pub mNode: gfc__AutoRef_gfc__Node3D_,
+    pub mRenderNodeFlags: gfc__TFlags_unsigned_long_,
+    pub mStaticLightingInfo: *mut gfc__StaticLightingVisualOpt,
+}
+
+impl gfc__StaticMeshVisual {
+    pub fn as_gfc__Visual_ptr(&self) -> *const gfc__Visual {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Visual_mut_ptr(&mut self) -> *mut gfc__Visual {
+        self as *mut _ as _
+    }
+
+    pub fn as_gfc__SceneObject_ptr(&self) -> *const gfc__SceneObject {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__SceneObject_mut_ptr(&mut self) -> *mut gfc__SceneObject {
+        self as *mut _ as _
+    }
+
+    pub fn as_gfc__IRenderCallback_ptr(&self) -> *const gfc__IRenderCallback {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__IRenderCallback_mut_ptr(&mut self) -> *mut gfc__IRenderCallback {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__StaticMeshVisual____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__IRenderCallback, _: u32) -> *mut (),
+    pub render: unsafe extern "thiscall" fn(
+        this: *mut gfc__IRenderCallback,
+        _: *mut gfc__Camera3D,
+        _: *mut gfc__RenderNode,
+    ),
+    pub renderDepthOnly: unsafe extern "thiscall" fn(
+        this: *mut gfc__IRenderCallback,
+        _: *mut gfc__Camera3D,
+        _: *mut gfc__RenderNode,
+    ),
+    pub startGeometry:
+        unsafe extern "thiscall" fn(this: *mut gfc__IRenderCallback, _: *mut gfc__RenderNode),
+    pub finishGeometry:
+        unsafe extern "thiscall" fn(this: *mut gfc__IRenderCallback, _: *mut gfc__RenderNode),
+    pub prepGeometry:
+        unsafe extern "thiscall" fn(this: *mut gfc__IRenderCallback, _: *mut gfc__RenderNode),
+    pub cullAndSubmit: unsafe extern "thiscall" fn(
+        this: *mut gfc__SceneObject,
+        _: *const gfc__Clipper,
+        _: *mut gfc__Camera3D,
+        _: u32,
+    ),
+    pub submit: unsafe extern "thiscall" fn(
+        this: *mut gfc__SceneObject,
+        _: *mut gfc__Camera3D,
+        _: bool,
+        _: u32,
+    ),
+    pub submitHidden:
+        unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: *mut gfc__Camera3D, _: u32),
+    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> *mut gfc__Object,
+    pub pickObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__SceneObject,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *mut f32,
+        _: bool,
+    ) -> bool,
+    pub isStatic: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
+    pub isHighPriority: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
+    pub writeText: unsafe extern "thiscall" fn(
+        this: *mut gfc__SceneObject,
+        _: *mut gfc__AutoRef_gfc__OutputStream_,
+    ),
+    pub setIsSky: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: bool),
+    pub getIsSky: unsafe extern "thiscall" fn(this: *const gfc__SceneObject) -> bool,
+    pub getHide: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
+    pub getFreeze: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
+    pub getLocked: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject) -> bool,
+    pub getForceFade: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> f32,
+    pub setForceFade: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: f32),
+    pub getObjectColor: unsafe extern "thiscall" fn(
+        this: *const gfc__Visual,
+    )
+        -> *const gfc__TVector3_float_gfc__FloatMath_,
+    pub setObjectColor: unsafe extern "thiscall" fn(
+        this: *mut gfc__Visual,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getRenderLightGroup: unsafe extern "thiscall" fn(this: *mut gfc__Visual) -> u32,
+    pub setCastShadows: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: bool),
+    pub getCastShadows: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> bool,
+    pub setAlphaShadows: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: bool),
+    pub getAlphaShadows: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> bool,
+    pub attach: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: *mut gfc__Object3D),
+    pub detach: unsafe extern "thiscall" fn(this: *mut gfc__Visual),
+    pub addToWorld: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: bool),
+    pub removeFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__Visual),
+    pub setHide: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual, _: bool),
+    pub setDoNotSubmit: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual, _: bool),
+    pub getDoNotSubmit: unsafe extern "thiscall" fn(this: *const gfc__StaticMeshVisual) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__StaticMeshVisual__MeshMaterial {
+    pub mMaterial: gfc__AutoRef_gfc__Material_,
+    pub mOverride: gfc__AutoRef_gfc__Material_,
 }
 
 #[repr(C)]
@@ -2896,6 +3229,70 @@ pub struct gfc__RegionLayer____vftable {
         this: *mut gfc__Object,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__Object3DCache {
+    pub __vfptr: *const gfc__Object3DCache____vftable,
+    pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mType: i32,
+    pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
+}
+
+impl gfc__Object3DCache {
+    pub fn as_gfc__ResourceCache_ptr(&self) -> *const gfc__ResourceCache {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__ResourceCache_mut_ptr(&mut self) -> *mut gfc__ResourceCache {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Object3DCache____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: u32) -> *mut (),
+    pub loadDefaultResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: gfc__AutoRef_gfc__File_),
+    pub initThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
+    pub shutdownThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
+    pub analyzeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut gfc__ResourceAnalyzeInfo,
+    ) -> bool,
+    pub canCreateBuffersInThread:
+        unsafe extern "thiscall" fn(this: *const gfc__ResourceCache, _: i32) -> bool,
+    pub createBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceBufferInfo),
+    pub freeBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
+    pub loadResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
+    pub canReloadResources: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub reloadsQueued: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub reloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut gfc__ResourceLoadInfo,
+    ) -> bool,
+    pub needUnlinkResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub unlinkResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+    pub needUnloadResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub unloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *mut gfc__ResourceLoadInfo,
+    ),
+    pub freeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
     ),
 }
 
@@ -9472,6 +9869,73 @@ pub struct gfc__AutoRef_gfc__Query_ {
 }
 
 #[repr(C)]
+pub struct gfc__KGMeshCache {
+    pub __vfptr: *const gfc__KGMeshCache____vftable,
+    pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mType: i32,
+    pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
+    pub mReloadInfo: gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_,
+    pub mOurExt: i32,
+    pub mOurLegacyExt: i32,
+}
+
+impl gfc__KGMeshCache {
+    pub fn as_gfc__MeshCache_ptr(&self) -> *const gfc__MeshCache {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__MeshCache_mut_ptr(&mut self) -> *mut gfc__MeshCache {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__KGMeshCache____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: u32) -> *mut (),
+    pub loadDefaultResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: gfc__AutoRef_gfc__File_),
+    pub initThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
+    pub shutdownThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
+    pub analyzeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut gfc__ResourceAnalyzeInfo,
+    ) -> bool,
+    pub canCreateBuffersInThread:
+        unsafe extern "thiscall" fn(this: *const gfc__ResourceCache, _: i32) -> bool,
+    pub createBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceBufferInfo),
+    pub freeBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
+    pub loadResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
+    pub canReloadResources: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub reloadsQueued: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub reloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut gfc__ResourceLoadInfo,
+    ) -> bool,
+    pub needUnlinkResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub unlinkResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+    pub needUnloadResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub unloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *mut gfc__ResourceLoadInfo,
+    ),
+    pub freeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+}
+
+#[repr(C)]
 pub struct keen__SteamworksSystem {
     pub m_appId: u32,
 }
@@ -9892,269 +10356,4 @@ impl hkcdVertex {
     pub fn as_hkVector4f_mut_ptr(&mut self) -> *mut hkVector4f {
         self as *mut _ as _
     }
-}
-
-#[repr(C)]
-pub struct hkRotationf {
-    pub m_col0: hkVector4f,
-    pub m_col1: hkVector4f,
-    pub m_col2: hkVector4f,
-}
-
-impl hkRotationf {
-    pub fn as_hkMatrix3f_ptr(&self) -> *const hkMatrix3f {
-        self as *const _ as _
-    }
-
-    pub fn as_hkMatrix3f_mut_ptr(&mut self) -> *mut hkMatrix3f {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkMatrix3f {
-    pub m_col0: hkVector4f,
-    pub m_col1: hkVector4f,
-    pub m_col2: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkVector4fComparison {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_mask: compile_error!("unimplemented feature: type kind 0x1506"),
-    __pdbindgen_padding: [u8; 16],
-}
-
-#[repr(C)]
-pub struct hkStringPtr {
-    pub m_stringAndFlag: *const i8,
-}
-
-#[repr(C)]
-pub struct hkSphere {
-    pub m_pos: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkcdShape {
-    pub __vfptr: *const hkcdShape____vftable,
-    pub m_memSizeAndRefCount: u32,
-    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
-    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
-    pub m_bitsPerKey: u8,
-    pub m_shapeInfoCodecType:
-        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
-}
-
-impl hkcdShape {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
-    }
-
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkcdShape____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkReferencedObject {
-    pub __vfptr: *const hkReferencedObject____vftable,
-    pub m_memSizeAndRefCount: u32,
-}
-
-impl hkReferencedObject {
-    pub fn as_hkBaseObject_ptr(&self) -> *const hkBaseObject {
-        self as *const _ as _
-    }
-
-    pub fn as_hkBaseObject_mut_ptr(&mut self) -> *mut hkBaseObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkReferencedObject____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-}
-
-#[repr(C)]
-pub struct hkpConstraintAtom {
-    pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
-}
-
-#[repr(C)]
-pub struct hkpSolverInfo {
-    pub m_padding: f32,
-    pub m_tau: f32,
-    pub m_damping: f32,
-    pub m_frictionTau: f32,
-    pub m_globalAccelerationPerSubStep: hkVector4f,
-    pub m_globalAccelerationPerStep: hkVector4f,
-    pub m_integrateVelocityFactor: hkVector4f,
-    pub m_invIntegrateVelocityFactor: hkVector4f,
-    pub m_dampDivTau: f32,
-    pub m_tauDivDamp: f32,
-    pub m_dampDivFrictionTau: f32,
-    pub m_frictionTauDivDamp: f32,
-    pub m_contactRestingVelocity: f32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_deactivationInfo: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 192],
-    pub m_deltaTime: f32,
-    pub m_invDeltaTime: f32,
-    pub m_numSteps: i32,
-    pub m_numMicroSteps: i32,
-    pub m_invNumMicroSteps: f32,
-    pub m_invNumSteps: f32,
-    pub m_forceCoherentConstraintOrderingInSolver: hkBool,
-    pub m_deactivationNumInactiveFramesSelectFlag: [u8; 2],
-    pub m_deactivationIntegrateCounter: u8,
-    pub m_maxConstraintViolationSqrd: f32,
-    __pdbindgen_padding_2: [u8; 12],
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_ {
-    pub m_storage: u16,
-}
-
-#[repr(C)]
-pub struct hkpConstraintData {
-    pub __vfptr: *const hkpConstraintData____vftable,
-    pub m_memSizeAndRefCount: u32,
-    pub m_userData: u32,
-}
-
-impl hkpConstraintData {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
-    }
-
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpConstraintData____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-    pub getType: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> i32,
-    pub getConstraintInfo: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        _: *mut hkpConstraintData__ConstraintInfo,
-    ),
-    pub isValid: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        result: *mut hkBool,
-    ) -> *mut hkBool,
-    pub setMaximumLinearImpulse: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: f32),
-    pub setMaximumAngularImpulse: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: f32),
-    pub setBreachImpulse: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: f32),
-    pub getMaximumLinearImpulse: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> f32,
-    pub getMaximumAngularImpulse:
-        unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> f32,
-    pub getBreachImpulse: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> f32,
-    pub setBodyToNotify: unsafe extern "thiscall" fn(this: *mut hkpConstraintData, _: i32),
-    pub getNotifiedBodyIndex: unsafe extern "thiscall" fn(this: *const hkpConstraintData) -> u8,
-    pub setSolvingMethod: unsafe extern "thiscall" fn(
-        this: *mut hkpConstraintData,
-        _: hkpConstraintAtom__SolvingMethod,
-    ),
-    pub setInertiaStabilizationFactor: unsafe extern "thiscall" fn(
-        this: *mut hkpConstraintData,
-        result: *mut hkResult,
-        _: f32,
-    ) -> *mut hkResult,
-    pub getInertiaStabilizationFactor: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        result: *mut hkResult,
-        _: *mut f32,
-    ) -> *mut hkResult,
-    pub getAppliedLinearImpulse: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        _: *const hkTransformf,
-        _: *const hkTransformf,
-        _: *const hkpConstraintRuntime,
-        _: *mut hkVector4f,
-    ),
-    pub getRuntimeInfo: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        _: hkBool,
-        _: *mut hkpConstraintData__RuntimeInfo,
-    ),
-    pub getSolverResults: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        _: *mut hkpConstraintRuntime,
-    ) -> *mut hkpSolverResults,
-    pub addInstance: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        _: *mut hkpConstraintRuntime,
-        _: i32,
-    ),
-    pub updateDirtyAtoms: unsafe extern "thiscall" fn(
-        this: *mut hkpConstraintData,
-    )
-        -> hkpConstraintData__UpdateAtomsResult__Enum,
-    pub buildJacobian: unsafe extern "thiscall" fn(
-        this: *mut hkpConstraintData,
-        _: *const hkpConstraintQueryIn,
-        _: *mut hkpConstraintQueryOut,
-    ),
-    pub isBuildJacobianCallbackRequired: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintData,
-        result: *mut hkBool,
-    ) -> *mut hkBool,
-    pub buildJacobianCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpConstraintData,
-        _: *const hkpConstraintQueryIn,
-        _: *const hkpConstraintQueryOut,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpVelocityAccumulator {
-    pub m_type: hkEnum_enum_hkpVelocityAccumulator__hkpAccumulatorType_unsigned_char_,
-    pub m_context: hkEnum_enum_hkpVelocityAccumulator__hkpAccumulatorContext_unsigned_char_,
-    pub m_deactivationClass: u32,
-    pub m_gravityFactor: f32,
-    __pdbindgen_padding: [u8; 4],
-    pub m_linearVel: hkVector4f,
-    pub m_angularVel: hkVector4f,
-    pub m_invMasses: hkVector4f,
-    pub m_scratch0: hkVector4f,
-    pub m_scratch1: hkVector4f,
-    pub m_scratch2: hkVector4f,
-    pub m_scratch3: hkVector4f,
 }

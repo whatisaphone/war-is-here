@@ -1,5 +1,6 @@
 pub use crate::darksiders1::code::vigil::{
     darksiders::client::darksiders::Darksiders,
+    drivers::keengraphics::kgmeshcache::KGMeshCache,
     gfc::{
         base::{
             autoref::AutoRef,
@@ -7,9 +8,15 @@ pub use crate::darksiders1::code::vigil::{
             reflection::{Class, ClassRegistry},
         },
         game::obliviongame::OblivionGame,
+        graphics::{mesh::StaticMesh, meshcache::MeshCache},
         io::{bytestream::ByteOutputStream, stream::OutputStream},
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, vector::Vector},
-        world::{triggerregion::TriggerRegion, world::World, worldgroup::WorldGroup},
+        world::{
+            triggerregion::TriggerRegion,
+            visuals::{object3d::Object3D, object3dcache::Object3DCache},
+            world::World,
+            worldgroup::WorldGroup,
+        },
     },
 };

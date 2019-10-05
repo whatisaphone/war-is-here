@@ -4,14 +4,16 @@ macro_rules! hstring {
         use $crate::darksiders1::gfc::HString;
 
         let zstr = concat!($str, "\0");
-        let cstr = CStr::from_ptr(zstr.as_ptr() as *const c_char);
+        #[allow(unused_unsafe)]
+        let cstr = unsafe { CStr::from_ptr(zstr.as_ptr() as *const c_char) };
         HString::from_cstr(cstr)
     }};
 }
 
 macro_rules! struct_wrapper {
-    ($name:ident, $inner:ty) => {
+    ($(#[$($attrs:meta),*])* $name:ident, $inner:ty) => {
         #[repr(transparent)]
+        $(#[$($attrs)*])*
         pub struct $name {
             inner: $inner,
         }
@@ -27,6 +29,12 @@ macro_rules! struct_wrapper {
 
             pub fn as_ptr(&self) -> *mut $inner {
                 &self.inner as *const $inner as *mut $inner
+            }
+
+            pub fn into_raw(self) -> $inner {
+                let result = unsafe { ::std::ptr::read(&self.inner) };
+                ::std::mem::forget(self);
+                result
             }
         }
     };

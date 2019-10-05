@@ -12,6 +12,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 detour = "0.7.1"
+once_cell = "1.2.0"
 parking_lot = { version = "0.9.0", features = ["nightly"] }
 
 darksiders1-sys = { path = "../darksiders1-sys" }

@@ -20,10 +20,17 @@ pub unsafe fn bind(args: &BindArgs) {
     );
     bind!(
         data,
+        gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
+    );
+    bind!(
+        data,
         gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
     );
+    bind!(data, gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
+    bind!(text, gfc__MeshCache__getStaticMesh);
+    bind!(text, gfc__MeshCache__getStaticMesh_2);
     bind!(text, gfc__MeshReader__readObject);
     bind!(
         text,
@@ -65,6 +72,8 @@ pub unsafe fn bind(args: &BindArgs) {
         gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_
     );
     bind!(text, gfc__World__getRegion);
+    bind!(text, gfc__Object3DCache__get);
+    bind!(text, gfc__Object3DCache__get_2);
     bind!(text, gfc__ResourceCache__getResource);
     bind!(text, gfc__WorldGroup__getObjects);
     bind!(text, gfc__HString__HString);

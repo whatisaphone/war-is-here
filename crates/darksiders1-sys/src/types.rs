@@ -2359,6 +2359,111 @@ impl gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAllocator_ 
 }
 
 #[repr(C)]
+pub struct gfc__StaticMesh {
+    pub __vfptr: *const gfc__StaticMesh____vftable,
+    pub ReferenceCount: i32,
+}
+
+impl gfc__StaticMesh {
+    pub fn as_gfc__Mesh_ptr(&self) -> *const gfc__Mesh {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Mesh_mut_ptr(&mut self) -> *mut gfc__Mesh {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__StaticMesh____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> gfc__Mesh__Type,
+    pub isCompressed: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> bool,
+    pub getGroup:
+        unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: i32) -> *mut gfc__Mesh__Group,
+    pub getGroupCount: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> i32,
+    pub getGroupIDAt: unsafe extern "thiscall" fn(this: *const gfc__Mesh, _: i32) -> i32,
+    pub getGroupNameAt:
+        unsafe extern "thiscall" fn(this: *const gfc__Mesh, _: i32) -> *const gfc__String,
+    pub beginCreate: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut gfc__MeshBuilder),
+    pub create: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut gfc__MeshBuilder),
+    pub endCreate: unsafe extern "thiscall" fn(this: *mut gfc__Mesh),
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *const gfc__Mesh,
+    ) -> *const gfc__TBox_float_gfc__FloatMath_,
+    pub getVertexBuffer: unsafe extern "thiscall" fn(
+        this: *const gfc__Mesh,
+        result: *mut gfc__AutoRef_gfc__VertexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__VertexBuffer_,
+    pub getIndexBuffer: unsafe extern "thiscall" fn(
+        this: *const gfc__Mesh,
+        result: *mut gfc__AutoRef_gfc__IndexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__IndexBuffer_,
+    pub updateAddress: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut (), _: *mut ()),
+    pub isLightmapped: unsafe extern "thiscall" fn(this: *const gfc__StaticMesh) -> bool,
+    pub testCollision: unsafe extern "thiscall" fn(
+        this: *mut gfc__StaticMesh,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *mut f32,
+    ) -> bool,
+    pub testCollision_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__StaticMesh,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> bool,
+    pub render: unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: *const gfc__RenderNode),
+    pub renderGroup:
+        unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: *const gfc__RenderNode, _: i32),
+    pub renderDepthOnly:
+        unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: *const gfc__RenderNode),
+    pub renderGroupDepthOnly:
+        unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: *const gfc__RenderNode, _: i32),
+    pub renderLitGroup: unsafe extern "thiscall" fn(
+        this: *mut gfc__StaticMesh,
+        _: *const gfc__RenderNode,
+        _: i32,
+        _: u32,
+        _: gfc__AutoRef_gfc__VertexBuffer_,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: f32,
+    ),
+    pub renderLitGroup_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__StaticMesh,
+        _: *const gfc__RenderNode,
+        _: i32,
+        _: u32,
+        _: *const gfc__AutoRef_gfc__VertexBuffer_,
+    ),
+    pub createRenderCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__StaticMesh,
+        _: i32,
+    ) -> *mut gfc__IRenderCallback,
+    pub createRenderCallback_2:
+        unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh) -> *mut gfc__IRenderCallback,
+    pub createLitRenderCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__StaticMesh,
+        _: i32,
+        _: u32,
+        _: gfc__AutoRef_gfc__VertexBuffer_,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: f32,
+    ) -> *mut gfc__IRenderCallback,
+    pub createLitRenderCallback_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__StaticMesh,
+        _: i32,
+        _: u32,
+        _: *const gfc__AutoRef_gfc__VertexBuffer_,
+    ) -> *mut gfc__IRenderCallback,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__IRefObject_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -4057,6 +4162,62 @@ pub struct gfc__AutoRef_gfc__ShaderContext_ {
 }
 
 #[repr(C)]
+pub struct gfc__Mesh {
+    pub __vfptr: *const gfc__Mesh____vftable,
+    pub ReferenceCount: i32,
+}
+
+impl gfc__Mesh {
+    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Mesh____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> gfc__Mesh__Type,
+    pub isCompressed: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> bool,
+    pub getGroup:
+        unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: i32) -> *mut gfc__Mesh__Group,
+    pub getGroupCount: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> i32,
+    pub getGroupIDAt: unsafe extern "thiscall" fn(this: *const gfc__Mesh, _: i32) -> i32,
+    pub getGroupNameAt:
+        unsafe extern "thiscall" fn(this: *const gfc__Mesh, _: i32) -> *const gfc__String,
+    pub beginCreate: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut gfc__MeshBuilder),
+    pub create: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut gfc__MeshBuilder),
+    pub endCreate: unsafe extern "thiscall" fn(this: *mut gfc__Mesh),
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *const gfc__Mesh,
+    ) -> *const gfc__TBox_float_gfc__FloatMath_,
+    pub getVertexBuffer: unsafe extern "thiscall" fn(
+        this: *const gfc__Mesh,
+        result: *mut gfc__AutoRef_gfc__VertexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__VertexBuffer_,
+    pub getIndexBuffer: unsafe extern "thiscall" fn(
+        this: *const gfc__Mesh,
+        result: *mut gfc__AutoRef_gfc__IndexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__IndexBuffer_,
+    pub updateAddress: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut (), _: *mut ()),
+}
+
+#[repr(C)]
+pub struct gfc__Mesh__Group {
+    pub Name: gfc__String,
+    pub ID: i32,
+    pub PrimType: i32,
+    pub mStartLitVert: i32,
+    pub VertexStart: i32,
+    pub VertexCount: i32,
+    pub IndexStart: i32,
+    pub IndexCount: i32,
+}
+
+#[repr(C)]
 pub struct gfc__WorldRegion {
     pub __vfptr: *const gfc__WorldRegion____vftable,
     pub ReferenceCount: i32,
@@ -4967,6 +5128,79 @@ pub struct gfc__MBWeight {
 }
 
 #[repr(C)]
+pub struct gfc__MeshCache {
+    pub __vfptr: *const gfc__MeshCache____vftable,
+    pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mType: i32,
+    pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
+    pub mReloadInfo: gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_,
+}
+
+impl gfc__MeshCache {
+    pub fn as_gfc__ResourceCache_ptr(&self) -> *const gfc__ResourceCache {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__ResourceCache_mut_ptr(&mut self) -> *mut gfc__ResourceCache {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshCache____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: u32) -> *mut (),
+    pub loadDefaultResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: gfc__AutoRef_gfc__File_),
+    pub initThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
+    pub shutdownThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
+    pub analyzeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut gfc__ResourceAnalyzeInfo,
+    ) -> bool,
+    pub canCreateBuffersInThread:
+        unsafe extern "thiscall" fn(this: *const gfc__ResourceCache, _: i32) -> bool,
+    pub createBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceBufferInfo),
+    pub freeBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
+    pub loadResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
+    pub canReloadResources: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub reloadsQueued: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub reloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut gfc__ResourceLoadInfo,
+    ) -> bool,
+    pub needUnlinkResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub unlinkResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+    pub needUnloadResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub unloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *mut gfc__ResourceLoadInfo,
+    ),
+    pub freeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__ResourceCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__MeshCache__ReloadInfo {
+    pub PackageID: i32,
+    pub Name: gfc__HString,
+    pub Buffer: *mut u8,
+    pub Length: u32,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__SkinMesh_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -5087,6 +5321,13 @@ pub struct gfc__AutoRef_gfc__MeshBuilder_ {
 #[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__MBSubMesh_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__MeshCache__ReloadInfo,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
 }
@@ -7159,96 +7400,4 @@ pub struct hkAabbUint32 {
     pub m_max: [u32; 3],
     pub m_expansionMax: [u8; 3],
     pub m_shapeKeyByte: u8,
-}
-
-#[repr(C)]
-pub struct hkSemaphore {
-    pub m_semaphore: *mut (),
-}
-
-#[repr(C)]
-pub struct hkRefPtr_hkWorldMemoryAvailableWatchDog_ {
-    pub m_pntr: *mut hkWorldMemoryAvailableWatchDog,
-}
-
-#[repr(C)]
-pub struct hkpConstraintOwner {
-    pub __vfptr: *const hkpConstraintOwner____vftable,
-    pub m_memSizeAndRefCount: u32,
-    pub m_constraintInfo: hkpConstraintInfo,
-}
-
-impl hkpConstraintOwner {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
-    }
-
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpConstraintOwner____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-    pub addConstraintToCriticalLockedIsland:
-        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
-    pub removeConstraintFromCriticalLockedIsland:
-        unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: *mut hkpConstraintInstance),
-    pub addCallbackRequest: unsafe extern "thiscall" fn(
-        this: *mut hkpConstraintOwner,
-        _: *mut hkpConstraintInstance,
-        _: i32,
-    ),
-    pub checkAccessRw: unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner),
-}
-
-#[repr(C)]
-pub struct hkBool {
-    pub m_bool: i8,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpLinkedCollidable__CollisionEntry_ {
-    pub m_data: *mut hkpLinkedCollidable__CollisionEntry,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkStackTracer__CallTree {
-    pub m_nodes: hkArrayBase_hkStackTracer__CallTree__Node_,
-    pub m_allocator: *mut hkMemoryAllocator,
-    pub m_rootNode: i32,
-    pub m_firstFreeNode: i32,
-}
-
-#[repr(C)]
-pub struct hkStackTracer__CallTree__Node {
-    pub m_value: u32,
-    pub m_parent: i32,
-    pub m_firstChild: i32,
-    pub m_next: i32,
-    pub m_usageCount: i32,
-}
-
-#[repr(C)]
-pub struct hkArray_char_hkContainerTempAllocator_ {
-    pub m_data: *mut i8,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_char_hkContainerTempAllocator_ {
-    pub fn as_hkArrayBase_char__ptr(&self) -> *const hkArrayBase_char_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_char__mut_ptr(&mut self) -> *mut hkArrayBase_char_ {
-        self as *mut _ as _
-    }
 }

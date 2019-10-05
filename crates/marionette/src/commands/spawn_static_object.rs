@@ -1,5 +1,3 @@
-#![allow(clippy::similar_names)]
-
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
 
@@ -86,11 +84,6 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
             z: args.scale,
         },
     );
-    ((*(*obj).__vfptr).preload)((*obj).as_gfc__WorldObject_mut_ptr());
-    if x >= -4000.0 {
-        let object_3d: *mut target::gfc__Object3D = (*obj).mObject.p as *mut target::gfc__Object3D;
-        (*object_3d).mVisuals.mSize = 0;
-    }
 
     ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world.as_ptr());
 }

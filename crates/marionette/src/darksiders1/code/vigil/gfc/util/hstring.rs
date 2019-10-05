@@ -10,10 +10,19 @@ impl HString {
         Self::from_cstr(&cstring)
     }
 
-    pub fn from_cstr(s: &CStr) -> Self {
+    pub fn from_cstr(src: &CStr) -> Self {
         let inner =
-            unsafe { init_with(|this| target::gfc__HString__HString_3(this, s.as_ptr(), true)) };
+            unsafe { init_with(|this| target::gfc__HString__HString_3(this, src.as_ptr(), true)) };
         Self { inner }
+    }
+
+    pub fn from_hash(hash: u64) -> Self {
+        let inner = unsafe { init_with(|this| target::gfc__HString__HString_4(this, hash)) };
+        Self { inner }
+    }
+
+    pub fn hash(&self) -> u64 {
+        self.inner.mHash
     }
 
     pub fn c_str(&self) -> &CStr {
@@ -23,6 +32,20 @@ impl HString {
         }
     }
 }
+
+impl Clone for HString {
+    fn clone(&self) -> Self {
+        Self::from_hash(self.hash())
+    }
+}
+
+impl PartialEq for HString {
+    fn eq(&self, other: &Self) -> bool {
+        self.hash() == other.hash()
+    }
+}
+
+impl Eq for HString {}
 
 impl Drop for HString {
     fn drop(&mut self) {
