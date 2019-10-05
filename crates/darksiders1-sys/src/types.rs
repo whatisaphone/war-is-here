@@ -932,6 +932,11 @@ pub struct gfc__ValueStack___Stack {
 }
 
 #[repr(C)]
+pub struct gfc__LinkMyNew {
+    pub unused: u32,
+}
+
+#[repr(C)]
 pub struct gfc__Event {
     pub mEvent: keen__Event,
 }
@@ -1334,6 +1339,35 @@ pub struct gfc__AutoRef_gfc__File_ {
 }
 
 #[repr(C)]
+pub struct gfc__OutputStream {
+    pub __vfptr: *const gfc__OutputStream____vftable,
+    pub ReferenceCount: i32,
+    pub mEndianess: i32,
+}
+
+impl gfc__OutputStream {
+    pub fn as_gfc__Stream_ptr(&self) -> *const gfc__Stream {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Stream_mut_ptr(&mut self) -> *mut gfc__Stream {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__OutputStream____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
+    pub close: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
+    pub write: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: *const (), _: i32),
+    pub flush: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
+    pub isSeekable: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream) -> bool,
+    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: u64, _: i32),
+    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream) -> i64,
+}
+
+#[repr(C)]
 pub struct gfc__Mutex {
     pub mMutex: keen__Mutex,
 }
@@ -1454,6 +1488,28 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__ClassLoader__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__ClassLoader_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Stream {
+    pub __vfptr: *const gfc__Stream____vftable,
+    pub ReferenceCount: i32,
+}
+
+impl gfc__Stream {
+    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Stream____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
 }
 
 #[repr(C)]
@@ -3784,6 +3840,13 @@ pub struct gfc__AmbientDesc____vftable {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_unsigned_char_0_gfc__CAllocator_ {
+    pub mData: *mut u8,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__DepthOfFieldDesc_,
     pub mSize: i32,
@@ -3894,6 +3957,37 @@ pub struct gfc__Frustum {
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__CameraBlurDesc_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__ByteOutputStream {
+    pub __vfptr: *const gfc__ByteOutputStream____vftable,
+    pub ReferenceCount: i32,
+    pub mEndianess: i32,
+    pub mPosition: i32,
+    pub mOutput: gfc__Vector_unsigned_char_0_gfc__CAllocator_,
+}
+
+impl gfc__ByteOutputStream {
+    pub fn as_gfc__OutputStream_ptr(&self) -> *const gfc__OutputStream {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__OutputStream_mut_ptr(&mut self) -> *mut gfc__OutputStream {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ByteOutputStream____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
+    pub close: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
+    pub write: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: *const (), _: i32),
+    pub flush: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
+    pub isSeekable: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream) -> bool,
+    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: u64, _: i32),
+    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream) -> i64,
 }
 
 #[repr(C)]
@@ -4050,6 +4144,32 @@ pub struct gfc__AutoRef_gfc__Shader_ {
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__Texture_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__ObjectReader {
+    pub __vfptr: *const gfc__ObjectReader____vftable,
+    pub ReferenceCount: i32,
+}
+
+impl gfc__ObjectReader {
+    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ObjectReader____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub readObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__ObjectReader,
+        result: *mut gfc__AutoRef_gfc__Object_,
+        _: gfc__AutoRef_gfc__InputStream_,
+    ) -> *mut gfc__AutoRef_gfc__Object_,
 }
 
 #[repr(C)]
@@ -4852,6 +4972,32 @@ pub struct gfc__AutoRef_gfc__SkinMesh_ {
 }
 
 #[repr(C)]
+pub struct gfc__MeshReader {
+    pub __vfptr: *const gfc__MeshReader____vftable,
+    pub ReferenceCount: i32,
+}
+
+impl gfc__MeshReader {
+    pub fn as_gfc__ObjectReader_ptr(&self) -> *const gfc__ObjectReader {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__ObjectReader_mut_ptr(&mut self) -> *mut gfc__ObjectReader {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshReader____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub readObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__ObjectReader,
+        result: *mut gfc__AutoRef_gfc__Object_,
+        _: gfc__AutoRef_gfc__InputStream_,
+    ) -> *mut gfc__AutoRef_gfc__Object_,
+}
+
+#[repr(C)]
 pub struct gfc__MBBone {
     pub Offset: gfc__Matrix4,
     pub ID: i32,
@@ -4910,6 +5056,27 @@ pub struct gfc__MBSubMesh____vftable {
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
+}
+
+#[repr(C)]
+pub struct gfc__ObjectWriter {
+    pub __vfptr: *const gfc__ObjectWriter____vftable,
+    pub ReferenceCount: i32,
+}
+
+impl gfc__ObjectWriter {
+    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ObjectWriter____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
 }
 
 #[repr(C)]
@@ -7084,144 +7251,4 @@ impl hkArray_char_hkContainerTempAllocator_ {
     pub fn as_hkArrayBase_char__mut_ptr(&mut self) -> *mut hkArrayBase_char_ {
         self as *mut _ as _
     }
-}
-
-#[repr(C)]
-pub struct hkpCdBody {
-    pub m_shape: *const hkpShape,
-    pub m_shapeKey: u32,
-    pub m_motion: *const (),
-    pub m_parent: *const hkpCdBody,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpActionListener___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpActionListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpActionListener___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpActionListener____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpActionListener___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpActionListener____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpActionListener___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpPhantomListener___ {
-    pub m_data: *mut *mut hkpPhantomListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkPadSpu_hkpProcessCdPoint___ {
-    pub m_storage: *mut hkpProcessCdPoint,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpWorldDeletionListener___ {
-    pub m_data: *mut *mut hkpWorldDeletionListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkpRayCollidableFilter {
-    pub __vfptr: *const hkpRayCollidableFilter____vftable,
-}
-
-#[repr(C)]
-pub struct hkpRayCollidableFilter____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpRayCollidableFilter, _: u32) -> *mut (),
-    pub isCollisionEnabled: unsafe extern "thiscall" fn(
-        this: *const hkpRayCollidableFilter,
-        result: *mut hkBool,
-        _: *const hkpWorldRayCastInput,
-        _: *const hkpCollidable,
-    ) -> *mut hkBool,
-}
-
-#[repr(C)]
-pub struct hkpConstraintInfo {
-    pub m_maxSizeOfSchema: i32,
-    pub m_sizeOfSchemas: i32,
-    pub m_numSolverResults: i32,
-    pub m_numSolverElemTemps: i32,
-}
-
-#[repr(C)]
-pub struct hkpBroadPhaseListener {
-    pub __vfptr: *const hkpBroadPhaseListener____vftable,
-}
-
-#[repr(C)]
-pub struct hkpBroadPhaseListener____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpBroadPhaseListener, _: u32) -> *mut (),
-    pub addCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub removeCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpContactPointRemovedEvent {
-    pub m_contactPointId: u16,
-    pub m_contactPointProperties: *mut hkpContactPointProperties,
-    pub m_entityA: *mut hkpEntity,
-    pub m_entityB: *mut hkpEntity,
-    pub m_callbackFiredFrom: *mut hkpEntity,
-    pub m_internalContactMgr: *mut hkpDynamicsContactMgr,
-    pub m_constraintOwner: *mut hkpConstraintOwner,
-}
-
-#[repr(C)]
-pub struct hkArray_hkViewPtr_hkpConstraintInstance__hkContainerHeapAllocator_ {
-    pub m_data: *mut hkViewPtr_hkpConstraintInstance_,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkViewPtr_hkpConstraintInstance__hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkViewPtr_hkpConstraintInstance____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkViewPtr_hkpConstraintInstance___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkViewPtr_hkpConstraintInstance____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkViewPtr_hkpConstraintInstance___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__Occluder___0_gfc__CAllocator_ {
-    pub mData: *mut *mut gfc__Occluder,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Clipper {
-    pub pOccluders: *const gfc__Vector_gfc__Occluder___0_gfc__CAllocator_,
-    pub numPlanes: u32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub planes: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 1024],
 }

@@ -7,6 +7,8 @@ pub use crate::darksiders1::code::vigil::{
             reflection::{Class, ClassRegistry},
         },
         game::obliviongame::OblivionGame,
+        io::{bytestream::ByteOutputStream, stream::OutputStream},
+        oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, vector::Vector},
         world::{triggerregion::TriggerRegion, world::World, worldgroup::WorldGroup},
     },

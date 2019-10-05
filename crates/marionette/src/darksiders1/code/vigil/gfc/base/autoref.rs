@@ -1,6 +1,9 @@
 use crate::utils::mem::init_with;
 use darksiders1_sys::target;
-use std::{marker::PhantomData, ops::Deref};
+use std::{
+    marker::PhantomData,
+    ops::{Deref, DerefMut},
+};
 
 // These binding names are a little bit ridiculous.
 macro_rules! constructor {
@@ -33,6 +36,12 @@ impl<T> Deref for AutoRef<T> {
 
     fn deref(&self) -> &Self::Target {
         unsafe { &*(self.inner.p as *mut T) }
+    }
+}
+
+impl<T> DerefMut for AutoRef<T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        unsafe { &mut *(self.inner.p as *mut T) }
     }
 }
 

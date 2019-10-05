@@ -15,7 +15,9 @@ pub struct List__ListNode<'a, T> {
 }
 
 impl<'a, T> List<'a, T> {
-    pub unsafe fn from_ptr(inner: *mut target::List_gfc__AutoRef_gfc__WorldObject___) -> &'a Self {
+    pub unsafe fn from_ptr(
+        inner: *const target::List_gfc__AutoRef_gfc__WorldObject___,
+    ) -> &'a Self {
         &*(inner as *const _)
     }
 

@@ -14,6 +14,7 @@ pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>
 pub struct GodObject {
     gfc__Darksiders__onPostUpdateInterval: target::gfc__Darksiders__onPostUpdateInterval,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
+    gfc__MeshReader__readObject: target::gfc__MeshReader__readObject,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
     _cleanup: Vec<Box<dyn Send + Sync>>,
 }
@@ -31,18 +32,22 @@ pub fn install() {
             };
         }
 
-        let onPostUpdateInterval = hook!(gfc__Darksiders__onPostUpdateInterval);
-        let processInputEvent = hook!(gfc__Darksiders__processInputEvent);
-        let getResource = hook!(gfc__ResourceCache__getResource);
+        let gfc__Darksiders__onPostUpdateInterval = hook!(gfc__Darksiders__onPostUpdateInterval);
+        let gfc__Darksiders__processInputEvent = hook!(gfc__Darksiders__processInputEvent);
+        let gfc__MeshReader__readObject = hook!(gfc__MeshReader__readObject);
+        let gfc__ResourceCache__getResource = hook!(gfc__ResourceCache__getResource);
 
         *guard = Some(GodObject {
-            gfc__Darksiders__onPostUpdateInterval: onPostUpdateInterval.trampoline(),
-            gfc__Darksiders__processInputEvent: processInputEvent.trampoline(),
-            gfc__ResourceCache__getResource: getResource.trampoline(),
+            gfc__Darksiders__onPostUpdateInterval: gfc__Darksiders__onPostUpdateInterval
+                .trampoline(),
+            gfc__Darksiders__processInputEvent: gfc__Darksiders__processInputEvent.trampoline(),
+            gfc__MeshReader__readObject: gfc__MeshReader__readObject.trampoline(),
+            gfc__ResourceCache__getResource: gfc__ResourceCache__getResource.trampoline(),
             _cleanup: vec![
-                Box::new(onPostUpdateInterval),
-                Box::new(processInputEvent),
-                Box::new(getResource),
+                Box::new(gfc__Darksiders__onPostUpdateInterval),
+                Box::new(gfc__Darksiders__processInputEvent),
+                Box::new(gfc__MeshReader__readObject),
+                Box::new(gfc__ResourceCache__getResource),
             ],
         });
         *ON_POST_UPDATE_QUEUE.lock() = Some(VecDeque::new());
@@ -61,6 +66,7 @@ mod hook {
     use crate::{
         darksiders1::gfc,
         hooks::{GOD_LOCK, ON_POST_UPDATE_QUEUE},
+        utils::exfil::dump_object,
     };
     use darksiders1_sys::target;
 
@@ -97,6 +103,24 @@ mod hook {
             // work around pdbindgen layout issue
             let this_mGameInBackground = (this as usize + 0x1a6) as *mut bool;
             *this_mGameInBackground = false;
+        }
+
+        result
+    }
+
+    pub extern "thiscall" fn gfc__MeshReader__readObject(
+        this: *mut target::gfc__MeshReader,
+        result: *mut target::gfc__AutoRef_gfc__Object_,
+        r#in: target::gfc__AutoRef_gfc__InputStream_,
+        valid: *mut bool,
+    ) -> *mut target::gfc__AutoRef_gfc__Object_ {
+        let guard = GOD_LOCK.read();
+        let god = guard.as_ref().unwrap();
+
+        let result = unsafe { (god.gfc__MeshReader__readObject)(this, result, r#in, valid) };
+
+        unsafe {
+            dump_object(gfc::Object::from_ptr((*result).p.cast()));
         }
 
         result

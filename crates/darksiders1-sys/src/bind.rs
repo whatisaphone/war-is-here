@@ -24,6 +24,7 @@ pub unsafe fn bind(args: &BindArgs) {
     );
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
+    bind!(text, gfc__MeshReader__readObject);
     bind!(
         text,
         gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_
@@ -74,16 +75,28 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__HString__HString_6);
     bind!(text, gfc__HString___HString);
     bind!(text, gfc__HString__c_str);
+    bind!(text, gfc__OOObjectWriter__writeObject);
+    bind!(text, gfc__MemFree);
     bind!(text, gfc__MemAlloc);
+    bind!(text, gfc__ObjectWriter__ObjectWriter);
+    bind!(text, gfc__ByteOutputStream__ByteOutputStream);
+    bind!(text, gfc__ByteOutputStream___ByteOutputStream);
+    bind!(text, gfc__ByteOutputStream__ByteOutputStream_2);
     bind!(text, gfc__ClassRegistry__classForName);
     bind!(text, gfc__RegionLayer__getRoot);
     bind!(text, gfc__WorldRegion__getLayer);
+    bind!(text, operator_new);
     bind!(text, gfc__WorldObject__setRegionID);
     bind!(text, gfc__WorldObject__setLayerID);
+    bind!(text, gfc__ObjectWriter___ObjectWriter);
     bind!(text, gfc__World__getRegion_2);
     bind!(text, gfc__Darksiders__processInputEvent);
     bind!(text, gfc__Darksiders__onPostUpdateInterval);
     bind!(text, gfc__LoadMapMenu__LoadMapMenu);
     bind!(text, gfc__WindowHelper__pushWindow);
     bind!(text, gfc__TeleportHelper__warpToMap);
+    bind!(text, operator_new_2);
+    bind!(text, operator_new_3);
+    bind!(text, operator_new_4);
+    bind!(text, operator_new_5);
 }

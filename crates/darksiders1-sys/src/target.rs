@@ -47,6 +47,7 @@ symbols! {
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+    pub fn gfc__MeshReader__readObject;
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_;
     pub fn gfc__OblivionGame__getWorld;
     pub fn gfc__OmniLight__setStaticOnly;
@@ -88,16 +89,28 @@ symbols! {
     pub fn gfc__HString__HString_6;
     pub fn gfc__HString___HString;
     pub fn gfc__HString__c_str;
+    pub fn gfc__OOObjectWriter__writeObject;
+    pub fn gfc__MemFree;
     pub fn gfc__MemAlloc;
+    pub fn gfc__ObjectWriter__ObjectWriter;
+    pub fn gfc__ByteOutputStream__ByteOutputStream;
+    pub fn gfc__ByteOutputStream___ByteOutputStream;
+    pub fn gfc__ByteOutputStream__ByteOutputStream_2;
     pub fn gfc__ClassRegistry__classForName;
     pub fn gfc__RegionLayer__getRoot;
     pub fn gfc__WorldRegion__getLayer;
+    pub fn operator_new;
     pub fn gfc__WorldObject__setRegionID;
     pub fn gfc__WorldObject__setLayerID;
+    pub fn gfc__ObjectWriter___ObjectWriter;
     pub fn gfc__World__getRegion_2;
     pub fn gfc__Darksiders__processInputEvent;
     pub fn gfc__Darksiders__onPostUpdateInterval;
     pub fn gfc__LoadMapMenu__LoadMapMenu;
     pub fn gfc__WindowHelper__pushWindow;
     pub fn gfc__TeleportHelper__warpToMap;
+    pub fn operator_new_2;
+    pub fn operator_new_3;
+    pub fn operator_new_4;
+    pub fn operator_new_5;
 }

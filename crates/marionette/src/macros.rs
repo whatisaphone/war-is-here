@@ -21,6 +21,10 @@ macro_rules! struct_wrapper {
                 &*(inner as *const Self)
             }
 
+            pub unsafe fn from_ptr_mut<'a>(inner: *mut $inner) -> &'a mut Self {
+                &mut *(inner as *mut Self)
+            }
+
             pub fn as_ptr(&self) -> *mut $inner {
                 &self.inner as *const $inner as *mut $inner
             }
@@ -29,14 +33,20 @@ macro_rules! struct_wrapper {
 }
 
 macro_rules! inherits {
-    ($sub:ty, $super:ty, $cast_method:ident) => {
-        use std::ops::Deref;
+    ($sub:ty, $super:ty, $cast_method:ident $(,)?) => {
+        use std::ops::{Deref, DerefMut};
 
         impl Deref for $sub {
             type Target = $super;
 
             fn deref(&self) -> &Self::Target {
                 unsafe { <$super>::from_ptr((*self.as_ptr()).$cast_method()) }
+            }
+        }
+
+        impl DerefMut for $sub {
+            fn deref_mut(&mut self) -> &mut Self::Target {
+                unsafe { <$super>::from_ptr_mut((*self.as_ptr()).$cast_method()) }
             }
         }
     };
@@ -52,4 +62,19 @@ macro_rules! impl_reflection {
             }
         }
     };
+}
+
+macro_rules! autoref_cast {
+    ($autoref:expr, $type:path) => {{
+        use std::mem;
+
+        let value = $autoref;
+        let result = {
+            $type {
+                p: value.as_ptr() as *mut target::gfc__IRefObject,
+            }
+        };
+        mem::forget(value);
+        result
+    }};
 }

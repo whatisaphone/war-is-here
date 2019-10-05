@@ -20,14 +20,20 @@ pdbindgen \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
+    -i '^operator new$' \
     -i '^gfc::MemAlloc$' \
+    -i '^gfc::MemFree$' \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
+    -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::HString::~?HString$' \
     -i '^gfc::HString::c_str$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::MeshReader::readObject$' \
+    -i '^gfc::ObjectWriter::~?ObjectWriter$' \
+    -i '^gfc::OOObjectWriter::writeObject$' \
     -i '^gfc::OblivionGame::getWorld$' \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::RegionLayer::getRoot$' \

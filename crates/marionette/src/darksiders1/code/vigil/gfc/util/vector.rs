@@ -1,18 +1,65 @@
-use std::convert::TryFrom;
+use darksiders1_sys::target;
+use std::{
+    convert::{TryFrom, TryInto},
+    ptr,
+    slice,
+};
 
 pub struct Vector<T> {
     data: *mut T,
     size: i32,
-    _capacity_and_flags: i32,
+    capacity_and_flags: i32,
+}
+
+impl<T> Default for Vector<T> {
+    fn default() -> Self {
+        Self {
+            data: ptr::null_mut(),
+            size: 0,
+            capacity_and_flags: Self::OWNED_MASK,
+        }
+    }
 }
 
 impl<T> Vector<T> {
+    const CAPACITY_MASK: i32 = 0x7fff_ffff;
+    #[allow(overflowing_literals)]
+    const OWNED_MASK: i32 = 0x8000_0000;
+
+    pub fn new() -> Self {
+        Self::default()
+    }
+
     pub unsafe fn from_ptr<'a, X>(p: *mut X) -> &'a Self {
-        &*(p as *mut Self)
+        &*(p as *const Self)
+    }
+
+    pub unsafe fn from_ptr_mut<'a, X>(p: *mut X) -> &'a mut Self {
+        &mut *(p as *mut Self)
+    }
+
+    pub fn as_slice(&self) -> &[T] {
+        unsafe { slice::from_raw_parts(self.data, self.size.try_into().unwrap()) }
     }
 
     pub fn iter(&self) -> Vector__Iterator<'_, T> {
         Vector__Iterator::new(self)
+    }
+
+    pub fn is_memory_owned(&self) -> bool {
+        (self.capacity_and_flags & Self::OWNED_MASK) != 0
+    }
+}
+
+impl<T> Drop for Vector<T> {
+    fn drop(&mut self) {
+        if self.is_memory_owned() {
+            // TODO: This should run the destructor on each element before freeing the
+            // memory (I believe).
+            unsafe {
+                target::gfc__MemFree(1, self.data as *mut (), ptr::null(), 0);
+            }
+        }
     }
 }
 
