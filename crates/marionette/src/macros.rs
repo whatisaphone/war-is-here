@@ -16,7 +16,6 @@ macro_rules! struct_wrapper {
             inner: $inner,
         }
 
-        #[allow(dead_code)]
         impl $name {
             pub unsafe fn from_ptr<'a>(inner: *const $inner) -> &'a Self {
                 &*(inner as *const Self)

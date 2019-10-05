@@ -125,6 +125,8 @@ symbols! {
     pub fn gfc__RegionLayer__getRoot;
     pub fn gfc__WorldRegion__getLayer;
     pub fn gfc__Actor__setPosition;
+    pub fn gfc__WorldObject__setRegionID;
+    pub fn gfc__WorldObject__setLayerID;
     pub fn gfc__World__getRegion_2;
     pub fn gfc__Darksiders__processInputEvent;
     pub fn gfc__Darksiders__onPostUpdateInterval;

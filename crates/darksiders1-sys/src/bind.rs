@@ -111,6 +111,8 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__RegionLayer__getRoot);
     bind!(text, gfc__WorldRegion__getLayer);
     bind!(text, gfc__Actor__setPosition);
+    bind!(text, gfc__WorldObject__setRegionID);
+    bind!(text, gfc__WorldObject__setLayerID);
     bind!(text, gfc__World__getRegion_2);
     bind!(text, gfc__Darksiders__processInputEvent);
     bind!(text, gfc__Darksiders__onPostUpdateInterval);
