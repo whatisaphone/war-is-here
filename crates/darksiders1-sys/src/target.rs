@@ -49,6 +49,7 @@ symbols! {
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_;
+    pub fn gfc__OblivionGame__getWorld;
     pub fn gfc__OmniLight__setStaticOnly;
     pub fn gfc__OmniLight__getStaticOnly;
     pub fn gfc__OmniLight__doRemoveFromWorld;

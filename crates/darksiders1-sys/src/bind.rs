@@ -29,6 +29,7 @@ pub unsafe fn bind(args: &BindArgs) {
         text,
         gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_
     );
+    bind!(text, gfc__OblivionGame__getWorld);
     bind!(text, gfc__OmniLight__setStaticOnly);
     bind!(text, gfc__OmniLight__getStaticOnly);
     bind!(text, gfc__OmniLight__doRemoveFromWorld);

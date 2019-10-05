@@ -60,11 +60,8 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
     let package_name = gfc::HString::from_str(&args.package_name);
     let object_name = gfc::HString::from_str(&args.object_name);
 
-    let darksiders = gfc::Singleton::<gfc::Darksiders>::get_instance();
-    #[allow(clippy::cast_ptr_alignment)]
-    let world_mgr = (*darksiders.as_ptr()).mWorldMgr.p as *mut target::gfc__WorldManager;
-    #[allow(clippy::cast_ptr_alignment)]
-    let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
+    let darksiders = gfc::OblivionGame::get_instance();
+    let world = darksiders.get_world();
 
     let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();
     let class = class_registry
@@ -93,5 +90,5 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
         (*object_3d).mVisuals.mSize = 0;
     }
 
-    ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world);
+    ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world.as_ptr());
 }

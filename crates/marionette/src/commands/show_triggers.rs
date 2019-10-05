@@ -15,23 +15,20 @@ pub fn run(_command: &str) {
 }
 
 unsafe fn go() {
-    let darksiders = gfc::Singleton::<gfc::Darksiders>::get_instance();
-    #[allow(clippy::cast_ptr_alignment)]
-    let world_mgr = (*darksiders.as_ptr()).mWorldMgr.p as *mut target::gfc__WorldManager;
-    #[allow(clippy::cast_ptr_alignment)]
-    let world = (*world_mgr).mWorld.p as *mut target::gfc__World;
+    let darksiders = gfc::OblivionGame::get_instance();
+    let world = darksiders.get_world();
 
     #[allow(clippy::cast_ptr_alignment)]
-    let root = (*world).mRoot.p as *mut target::gfc__WorldGroup;
+    let root = (*world.as_ptr()).mRoot.p as *mut target::gfc__WorldGroup;
     scan(root);
 
     let region_data = gfc::Vector::<target::gfc__AutoRef_gfc__WorldRegionData_>::from_ptr(
-        &mut (*world).mRegionData,
+        &mut (*world.as_ptr()).mRegionData,
     );
     for (r, _) in region_data.iter().enumerate() {
         let r = i32::try_from(r).unwrap();
         let region = init_with(|this| {
-            target::gfc__World__getRegion(world, this, r);
+            target::gfc__World__getRegion(world.as_ptr(), this, r);
         });
         #[allow(clippy::cast_ptr_alignment)]
         let region = region.p as *mut target::gfc__WorldRegion;

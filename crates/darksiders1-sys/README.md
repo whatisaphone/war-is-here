@@ -45,6 +45,7 @@ cargo run --release \
     -i '^gfc::HString::~?HString$' \
     -i '^gfc::HString::c_str$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::OblivionGame::getWorld$' \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \

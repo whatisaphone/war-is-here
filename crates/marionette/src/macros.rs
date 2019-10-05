@@ -29,6 +29,20 @@ macro_rules! struct_wrapper {
     };
 }
 
+macro_rules! inherits {
+    ($sub:ty, $super:ty, $cast_method:ident) => {
+        use std::ops::Deref;
+
+        impl Deref for $sub {
+            type Target = $super;
+
+            fn deref(&self) -> &Self::Target {
+                unsafe { <$super>::from_ptr((*self.as_ptr()).$cast_method()) }
+            }
+        }
+    };
+}
+
 macro_rules! impl_reflection {
     ($type:ty, $class:expr) => {
         use $crate::darksiders1::{code::vigil::gfc::base::object::Reflect, gfc};
