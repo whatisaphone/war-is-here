@@ -6,7 +6,7 @@ use parking_lot::{Mutex, RwLock};
 use pdbindgen_runtime::BindArgs;
 use std::collections::VecDeque;
 
-pub static GOD_LOCK: RwLock<Option<GodObject>> = RwLock::new(None);
+static DETOURS: RwLock<Option<GodObject>> = RwLock::new(None);
 #[allow(clippy::type_complexity)]
 pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>>> =
     Mutex::new(None);
@@ -22,7 +22,7 @@ pub struct GodObject {
 }
 
 pub fn install() {
-    let mut guard = GOD_LOCK.write();
+    let mut guard = DETOURS.write();
     assert!(guard.is_none());
 
     unsafe {
@@ -63,7 +63,7 @@ pub fn install() {
 }
 
 pub fn uninstall() {
-    let mut guard = GOD_LOCK.write();
+    let mut guard = DETOURS.write();
     assert!(guard.is_some());
 
     // This drops the `GodObject` inside `guard`, which cleans up the detours.
@@ -74,7 +74,7 @@ mod hook {
     use crate::{
         commands::spawn_cube::{override_get_object3d, override_get_static_mesh},
         darksiders1::gfc,
-        hooks::{GOD_LOCK, ON_POST_UPDATE_QUEUE},
+        hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         utils::exfil::dump_object,
     };
     use darksiders1_sys::target;
@@ -83,8 +83,8 @@ mod hook {
         this: *mut target::gfc__Darksiders,
         deltat: f32,
     ) {
-        let guard = GOD_LOCK.read();
-        let god = guard.as_ref().unwrap();
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
 
         {
             let mut guard = ON_POST_UPDATE_QUEUE.lock();
@@ -94,17 +94,17 @@ mod hook {
             }
         }
 
-        unsafe { (god.gfc__Darksiders__onPostUpdateInterval)(this, deltat) }
+        unsafe { (detours.gfc__Darksiders__onPostUpdateInterval)(this, deltat) }
     }
 
     pub extern "thiscall" fn gfc__Darksiders__processInputEvent(
         this: *mut target::gfc__Darksiders,
         inputEvent: *const target::keen__InputEvent,
     ) -> bool {
-        let guard = GOD_LOCK.read();
-        let god = guard.as_ref().unwrap();
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
 
-        let result = unsafe { (god.gfc__Darksiders__processInputEvent)(this, inputEvent) };
+        let result = unsafe { (detours.gfc__Darksiders__processInputEvent)(this, inputEvent) };
 
         // Setting this flag prevents the game from pausing when you deactivate the
         // window.
@@ -124,8 +124,8 @@ mod hook {
         meshName: *const target::gfc__HString,
         idx: i32,
     ) -> *mut target::gfc__AutoRef_gfc__StaticMesh_ {
-        let guard = GOD_LOCK.read();
-        let god = guard.as_ref().unwrap();
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
 
         {
             let mesh_name = unsafe { gfc::HString::from_ptr(meshName) };
@@ -137,7 +137,7 @@ mod hook {
             }
         }
 
-        unsafe { (god.gfc__MeshCache__getStaticMesh)(this, result, packageID, meshName, idx) }
+        unsafe { (detours.gfc__MeshCache__getStaticMesh)(this, result, packageID, meshName, idx) }
     }
 
     pub extern "thiscall" fn gfc__MeshReader__readObject(
@@ -146,10 +146,10 @@ mod hook {
         r#in: target::gfc__AutoRef_gfc__InputStream_,
         valid: *mut bool,
     ) -> *mut target::gfc__AutoRef_gfc__Object_ {
-        let guard = GOD_LOCK.read();
-        let god = guard.as_ref().unwrap();
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
 
-        let result = unsafe { (god.gfc__MeshReader__readObject)(this, result, r#in, valid) };
+        let result = unsafe { (detours.gfc__MeshReader__readObject)(this, result, r#in, valid) };
 
         if false {
             unsafe {
@@ -166,8 +166,8 @@ mod hook {
         packageID: i32,
         objectName: *const target::gfc__HString,
     ) -> *mut target::gfc__AutoRef_gfc__Object3D_ {
-        let guard = GOD_LOCK.read();
-        let god = guard.as_ref().unwrap();
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
 
         {
             let object_name = unsafe { gfc::HString::from_ptr(objectName) };
@@ -179,7 +179,7 @@ mod hook {
             }
         }
 
-        unsafe { (god.gfc__Object3DCache__get)(this, result, packageID, objectName) }
+        unsafe { (detours.gfc__Object3DCache__get)(this, result, packageID, objectName) }
     }
 
     pub extern "thiscall" fn gfc__ResourceCache__getResource(
@@ -187,10 +187,11 @@ mod hook {
         packageId: i32,
         hashedName: *const target::gfc__HString,
     ) -> *mut () {
-        let guard = GOD_LOCK.read();
-        let god = guard.as_ref().unwrap();
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
 
-        let result = unsafe { (god.gfc__ResourceCache__getResource)(this, packageId, hashedName) };
+        let result =
+            unsafe { (detours.gfc__ResourceCache__getResource)(this, packageId, hashedName) };
 
         if result.is_null() {
             let hashed_name = unsafe { gfc::HString::from_ptr(hashedName) };
