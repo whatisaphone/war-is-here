@@ -15,7 +15,7 @@ pub use crate::darksiders1::code::vigil::{
         },
         math::vector3::TVector3,
         oc::ooobjectwriter::OOObjectWriter,
-        util::{hstring::HString, singleton::Singleton, vector::Vector},
+        util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},
         world::{
             triggerregion::TriggerRegion,
             visuals::{object3d::Object3D, object3dcache::Object3DCache},

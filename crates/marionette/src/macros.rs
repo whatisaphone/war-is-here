@@ -1,15 +1,3 @@
-macro_rules! hstring {
-    ($str:literal) => {{
-        use std::{ffi::CStr, os::raw::c_char};
-        use $crate::darksiders1::gfc::HString;
-
-        let zstr = concat!($str, "\0");
-        #[allow(unused_unsafe)]
-        let cstr = unsafe { CStr::from_ptr(zstr.as_ptr() as *const c_char) };
-        HString::from_cstr(cstr)
-    }};
-}
-
 macro_rules! struct_wrapper {
     ($(#[$($attrs:meta),*])* $name:ident, $inner:ty) => {
         #[repr(transparent)]
@@ -74,6 +62,25 @@ macro_rules! impl_reflection {
             }
         }
     };
+}
+
+macro_rules! cstr {
+    ($str:literal) => {{
+        use std::{ffi::CStr, os::raw::c_char};
+
+        let zstr = concat!($str, "\0");
+        #[allow(unused_unsafe)]
+        unsafe { CStr::from_ptr(zstr.as_ptr() as *const c_char) }
+    }};
+}
+
+macro_rules! hstring {
+    ($str:literal) => {{
+        use $crate::darksiders1::gfc;
+
+        let cstr = cstr!($str);
+        gfc::HString::from_cstr(cstr)
+    }};
 }
 
 macro_rules! autoref_cast {

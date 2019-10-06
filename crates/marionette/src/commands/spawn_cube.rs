@@ -146,6 +146,10 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
             &mut (*builder).mSubMeshes,
         );
         let sub_mesh = sub_meshes[0].p as *mut target::gfc__MBSubMesh;
+
+        let material_name = gfc::String::from_ptr_mut(&mut (*sub_mesh).MaterialName);
+        *material_name = gfc::String::from_cstr(cstr!("Ci_Bank_Trim_Fancy"));
+
         let position = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut (*sub_mesh).Position);
         for p in position {
             p.x *= factor;
