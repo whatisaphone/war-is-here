@@ -19,6 +19,12 @@ macro_rules! struct_wrapper {
         }
 
         impl $name {
+            // This is only unsafe for some types, but I'm marking it unsafe always so
+            // don't have to parameterize this macro.
+            pub unsafe fn from_raw(inner: $inner) -> Self {
+                Self { inner }
+            }
+
             pub unsafe fn from_ptr<'a>(inner: *const $inner) -> &'a Self {
                 &*(inner as *const Self)
             }
@@ -42,9 +48,7 @@ macro_rules! struct_wrapper {
 
 macro_rules! inherits {
     ($sub:ty, $super:ty, $cast_method:ident $(,)?) => {
-        use std::ops::{Deref, DerefMut};
-
-        impl Deref for $sub {
+        impl std::ops::Deref for $sub {
             type Target = $super;
 
             fn deref(&self) -> &Self::Target {
@@ -52,7 +56,7 @@ macro_rules! inherits {
             }
         }
 
-        impl DerefMut for $sub {
+        impl std::ops::DerefMut for $sub {
             fn deref_mut(&mut self) -> &mut Self::Target {
                 unsafe { <$super>::from_ptr_mut((*self.as_ptr()).$cast_method()) }
             }

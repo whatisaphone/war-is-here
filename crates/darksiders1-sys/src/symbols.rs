@@ -26,13 +26,17 @@ symbols! {
     pub static gfc__TriggerRegion___Class: *mut gfc__Class = Data(0x58c510);
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__KGMeshCache = Data(0x5559f4);
+    pub static gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle: *mut gfc__KGGraphics = Data(0xa1aec);
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__Darksiders = Data(0xa1afc);
     pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle: *mut gfc__Object3DCache = Data(0xa1a8c);
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle: *mut gfc__ClassRegistry = Data(0xa4230);
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__WindowHelper = Data(0xa1b0c);
+    pub static gfc__MeshReader__MeshReader: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader) = Text(0xf5f9e0);
     pub static gfc__MeshCache__getStaticMesh: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: i32, _: *const gfc__HString, _: i32) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xf68630);
+    pub static gfc__MBSubMesh__MBSubMesh: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) = Text(0xf6baf0);
     pub static gfc__MeshCache__getStaticMesh_2: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: *const gfc__HString, _: *const gfc__HString, _: i32) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xf6fd90);
     pub static gfc__MeshReader__readObject: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader, result: *mut gfc__AutoRef_gfc__Object_, _: gfc__AutoRef_gfc__InputStream_, _: *mut bool) -> *mut gfc__AutoRef_gfc__Object_ = Text(0xf91000);
+    pub static gfc__MeshCache__loadMesh: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__MeshResourceUnopt, _: i32, _: gfc__AutoRef_gfc__InputStream_, _: gfc__HString, _: i32) -> i32 = Text(0xf91df0);
     pub static gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_, _: *mut gfc__IRefObject) = Text(0xf1b740);
     pub static gfc__OblivionGame__getWorld: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> *mut gfc__World = Text(0xe816a0);
     pub static gfc__OmniLight__setStaticOnly: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight, _: bool) = Text(0xe26960);
@@ -80,6 +84,10 @@ symbols! {
     pub static gfc__MemFree: unsafe extern "C" fn(_: u32, _: *mut (), _: *const i8, _: u32) -> *mut () = Text(0xa35880);
     pub static gfc__MemAlloc: unsafe extern "C" fn(_: u32, _: *mut (), _: u32, _: u32, _: u32, _: u32, _: *const i8, _: u32) -> *mut () = Text(0xa37580);
     pub static gfc__ObjectWriter__ObjectWriter: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter) = Text(0xa1cad0);
+    pub static gfc__ByteInputStream___ByteInputStream: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream) = Text(0xa1f370);
+    pub static gfc__ByteInputStream__ByteInputStream: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream, _: *const (), _: u32, _: bool, _: bool) = Text(0xa21ca0);
+    pub static gfc__ByteInputStream__ByteInputStream_2: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream, _: gfc__AutoRef_gfc__InputStream_) = Text(0xa21d60);
+    pub static gfc__ByteInputStream__ByteInputStream_3: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream, _: *const gfc__ByteOutputStream) = Text(0xa21e90);
     pub static gfc__ByteOutputStream__ByteOutputStream: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream) = Text(0xa21ef0);
     pub static gfc__ByteOutputStream___ByteOutputStream: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream) = Text(0xa21f40);
     pub static gfc__ByteOutputStream__ByteOutputStream_2: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream, _: i32) = Text(0xa21fb0);
@@ -96,8 +104,17 @@ symbols! {
     pub static gfc__LoadMapMenu__LoadMapMenu: unsafe extern "thiscall" fn(this: *mut gfc__LoadMapMenu) = Text(0x201d50);
     pub static gfc__WindowHelper__pushWindow: unsafe extern "thiscall" fn(this: *mut gfc__WindowHelper, _: *const gfc__HString) = Text(0x1bc090);
     pub static gfc__TeleportHelper__warpToMap: unsafe extern "thiscall" fn(this: *mut gfc__TeleportHelper, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString) = Text(0x1bcf30);
+    pub static gfc__KGGraphics__createStaticMesh: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, result: *mut gfc__AutoRef_gfc__StaticMesh_) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xe1e30);
+    pub static gfc__KGGraphics__createStaticMesh_2: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: *mut gfc__MeshBuilder) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xe1ec0);
+    pub static gfc__MeshBuilder__MeshBuilder: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) = Text(0xe4d20);
     pub static operator_new_2: unsafe extern "C" fn(_: u32) -> *mut () = Text(0x5b4e0);
     pub static operator_new_3: unsafe extern "C" fn(_: u32, _: *mut (), _: *mut gfc__LinkMyNew) -> *mut () = Text(0x5b5a0);
     pub static operator_new_4: unsafe extern "C" fn(_: u32, _: u32, _: *const i8, _: i32, _: *mut gfc__LinkMyNew) -> *mut () = Text(0x5b5c0);
+    pub static gfc__String__String: unsafe extern "thiscall" fn(this: *mut gfc__String) = Text(0x67070);
+    pub static gfc__String___String: unsafe extern "thiscall" fn(this: *mut gfc__String) = Text(0x67110);
+    pub static gfc__String__String_2: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const gfc__String) = Text(0x69030);
+    pub static gfc__String__String_3: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const gfc__String, _: i32, _: i32) = Text(0x69060);
+    pub static gfc__String__String_4: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const i8) = Text(0x69530);
+    pub static gfc__String__String_5: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const std__basic_string_char_std__char_traits_char__std__allocator_char___) = Text(0x69570);
     pub static operator_new_5: unsafe extern "C" fn(_: u32, _: *mut ()) -> *mut () = Text(0x22230);
 }

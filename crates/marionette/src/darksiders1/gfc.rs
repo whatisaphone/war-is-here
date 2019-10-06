@@ -9,7 +9,10 @@ pub use crate::darksiders1::code::vigil::{
         },
         game::obliviongame::OblivionGame,
         graphics::{mesh::StaticMesh, meshcache::MeshCache},
-        io::{bytestream::ByteOutputStream, stream::OutputStream},
+        io::{
+            bytestream::{ByteInputStream, ByteOutputStream},
+            stream::{InputStream, OutputStream},
+        },
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, vector::Vector},
         world::{

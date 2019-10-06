@@ -9,9 +9,30 @@ pub struct unit4__StatUpdateData {
 }
 
 #[repr(C)]
+pub struct keen__float3 {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+}
+
+#[repr(C)]
+pub struct keen__float4 {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
+    pub w: f32,
+}
+
+#[repr(C)]
 pub struct keen__float2 {
     pub x: f32,
     pub y: f32,
+}
+
+#[repr(C)]
+pub struct keen__MemoryBlock {
+    pub pStart: *mut u8,
+    pub size: u32,
 }
 
 #[repr(C)]
@@ -41,8 +62,96 @@ pub struct keen__Mutex {
 }
 
 #[repr(C)]
+pub struct keen__BasePoolAllocator {
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_capacity: u32,
+    pub m_size: u32,
+    pub m_elementSize: u32,
+    pub m_firstFreeIndex: u32,
+}
+
+#[repr(C)]
+pub struct keen__InternalListBase {
+    pub m_pFirst: *mut keen__InternalListBase__Listable,
+    pub m_pLast: *mut keen__InternalListBase__Listable,
+    pub m_numObjects: u32,
+    pub m_begin: keen__InternalListBase__IteratorBase,
+    pub m_end: keen__InternalListBase__IteratorBase,
+    pub m_local: keen__InternalListBase__IteratorBase,
+}
+
+#[repr(C)]
+pub struct keen__InternalListBase__IteratorBase {
+    pub m_pCurrent: *mut keen__InternalListBase__Listable,
+}
+
+#[repr(C)]
+pub struct keen__InternalListBase__Listable {
+    pub m_pNext: *mut keen__InternalListBase__Listable,
+    pub m_pPrev: *mut keen__InternalListBase__Listable,
+}
+
+#[repr(C)]
+pub struct keen__GraphicsMatrix44 {
+    pub row0: [f32; 4],
+    pub row1: [f32; 4],
+    pub row2: [f32; 4],
+    pub row3: [f32; 4],
+}
+
+#[repr(C)]
 pub struct keen__Event {
     pub m_eventHandle: *mut (),
+}
+
+#[repr(C)]
+pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
+    pub __vfptr: *const keen__BaseMemoryAllocator_keen__TlsfAllocator_____vftable,
+    pub m_mutex: keen__Mutex,
+    pub m_name: [i8; 128],
+    pub m_allocator: keen__TlsfAllocator,
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_allocatedSize: u32,
+    pub m_maxAllocatedSize: u32,
+    pub m_allocationCount: u32,
+    pub m_flags: u32,
+}
+
+impl keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
+    pub fn as_keen__MemoryAllocator_ptr(&self) -> *const keen__MemoryAllocator {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__MemoryAllocator_mut_ptr(&mut self) -> *mut keen__MemoryAllocator {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator_____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub allocate: unsafe extern "thiscall" fn(
+        this: *mut keen__MemoryAllocator,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: *const i8,
+    ) -> *mut (),
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+}
+
+#[repr(C)]
+pub struct keen__IoResult_unsigned_int_ {
+    pub result: u32,
+    pub error: keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__TlsfAllocator {
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_pPool: *mut (),
 }
 
 #[repr(C)]
@@ -53,6 +162,48 @@ pub struct keen__Thread {
     pub m_identifier: [i8; 64],
     pub m_quitRequested: bool,
     pub m_pFunction: *mut unsafe extern "C" fn(_: *const keen__Thread) -> i32,
+}
+
+#[repr(C)]
+pub struct keen__TlsfMemoryAllocator {
+    pub __vfptr: *const keen__TlsfMemoryAllocator____vftable,
+    pub m_mutex: keen__Mutex,
+    pub m_name: [i8; 128],
+    pub m_allocator: keen__TlsfAllocator,
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_allocatedSize: u32,
+    pub m_maxAllocatedSize: u32,
+    pub m_allocationCount: u32,
+    pub m_flags: u32,
+}
+
+impl keen__TlsfMemoryAllocator {
+    pub fn as_keen__BaseMemoryAllocator_keen__TlsfAllocator__ptr(
+        &self,
+    ) -> *const keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__BaseMemoryAllocator_keen__TlsfAllocator__mut_ptr(
+        &mut self,
+    ) -> *mut keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__TlsfMemoryAllocator____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub allocate: unsafe extern "thiscall" fn(
+        this: *mut keen__MemoryAllocator,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: *const i8,
+    ) -> *mut (),
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
 }
 
 #[repr(C)]
@@ -314,9 +465,652 @@ pub struct ISteamUserStats____vftable {
 }
 
 #[repr(C)]
+pub struct keen__Array_keen__Task___ {
+    pub m_pData: *mut *mut keen__Task,
+    pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__Queue_keen__Task___ {
+    pub m_size: u32,
+    pub m_bottom: u32,
+    pub m_top: u32,
+    pub m_data: keen__Array_keen__Task___,
+}
+
+#[repr(C)]
+pub struct keen__TaskQueueContext {
+    pub pQueue: *mut keen__TaskQueue,
+    pub priority: u32,
+}
+
+#[repr(C)]
+pub struct keen__Task {
+    pub header: keen__TaskHeader,
+}
+
+#[repr(C)]
+pub struct keen__TaskHeader {
+    pub pTaskFunction: *mut unsafe extern "C" fn(_: *const keen__TaskContext),
+}
+
+#[repr(C)]
+pub struct keen__Array_keen__WorkerThreadContext_ {
+    pub m_pData: *mut keen__WorkerThreadContext,
+    pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__TaskContext {
+    pub pTask: *const keen__Task,
+    pub threadIndex: u32,
+}
+
+#[repr(C)]
+pub struct keen__SizedArray_keen__TaskQueueContext_ {
+    pub m_pData: *mut keen__TaskQueueContext,
+    pub m_size: u32,
+    pub m_capacity: u32,
+}
+
+#[repr(C)]
+pub struct keen__TaskQueue {
+    pub pTaskSystem: *mut keen__TaskSystem,
+    pub clientThreadId: u32,
+    pub pCopyBuffer: *mut u8,
+    pub copyBufferSlotIndex: u32,
+    pub queue: keen__Queue_keen__Task___,
+    pub queueMutex: keen__Mutex,
+    pub pendingTaskCount: u32,
+    pub inProgressTaskCount: u32,
+    pub taskCompleteEvent: keen__Event,
+    pub maxTaskSize: u32,
+}
+
+#[repr(C)]
+pub struct keen__Semaphore {
+    pub m_semaphoreHandle: *mut (),
+    pub m_value: i32,
+}
+
+#[repr(C)]
+pub struct keen__TaskSystem {
+    pub clientThreadId: u32,
+    pub workerThreadContexts: keen__Array_keen__WorkerThreadContext_,
+    pub taskQueueContexts: keen__SizedArray_keen__TaskQueueContext_,
+    pub queueArrayMutex: keen__Mutex,
+    pub wakeUpSemaphore: keen__Semaphore,
+}
+
+#[repr(C)]
+pub struct keen__WorkerThreadContext {
+    pub thread: keen__Thread,
+    pub threadIndex: u32,
+    pub pTaskSystem: *mut keen__TaskSystem,
+}
+
+#[repr(C)]
+pub struct ID3D11ShaderResourceView {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11ShaderResourceView {
+    pub fn as_ID3D11View_ptr(&self) -> *const ID3D11View {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11View_mut_ptr(&mut self) -> *mut ID3D11View {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11View {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11View {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11InputLayout {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11InputLayout {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11DeviceChild {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11DeviceChild {
+    pub fn as_IUnknown_ptr(&self) -> *const IUnknown {
+        self as *const _ as _
+    }
+
+    pub fn as_IUnknown_mut_ptr(&mut self) -> *mut IUnknown {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11DepthStencilState {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11DepthStencilState {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11SamplerState {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11SamplerState {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct _D3D11_SIGNATURE_PARAMETER_DESC {
+    pub SemanticName: *const i8,
+    pub SemanticIndex: u32,
+    pub Register: u32,
+    pub SystemValueType: D3D_NAME,
+    pub ComponentType: D3D_REGISTER_COMPONENT_TYPE,
+    pub Mask: u8,
+    pub ReadWriteMask: u8,
+    pub Stream: u32,
+}
+
+#[repr(C)]
+pub struct ID3D11RenderTargetView {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11RenderTargetView {
+    pub fn as_ID3D11View_ptr(&self) -> *const ID3D11View {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11View_mut_ptr(&mut self) -> *mut ID3D11View {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11Device {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11Device {
+    pub fn as_IUnknown_ptr(&self) -> *const IUnknown {
+        self as *const _ as _
+    }
+
+    pub fn as_IUnknown_mut_ptr(&mut self) -> *mut IUnknown {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11DepthStencilView {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11DepthStencilView {
+    pub fn as_ID3D11View_ptr(&self) -> *const ID3D11View {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11View_mut_ptr(&mut self) -> *mut ID3D11View {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11VertexShader {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11VertexShader {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11BlendState {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11BlendState {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11PixelShader {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11PixelShader {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__DepthStencilState {
+    pub hash: u32,
+    pub refCount: u32,
+    pub pState: *mut ID3D11DepthStencilState,
+}
+
+impl keen__DepthStencilState {
+    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__GraphicsStateObject {
+    pub hash: u32,
+    pub refCount: u32,
+}
+
+#[repr(C)]
+pub struct keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_____ {
+    pub m_pEntryAllocator: *mut keen__PoolAllocator_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_,
+    pub m_ownsAllocator: bool,
+    pub m_buckets: keen__Array_keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator_,
+    pub m_entries: keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_,
+    pub m_bucketCount: u32,
+    pub m_bucketMask: u32,
+}
+
+#[repr(C)]
+pub struct keen__Array__D3D11_SIGNATURE_PARAMETER_DESC_ {
+    pub m_pData: *mut _D3D11_SIGNATURE_PARAMETER_DESC,
+    pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__RenderTargetBuffer {
+    pub format: keen__PixelFormat,
+    pub pDataBuffer: *mut keen__TextureData,
+}
+
+#[repr(C)]
+pub struct keen__Array_keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator_ {
+    pub m_pData: *mut keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator,
+    pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__TextureDescription {
+    pub width: u16,
+    pub height: u16,
+    pub depth: u16,
+    pub flags: u16,
+    pub r#type: u8,
+    pub format: u8,
+    pub lutFormat: u8,
+    pub multiSampleType: u8,
+    pub addressModeU: u8,
+    pub addressModeV: u8,
+    pub addressModeW: u8,
+    pub levelCount: u8,
+    pub cpuAccessMode: u8,
+    pub gpuAccessMode: u8,
+}
+
+#[repr(C)]
+pub struct keen__SkinningD3D11 {
+    pub m_pSkinningBuffer: *mut ID3D11Buffer,
+    pub m_skinningBatch: keen__SkinningBatch,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_instances: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 24],
+    pub m_currentFrameIndex: u32,
+    pub m_currentBufferPosition: u32,
+    pub m_size: u32,
+    pub m_bufferSize: u32,
+    pub m_pSkinningJointMatrices: *mut keen__SoftwareSkinningJointMatrixData,
+    pub m_currentJointMatricesPosition: u32,
+    pub m_pTaskQueue: *mut keen__TaskQueue,
+    pub m_morphBuffer: keen__DataBuffer,
+    pub m_morphBufferSize: u32,
+    pub m_pMorphBufferData: *mut (),
+}
+
+#[repr(C)]
+pub struct keen__GraphicsCommandBuffer {
+    pub pContext: *mut ID3D11DeviceContext,
+    pub pMappedConstantBuffer: *mut ID3D11Resource,
+    pub pCurrentRenderTarget: *const keen__RenderTarget,
+    pub pSkinningBuffer: *mut keen__SkinningD3D11,
+    pub pImmediateVertexData: *mut ID3D11Buffer,
+    pub immediateVertexBufferOffset: u32,
+    pub immediateVertexBufferSize: u32,
+    pub immediateVertexDataStride: u32,
+    pub immediateVertexCount: u32,
+    pub immediatePrimitiveType: keen__PrimitiveType,
+    pub pDownsampleDepthContext: *mut keen__DownsampleDepthContext,
+    pub pCurrentlyBoundVertexFormat: *const keen__VertexFormat,
+    pub pRenderCommandBufferStorage: *mut (),
+    pub quadlistImmediateCommand: bool,
+    pub pCurrentImmediateBuffer: *mut u8,
+    pub quadBuffer: [u8; 65536],
+}
+
+#[repr(C)]
+pub struct keen__SkinningBatch {
+    pub pSkinningBuffer: *mut keen__SkinningD3D11,
+    pub pMappedBufferData: *mut u8,
+}
+
+#[repr(C)]
+pub struct keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_
+{
+    pub m_pFirst: *mut keen__InternalListBase__Listable,
+    pub m_pLast: *mut keen__InternalListBase__Listable,
+    pub m_numObjects: u32,
+    pub m_begin: keen__InternalListBase__IteratorBase,
+    pub m_end: keen__InternalListBase__IteratorBase,
+    pub m_local: keen__InternalListBase__IteratorBase,
+}
+
+impl keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_ {
+    pub fn as_keen__InternalListBase_ptr(&self) -> *const keen__InternalListBase {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__InternalListBase_mut_ptr(&mut self) -> *mut keen__InternalListBase {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__RasterizerState {
+    pub hash: u32,
+    pub refCount: u32,
+    pub pState: *mut ID3D11RasterizerState,
+}
+
+impl keen__RasterizerState {
+    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_
+{
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__FragmentShader {
+    pub pPixelShader: *mut ID3D11PixelShader,
+}
+
+#[repr(C)]
+pub struct keen__StaticConstantBuffer {
+    pub pBuffer: *mut ID3D11Buffer,
+    pub sizeInBytes: u32,
+}
+
+#[repr(C)]
+pub struct keen__VertexShader {
+    pub shaderCode: keen__Array_unsigned_char_,
+    pub pVertexShader: *mut ID3D11VertexShader,
+    pub inputSignature: keen__Array__D3D11_SIGNATURE_PARAMETER_DESC_,
+    pub inputSignatureHash: u32,
+}
+
+#[repr(C)]
+pub struct keen__GraphicsCommandWriter {
+    pub m_pBuffer: *mut keen__GraphicsCommandBuffer,
+    pub m_pGraphicsSystem: *mut keen__GraphicsSystem,
+    pub m_pRenderTarget: *const keen__RenderTarget,
+    pub m_pVertexInputBinding: *const keen__VertexInputBinding,
+    pub m_pBlendState: *const keen__BlendState,
+    pub m_pRasterizerState: *const keen__RasterizerState,
+    pub m_pDepthStencilState: *const keen__DepthStencilState,
+    pub m_fragmentShaderSamplerStates: [*const keen__SamplerState; 16],
+    pub m_fragmentShaderTextures: [*const keen__TextureData; 16],
+    pub m_pShaderPipeline: *const keen__ShaderPipeline,
+    pub m_pVertexShader: *const keen__VertexShader,
+    pub m_pFragmentShader: *const keen__FragmentShader,
+    pub m_vertexShaderTextures: [*const keen__TextureData; 16],
+    pub m_vertexShaderSamplerStates: [*const keen__SamplerState; 16],
+    pub m_screenQuadVertexFormats: [*const keen__VertexFormat; 3],
+    pub m_renderPassStack: [*const keen__RenderTarget; 4],
+    pub m_currentStaticVertexConstantBuffers: [*const keen__StaticConstantBuffer; 4],
+    pub m_currentStaticFragmentConstantBuffers: [*const keen__StaticConstantBuffer; 8],
+    pub m_renderPassStackIndex: u32,
+    pub m_stencilRefValue: u32,
+}
+
+#[repr(C)]
 pub struct keen__Array_unsigned_char_ {
     pub m_pData: *mut u8,
     pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__GraphicsStateObjectCache {
+    pub m_stateObjects: keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_____,
+}
+
+#[repr(C)]
+pub struct keen__SamplerState {
+    pub hash: u32,
+    pub refCount: u32,
+    pub pState: *mut ID3D11SamplerState,
+}
+
+impl keen__SamplerState {
+    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__BlendState {
+    pub hash: u32,
+    pub refCount: u32,
+    pub pState: *mut ID3D11BlendState,
+}
+
+impl keen__BlendState {
+    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__ShaderPipeline {
+    pub pVertexShader: *const keen__VertexShader,
+    pub pFragmentShader: *const keen__FragmentShader,
+}
+
+#[repr(C)]
+pub struct keen__VertexInputBinding {
+    pub hash: u32,
+    pub refCount: u32,
+    pub pVertexFormat: *const keen__VertexFormat,
+    pub pLayout: *mut ID3D11InputLayout,
+    pub geometryModeMask: u32,
+}
+
+impl keen__VertexInputBinding {
+    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__DataBuffer {
+    pub m_pCurrentPosition: *mut u8,
+    pub m_pEnd: *mut u8,
+    pub m_pBufferStart: *mut u8,
+}
+
+#[repr(C)]
+pub struct keen__DynamicConstantBuffer {
+    pub pBuffer: *mut ID3D11Buffer,
+    pub sizeInBytes: u32,
+}
+
+#[repr(C)]
+pub struct keen__RenderTarget {
+    pub renderTargetViews: [*mut ID3D11RenderTargetView; 8],
+    pub pDepthBufferView: *mut ID3D11DepthStencilView,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub colorBuffers: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 64],
+    pub depthBuffer: keen__RenderTargetBuffer,
+    pub colorBufferCount: u32,
+    pub width: u32,
+    pub height: u32,
+}
+
+#[repr(C)]
+pub struct keen__SoftwareSkinningJointMatrixData {
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub jointMatrices: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 16384],
+}
+
+#[repr(C)]
+pub struct keen__VertexFormat {
+    pub hash: u32,
+    pub refCount: u32,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub attributes: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 68],
+    pub attributeOffsets: [u32; 17],
+    pub attributeCount: u32,
+    pub attributeIndices: [u32; 17],
+    pub streamStride: [u32; 3],
+}
+
+impl keen__VertexFormat {
+    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11Buffer {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11Buffer {
+    pub fn as_ID3D11Resource_ptr(&self) -> *const ID3D11Resource {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11Resource_mut_ptr(&mut self) -> *mut ID3D11Resource {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11Resource {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11Resource {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct ID3D11RasterizerState {
+    pub lpVtbl: *mut IUnknownVtbl,
+}
+
+impl ID3D11RasterizerState {
+    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
+        self as *const _ as _
+    }
+
+    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
+        self as *mut _ as _
+    }
 }
 
 #[repr(C)]
@@ -561,6 +1355,11 @@ pub struct _LIST_ENTRY {
 }
 
 #[repr(C)]
+pub struct HWND__ {
+    pub unused: i32,
+}
+
+#[repr(C)]
 pub struct _RTL_CRITICAL_SECTION {
     pub DebugInfo: *mut _RTL_CRITICAL_SECTION_DEBUG,
     pub LockCount: i32,
@@ -581,6 +1380,677 @@ pub struct _RTL_CRITICAL_SECTION_DEBUG {
     pub Flags: u32,
     pub CreatorBackTraceIndexHigh: u16,
     pub SpareWORD: u16,
+}
+
+#[repr(C)]
+pub struct keen__FileDeviceInterface {
+    pub __vfptr: *const keen__FileDeviceInterface____vftable,
+}
+
+#[repr(C)]
+pub struct keen__FileDeviceInterface____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+    pub openFile: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_short_,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: keen__FileAccessMode,
+    ) -> *mut keen__IoResult_unsigned_short_,
+    pub closeFile:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub freeMountData: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *mut keen__MemoryAllocator,
+        _: *mut keen__FileDeviceMountData,
+    ) -> keen__IoError,
+    pub read: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *mut (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub write: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *const (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub flushWriteBuffer:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: u16,
+        _: u64,
+    ) -> keen__IoError,
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setFilePermissionByName: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: bool,
+    ) -> keen__IoError,
+    pub getFileStatusByName: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        _: *mut keen__FileStatus,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: u32,
+    ) -> keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__IoResult_unsigned___int64_ {
+    pub result: u64,
+    pub error: keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__AliasPathFileDevice {
+    pub __vfptr: *const keen__AliasPathFileDevice____vftable,
+    pub m_streams: keen__FileStreamAllocator_keen__AliasPathFileDevice__StreamEntry_,
+}
+
+impl keen__AliasPathFileDevice {
+    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__AliasPathFileDevice____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+    pub openFile: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_short_,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: keen__FileAccessMode,
+    ) -> *mut keen__IoResult_unsigned_short_,
+    pub closeFile:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub freeMountData: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *mut keen__MemoryAllocator,
+        _: *mut keen__FileDeviceMountData,
+    ) -> keen__IoError,
+    pub read: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *mut (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub write: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *const (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub flushWriteBuffer:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: u16,
+        _: u64,
+    ) -> keen__IoError,
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setFilePermissionByName: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: bool,
+    ) -> keen__IoError,
+    pub getFileStatusByName: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        _: *mut keen__FileStatus,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: u32,
+    ) -> keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__NativeFileDevice {
+    pub __vfptr: *const keen__NativeFileDevice____vftable,
+    pub m_streams: keen__FileStreamAllocator_keen__NativeFileDevice__FileStreamData_,
+    pub m_readThreadContexts: keen__Array_keen__NativeFileDevice__ReadThreadContext_,
+    pub m_mutex: keen__Mutex,
+    pub m_useReadThread: bool,
+}
+
+impl keen__NativeFileDevice {
+    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__NativeFileDevice____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+    pub openFile: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_short_,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: keen__FileAccessMode,
+    ) -> *mut keen__IoResult_unsigned_short_,
+    pub closeFile:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub freeMountData: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *mut keen__MemoryAllocator,
+        _: *mut keen__FileDeviceMountData,
+    ) -> keen__IoError,
+    pub read: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *mut (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub write: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *const (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub flushWriteBuffer:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: u16,
+        _: u64,
+    ) -> keen__IoError,
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setFilePermissionByName: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: bool,
+    ) -> keen__IoError,
+    pub getFileStatusByName: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        _: *mut keen__FileStatus,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: u32,
+    ) -> keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__NativeFileDevice__ReadThreadContext {
+    pub thread: keen__Thread,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub buffers: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 68],
+    pub bufferEmpty: keen__Event,
+    pub bufferFilled: keen__Event,
+    pub bufferReadIndex: u32,
+    pub bufferWriteIndex: u32,
+    pub hasBuffer: bool,
+    pub fileHandle: *mut (),
+    pub filePosition: u64,
+}
+
+#[repr(C)]
+pub struct keen__PakFileDevice {
+    pub __vfptr: *const keen__PakFileDevice____vftable,
+    pub m_streams: keen__FileStreamAllocator_keen__PakFileDevice__PakFileStream_,
+    pub m_chunkAllocator: keen__TlsfMemoryAllocator,
+}
+
+impl keen__PakFileDevice {
+    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__PakFileDevice____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+    pub openFile: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_short_,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: keen__FileAccessMode,
+    ) -> *mut keen__IoResult_unsigned_short_,
+    pub closeFile:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub freeMountData: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *mut keen__MemoryAllocator,
+        _: *mut keen__FileDeviceMountData,
+    ) -> keen__IoError,
+    pub read: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *mut (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub write: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *const (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub flushWriteBuffer:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: u16,
+        _: u64,
+    ) -> keen__IoError,
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setFilePermissionByName: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: bool,
+    ) -> keen__IoError,
+    pub getFileStatusByName: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        _: *mut keen__FileStatus,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: u32,
+    ) -> keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__FileDeviceMountData {
+    __pdbindgen_padding: [u8; 1],
+}
+
+#[repr(C)]
+pub struct keen__FileSystemDeviceEntry {
+    pub pNext: *mut keen__FileSystemDeviceEntry,
+    pub pPrev: *mut keen__FileSystemDeviceEntry,
+    pub pMountData: *mut keen__FileDeviceMountData,
+    pub pDevice: *mut keen__FileDeviceInterface,
+    pub isInternalDevice: bool,
+}
+
+impl keen__FileSystemDeviceEntry {
+    pub fn as_keen__ListEntry_keen__FileSystemDeviceEntry__ptr(
+        &self,
+    ) -> *const keen__ListEntry_keen__FileSystemDeviceEntry_ {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__ListEntry_keen__FileSystemDeviceEntry__mut_ptr(
+        &mut self,
+    ) -> *mut keen__ListEntry_keen__FileSystemDeviceEntry_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__IoResult_unsigned_short_ {
+    pub result: u16,
+    pub error: keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__MemoryFileDevice {
+    pub __vfptr: *const keen__MemoryFileDevice____vftable,
+    pub m_streams: keen__FileStreamAllocator_keen__MemoryFileDevice__StreamEntry_,
+    pub m_files: keen__Array_keen__MemoryFileDevice__FileEntry_,
+    pub m_fileIndices: keen__IndexArray,
+}
+
+impl keen__MemoryFileDevice {
+    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__MemoryFileDevice____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+    pub openFile: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_short_,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: keen__FileAccessMode,
+    ) -> *mut keen__IoResult_unsigned_short_,
+    pub closeFile:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub freeMountData: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *mut keen__MemoryAllocator,
+        _: *mut keen__FileDeviceMountData,
+    ) -> keen__IoError,
+    pub read: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *mut (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub write: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned_int_,
+        _: u16,
+        _: *const (),
+        _: u32,
+    ) -> *mut keen__IoResult_unsigned_int_,
+    pub flushWriteBuffer:
+        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: u16,
+        _: u64,
+    ) -> keen__IoError,
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        result: *mut keen__IoResult_unsigned___int64_,
+        _: u16,
+    ) -> *mut keen__IoResult_unsigned___int64_,
+    pub setFilePermissionByName: unsafe extern "thiscall" fn(
+        this: *mut keen__FileDeviceInterface,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: bool,
+    ) -> keen__IoError,
+    pub getFileStatusByName: unsafe extern "thiscall" fn(
+        this: *const keen__FileDeviceInterface,
+        _: *mut keen__FileStatus,
+        _: *const keen__FileDeviceMountData,
+        _: *const i8,
+        _: u32,
+    ) -> keen__IoError,
+}
+
+#[repr(C)]
+pub struct keen__MemoryFileDevice__FileEntry {
+    pub pMountData: *mut keen__MemoryFileDeviceMountData,
+    pub memoryBlock: keen__MemoryBlock,
+    pub fileSize: u32,
+    pub openCount: u32,
+    pub fileNameCrc: u32,
+    pub isWritten: bool,
+    pub isWriteable: bool,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__NativeFileDevice__FileStreamData_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__LowOverheadAllocator {
+    pub m_memory: keen__MemoryBlock,
+    pub m_pFirstFree: *mut keen__LowOverheadAllocator__FreeBlock,
+}
+
+#[repr(C)]
+pub struct keen__LowOverheadAllocator__FreeBlock {
+    pub size: u32,
+    pub pNext: *mut keen__LowOverheadAllocator__FreeBlock,
+}
+
+#[repr(C)]
+pub struct keen__FileStreamAllocator_keen__MemoryFileDevice__StreamEntry_ {
+    pub m_streamAllocator: keen__PoolAllocator_keen__MemoryFileDevice__StreamEntry_,
+    pub m_streamMutex: keen__Mutex,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__PakFileDevice__PakFileStream_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__FileSystem {
+    pub devices: keen__PoolAllocator_keen__FileSystemDeviceEntry_,
+    pub mountPoints: keen__PoolAllocator_keen__FileSystemMountPoint_,
+    pub nativeFileDevice: keen__NativeFileDevice,
+    pub memoryFileDevice: keen__MemoryFileDevice,
+    pub pakFileDevice: keen__PakFileDevice,
+    pub aliasPathFileDevice: keen__AliasPathFileDevice,
+    pub pRootPoint: *mut keen__FileSystemMountPoint,
+    pub nativeMountHandle: u32,
+    pub mutex: keen__Mutex,
+    pub openFileStack: u32,
+    pub pAllocator: *mut keen__MemoryAllocator,
+    pub useIo: u32,
+    pub ignoreFirstChild: bool,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__FileSystemMountPoint_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__Array_keen__MemoryFileDevice__FileEntry_ {
+    pub m_pData: *mut keen__MemoryFileDevice__FileEntry,
+    pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__FileStreamAllocator_keen__AliasPathFileDevice__StreamEntry_ {
+    pub m_streamAllocator: keen__PoolAllocator_keen__AliasPathFileDevice__StreamEntry_,
+    pub m_streamMutex: keen__Mutex,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__AliasPathFileDevice__StreamEntry_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__TreeNode_keen__FileSystemMountPoint_ {
+    pub pNextSibling: *mut keen__FileSystemMountPoint,
+    pub pPrevSibling: *mut keen__FileSystemMountPoint,
+    pub pParent: *mut keen__FileSystemMountPoint,
+    pub pFirstChild: *mut keen__FileSystemMountPoint,
+}
+
+#[repr(C)]
+pub struct keen__SizedArray_unsigned_int_ {
+    pub m_pData: *mut u32,
+    pub m_size: u32,
+    pub m_capacity: u32,
+}
+
+#[repr(C)]
+pub struct keen__FileStatus {
+    pub lastModificationTime: i32,
+    pub size: u64,
+    pub nativeFileName: [i8; 260],
+    pub isWriteable: bool,
+    pub isDirectory: bool,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__FileSystemDeviceEntry_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__FileStreamAllocator_keen__NativeFileDevice__FileStreamData_ {
+    pub m_streamAllocator: keen__PoolAllocator_keen__NativeFileDevice__FileStreamData_,
+    pub m_streamMutex: keen__Mutex,
+}
+
+#[repr(C)]
+pub struct keen__MemoryFileDeviceMountData {
+    __pdbindgen_padding: [u8; 1],
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub pAllocator: *mut keen__MemoryAllocator,
+    pub fileHandle: u32,
+}
+
+impl keen__MemoryFileDeviceMountData {
+    pub fn as_keen__FileDeviceMountData_ptr(&self) -> *const keen__FileDeviceMountData {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__FileDeviceMountData_mut_ptr(&mut self) -> *mut keen__FileDeviceMountData {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__Array_keen__NativeFileDevice__ReadThreadContext_ {
+    pub m_pData: *mut keen__NativeFileDevice__ReadThreadContext,
+    pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__MemoryFileDevice__StreamEntry_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__FileSystemMountPoint {
+    pub pNextSibling: *mut keen__FileSystemMountPoint,
+    pub pPrevSibling: *mut keen__FileSystemMountPoint,
+    pub pParent: *mut keen__FileSystemMountPoint,
+    pub pFirstChild: *mut keen__FileSystemMountPoint,
+    pub path: [i8; 128],
+    pub pFirstDevice: *mut keen__FileSystemDeviceEntry,
+}
+
+impl keen__FileSystemMountPoint {
+    pub fn as_keen__TreeNode_keen__FileSystemMountPoint__ptr(
+        &self,
+    ) -> *const keen__TreeNode_keen__FileSystemMountPoint_ {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__TreeNode_keen__FileSystemMountPoint__mut_ptr(
+        &mut self,
+    ) -> *mut keen__TreeNode_keen__FileSystemMountPoint_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__IndexArray {
+    pub m_indices: keen__SizedArray_unsigned_int_,
+}
+
+#[repr(C)]
+pub struct keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
+    pub __vfptr: *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_____vftable,
+    pub m_mutex: keen__Mutex,
+    pub m_name: [i8; 128],
+    pub m_allocator: keen__LowOverheadAllocator,
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_allocatedSize: u32,
+    pub m_maxAllocatedSize: u32,
+    pub m_allocationCount: u32,
+    pub m_flags: u32,
+}
+
+impl keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
+    pub fn as_keen__MemoryAllocator_ptr(&self) -> *const keen__MemoryAllocator {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__MemoryAllocator_mut_ptr(&mut self) -> *mut keen__MemoryAllocator {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__BaseMemoryAllocator_keen__LowOverheadAllocator_____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub allocate: unsafe extern "thiscall" fn(
+        this: *mut keen__MemoryAllocator,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: *const i8,
+    ) -> *mut (),
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+}
+
+#[repr(C)]
+pub struct keen__ListEntry_keen__FileSystemDeviceEntry_ {
+    pub pNext: *mut keen__FileSystemDeviceEntry,
+    pub pPrev: *mut keen__FileSystemDeviceEntry,
+}
+
+#[repr(C)]
+pub struct keen__FileStreamAllocator_keen__PakFileDevice__PakFileStream_ {
+    pub m_streamAllocator: keen__PoolAllocator_keen__PakFileDevice__PakFileStream_,
+    pub m_streamMutex: keen__Mutex,
 }
 
 #[repr(C)]
@@ -951,6 +2421,47 @@ pub struct gfc__Vector_gfc__HashTable_gfc__HString_void___gfc__Hash_unsigned___i
 #[repr(C)]
 pub struct gfc__ThreadSafeBool {
     pub mValue: bool,
+}
+
+#[repr(C)]
+pub struct gfc__InputStream {
+    pub __vfptr: *const gfc__InputStream____vftable,
+    pub ReferenceCount: i32,
+    pub mEndianess: i32,
+    pub mBufferAvail: u32,
+    pub mBufferPtr: *mut u8,
+}
+
+impl gfc__InputStream {
+    pub fn as_gfc__Stream_ptr(&self) -> *const gfc__Stream {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Stream_mut_ptr(&mut self) -> *mut gfc__Stream {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__InputStream____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
+    pub available: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> i64,
+    pub close: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
+    pub markSupported: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> bool,
+    pub mark: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
+    pub seekSupported: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> bool,
+    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: u64, _: i32),
+    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> i64,
+    pub skipBytes: unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: i32),
+    pub clone: unsafe extern "thiscall" fn(
+        this: *mut gfc__InputStream,
+        result: *mut gfc__AutoRef_gfc__InputStream_,
+    ) -> *mut gfc__AutoRef_gfc__InputStream_,
+    pub getBuffer: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> *const u8,
+    pub read_raw:
+        unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: *mut (), _: i32) -> i32,
 }
 
 #[repr(C)]
@@ -2266,6 +3777,18 @@ impl std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__
     pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
         self as *mut _ as _
     }
+}
+
+#[repr(C)]
+pub struct gfc__LightData {
+    pub pos: keen__float3,
+    pub flag: f32,
+    pub color: keen__float3,
+    pub invRange: f32,
+    pub viewProj: keen__GraphicsMatrix44,
+    pub dir: keen__float3,
+    pub castShadows: i32,
+    pub atten: keen__float4,
 }
 
 #[repr(C)]
@@ -3721,6 +5244,19 @@ pub struct gfc__AutoRef_gfc__TerrainDesc_ {
 }
 
 #[repr(C)]
+pub struct gfc__PixelShaderInstanceData {
+    pub objectColor: keen__float4,
+    pub preMultiplyAlpha: i32,
+    pub colorMapMult: f32,
+    pub fadeAmount: f32,
+    pub alphaRef: f32,
+    pub lightEnable0: i32,
+    pub lightEnable1: i32,
+    pub lightEnable2: i32,
+    pub _pad1: i32,
+}
+
+#[repr(C)]
 pub struct gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
     __pdbindgen_padding: [u8; 1],
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
@@ -3990,6 +5526,13 @@ pub struct gfc__Texture____vftable {
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__AnimationManager_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__PixelShaderLightData {
+    pub light0: gfc__LightData,
+    pub light1: gfc__LightData,
+    pub light2: gfc__LightData,
 }
 
 #[repr(C)]
@@ -4291,6 +5834,24 @@ pub struct gfc__Vector_gfc__RenderNode___0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
+pub struct gfc__PixelShaderGlobalData {
+    pub cameraPos: keen__float3,
+    pub time: f32,
+    pub depthBias: keen__float4,
+    pub rimColor: keen__float4,
+    pub ambientColor: keen__float4,
+    pub ambientColor2: keen__float4,
+    pub fogParams: keen__float4,
+    pub fogColor: keen__float4,
+    pub invProj: keen__GraphicsMatrix44,
+    pub depthRange: keen__float4,
+    pub viewport: keen__float4,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub spotOffsets: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 256],
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__HDRDesc_,
     pub mSize: i32,
@@ -4537,6 +6098,393 @@ pub struct gfc__RenderNode {
 }
 
 #[repr(C)]
+pub struct gfc__KGGraphics {
+    pub __vfptr: *const gfc__KGGraphics____vftable,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_destructors: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 3072],
+    pub mDefaultAllocator: *mut keen__MemoryAllocator,
+    pub m_pGraphicsSystem: *mut keen__GraphicsSystem,
+    pub m_pCommandWriter: *mut keen__GraphicsCommandWriter,
+    pub m_pShaderFileSystem: *mut keen__FileSystem,
+    pub m_pDepthStates: [*const keen__DepthStencilState; 3],
+    pub m_pZStencilDisabled: *const keen__DepthStencilState,
+    pub m_pNoCullWithBias: [*const keen__RasterizerState; 10],
+    pub m_pBackCull: *const keen__RasterizerState,
+    pub m_pBackCullWithBias: [*const keen__RasterizerState; 10],
+    pub m_pBackCullReverse: *const keen__RasterizerState,
+    pub m_pNoCullReverse: *const keen__RasterizerState,
+    pub m_pParamSamplerStates: [*const keen__SamplerState; 16],
+    pub m_pLightmapSamplerState: *const keen__SamplerState,
+    pub mDeviceThreadID: u32,
+    pub mPrevThreadID: u32,
+    pub mNumSamplers: u16,
+    pub mWaitForVSync: bool,
+    pub mFlipMode: u32,
+    pub m_depthBias: i32,
+    pub m_reverseCulling: bool,
+    pub m_hasShaderGlobalConstants: bool,
+    pub m_hasInstanceConstants: bool,
+    pub m_hasLightConstants: bool,
+    pub m_parameterBufferSlot: i32,
+    pub mWorldMatrix: gfc__Matrix4,
+    pub mViewMatrix: gfc__Matrix4,
+    pub mInvViewMatrix: gfc__Matrix4,
+    pub mProjMatrix: gfc__Matrix4,
+    pub mInvProjMatrix: gfc__Matrix4,
+    pub mViewProjMatrix: gfc__Matrix4,
+    pub m_viewPort: gfc__Viewport,
+    pub m_aspectRatio: f32,
+    pub mUseFPRenderTarget: bool,
+    pub mUseSceneRenderTarget: bool,
+    pub mClearZ: f32,
+    pub mClearStencil: u32,
+    pub mBlendMode: i32,
+    pub mBlendFactor: u32,
+    pub mDepthMode: i32,
+    pub mGamma: f32,
+    pub mBrightness: f32,
+    pub mShader: gfc__AutoRef_gfc__Shader_,
+    pub mHostSkinMemory: *mut (),
+    pub mGcmCommandBuffer: *mut (),
+    pub mGcmCommandBufferSize: u32,
+    pub mTiledMemorySize: u32,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_vertexBuffers: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding_2: [u8; 48],
+    pub m_vertexBufferCount: u32,
+    pub m_pVertexConstantBuffers: [*mut keen__DynamicConstantBuffer; 4],
+    pub m_pPixelShaderConstantBuffer: [*mut keen__DynamicConstantBuffer; 3],
+    pub m_pVertexFormats: [*const keen__VertexFormat; 20],
+    pub m_pBlendStates: [*const keen__BlendState; 6],
+    pub m_pColorWriteDisabledBlendState: *const keen__BlendState,
+    pub m_pStencilIncrementDepthStencilState: *const keen__DepthStencilState,
+    pub m_pStencilDecrementDepthStencilState: *const keen__DepthStencilState,
+    pub m_pDrawMaskedDepthStencilState: *const keen__DepthStencilState,
+    pub m_graphicsAllocator: keen__LowOverheadMemoryAllocator,
+    pub m_framebufferAllocator: keen__ZoneMemoryAllocator,
+    pub m_videoTextureAllocator: keen__TlsfMemoryAllocator,
+    __pdbindgen_padding_3: [u8; 4],
+    pub m_pixelShaderGlobalConstantBufferCache: gfc__PixelShaderGlobalData,
+    pub m_pixelShaderGlobalConstantDataDirty: bool,
+    __pdbindgen_padding_4: [u8; 15],
+    pub m_pixelShaderInstanceConstantBufferCache: gfc__PixelShaderInstanceData,
+    pub m_pixelShaderInstanceConstantDataDirty: bool,
+    __pdbindgen_padding_5: [u8; 15],
+    pub m_pixelShaderLightConstantBufferCache: gfc__PixelShaderLightData,
+    pub m_pixelShaderLightConstantDataDirty: bool,
+    pub m_pCurrentFrameBuffer: *const keen__TextureData,
+    pub m_pCurrentDepthBuffer: *const keen__TextureData,
+    pub m_envProbeDepthBuffer: keen__TextureData,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_environmentProbeTextures: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding_6: [u8; 8],
+    pub m_pEnvironmentProbeRenderTargets: [*const keen__RenderTarget; 2],
+    pub m_postProcessEffect: u32,
+    pub m_antiAliasingType: u32,
+    pub m_textureFilteringMode: u32,
+    pub currentTextureFilteringMode: u8,
+    pub m_pMaterialConstantBuffers: [*mut keen__DynamicConstantBuffer; 20],
+    __pdbindgen_padding_7: [u8; 4],
+}
+
+impl gfc__KGGraphics {
+    pub fn as_gfc__Graphics_ptr(&self) -> *const gfc__Graphics {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Graphics_mut_ptr(&mut self) -> *mut gfc__Graphics {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__KGGraphics____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32) -> *mut (),
+    pub init: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        _: u16,
+        _: u16,
+        _: u8,
+        _: bool,
+    ) -> bool,
+    pub isInitialized: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> bool,
+    pub release: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub getSceneBackBufferSize:
+        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: *mut u16, _: *mut u16),
+    pub getScreenBackBufferSize:
+        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: *mut u16, _: *mut u16),
+    pub getAspectRatio: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> f32,
+    pub acquireThreadOwnership: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub releaseThreadOwnership: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> bool,
+    pub begin3D: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> bool,
+    pub end3D: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub getWaitForVSync: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> bool,
+    pub setWaitForVSync: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: bool),
+    pub unsetSamplers: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub getWorldMatrix:
+        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: *mut gfc__Matrix4),
+    pub setWorldMatrix:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+    pub commitWorldMatrix:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+    pub getViewMatrix:
+        unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *const gfc__Matrix4,
+    pub setViewMatrix:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+    pub getProjectionMatrix:
+        unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *const gfc__Matrix4,
+    pub setProjectionMatrix:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+    pub getViewProjMatrix:
+        unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *const gfc__Matrix4,
+    pub setViewport: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Viewport),
+    pub getViewport: unsafe extern "thiscall" fn(
+        this: *const gfc__Graphics,
+        _: *mut i32,
+        _: *mut i32,
+        _: *mut i32,
+        _: *mut i32,
+    ),
+    pub clear: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        _: bool,
+        _: bool,
+        _: bool,
+        _: u32,
+        _: f32,
+        _: u32,
+    ),
+    pub clear_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub pushClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
+    pub popClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
+    pub enableClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
+    pub disableClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub setDepthTestMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
+    pub setCullMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
+    pub setBlendMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
+    pub getBlendMode: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> i32,
+    pub setBlendFactor: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        _: *const gfc__TVector4_float_gfc__FloatMath_,
+    ),
+    pub setGamma: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: f32),
+    pub setPostProcessEffect: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32),
+    pub setAntiAliasingType: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32),
+    pub setTextureFilteringMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32),
+    pub setShader: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__Shader),
+    pub getShader: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *mut gfc__Shader,
+    pub setVertexDeclaration:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexDeclaration),
+    pub setIndexBuffer:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__IndexBuffer),
+    pub setVertexBuffer:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexBuffer),
+    pub setVertexBufferMasked:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexBuffer, _: u32),
+    pub drawFullScreenQuad: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub drawRect:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32, _: i32, _: i32, _: i32),
+    pub drawPrimitiveUP:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32, _: u32, _: *const (), _: u32),
+    pub drawPrimitiveRetained:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32, _: u32, _: *const (), _: u32),
+    pub drawIndexedPrimitiveUP: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: *const (),
+        _: *const (),
+        _: u32,
+    ),
+    pub drawPrimitives:
+        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32, _: u32, _: u32),
+    pub drawPrimitivesIndexed: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: u32,
+    ),
+    pub setRenderTarget: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: i32,
+    ),
+    pub setDefaultRenderTarget: unsafe extern "thiscall" fn(this: *const gfc__Graphics),
+    pub setDefaultDepthStencilTarget: unsafe extern "thiscall" fn(this: *const gfc__Graphics),
+    pub createVertexDeclaration:
+        unsafe extern "thiscall" fn(
+            this: *mut gfc__Graphics,
+            result: *mut gfc__AutoRef_gfc__VertexDeclaration_,
+            _: *const gfc__VertexFormat,
+        ) -> *mut gfc__AutoRef_gfc__VertexDeclaration_,
+    pub createVertexBuffer: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__VertexBuffer_,
+        _: i32,
+        _: u32,
+    )
+        -> *mut gfc__AutoRef_gfc__VertexBuffer_,
+    pub createVertexBuffer_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__VertexBuffer_,
+    )
+        -> *mut gfc__AutoRef_gfc__VertexBuffer_,
+    pub createIndexBuffer: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__IndexBuffer_,
+        _: u32,
+        _: bool,
+    ) -> *mut gfc__AutoRef_gfc__IndexBuffer_,
+    pub createMeshBuilder: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__MeshBuilder_,
+    ) -> *mut gfc__AutoRef_gfc__MeshBuilder_,
+    pub createStaticMesh: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__StaticMesh_,
+        _: *mut gfc__MeshBuilder,
+    ) -> *mut gfc__AutoRef_gfc__StaticMesh_,
+    pub createStaticMesh_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__StaticMesh_,
+    ) -> *mut gfc__AutoRef_gfc__StaticMesh_,
+    pub createSkinMesh: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__SkinMesh_,
+        _: *mut gfc__MeshBuilder,
+    ) -> *mut gfc__AutoRef_gfc__SkinMesh_,
+    pub createSkinMesh_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__SkinMesh_,
+    ) -> *mut gfc__AutoRef_gfc__SkinMesh_,
+    pub createRenderTexture: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__RenderTexture_,
+        _: u16,
+        _: u16,
+        _: gfc__ImageFormat,
+    )
+        -> *mut gfc__AutoRef_gfc__RenderTexture_,
+    pub createRenderTarget: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: u16,
+        _: u16,
+        _: u16,
+        _: gfc__ImageFormat,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createRenderTarget_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: u16,
+        _: u16,
+        _: gfc__ImageFormat,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createRenderDepth: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: u16,
+        _: u16,
+        _: gfc__ImageFormat,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createRenderCubemap: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: u16,
+        _: gfc__ImageFormat,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createTexture: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: *mut (),
+        _: u32,
+        _: bool,
+        _: bool,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createTexture_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: *const gfc__String,
+        _: bool,
+        _: bool,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createTexture_3: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: *mut gfc__Image,
+        _: bool,
+        _: bool,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createTexture_4: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: i32,
+        _: i32,
+        _: gfc__ImageFormat,
+        _: bool,
+        _: bool,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createCubemap: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: i32,
+        _: gfc__ImageFormat,
+        _: bool,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createLightmap: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: i32,
+        _: i32,
+        _: gfc__ImageFormat,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub createShader: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Shader_,
+    ) -> *mut gfc__AutoRef_gfc__Shader_,
+    pub createShaderCompiler: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__ShaderCompiler_,
+    )
+        -> *mut gfc__AutoRef_gfc__ShaderCompiler_,
+    pub createQuery: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Query_,
+        _: i32,
+    ) -> *mut gfc__AutoRef_gfc__Query_,
+    pub createCamera: unsafe extern "thiscall" fn(
+        this: *mut gfc__Graphics,
+        result: *mut gfc__AutoRef_gfc__Camera3D_,
+        _: i32,
+    ) -> *mut gfc__AutoRef_gfc__Camera3D_,
+    pub createRenderer: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> *mut gfc__Renderer,
+    pub getPlatform: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> i32,
+    pub getDepthBias: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> f32,
+    pub getDecalDepthBias: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> f32,
+    pub recover: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> bool,
+    pub isMeshFormatSupported:
+        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: i32) -> bool,
+    pub blockUntilDefragged: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub createRenderTargetEx: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGGraphics,
+        result: *mut gfc__AutoRef_gfc__Texture_,
+        _: u16,
+        _: u16,
+        _: gfc__ImageFormat,
+    ) -> *mut gfc__AutoRef_gfc__Texture_,
+    pub getSlopeScaledDepthBias: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> f32,
+}
+
+#[repr(C)]
 pub struct gfc__DynamicRenderNode {
     pub mNext: *mut gfc__DynamicRenderNode,
     pub mPrev: *mut gfc__DynamicRenderNode,
@@ -4660,6 +6608,51 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__WorldRegionData_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__ByteInputStream {
+    pub __vfptr: *const gfc__ByteInputStream____vftable,
+    pub ReferenceCount: i32,
+    pub mEndianess: i32,
+    pub mBufferAvail: u32,
+    pub mBufferPtr: *mut u8,
+    pub mBytes: *const u8,
+    pub mNumBytes: u32,
+    pub mMarkIndex: i32,
+    pub mOwnsBuffer: bool,
+}
+
+impl gfc__ByteInputStream {
+    pub fn as_gfc__InputStream_ptr(&self) -> *const gfc__InputStream {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__InputStream_mut_ptr(&mut self) -> *mut gfc__InputStream {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ByteInputStream____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
+    pub available: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> i64,
+    pub close: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
+    pub markSupported: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> bool,
+    pub mark: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
+    pub seekSupported: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> bool,
+    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: u64, _: i32),
+    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> i64,
+    pub skipBytes: unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: i32),
+    pub clone: unsafe extern "thiscall" fn(
+        this: *mut gfc__InputStream,
+        result: *mut gfc__AutoRef_gfc__InputStream_,
+    ) -> *mut gfc__AutoRef_gfc__InputStream_,
+    pub getBuffer: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> *const u8,
+    pub read_raw:
+        unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: *mut (), _: i32) -> i32,
 }
 
 #[repr(C)]
@@ -4867,6 +6860,140 @@ pub struct gfc__EnvironmentDesc____vftable {
     pub apply: unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
     pub restore:
         unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
+}
+
+#[repr(C)]
+pub struct keen__ZoneMemoryAllocator {
+    pub __vfptr: *const keen__ZoneMemoryAllocator____vftable,
+    pub m_mutex: keen__Mutex,
+    pub m_name: [i8; 128],
+    pub m_allocator: keen__ZoneAllocatorAdapter,
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_allocatedSize: u32,
+    pub m_maxAllocatedSize: u32,
+    pub m_allocationCount: u32,
+    pub m_flags: u32,
+}
+
+impl keen__ZoneMemoryAllocator {
+    pub fn as_keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter__ptr(
+        &self,
+    ) -> *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter__mut_ptr(
+        &mut self,
+    ) -> *mut keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__ZoneMemoryAllocator____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub allocate: unsafe extern "thiscall" fn(
+        this: *mut keen__MemoryAllocator,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: *const i8,
+    ) -> *mut (),
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+}
+
+#[repr(C)]
+pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
+    pub __vfptr: *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_____vftable,
+    pub m_mutex: keen__Mutex,
+    pub m_name: [i8; 128],
+    pub m_allocator: keen__ZoneAllocatorAdapter,
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_allocatedSize: u32,
+    pub m_maxAllocatedSize: u32,
+    pub m_allocationCount: u32,
+    pub m_flags: u32,
+}
+
+impl keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
+    pub fn as_keen__MemoryAllocator_ptr(&self) -> *const keen__MemoryAllocator {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__MemoryAllocator_mut_ptr(&mut self) -> *mut keen__MemoryAllocator {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub allocate: unsafe extern "thiscall" fn(
+        this: *mut keen__MemoryAllocator,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: *const i8,
+    ) -> *mut (),
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+}
+
+#[repr(C)]
+pub struct keen__LowOverheadMemoryAllocator {
+    pub __vfptr: *const keen__LowOverheadMemoryAllocator____vftable,
+    pub m_mutex: keen__Mutex,
+    pub m_name: [i8; 128],
+    pub m_allocator: keen__LowOverheadAllocator,
+    pub m_memoryBlock: keen__MemoryBlock,
+    pub m_allocatedSize: u32,
+    pub m_maxAllocatedSize: u32,
+    pub m_allocationCount: u32,
+    pub m_flags: u32,
+}
+
+impl keen__LowOverheadMemoryAllocator {
+    pub fn as_keen__BaseMemoryAllocator_keen__LowOverheadAllocator__ptr(
+        &self,
+    ) -> *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
+        self as *const _ as _
+    }
+
+    pub fn as_keen__BaseMemoryAllocator_keen__LowOverheadAllocator__mut_ptr(
+        &mut self,
+    ) -> *mut keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct keen__LowOverheadMemoryAllocator____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub allocate: unsafe extern "thiscall" fn(
+        this: *mut keen__MemoryAllocator,
+        _: u32,
+        _: u32,
+        _: u32,
+        _: *const i8,
+    ) -> *mut (),
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+}
+
+#[repr(C)]
+pub struct keen__ZoneAllocatorAdapter {
+    pub m_allocator: keen__ZoneAllocator,
+    pub m_allocationCount: u32,
+}
+
+#[repr(C)]
+pub struct keen__ZoneAllocator {
+    pub m_memory: keen__MemoryBlock,
+    pub m_pCurrentAddress: *mut u8,
 }
 
 #[repr(C)]
@@ -5201,7 +7328,70 @@ pub struct gfc__MeshCache__ReloadInfo {
 }
 
 #[repr(C)]
+pub struct gfc__MeshResourceUnopt {
+    pub __vfptr: *const gfc__MeshResourceUnopt____vftable,
+    pub ReferenceCount: i32,
+    pub mState: i32,
+    pub mPackageID: i32,
+    pub mResource: gfc__AutoRef_gfc__Mesh_,
+    pub mName: gfc__HString,
+    pub mBuilder: gfc__AutoRef_gfc__MeshBuilder_,
+    pub mFinalizeMesh: gfc__AutoRef_gfc__Mesh_,
+}
+
+impl gfc__MeshResourceUnopt {
+    pub fn as_gfc__MeshResource_ptr(&self) -> *const gfc__MeshResource {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__MeshResource_mut_ptr(&mut self) -> *mut gfc__MeshResource {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshResourceUnopt____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Resource) -> i32,
+    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
+    pub isUnoptimized: unsafe extern "thiscall" fn(this: *const gfc__MeshResource) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__ResourceType_gfc__Mesh_2_ {
+    pub __vfptr: *const gfc__ResourceType_gfc__Mesh_2_____vftable,
+    pub ReferenceCount: i32,
+    pub mState: i32,
+    pub mPackageID: i32,
+    pub mResource: gfc__AutoRef_gfc__Mesh_,
+}
+
+impl gfc__ResourceType_gfc__Mesh_2_ {
+    pub fn as_gfc__Resource_ptr(&self) -> *const gfc__Resource {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Resource_mut_ptr(&mut self) -> *mut gfc__Resource {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ResourceType_gfc__Mesh_2_____vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Resource) -> i32,
+    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__SkinMesh_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Mesh_ {
     pub p: *mut gfc__IRefObject,
 }
 
@@ -5323,2081 +7513,4 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__MBSubMesh_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__MeshCache__ReloadInfo,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__StaticMesh_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__MBBone_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__MBBone,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Map_gfc__String_gfc__String_std__less_gfc__String___ {
-    __pdbindgen_padding: [u8; 1],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
-    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
-    pub _Mysize: u32,
-    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
-    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
-}
-
-impl gfc__Map_gfc__String_gfc__String_std__less_gfc__String___ {
-    pub fn as_std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String______ptr(&self) -> *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____{
-        self as *const _ as _
-    }
-
-pub fn as_std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String______mut_ptr(&mut self) -> *mut std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____{
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc___UIControl_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Darksiders {
-    pub __vfptr: *const gfc__Darksiders____vftable,
-    __pdbindgen_padding: [u8; 4],
-    pub mpLocalGameSession: *mut unit4__LocalGameSession,
-    pub mpInputSystem: *mut keen__InputSystem,
-    pub mDisplayReady: bool,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mVideoEnabled: bool,
-    pub mMediaMgr: gfc__AutoRef_gfc__MediaManager_,
-    pub mStartTime: u32,
-    pub mCurrentTime: u32,
-    pub mManualDeltaInSeconds: f32,
-    pub mDeltaTime: f32,
-    pub mDeltaTimeUnTouched: f32,
-    pub mTimeInterval: f32,
-    pub mTimeIntervalAlt: f32,
-    pub mUpdateWorld: bool,
-    pub mGraphics: *mut gfc__Graphics,
-    pub mRenderer: *mut gfc__Renderer,
-    pub mUIRenderer: *mut gfc__UIRenderer,
-    pub mSceneViewport: gfc__Viewport,
-    pub mScreenViewport: gfc__Viewport,
-    pub mNewResolutionWidth: u16,
-    pub mNewResolutionHeight: u16,
-    pub mNewResolutionRefresh: u16,
-    pub mNewFullscreen: bool,
-    pub mMouse: gfc__AutoRef_gfc__InputDevice_,
-    pub mKeyboard: gfc__AutoRef_gfc__InputDevice_,
-    pub mJoystick: gfc__AutoRef_gfc__InputDevice_,
-    pub mJoystick2: gfc__AutoRef_gfc__InputDevice_,
-    pub mPrimaryInputIndex: i32,
-    pub mWorldMgr: gfc__AutoRef_gfc__WorldManager_,
-    pub mOverridenWorldMgr: gfc__AutoRef_gfc__WorldManager_,
-    pub mWorldMgrState: u8,
-    pub mLoadWorld: gfc__HString,
-    pub mLoadRegion: gfc__HString,
-    pub mLastActiveRegionIdx: i32,
-    pub mRenderThreadRunning: gfc__ThreadSafeBool,
-    pub mRenderThreadWaitFrame: u32,
-    pub mRenderThreadDone: gfc__Event,
-    pub mUpdateThreadDone: gfc__Event,
-    pub mActiveCamera: gfc__AutoRef_gfc__Camera3D_,
-    pub mDebugDraw: *mut gfc__OblivionGameDebug,
-    pub mPaused: i32,
-    pub mPauseDuration: f32,
-    pub mMinNearDistance: f32,
-    pub mDefaultPackageMarker: gfc__AutoRef_gfc__PackageMarker_,
-    pub mVideoIsQueued: bool,
-    pub mLockedQueue: bool,
-    pub mApplicationSuspended: bool,
-    pub mGraphicsSuspended: bool,
-    pub mGameSessionHasPlayer: bool,
-    pub mFailedScriptModules: gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_,
-    pub mWaitingForFailedScripts: bool,
-    pub mRenderThread: gfc__Thread,
-    pub mOverSampling: bool,
-    pub mShouldRestartMainMenu: bool,
-    pub mFirstAutoCatchStarted: bool,
-    pub mState: u8,
-    pub mPreview: bool,
-    pub mEnableCharacterControl: bool,
-    pub mGamepadUnplugged: bool,
-    pub mGameInBackground: bool,
-    pub mMusicPaused: bool,
-    pub mUnpluggedPause: bool,
-    pub mInBackgroundPause: bool,
-    pub mRumblePaused: bool,
-    pub mTitleScreenEnabled: bool,
-    pub mPlayerDiedToMonster: bool,
-    pub mGameCamera: gfc__AutoRef_gfc__GameCamera_,
-    pub mCachedCamera: gfc__AutoRef_gfc__GameCamera_,
-    pub mPlayerActor: gfc__AutoRef_gfc__Player_,
-    pub mInitPlayerActor: gfc__AutoRef_gfc__Player_,
-    pub mTimePlayed: u32,
-    pub mResetTime: u32,
-    pub mRichPresence: gfc__AutoRef_gfc__RichPresenceManager_,
-    pub mAchievements: gfc__AutoRef_gfc__Achievements_,
-    pub mBoss: gfc__AutoRef_gfc__Monster_,
-    pub mPreviousInput: *mut gfc__MoveInput,
-    pub mMoveStickDown: bool,
-    pub mStartDown: bool,
-    pub mBackDown: bool,
-    pub mBlockDownTime: f32,
-    pub mExit: bool,
-    pub mInEditor: bool,
-    pub mStoppingPreviewWorld: bool,
-    pub mExitingMediaSequence: bool,
-    pub mLastDPadState: i32,
-    pub mCurrentActivePad: i32,
-    pub mArmorLoadMarker: gfc__AutoRef_gfc__PackageMarker_,
-    pub mLoadState: gfc__Darksiders__LoadState,
-    pub mLogoMarker: gfc__AutoRef_gfc__PackageMarker_,
-    pub mUIMarker: gfc__AutoRef_gfc__PackageMarker_,
-    pub mGameMarker: gfc__AutoRef_gfc__PackageMarker_,
-    pub mLiquidRegionDescs: gfc__Vector_gfc__AutoRef_gfc__LiquidRegionDesc__0_gfc__CAllocator_,
-    pub mCurrentLanguage: u32,
-    pub mInsideLanguageSwitch: bool,
-    pub mOnRestartMainMenu: *mut unsafe extern "C" fn(_: *mut ()),
-    pub mpOnRestartMainMenuArg: *mut (),
-    pub mMinimizeGameWindow: *mut unsafe extern "C" fn(_: *mut ()),
-    pub mpMinimizeGameWindowArg: *mut (),
-    pub mAmazingSecretUnlocked: bool,
-    pub mSecretInputs: u64,
-    pub mSecretWindow: gfc__AutoRef_gfc___UIControl_,
-    pub mSecretTimer: f32,
-    pub mForceCutscenes: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
-}
-
-impl gfc__Darksiders {
-    pub fn as_gfc__OblivionGame_ptr(&self) -> *const gfc__OblivionGame {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__OblivionGame_mut_ptr(&mut self) -> *mut gfc__OblivionGame {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Darksiders____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: u32) -> *mut (),
-    pub onDraw: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onDrawUI: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPostDraw: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPreVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPostVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onStartup: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onShutdown: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onLoss: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onRecovery: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPreWorldDestroy: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onFinalizeDeoverrideWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onFinalizeWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPreUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub onPreUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub onUpdateWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32, _: f32),
-    pub onPostUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub onPostUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub getCharacterClass:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame) -> *mut gfc__Class,
-    pub startParticleMultithreadUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub waitParticleMultithreadUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub getCorePackages: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        _: *mut gfc__Vector_int_0_gfc__CAllocator_,
-    ),
-    pub setPaused: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub setMinimized: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub getFOV: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame) -> f32,
-    pub getNearDistance: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> f32,
-    pub getFarDistance: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> f32,
-    pub getCameraMatrix: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        result: *mut gfc__Matrix4,
-    ) -> *mut gfc__Matrix4,
-    pub getPlayerPosition: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        result: *mut gfc__TVector3_float_gfc__FloatMath_,
-        _: bool,
-    )
-        -> *mut gfc__TVector3_float_gfc__FloatMath_,
-    pub setResolution:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: u16, _: u16, _: u16, _: u16),
-    pub hasOverSamplingChanged: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame) -> bool,
-    pub setFullscreen: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub unloadWorldManagers: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub loadRegions: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        _: *const gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-        _: *const gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-        _: bool,
-    ),
-    pub playVideo: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        _: *const gfc__HString,
-        _: *mut gfc__Object,
-    ) -> bool,
-    pub stopVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub abortVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onCinematicStart:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: *mut gfc__Cinematic),
-    pub onCinematicStop:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: *mut gfc__Cinematic),
-    pub updateUI: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub updateProfile: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub updateInputDevices: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub cleanup: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub changeResolution:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: u16, _: u16, _: bool),
-    pub createWorldManager:
-        unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> *mut gfc__WorldManager,
-    pub initWorldManager: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub finalizeWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub loadConfigSettings: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub setupEnvSettings: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onFinalizePreviewWorld: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders),
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent___ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Camera3D_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__WorldManager {
-    pub __vfptr: *const gfc__WorldManager____vftable,
-    pub ReferenceCount: i32,
-    pub mWorld: gfc__AutoRef_gfc__World_,
-    pub mWorldState: gfc__WorldManager__WorldState,
-    pub mActiveRegionIdx: i32,
-    pub mActiveRegionIdxOverride: i32,
-    pub mNumRequired: i32,
-    pub mQueueLock: gfc__Mutex,
-    pub mQueue: gfc__Vector_gfc__WorldQueueItem___0_gfc__CAllocator_,
-    pub mCurrent: *mut gfc__WorldLoadRequest,
-    pub mGlobalRegionID: i32,
-    pub mNeedWorldAdd: bool,
-    pub mCheckUnloads: bool,
-    pub mShuttingDown: bool,
-    pub mInitialLoadDone: bool,
-    pub mInit: gfc__WorldManager__InitParams,
-}
-
-impl gfc__WorldManager {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__WorldManager____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__WorldManager),
-    pub loadRegions: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldManager,
-        _: *const gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-        _: *const gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-        _: bool,
-    ),
-    pub onRestore: unsafe extern "thiscall" fn(this: *mut gfc__WorldManager),
-    pub preAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__WorldManager),
-    pub postAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__WorldManager),
-    pub preRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__WorldManager),
-    pub setupInitialLoad: unsafe extern "thiscall" fn(
-        this: *mut gfc__WorldManager,
-        _: *mut gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-        _: i32,
-    ),
-}
-
-#[repr(C)]
-pub struct gfc__WorldManager__InitParams {
-    pub WorldName: gfc__HString,
-    pub StartRegion: gfc__HString,
-    pub Flags: u32,
-    pub HavokWorldExtents: gfc__TBox_float_gfc__FloatMath_,
-    pub VisualDebuggerPort: i32,
-    pub UseExtents: bool,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent___ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc___UIVisual_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent____0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent___,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__TUIEventBroadcaster_gfc__KeyboardEvent_ {
-    pub mDelegates:
-        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent____0_gfc__CAllocator_,
-}
-
-#[repr(C)]
-pub struct gfc__RegionLoadInfo {
-    pub RegionID: i32,
-    pub LayerID: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Variable_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__PackageMarker_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc___UIAction_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__InputDevice_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__KeyboardEvent {
-    pub mEventID: i32,
-    pub mContext: i32,
-    pub mSource: *mut gfc___UIControl,
-    pub mKeyCode: i32,
-    pub mChar: i8,
-    pub mShiftPressed: bool,
-    pub mCtrlPressed: bool,
-    pub mAltPressed: bool,
-    pub mStateChange: bool,
-}
-
-impl gfc__KeyboardEvent {
-    pub fn as_gfc___UIEvent_ptr(&self) -> *const gfc___UIEvent {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc___UIEvent_mut_ptr(&mut self) -> *mut gfc___UIEvent {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Hierarchical_gfc___UIControl_ {
-    pub __vfptr: *const gfc__Hierarchical_gfc___UIControl_____vftable,
-    pub mParent: *mut gfc___UIControl,
-    pub mHead: gfc__AutoRef_gfc___UIControl_,
-    pub mTail: gfc__AutoRef_gfc___UIControl_,
-    pub mNext: gfc__AutoRef_gfc___UIControl_,
-    pub mPrev: gfc__AutoRef_gfc___UIControl_,
-}
-
-#[repr(C)]
-pub struct gfc__Hierarchical_gfc___UIControl_____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: u32,
-    ) -> *mut (),
-    pub addFront: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub addBack: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub add: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
-    pub remove_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
-    pub added: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub removed: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub invalidateHierarchy:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Player_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__TUIEventBroadcaster_gfc__MouseEvent_ {
-    pub mDelegates:
-        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent____0_gfc__CAllocator_,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Achievements_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc__MouseEvent___ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent____0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc__KeyboardEvent___,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__World_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__FocusEvent {
-    pub mEventID: i32,
-    pub mContext: i32,
-    pub mSource: *mut gfc___UIControl,
-}
-
-impl gfc__FocusEvent {
-    pub fn as_gfc___UIEvent_ptr(&self) -> *const gfc___UIEvent {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc___UIEvent_mut_ptr(&mut self) -> *mut gfc___UIEvent {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__MediaManager_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent___ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__MouseEvent {
-    pub mEventID: i32,
-    pub mContext: i32,
-    pub mSource: *mut gfc___UIControl,
-    pub mLocation: gfc__TVector2_int_gfc__FloatMath_,
-    pub mButton: u8,
-    pub mClickCount: u8,
-    pub mScrollDelta: i32,
-    pub mShiftPressed: bool,
-    pub mCtrlPressed: bool,
-    pub mAltPressed: bool,
-}
-
-impl gfc__MouseEvent {
-    pub fn as_gfc___UIEvent_ptr(&self) -> *const gfc___UIEvent {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc___UIEvent_mut_ptr(&mut self) -> *mut gfc___UIEvent {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_ {
-    pub mData: *mut *mut gfc__VisScriptModule,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Helper {
-    pub __vfptr: *const gfc__Helper____vftable,
-    pub ReferenceCount: i32,
-    pub mIsIterating: bool,
-    pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
-    pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
-    pub mQueuedListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
-    pub mQueuedSystemListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
-}
-
-impl gfc__Helper {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__Helper____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
-    pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        result: *mut gfc__HString,
-    ) -> *mut gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-    pub init: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
-    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
-    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__Helper),
-}
-
-#[repr(C)]
-pub struct gfc__Helper__QueuedListenerInfo {
-    pub obj: gfc__AutoRef_gfc__Object_,
-    pub shouldAdd: bool,
-}
-
-#[repr(C)]
-pub struct gfc__OblivionGame {
-    pub __vfptr: *const gfc__OblivionGame____vftable,
-    __pdbindgen_padding: [u8; 4],
-    pub mpLocalGameSession: *mut unit4__LocalGameSession,
-    pub mpInputSystem: *mut keen__InputSystem,
-    pub mDisplayReady: bool,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mVideoEnabled: bool,
-    pub mMediaMgr: gfc__AutoRef_gfc__MediaManager_,
-    pub mStartTime: u32,
-    pub mCurrentTime: u32,
-    pub mManualDeltaInSeconds: f32,
-    pub mDeltaTime: f32,
-    pub mDeltaTimeUnTouched: f32,
-    pub mTimeInterval: f32,
-    pub mTimeIntervalAlt: f32,
-    pub mUpdateWorld: bool,
-    pub mGraphics: *mut gfc__Graphics,
-    pub mRenderer: *mut gfc__Renderer,
-    pub mUIRenderer: *mut gfc__UIRenderer,
-    pub mSceneViewport: gfc__Viewport,
-    pub mScreenViewport: gfc__Viewport,
-    pub mNewResolutionWidth: u16,
-    pub mNewResolutionHeight: u16,
-    pub mNewResolutionRefresh: u16,
-    pub mNewFullscreen: bool,
-    pub mMouse: gfc__AutoRef_gfc__InputDevice_,
-    pub mKeyboard: gfc__AutoRef_gfc__InputDevice_,
-    pub mJoystick: gfc__AutoRef_gfc__InputDevice_,
-    pub mJoystick2: gfc__AutoRef_gfc__InputDevice_,
-    pub mPrimaryInputIndex: i32,
-    pub mWorldMgr: gfc__AutoRef_gfc__WorldManager_,
-    pub mOverridenWorldMgr: gfc__AutoRef_gfc__WorldManager_,
-    pub mWorldMgrState: u8,
-    pub mLoadWorld: gfc__HString,
-    pub mLoadRegion: gfc__HString,
-    pub mLastActiveRegionIdx: i32,
-    pub mRenderThreadRunning: gfc__ThreadSafeBool,
-    pub mRenderThreadWaitFrame: u32,
-    pub mRenderThreadDone: gfc__Event,
-    pub mUpdateThreadDone: gfc__Event,
-    pub mActiveCamera: gfc__AutoRef_gfc__Camera3D_,
-    pub mDebugDraw: *mut gfc__OblivionGameDebug,
-    pub mPaused: i32,
-    pub mPauseDuration: f32,
-    pub mMinNearDistance: f32,
-    pub mDefaultPackageMarker: gfc__AutoRef_gfc__PackageMarker_,
-    pub mVideoIsQueued: bool,
-    pub mLockedQueue: bool,
-    pub mApplicationSuspended: bool,
-    pub mGraphicsSuspended: bool,
-    pub mGameSessionHasPlayer: bool,
-    pub mFailedScriptModules: gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_,
-    pub mWaitingForFailedScripts: bool,
-    pub mRenderThread: gfc__Thread,
-    pub mOverSampling: bool,
-}
-
-#[repr(C)]
-pub struct gfc__OblivionGame____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: u32) -> *mut (),
-    pub onDraw: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onDrawUI: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPostDraw: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPreVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPostVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onStartup: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onShutdown: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onLoss: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onRecovery: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPreWorldDestroy: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onFinalizeDeoverrideWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onFinalizeWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onPreUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub onPreUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub onUpdateWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32, _: f32),
-    pub onPostUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub onPostUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub getCharacterClass:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame) -> *mut gfc__Class,
-    pub startParticleMultithreadUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub waitParticleMultithreadUpdate: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub getCorePackages: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        _: *mut gfc__Vector_int_0_gfc__CAllocator_,
-    ),
-    pub setPaused: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub setMinimized: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub getFOV: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame) -> f32,
-    pub getNearDistance: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> f32,
-    pub getFarDistance: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> f32,
-    pub getCameraMatrix: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        result: *mut gfc__Matrix4,
-    ) -> *mut gfc__Matrix4,
-    pub getPlayerPosition: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        result: *mut gfc__TVector3_float_gfc__FloatMath_,
-        _: bool,
-    )
-        -> *mut gfc__TVector3_float_gfc__FloatMath_,
-    pub setResolution:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: u16, _: u16, _: u16, _: u16),
-    pub hasOverSamplingChanged: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame) -> bool,
-    pub setFullscreen: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub unloadWorldManagers: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub loadRegions: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        _: *const gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-        _: *const gfc__Vector_gfc__RegionLoadInfo_0_gfc__CAllocator_,
-        _: bool,
-    ),
-    pub playVideo: unsafe extern "thiscall" fn(
-        this: *mut gfc__OblivionGame,
-        _: *const gfc__HString,
-        _: *mut gfc__Object,
-    ) -> bool,
-    pub stopVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub abortVideo: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub onCinematicStart:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: *mut gfc__Cinematic),
-    pub onCinematicStop:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: *mut gfc__Cinematic),
-    pub updateUI: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub updateProfile: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub updateInputDevices: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32),
-    pub cleanup: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: bool),
-    pub changeResolution:
-        unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: u16, _: u16, _: bool),
-    pub createWorldManager:
-        unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> *mut gfc__WorldManager,
-    pub initWorldManager: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub finalizeWorld: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub loadConfigSettings: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-    pub setupEnvSettings: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent____0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent___,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent____0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent___,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc___UIAction_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__RichPresenceManager_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc___UIControl {
-    pub __vfptr: *const gfc___UIControl____vftable,
-    pub ReferenceCount: i32,
-    pub __vfptr_2: *const gfc__Hierarchical_gfc___UIControl_____vftable,
-    pub mParent: *mut gfc___UIControl,
-    pub mHead: gfc__AutoRef_gfc___UIControl_,
-    pub mTail: gfc__AutoRef_gfc___UIControl_,
-    pub mNext: gfc__AutoRef_gfc___UIControl_,
-    pub mPrev: gfc__AutoRef_gfc___UIControl_,
-    pub mID: i32,
-    pub mName: gfc__HString,
-    pub mOpacity: f32,
-    pub mContext: i32,
-    pub mWindowSize: i32,
-    pub mVisual: gfc__AutoRef_gfc___UIVisual_,
-    pub mClipMask: gfc__HString,
-    pub mIgnoreHideUI: bool,
-    pub mAnchorPoint: u8,
-    pub mAnchorRelativePoint: u8,
-    pub mAnchorRelativeCtrl: gfc__HString,
-    pub mAnchorRelSize: gfc__TVector2_float_gfc__FloatMath_,
-    pub mAnchorRelOffset: gfc__TVector2_float_gfc__FloatMath_,
-    pub OnEvent: gfc__TUIEventBroadcaster_gfc___UIEvent_,
-    pub OnAction: gfc__TUIEventBroadcaster_gfc___UIEvent_,
-    pub OnMouse: gfc__TUIEventBroadcaster_gfc__MouseEvent_,
-    pub OnKeyboard: gfc__TUIEventBroadcaster_gfc__KeyboardEvent_,
-    pub OnFocus: gfc__TUIEventBroadcaster_gfc__FocusEvent_,
-    pub mFlags: gfc__TFlags_unsigned_long_,
-    pub mLastVisibilityState: bool,
-    pub mPackageID: i32,
-    pub mIndents: gfc__TRect_float_,
-    pub mPosition: gfc__TVector2_float_gfc__FloatMath_,
-    pub mSize: gfc__TVector2_float_gfc__FloatMath_,
-    pub mAnchorOffset: gfc__TVector2_float_gfc__FloatMath_,
-    pub mRotation: f32,
-    pub mScale: gfc__TVector2_float_gfc__FloatMath_,
-    pub mLayoutManager: gfc__AutoRef_gfc__UILayoutManager_,
-    pub mLayoutHint: f32,
-    pub mCurrentActions: gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_,
-    pub mClipMaterial: gfc__AutoRef_gfc__Material_,
-    pub mOnInitCalledAlready: bool,
-    pub mFirstDraw: bool,
-    pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
-}
-
-impl gfc___UIControl {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
-    }
-
-    pub fn as_gfc__Hierarchical_gfc___UIControl__ptr(
-        &self,
-    ) -> *const gfc__Hierarchical_gfc___UIControl_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Hierarchical_gfc___UIControl__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Hierarchical_gfc___UIControl_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct gfc___UIControl____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: u32,
-    ) -> *mut (),
-    pub addFront: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub addBack: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub add: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
-    pub remove_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
-    pub added: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub removed: unsafe extern "thiscall" fn(
-        this: *mut gfc__Hierarchical_gfc___UIControl_,
-        _: *mut gfc___UIControl,
-    ),
-    pub invalidateHierarchy:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc___UIControl_),
-    pub getEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
-    pub setVisible: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
-    pub getVisible: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
-    pub setFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
-    pub getFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
-    pub setMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
-    pub getMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
-    pub setLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
-    pub getLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
-    pub setClipChildren: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
-    pub getClipChildren: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
-    pub setRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: bool),
-    pub getRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> bool,
-    pub setText: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *const gfc__WString),
-    pub setSize: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__TVector2_float_gfc__FloatMath_,
-    ),
-    pub setSizeValid: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__TVector2_float_gfc__FloatMath_,
-    ),
-    pub getSize: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__TVector2_float_gfc__FloatMath_,
-    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub getPreferredSize: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__TVector2_float_gfc__FloatMath_,
-    )
-        -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub setPosition: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__TVector2_float_gfc__FloatMath_,
-    ),
-    pub getPosition: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__TVector2_float_gfc__FloatMath_,
-    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub getAbsolutePosition:
-        unsafe extern "thiscall" fn(
-            this: *mut gfc___UIControl,
-            result: *mut gfc__TVector2_float_gfc__FloatMath_,
-        ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub setRotation: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
-    pub getRotation: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> f32,
-    pub setScale: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__TVector2_float_gfc__FloatMath_,
-    ),
-    pub getScale: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__TVector2_float_gfc__FloatMath_,
-    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub setLayoutManager: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: gfc__AutoRef_gfc__UILayoutManager_,
-    ),
-    pub getLayoutManager: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__AutoRef_gfc__UILayoutManager_,
-    )
-        -> *mut gfc__AutoRef_gfc__UILayoutManager_,
-    pub setLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
-    pub getLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc___UIControl) -> f32,
-    pub addAction:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc___UIAction_),
-    pub removeAction:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc___UIAction_),
-    pub clearAllActions: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub updateActions: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
-    pub invalidateLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub doAnchorLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub doLayout: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub setAnchorOffset: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: gfc__TVector2_float_gfc__FloatMath_,
-    ),
-    pub getAnchorOffset: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__TVector2_float_gfc__FloatMath_,
-    )
-        -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub draw: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *mut gfc__UIRenderer,
-        _: *mut gfc__TRect_long_,
-    ),
-    pub update: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: f32),
-    pub pick: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: gfc__TVector2_int_gfc__FloatMath_,
-        _: bool,
-    ) -> *mut gfc___UIControl,
-    pub getControlByID:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: i32) -> *mut gfc___UIControl,
-    pub getControlByName: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__HString,
-    ) -> *mut gfc___UIControl,
-    pub setControlText: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__HString,
-        _: *const gfc__WString,
-    ) -> bool,
-    pub setControlTextA: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__HString,
-        _: *const gfc__String,
-    ) -> bool,
-    pub setControlVisible: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__HString,
-        _: bool,
-    ) -> bool,
-    pub setControlEnabled: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *const gfc__HString,
-        _: bool,
-    ) -> bool,
-    pub processMouseEvent:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__MouseEvent),
-    pub processKeyboardEvent:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__KeyboardEvent),
-    pub processFocusEvent:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__FocusEvent),
-    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub onReInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub onDeInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub onVisibilityLost: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub setDialogResults:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: gfc__AutoRef_gfc__Value_),
-    pub getLastDialogResult: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        _: *mut gfc__AutoRef_gfc__Value_,
-    ) -> bool,
-    pub unregisterToolTipEvent: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub getInputListener: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__AutoRef_gfc___UIControl_,
-    ) -> *mut gfc__AutoRef_gfc___UIControl_,
-    pub initControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub postInitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub deinitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub reinitControl: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub doInit: unsafe extern "thiscall" fn(this: *mut gfc___UIControl),
-    pub drawInternal:
-        unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc__UIRenderer),
-    pub getAnchorPosition: unsafe extern "thiscall" fn(
-        this: *mut gfc___UIControl,
-        result: *mut gfc__TVector2_float_gfc__FloatMath_,
-        _: *mut gfc___UIControl,
-        _: u8,
-    )
-        -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub getGlobalScale: unsafe extern "thiscall" fn(
-        this: *const gfc___UIControl,
-        result: *mut gfc__TVector2_float_gfc__FloatMath_,
-    )
-        -> *mut gfc__TVector2_float_gfc__FloatMath_,
-    pub getParentSize: unsafe extern "thiscall" fn(
-        this: *const gfc___UIControl,
-        _: *mut gfc__TVector2_float_gfc__FloatMath_,
-    ),
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__UILayoutManager_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__WorldManager_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__Monster_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__TUIEventBroadcaster_gfc__FocusEvent_ {
-    pub mDelegates:
-        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent____0_gfc__CAllocator_,
-}
-
-#[repr(C)]
-pub struct gfc___UIEvent {
-    pub mEventID: i32,
-    pub mContext: i32,
-    pub mSource: *mut gfc___UIControl,
-}
-
-#[repr(C)]
-pub struct gfc__TUIEventBroadcaster_gfc___UIEvent_ {
-    pub mDelegates:
-        gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc___UIEvent____0_gfc__CAllocator_,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__LiquidRegionDesc__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__LiquidRegionDesc_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__Helper__QueuedListenerInfo,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__WorldQueueItem___0_gfc__CAllocator_ {
-    pub mData: *mut *mut gfc__WorldQueueItem,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__GameCamera_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct unit4__LocalGameSession {
-    pub m_pSaveDataInterface: *mut unit4__SaveDataDescriptionInterface,
-    pub m_pSaveDataHandler: *mut keen__SaveDataHandler,
-    pub m_pUserAccountSystem: *mut keen__UserAccountSystem,
-    pub m_pSystemServices: *mut unit4__SystemServices,
-    pub m_pInputSystem: *mut keen__InputSystem,
-    pub m_showingSignInUi: bool,
-    pub m_userData: keen__Array_unit4__LocalGameSession__LocalUserData_,
-    pub m_userAccountOperationHandle: u32,
-    pub m_lastUsedControllerInfo: keen__ControllerInfo,
-    pub m_lastInteractionStartedBy: unit4__LocalGameSession__InteractionStarter,
-}
-
-#[repr(C)]
-pub struct unit4__LocalGameSession__LocalUserData {
-    pub skippedSignIn: bool,
-    pub hasExpectedUserId: bool,
-    pub expectedUser: keen__UserAccount,
-    pub state: unit4__LocalGameSession__LocalUserState,
-    pub stateBeforeProfileChange: unit4__LocalGameSession__LocalUserState,
-    pub playerType: unit4__LocalPlayerType,
-    pub saveProfileIndex: u32,
-    pub controllerDisconnected: bool,
-}
-
-#[repr(C)]
-pub struct unit4__SaveDataDescriptionInterface {
-    pub __vfptr: *const unit4__SaveDataDescriptionInterface____vftable,
-}
-
-#[repr(C)]
-pub struct unit4__SaveDataDescriptionInterface____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut unit4__SaveDataDescriptionInterface,
-        _: u32,
-    ) -> *mut (),
-    pub getSaveDataSize:
-        unsafe extern "thiscall" fn(this: *const unit4__SaveDataDescriptionInterface) -> u32,
-    pub isSaveDataValid: unsafe extern "thiscall" fn(
-        this: *mut unit4__SaveDataDescriptionInterface,
-        _: *const (),
-    ) -> bool,
-    pub initializeSaveDataToDefault:
-        unsafe extern "thiscall" fn(this: *mut unit4__SaveDataDescriptionInterface, _: *mut ()),
-}
-
-#[repr(C)]
-pub struct keen__Array_unit4__LocalGameSession__LocalUserData_ {
-    pub m_pData: *mut unit4__LocalGameSession__LocalUserData,
-    pub m_size: u32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpActionListener___ {
-    pub m_data: *mut *mut hkpActionListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkJobQueue__CustomJobTypeSetup_ {
-    pub m_data: *mut hkJobQueue__CustomJobTypeSetup,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpWorldExtension___ {
-    pub m_data: *mut *mut hkpWorldExtension,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpIslandPostIntegrateListener___ {
-    pub m_data: *mut *mut hkpIslandPostIntegrateListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpContactImpulseLimitBreachedListener___ {
-    pub m_data: *mut *mut hkpContactImpulseLimitBreachedListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpConstraintListener___ {
-    pub m_data: *mut *mut hkpConstraintListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpIslandPostCollideListener___ {
-    pub m_data: *mut *mut hkpIslandPostCollideListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpWorldPostCollideListener___ {
-    pub m_data: *mut *mut hkpWorldPostCollideListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkMemoryAllocator__MemoryStatistics {
-    pub m_allocated: i32,
-    pub m_inUse: i32,
-    pub m_peakInUse: i32,
-    pub m_available: i32,
-    pub m_totalAvailable: i32,
-    pub m_largestBlock: i32,
-}
-
-#[repr(C)]
-pub struct hkPadSpu_float_ {
-    pub m_storage: f32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_unsigned_char_ {
-    pub m_data: *mut u8,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkpPhantomOverlapListener {
-    pub __vfptr: *const hkpPhantomOverlapListener____vftable,
-}
-
-#[repr(C)]
-pub struct hkpPhantomOverlapListener____vftable {
-    pub collidableAddedCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpPhantomOverlapListener,
-        _: *const hkpCollidableAddedEvent,
-    ),
-    pub collidableRemovedCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpPhantomOverlapListener,
-        _: *const hkpCollidableRemovedEvent,
-    ),
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpPhantomOverlapListener, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpWorldPostIntegrateListener___ {
-    pub m_data: *mut *mut hkpWorldPostIntegrateListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpWorldPostSimulationListener___ {
-    pub m_data: *mut *mut hkpWorldPostSimulationListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkSmallArray_hkpEntityListener___ {
-    pub m_data: *mut *mut hkpEntityListener,
-    pub m_size: u16,
-    pub m_capacityAndFlags: u16,
-}
-
-#[repr(C)]
-pub struct hkSimplePropertyValue {
-    pub m_data: u64,
-}
-
-#[repr(C)]
-pub struct hkpShapeCollectionFilter {
-    pub __vfptr: *const hkpShapeCollectionFilter____vftable,
-}
-
-#[repr(C)]
-pub struct hkpShapeCollectionFilter____vftable {
-    pub isCollisionEnabled: unsafe extern "thiscall" fn(
-        this: *const hkpShapeCollectionFilter,
-        result: *mut hkBool,
-        _: *const hkpCollisionInput,
-        _: *const hkpCdBody,
-        _: *const hkpCdBody,
-        _: *const hkpShapeContainer,
-        _: *const hkpShapeContainer,
-        _: u32,
-        _: u32,
-    ) -> *mut hkBool,
-    pub isCollisionEnabled_2: unsafe extern "thiscall" fn(
-        this: *const hkpShapeCollectionFilter,
-        result: *mut hkBool,
-        _: *const hkpCollisionInput,
-        _: *const hkpCdBody,
-        _: *const hkpCdBody,
-        _: *const hkpShapeContainer,
-        _: u32,
-    ) -> *mut hkBool,
-    pub numShapeKeyHitsLimitBreached: unsafe extern "thiscall" fn(
-        this: *const hkpShapeCollectionFilter,
-        _: *const hkpCollisionInput,
-        _: *const hkpCdBody,
-        _: *const hkpCdBody,
-        _: *const hkpBvTreeShape,
-        _: *mut hkAabb,
-        _: *mut u32,
-        _: i32,
-    ) -> i32,
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpShapeCollectionFilter, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct hkpEntity__ExtendedListeners {
-    pub m_activationListeners: hkSmallArray_hkpEntityActivationListener___,
-    pub m_entityListeners: hkSmallArray_hkpEntityListener___,
-}
-
-#[repr(C)]
-pub struct hkpEntity__SpuCollisionCallback {
-    pub m_util: *mut hkSpuCollisionCallbackUtil,
-    pub m_capacity: u16,
-    pub m_eventFilter: u8,
-    pub m_userFilter: u8,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpWorldExtension___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpWorldExtension,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpWorldExtension___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpWorldExtension____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpWorldExtension___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpWorldExtension____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpWorldExtension___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std___Allocator_base_std__pair_gfc__String_const__gfc__StateMapValue___ {
-    __pdbindgen_padding: [u8; 1],
-}
-
-#[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-    __pdbindgen_padding: [u8; 1],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
-    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Mysize: u32,
-    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_,
-    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___,
-}
-
-impl std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-    pub fn as_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0__ptr(&self) -> *const std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0__mut_ptr(&mut self) -> *mut std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
-{
-    __pdbindgen_padding: [u8; 1],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
-}
-
-impl std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_ {
-    pub fn as_std___Container_base0_ptr(&self) -> *const std___Container_base0 {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___ {
-    __pdbindgen_padding: [u8; 1],
-}
-
-impl std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___ {
-    pub fn as_std___Allocator_base_std__pair_gfc__String_const__gfc__StateMapValue____ptr(
-        &self,
-    ) -> *const std___Allocator_base_std__pair_gfc__String_const__gfc__StateMapValue___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std__pair_gfc__String_const__gfc__StateMapValue____mut_ptr(
-        &mut self,
-    ) -> *mut std___Allocator_base_std__pair_gfc__String_const__gfc__StateMapValue___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_
-{
-    __pdbindgen_padding: [u8; 1],
-}
-
-#[repr(C)]
-pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-    __pdbindgen_padding: [u8; 1],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
-    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Mysize: u32,
-    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_,
-    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___,
-}
-
-impl std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0____ptr(&self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0____mut_ptr(&mut self) -> *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_
-{
-    __pdbindgen_padding: [u8; 1],
-}
-
-impl std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_ {
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node__ptr(&self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node__mut_ptr(&mut self) -> *mut std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-    __pdbindgen_padding: [u8; 1],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
-    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Mysize: u32,
-    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_,
-    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___,
-}
-
-impl std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0____ptr(&self) -> *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0____mut_ptr(&mut self) -> *mut std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node {
-    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
-    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
-    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
-    pub _Myval: std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent___,
-    pub _Color: i8,
-    pub _Isnil: i8,
-}
-
-#[repr(C)]
-pub struct std__map_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue_____ {
-    __pdbindgen_padding: [u8; 1],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
-    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Mysize: u32,
-    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_,
-    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___,
-}
-
-impl std__map_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue_____ {
-    pub fn as_std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0____ptr(&self) -> *const std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0____mut_ptr(&mut self) -> *mut std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct std___Pair_base_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent___ {
-    pub first: *mut gfc__Class,
-    pub second: gfc__AutoRef_gfc__WorldComponent_,
-}
-
-#[repr(C)]
-pub struct std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent___ {
-    pub first: *mut gfc__Class,
-    pub second: gfc__AutoRef_gfc__WorldComponent_,
-}
-
-impl std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent___ {
-    pub fn as_std___Pair_base_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent____ptr(
-        &self,
-    ) -> *const std___Pair_base_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Pair_base_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent____mut_ptr(
-        &mut self,
-    ) -> *mut std___Pair_base_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkSmallArray_hkConstraintInternal_ {
-    pub m_data: *mut hkConstraintInternal,
-    pub m_size: u16,
-    pub m_capacityAndFlags: u16,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpWorldPostIntegrateListener___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpWorldPostIntegrateListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpWorldPostIntegrateListener___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpWorldPostIntegrateListener____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpWorldPostIntegrateListener___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpWorldPostIntegrateListener____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpWorldPostIntegrateListener___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkArray_hkpWorldPostSimulationListener___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpWorldPostSimulationListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpWorldPostSimulationListener___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpWorldPostSimulationListener____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpWorldPostSimulationListener___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpWorldPostSimulationListener____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpWorldPostSimulationListener___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpSimpleContactConstraintDataInfo {
-    pub m_flags: u16,
-    pub m_biNormalAxis: u16,
-    pub m_rollingFrictionMultiplier: hkHalf,
-    pub m_internalData1: hkHalf,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_rhsRolling: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 4],
-    pub m_contactRadius: f32,
-    pub m_data: [f32; 4],
-}
-
-#[repr(C)]
-pub struct hkpSimpleContactConstraintAtom {
-    pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
-    pub m_sizeOfAllAtoms: u16,
-    pub m_numContactPoints: u16,
-    pub m_numReservedContactPoints: u16,
-    pub m_numUserDatasForBodyA: u8,
-    pub m_numUserDatasForBodyB: u8,
-    pub m_contactPointPropertiesStriding: u8,
-    pub m_maxNumContactPoints: u16,
-    pub m_info: hkpSimpleContactConstraintDataInfo,
-}
-
-impl hkpSimpleContactConstraintAtom {
-    pub fn as_hkpConstraintAtom_ptr(&self) -> *const hkpConstraintAtom {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpConstraintAtom_mut_ptr(&mut self) -> *mut hkpConstraintAtom {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpRayShapeCollectionFilter {
-    pub __vfptr: *const hkpRayShapeCollectionFilter____vftable,
-}
-
-#[repr(C)]
-pub struct hkpRayShapeCollectionFilter____vftable {
-    pub isCollisionEnabled: unsafe extern "thiscall" fn(
-        this: *const hkpRayShapeCollectionFilter,
-        result: *mut hkBool,
-        _: *const hkpShapeRayCastInput,
-        _: *const hkpShapeContainer,
-        _: u32,
-    ) -> *mut hkBool,
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpRayShapeCollectionFilter, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct List_gfc__AutoRef_gfc__WorldObject___ {
-    pub mList: *mut List_gfc__AutoRef_gfc__WorldObject_____ListNode,
-    pub mTail: *mut List_gfc__AutoRef_gfc__WorldObject_____ListNode,
-    pub mSize: i32,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpPhantomOverlapListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpPhantomOverlapListener____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpPhantomOverlapListener___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpPhantomOverlapListener____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpPhantomOverlapListener___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpCollidableRemovedEvent {
-    pub m_phantom: *const hkpPhantom,
-    pub m_collidable: *const hkpCollidable,
-    pub m_collidableWasAdded: hkBool,
-}
-
-#[repr(C)]
-pub struct hkSmallArray_hkpAction___ {
-    pub m_data: *mut *mut hkpAction,
-    pub m_size: u16,
-    pub m_capacityAndFlags: u16,
-}
-
-#[repr(C)]
-pub struct hkpLinkedCollidable {
-    pub m_shape: *const hkpShape,
-    pub m_shapeKey: u32,
-    pub m_motion: *const (),
-    pub m_parent: *const hkpCdBody,
-    pub m_ownerOffset: i8,
-    pub m_forceCollideOntoPpu: u8,
-    pub m_shapeSizeOnSpu: u16,
-    pub m_broadPhaseHandle: hkpTypedBroadPhaseHandle,
-    pub m_boundingVolumeData: hkpCollidable__BoundingVolumeData,
-    pub m_allowedPenetrationDepth: f32,
-    pub m_collisionEntries: hkArray_hkpLinkedCollidable__CollisionEntry_hkContainerHeapAllocator_,
-}
-
-impl hkpLinkedCollidable {
-    pub fn as_hkpCollidable_ptr(&self) -> *const hkpCollidable {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpCollidable_mut_ptr(&mut self) -> *mut hkpCollidable {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpLinkedCollidable__CollisionEntry {
-    pub m_agentEntry: *mut hkpAgentNnEntry,
-    pub m_partner: *mut hkpLinkedCollidable,
-}
-
-#[repr(C)]
-pub struct hkpProcessCollisionOutput__PotentialInfo {
-    pub m_firstFreePotentialContact: *mut hkpProcessCollisionOutput__ContactRef,
-    pub m_firstFreeRepresentativeContact: *mut *mut hkpProcessCdPoint,
-    pub m_representativeContacts: [*mut hkpProcessCdPoint; 256],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_potentialContacts: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 3072],
-}
-
-#[repr(C)]
-pub struct hkpProcessCollisionOutput__ContactRef {
-    pub m_contactPoint: *mut hkpProcessCdPoint,
-    pub m_agentEntry: *mut hkpAgentEntry,
-    pub m_agentData: *mut (),
-}
-
-#[repr(C)]
-pub struct hkArray_hkpConstraintListener___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpConstraintListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpConstraintListener___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpConstraintListener____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpConstraintListener___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpConstraintListener____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpConstraintListener___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkArray_int_hkContainerHeapAllocator___ {
-    pub m_data: *mut hkArray_int_hkContainerHeapAllocator_,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_unsigned_short_ {
-    pub m_data: *mut u16,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpAction___ {
-    pub m_data: *mut *mut hkpAction,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpContactImpulseLimitBreachedListener___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpContactImpulseLimitBreachedListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpContactImpulseLimitBreachedListener___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpContactImpulseLimitBreachedListener____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpContactImpulseLimitBreachedListener___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpContactImpulseLimitBreachedListener____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpContactImpulseLimitBreachedListener___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpMaxSizeMotion {
-    pub __vfptr: *const hkpMaxSizeMotion____vftable,
-    pub m_memSizeAndRefCount: u32,
-    pub m_type: hkEnum_enum_hkpMotion__MotionType_unsigned_char_,
-    pub m_deactivationIntegrateCounter: u8,
-    pub m_deactivationNumInactiveFrames: [u16; 2],
-    pub m_motionState: hkMotionState,
-    pub m_inertiaAndMassInv: hkVector4f,
-    pub m_linearVelocity: hkVector4f,
-    pub m_angularVelocity: hkVector4f,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_deactivationRefPosition: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 32],
-    pub m_deactivationRefOrientation: [u32; 2],
-    pub m_savedMotion: *mut hkpMaxSizeMotion,
-    pub m_savedQualityTypeIndex: u16,
-    pub m_gravityFactor: hkHalf,
-}
-
-impl hkpMaxSizeMotion {
-    pub fn as_hkpKeyframedRigidMotion_ptr(&self) -> *const hkpKeyframedRigidMotion {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpKeyframedRigidMotion_mut_ptr(&mut self) -> *mut hkpKeyframedRigidMotion {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpMaxSizeMotion____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-    pub setMass: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkSimdFloat32),
-    pub setMass_2: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32),
-    pub setMassInv: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkSimdFloat32),
-    pub setMassInv_2: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32),
-    pub getInertiaLocal: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub getInertiaWorld: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub setInertiaLocal: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkMatrix3f),
-    pub setInertiaInvLocal: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkMatrix3f),
-    pub getInertiaInvLocal: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub getInertiaInvWorld: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub setCenterOfMassInLocal:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub setPosition: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub setRotation: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkQuaternionf),
-    pub setPositionAndRotation: unsafe extern "thiscall" fn(
-        this: *mut hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkQuaternionf,
-    ),
-    pub setTransform: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkTransformf),
-    pub setLinearVelocity: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub setAngularVelocity: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub getProjectedPointVelocity: unsafe extern "thiscall" fn(
-        this: *const hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-        _: *mut f32,
-        _: *mut f32,
-    ),
-    pub getProjectedPointVelocitySimd: unsafe extern "thiscall" fn(
-        this: *const hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-        _: *mut hkSimdFloat32,
-        _: *mut hkSimdFloat32,
-    ),
-    pub applyLinearImpulse: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub applyPointImpulse: unsafe extern "thiscall" fn(
-        this: *mut hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-    ),
-    pub applyAngularImpulse:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub applyForce: unsafe extern "thiscall" fn(
-        this: *mut hkpMotion,
-        _: f32,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-    ),
-    pub applyForce_2:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32, _: *const hkVector4f),
-    pub applyTorque:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32, _: *const hkVector4f),
-    pub getMotionStateAndVelocitiesAndDeactivationType:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *mut hkpMotion),
-    pub setStepPosition:
-        unsafe extern "thiscall" fn(this: *mut hkpKeyframedRigidMotion, _: f32, _: f32),
-    pub setStoredMotion:
-        unsafe extern "thiscall" fn(this: *mut hkpKeyframedRigidMotion, _: *mut hkpMaxSizeMotion),
-}
-
-#[repr(C)]
-pub struct hkpTypedBroadPhaseHandle {
-    pub m_id: u32,
-    pub m_type: i8,
-    pub m_ownerOffset: i8,
-    pub m_objectQualityType: i8,
-    pub m_collisionFilterInfo: u32,
-}
-
-impl hkpTypedBroadPhaseHandle {
-    pub fn as_hkpBroadPhaseHandle_ptr(&self) -> *const hkpBroadPhaseHandle {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpBroadPhaseHandle_mut_ptr(&mut self) -> *mut hkpBroadPhaseHandle {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkInplaceArray_unsigned_char_8_hkContainerHeapAllocator_ {
-    pub m_data: *mut u8,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-    pub m_storage: [u8; 8],
-}
-
-impl hkInplaceArray_unsigned_char_8_hkContainerHeapAllocator_ {
-    pub fn as_hkArray_unsigned_char_hkContainerHeapAllocator__ptr(
-        &self,
-    ) -> *const hkArray_unsigned_char_hkContainerHeapAllocator_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArray_unsigned_char_hkContainerHeapAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut hkArray_unsigned_char_hkContainerHeapAllocator_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkpCollidable__BoundingVolumeData {
-    pub m_min: [u32; 3],
-    pub m_expansionMin: [u8; 3],
-    pub m_expansionShift: u8,
-    pub m_max: [u32; 3],
-    pub m_expansionMax: [u8; 3],
-    pub m_padding: u8,
-    pub m_numChildShapeAabbs: u16,
-    pub m_capacityChildShapeAabbs: u16,
-    pub m_childShapeAabbs: *mut hkAabbUint32,
-    pub m_childShapeKeys: *mut u32,
-}
-
-#[repr(C)]
-pub struct hkpContactListener {
-    pub __vfptr: *const hkpContactListener____vftable,
-}
-
-#[repr(C)]
-pub struct hkpContactListener____vftable {
-    pub contactPointCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *const hkpContactPointEvent),
-    pub collisionAddedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *const hkpCollisionEvent),
-    pub collisionRemovedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *const hkpCollisionEvent),
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: u32) -> *mut (),
-    pub contactPointAddedCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpContactListener,
-        _: *mut hkpContactPointAddedEvent,
-    ),
-    pub contactPointRemovedCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpContactListener,
-        _: *mut hkpContactPointRemovedEvent,
-    ),
-    pub contactProcessCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *mut hkpContactProcessEvent),
-}
-
-#[repr(C)]
-pub struct hkJobQueue__JobQueueEntryInput {
-    pub m_jobPriority: hkPadSpu_unsigned_int_,
-    __pdbindgen_padding: [u8; 12],
-    pub m_job: hkJobQueue__JobQueueEntry,
-}
-
-#[repr(C)]
-pub struct hkJobQueue__JobQueueEntry {
-    pub m_jobSubType: u8,
-    pub m_jobType: hkEnum_enum_hkJobType_unsigned_char_,
-    pub m_jobSpuType: hkEnum_enum_hkJobSpuType_unsigned_char_,
-    pub m_size: u16,
-    pub m_threadAffinity: i16,
-    __pdbindgen_padding: [u8; 8],
-    pub m_data: [u8; 112],
-}
-
-impl hkJobQueue__JobQueueEntry {
-    pub fn as_hkJob_ptr(&self) -> *const hkJob {
-        self as *const _ as _
-    }
-
-    pub fn as_hkJob_mut_ptr(&mut self) -> *mut hkJob {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkSmallArray_hkpEntityActivationListener___ {
-    pub m_data: *mut *mut hkpEntityActivationListener,
-    pub m_size: u16,
-    pub m_capacityAndFlags: u16,
-}
-
-#[repr(C)]
-pub struct hkpAgentNnSector {
-    pub m_data: [u8; 512],
-}
-
-#[repr(C)]
-pub struct hkArray_hkpContactListener___hkContainerHeapAllocator_ {
-    pub m_data: *mut *mut hkpContactListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkpContactListener___hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpContactListener____ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpContactListener___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpContactListener____mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpContactListener___ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpContactListener___ {
-    pub m_data: *mut *mut hkpContactListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkGskCache16 {
-    pub m_vertices: [u16; 4],
-    pub m_dimA: u8,
-    pub m_dimB: u8,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_maxDimA: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_maxDimB: compile_error!("unimplemented feature: type kind 0x1205"),
-    __pdbindgen_padding: [u8; 1],
-    pub m_gskFlags: u8,
-    __pdbindgen_padding_2: [u8; 4],
-}
-
-impl hkGskCache16 {
-    pub fn as_hkpGskCache_ptr(&self) -> *const hkpGskCache {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpGskCache_mut_ptr(&mut self) -> *mut hkpGskCache {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkArray_hkJobQueue__CustomJobTypeSetup_hkContainerHeapAllocator_ {
-    pub m_data: *mut hkJobQueue__CustomJobTypeSetup,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-impl hkArray_hkJobQueue__CustomJobTypeSetup_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkJobQueue__CustomJobTypeSetup__ptr(
-        &self,
-    ) -> *const hkArrayBase_hkJobQueue__CustomJobTypeSetup_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkJobQueue__CustomJobTypeSetup__mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkJobQueue__CustomJobTypeSetup_ {
-        self as *mut _ as _
-    }
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpIslandActivationListener___ {
-    pub m_data: *mut *mut hkpIslandActivationListener,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkViewPtr_hkpConstraintInstance___ {
-    pub m_data: *mut hkViewPtr_hkpConstraintInstance_,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkAabbUint32 {
-    pub m_min: [u32; 3],
-    pub m_expansionMin: [u8; 3],
-    pub m_expansionShift: u8,
-    pub m_max: [u32; 3],
-    pub m_expansionMax: [u8; 3],
-    pub m_shapeKeyByte: u8,
 }

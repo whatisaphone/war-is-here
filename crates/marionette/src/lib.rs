@@ -21,6 +21,7 @@ mod commands;
 mod control;
 mod darksiders1;
 mod hooks;
+mod library;
 mod utils;
 
 #[no_mangle]

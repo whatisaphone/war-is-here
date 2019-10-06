@@ -18,6 +18,7 @@ pdbindgen \
     -i '^gfc::WorldRegion$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::KGGraphics,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGMeshCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Object3DCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
@@ -28,14 +29,20 @@ pdbindgen \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
+    -i '^gfc::ByteInputStream::~?ByteInputStream$' \
     -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::HString::~?HString$' \
     -i '^gfc::HString::c_str$' \
+    -i '^gfc::KGGraphics::createStaticMesh$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::MBSubMesh::MBSubMesh$' \
+    -i '^gfc::MeshBuilder::MeshBuilder$' \
     -i '^gfc::MeshCache::getStaticMesh$' \
+    -i '^gfc::MeshCache::loadMesh$' \
+    -i '^gfc::MeshReader::MeshReader$' \
     -i '^gfc::MeshReader::readObject$' \
     -i '^gfc::Object3DCache::get$' \
     -i '^gfc::ObjectWriter::~?ObjectWriter$' \
@@ -46,6 +53,7 @@ pdbindgen \
     -i '^gfc::ResourceCache::getResource$' \
     -i '^gfc::StaticObject::setObjectName$' \
     -i '^gfc::StaticObject::setPackageName$' \
+    -i '^gfc::String::~?String$' \
     -i '^gfc::TeleportHelper::warpToMap$' \
     -i '^gfc::WindowHelper::pushWindow$' \
     -i '^gfc::World::getRegion$' \

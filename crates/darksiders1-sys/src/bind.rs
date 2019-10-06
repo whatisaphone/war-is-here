@@ -22,6 +22,7 @@ pub unsafe fn bind(args: &BindArgs) {
         data,
         gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
     );
+    bind!(data, gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle);
     bind!(
         data,
         gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
@@ -29,9 +30,12 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
+    bind!(text, gfc__MeshReader__MeshReader);
     bind!(text, gfc__MeshCache__getStaticMesh);
+    bind!(text, gfc__MBSubMesh__MBSubMesh);
     bind!(text, gfc__MeshCache__getStaticMesh_2);
     bind!(text, gfc__MeshReader__readObject);
+    bind!(text, gfc__MeshCache__loadMesh);
     bind!(
         text,
         gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_
@@ -88,6 +92,10 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__MemFree);
     bind!(text, gfc__MemAlloc);
     bind!(text, gfc__ObjectWriter__ObjectWriter);
+    bind!(text, gfc__ByteInputStream___ByteInputStream);
+    bind!(text, gfc__ByteInputStream__ByteInputStream);
+    bind!(text, gfc__ByteInputStream__ByteInputStream_2);
+    bind!(text, gfc__ByteInputStream__ByteInputStream_3);
     bind!(text, gfc__ByteOutputStream__ByteOutputStream);
     bind!(text, gfc__ByteOutputStream___ByteOutputStream);
     bind!(text, gfc__ByteOutputStream__ByteOutputStream_2);
@@ -104,8 +112,17 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__LoadMapMenu__LoadMapMenu);
     bind!(text, gfc__WindowHelper__pushWindow);
     bind!(text, gfc__TeleportHelper__warpToMap);
+    bind!(text, gfc__KGGraphics__createStaticMesh);
+    bind!(text, gfc__KGGraphics__createStaticMesh_2);
+    bind!(text, gfc__MeshBuilder__MeshBuilder);
     bind!(text, operator_new_2);
     bind!(text, operator_new_3);
     bind!(text, operator_new_4);
+    bind!(text, gfc__String__String);
+    bind!(text, gfc__String___String);
+    bind!(text, gfc__String__String_2);
+    bind!(text, gfc__String__String_3);
+    bind!(text, gfc__String__String_4);
+    bind!(text, gfc__String__String_5);
     bind!(text, operator_new_5);
 }

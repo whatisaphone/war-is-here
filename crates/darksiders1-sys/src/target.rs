@@ -45,13 +45,17 @@ symbols! {
     pub static gfc__TriggerRegion___Class;
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
+    pub static gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle;
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+    pub fn gfc__MeshReader__MeshReader;
     pub fn gfc__MeshCache__getStaticMesh;
+    pub fn gfc__MBSubMesh__MBSubMesh;
     pub fn gfc__MeshCache__getStaticMesh_2;
     pub fn gfc__MeshReader__readObject;
+    pub fn gfc__MeshCache__loadMesh;
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_;
     pub fn gfc__OblivionGame__getWorld;
     pub fn gfc__OmniLight__setStaticOnly;
@@ -99,6 +103,10 @@ symbols! {
     pub fn gfc__MemFree;
     pub fn gfc__MemAlloc;
     pub fn gfc__ObjectWriter__ObjectWriter;
+    pub fn gfc__ByteInputStream___ByteInputStream;
+    pub fn gfc__ByteInputStream__ByteInputStream;
+    pub fn gfc__ByteInputStream__ByteInputStream_2;
+    pub fn gfc__ByteInputStream__ByteInputStream_3;
     pub fn gfc__ByteOutputStream__ByteOutputStream;
     pub fn gfc__ByteOutputStream___ByteOutputStream;
     pub fn gfc__ByteOutputStream__ByteOutputStream_2;
@@ -115,8 +123,17 @@ symbols! {
     pub fn gfc__LoadMapMenu__LoadMapMenu;
     pub fn gfc__WindowHelper__pushWindow;
     pub fn gfc__TeleportHelper__warpToMap;
+    pub fn gfc__KGGraphics__createStaticMesh;
+    pub fn gfc__KGGraphics__createStaticMesh_2;
+    pub fn gfc__MeshBuilder__MeshBuilder;
     pub fn operator_new_2;
     pub fn operator_new_3;
     pub fn operator_new_4;
+    pub fn gfc__String__String;
+    pub fn gfc__String___String;
+    pub fn gfc__String__String_2;
+    pub fn gfc__String__String_3;
+    pub fn gfc__String__String_4;
+    pub fn gfc__String__String_5;
     pub fn operator_new_5;
 }
