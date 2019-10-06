@@ -3,6 +3,18 @@
 use super::{types::*, types3::*};
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__MeshBuilder_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__MBSubMesh_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_ {
     pub mData: *mut gfc__MeshCache__ReloadInfo,
     pub mSize: i32,
@@ -8356,66 +8368,4 @@ pub struct keen__DownsampleDepthContext {
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub vertexData: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding: [u8; 24],
-}
-
-#[repr(C)]
-pub struct keen__CombinedGraphicsStateObjectPool {
-    pub m_blendStatePool: keen__GraphicsStateObjectPool_keen__BlendState_,
-    pub m_rasterizerStatePool: keen__GraphicsStateObjectPool_keen__RasterizerState_,
-    pub m_samplerStatePool: keen__GraphicsStateObjectPool_keen__SamplerState_,
-    pub m_depthStencilStatePool: keen__GraphicsStateObjectPool_keen__DepthStencilState_,
-    pub m_vertexFormatPool: keen__GraphicsStateObjectPool_keen__VertexFormat_,
-    pub m_vertexInputBindingPool: keen__GraphicsStateObjectPool_keen__VertexInputBinding_,
-}
-
-#[repr(C)]
-pub struct keen__GraphicsSystem {
-    pub pShaderFactory: *mut keen__ShaderFactory,
-    pub pSystemAllocator: *mut keen__MemoryAllocator,
-    pub stateObjectPool: keen__CombinedGraphicsStateObjectPool,
-    pub stockObjects: keen__StockObjects,
-    pub pDevice: *mut ID3D11Device,
-    pub pImmediateContext: *mut ID3D11DeviceContext,
-    pub pDeferredContext: *mut ID3D11DeviceContext,
-    pub screenAspectRatio: f32,
-    pub createdWindowHandle: *mut HWND__,
-    pub isWindowDestroyed: bool,
-    pub skinningBuffer: keen__SkinningD3D11,
-    pub ownerThreadId: u32,
-    pub frontThreadId: u32,
-    pub immediateCommandBuffer: keen__GraphicsCommandBuffer,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub deferredCommandBuffer: keen__GraphicsCommandBuffer,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub emptyFragmentShader: keen__FragmentShader,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub pDefaultSwapChain: *mut compile_error!("malformed PDB: oops"),
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub pCurrentSwapChain: *mut compile_error!("malformed PDB: oops"),
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub currentFrameNumber: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub pScreenCapture: *mut compile_error!("malformed PDB: oops"),
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub previousFullscreenMode: compile_error!("malformed PDB: oops"),
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub fullscreenMode: compile_error!("malformed PDB: oops"),
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub exclusiveModeWidth: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub exclusiveModeHeight: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub exclusiveModeRefreshRateNumerator: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub exclusiveModeRefreshRateDenominator: u32,
-}
-
-impl keen__GraphicsSystem {
-    pub fn as_keen__GraphicsSystemBase_ptr(&self) -> *const keen__GraphicsSystemBase {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsSystemBase_mut_ptr(&mut self) -> *mut keen__GraphicsSystemBase {
-        self as *mut _ as _
-    }
 }

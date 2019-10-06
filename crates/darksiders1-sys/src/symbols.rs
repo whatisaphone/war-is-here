@@ -69,7 +69,12 @@ symbols! {
     pub static gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_) = Text(0xdd24c0);
     pub static gfc__World__getRegion: unsafe extern "thiscall" fn(this: *const gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0xdd61f0);
     pub static gfc__Object3DCache__get: unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, result: *mut gfc__AutoRef_gfc__Object3D_, _: i32, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Object3D_ = Text(0xd889c0);
+    pub static gfc__Object3D__Object3D: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) = Text(0xd9d130);
     pub static gfc__Object3DCache__get_2: unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, result: *mut gfc__AutoRef_gfc__Object3D_, _: *const gfc__HString, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Object3D_ = Text(0xd9deb0);
+    pub static gfc__StaticMeshVisual__StaticMeshVisual: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual) = Text(0xdae030);
+    pub static gfc__StaticMeshVisual__StaticMeshVisual_2: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual, _: *const gfc__HString, _: i32, _: *const gfc__HString) = Text(0xdae200);
+    pub static gfc__StaticMeshVisual___StaticMeshVisual: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual) = Text(0xdae3c0);
+    pub static gfc__Object3D___Object3D: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) = Text(0xdbbaf0);
     pub static gfc__ResourceCache__getResource: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: i32, _: *const gfc__HString) -> *mut () = Text(0xca0750);
     pub static gfc__WorldGroup__getObjects: unsafe extern "thiscall" fn(this: *mut gfc__WorldGroup) -> *mut List_gfc__AutoRef_gfc__WorldObject___ = Text(0xb27f30);
     pub static gfc__HString__HString: unsafe extern "thiscall" fn(this: *mut gfc__HString) = Text(0xa63b40);

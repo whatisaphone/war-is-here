@@ -34,6 +34,18 @@ macro_rules! struct_wrapper {
     };
 }
 
+macro_rules! struct_wrapper_drop {
+    ($name:ty, $destructor:path) => {
+        impl Drop for $name {
+            fn drop(&mut self) {
+                unsafe {
+                    $destructor(self.as_ptr());
+                }
+            }
+        }
+    };
+}
+
 macro_rules! inherits {
     ($sub:ty, $super:ty, $cast_method:ident $(,)?) => {
         impl std::ops::Deref for $sub {

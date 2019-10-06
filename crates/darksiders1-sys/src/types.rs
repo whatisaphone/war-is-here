@@ -6682,6 +6682,61 @@ pub struct gfc__AutoRef_gfc__ParticleManager_ {
 }
 
 #[repr(C)]
+pub struct gfc__Skeleton3D {
+    pub __vfptr: *const gfc__Skeleton3D____vftable,
+    pub ReferenceCount: i32,
+    pub __vfptr_2: *const gfc__Hierarchical_gfc__Node3D_____vftable,
+    pub mParent: *mut gfc__Node3D,
+    pub mHead: gfc__AutoRef_gfc__Node3D_,
+    pub mTail: gfc__AutoRef_gfc__Node3D_,
+    pub mNext: gfc__AutoRef_gfc__Node3D_,
+    pub mPrev: gfc__AutoRef_gfc__Node3D_,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mVersion: i32,
+    __pdbindgen_padding: [u8; 8],
+    pub o: gfc__Node3D___o,
+    pub mVisibility: f32,
+    pub mHVisibility: f32,
+    __pdbindgen_padding_2: [u8; 8],
+    pub mWorldMatrix: gfc__Matrix4,
+    pub mBlendWeight: f32,
+    pub mHashNext: *mut gfc__Node3D,
+    pub mName: gfc__HString,
+    pub mNodeHashTable: [*mut gfc__Node3D; 13],
+    pub mRefNode: gfc__HString,
+}
+
+impl gfc__Skeleton3D {
+    pub fn as_gfc__Node3D_ptr(&self) -> *const gfc__Node3D {
+        self as *const _ as _
+    }
+
+    pub fn as_gfc__Node3D_mut_ptr(&mut self) -> *mut gfc__Node3D {
+        self as *mut _ as _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Skeleton3D____vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: u32) -> *mut (),
+    pub addFront:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub addBack:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub add:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
+    pub remove_2:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
+    pub added:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub removed:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+}
+
+#[repr(C)]
 pub struct gfc__VertexFormat {
     pub mFormat: gfc__Vector_unsigned_short_0_gfc__CAllocator_,
 }
@@ -7501,16 +7556,4 @@ impl gfc__ObjectWriter {
 #[repr(C)]
 pub struct gfc__ObjectWriter____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__MeshBuilder_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__MBSubMesh_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
 }

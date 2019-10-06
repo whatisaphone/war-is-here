@@ -77,7 +77,12 @@ pub unsafe fn bind(args: &BindArgs) {
     );
     bind!(text, gfc__World__getRegion);
     bind!(text, gfc__Object3DCache__get);
+    bind!(text, gfc__Object3D__Object3D);
     bind!(text, gfc__Object3DCache__get_2);
+    bind!(text, gfc__StaticMeshVisual__StaticMeshVisual);
+    bind!(text, gfc__StaticMeshVisual__StaticMeshVisual_2);
+    bind!(text, gfc__StaticMeshVisual___StaticMeshVisual);
+    bind!(text, gfc__Object3D___Object3D);
     bind!(text, gfc__ResourceCache__getResource);
     bind!(text, gfc__WorldGroup__getObjects);
     bind!(text, gfc__HString__HString);

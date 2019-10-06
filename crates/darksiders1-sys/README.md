@@ -12,6 +12,7 @@ pdbindgen \
     -o src \
     -i '^gfc::Player$' \
     -i '^gfc::RegionLayer$' \
+    -i '^gfc::Skeleton3D$' \
     -i '^gfc::StaticMesh$' \
     -i '^gfc::StaticMeshVisual$' \
     -i '^gfc::TriggerRegion$' \
@@ -44,6 +45,7 @@ pdbindgen \
     -i '^gfc::MeshCache::loadMesh$' \
     -i '^gfc::MeshReader::MeshReader$' \
     -i '^gfc::MeshReader::readObject$' \
+    -i '^gfc::Object3D::~?Object3D$' \
     -i '^gfc::Object3DCache::get$' \
     -i '^gfc::ObjectWriter::~?ObjectWriter$' \
     -i '^gfc::OOObjectWriter::writeObject$' \
@@ -51,6 +53,7 @@ pdbindgen \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
+    -i '^gfc::StaticMeshVisual::~?StaticMeshVisual$' \
     -i '^gfc::StaticObject::setObjectName$' \
     -i '^gfc::StaticObject::setPackageName$' \
     -i '^gfc::String::~?String$' \

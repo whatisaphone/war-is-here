@@ -88,7 +88,12 @@ symbols! {
     pub fn gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_;
     pub fn gfc__World__getRegion;
     pub fn gfc__Object3DCache__get;
+    pub fn gfc__Object3D__Object3D;
     pub fn gfc__Object3DCache__get_2;
+    pub fn gfc__StaticMeshVisual__StaticMeshVisual;
+    pub fn gfc__StaticMeshVisual__StaticMeshVisual_2;
+    pub fn gfc__StaticMeshVisual___StaticMeshVisual;
+    pub fn gfc__Object3D___Object3D;
     pub fn gfc__ResourceCache__getResource;
     pub fn gfc__WorldGroup__getObjects;
     pub fn gfc__HString__HString;

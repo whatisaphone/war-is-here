@@ -77,31 +77,51 @@ unsafe fn go(args: &Args) {
 static MAGIC_PACKAGE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("city01_streets"));
 static MAGIC_OBJECT_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("injected_object3d_name"));
 static MAGIC_MESH_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("injected_mesh_name"));
+static NODE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("the_injected_node"));
 
 pub fn override_get_object3d(
-    package_id: i32,
+    _package_id: i32,
     object_name: &gfc::HString,
 ) -> Option<gfc::AutoRef<gfc::Object3D>> {
     if object_name == &*MAGIC_OBJECT_NAME {
-        let cache = gfc::Singleton::<gfc::Object3DCache>::get_instance();
-        unsafe {
-            let object = init_with(|p| {
-                target::gfc__Object3DCache__get(
-                    cache.as_ptr(),
-                    p,
-                    package_id,
-                    hstring!("city01_glass2_04").as_ptr(),
-                );
-            });
-            let object = gfc::AutoRef::<gfc::Object3D>::from_ptr(object.p);
-            #[allow(clippy::cast_ptr_alignment)]
-            let visual =
-                (*(*object.as_ptr()).mVisuals.mData).p as *mut target::gfc__StaticMeshVisual;
-            (*visual).mMeshName = MAGIC_MESH_NAME.clone().into_raw();
-            return Some(object);
-        }
+        return Some(build_magic_object());
     }
     None
+}
+
+fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
+    unsafe {
+        let object = new(gfc::Object3D::new);
+
+        #[allow(clippy::cast_ptr_alignment)]
+        let skeleton = (*(*object).as_ptr()).mSkeleton.p as *mut target::gfc__Skeleton3D;
+
+        *gfc::HString::from_ptr_mut(&mut (*skeleton).mName) = NODE_NAME.clone();
+
+        let visual = new(|| {
+            init_with(|this| {
+                target::gfc__StaticMeshVisual__StaticMeshVisual(this);
+            })
+        });
+        *gfc::HString::from_ptr_mut(&mut (*visual).mRefNode) = NODE_NAME.clone();
+        *gfc::HString::from_ptr_mut(&mut (*visual).mMeshName) = MAGIC_MESH_NAME.clone();
+        (*visual).mMeshID = 0;
+        let visual = gfc::AutoRef::<target::gfc__StaticMeshVisual>::from_ptr(
+            (*(*(*visual).as_gfc__Visual_mut_ptr()).as_gfc__Object_mut_ptr())
+                .as_gfc__IRefObject_mut_ptr(),
+        );
+
+        let skeleton_visuals = gfc::Vector::<target::gfc__AutoRef_gfc__Visual_>::from_ptr_mut(
+            &mut (*(*object).as_ptr()).mVisuals,
+        );
+        skeleton_visuals.add(target::gfc__AutoRef_gfc__Visual_ {
+            p: gfc::AutoRef::into_ptr(visual),
+        });
+
+        gfc::AutoRef::from_ptr(
+            (*(*(*object).as_ptr()).as_gfc__Object_mut_ptr()).as_gfc__IRefObject_mut_ptr(),
+        )
+    }
 }
 
 pub fn override_get_static_mesh(
