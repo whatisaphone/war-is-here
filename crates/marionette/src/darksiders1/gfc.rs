@@ -1,6 +1,6 @@
 pub use crate::darksiders1::code::vigil::{
     darksiders::client::darksiders::Darksiders,
-    drivers::keengraphics::kgmeshcache::KGMeshCache,
+    drivers::keengraphics::{kggraphics::KGGraphics, kgmeshcache::KGMeshCache},
     gfc::{
         base::{
             autoref::AutoRef,

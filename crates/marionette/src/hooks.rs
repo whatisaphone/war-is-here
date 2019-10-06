@@ -75,7 +75,6 @@ mod hook {
         commands::spawn_cube::{override_get_object3d, override_get_static_mesh},
         darksiders1::gfc,
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
-        library::exfil::{dump_byteinputstream_to_file, dump_object_to_file},
     };
     use darksiders1_sys::target;
 
@@ -151,35 +150,9 @@ mod hook {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
 
-        let name = unsafe { gfc::HString::from_raw(name) };
-
-        let prefix = format!(
-            "{}-{}-{}",
-            packageID,
-            name.c_str().to_string_lossy(),
-            meshIdx,
-        );
-
-        let bis = unsafe {
-            gfc::ByteInputStream::from_ptr(stream.p.cast()) // unchecked cast!
-        };
-        dump_byteinputstream_to_file(bis, &prefix);
-
-        let result = unsafe {
-            (detours.gfc__MeshCache__loadMesh)(
-                this,
-                meshRes,
-                meshIdx,
-                stream,
-                name.clone().into_raw(),
-                packageID,
-            )
-        };
-
-        let object = unsafe { gfc::Object::from_ptr((*meshRes).mBuilder.p.cast()) };
-        dump_object_to_file(object, &prefix);
-
-        result
+        unsafe {
+            (detours.gfc__MeshCache__loadMesh)(this, meshRes, meshIdx, stream, name, packageID)
+        }
     }
 
     pub extern "thiscall" fn gfc__Object3DCache__get(
