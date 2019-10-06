@@ -13,7 +13,8 @@ pub use crate::darksiders1::code::vigil::{
             bytestream::{ByteInputStream, ByteOutputStream},
             stream::{InputStream, OutputStream},
         },
-        math::vector3::TVector3,
+        math::{vector3::TVector3, vector4::TVector4},
+        memory::memop::{mem_alloc, mem_free},
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},
         world::{

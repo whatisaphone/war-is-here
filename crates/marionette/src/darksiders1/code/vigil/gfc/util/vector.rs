@@ -1,6 +1,7 @@
-use darksiders1_sys::target;
+use crate::darksiders1::gfc;
 use std::{
-    convert::TryInto,
+    convert::{TryFrom, TryInto},
+    mem,
     ops::{Deref, DerefMut, Index, IndexMut},
     ptr,
     slice,
@@ -43,6 +44,42 @@ impl<T> Vector<T> {
         self
     }
 
+    pub fn add(&mut self, object: T) {
+        self.reserve(self.size + 1);
+        unsafe {
+            let end = self.data.add(usize::try_from(self.size).unwrap());
+            ptr::write(end, object);
+        }
+        self.size += 1;
+    }
+
+    pub fn reserve(&mut self, min_capacity: i32) {
+        if self.capacity() >= min_capacity {
+            return;
+        }
+
+        let new_capacity = min_capacity.max(self.capacity() * 2);
+
+        let new_data = gfc::mem_alloc(
+            u32::try_from(mem::size_of::<T>()).unwrap() * u32::try_from(new_capacity).unwrap(),
+            u32::try_from(mem::align_of::<T>()).unwrap(),
+        ) as *mut T;
+
+        unsafe {
+            ptr::copy_nonoverlapping(self.data, new_data, usize::try_from(self.size).unwrap());
+            if self.is_memory_owned() {
+                gfc::mem_free(self.data);
+            }
+        }
+
+        self.data = new_data;
+        self.capacity_and_flags = new_capacity | Self::OWNED_MASK;
+    }
+
+    pub fn capacity(&self) -> i32 {
+        self.capacity_and_flags & Self::CAPACITY_MASK
+    }
+
     pub fn is_memory_owned(&self) -> bool {
         (self.capacity_and_flags & Self::OWNED_MASK) != 0
     }
@@ -51,10 +88,10 @@ impl<T> Vector<T> {
 impl<T> Drop for Vector<T> {
     fn drop(&mut self) {
         if self.is_memory_owned() {
-            // TODO: This should run the destructor on each element before freeing the
-            // memory (I believe).
+            // This should actually run the destructor on each element before freeing the
+            // memory, but I'm not too worried about it.
             unsafe {
-                target::gfc__MemFree(1, self.data as *mut (), ptr::null(), 0);
+                gfc::mem_free(self.data);
             }
         }
     }

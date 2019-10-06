@@ -2,6 +2,7 @@ use crate::utils::mem::init_with;
 use darksiders1_sys::target;
 use std::{
     marker::PhantomData,
+    mem,
     ops::{Deref, DerefMut},
 };
 
@@ -29,6 +30,21 @@ impl<T> AutoRef<T> {
             phantom: PhantomData,
         }
     }
+
+    #[allow(clippy::wrong_self_convention)]
+    pub fn into_ptr(this: Self) -> *mut target::gfc__IRefObject {
+        let p = this.inner.p;
+        mem::forget(this);
+        p
+    }
+}
+
+impl<T> Drop for AutoRef<T> {
+    fn drop(&mut self) {
+        unsafe {
+            destructor!()(&mut self.inner);
+        }
+    }
 }
 
 impl<T> Deref for AutoRef<T> {
@@ -42,13 +58,5 @@ impl<T> Deref for AutoRef<T> {
 impl<T> DerefMut for AutoRef<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         unsafe { &mut *(self.inner.p as *mut T) }
-    }
-}
-
-impl<T> Drop for AutoRef<T> {
-    fn drop(&mut self) {
-        unsafe {
-            destructor!()(&mut self.inner);
-        }
     }
 }

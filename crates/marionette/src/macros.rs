@@ -85,15 +85,8 @@ macro_rules! hstring {
 
 macro_rules! autoref_cast {
     ($autoref:expr, $type:path) => {{
-        use std::mem;
-
-        let value = $autoref;
-        let result = {
-            $type {
-                p: value.as_ptr() as *mut target::gfc__IRefObject,
-            }
-        };
-        mem::forget(value);
-        result
+        $type {
+            p: gfc::AutoRef::into_ptr($autoref),
+        }
     }};
 }
