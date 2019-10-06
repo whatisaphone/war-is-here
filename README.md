@@ -12,6 +12,7 @@ All these were tested in Crossroads, so you might want to go there first. Things
 nc -u localhost 12345 -w 1 <<<'spawn_actor vulgrim_chime/vulgrim_chime_medium -4000 -28000 200'
 nc -u localhost 12345 -w 1 <<<'spawn_static_object city01_streets ci_shoppingstrip -4000 -24000 50 1'
 nc -u localhost 12345 -w 1 <<<'spawn_static_object city01_streets ci_shoppingstrip -4000 -28000 75 0.01'
+nc -u localhost 12345 -w 1 <<<'spawn_cube -4000 -28000 150 25'
 ```
 
 ## Development
