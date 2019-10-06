@@ -13,6 +13,7 @@ pub use crate::darksiders1::code::vigil::{
             bytestream::{ByteInputStream, ByteOutputStream},
             stream::{InputStream, OutputStream},
         },
+        math::vector3::TVector3,
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, vector::Vector},
         world::{

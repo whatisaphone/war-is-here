@@ -127,6 +127,33 @@ fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef<gfc::StaticMesh> {
 fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
     let graphics = gfc::KGGraphics::get_instance();
     let builder = read_cooked_meshbuilder();
+
+    unsafe {
+        let builder = builder.p as *mut target::gfc__MeshBuilder;
+
+        let factor = 4.0;
+
+        let bounds = &mut (*builder).mBounds;
+        bounds.b.min.x *= factor;
+        bounds.b.min.y *= factor;
+        bounds.b.min.z *= factor;
+        bounds.b.max.x *= factor;
+        bounds.b.max.y *= factor;
+        bounds.b.max.z *= factor;
+        bounds.s.radius *= factor;
+
+        let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
+            &mut (*builder).mSubMeshes,
+        );
+        let sub_mesh = sub_meshes[0].p as *mut target::gfc__MBSubMesh;
+        let position = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut (*sub_mesh).Position);
+        for p in position {
+            p.x *= factor;
+            p.y *= factor;
+            p.z *= factor;
+        }
+    }
+
     unsafe {
         let result = init_with(|p| {
             ((*(*graphics.as_ptr()).__vfptr).createStaticMesh)(

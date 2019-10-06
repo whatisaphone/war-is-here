@@ -1,6 +1,7 @@
 use darksiders1_sys::target;
 use std::{
-    convert::{TryFrom, TryInto},
+    convert::TryInto,
+    ops::{Deref, DerefMut, Index, IndexMut},
     ptr,
     slice,
 };
@@ -39,11 +40,7 @@ impl<T> Vector<T> {
     }
 
     pub fn as_slice(&self) -> &[T] {
-        unsafe { slice::from_raw_parts(self.data, self.size.try_into().unwrap()) }
-    }
-
-    pub fn iter(&self) -> Vector__Iterator<'_, T> {
-        Vector__Iterator::new(self)
+        self
     }
 
     pub fn is_memory_owned(&self) -> bool {
@@ -65,42 +62,48 @@ impl<T> Drop for Vector<T> {
 
 impl<'a, T> IntoIterator for &'a Vector<T> {
     type Item = &'a T;
-    type IntoIter = Vector__Iterator<'a, T>;
+    type IntoIter = slice::Iter<'a, T>;
 
     fn into_iter(self) -> Self::IntoIter {
-        Vector__Iterator::new(self)
+        self.iter()
     }
 }
 
-#[allow(non_camel_case_types)]
-pub struct Vector__Iterator<'a, T> {
-    current: *mut T,
-    end: *mut T,
-    _vector: &'a Vector<T>,
-}
+impl<'a, T> IntoIterator for &'a mut Vector<T> {
+    type Item = &'a mut T;
+    type IntoIter = slice::IterMut<'a, T>;
 
-impl<'a, T> Vector__Iterator<'a, T> {
-    fn new(vector: &'a Vector<T>) -> Self {
-        let size = usize::try_from(vector.size).unwrap();
-        Vector__Iterator {
-            current: vector.data,
-            end: unsafe { vector.data.add(size) },
-            _vector: vector,
-        }
+    fn into_iter(self) -> Self::IntoIter {
+        self.iter_mut()
     }
 }
 
-impl<'a, T> Iterator for Vector__Iterator<'a, T> {
-    type Item = &'a T;
+impl<T> Deref for Vector<T> {
+    type Target = [T];
 
-    fn next(&mut self) -> Option<Self::Item> {
-        if self.current == self.end {
-            return None;
-        }
-        let result = self.current;
-        unsafe {
-            self.current = self.current.add(1);
-            Some(result.as_ref().unwrap())
-        }
+    fn deref(&self) -> &Self::Target {
+        unsafe { slice::from_raw_parts(self.data, self.size.try_into().unwrap()) }
+    }
+}
+
+impl<T> DerefMut for Vector<T> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        unsafe { slice::from_raw_parts_mut(self.data, self.size.try_into().unwrap()) }
+    }
+}
+
+impl<T> Index<usize> for Vector<T> {
+    type Output = T;
+
+    fn index(&self, index: usize) -> &Self::Output {
+        assert!(index < self.size.try_into().unwrap());
+        unsafe { &*self.data.add(index) }
+    }
+}
+
+impl<T> IndexMut<usize> for Vector<T> {
+    fn index_mut(&mut self, index: usize) -> &mut Self::Output {
+        assert!(index < self.size.try_into().unwrap());
+        unsafe { &mut *self.data.add(index) }
     }
 }
