@@ -18,7 +18,7 @@ impl<'a, T> List<'a, T> {
     pub unsafe fn from_ptr(
         inner: *const target::List_gfc__AutoRef_gfc__WorldObject___,
     ) -> &'a Self {
-        &*(inner as *const _)
+        &*(inner as *const Self)
     }
 
     pub fn iter(&'a self) -> List__Iterator<'a, T> {

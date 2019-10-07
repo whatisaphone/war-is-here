@@ -354,7 +354,9 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
             sub_mesh
         });
-        let sub_mesh = gfc::AutoRef::<target::gfc__MBSubMesh>::from_ptr(sub_mesh as *mut _);
+        let sub_mesh = gfc::AutoRef::<target::gfc__MBSubMesh>::from_ptr(
+            (*(*sub_mesh).as_gfc__Object_mut_ptr()).as_gfc__IRefObject_mut_ptr(),
+        );
 
         let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
             &mut (*builder).mSubMeshes,
