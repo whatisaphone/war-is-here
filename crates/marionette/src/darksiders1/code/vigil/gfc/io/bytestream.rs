@@ -3,10 +3,14 @@ use darksiders1_sys::target;
 use std::convert::TryFrom;
 
 struct_wrapper!(ByteInputStream, target::gfc__ByteInputStream);
-inherits!(
+struct_wrapper_super!(
     ByteInputStream,
     gfc::InputStream,
     as_gfc__InputStream_mut_ptr,
+);
+struct_wrapper_drop!(
+    ByteInputStream,
+    target::gfc__ByteInputStream___ByteInputStream,
 );
 
 impl ByteInputStream {
@@ -29,10 +33,14 @@ impl ByteInputStream {
 }
 
 struct_wrapper!(ByteOutputStream, target::gfc__ByteOutputStream);
-inherits!(
+struct_wrapper_super!(
     ByteOutputStream,
     gfc::OutputStream,
     as_gfc__OutputStream_mut_ptr,
+);
+struct_wrapper_drop!(
+    ByteOutputStream,
+    target::gfc__ByteOutputStream___ByteOutputStream,
 );
 
 impl ByteOutputStream {
@@ -51,13 +59,5 @@ impl ByteOutputStream {
 
     pub fn bytes(&self) -> &[u8] {
         self.output().as_slice()
-    }
-}
-
-impl Drop for ByteOutputStream {
-    fn drop(&mut self) {
-        unsafe {
-            target::gfc__ByteOutputStream___ByteOutputStream(self.as_ptr());
-        }
     }
 }

@@ -35,7 +35,7 @@ macro_rules! struct_wrapper {
 }
 
 macro_rules! struct_wrapper_drop {
-    ($name:ty, $destructor:path) => {
+    ($name:ty, $destructor:path $(,)?) => {
         impl Drop for $name {
             fn drop(&mut self) {
                 unsafe {
@@ -46,7 +46,7 @@ macro_rules! struct_wrapper_drop {
     };
 }
 
-macro_rules! inherits {
+macro_rules! struct_wrapper_super {
     ($sub:ty, $super:ty, $cast_method:ident $(,)?) => {
         impl std::ops::Deref for $sub {
             type Target = $super;

@@ -3,6 +3,7 @@ use darksiders1_sys::target;
 use std::ffi::{CStr, CString};
 
 struct_wrapper!(HString, target::gfc__HString);
+struct_wrapper_drop!(HString, target::gfc__HString___HString);
 
 impl HString {
     pub fn from_str(s: &str) -> Self {
@@ -46,9 +47,3 @@ impl PartialEq for HString {
 }
 
 impl Eq for HString {}
-
-impl Drop for HString {
-    fn drop(&mut self) {
-        unsafe { target::gfc__HString___HString(&mut self.inner) }
-    }
-}

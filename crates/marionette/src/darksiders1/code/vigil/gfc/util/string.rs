@@ -3,6 +3,7 @@ use darksiders1_sys::target;
 use std::ffi::CStr;
 
 struct_wrapper!(String, target::gfc__String);
+struct_wrapper_drop!(String, target::gfc__String___String);
 
 impl String {
     pub fn from_cstr(string: &CStr) -> Self {
@@ -12,13 +13,5 @@ impl String {
             })
         };
         Self { inner }
-    }
-}
-
-impl Drop for String {
-    fn drop(&mut self) {
-        unsafe {
-            target::gfc__String___String(&mut self.inner);
-        }
     }
 }
