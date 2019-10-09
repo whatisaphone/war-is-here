@@ -5,6 +5,7 @@ use crate::{
 };
 use darksiders1_sys::target;
 use once_cell::sync::Lazy;
+use pdbindgen_runtime::StaticCast;
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -55,7 +56,7 @@ unsafe fn go(args: &Args) {
     target::gfc__StaticObject__setPackageName(obj, MAGIC_PACKAGE_NAME.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, MAGIC_OBJECT_NAME.as_ptr());
     ((*(*obj).__vfptr).setPosition)(
-        (*obj).as_gfc__WorldObject_mut_ptr(),
+        obj.static_cast(),
         &target::gfc__TVector3_float_gfc__FloatMath_ {
             x: args.x,
             y: args.y,
@@ -63,7 +64,7 @@ unsafe fn go(args: &Args) {
         },
     );
     ((*(*obj).__vfptr).setScale)(
-        (*obj).as_gfc__WorldObject_mut_ptr(),
+        obj.static_cast(),
         &target::gfc__TVector3_float_gfc__FloatMath_ {
             x: args.scale,
             y: args.scale,
@@ -71,7 +72,7 @@ unsafe fn go(args: &Args) {
         },
     );
 
-    ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world.as_ptr());
+    ((*(*obj).__vfptr).addObjectToWorld)(obj.static_cast(), world.as_ptr());
 }
 
 static MAGIC_PACKAGE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("city01_streets"));
@@ -106,10 +107,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
         *gfc::HString::from_ptr_mut(&mut (*visual).mRefNode) = NODE_NAME.clone();
         *gfc::HString::from_ptr_mut(&mut (*visual).mMeshName) = MAGIC_MESH_NAME.clone();
         (*visual).mMeshID = 0;
-        let visual = gfc::AutoRef::<target::gfc__StaticMeshVisual>::from_ptr(
-            (*(*(*visual).as_gfc__Visual_mut_ptr()).as_gfc__Object_mut_ptr())
-                .as_gfc__IRefObject_mut_ptr(),
-        );
+        let visual = gfc::AutoRef::<target::gfc__StaticMeshVisual>::from_ptr(visual.static_cast());
 
         let skeleton_visuals = gfc::Vector::<target::gfc__AutoRef_gfc__Visual_>::from_ptr_mut(
             &mut (*(*object).as_ptr()).mVisuals,
@@ -118,9 +116,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
             p: gfc::AutoRef::into_ptr(visual),
         });
 
-        gfc::AutoRef::from_ptr(
-            (*(*(*object).as_ptr()).as_gfc__Object_mut_ptr()).as_gfc__IRefObject_mut_ptr(),
-        )
+        gfc::AutoRef::from_ptr((*object).as_ptr().static_cast())
     }
 }
 
@@ -143,7 +139,7 @@ fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef<gfc::StaticMesh> {
     unsafe {
         let mesh = init_with(|p| {
             target::gfc__MeshCache__getStaticMesh(
-                (*cache.as_ptr()).as_gfc__MeshCache_mut_ptr(),
+                cache.as_ptr().static_cast(),
                 p,
                 package_id,
                 hstring!("city01_glass2_04").as_ptr(),
@@ -163,7 +159,7 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
     unsafe {
         let result = init_with(|p| {
             ((*(*graphics.as_ptr()).__vfptr).createStaticMesh)(
-                (*graphics.as_ptr()).as_gfc__Graphics_mut_ptr(),
+                graphics.as_ptr().static_cast(),
                 p,
                 builder,
             );
@@ -354,9 +350,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
             sub_mesh
         });
-        let sub_mesh = gfc::AutoRef::<target::gfc__MBSubMesh>::from_ptr(
-            (*(*sub_mesh).as_gfc__Object_mut_ptr()).as_gfc__IRefObject_mut_ptr(),
-        );
+        let sub_mesh = gfc::AutoRef::<target::gfc__MBSubMesh>::from_ptr(sub_mesh.static_cast());
 
         let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
             &mut (*builder).mSubMeshes,
@@ -367,9 +361,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
         (*builder).mFlags.flags = 31;
 
-        let builder = gfc::AutoRef::<target::gfc__MeshBuilder>::from_ptr(
-            (*(*builder).as_gfc__Object_mut_ptr()).as_gfc__IRefObject_mut_ptr(),
-        );
+        let builder = gfc::AutoRef::<target::gfc__MeshBuilder>::from_ptr(builder.static_cast());
         target::gfc__AutoRef_gfc__MeshBuilder_ {
             p: gfc::AutoRef::into_ptr(builder),
         }

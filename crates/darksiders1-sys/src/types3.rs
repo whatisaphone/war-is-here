@@ -1,6 +1,7 @@
 #![allow(non_camel_case_types, non_snake_case, unused_imports)]
 
 use super::{types::*, types2::*};
+use pdbindgen_runtime::AsPtr;
 
 #[repr(C)]
 pub struct keen__CombinedGraphicsStateObjectPool {
@@ -14,10 +15,12 @@ pub struct keen__CombinedGraphicsStateObjectPool {
 
 #[repr(C)]
 pub struct keen__GraphicsSystem {
+    // keen__GraphicsSystemBase
     pub pShaderFactory: *mut keen__ShaderFactory,
     pub pSystemAllocator: *mut keen__MemoryAllocator,
     pub stateObjectPool: keen__CombinedGraphicsStateObjectPool,
     pub stockObjects: keen__StockObjects,
+    // keen__GraphicsSystem
     pub pDevice: *mut ID3D11Device,
     pub pImmediateContext: *mut ID3D11DeviceContext,
     pub pDeferredContext: *mut ID3D11DeviceContext,
@@ -54,13 +57,9 @@ pub struct keen__GraphicsSystem {
     pub exclusiveModeRefreshRateDenominator: u32,
 }
 
-impl keen__GraphicsSystem {
-    pub fn as_keen__GraphicsSystemBase_ptr(&self) -> *const keen__GraphicsSystemBase {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsSystemBase_mut_ptr(&mut self) -> *mut keen__GraphicsSystemBase {
-        self as *mut _ as _
+impl AsPtr<keen__GraphicsSystemBase> for *const keen__GraphicsSystem {
+    fn as_ptr(self) -> *const keen__GraphicsSystemBase {
+        self as *const _
     }
 }
 
@@ -72,16 +71,14 @@ pub struct keen__PoolAllocator_keen__VertexFormat_ {
 #[repr(C)]
 pub struct keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator
 {
+    // keen__InternalListBase__IteratorBase
     pub m_pCurrent: *mut keen__InternalListBase__Listable,
+    /* keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator */
 }
 
-impl keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator {
-    pub fn as_keen__InternalListBase__IteratorBase_ptr(&self) -> *const keen__InternalListBase__IteratorBase {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__InternalListBase__IteratorBase_mut_ptr(&mut self) -> *mut keen__InternalListBase__IteratorBase {
-        self as *mut _ as _
+impl AsPtr<keen__InternalListBase__IteratorBase> for *const keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry___Iterator {
+    fn as_ptr(self) -> *const keen__InternalListBase__IteratorBase {
+        self as *const _
     }
 }
 
@@ -199,7 +196,10 @@ pub struct gfc__AutoRef_gfc__CharacterClass_ {
 #[repr(C)]
 pub struct gfc__Character {
     pub __vfptr: *const gfc__Character____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -212,6 +212,7 @@ pub struct gfc__Character {
     pub mEventHandlerLocks: i32,
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mPackageID: i32,
+    // gfc__Actor
     pub mFactionOverrideID: i32,
     pub mMaskOfShadowsState: i32,
     pub mInActiveMaskRealm: bool,
@@ -240,9 +241,11 @@ pub struct gfc__Character {
     pub mIsOutOfPhase: bool,
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
+    // gfc__Character
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -320,13 +323,33 @@ pub struct gfc__Character {
     pub mDissolvePatternTexture: gfc__HString,
 }
 
-impl gfc__Character {
-    pub fn as_gfc__KinematicActor_ptr(&self) -> *const gfc__KinematicActor {
-        self as *const _ as _
+impl AsPtr<gfc__KinematicActor> for *const gfc__Character {
+    fn as_ptr(self) -> *const gfc__KinematicActor {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__KinematicActor_mut_ptr(&mut self) -> *mut gfc__KinematicActor {
-        self as *mut _ as _
+impl AsPtr<gfc__Actor> for *const gfc__Character {
+    fn as_ptr(self) -> *const gfc__Actor {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__WorldObject> for *const gfc__Character {
+    fn as_ptr(self) -> *const gfc__WorldObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Object> for *const gfc__Character {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__Character {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -600,7 +623,10 @@ pub struct gfc__Character__PActor {
 #[repr(C)]
 pub struct gfc__Actor {
     pub __vfptr: *const gfc__Actor____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -613,6 +639,7 @@ pub struct gfc__Actor {
     pub mEventHandlerLocks: i32,
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mPackageID: i32,
+    // gfc__Actor
     pub mFactionOverrideID: i32,
     pub mMaskOfShadowsState: i32,
     pub mInActiveMaskRealm: bool,
@@ -643,13 +670,21 @@ pub struct gfc__Actor {
     pub mPreviousFactionID: i32,
 }
 
-impl gfc__Actor {
-    pub fn as_gfc__WorldObject_ptr(&self) -> *const gfc__WorldObject {
-        self as *const _ as _
+impl AsPtr<gfc__WorldObject> for *const gfc__Actor {
+    fn as_ptr(self) -> *const gfc__WorldObject {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__WorldObject_mut_ptr(&mut self) -> *mut gfc__WorldObject {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__Actor {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__Actor {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -850,7 +885,10 @@ pub struct gfc__AutoRef_gfc__Item_ {
 #[repr(C)]
 pub struct gfc__TriggerRegion {
     pub __vfptr: *const gfc__TriggerRegion____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -863,15 +901,18 @@ pub struct gfc__TriggerRegion {
     pub mEventHandlerLocks: i32,
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mPackageID: i32,
+    // gfc__PhysicsShapeObject
     pub mShape: i32,
     pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
     pub mRotation: gfc__TVector3_float_gfc__FloatMath_,
     pub mSize: gfc__TVector3_float_gfc__FloatMath_,
     pub mBounds: gfc__TBox_float_gfc__FloatMath_,
     pub mGizmo: *mut gfc__PhysicsShapeGizmo,
+    // gfc__DetectorObject
     pub mBodyType: u8,
     pub mRegion: *mut gfc__DetectorRegion,
     pub mEnabled: bool,
+    // gfc__TriggerRegion
     pub mFilterList: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mDefaultFilterList: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mNameFilter: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
@@ -886,13 +927,33 @@ pub struct gfc__TriggerRegion {
     pub mRegionDesc: gfc__AutoRef_gfc__TriggerRegionDesc_,
 }
 
-impl gfc__TriggerRegion {
-    pub fn as_gfc__DetectorObject_ptr(&self) -> *const gfc__DetectorObject {
-        self as *const _ as _
+impl AsPtr<gfc__DetectorObject> for *const gfc__TriggerRegion {
+    fn as_ptr(self) -> *const gfc__DetectorObject {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__DetectorObject_mut_ptr(&mut self) -> *mut gfc__DetectorObject {
-        self as *mut _ as _
+impl AsPtr<gfc__PhysicsShapeObject> for *const gfc__TriggerRegion {
+    fn as_ptr(self) -> *const gfc__PhysicsShapeObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__WorldObject> for *const gfc__TriggerRegion {
+    fn as_ptr(self) -> *const gfc__WorldObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Object> for *const gfc__TriggerRegion {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__TriggerRegion {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -1071,7 +1132,10 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__DetectorObject__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__Player {
     pub __vfptr: *const gfc__Player____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -1084,6 +1148,7 @@ pub struct gfc__Player {
     pub mEventHandlerLocks: i32,
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mPackageID: i32,
+    // gfc__Actor
     pub mFactionOverrideID: i32,
     pub mMaskOfShadowsState: i32,
     pub mInActiveMaskRealm: bool,
@@ -1112,9 +1177,11 @@ pub struct gfc__Player {
     pub mIsOutOfPhase: bool,
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
+    // gfc__Character
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -1191,6 +1258,8 @@ pub struct gfc__Player {
     pub mDissolveTexture: gfc__HString,
     pub mDissolvePatternTexture: gfc__HString,
     pub __vfptr_2: *const gfc__ResourceListener____vftable,
+    // gfc__ResourceListener
+    // gfc__Player
     pub mDoReinitTransitions: bool,
     pub mFrenzyItem: gfc__AutoRef_gfc__FrenzyItem_,
     pub mSoulBridgeItem: gfc__AutoRef_gfc__Item_,
@@ -1276,21 +1345,45 @@ pub struct gfc__Player {
     __pdbindgen_padding_3: [u8; 12],
 }
 
-impl gfc__Player {
-    pub fn as_gfc__Character_ptr(&self) -> *const gfc__Character {
-        self as *const _ as _
+impl AsPtr<gfc__Character> for *const gfc__Player {
+    fn as_ptr(self) -> *const gfc__Character {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Character_mut_ptr(&mut self) -> *mut gfc__Character {
-        self as *mut _ as _
+impl AsPtr<gfc__KinematicActor> for *const gfc__Player {
+    fn as_ptr(self) -> *const gfc__KinematicActor {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__ResourceListener_ptr(&self) -> *const gfc__ResourceListener {
-        self as *const _ as _
+impl AsPtr<gfc__Actor> for *const gfc__Player {
+    fn as_ptr(self) -> *const gfc__Actor {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__ResourceListener_mut_ptr(&mut self) -> *mut gfc__ResourceListener {
-        self as *mut _ as _
+impl AsPtr<gfc__WorldObject> for *const gfc__Player {
+    fn as_ptr(self) -> *const gfc__WorldObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Object> for *const gfc__Player {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__Player {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__ResourceListener> for *const gfc__Player {
+    fn as_ptr(self) -> *const gfc__ResourceListener {
+        (self as usize + 0x4d0) as *const _
     }
 }
 
@@ -1551,7 +1644,10 @@ pub struct gfc__Player____vftable {
 #[repr(C)]
 pub struct gfc__CharacterDoInteractiveDesc {
     pub __vfptr: *const gfc__CharacterDoInteractiveDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__CharMoveStateDesc
     pub mID: u32,
     pub mName: gfc__HString,
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
@@ -1579,6 +1675,7 @@ pub struct gfc__CharacterDoInteractiveDesc {
     pub mPowerResistance: i8,
     pub mAutoJumpSolverID: u8,
     pub mCharacterFlags: gfc__TFlags_unsigned_short_,
+    // gfc__CharacterDoInteractiveDesc
     pub mTargetType: gfc__HString,
     pub mTargetInAirOrOnGround: u8,
     pub mSourceInAirOrOnGround: u8,
@@ -1664,13 +1761,21 @@ pub struct gfc__CharacterDoInteractiveDesc {
     pub mCachedProperty: gfc__AutoRef_gfc__Property_,
 }
 
-impl gfc__CharacterDoInteractiveDesc {
-    pub fn as_gfc__CharMoveStateDesc_ptr(&self) -> *const gfc__CharMoveStateDesc {
-        self as *const _ as _
+impl AsPtr<gfc__CharMoveStateDesc> for *const gfc__CharacterDoInteractiveDesc {
+    fn as_ptr(self) -> *const gfc__CharMoveStateDesc {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__CharMoveStateDesc_mut_ptr(&mut self) -> *mut gfc__CharMoveStateDesc {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__CharacterDoInteractiveDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__CharacterDoInteractiveDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -1743,7 +1848,10 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__Mount {
     pub __vfptr: *const gfc__Mount____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -1756,6 +1864,7 @@ pub struct gfc__Mount {
     pub mEventHandlerLocks: i32,
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mPackageID: i32,
+    // gfc__Actor
     pub mFactionOverrideID: i32,
     pub mMaskOfShadowsState: i32,
     pub mInActiveMaskRealm: bool,
@@ -1784,9 +1893,11 @@ pub struct gfc__Mount {
     pub mIsOutOfPhase: bool,
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
+    // gfc__Character
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -1862,17 +1973,44 @@ pub struct gfc__Mount {
     pub mTexturePackage: gfc__HString,
     pub mDissolveTexture: gfc__HString,
     pub mDissolvePatternTexture: gfc__HString,
+    // gfc__Mount
     pub mPlayer: gfc__AutoRef_gfc__Player_,
     __pdbindgen_padding_2: [u8; 12],
 }
 
-impl gfc__Mount {
-    pub fn as_gfc__Character_ptr(&self) -> *const gfc__Character {
-        self as *const _ as _
+impl AsPtr<gfc__Character> for *const gfc__Mount {
+    fn as_ptr(self) -> *const gfc__Character {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Character_mut_ptr(&mut self) -> *mut gfc__Character {
-        self as *mut _ as _
+impl AsPtr<gfc__KinematicActor> for *const gfc__Mount {
+    fn as_ptr(self) -> *const gfc__KinematicActor {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Actor> for *const gfc__Mount {
+    fn as_ptr(self) -> *const gfc__Actor {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__WorldObject> for *const gfc__Mount {
+    fn as_ptr(self) -> *const gfc__WorldObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Object> for *const gfc__Mount {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__Mount {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2218,7 +2356,10 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Player__HairSim__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__KinematicActor {
     pub __vfptr: *const gfc__KinematicActor____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -2231,6 +2372,7 @@ pub struct gfc__KinematicActor {
     pub mEventHandlerLocks: i32,
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mPackageID: i32,
+    // gfc__Actor
     pub mFactionOverrideID: i32,
     pub mMaskOfShadowsState: i32,
     pub mInActiveMaskRealm: bool,
@@ -2259,18 +2401,33 @@ pub struct gfc__KinematicActor {
     pub mIsOutOfPhase: bool,
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
 }
 
-impl gfc__KinematicActor {
-    pub fn as_gfc__Actor_ptr(&self) -> *const gfc__Actor {
-        self as *const _ as _
+impl AsPtr<gfc__Actor> for *const gfc__KinematicActor {
+    fn as_ptr(self) -> *const gfc__Actor {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Actor_mut_ptr(&mut self) -> *mut gfc__Actor {
-        self as *mut _ as _
+impl AsPtr<gfc__WorldObject> for *const gfc__KinematicActor {
+    fn as_ptr(self) -> *const gfc__WorldObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Object> for *const gfc__KinematicActor {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__KinematicActor {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2476,7 +2633,10 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__AutoJumpSolver__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__CharMoveStateDesc {
     pub __vfptr: *const gfc__CharMoveStateDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__CharMoveStateDesc
     pub mID: u32,
     pub mName: gfc__HString,
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
@@ -2506,13 +2666,15 @@ pub struct gfc__CharMoveStateDesc {
     pub mCharacterFlags: gfc__TFlags_unsigned_short_,
 }
 
-impl gfc__CharMoveStateDesc {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__CharMoveStateDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__CharMoveStateDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2588,7 +2750,10 @@ pub struct gfc__AutoRef_gfc__AnimController_ {
 #[repr(C)]
 pub struct gfc__HitInfo {
     pub __vfptr: *const gfc__HitInfo____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__HitInfo
     pub mID: u32,
     pub mName: gfc__HString,
     pub mHitLocation: u8,
@@ -2635,13 +2800,15 @@ pub struct gfc__HitInfo {
     pub mHitPauseTime: f32,
 }
 
-impl gfc__HitInfo {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__HitInfo {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__HitInfo {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2846,6 +3013,8 @@ pub struct gfc__AutoRef_gfc__CollisionPhantom_ {
 #[repr(C)]
 pub struct gfc__DetectorRegion {
     pub __vfptr: *const gfc__DetectorRegion____vftable,
+    // hkpWorldPostSimulationListener
+    // gfc__PhysicsDetectRegion
     pub mPhantomOverlapListenerProxy: gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
     pub mWorld: *mut gfc__World,
     pub mPhantom: *mut hkpPhantom,
@@ -2853,18 +3022,21 @@ pub struct gfc__DetectorRegion {
     pub mNumContainedBodies: i32,
     pub mIsShapeDetector: bool,
     pub mAABBListChanged: bool,
+    // gfc__DetectorRegion
     pub mOwner: *mut gfc__DetectorObject,
     pub mActors: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mActorRefs: gfc__Vector_int_0_gfc__CAllocator_,
 }
 
-impl gfc__DetectorRegion {
-    pub fn as_gfc__PhysicsDetectRegion_ptr(&self) -> *const gfc__PhysicsDetectRegion {
-        self as *const _ as _
+impl AsPtr<gfc__PhysicsDetectRegion> for *const gfc__DetectorRegion {
+    fn as_ptr(self) -> *const gfc__PhysicsDetectRegion {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__PhysicsDetectRegion_mut_ptr(&mut self) -> *mut gfc__PhysicsDetectRegion {
-        self as *mut _ as _
+impl AsPtr<hkpWorldPostSimulationListener> for *const gfc__DetectorRegion {
+    fn as_ptr(self) -> *const hkpWorldPostSimulationListener {
+        self as *const _
     }
 }
 
@@ -2917,12 +3089,16 @@ pub struct gfc__AutoRef_gfc__ChaosLevel_ {
 #[repr(C)]
 pub struct gfc__WindowHelper {
     pub __vfptr: *const gfc__WindowHelper____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__Helper
     pub mIsIterating: bool,
     pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
     pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
     pub mQueuedListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
     pub mQueuedSystemListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+    // gfc__WindowHelper
     pub mWindowStack: gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_,
     pub mOverlayWindow: gfc__AutoRef_gfc___UIControl_,
     pub mEvenOverlayederWindow: gfc__AutoRef_gfc___UIControl_,
@@ -2930,13 +3106,21 @@ pub struct gfc__WindowHelper {
     pub mRootWindow: gfc__AutoRef_gfc___UIControl_,
 }
 
-impl gfc__WindowHelper {
-    pub fn as_gfc__Helper_ptr(&self) -> *const gfc__Helper {
-        self as *const _ as _
+impl AsPtr<gfc__Helper> for *const gfc__WindowHelper {
+    fn as_ptr(self) -> *const gfc__Helper {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Helper_mut_ptr(&mut self) -> *mut gfc__Helper {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__WindowHelper {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__WindowHelper {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2975,22 +3159,34 @@ pub struct gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__TeleportHelper {
     pub __vfptr: *const gfc__TeleportHelper____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__Helper
     pub mIsIterating: bool,
     pub mListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
     pub mSystemListeners: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
     pub mQueuedListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
     pub mQueuedSystemListeners: gfc__Vector_gfc__Helper__QueuedListenerInfo_0_gfc__CAllocator_,
+    // gfc__TeleportHelper
     pub mTeleportTransition: bool,
 }
 
-impl gfc__TeleportHelper {
-    pub fn as_gfc__Helper_ptr(&self) -> *const gfc__Helper {
-        self as *const _ as _
+impl AsPtr<gfc__Helper> for *const gfc__TeleportHelper {
+    fn as_ptr(self) -> *const gfc__Helper {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Helper_mut_ptr(&mut self) -> *mut gfc__Helper {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__TeleportHelper {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__TeleportHelper {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -3022,7 +3218,10 @@ pub struct gfc__TeleportHelper____vftable {
 #[repr(C)]
 pub struct gfc__DraggableActor {
     pub __vfptr: *const gfc__DraggableActor____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -3035,6 +3234,7 @@ pub struct gfc__DraggableActor {
     pub mEventHandlerLocks: i32,
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mPackageID: i32,
+    // gfc__Actor
     pub mFactionOverrideID: i32,
     pub mMaskOfShadowsState: i32,
     pub mInActiveMaskRealm: bool,
@@ -3063,9 +3263,11 @@ pub struct gfc__DraggableActor {
     pub mIsOutOfPhase: bool,
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
+    // gfc__Character
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -3141,6 +3343,7 @@ pub struct gfc__DraggableActor {
     pub mTexturePackage: gfc__HString,
     pub mDissolveTexture: gfc__HString,
     pub mDissolvePatternTexture: gfc__HString,
+    // gfc__DraggableActor
     pub mShoveMultiplier: f32,
     pub mGhosthookShoveMultiplier: f32,
     pub mCharacterDetector: gfc__AutoRef_gfc__CollisionPhantom_,
@@ -3157,13 +3360,39 @@ pub struct gfc__DraggableActor {
     __pdbindgen_padding_2: [u8; 12],
 }
 
-impl gfc__DraggableActor {
-    pub fn as_gfc__Character_ptr(&self) -> *const gfc__Character {
-        self as *const _ as _
+impl AsPtr<gfc__Character> for *const gfc__DraggableActor {
+    fn as_ptr(self) -> *const gfc__Character {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Character_mut_ptr(&mut self) -> *mut gfc__Character {
-        self as *mut _ as _
+impl AsPtr<gfc__KinematicActor> for *const gfc__DraggableActor {
+    fn as_ptr(self) -> *const gfc__KinematicActor {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Actor> for *const gfc__DraggableActor {
+    fn as_ptr(self) -> *const gfc__Actor {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__WorldObject> for *const gfc__DraggableActor {
+    fn as_ptr(self) -> *const gfc__WorldObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Object> for *const gfc__DraggableActor {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__DraggableActor {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -3428,6 +3657,7 @@ pub struct gfc__AutoRef_gfc__LiquidRegionDesc_ {
 #[repr(C)]
 pub struct gfc__PhysicsShapeGizmo {
     pub __vfptr: *const gfc__PhysicsShapeGizmo____vftable,
+    // gfc__SceneObject
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -3436,26 +3666,22 @@ pub struct gfc__PhysicsShapeGizmo {
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
     pub __vfptr_2: *const gfc__IRenderCallback____vftable,
+    // gfc__IRenderCallback
     pub mLocked: bool,
+    // gfc__PhysicsShapeGizmo
     pub mObject: *mut gfc__PhysicsShapeObject,
     pub mMaterial: gfc__AutoRef_gfc__Material_,
 }
 
-impl gfc__PhysicsShapeGizmo {
-    pub fn as_gfc__SceneObject_ptr(&self) -> *const gfc__SceneObject {
-        self as *const _ as _
+impl AsPtr<gfc__SceneObject> for *const gfc__PhysicsShapeGizmo {
+    fn as_ptr(self) -> *const gfc__SceneObject {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__SceneObject_mut_ptr(&mut self) -> *mut gfc__SceneObject {
-        self as *mut _ as _
-    }
-
-    pub fn as_gfc__IRenderCallback_ptr(&self) -> *const gfc__IRenderCallback {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRenderCallback_mut_ptr(&mut self) -> *mut gfc__IRenderCallback {
-        self as *mut _ as _
+impl AsPtr<gfc__IRenderCallback> for *const gfc__PhysicsShapeGizmo {
+    fn as_ptr(self) -> *const gfc__IRenderCallback {
+        (self as usize + 0x50) as *const _
     }
 }
 
@@ -3602,13 +3828,17 @@ pub struct gfc__AutoRef_gfc__InteractiveTransition_ {
 #[repr(C)]
 pub struct gfc__LoadMapMenu {
     pub __vfptr: *const gfc__LoadMapMenu____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
     pub __vfptr_2: *const gfc__Hierarchical_gfc___UIControl_____vftable,
+    // gfc__Hierarchical_gfc___UIControl_
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
     pub mTail: gfc__AutoRef_gfc___UIControl_,
     pub mNext: gfc__AutoRef_gfc___UIControl_,
     pub mPrev: gfc__AutoRef_gfc___UIControl_,
+    // gfc___UIControl
     pub mID: i32,
     pub mName: gfc__HString,
     pub mOpacity: f32,
@@ -3643,6 +3873,7 @@ pub struct gfc__LoadMapMenu {
     pub mOnInitCalledAlready: bool,
     pub mFirstDraw: bool,
     pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
+    // gfc__LoadMapMenu
     pub mListItems: gfc__Vector_gfc__String_0_gfc__CAllocator_,
     pub mMaps: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mSelectedMapType: i32,
@@ -3652,13 +3883,27 @@ pub struct gfc__LoadMapMenu {
     pub mHasLastMap: bool,
 }
 
-impl gfc__LoadMapMenu {
-    pub fn as_gfc___UIControl_ptr(&self) -> *const gfc___UIControl {
-        self as *const _ as _
+impl AsPtr<gfc___UIControl> for *const gfc__LoadMapMenu {
+    fn as_ptr(self) -> *const gfc___UIControl {
+        self as *const _
     }
+}
 
-    pub fn as_gfc___UIControl_mut_ptr(&mut self) -> *mut gfc___UIControl {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__LoadMapMenu {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__LoadMapMenu {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Hierarchical_gfc___UIControl_> for *const gfc__LoadMapMenu {
+    fn as_ptr(self) -> *const gfc__Hierarchical_gfc___UIControl_ {
+        (self as usize + 0x8) as *const _
     }
 }
 
@@ -3875,21 +4120,26 @@ pub struct gfc__AutoRef_gfc__Query_ {
 #[repr(C)]
 pub struct gfc__KGMeshCache {
     pub __vfptr: *const gfc__KGMeshCache____vftable,
+    // gfc__ResourceCache
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
     pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
+    // gfc__MeshCache
     pub mReloadInfo: gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_,
+    // gfc__KGMeshCache
     pub mOurExt: i32,
     pub mOurLegacyExt: i32,
 }
 
-impl gfc__KGMeshCache {
-    pub fn as_gfc__MeshCache_ptr(&self) -> *const gfc__MeshCache {
-        self as *const _ as _
+impl AsPtr<gfc__MeshCache> for *const gfc__KGMeshCache {
+    fn as_ptr(self) -> *const gfc__MeshCache {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__MeshCache_mut_ptr(&mut self) -> *mut gfc__MeshCache {
-        self as *mut _ as _
+impl AsPtr<gfc__ResourceCache> for *const gfc__KGMeshCache {
+    fn as_ptr(self) -> *const gfc__ResourceCache {
+        self as *const _
     }
 }
 
@@ -4021,22 +4271,16 @@ pub struct hkClass {
 #[repr(C)]
 pub struct hkMap_unsigned_long_unsigned_long_hkMapOperations_unsigned_long__hkContainerHeapAllocator_
 {
+    // hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long___
     pub m_elem: *mut hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long_____Pair,
     pub m_numElems: i32,
     pub m_hashMod: i32,
+    // hkMap_unsigned_long_unsigned_long_hkMapOperations_unsigned_long__hkContainerHeapAllocator_
 }
 
-impl hkMap_unsigned_long_unsigned_long_hkMapOperations_unsigned_long__hkContainerHeapAllocator_ {
-    pub fn as_hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long____ptr(
-        &self,
-    ) -> *const hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long___ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long____mut_ptr(
-        &mut self,
-    ) -> *mut hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long___ {
-        self as *mut _ as _
+impl AsPtr<hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long___> for *const hkMap_unsigned_long_unsigned_long_hkMapOperations_unsigned_long__hkContainerHeapAllocator_ {
+    fn as_ptr(self) -> *const hkMapBase_unsigned_long_unsigned_long_hkMapOperations_unsigned_long___ {
+        self as *const _
     }
 }
 
@@ -4306,22 +4550,18 @@ pub struct hkRefCountedProperties__Entry {
 
 #[repr(C)]
 pub struct hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkRefCountedProperties__Entry_
     pub m_data: *mut hkRefCountedProperties__Entry,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
+    // hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_
 }
 
-impl hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkRefCountedProperties__Entry__ptr(
-        &self,
-    ) -> *const hkArrayBase_hkRefCountedProperties__Entry_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkRefCountedProperties__Entry__mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkRefCountedProperties__Entry_ {
-        self as *mut _ as _
+impl AsPtr<hkArrayBase_hkRefCountedProperties__Entry_>
+    for *const hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_
+{
+    fn as_ptr(self) -> *const hkArrayBase_hkRefCountedProperties__Entry_ {
+        self as *const _
     }
 }
 
@@ -4347,35 +4587,31 @@ pub struct hkFourTransposedPointsf {
 
 #[repr(C)]
 pub struct hkcdVertex {
+    // hkVector4f
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
     pub m_quad: compile_error!("unimplemented feature: type kind 0x1506"),
     __pdbindgen_padding: [u8; 16],
+    // hkcdVertex
 }
 
-impl hkcdVertex {
-    pub fn as_hkVector4f_ptr(&self) -> *const hkVector4f {
-        self as *const _ as _
-    }
-
-    pub fn as_hkVector4f_mut_ptr(&mut self) -> *mut hkVector4f {
-        self as *mut _ as _
+impl AsPtr<hkVector4f> for *const hkcdVertex {
+    fn as_ptr(self) -> *const hkVector4f {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct hkRotationf {
+    // hkMatrix3f
     pub m_col0: hkVector4f,
     pub m_col1: hkVector4f,
     pub m_col2: hkVector4f,
+    // hkRotationf
 }
 
-impl hkRotationf {
-    pub fn as_hkMatrix3f_ptr(&self) -> *const hkMatrix3f {
-        self as *const _ as _
-    }
-
-    pub fn as_hkMatrix3f_mut_ptr(&mut self) -> *mut hkMatrix3f {
-        self as *mut _ as _
+impl AsPtr<hkMatrix3f> for *const hkRotationf {
+    fn as_ptr(self) -> *const hkMatrix3f {
+        self as *const _
     }
 }
 
@@ -4406,7 +4642,10 @@ pub struct hkSphere {
 #[repr(C)]
 pub struct hkcdShape {
     pub __vfptr: *const hkcdShape____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkcdShape
     pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
     pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
     pub m_bitsPerKey: u8,
@@ -4414,13 +4653,15 @@ pub struct hkcdShape {
         hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
 }
 
-impl hkcdShape {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkcdShape {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkcdShape {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -4451,16 +4692,14 @@ pub struct hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_c
 #[repr(C)]
 pub struct hkReferencedObject {
     pub __vfptr: *const hkReferencedObject____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
 }
 
-impl hkReferencedObject {
-    pub fn as_hkBaseObject_ptr(&self) -> *const hkBaseObject {
-        self as *const _ as _
-    }
-
-    pub fn as_hkBaseObject_mut_ptr(&mut self) -> *mut hkBaseObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkReferencedObject {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -4517,17 +4756,22 @@ pub struct hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_ {
 #[repr(C)]
 pub struct hkpConstraintData {
     pub __vfptr: *const hkpConstraintData____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpConstraintData
     pub m_userData: u32,
 }
 
-impl hkpConstraintData {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpConstraintData {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpConstraintData {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -4676,23 +4920,49 @@ pub struct hkpShapeContainer____vftable {
 #[repr(C)]
 pub struct hkpBvTreeShape {
     pub __vfptr: *const hkpBvTreeShape____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkcdShape
     pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
     pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
     pub m_bitsPerKey: u8,
     pub m_shapeInfoCodecType:
         hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    // hkpShapeBase
+    // hkpShape
     pub m_userData: u32,
+    // hkpBvTreeShape
     pub m_bvTreeType: hkEnum_enum_hkpBvTreeShape__BvTreeType_unsigned_char_,
 }
 
-impl hkpBvTreeShape {
-    pub fn as_hkpShape_ptr(&self) -> *const hkpShape {
-        self as *const _ as _
+impl AsPtr<hkpShape> for *const hkpBvTreeShape {
+    fn as_ptr(self) -> *const hkpShape {
+        self as *const _
     }
+}
 
-    pub fn as_hkpShape_mut_ptr(&mut self) -> *mut hkpShape {
-        self as *mut _ as _
+impl AsPtr<hkpShapeBase> for *const hkpBvTreeShape {
+    fn as_ptr(self) -> *const hkpShapeBase {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkcdShape> for *const hkpBvTreeShape {
+    fn as_ptr(self) -> *const hkcdShape {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkReferencedObject> for *const hkpBvTreeShape {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpBvTreeShape {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -4790,7 +5060,10 @@ pub struct hkEnum_enum_hkpBvTreeShape__BvTreeType_unsigned_char_ {
 #[repr(C)]
 pub struct hkpBroadPhase {
     pub __vfptr: *const hkpBroadPhase____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpBroadPhase
     pub m_type: u16,
     pub m_size: u16,
     pub m_caps: u32,
@@ -4798,13 +5071,15 @@ pub struct hkpBroadPhase {
     pub m_criticalSection: *mut hkCriticalSection,
 }
 
-impl hkpBroadPhase {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBroadPhase {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBroadPhase {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -4985,57 +5260,56 @@ pub struct hkpBroadPhase__hkpCastAabbInput {
 #[repr(C)]
 pub struct hkpCollisionFilter {
     pub __vfptr: *const hkpCollisionFilter____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     pub __vfptr_2: *const hkpCollidableCollidableFilter____vftable,
+    // hkpCollidableCollidableFilter
     pub __vfptr_3: *const hkpShapeCollectionFilter____vftable,
+    // hkpShapeCollectionFilter
     pub __vfptr_4: *const hkpRayShapeCollectionFilter____vftable,
+    // hkpRayShapeCollectionFilter
     pub __vfptr_5: *const hkpRayCollidableFilter____vftable,
+    // hkpRayCollidableFilter
+    // hkpCollisionFilter
     pub m_prepad: [u32; 2],
     pub m_type: hkEnum_enum_hkpCollisionFilter__hkpFilterType_unsigned_int_,
     pub m_postpad: [u32; 3],
 }
 
-impl hkpCollisionFilter {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpCollisionFilter {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpCollisionFilter {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkpCollidableCollidableFilter_ptr(&self) -> *const hkpCollidableCollidableFilter {
-        self as *const _ as _
+impl AsPtr<hkpCollidableCollidableFilter> for *const hkpCollisionFilter {
+    fn as_ptr(self) -> *const hkpCollidableCollidableFilter {
+        (self as usize + 0x8) as *const _
     }
+}
 
-    pub fn as_hkpCollidableCollidableFilter_mut_ptr(
-        &mut self,
-    ) -> *mut hkpCollidableCollidableFilter {
-        self as *mut _ as _
+impl AsPtr<hkpShapeCollectionFilter> for *const hkpCollisionFilter {
+    fn as_ptr(self) -> *const hkpShapeCollectionFilter {
+        (self as usize + 0xc) as *const _
     }
+}
 
-    pub fn as_hkpShapeCollectionFilter_ptr(&self) -> *const hkpShapeCollectionFilter {
-        self as *const _ as _
+impl AsPtr<hkpRayShapeCollectionFilter> for *const hkpCollisionFilter {
+    fn as_ptr(self) -> *const hkpRayShapeCollectionFilter {
+        (self as usize + 0x10) as *const _
     }
+}
 
-    pub fn as_hkpShapeCollectionFilter_mut_ptr(&mut self) -> *mut hkpShapeCollectionFilter {
-        self as *mut _ as _
-    }
-
-    pub fn as_hkpRayShapeCollectionFilter_ptr(&self) -> *const hkpRayShapeCollectionFilter {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpRayShapeCollectionFilter_mut_ptr(&mut self) -> *mut hkpRayShapeCollectionFilter {
-        self as *mut _ as _
-    }
-
-    pub fn as_hkpRayCollidableFilter_ptr(&self) -> *const hkpRayCollidableFilter {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpRayCollidableFilter_mut_ptr(&mut self) -> *mut hkpRayCollidableFilter {
-        self as *mut _ as _
+impl AsPtr<hkpRayCollidableFilter> for *const hkpCollisionFilter {
+    fn as_ptr(self) -> *const hkpRayCollidableFilter {
+        (self as usize + 0x14) as *const _
     }
 }
 
@@ -5081,22 +5355,48 @@ pub struct hkpCdPoint {
 #[repr(C)]
 pub struct hkpSphereRepShape {
     pub __vfptr: *const hkpSphereRepShape____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkcdShape
     pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
     pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
     pub m_bitsPerKey: u8,
     pub m_shapeInfoCodecType:
         hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    // hkpShapeBase
+    // hkpShape
     pub m_userData: u32,
+    // hkpSphereRepShape
 }
 
-impl hkpSphereRepShape {
-    pub fn as_hkpShape_ptr(&self) -> *const hkpShape {
-        self as *const _ as _
+impl AsPtr<hkpShape> for *const hkpSphereRepShape {
+    fn as_ptr(self) -> *const hkpShape {
+        self as *const _
     }
+}
 
-    pub fn as_hkpShape_mut_ptr(&mut self) -> *mut hkpShape {
-        self as *mut _ as _
+impl AsPtr<hkpShapeBase> for *const hkpSphereRepShape {
+    fn as_ptr(self) -> *const hkpShapeBase {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkcdShape> for *const hkpSphereRepShape {
+    fn as_ptr(self) -> *const hkcdShape {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkReferencedObject> for *const hkpSphereRepShape {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpSphereRepShape {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5172,23 +5472,56 @@ pub struct hkpSphereRepShape____vftable {
 #[repr(C)]
 pub struct hkpConvexShape {
     pub __vfptr: *const hkpConvexShape____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkcdShape
     pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
     pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
     pub m_bitsPerKey: u8,
     pub m_shapeInfoCodecType:
         hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    // hkpShapeBase
+    // hkpShape
     pub m_userData: u32,
+    // hkpSphereRepShape
+    // hkpConvexShape
     pub m_radius: f32,
 }
 
-impl hkpConvexShape {
-    pub fn as_hkpSphereRepShape_ptr(&self) -> *const hkpSphereRepShape {
-        self as *const _ as _
+impl AsPtr<hkpSphereRepShape> for *const hkpConvexShape {
+    fn as_ptr(self) -> *const hkpSphereRepShape {
+        self as *const _
     }
+}
 
-    pub fn as_hkpSphereRepShape_mut_ptr(&mut self) -> *mut hkpSphereRepShape {
-        self as *mut _ as _
+impl AsPtr<hkpShape> for *const hkpConvexShape {
+    fn as_ptr(self) -> *const hkpShape {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkpShapeBase> for *const hkpConvexShape {
+    fn as_ptr(self) -> *const hkpShapeBase {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkcdShape> for *const hkpConvexShape {
+    fn as_ptr(self) -> *const hkcdShape {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkReferencedObject> for *const hkpConvexShape {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpConvexShape {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5291,16 +5624,21 @@ pub struct hkpAabbCastCollector____vftable {
 #[repr(C)]
 pub struct hkpConvexListFilter {
     pub __vfptr: *const hkpConvexListFilter____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpConvexListFilter
 }
 
-impl hkpConvexListFilter {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpConvexListFilter {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpConvexListFilter {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5340,24 +5678,36 @@ pub struct hkpCollidableAddedEvent {
 #[repr(C)]
 pub struct hkpPhantom {
     pub __vfptr: *const hkpPhantom____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpWorldObject
     pub m_world: *mut hkpWorld,
     pub m_userData: u32,
     pub m_collidable: hkpLinkedCollidable,
     pub m_multiThreadCheck: hkMultiThreadCheck,
     pub m_name: hkStringPtr,
     pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    // hkpPhantom
     pub m_overlapListeners: hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_,
     pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
 }
 
-impl hkpPhantom {
-    pub fn as_hkpWorldObject_ptr(&self) -> *const hkpWorldObject {
-        self as *const _ as _
+impl AsPtr<hkpWorldObject> for *const hkpPhantom {
+    fn as_ptr(self) -> *const hkpWorldObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkpWorldObject_mut_ptr(&mut self) -> *mut hkpWorldObject {
-        self as *mut _ as _
+impl AsPtr<hkReferencedObject> for *const hkpPhantom {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpPhantom {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5398,7 +5748,10 @@ pub struct hkpPhantom____vftable {
 #[repr(C)]
 pub struct hkpWorld {
     pub __vfptr: *const hkpWorld____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpWorld
     pub m_simulation: *mut hkpSimulation,
     __pdbindgen_padding: [u8; 4],
     pub m_gravity: hkVector4f,
@@ -5500,13 +5853,15 @@ pub struct hkpWorld {
     __pdbindgen_padding_4: [u8; 14],
 }
 
-impl hkpWorld {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpWorld {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpWorld {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5533,13 +5888,17 @@ pub struct hkEnum_enum_hkpWorldCinfo__SimulationType_int_ {
 #[repr(C)]
 pub struct hkpRigidBody {
     pub __vfptr: *const hkpRigidBody____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpWorldObject
     pub m_world: *mut hkpWorld,
     pub m_userData: u32,
     pub m_collidable: hkpLinkedCollidable,
     pub m_multiThreadCheck: hkMultiThreadCheck,
     pub m_name: hkStringPtr,
     pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    // hkpEntity
     pub m_material: hkpMaterial,
     pub m_limitContactImpulseUtilAndFlag: *mut (),
     pub m_damageMultiplier: f32,
@@ -5564,15 +5923,30 @@ pub struct hkpRigidBody {
     pub m_extendedListeners: *mut hkpEntity__ExtendedListeners,
     pub m_npData: u32,
     __pdbindgen_padding_2: [u8; 4],
+    // hkpRigidBody
 }
 
-impl hkpRigidBody {
-    pub fn as_hkpEntity_ptr(&self) -> *const hkpEntity {
-        self as *const _ as _
+impl AsPtr<hkpEntity> for *const hkpRigidBody {
+    fn as_ptr(self) -> *const hkpEntity {
+        self as *const _
     }
+}
 
-    pub fn as_hkpEntity_mut_ptr(&mut self) -> *mut hkpEntity {
-        self as *mut _ as _
+impl AsPtr<hkpWorldObject> for *const hkpRigidBody {
+    fn as_ptr(self) -> *const hkpWorldObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkReferencedObject> for *const hkpRigidBody {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpRigidBody {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5613,8 +5987,12 @@ pub struct hkpAgentNnTrack {
 #[repr(C)]
 pub struct hkpSimulationIsland {
     pub __vfptr: *const hkpSimulationIsland____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpConstraintOwner
     pub m_constraintInfo: hkpConstraintInfo,
+    // hkpSimulationIsland
     pub m_world: *mut hkpWorld,
     pub m_numConstraints: i32,
     pub m_storageIndex: u16,
@@ -5646,13 +6024,21 @@ pub struct hkpSimulationIsland {
     pub m_narrowphaseAgentTrack: hkpAgentNnTrack,
 }
 
-impl hkpSimulationIsland {
-    pub fn as_hkpConstraintOwner_ptr(&self) -> *const hkpConstraintOwner {
-        self as *const _ as _
+impl AsPtr<hkpConstraintOwner> for *const hkpSimulationIsland {
+    fn as_ptr(self) -> *const hkpConstraintOwner {
+        self as *const _
     }
+}
 
-    pub fn as_hkpConstraintOwner_mut_ptr(&mut self) -> *mut hkpConstraintOwner {
-        self as *mut _ as _
+impl AsPtr<hkReferencedObject> for *const hkpSimulationIsland {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpSimulationIsland {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5684,9 +6070,11 @@ pub struct hkpCollisionEvent {
 
 #[repr(C)]
 pub struct hkpContactPointEvent {
+    // hkpCollisionEvent
     pub m_source: hkpCollisionEvent__CallbackSource,
     pub m_bodies: [*mut hkpRigidBody; 2],
     pub m_contactMgr: *mut hkpSimpleConstraintContactMgr,
+    // hkpContactPointEvent
     pub m_type: hkpContactPointEvent__Type,
     pub m_contactPoint: *mut hkContactPoint,
     pub m_contactPointProperties: *mut hkpContactPointProperties,
@@ -5699,31 +6087,39 @@ pub struct hkpContactPointEvent {
     pub m_accumulators: [*mut hkpVelocityAccumulator; 2],
 }
 
-impl hkpContactPointEvent {
-    pub fn as_hkpCollisionEvent_ptr(&self) -> *const hkpCollisionEvent {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpCollisionEvent_mut_ptr(&mut self) -> *mut hkpCollisionEvent {
-        self as *mut _ as _
+impl AsPtr<hkpCollisionEvent> for *const hkpContactPointEvent {
+    fn as_ptr(self) -> *const hkpCollisionEvent {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct hkpDynamicsContactMgr {
     pub __vfptr: *const hkpDynamicsContactMgr____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpContactMgr
     pub m_type: hkpContactMgr__Type,
+    // hkpDynamicsContactMgr
     pub m_world: *mut hkpWorld,
 }
 
-impl hkpDynamicsContactMgr {
-    pub fn as_hkpContactMgr_ptr(&self) -> *const hkpContactMgr {
-        self as *const _ as _
+impl AsPtr<hkpContactMgr> for *const hkpDynamicsContactMgr {
+    fn as_ptr(self) -> *const hkpContactMgr {
+        self as *const _
     }
+}
 
-    pub fn as_hkpContactMgr_mut_ptr(&mut self) -> *mut hkpContactMgr {
-        self as *mut _ as _
+impl AsPtr<hkReferencedObject> for *const hkpDynamicsContactMgr {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpDynamicsContactMgr {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5825,7 +6221,9 @@ pub struct hkpDynamicsContactMgr____vftable {
 
 #[repr(C)]
 pub struct hkpModifierConstraintAtom {
+    // hkpConstraintAtom
     pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
+    // hkpModifierConstraintAtom
     __pdbindgen_padding: [u8; 14],
     pub m_modifierAtomSize: u16,
     pub m_childSize: u16,
@@ -5833,22 +6231,23 @@ pub struct hkpModifierConstraintAtom {
     pub m_pad: [u32; 2],
 }
 
-impl hkpModifierConstraintAtom {
-    pub fn as_hkpConstraintAtom_ptr(&self) -> *const hkpConstraintAtom {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpConstraintAtom_mut_ptr(&mut self) -> *mut hkpConstraintAtom {
-        self as *mut _ as _
+impl AsPtr<hkpConstraintAtom> for *const hkpModifierConstraintAtom {
+    fn as_ptr(self) -> *const hkpConstraintAtom {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct hkpSimpleConstraintContactMgr {
     pub __vfptr: *const hkpSimpleConstraintContactMgr____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpContactMgr
     pub m_type: hkpContactMgr__Type,
+    // hkpDynamicsContactMgr
     pub m_world: *mut hkpWorld,
+    // hkpSimpleConstraintContactMgr
     pub m_reservedContactPoints: u16,
     pub m_contactPointCallbackDelay: u16,
     pub m_contactConstraintData: hkpSimpleContactConstraintData,
@@ -5856,13 +6255,27 @@ pub struct hkpSimpleConstraintContactMgr {
     pub m_pad: [u32; 1],
 }
 
-impl hkpSimpleConstraintContactMgr {
-    pub fn as_hkpDynamicsContactMgr_ptr(&self) -> *const hkpDynamicsContactMgr {
-        self as *const _ as _
+impl AsPtr<hkpDynamicsContactMgr> for *const hkpSimpleConstraintContactMgr {
+    fn as_ptr(self) -> *const hkpDynamicsContactMgr {
+        self as *const _
     }
+}
 
-    pub fn as_hkpDynamicsContactMgr_mut_ptr(&mut self) -> *mut hkpDynamicsContactMgr {
-        self as *mut _ as _
+impl AsPtr<hkpContactMgr> for *const hkpSimpleConstraintContactMgr {
+    fn as_ptr(self) -> *const hkpContactMgr {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkReferencedObject> for *const hkpSimpleConstraintContactMgr {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpSimpleConstraintContactMgr {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -5995,6 +6408,7 @@ pub struct hkpCollisionAgentConfig {
 
 #[repr(C)]
 pub struct hkpLinearCastCollisionInput {
+    // hkpCollisionInput
     pub m_dispatcher: hkPadSpu_hkpCollisionDispatcher___,
     pub m_weldClosestPoints: hkPadSpu_unsigned_int_,
     pub m_forceAcceptContactPoints: hkPadSpu_unsigned_int_,
@@ -6004,6 +6418,7 @@ pub struct hkpLinearCastCollisionInput {
     pub m_createPredictiveAgents: hkPadSpu_unsigned_int_,
     __pdbindgen_padding: [u8; 4],
     pub m_aabb32Info: hkpCollisionInput__Aabb32Info,
+    // hkpLinearCastCollisionInput
     pub m_path: hkVector4f,
     pub m_maxExtraPenetration: f32,
     pub m_cachedPathLength: f32,
@@ -6011,36 +6426,28 @@ pub struct hkpLinearCastCollisionInput {
     __pdbindgen_padding_2: [u8; 4],
 }
 
-impl hkpLinearCastCollisionInput {
-    pub fn as_hkpCollisionInput_ptr(&self) -> *const hkpCollisionInput {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpCollisionInput_mut_ptr(&mut self) -> *mut hkpCollisionInput {
-        self as *mut _ as _
+impl AsPtr<hkpCollisionInput> for *const hkpLinearCastCollisionInput {
+    fn as_ptr(self) -> *const hkpCollisionInput {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct hkpShapeRayCastOutput {
+    // hkpShapeRayCastCollectorOutput
     pub m_normal: hkVector4f,
     pub m_hitFraction: f32,
     pub m_extraInfo: i32,
     pub m_pad: [i32; 2],
+    // hkpShapeRayCastOutput
     pub m_shapeKeys: [u32; 8],
     pub m_shapeKeyIndex: i32,
     __pdbindgen_padding: [u8; 12],
 }
 
-impl hkpShapeRayCastOutput {
-    pub fn as_hkpShapeRayCastCollectorOutput_ptr(&self) -> *const hkpShapeRayCastCollectorOutput {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpShapeRayCastCollectorOutput_mut_ptr(
-        &mut self,
-    ) -> *mut hkpShapeRayCastCollectorOutput {
-        self as *mut _ as _
+impl AsPtr<hkpShapeRayCastCollectorOutput> for *const hkpShapeRayCastOutput {
+    fn as_ptr(self) -> *const hkpShapeRayCastCollectorOutput {
+        self as *const _
     }
 }
 
@@ -6060,16 +6467,21 @@ pub struct hkpCollisionInput {
 #[repr(C)]
 pub struct hkThreadPool {
     pub __vfptr: *const hkThreadPool____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkThreadPool
 }
 
-impl hkThreadPool {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkThreadPool {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkThreadPool {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6099,23 +6511,21 @@ pub struct hkThreadPool____vftable {
 
 #[repr(C)]
 pub struct hkpProcessCollisionOutput {
+    // hkpProcessCollisionData
     pub m_firstFreeContactPoint: hkPadSpu_hkpProcessCdPoint___,
     pub m_constraintOwner: hkPadSpu_hkpConstraintOwner___,
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub m_contactPoints: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding: [u8; 12296],
     pub m_toi: hkpProcessCollisionData__ToiInfo,
+    // hkpProcessCollisionOutput
     pub m_potentialContacts: hkPadSpu_hkpProcessCollisionOutput__PotentialInfo___,
     __pdbindgen_padding_2: [u8; 12],
 }
 
-impl hkpProcessCollisionOutput {
-    pub fn as_hkpProcessCollisionData_ptr(&self) -> *const hkpProcessCollisionData {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpProcessCollisionData_mut_ptr(&mut self) -> *mut hkpProcessCollisionData {
-        self as *mut _ as _
+impl AsPtr<hkpProcessCollisionData> for *const hkpProcessCollisionOutput {
+    fn as_ptr(self) -> *const hkpProcessCollisionData {
+        self as *const _
     }
 }
 
@@ -6152,10 +6562,12 @@ pub struct hkpShapeRayCastCollectorOutput {
 
 #[repr(C)]
 pub struct hkpCollidable {
+    // hkpCdBody
     pub m_shape: *const hkpShape,
     pub m_shapeKey: u32,
     pub m_motion: *const (),
     pub m_parent: *const hkpCdBody,
+    // hkpCollidable
     pub m_ownerOffset: i8,
     pub m_forceCollideOntoPpu: u8,
     pub m_shapeSizeOnSpu: u16,
@@ -6164,13 +6576,9 @@ pub struct hkpCollidable {
     pub m_allowedPenetrationDepth: f32,
 }
 
-impl hkpCollidable {
-    pub fn as_hkpCdBody_ptr(&self) -> *const hkpCdBody {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpCdBody_mut_ptr(&mut self) -> *mut hkpCdBody {
-        self as *mut _ as _
+impl AsPtr<hkpCdBody> for *const hkpCollidable {
+    fn as_ptr(self) -> *const hkpCdBody {
+        self as *const _
     }
 }
 
@@ -6183,19 +6591,24 @@ pub struct hkpCollisionDispatcher__ShapeInheritance {
 #[repr(C)]
 pub struct hkpBreakableMaterial {
     pub __vfptr: *const hkpBreakableMaterial____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpBreakableMaterial
     pub m_strength: f32,
     pub m_typeAndFlags: i32,
     pub m_properties: *mut hkRefCountedProperties,
 }
 
-impl hkpBreakableMaterial {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBreakableMaterial {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBreakableMaterial {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6282,18 +6695,23 @@ pub struct hkRefPtr_hkpBreakableMaterial_ {
 #[repr(C)]
 pub struct hkpBreakableShape {
     pub __vfptr: *const hkpBreakableShape____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpBreakableShape
     pub m_physicsShape: hkRefPtr_hkcdShape_const__,
     pub m_material: hkRefPtr_hkpBreakableMaterial_,
 }
 
-impl hkpBreakableShape {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBreakableShape {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBreakableShape {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6314,20 +6732,25 @@ pub struct hkRefPtr_hkcdShape_const__ {
 #[repr(C)]
 pub struct hkpBreakableBody {
     pub __vfptr: *const hkpBreakableBody____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpBreakableBody
     pub m_controller: hkRefPtr_hkpBreakableBody__Controller_,
     pub m_breakableShape: hkRefPtr_hkpBreakableShape_const__,
     pub m_bodyTypeAndFlags: u8,
     pub m_constraintStrength: hkHalf,
 }
 
-impl hkpBreakableBody {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBreakableBody {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBreakableBody {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6347,17 +6770,22 @@ pub struct hkpBreakableBody____vftable {
 #[repr(C)]
 pub struct hkpBreakableBody__Controller {
     pub __vfptr: *const hkpBreakableBody__Controller____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpBreakableBody__Controller
     pub m_breakingImpulse: f32,
 }
 
-impl hkpBreakableBody__Controller {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBreakableBody__Controller {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBreakableBody__Controller {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6382,22 +6810,18 @@ pub struct hkRefPtr_hkpBreakableShape_const__ {
 
 #[repr(C)]
 pub struct hkArray_hkpBodyOperationEntry_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpBodyOperationEntry_
     pub m_data: *mut hkpBodyOperationEntry,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
+    // hkArray_hkpBodyOperationEntry_hkContainerHeapAllocator_
 }
 
-impl hkArray_hkpBodyOperationEntry_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpBodyOperationEntry__ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpBodyOperationEntry_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpBodyOperationEntry__mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpBodyOperationEntry_ {
-        self as *mut _ as _
+impl AsPtr<hkArrayBase_hkpBodyOperationEntry_>
+    for *const hkArray_hkpBodyOperationEntry_hkContainerHeapAllocator_
+{
+    fn as_ptr(self) -> *const hkArrayBase_hkpBodyOperationEntry_ {
+        self as *const _
     }
 }
 
@@ -6409,40 +6833,32 @@ pub struct hkpBodyOperation__UpdateInfo {
 
 #[repr(C)]
 pub struct hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkWorldOperation__BiggestOperation_
     pub m_data: *mut hkWorldOperation__BiggestOperation,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
+    // hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_
 }
 
-impl hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkWorldOperation__BiggestOperation__ptr(
-        &self,
-    ) -> *const hkArrayBase_hkWorldOperation__BiggestOperation_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkWorldOperation__BiggestOperation__mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkWorldOperation__BiggestOperation_ {
-        self as *mut _ as _
+impl AsPtr<hkArrayBase_hkWorldOperation__BiggestOperation_>
+    for *const hkArray_hkWorldOperation__BiggestOperation_hkContainerHeapAllocator_
+{
+    fn as_ptr(self) -> *const hkArrayBase_hkWorldOperation__BiggestOperation_ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct hkWorldOperation__BiggestOperation {
+    // hkWorldOperation__BaseOperation
     pub m_type: hkEnum_enum_hkWorldOperation__Type_unsigned_char_,
+    // hkWorldOperation__BiggestOperation
     pub dummy: [u32; 7],
 }
 
-impl hkWorldOperation__BiggestOperation {
-    pub fn as_hkWorldOperation__BaseOperation_ptr(&self) -> *const hkWorldOperation__BaseOperation {
-        self as *const _ as _
-    }
-
-    pub fn as_hkWorldOperation__BaseOperation_mut_ptr(
-        &mut self,
-    ) -> *mut hkWorldOperation__BaseOperation {
-        self as *mut _ as _
+impl AsPtr<hkWorldOperation__BaseOperation> for *const hkWorldOperation__BiggestOperation {
+    fn as_ptr(self) -> *const hkWorldOperation__BaseOperation {
+        self as *const _
     }
 }
 
@@ -6454,16 +6870,21 @@ pub struct hkWorldOperation__BaseOperation {
 #[repr(C)]
 pub struct hkpBodyOperation {
     pub __vfptr: *const hkpBodyOperation____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpBodyOperation
 }
 
-impl hkpBodyOperation {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBodyOperation {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBodyOperation {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6484,7 +6905,10 @@ pub struct hkpBodyOperation____vftable {
 #[repr(C)]
 pub struct hkpSimulation {
     pub __vfptr: *const hkpSimulation____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpSimulation
     pub m_determinismCheckFrameCounter: u32,
     pub m_world: *mut hkpWorld,
     pub m_lastProcessingStep: hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_,
@@ -6496,13 +6920,15 @@ pub struct hkpSimulation {
     pub m_previousStepResult: u32,
 }
 
-impl hkpSimulation {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpSimulation {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpSimulation {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6623,16 +7049,21 @@ pub struct hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_ {
 #[repr(C)]
 pub struct hkpConstraintTrackerData {
     pub __vfptr: *const hkpConstraintTrackerData____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpConstraintTrackerData
 }
 
-impl hkpConstraintTrackerData {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpConstraintTrackerData {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpConstraintTrackerData {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6725,7 +7156,10 @@ pub struct hkpCollisionDispatcher {
 #[repr(C)]
 pub struct hkpCollisionDispatcher {
     pub __vfptr: *const hkpCollisionDispatcher____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpCollisionDispatcher
     pub m_defaultCollisionAgent: *mut unsafe extern "C" fn(
         _: *const hkpCdBody,
         _: *const hkpCdBody,
@@ -6775,13 +7209,15 @@ pub struct hkpCollisionDispatcher {
     __pdbindgen_padding_4: [u8; 8],
 }
 
-impl hkpCollisionDispatcher {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpCollisionDispatcher {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpCollisionDispatcher {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -6797,10 +7233,16 @@ pub struct hkpCollisionDispatcher____vftable {
 #[repr(C)]
 pub struct hkpBroadPhaseBorder {
     pub __vfptr: *const hkpBroadPhaseBorder____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     pub __vfptr_2: *const hkpWorldDeletionListener____vftable,
+    // hkpWorldDeletionListener
     pub __vfptr_3: *const hkpPhantomOverlapListener____vftable,
+    // hkpPhantomOverlapListener
     pub __vfptr_4: *const hkpWorldPostSimulationListener____vftable,
+    // hkpWorldPostSimulationListener
+    // hkpBroadPhaseBorder
     pub m_world: *mut hkpWorld,
     pub m_phantoms: [*mut hkpPhantom; 6],
     pub m_type: hkpWorldCinfo__BroadPhaseBorderBehaviour,
@@ -6808,39 +7250,33 @@ pub struct hkpBroadPhaseBorder {
     pub m_entitiesExitingBroadPhase: hkArray_hkpEntity___hkContainerHeapAllocator_,
 }
 
-impl hkpBroadPhaseBorder {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBroadPhaseBorder {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBroadPhaseBorder {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkpWorldDeletionListener_ptr(&self) -> *const hkpWorldDeletionListener {
-        self as *const _ as _
+impl AsPtr<hkpWorldDeletionListener> for *const hkpBroadPhaseBorder {
+    fn as_ptr(self) -> *const hkpWorldDeletionListener {
+        (self as usize + 0x8) as *const _
     }
+}
 
-    pub fn as_hkpWorldDeletionListener_mut_ptr(&mut self) -> *mut hkpWorldDeletionListener {
-        self as *mut _ as _
+impl AsPtr<hkpPhantomOverlapListener> for *const hkpBroadPhaseBorder {
+    fn as_ptr(self) -> *const hkpPhantomOverlapListener {
+        (self as usize + 0xc) as *const _
     }
+}
 
-    pub fn as_hkpPhantomOverlapListener_ptr(&self) -> *const hkpPhantomOverlapListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpPhantomOverlapListener_mut_ptr(&mut self) -> *mut hkpPhantomOverlapListener {
-        self as *mut _ as _
-    }
-
-    pub fn as_hkpWorldPostSimulationListener_ptr(&self) -> *const hkpWorldPostSimulationListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpWorldPostSimulationListener_mut_ptr(
-        &mut self,
-    ) -> *mut hkpWorldPostSimulationListener {
-        self as *mut _ as _
+impl AsPtr<hkpWorldPostSimulationListener> for *const hkpBroadPhaseBorder {
+    fn as_ptr(self) -> *const hkpWorldPostSimulationListener {
+        (self as usize + 0x10) as *const _
     }
 }
 
@@ -6929,7 +7365,10 @@ pub struct hkpToiEvent {
 #[repr(C)]
 pub struct hkpContinuousSimulation {
     pub __vfptr: *const hkpContinuousSimulation____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpSimulation
     pub m_determinismCheckFrameCounter: u32,
     pub m_world: *mut hkpWorld,
     pub m_lastProcessingStep: hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_,
@@ -6939,6 +7378,7 @@ pub struct hkpContinuousSimulation {
     pub m_simulateUntilTime: f32,
     pub m_frameMarkerPsiSnap: f32,
     pub m_previousStepResult: u32,
+    // hkpContinuousSimulation
     __pdbindgen_padding: [u8; 4],
     pub m_toiEvents: hkArray_hkpToiEvent_hkContainerHeapAllocator_,
     pub m_entitiesNeedingPsiCollisionDetection:
@@ -6947,13 +7387,21 @@ pub struct hkpContinuousSimulation {
     pub m_toiCounter: i32,
 }
 
-impl hkpContinuousSimulation {
-    pub fn as_hkpSimulation_ptr(&self) -> *const hkpSimulation {
-        self as *const _ as _
+impl AsPtr<hkpSimulation> for *const hkpContinuousSimulation {
+    fn as_ptr(self) -> *const hkpSimulation {
+        self as *const _
     }
+}
 
-    pub fn as_hkpSimulation_mut_ptr(&mut self) -> *mut hkpSimulation {
-        self as *mut _ as _
+impl AsPtr<hkReferencedObject> for *const hkpContinuousSimulation {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpContinuousSimulation {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7058,18 +7506,16 @@ pub struct hkArrayBase_hkpToiEvent_ {
 
 #[repr(C)]
 pub struct hkArray_hkpToiEvent_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpToiEvent_
     pub m_data: *mut hkpToiEvent,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
+    // hkArray_hkpToiEvent_hkContainerHeapAllocator_
 }
 
-impl hkArray_hkpToiEvent_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpToiEvent__ptr(&self) -> *const hkArrayBase_hkpToiEvent_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpToiEvent__mut_ptr(&mut self) -> *mut hkArrayBase_hkpToiEvent_ {
-        self as *mut _ as _
+impl AsPtr<hkArrayBase_hkpToiEvent_> for *const hkArray_hkpToiEvent_hkContainerHeapAllocator_ {
+    fn as_ptr(self) -> *const hkArrayBase_hkpToiEvent_ {
+        self as *const _
     }
 }
 
@@ -7090,18 +7536,16 @@ pub struct hkpSimpleConstraintInfoInitInput {
 
 #[repr(C)]
 pub struct hkArray_short_hkContainerHeapAllocator_ {
+    // hkArrayBase_short_
     pub m_data: *mut i16,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
+    // hkArray_short_hkContainerHeapAllocator_
 }
 
-impl hkArray_short_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_short__ptr(&self) -> *const hkArrayBase_short_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_short__mut_ptr(&mut self) -> *mut hkArrayBase_short_ {
-        self as *mut _ as _
+impl AsPtr<hkArrayBase_short_> for *const hkArray_short_hkContainerHeapAllocator_ {
+    fn as_ptr(self) -> *const hkArrayBase_short_ {
+        self as *const _
     }
 }
 
@@ -7115,25 +7559,29 @@ pub struct hkArrayBase_short_ {
 #[repr(C)]
 pub struct hkpPhantomBroadPhaseListener {
     pub __vfptr: *const hkpPhantomBroadPhaseListener____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     pub __vfptr_2: *const hkpBroadPhaseListener____vftable,
+    /* hkpBroadPhaseListener
+     * hkpPhantomBroadPhaseListener */
 }
 
-impl hkpPhantomBroadPhaseListener {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpPhantomBroadPhaseListener {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpPhantomBroadPhaseListener {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkpBroadPhaseListener_ptr(&self) -> *const hkpBroadPhaseListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpBroadPhaseListener_mut_ptr(&mut self) -> *mut hkpBroadPhaseListener {
-        self as *mut _ as _
+impl AsPtr<hkpBroadPhaseListener> for *const hkpPhantomBroadPhaseListener {
+    fn as_ptr(self) -> *const hkpBroadPhaseListener {
+        (self as usize + 0x8) as *const _
     }
 }
 
@@ -7155,17 +7603,22 @@ pub struct hkpPhantomBroadPhaseListener____vftable {
 #[repr(C)]
 pub struct hkpContactMgr {
     pub __vfptr: *const hkpContactMgr____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpContactMgr
     pub m_type: hkpContactMgr__Type,
 }
 
-impl hkpContactMgr {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpContactMgr {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpContactMgr {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7222,19 +7675,24 @@ pub struct hkpContactMgr____vftable {
 #[repr(C)]
 pub struct hkpWorldExtension {
     pub __vfptr: *const hkpWorldExtension____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpWorldExtension
     pub m_world: *mut hkpWorld,
     pub m_id: i32,
     pub m_attachmentCount: u16,
 }
 
-impl hkpWorldExtension {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpWorldExtension {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpWorldExtension {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7274,7 +7732,10 @@ pub struct hkViewPtr_hkpConstraintInstance_ {
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation {
     pub __vfptr: *const hkpMultiThreadedSimulation____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpSimulation
     pub m_determinismCheckFrameCounter: u32,
     pub m_world: *mut hkpWorld,
     pub m_lastProcessingStep: hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_,
@@ -7284,12 +7745,14 @@ pub struct hkpMultiThreadedSimulation {
     pub m_simulateUntilTime: f32,
     pub m_frameMarkerPsiSnap: f32,
     pub m_previousStepResult: u32,
+    // hkpContinuousSimulation
     __pdbindgen_padding: [u8; 4],
     pub m_toiEvents: hkArray_hkpToiEvent_hkContainerHeapAllocator_,
     pub m_entitiesNeedingPsiCollisionDetection:
         hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
     pub m_toiResourceMgr: *mut hkpToiResourceMgr,
     pub m_toiCounter: i32,
+    // hkpMultiThreadedSimulation
     pub m_entityEntityBroadPhaseListener:
         hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener,
     pub m_phantomBroadPhaseListener: hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener,
@@ -7310,13 +7773,27 @@ pub struct hkpMultiThreadedSimulation {
     __pdbindgen_padding_4: [u8; 40],
 }
 
-impl hkpMultiThreadedSimulation {
-    pub fn as_hkpContinuousSimulation_ptr(&self) -> *const hkpContinuousSimulation {
-        self as *const _ as _
+impl AsPtr<hkpContinuousSimulation> for *const hkpMultiThreadedSimulation {
+    fn as_ptr(self) -> *const hkpContinuousSimulation {
+        self as *const _
     }
+}
 
-    pub fn as_hkpContinuousSimulation_mut_ptr(&mut self) -> *mut hkpContinuousSimulation {
-        self as *mut _ as _
+impl AsPtr<hkpSimulation> for *const hkpMultiThreadedSimulation {
+    fn as_ptr(self) -> *const hkpSimulation {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkReferencedObject> for *const hkpMultiThreadedSimulation {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpMultiThreadedSimulation {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7409,16 +7886,16 @@ pub struct hkpMultiThreadedSimulation____vftable {
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener {
     pub __vfptr: *const hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener____vftable,
+    // hkpBroadPhaseListener
+    // hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener
     pub m_simulation: *mut hkpMultiThreadedSimulation,
 }
 
-impl hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener {
-    pub fn as_hkpBroadPhaseListener_ptr(&self) -> *const hkpBroadPhaseListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpBroadPhaseListener_mut_ptr(&mut self) -> *mut hkpBroadPhaseListener {
-        self as *mut _ as _
+impl AsPtr<hkpBroadPhaseListener>
+    for *const hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener
+{
+    fn as_ptr(self) -> *const hkpBroadPhaseListener {
+        self as *const _
     }
 }
 
@@ -7439,16 +7916,16 @@ pub struct hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener____vftab
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener {
     pub __vfptr: *const hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener____vftable,
+    // hkpBroadPhaseListener
+    // hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener
     pub m_criticalSection: *mut hkCriticalSection,
 }
 
-impl hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener {
-    pub fn as_hkpBroadPhaseListener_ptr(&self) -> *const hkpBroadPhaseListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpBroadPhaseListener_mut_ptr(&mut self) -> *mut hkpBroadPhaseListener {
-        self as *mut _ as _
+impl AsPtr<hkpBroadPhaseListener>
+    for *const hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener
+{
+    fn as_ptr(self) -> *const hkpBroadPhaseListener {
+        self as *const _
     }
 }
 
@@ -7469,16 +7946,16 @@ pub struct hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener____vftable {
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation__MtBroadPhaseBorderListener {
     pub __vfptr: *const hkpMultiThreadedSimulation__MtBroadPhaseBorderListener____vftable,
+    // hkpBroadPhaseListener
+    // hkpMultiThreadedSimulation__MtBroadPhaseBorderListener
     pub m_criticalSection: *mut hkCriticalSection,
 }
 
-impl hkpMultiThreadedSimulation__MtBroadPhaseBorderListener {
-    pub fn as_hkpBroadPhaseListener_ptr(&self) -> *const hkpBroadPhaseListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpBroadPhaseListener_mut_ptr(&mut self) -> *mut hkpBroadPhaseListener {
-        self as *mut _ as _
+impl AsPtr<hkpBroadPhaseListener>
+    for *const hkpMultiThreadedSimulation__MtBroadPhaseBorderListener
+{
+    fn as_ptr(self) -> *const hkpBroadPhaseListener {
+        self as *const _
     }
 }
 
@@ -7505,22 +7982,18 @@ pub struct hkArrayBase_hkpTypedBroadPhaseHandlePair_ {
 
 #[repr(C)]
 pub struct hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpTypedBroadPhaseHandlePair_
     pub m_data: *mut hkpTypedBroadPhaseHandlePair,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
+    // hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_
 }
 
-impl hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpTypedBroadPhaseHandlePair__ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpTypedBroadPhaseHandlePair_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpTypedBroadPhaseHandlePair__mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpTypedBroadPhaseHandlePair_ {
-        self as *mut _ as _
+impl AsPtr<hkArrayBase_hkpTypedBroadPhaseHandlePair_>
+    for *const hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_
+{
+    fn as_ptr(self) -> *const hkArrayBase_hkpTypedBroadPhaseHandlePair_ {
+        self as *const _
     }
 }
 
@@ -7559,16 +8032,21 @@ pub struct hkpShapeRayBundleCastOutput {
 #[repr(C)]
 pub struct hkpWorldMaintenanceMgr {
     pub __vfptr: *const hkpWorldMaintenanceMgr____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpWorldMaintenanceMgr
 }
 
-impl hkpWorldMaintenanceMgr {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpWorldMaintenanceMgr {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpWorldMaintenanceMgr {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7595,26 +8073,30 @@ pub struct hkpWorldMaintenanceMgr____vftable {
 #[repr(C)]
 pub struct hkpEntityEntityBroadPhaseListener {
     pub __vfptr: *const hkpEntityEntityBroadPhaseListener____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     pub __vfptr_2: *const hkpBroadPhaseListener____vftable,
+    // hkpBroadPhaseListener
+    // hkpEntityEntityBroadPhaseListener
     pub m_world: *mut hkpWorld,
 }
 
-impl hkpEntityEntityBroadPhaseListener {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpEntityEntityBroadPhaseListener {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpEntityEntityBroadPhaseListener {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkpBroadPhaseListener_ptr(&self) -> *const hkpBroadPhaseListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpBroadPhaseListener_mut_ptr(&mut self) -> *mut hkpBroadPhaseListener {
-        self as *mut _ as _
+impl AsPtr<hkpBroadPhaseListener> for *const hkpEntityEntityBroadPhaseListener {
+    fn as_ptr(self) -> *const hkpBroadPhaseListener {
+        (self as usize + 0x8) as *const _
     }
 }
 
@@ -7636,25 +8118,29 @@ pub struct hkpEntityEntityBroadPhaseListener____vftable {
 #[repr(C)]
 pub struct hkpBroadPhaseBorderListener {
     pub __vfptr: *const hkpBroadPhaseBorderListener____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     pub __vfptr_2: *const hkpBroadPhaseListener____vftable,
+    /* hkpBroadPhaseListener
+     * hkpBroadPhaseBorderListener */
 }
 
-impl hkpBroadPhaseBorderListener {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpBroadPhaseBorderListener {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpBroadPhaseBorderListener {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkpBroadPhaseListener_ptr(&self) -> *const hkpBroadPhaseListener {
-        self as *const _ as _
-    }
-
-    pub fn as_hkpBroadPhaseListener_mut_ptr(&mut self) -> *mut hkpBroadPhaseListener {
-        self as *mut _ as _
+impl AsPtr<hkpBroadPhaseListener> for *const hkpBroadPhaseBorderListener {
+    fn as_ptr(self) -> *const hkpBroadPhaseListener {
+        (self as usize + 0x8) as *const _
     }
 }
 
@@ -7676,16 +8162,21 @@ pub struct hkpBroadPhaseBorderListener____vftable {
 #[repr(C)]
 pub struct hkpToiResourceMgr {
     pub __vfptr: *const hkpToiResourceMgr____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpToiResourceMgr
 }
 
-impl hkpToiResourceMgr {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpToiResourceMgr {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpToiResourceMgr {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7741,22 +8232,18 @@ pub struct hkpToiResourceMgr__ConstraintViolationInfo {
 
 #[repr(C)]
 pub struct hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_
     pub m_data: *mut hkpToiResourceMgr__ConstraintViolationInfo,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
+    // hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_
 }
 
-impl hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_ {
-    pub fn as_hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo__ptr(
-        &self,
-    ) -> *const hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_ {
-        self as *const _ as _
-    }
-
-    pub fn as_hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo__mut_ptr(
-        &mut self,
-    ) -> *mut hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_ {
-        self as *mut _ as _
+impl AsPtr<hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_>
+    for *const hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_
+{
+    fn as_ptr(self) -> *const hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_ {
+        self as *const _
     }
 }
 
@@ -7867,13 +8354,17 @@ pub struct hkpIslandPostIntegrateListener____vftable {
 #[repr(C)]
 pub struct hkpEntity {
     pub __vfptr: *const hkpEntity____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpWorldObject
     pub m_world: *mut hkpWorld,
     pub m_userData: u32,
     pub m_collidable: hkpLinkedCollidable,
     pub m_multiThreadCheck: hkMultiThreadCheck,
     pub m_name: hkStringPtr,
     pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    // hkpEntity
     pub m_material: hkpMaterial,
     pub m_limitContactImpulseUtilAndFlag: *mut (),
     pub m_damageMultiplier: f32,
@@ -7900,13 +8391,21 @@ pub struct hkpEntity {
     __pdbindgen_padding_2: [u8; 4],
 }
 
-impl hkpEntity {
-    pub fn as_hkpWorldObject_ptr(&self) -> *const hkpWorldObject {
-        self as *const _ as _
+impl AsPtr<hkpWorldObject> for *const hkpEntity {
+    fn as_ptr(self) -> *const hkpWorldObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkpWorldObject_mut_ptr(&mut self) -> *mut hkpWorldObject {
-        self as *mut _ as _
+impl AsPtr<hkReferencedObject> for *const hkpEntity {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpEntity {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7951,7 +8450,10 @@ pub struct hkEnum_enum_hkpConstraintInstance__InstanceType_unsigned_char_ {
 #[repr(C)]
 pub struct hkpConstraintInstance {
     pub __vfptr: *const hkpConstraintInstance____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpConstraintInstance
     pub m_owner: *mut hkpConstraintOwner,
     pub m_data: *mut hkpConstraintData,
     pub m_constraintModifiers: *mut hkpModifierConstraintAtom,
@@ -7967,13 +8469,15 @@ pub struct hkpConstraintInstance {
     pub m_uid: u32,
 }
 
-impl hkpConstraintInstance {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpConstraintInstance {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpConstraintInstance {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -7998,21 +8502,33 @@ pub struct hkpConstraintInstance____vftable {
 #[repr(C)]
 pub struct hkpShapeBase {
     pub __vfptr: *const hkpShapeBase____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkcdShape
     pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
     pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
     pub m_bitsPerKey: u8,
     pub m_shapeInfoCodecType:
         hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    // hkpShapeBase
 }
 
-impl hkpShapeBase {
-    pub fn as_hkcdShape_ptr(&self) -> *const hkcdShape {
-        self as *const _ as _
+impl AsPtr<hkcdShape> for *const hkpShapeBase {
+    fn as_ptr(self) -> *const hkcdShape {
+        self as *const _
     }
+}
 
-    pub fn as_hkcdShape_mut_ptr(&mut self) -> *mut hkcdShape {
-        self as *mut _ as _
+impl AsPtr<hkReferencedObject> for *const hkpShapeBase {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpShapeBase {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -8079,7 +8595,10 @@ pub struct hkpShapeBase____vftable {
 #[repr(C)]
 pub struct hkpMotion {
     pub __vfptr: *const hkpMotion____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpMotion
     pub m_type: hkEnum_enum_hkpMotion__MotionType_unsigned_char_,
     pub m_deactivationIntegrateCounter: u8,
     pub m_deactivationNumInactiveFrames: [u16; 2],
@@ -8096,13 +8615,15 @@ pub struct hkpMotion {
     pub m_gravityFactor: hkHalf,
 }
 
-impl hkpMotion {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpMotion {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpMotion {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -8184,7 +8705,10 @@ pub struct hkEnum_enum_hkpMaterial__ResponseType_signed_char_ {
 #[repr(C)]
 pub struct hkpWorldObject {
     pub __vfptr: *const hkpWorldObject____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkpWorldObject
     pub m_world: *mut hkpWorld,
     pub m_userData: u32,
     pub m_collidable: hkpLinkedCollidable,
@@ -8193,13 +8717,15 @@ pub struct hkpWorldObject {
     pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
 }
 
-impl hkpWorldObject {
-    pub fn as_hkReferencedObject_ptr(&self) -> *const hkReferencedObject {
-        self as *const _ as _
+impl AsPtr<hkReferencedObject> for *const hkpWorldObject {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
     }
+}
 
-    pub fn as_hkReferencedObject_mut_ptr(&mut self) -> *mut hkReferencedObject {
-        self as *mut _ as _
+impl AsPtr<hkBaseObject> for *const hkpWorldObject {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 
@@ -8230,22 +8756,41 @@ pub struct hkEnum_enum_hkpConstraintInstance__ConstraintPriority_unsigned_char_ 
 #[repr(C)]
 pub struct hkpShape {
     pub __vfptr: *const hkpShape____vftable,
+    // hkBaseObject
+    // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
+    // hkcdShape
     pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
     pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
     pub m_bitsPerKey: u8,
     pub m_shapeInfoCodecType:
         hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    // hkpShapeBase
+    // hkpShape
     pub m_userData: u32,
 }
 
-impl hkpShape {
-    pub fn as_hkpShapeBase_ptr(&self) -> *const hkpShapeBase {
-        self as *const _ as _
+impl AsPtr<hkpShapeBase> for *const hkpShape {
+    fn as_ptr(self) -> *const hkpShapeBase {
+        self as *const _
     }
+}
 
-    pub fn as_hkpShapeBase_mut_ptr(&mut self) -> *mut hkpShapeBase {
-        self as *mut _ as _
+impl AsPtr<hkcdShape> for *const hkpShape {
+    fn as_ptr(self) -> *const hkcdShape {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkReferencedObject> for *const hkpShape {
+    fn as_ptr(self) -> *const hkReferencedObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<hkBaseObject> for *const hkpShape {
+    fn as_ptr(self) -> *const hkBaseObject {
+        self as *const _
     }
 }
 

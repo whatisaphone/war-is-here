@@ -3,6 +3,7 @@ use crate::{
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
+use pdbindgen_runtime::StaticCast;
 
 /// This function reads `city01_glass2_04.meshpack` into a `gfc::MeshBuilder`,
 /// the same way the game does in `gfc::MeshCache::loadMesh` and
@@ -10,10 +11,8 @@ use darksiders1_sys::target;
 pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
     unsafe {
         let stream = new(|| gfc::ByteInputStream::new(COOKED));
-        let stream = gfc::AutoRef::<gfc::ByteInputStream>::from_ptr(
-            (*(*(*(*stream).as_ptr()).as_gfc__InputStream_mut_ptr()).as_gfc__Stream_mut_ptr())
-                .as_gfc__IRefObject_mut_ptr(),
-        );
+        let stream =
+            gfc::AutoRef::<gfc::ByteInputStream>::from_ptr((*stream).as_ptr().static_cast());
         let mut reader = init_with(|this| target::gfc__MeshReader__MeshReader(this));
         let mut valid = true;
         let object = init_with(|p| {
@@ -30,7 +29,7 @@ pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
         let object = object.p as *mut target::gfc__MeshBuilder;
         target::gfc__AutoRef_gfc__MeshBuilder_ {
-            p: (*(*object).as_gfc__Object_mut_ptr()).as_gfc__IRefObject_mut_ptr(),
+            p: object.static_cast(),
         }
     }
 }

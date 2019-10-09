@@ -1,4 +1,5 @@
 use crate::darksiders1::{gfc, new};
+use pdbindgen_runtime::StaticCast;
 use std::{fs, slice};
 
 const PATH: &str = r"C:\Users\John\AppData\Local\Temp";
@@ -43,10 +44,7 @@ pub fn dump_object_to_bytes(object: &gfc::Object) -> gfc::AutoRef<gfc::ByteOutpu
 
     let stream = new(gfc::ByteOutputStream::new);
     let mut stream = unsafe {
-        gfc::AutoRef::<gfc::ByteOutputStream>::from_ptr(
-            (*(*(*(*stream).as_ptr()).as_gfc__OutputStream_mut_ptr()).as_gfc__Stream_mut_ptr())
-                .as_gfc__IRefObject_mut_ptr(),
-        )
+        gfc::AutoRef::<gfc::ByteOutputStream>::from_ptr((*stream).as_ptr().static_cast())
     };
     writer.write_object(object, &mut stream, false);
 

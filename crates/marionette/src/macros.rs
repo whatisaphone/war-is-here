@@ -52,13 +52,15 @@ macro_rules! struct_wrapper_super {
             type Target = $super;
 
             fn deref(&self) -> &Self::Target {
-                unsafe { <$super>::from_ptr((*self.as_ptr()).$cast_method()) }
+                use pdbindgen_runtime::StaticCast;
+                unsafe { <$super>::from_ptr(self.as_ptr().static_cast()) }
             }
         }
 
         impl std::ops::DerefMut for $sub {
             fn deref_mut(&mut self) -> &mut Self::Target {
-                unsafe { <$super>::from_ptr_mut((*self.as_ptr()).$cast_method()) }
+                use pdbindgen_runtime::StaticCast;
+                unsafe { <$super>::from_ptr_mut(self.as_ptr().static_cast()) }
             }
         }
     };

@@ -1,6 +1,7 @@
 #![allow(non_camel_case_types, non_snake_case, unused_imports)]
 
 use super::{types2::*, types3::*};
+use pdbindgen_runtime::AsPtr;
 
 #[repr(C)]
 pub struct unit4__StatUpdateData {
@@ -107,6 +108,8 @@ pub struct keen__Event {
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
     pub __vfptr: *const keen__BaseMemoryAllocator_keen__TlsfAllocator_____vftable,
+    // keen__MemoryAllocator
+    // keen__BaseMemoryAllocator_keen__TlsfAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
     pub m_allocator: keen__TlsfAllocator,
@@ -117,13 +120,9 @@ pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
     pub m_flags: u32,
 }
 
-impl keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
-    pub fn as_keen__MemoryAllocator_ptr(&self) -> *const keen__MemoryAllocator {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__MemoryAllocator_mut_ptr(&mut self) -> *mut keen__MemoryAllocator {
-        self as *mut _ as _
+impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
+    fn as_ptr(self) -> *const keen__MemoryAllocator {
+        self as *const _
     }
 }
 
@@ -167,6 +166,8 @@ pub struct keen__Thread {
 #[repr(C)]
 pub struct keen__TlsfMemoryAllocator {
     pub __vfptr: *const keen__TlsfMemoryAllocator____vftable,
+    // keen__MemoryAllocator
+    // keen__BaseMemoryAllocator_keen__TlsfAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
     pub m_allocator: keen__TlsfAllocator,
@@ -175,19 +176,18 @@ pub struct keen__TlsfMemoryAllocator {
     pub m_maxAllocatedSize: u32,
     pub m_allocationCount: u32,
     pub m_flags: u32,
+    // keen__TlsfMemoryAllocator
 }
 
-impl keen__TlsfMemoryAllocator {
-    pub fn as_keen__BaseMemoryAllocator_keen__TlsfAllocator__ptr(
-        &self,
-    ) -> *const keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
-        self as *const _ as _
+impl AsPtr<keen__BaseMemoryAllocator_keen__TlsfAllocator_> for *const keen__TlsfMemoryAllocator {
+    fn as_ptr(self) -> *const keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
+        self as *const _
     }
+}
 
-    pub fn as_keen__BaseMemoryAllocator_keen__TlsfAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
-        self as *mut _ as _
+impl AsPtr<keen__MemoryAllocator> for *const keen__TlsfMemoryAllocator {
+    fn as_ptr(self) -> *const keen__MemoryAllocator {
+        self as *const _
     }
 }
 
@@ -270,23 +270,21 @@ pub struct keen__UserAccountId {
 
 #[repr(C)]
 pub struct keen__UserAccountSystem {
+    // keen__UserAccountSystemBase
     pub creationParameters: keen__UserAccountSystemCreationParameters,
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub runningOperations: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding: [u8; 24],
+    // keen__UserAccountSystem
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub accounts: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding_2: [u8; 4256],
     pub accountCount: u32,
 }
 
-impl keen__UserAccountSystem {
-    pub fn as_keen__UserAccountSystemBase_ptr(&self) -> *const keen__UserAccountSystemBase {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__UserAccountSystemBase_mut_ptr(&mut self) -> *mut keen__UserAccountSystemBase {
-        self as *mut _ as _
+impl AsPtr<keen__UserAccountSystemBase> for *const keen__UserAccountSystem {
+    fn as_ptr(self) -> *const keen__UserAccountSystemBase {
+        self as *const _
     }
 }
 
@@ -551,91 +549,121 @@ pub struct keen__WorkerThreadContext {
 
 #[repr(C)]
 pub struct ID3D11ShaderResourceView {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11View
+     * ID3D11ShaderResourceView */
 }
 
-impl ID3D11ShaderResourceView {
-    pub fn as_ID3D11View_ptr(&self) -> *const ID3D11View {
-        self as *const _ as _
+impl AsPtr<ID3D11View> for *const ID3D11ShaderResourceView {
+    fn as_ptr(self) -> *const ID3D11View {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11View_mut_ptr(&mut self) -> *mut ID3D11View {
-        self as *mut _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11ShaderResourceView {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
+    }
+}
+
+impl AsPtr<IUnknown> for *const ID3D11ShaderResourceView {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11View {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11View */
 }
 
-impl ID3D11View {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11View {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11View {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11InputLayout {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11InputLayout */
 }
 
-impl ID3D11InputLayout {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11InputLayout {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11InputLayout {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11DeviceChild {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    // ID3D11DeviceChild
 }
 
-impl ID3D11DeviceChild {
-    pub fn as_IUnknown_ptr(&self) -> *const IUnknown {
-        self as *const _ as _
-    }
-
-    pub fn as_IUnknown_mut_ptr(&mut self) -> *mut IUnknown {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11DeviceChild {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11DepthStencilState {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11DepthStencilState */
 }
 
-impl ID3D11DepthStencilState {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11DepthStencilState {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11DepthStencilState {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11SamplerState {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11SamplerState */
 }
 
-impl ID3D11SamplerState {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11SamplerState {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11SamplerState {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
@@ -653,108 +681,143 @@ pub struct _D3D11_SIGNATURE_PARAMETER_DESC {
 
 #[repr(C)]
 pub struct ID3D11RenderTargetView {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11View
+     * ID3D11RenderTargetView */
 }
 
-impl ID3D11RenderTargetView {
-    pub fn as_ID3D11View_ptr(&self) -> *const ID3D11View {
-        self as *const _ as _
+impl AsPtr<ID3D11View> for *const ID3D11RenderTargetView {
+    fn as_ptr(self) -> *const ID3D11View {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11View_mut_ptr(&mut self) -> *mut ID3D11View {
-        self as *mut _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11RenderTargetView {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
+    }
+}
+
+impl AsPtr<IUnknown> for *const ID3D11RenderTargetView {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11Device {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    // ID3D11Device
 }
 
-impl ID3D11Device {
-    pub fn as_IUnknown_ptr(&self) -> *const IUnknown {
-        self as *const _ as _
-    }
-
-    pub fn as_IUnknown_mut_ptr(&mut self) -> *mut IUnknown {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11Device {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11DepthStencilView {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11View
+     * ID3D11DepthStencilView */
 }
 
-impl ID3D11DepthStencilView {
-    pub fn as_ID3D11View_ptr(&self) -> *const ID3D11View {
-        self as *const _ as _
+impl AsPtr<ID3D11View> for *const ID3D11DepthStencilView {
+    fn as_ptr(self) -> *const ID3D11View {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11View_mut_ptr(&mut self) -> *mut ID3D11View {
-        self as *mut _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11DepthStencilView {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
+    }
+}
+
+impl AsPtr<IUnknown> for *const ID3D11DepthStencilView {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11VertexShader {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11VertexShader */
 }
 
-impl ID3D11VertexShader {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11VertexShader {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11VertexShader {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11BlendState {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11BlendState */
 }
 
-impl ID3D11BlendState {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11BlendState {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11BlendState {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11PixelShader {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11PixelShader */
 }
 
-impl ID3D11PixelShader {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11PixelShader {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11PixelShader {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct keen__DepthStencilState {
+    // keen__GraphicsStateObject
     pub hash: u32,
     pub refCount: u32,
+    // keen__DepthStencilState
     pub pState: *mut ID3D11DepthStencilState,
 }
 
-impl keen__DepthStencilState {
-    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
-        self as *mut _ as _
+impl AsPtr<keen__GraphicsStateObject> for *const keen__DepthStencilState {
+    fn as_ptr(self) -> *const keen__GraphicsStateObject {
+        self as *const _
     }
 }
 
@@ -858,38 +921,34 @@ pub struct keen__SkinningBatch {
 #[repr(C)]
 pub struct keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_
 {
+    // keen__InternalListBase
     pub m_pFirst: *mut keen__InternalListBase__Listable,
     pub m_pLast: *mut keen__InternalListBase__Listable,
     pub m_numObjects: u32,
     pub m_begin: keen__InternalListBase__IteratorBase,
     pub m_end: keen__InternalListBase__IteratorBase,
     pub m_local: keen__InternalListBase__IteratorBase,
+    /* keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_ */
 }
 
-impl keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_ {
-    pub fn as_keen__InternalListBase_ptr(&self) -> *const keen__InternalListBase {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__InternalListBase_mut_ptr(&mut self) -> *mut keen__InternalListBase {
-        self as *mut _ as _
+impl AsPtr<keen__InternalListBase> for *const keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_ {
+    fn as_ptr(self) -> *const keen__InternalListBase {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct keen__RasterizerState {
+    // keen__GraphicsStateObject
     pub hash: u32,
     pub refCount: u32,
+    // keen__RasterizerState
     pub pState: *mut ID3D11RasterizerState,
 }
 
-impl keen__RasterizerState {
-    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
-        self as *mut _ as _
+impl AsPtr<keen__GraphicsStateObject> for *const keen__RasterizerState {
+    fn as_ptr(self) -> *const keen__GraphicsStateObject {
+        self as *const _
     }
 }
 
@@ -955,35 +1014,31 @@ pub struct keen__GraphicsStateObjectCache {
 
 #[repr(C)]
 pub struct keen__SamplerState {
+    // keen__GraphicsStateObject
     pub hash: u32,
     pub refCount: u32,
+    // keen__SamplerState
     pub pState: *mut ID3D11SamplerState,
 }
 
-impl keen__SamplerState {
-    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
-        self as *mut _ as _
+impl AsPtr<keen__GraphicsStateObject> for *const keen__SamplerState {
+    fn as_ptr(self) -> *const keen__GraphicsStateObject {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct keen__BlendState {
+    // keen__GraphicsStateObject
     pub hash: u32,
     pub refCount: u32,
+    // keen__BlendState
     pub pState: *mut ID3D11BlendState,
 }
 
-impl keen__BlendState {
-    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
-        self as *mut _ as _
+impl AsPtr<keen__GraphicsStateObject> for *const keen__BlendState {
+    fn as_ptr(self) -> *const keen__GraphicsStateObject {
+        self as *const _
     }
 }
 
@@ -995,20 +1050,18 @@ pub struct keen__ShaderPipeline {
 
 #[repr(C)]
 pub struct keen__VertexInputBinding {
+    // keen__GraphicsStateObject
     pub hash: u32,
     pub refCount: u32,
+    // keen__VertexInputBinding
     pub pVertexFormat: *const keen__VertexFormat,
     pub pLayout: *mut ID3D11InputLayout,
     pub geometryModeMask: u32,
 }
 
-impl keen__VertexInputBinding {
-    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
-        self as *mut _ as _
+impl AsPtr<keen__GraphicsStateObject> for *const keen__VertexInputBinding {
+    fn as_ptr(self) -> *const keen__GraphicsStateObject {
+        self as *const _
     }
 }
 
@@ -1047,8 +1100,10 @@ pub struct keen__SoftwareSkinningJointMatrixData {
 
 #[repr(C)]
 pub struct keen__VertexFormat {
+    // keen__GraphicsStateObject
     pub hash: u32,
     pub refCount: u32,
+    // keen__VertexFormat
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub attributes: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding: [u8; 68],
@@ -1058,58 +1113,76 @@ pub struct keen__VertexFormat {
     pub streamStride: [u32; 3],
 }
 
-impl keen__VertexFormat {
-    pub fn as_keen__GraphicsStateObject_ptr(&self) -> *const keen__GraphicsStateObject {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__GraphicsStateObject_mut_ptr(&mut self) -> *mut keen__GraphicsStateObject {
-        self as *mut _ as _
+impl AsPtr<keen__GraphicsStateObject> for *const keen__VertexFormat {
+    fn as_ptr(self) -> *const keen__GraphicsStateObject {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11Buffer {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11Resource
+     * ID3D11Buffer */
 }
 
-impl ID3D11Buffer {
-    pub fn as_ID3D11Resource_ptr(&self) -> *const ID3D11Resource {
-        self as *const _ as _
+impl AsPtr<ID3D11Resource> for *const ID3D11Buffer {
+    fn as_ptr(self) -> *const ID3D11Resource {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11Resource_mut_ptr(&mut self) -> *mut ID3D11Resource {
-        self as *mut _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11Buffer {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
+    }
+}
+
+impl AsPtr<IUnknown> for *const ID3D11Buffer {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11Resource {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11Resource */
 }
 
-impl ID3D11Resource {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11Resource {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11Resource {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct ID3D11RasterizerState {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11RasterizerState */
 }
 
-impl ID3D11RasterizerState {
-    pub fn as_ID3D11DeviceChild_ptr(&self) -> *const ID3D11DeviceChild {
-        self as *const _ as _
+impl AsPtr<ID3D11DeviceChild> for *const ID3D11RasterizerState {
+    fn as_ptr(self) -> *const ID3D11DeviceChild {
+        self as *const _
     }
+}
 
-    pub fn as_ID3D11DeviceChild_mut_ptr(&mut self) -> *mut ID3D11DeviceChild {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const ID3D11RasterizerState {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
@@ -1460,16 +1533,14 @@ pub struct keen__IoResult_unsigned___int64_ {
 #[repr(C)]
 pub struct keen__AliasPathFileDevice {
     pub __vfptr: *const keen__AliasPathFileDevice____vftable,
+    // keen__FileDeviceInterface
+    // keen__AliasPathFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__AliasPathFileDevice__StreamEntry_,
 }
 
-impl keen__AliasPathFileDevice {
-    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
-        self as *mut _ as _
+impl AsPtr<keen__FileDeviceInterface> for *const keen__AliasPathFileDevice {
+    fn as_ptr(self) -> *const keen__FileDeviceInterface {
+        self as *const _
     }
 }
 
@@ -1540,19 +1611,17 @@ pub struct keen__AliasPathFileDevice____vftable {
 #[repr(C)]
 pub struct keen__NativeFileDevice {
     pub __vfptr: *const keen__NativeFileDevice____vftable,
+    // keen__FileDeviceInterface
+    // keen__NativeFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__NativeFileDevice__FileStreamData_,
     pub m_readThreadContexts: keen__Array_keen__NativeFileDevice__ReadThreadContext_,
     pub m_mutex: keen__Mutex,
     pub m_useReadThread: bool,
 }
 
-impl keen__NativeFileDevice {
-    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
-        self as *mut _ as _
+impl AsPtr<keen__FileDeviceInterface> for *const keen__NativeFileDevice {
+    fn as_ptr(self) -> *const keen__FileDeviceInterface {
+        self as *const _
     }
 }
 
@@ -1638,17 +1707,15 @@ pub struct keen__NativeFileDevice__ReadThreadContext {
 #[repr(C)]
 pub struct keen__PakFileDevice {
     pub __vfptr: *const keen__PakFileDevice____vftable,
+    // keen__FileDeviceInterface
+    // keen__PakFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__PakFileDevice__PakFileStream_,
     pub m_chunkAllocator: keen__TlsfMemoryAllocator,
 }
 
-impl keen__PakFileDevice {
-    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
-        self as *mut _ as _
+impl AsPtr<keen__FileDeviceInterface> for *const keen__PakFileDevice {
+    fn as_ptr(self) -> *const keen__FileDeviceInterface {
+        self as *const _
     }
 }
 
@@ -1723,24 +1790,18 @@ pub struct keen__FileDeviceMountData {
 
 #[repr(C)]
 pub struct keen__FileSystemDeviceEntry {
+    // keen__ListEntry_keen__FileSystemDeviceEntry_
     pub pNext: *mut keen__FileSystemDeviceEntry,
     pub pPrev: *mut keen__FileSystemDeviceEntry,
+    // keen__FileSystemDeviceEntry
     pub pMountData: *mut keen__FileDeviceMountData,
     pub pDevice: *mut keen__FileDeviceInterface,
     pub isInternalDevice: bool,
 }
 
-impl keen__FileSystemDeviceEntry {
-    pub fn as_keen__ListEntry_keen__FileSystemDeviceEntry__ptr(
-        &self,
-    ) -> *const keen__ListEntry_keen__FileSystemDeviceEntry_ {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__ListEntry_keen__FileSystemDeviceEntry__mut_ptr(
-        &mut self,
-    ) -> *mut keen__ListEntry_keen__FileSystemDeviceEntry_ {
-        self as *mut _ as _
+impl AsPtr<keen__ListEntry_keen__FileSystemDeviceEntry_> for *const keen__FileSystemDeviceEntry {
+    fn as_ptr(self) -> *const keen__ListEntry_keen__FileSystemDeviceEntry_ {
+        self as *const _
     }
 }
 
@@ -1753,18 +1814,16 @@ pub struct keen__IoResult_unsigned_short_ {
 #[repr(C)]
 pub struct keen__MemoryFileDevice {
     pub __vfptr: *const keen__MemoryFileDevice____vftable,
+    // keen__FileDeviceInterface
+    // keen__MemoryFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__MemoryFileDevice__StreamEntry_,
     pub m_files: keen__Array_keen__MemoryFileDevice__FileEntry_,
     pub m_fileIndices: keen__IndexArray,
 }
 
-impl keen__MemoryFileDevice {
-    pub fn as_keen__FileDeviceInterface_ptr(&self) -> *const keen__FileDeviceInterface {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__FileDeviceInterface_mut_ptr(&mut self) -> *mut keen__FileDeviceInterface {
-        self as *mut _ as _
+impl AsPtr<keen__FileDeviceInterface> for *const keen__MemoryFileDevice {
+    fn as_ptr(self) -> *const keen__FileDeviceInterface {
+        self as *const _
     }
 }
 
@@ -1947,19 +2006,17 @@ pub struct keen__FileStreamAllocator_keen__NativeFileDevice__FileStreamData_ {
 
 #[repr(C)]
 pub struct keen__MemoryFileDeviceMountData {
+    // keen__FileDeviceMountData
     __pdbindgen_padding: [u8; 1],
+    // keen__MemoryFileDeviceMountData
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub pAllocator: *mut keen__MemoryAllocator,
     pub fileHandle: u32,
 }
 
-impl keen__MemoryFileDeviceMountData {
-    pub fn as_keen__FileDeviceMountData_ptr(&self) -> *const keen__FileDeviceMountData {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__FileDeviceMountData_mut_ptr(&mut self) -> *mut keen__FileDeviceMountData {
-        self as *mut _ as _
+impl AsPtr<keen__FileDeviceMountData> for *const keen__MemoryFileDeviceMountData {
+    fn as_ptr(self) -> *const keen__FileDeviceMountData {
+        self as *const _
     }
 }
 
@@ -1976,25 +2033,19 @@ pub struct keen__PoolAllocator_keen__MemoryFileDevice__StreamEntry_ {
 
 #[repr(C)]
 pub struct keen__FileSystemMountPoint {
+    // keen__TreeNode_keen__FileSystemMountPoint_
     pub pNextSibling: *mut keen__FileSystemMountPoint,
     pub pPrevSibling: *mut keen__FileSystemMountPoint,
     pub pParent: *mut keen__FileSystemMountPoint,
     pub pFirstChild: *mut keen__FileSystemMountPoint,
+    // keen__FileSystemMountPoint
     pub path: [i8; 128],
     pub pFirstDevice: *mut keen__FileSystemDeviceEntry,
 }
 
-impl keen__FileSystemMountPoint {
-    pub fn as_keen__TreeNode_keen__FileSystemMountPoint__ptr(
-        &self,
-    ) -> *const keen__TreeNode_keen__FileSystemMountPoint_ {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__TreeNode_keen__FileSystemMountPoint__mut_ptr(
-        &mut self,
-    ) -> *mut keen__TreeNode_keen__FileSystemMountPoint_ {
-        self as *mut _ as _
+impl AsPtr<keen__TreeNode_keen__FileSystemMountPoint_> for *const keen__FileSystemMountPoint {
+    fn as_ptr(self) -> *const keen__TreeNode_keen__FileSystemMountPoint_ {
+        self as *const _
     }
 }
 
@@ -2006,6 +2057,8 @@ pub struct keen__IndexArray {
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
     pub __vfptr: *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_____vftable,
+    // keen__MemoryAllocator
+    // keen__BaseMemoryAllocator_keen__LowOverheadAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
     pub m_allocator: keen__LowOverheadAllocator,
@@ -2016,13 +2069,9 @@ pub struct keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
     pub m_flags: u32,
 }
 
-impl keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
-    pub fn as_keen__MemoryAllocator_ptr(&self) -> *const keen__MemoryAllocator {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__MemoryAllocator_mut_ptr(&mut self) -> *mut keen__MemoryAllocator {
-        self as *mut _ as _
+impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
+    fn as_ptr(self) -> *const keen__MemoryAllocator {
+        self as *const _
     }
 }
 
@@ -2055,16 +2104,14 @@ pub struct keen__FileStreamAllocator_keen__PakFileDevice__PakFileStream_ {
 
 #[repr(C)]
 pub struct IDirectInput8A {
+    // IUnknown
     pub lpVtbl: *mut IUnknownVtbl,
+    // IDirectInput8A
 }
 
-impl IDirectInput8A {
-    pub fn as_IUnknown_ptr(&self) -> *const IUnknown {
-        self as *const _ as _
-    }
-
-    pub fn as_IUnknown_mut_ptr(&mut self) -> *mut IUnknown {
-        self as *mut _ as _
+impl AsPtr<IUnknown> for *const IDirectInput8A {
+    fn as_ptr(self) -> *const IUnknown {
+        self as *const _
     }
 }
 
@@ -2185,16 +2232,14 @@ pub struct keen__Queue_keen__InputEvent_ {
 
 #[repr(C)]
 pub struct std__allocator_char_ {
+    // std___Allocator_base_char_
     __pdbindgen_padding: [u8; 1],
+    // std__allocator_char_
 }
 
-impl std__allocator_char_ {
-    pub fn as_std___Allocator_base_char__ptr(&self) -> *const std___Allocator_base_char_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_char__mut_ptr(&mut self) -> *mut std___Allocator_base_char_ {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_char_> for *const std__allocator_char_ {
+    fn as_ptr(self) -> *const std___Allocator_base_char_ {
+        self as *const _
     }
 }
 
@@ -2205,7 +2250,9 @@ pub struct std___Container_base0 {
 
 #[repr(C)]
 pub struct std___String_val_char_std__allocator_char___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___String_val_char_std__allocator_char___
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
     pub _Bx: compile_error!("unimplemented feature: type kind 0x1506"),
     __pdbindgen_padding_2: [u8; 15],
@@ -2214,13 +2261,9 @@ pub struct std___String_val_char_std__allocator_char___ {
     pub _Alval: std__allocator_char_,
 }
 
-impl std___String_val_char_std__allocator_char___ {
-    pub fn as_std___Container_base0_ptr(&self) -> *const std___Container_base0 {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___String_val_char_std__allocator_char___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -2231,26 +2274,31 @@ pub struct std___Allocator_base_char_ {
 
 #[repr(C)]
 pub struct std__basic_string_char_std__char_traits_char__std__allocator_char___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___String_val_char_std__allocator_char___
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
     pub _Bx: compile_error!("unimplemented feature: type kind 0x1506"),
     __pdbindgen_padding_2: [u8; 15],
     pub _Mysize: u32,
     pub _Myres: u32,
     pub _Alval: std__allocator_char_,
+    // std__basic_string_char_std__char_traits_char__std__allocator_char___
 }
 
-impl std__basic_string_char_std__char_traits_char__std__allocator_char___ {
-    pub fn as_std___String_val_char_std__allocator_char____ptr(
-        &self,
-    ) -> *const std___String_val_char_std__allocator_char___ {
-        self as *const _ as _
+impl AsPtr<std___String_val_char_std__allocator_char___>
+    for *const std__basic_string_char_std__char_traits_char__std__allocator_char___
+{
+    fn as_ptr(self) -> *const std___String_val_char_std__allocator_char___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___String_val_char_std__allocator_char____mut_ptr(
-        &mut self,
-    ) -> *mut std___String_val_char_std__allocator_char___ {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0>
+    for *const std__basic_string_char_std__char_traits_char__std__allocator_char___
+{
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -2426,19 +2474,24 @@ pub struct gfc__ThreadSafeBool {
 #[repr(C)]
 pub struct gfc__InputStream {
     pub __vfptr: *const gfc__InputStream____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Stream
+    // gfc__InputStream
     pub mEndianess: i32,
     pub mBufferAvail: u32,
     pub mBufferPtr: *mut u8,
 }
 
-impl gfc__InputStream {
-    pub fn as_gfc__Stream_ptr(&self) -> *const gfc__Stream {
-        self as *const _ as _
+impl AsPtr<gfc__Stream> for *const gfc__InputStream {
+    fn as_ptr(self) -> *const gfc__Stream {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Stream_mut_ptr(&mut self) -> *mut gfc__Stream {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__InputStream {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2541,7 +2594,10 @@ pub struct gfc__Half {
 #[repr(C)]
 pub struct gfc__SoundDesc {
     pub __vfptr: *const gfc__SoundDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__SoundDesc
     pub mSounds: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mName: gfc__HString,
     pub mGroup: gfc__HString,
@@ -2565,13 +2621,15 @@ pub struct gfc__SoundDesc {
     pub mFlags: gfc__TFlags_unsigned_short_,
 }
 
-impl gfc__SoundDesc {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__SoundDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__SoundDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2605,18 +2663,16 @@ pub struct gfc__TFlags_unsigned_short_ {
 #[repr(C)]
 pub struct gfc__Resource {
     pub __vfptr: *const gfc__Resource____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Resource
     pub mState: i32,
     pub mPackageID: i32,
 }
 
-impl gfc__Resource {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Resource {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2800,16 +2856,14 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Property__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__Object {
     pub __vfptr: *const gfc__Object____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
 }
 
-impl gfc__Object {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Object {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2852,17 +2906,22 @@ pub struct gfc__AutoRef_gfc__File_ {
 #[repr(C)]
 pub struct gfc__OutputStream {
     pub __vfptr: *const gfc__OutputStream____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Stream
+    // gfc__OutputStream
     pub mEndianess: i32,
 }
 
-impl gfc__OutputStream {
-    pub fn as_gfc__Stream_ptr(&self) -> *const gfc__Stream {
-        self as *const _ as _
+impl AsPtr<gfc__Stream> for *const gfc__OutputStream {
+    fn as_ptr(self) -> *const gfc__Stream {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Stream_mut_ptr(&mut self) -> *mut gfc__Stream {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__OutputStream {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -2886,19 +2945,17 @@ pub struct gfc__Mutex {
 #[repr(C)]
 pub struct gfc__Property {
     pub __vfptr: *const gfc__Property____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Property
     pub mName: gfc__HString,
     pub mAnnotation: gfc__HString,
     pub mContextFlags: u8,
 }
 
-impl gfc__Property {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Property {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -3004,16 +3061,14 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__ClassLoader__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__Stream {
     pub __vfptr: *const gfc__Stream____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Stream
 }
 
-impl gfc__Stream {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Stream {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -3058,7 +3113,9 @@ pub struct gfc__AutoRef_gfc__Class_ {
 #[repr(C)]
 pub struct gfc__Class {
     pub __vfptr: *const gfc__Class____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Class
     pub mParent: gfc__AutoRef_gfc__Class_,
     pub mName: gfc__HString,
     pub mConstructor: gfc__AutoRef_gfc__Constructor_,
@@ -3070,13 +3127,9 @@ pub struct gfc__Class {
     pub mStubCalled: bool,
 }
 
-impl gfc__Class {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Class {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -3114,7 +3167,9 @@ pub struct gfc__Class____vftable {
 #[repr(C)]
 pub struct gfc__Environment {
     pub __vfptr: *const gfc__Environment____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Environment
     pub mParent: gfc__AutoRef_gfc__Environment_,
     pub mSymbols: *mut gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_,
     pub mContextFlags: u8,
@@ -3122,13 +3177,9 @@ pub struct gfc__Environment {
     pub mTempEnv: bool,
 }
 
-impl gfc__Environment {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Environment {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -3145,18 +3196,16 @@ pub struct gfc__AutoRef_gfc__Constructor_ {
 #[repr(C)]
 pub struct gfc__Method {
     pub __vfptr: *const gfc__Method____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Method
     pub mName: gfc__HString,
     pub mContextFlags: u8,
 }
 
-impl gfc__Method {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Method {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -3211,65 +3260,92 @@ pub struct std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__W
 #[repr(C)]
 pub struct std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
 {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub _Myfirst: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Mylast: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Myend: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Alval: std__allocator_gfc__AutoRef_gfc__ImageSurface___,
+    /* std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ */
 }
 
-impl
-    std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
-{
-    pub fn as_std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface______ptr(&self) -> *const std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____{
-        self as *const _ as _
+impl AsPtr<std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____> for *const std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
+    fn as_ptr(self) -> *const std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
+        self as *const _
     }
+}
 
-pub fn as_std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface______mut_ptr(&mut self) -> *mut std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____{
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____,
+    // std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
+    // std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
 }
 
-impl std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0____ptr(&self) -> *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0____mut_ptr(&mut self) -> *mut std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____,
 }
 
-impl std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    pub fn as_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0__ptr(&self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-        self as *const _ as _
+impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0__mut_ptr(&mut self) -> *mut std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3285,40 +3361,35 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Param
 
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____ {
+    // std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
     __pdbindgen_padding: [u8; 1],
+    // std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
 }
 
-impl std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____ {
-    pub fn as_std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______ptr(
-        &self,
+impl AsPtr<std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____>
+    for *const std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
+{
+    fn as_ptr(
+        self,
     ) -> *const std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
     {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______mut_ptr(
-        &mut self,
-    ) -> *mut std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
-    {
-        self as *mut _ as _
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
 {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-    pub fn as_std___Container_base0_ptr(&self) -> *const std___Container_base0 {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3331,140 +3402,208 @@ pub struct std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__
 #[repr(C)]
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_
 {
+    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_
     __pdbindgen_padding: [u8; 1],
+    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ */
 }
 
-impl std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node__ptr(&self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node__mut_ptr(&mut self) -> *mut std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {
+    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
+    // std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___
     pub first: gfc__AutoRef_gfc__Object_,
     pub second: gfc__AutoRef_gfc__Object_,
+    // std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___
 }
 
-impl std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-    pub fn as_std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object____ptr(
-        &self,
+impl AsPtr<std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___>
+    for *const std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___
+{
+    fn as_ptr(
+        self,
     ) -> *const std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object____mut_ptr(
-        &mut self,
-    ) -> *mut std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-        self as *mut _ as _
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
 }
 
-impl std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0____ptr(&self) -> *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0____mut_ptr(&mut self) -> *mut std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____,
+    // std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
+    // std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
+    // std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______
 }
 
-impl std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
-    pub fn as_std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0____ptr(&self) -> *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
+    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0____mut_ptr(&mut self) -> *mut std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
+    // std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___
     pub first: gfc__HString,
     pub second: gfc__AutoRef_gfc__Parameter_,
+    // std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___
 }
 
-impl std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-    pub fn as_std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter____ptr(
-        &self,
-    ) -> *const std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter____mut_ptr(
-        &mut self,
-    ) -> *mut std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-        self as *mut _ as _
+impl AsPtr<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___>
+    for *const std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___
+{
+    fn as_ptr(self) -> *const std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____,
+    // std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
+    // std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
+    // std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______
 }
 
-impl std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-    pub fn as_std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0____ptr(&self) -> *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
+    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0____mut_ptr(&mut self) -> *mut std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____,
 }
 
-impl std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    pub fn as_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0__ptr(&self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-        self as *const _ as _
+impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0__mut_ptr(&mut self) -> *mut std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3481,58 +3620,64 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoR
 #[repr(C)]
 pub struct std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
 {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-    pub fn as_std___Container_base0_ptr(&self) -> *const std___Container_base0 {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__allocator_gfc__AutoRef_gfc__ImageSurface___ {
+    // std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___
     __pdbindgen_padding: [u8; 1],
+    // std__allocator_gfc__AutoRef_gfc__ImageSurface___
 }
 
-impl std__allocator_gfc__AutoRef_gfc__ImageSurface___ {
-    pub fn as_std___Allocator_base_gfc__AutoRef_gfc__ImageSurface____ptr(
-        &self,
-    ) -> *const std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_gfc__AutoRef_gfc__ImageSurface____mut_ptr(
-        &mut self,
-    ) -> *mut std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___ {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___>
+    for *const std__allocator_gfc__AutoRef_gfc__ImageSurface___
+{
+    fn as_ptr(self) -> *const std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____,
+    // std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
 }
 
-impl std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0____ptr(&self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0____mut_ptr(&mut self) -> *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3545,41 +3690,38 @@ pub struct std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Ob
 #[repr(C)]
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_
 {
+    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_
     __pdbindgen_padding: [u8; 1],
+    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ */
 }
 
-impl std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node__ptr(&self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node__mut_ptr(&mut self) -> *mut std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {
+    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____ {
+    // std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
     __pdbindgen_padding: [u8; 1],
+    // std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
 }
 
-impl std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____ {
-    pub fn as_std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______ptr(&self) -> *const std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____{
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______mut_ptr(
-        &mut self,
-    ) -> *mut std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
-    {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____>
+    for *const std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
+{
+    fn as_ptr(self) -> *const std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____{
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
 {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub _Myfirst: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Mylast: *mut gfc__AutoRef_gfc__ImageSurface_,
@@ -3587,13 +3729,9 @@ pub struct std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__
     pub _Alval: std__allocator_gfc__AutoRef_gfc__ImageSurface___,
 }
 
-impl std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
-    pub fn as_std___Container_base0_ptr(&self) -> *const std___Container_base0 {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3604,43 +3742,67 @@ pub struct std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__
 
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____,
+    // std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
+    // std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
 }
 
-impl std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0____ptr(&self) -> *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0____mut_ptr(&mut self) -> *mut std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____,
 }
 
-impl std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    pub fn as_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0__ptr(&self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-        self as *const _ as _
+impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0__mut_ptr(&mut self) -> *mut std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3651,43 +3813,67 @@ pub struct std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___ {
 
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
 }
 
-impl std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0____ptr(&self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0____mut_ptr(&mut self) -> *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____,
+    // std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
 }
 
-impl std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0____ptr(&self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0____mut_ptr(&mut self) -> *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3699,22 +3885,48 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gf
 
 #[repr(C)]
 pub struct std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
+    // std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______
 }
 
-impl std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
-    pub fn as_std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0____ptr(&self) -> *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
+    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0____mut_ptr(&mut self) -> *mut std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3727,16 +3939,14 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gf
 #[repr(C)]
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_
 {
+    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_
     __pdbindgen_padding: [u8; 1],
+    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ */
 }
 
-impl std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node__ptr(&self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node__mut_ptr(&mut self) -> *mut std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {
+    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {
+        self as *const _
     }
 }
 
@@ -3748,34 +3958,30 @@ pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
 
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {
+    // std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____
     __pdbindgen_padding: [u8; 1],
+    // std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____
 }
 
-impl std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {
-    pub fn as_std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______ptr(&self) -> *const std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____{
-        self as *const _ as _
-    }
-
-pub fn as_std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______mut_ptr(&mut self) -> *mut std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____{
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____> for *const std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {
+    fn as_ptr(self) -> *const std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
 {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-    pub fn as_std___Container_base0_ptr(&self) -> *const std___Container_base0 {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -3839,61 +4045,58 @@ pub struct gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_ {
+    // gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_
     pub mData: *mut gfc__AutoRef_gfc__HDRDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+    // gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_
     pub mFixedData: [u8; 40],
 }
 
-impl gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_ {
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator__ptr(
-        &self,
-    ) -> *const gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_ {
-        self as *mut _ as _
+impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_>
+    for *const gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_
+{
+    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAllocator_ {
+    // gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_
     pub mData: *mut gfc__AutoRef_gfc__DepthOfFieldDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+    // gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAllocator_
     pub mFixedData: [u8; 40],
 }
 
-impl gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAllocator_ {
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator__ptr(
-        &self,
-    ) -> *const gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
-        self as *mut _ as _
+impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_>
+    for *const gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAllocator_
+{
+    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct gfc__StaticMesh {
     pub __vfptr: *const gfc__StaticMesh____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    /* gfc__Mesh
+     * gfc__StaticMesh */
 }
 
-impl gfc__StaticMesh {
-    pub fn as_gfc__Mesh_ptr(&self) -> *const gfc__Mesh {
-        self as *const _ as _
+impl AsPtr<gfc__Mesh> for *const gfc__StaticMesh {
+    fn as_ptr(self) -> *const gfc__Mesh {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Mesh_mut_ptr(&mut self) -> *mut gfc__Mesh {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__StaticMesh {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4006,16 +4209,14 @@ pub struct gfc__AutoRef_gfc__RenderTexture_ {
 #[repr(C)]
 pub struct gfc__VertexBuffer {
     pub __vfptr: *const gfc__VertexBuffer____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__VertexBuffer
 }
 
-impl gfc__VertexBuffer {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__VertexBuffer {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4059,16 +4260,14 @@ pub struct gfc__Vector_gfc__UIRenderer__Clip_0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__IndexBuffer {
     pub __vfptr: *const gfc__IndexBuffer____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__IndexBuffer
 }
 
-impl gfc__IndexBuffer {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__IndexBuffer {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4175,8 +4374,12 @@ pub struct gfc__AutoRef_gfc__RegionCell_ {
 #[repr(C)]
 pub struct gfc__FogDesc {
     pub __vfptr: *const gfc__FogDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__EnvironmentDesc
     pub mApplied: bool,
+    // gfc__FogDesc
     pub mBlendDuration: f32,
     pub mType: i32,
     pub mColor: gfc__TVector3_float_gfc__FloatMath_,
@@ -4190,13 +4393,21 @@ pub struct gfc__FogDesc {
     __pdbindgen_padding_2: [u8; 12],
 }
 
-impl gfc__FogDesc {
-    pub fn as_gfc__EnvironmentDesc_ptr(&self) -> *const gfc__EnvironmentDesc {
-        self as *const _ as _
+impl AsPtr<gfc__EnvironmentDesc> for *const gfc__FogDesc {
+    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__EnvironmentDesc_mut_ptr(&mut self) -> *mut gfc__EnvironmentDesc {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__FogDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__FogDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4522,23 +4733,19 @@ pub struct gfc__Graphics____vftable {
 
 #[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__AmbientDesc__10_0_gfc__CAllocator_ {
+    // gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_
     pub mData: *mut gfc__AutoRef_gfc__AmbientDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+    // gfc__FixedVector_gfc__AutoRef_gfc__AmbientDesc__10_0_gfc__CAllocator_
     pub mFixedData: [u8; 40],
 }
 
-impl gfc__FixedVector_gfc__AutoRef_gfc__AmbientDesc__10_0_gfc__CAllocator_ {
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator__ptr(
-        &self,
-    ) -> *const gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_ {
-        self as *mut _ as _
+impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_>
+    for *const gfc__FixedVector_gfc__AutoRef_gfc__AmbientDesc__10_0_gfc__CAllocator_
+{
+    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_ {
+        self as *const _
     }
 }
 
@@ -4556,7 +4763,9 @@ pub struct gfc__AutoRef_gfc__AmbientDesc_ {
 #[repr(C)]
 pub struct gfc__Camera3D {
     pub __vfptr: *const gfc__Camera3D____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Camera3D
     pub mFrameID: i32,
     pub mInsideOutside: i32,
     pub mUnderwater: bool,
@@ -4606,13 +4815,9 @@ pub struct gfc__Camera3D {
     __pdbindgen_padding_3: [u8; 8],
 }
 
-impl gfc__Camera3D {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Camera3D {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4633,8 +4838,12 @@ pub struct gfc__Camera3D____vftable {
 #[repr(C)]
 pub struct gfc__DepthOfFieldDesc {
     pub __vfptr: *const gfc__DepthOfFieldDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__EnvironmentDesc
     pub mApplied: bool,
+    // gfc__DepthOfFieldDesc
     pub mFocusDistance: f32,
     pub mBlurStart: f32,
     pub mBlurRange: f32,
@@ -4647,13 +4856,21 @@ pub struct gfc__DepthOfFieldDesc {
     __pdbindgen_padding_2: [u8; 12],
 }
 
-impl gfc__DepthOfFieldDesc {
-    pub fn as_gfc__EnvironmentDesc_ptr(&self) -> *const gfc__EnvironmentDesc {
-        self as *const _ as _
+impl AsPtr<gfc__EnvironmentDesc> for *const gfc__DepthOfFieldDesc {
+    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__EnvironmentDesc_mut_ptr(&mut self) -> *mut gfc__EnvironmentDesc {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__DepthOfFieldDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__DepthOfFieldDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4823,20 +5040,32 @@ pub struct gfc__Renderer____vftable {
 #[repr(C)]
 pub struct gfc__CameraBlurDesc {
     pub __vfptr: *const gfc__CameraBlurDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__EnvironmentDesc
     pub mApplied: bool,
+    // gfc__CameraBlurDesc
     pub mScale: f32,
     pub mSampleCount: u32,
     pub mManager: *mut gfc__EnvironmentManager,
 }
 
-impl gfc__CameraBlurDesc {
-    pub fn as_gfc__EnvironmentDesc_ptr(&self) -> *const gfc__EnvironmentDesc {
-        self as *const _ as _
+impl AsPtr<gfc__EnvironmentDesc> for *const gfc__CameraBlurDesc {
+    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__EnvironmentDesc_mut_ptr(&mut self) -> *mut gfc__EnvironmentDesc {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__CameraBlurDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__CameraBlurDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4908,18 +5137,16 @@ pub struct gfc__TRect_long_ {
 #[repr(C)]
 pub struct gfc__Shader {
     pub __vfptr: *const gfc__Shader____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Shader
     pub mName: gfc__HString,
     pub mLocked: bool,
 }
 
-impl gfc__Shader {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Shader {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -4989,7 +5216,10 @@ pub struct gfc__AutoRef_gfc__ShaderCompiler_ {
 #[repr(C)]
 pub struct gfc__WorldObject {
     pub __vfptr: *const gfc__WorldObject____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
     pub mObjectID: u32,
     pub mRegionID: u16,
     pub mLayerID: u16,
@@ -5004,13 +5234,15 @@ pub struct gfc__WorldObject {
     pub mPackageID: i32,
 }
 
-impl gfc__WorldObject {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__WorldObject {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__WorldObject {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5258,22 +5490,57 @@ pub struct gfc__PixelShaderInstanceData {
 
 #[repr(C)]
 pub struct gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____,
+    // std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
+    // std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
+    // std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______
+    // gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____
 }
 
-impl gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
-    pub fn as_std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent________ptr(&self) -> *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______{
-        self as *const _ as _
+impl AsPtr<std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
+    fn as_ptr(self) -> *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
+        self as *const _
     }
+}
 
-pub fn as_std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent________mut_ptr(&mut self) -> *mut std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______{
-        self as *mut _ as _
+impl AsPtr<std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
+    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0>
+    for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____
+{
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -5304,19 +5571,17 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__Image {
     pub __vfptr: *const gfc__Image____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Image
     pub mType: gfc__ImageType,
     pub mFormat: gfc__ImageFormat,
     pub mSurfaces: std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____,
 }
 
-impl gfc__Image {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Image {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5336,7 +5601,10 @@ pub struct gfc__MatrixArrayPool {
 #[repr(C)]
 pub struct gfc__World {
     pub __vfptr: *const gfc__World____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__World
     pub mName: gfc__HString,
     pub mDefaultRegionIdx: i32,
     pub mNextRegionID: i32,
@@ -5383,13 +5651,15 @@ pub struct gfc__World {
     pub mIsSettling: bool,
 }
 
-impl gfc__World {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__World {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__World {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5435,8 +5705,12 @@ pub struct gfc__ObjectCloner {
 #[repr(C)]
 pub struct gfc__AmbientDesc {
     pub __vfptr: *const gfc__AmbientDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__EnvironmentDesc
     pub mApplied: bool,
+    // gfc__AmbientDesc
     pub mBlendDuration: f32,
     pub mLowerAmbientColor: gfc__TVector4_float_gfc__FloatMath_,
     pub mUpperAmbientColor: gfc__TVector4_float_gfc__FloatMath_,
@@ -5445,13 +5719,21 @@ pub struct gfc__AmbientDesc {
     __pdbindgen_padding: [u8; 12],
 }
 
-impl gfc__AmbientDesc {
-    pub fn as_gfc__EnvironmentDesc_ptr(&self) -> *const gfc__EnvironmentDesc {
-        self as *const _ as _
+impl AsPtr<gfc__EnvironmentDesc> for *const gfc__AmbientDesc {
+    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__EnvironmentDesc_mut_ptr(&mut self) -> *mut gfc__EnvironmentDesc {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__AmbientDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__AmbientDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5497,17 +5779,15 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__Texture {
     pub __vfptr: *const gfc__Texture____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Texture
     pub mName: gfc__HString,
 }
 
-impl gfc__Texture {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Texture {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5610,19 +5890,31 @@ pub struct gfc__AutoRef_gfc__CameraBlurDesc_ {
 #[repr(C)]
 pub struct gfc__ByteOutputStream {
     pub __vfptr: *const gfc__ByteOutputStream____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Stream
+    // gfc__OutputStream
     pub mEndianess: i32,
+    // gfc__ByteOutputStream
     pub mPosition: i32,
     pub mOutput: gfc__Vector_unsigned_char_0_gfc__CAllocator_,
 }
 
-impl gfc__ByteOutputStream {
-    pub fn as_gfc__OutputStream_ptr(&self) -> *const gfc__OutputStream {
-        self as *const _ as _
+impl AsPtr<gfc__OutputStream> for *const gfc__ByteOutputStream {
+    fn as_ptr(self) -> *const gfc__OutputStream {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__OutputStream_mut_ptr(&mut self) -> *mut gfc__OutputStream {
-        self as *mut _ as _
+impl AsPtr<gfc__Stream> for *const gfc__ByteOutputStream {
+    fn as_ptr(self) -> *const gfc__Stream {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__ByteOutputStream {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5662,23 +5954,21 @@ pub struct gfc__AutoRef_gfc__SceneManager_ {
 
 #[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__FullScreenEffectDesc__10_0_gfc__CAllocator_ {
+    // gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator_
     pub mData: *mut gfc__AutoRef_gfc__FullScreenEffectDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+    // gfc__FixedVector_gfc__AutoRef_gfc__FullScreenEffectDesc__10_0_gfc__CAllocator_
     pub mFixedData: [u8; 40],
 }
 
-impl gfc__FixedVector_gfc__AutoRef_gfc__FullScreenEffectDesc__10_0_gfc__CAllocator_ {
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator__ptr(
-        &self,
+impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator_>
+    for *const gfc__FixedVector_gfc__AutoRef_gfc__FullScreenEffectDesc__10_0_gfc__CAllocator_
+{
+    fn as_ptr(
+        self,
     ) -> *const gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator_ {
-        self as *mut _ as _
+        self as *const _
     }
 }
 
@@ -5707,16 +5997,14 @@ pub struct gfc__AutoRef_gfc__ShaderContext_ {
 #[repr(C)]
 pub struct gfc__Mesh {
     pub __vfptr: *const gfc__Mesh____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Mesh
 }
 
-impl gfc__Mesh {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Mesh {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5763,7 +6051,10 @@ pub struct gfc__Mesh__Group {
 #[repr(C)]
 pub struct gfc__WorldRegion {
     pub __vfptr: *const gfc__WorldRegion____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldRegion
     pub mID: i32,
     pub mName: gfc__HString,
     pub mNextLayerID: i32,
@@ -5794,13 +6085,15 @@ pub struct gfc__WorldRegion {
     pub mHide: bool,
 }
 
-impl gfc__WorldRegion {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__WorldRegion {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__WorldRegion {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5871,16 +6164,14 @@ pub struct gfc__AutoRef_gfc__Texture_ {
 #[repr(C)]
 pub struct gfc__ObjectReader {
     pub __vfptr: *const gfc__ObjectReader____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__ObjectReader
 }
 
-impl gfc__ObjectReader {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__ObjectReader {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -5934,7 +6225,10 @@ pub struct gfc__Quaternion {
 #[repr(C)]
 pub struct gfc__Material {
     pub __vfptr: *const gfc__Material____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__Material
     pub mLocked: bool,
     pub mName: gfc__HString,
     pub mLightingModel: u8,
@@ -5951,13 +6245,15 @@ pub struct gfc__Material {
     pub mShaderContext: gfc__AutoRef_gfc__ShaderContext_,
 }
 
-impl gfc__Material {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__Material {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Material {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -6100,6 +6396,8 @@ pub struct gfc__RenderNode {
 #[repr(C)]
 pub struct gfc__KGGraphics {
     pub __vfptr: *const gfc__KGGraphics____vftable,
+    // gfc__Graphics
+    // gfc__KGGraphics
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub m_destructors: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding: [u8; 3072],
@@ -6188,13 +6486,9 @@ pub struct gfc__KGGraphics {
     __pdbindgen_padding_7: [u8; 4],
 }
 
-impl gfc__KGGraphics {
-    pub fn as_gfc__Graphics_ptr(&self) -> *const gfc__Graphics {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Graphics_mut_ptr(&mut self) -> *mut gfc__Graphics {
-        self as *mut _ as _
+impl AsPtr<gfc__Graphics> for *const gfc__KGGraphics {
+    fn as_ptr(self) -> *const gfc__Graphics {
+        self as *const _
     }
 }
 
@@ -6497,23 +6791,19 @@ pub struct gfc__DynamicRenderNode {
 
 #[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocator_ {
+    // gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_
     pub mData: *mut gfc__AutoRef_gfc__CameraBlurDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+    // gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocator_
     pub mFixedData: [u8; 40],
 }
 
-impl gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocator_ {
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator__ptr(
-        &self,
-    ) -> *const gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_ {
-        self as *mut _ as _
+impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_>
+    for *const gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocator_
+{
+    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_ {
+        self as *const _
     }
 }
 
@@ -6527,16 +6817,14 @@ pub struct gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__VertexDeclaration {
     pub __vfptr: *const gfc__VertexDeclaration____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__VertexDeclaration
 }
 
-impl gfc__VertexDeclaration {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__VertexDeclaration {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -6547,23 +6835,19 @@ pub struct gfc__VertexDeclaration____vftable {
 
 #[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_ {
+    // gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_
     pub mData: *mut gfc__AutoRef_gfc__FogDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+    // gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_
     pub mFixedData: [u8; 40],
 }
 
-impl gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_ {
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator__ptr(
-        &self,
-    ) -> *const gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_ {
-        self as *mut _ as _
+impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_>
+    for *const gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_
+{
+    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_ {
+        self as *const _
     }
 }
 
@@ -6577,22 +6861,55 @@ pub struct gfc__DynMeshBuffer {
 
 #[repr(C)]
 pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____,
+    // std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
+    // std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
+    // std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______
+    // gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____
 }
 
-impl gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
-    pub fn as_std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object________ptr(&self) -> *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-        self as *const _ as _
+impl AsPtr<std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
+    fn as_ptr(self) -> *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
+        self as *const _
     }
+}
 
-    pub fn as_std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object________mut_ptr(&mut self) -> *mut std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
+    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -6613,23 +6930,35 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__ByteInputStream {
     pub __vfptr: *const gfc__ByteInputStream____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Stream
+    // gfc__InputStream
     pub mEndianess: i32,
     pub mBufferAvail: u32,
     pub mBufferPtr: *mut u8,
+    // gfc__ByteInputStream
     pub mBytes: *const u8,
     pub mNumBytes: u32,
     pub mMarkIndex: i32,
     pub mOwnsBuffer: bool,
 }
 
-impl gfc__ByteInputStream {
-    pub fn as_gfc__InputStream_ptr(&self) -> *const gfc__InputStream {
-        self as *const _ as _
+impl AsPtr<gfc__InputStream> for *const gfc__ByteInputStream {
+    fn as_ptr(self) -> *const gfc__InputStream {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__InputStream_mut_ptr(&mut self) -> *mut gfc__InputStream {
-        self as *mut _ as _
+impl AsPtr<gfc__Stream> for *const gfc__ByteInputStream {
+    fn as_ptr(self) -> *const gfc__Stream {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__ByteInputStream {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -6657,22 +6986,57 @@ pub struct gfc__ByteInputStream____vftable {
 
 #[repr(C)]
 pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
+    // std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______
+    // gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___
 }
 
-impl gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
-    pub fn as_std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter________ptr(&self) -> *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______{
-        self as *const _ as _
+impl AsPtr<std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
+    fn as_ptr(self) -> *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
+        self as *const _
     }
+}
 
-pub fn as_std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter________mut_ptr(&mut self) -> *mut std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______{
-        self as *mut _ as _
+impl AsPtr<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
+    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0>
+    for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___
+{
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -6684,13 +7048,17 @@ pub struct gfc__AutoRef_gfc__ParticleManager_ {
 #[repr(C)]
 pub struct gfc__Skeleton3D {
     pub __vfptr: *const gfc__Skeleton3D____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
     pub __vfptr_2: *const gfc__Hierarchical_gfc__Node3D_____vftable,
+    // gfc__Hierarchical_gfc__Node3D_
     pub mParent: *mut gfc__Node3D,
     pub mHead: gfc__AutoRef_gfc__Node3D_,
     pub mTail: gfc__AutoRef_gfc__Node3D_,
     pub mNext: gfc__AutoRef_gfc__Node3D_,
     pub mPrev: gfc__AutoRef_gfc__Node3D_,
+    // gfc__Node3D
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mVersion: i32,
     __pdbindgen_padding: [u8; 8],
@@ -6702,17 +7070,32 @@ pub struct gfc__Skeleton3D {
     pub mBlendWeight: f32,
     pub mHashNext: *mut gfc__Node3D,
     pub mName: gfc__HString,
+    // gfc__Skeleton3D
     pub mNodeHashTable: [*mut gfc__Node3D; 13],
     pub mRefNode: gfc__HString,
 }
 
-impl gfc__Skeleton3D {
-    pub fn as_gfc__Node3D_ptr(&self) -> *const gfc__Node3D {
-        self as *const _ as _
+impl AsPtr<gfc__Node3D> for *const gfc__Skeleton3D {
+    fn as_ptr(self) -> *const gfc__Node3D {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Node3D_mut_ptr(&mut self) -> *mut gfc__Node3D {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__Skeleton3D {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__Skeleton3D {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Hierarchical_gfc__Node3D_> for *const gfc__Skeleton3D {
+    fn as_ptr(self) -> *const gfc__Hierarchical_gfc__Node3D_ {
+        (self as usize + 0x8) as *const _
     }
 }
 
@@ -6751,13 +7134,17 @@ pub struct gfc__BoundingVolume {
 #[repr(C)]
 pub struct gfc__Node3D {
     pub __vfptr: *const gfc__Node3D____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
     pub __vfptr_2: *const gfc__Hierarchical_gfc__Node3D_____vftable,
+    // gfc__Hierarchical_gfc__Node3D_
     pub mParent: *mut gfc__Node3D,
     pub mHead: gfc__AutoRef_gfc__Node3D_,
     pub mTail: gfc__AutoRef_gfc__Node3D_,
     pub mNext: gfc__AutoRef_gfc__Node3D_,
     pub mPrev: gfc__AutoRef_gfc__Node3D_,
+    // gfc__Node3D
     pub mFlags: gfc__TFlags_unsigned_long_,
     pub mVersion: i32,
     __pdbindgen_padding: [u8; 8],
@@ -6771,23 +7158,21 @@ pub struct gfc__Node3D {
     pub mName: gfc__HString,
 }
 
-impl gfc__Node3D {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__Node3D {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__Node3D {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Hierarchical_gfc__Node3D__ptr(&self) -> *const gfc__Hierarchical_gfc__Node3D_ {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__Hierarchical_gfc__Node3D__mut_ptr(
-        &mut self,
-    ) -> *mut gfc__Hierarchical_gfc__Node3D_ {
-        self as *mut _ as _
+impl AsPtr<gfc__Hierarchical_gfc__Node3D_> for *const gfc__Node3D {
+    fn as_ptr(self) -> *const gfc__Hierarchical_gfc__Node3D_ {
+        (self as usize + 0x8) as *const _
     }
 }
 
@@ -6825,8 +7210,12 @@ pub struct gfc__Node3D___o {
 #[repr(C)]
 pub struct gfc__HDRDesc {
     pub __vfptr: *const gfc__HDRDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__EnvironmentDesc
     pub mApplied: bool,
+    // gfc__HDRDesc
     pub mToneMap: bool,
     pub mMidTone: f32,
     pub mMinToneMapMult: f32,
@@ -6840,13 +7229,21 @@ pub struct gfc__HDRDesc {
     pub mManager: *mut gfc__EnvironmentManager,
 }
 
-impl gfc__HDRDesc {
-    pub fn as_gfc__EnvironmentDesc_ptr(&self) -> *const gfc__EnvironmentDesc {
-        self as *const _ as _
+impl AsPtr<gfc__EnvironmentDesc> for *const gfc__HDRDesc {
+    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__EnvironmentDesc_mut_ptr(&mut self) -> *mut gfc__EnvironmentDesc {
-        self as *mut _ as _
+impl AsPtr<gfc__Object> for *const gfc__HDRDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__HDRDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -6878,17 +7275,22 @@ pub struct gfc__HDRDesc____vftable {
 #[repr(C)]
 pub struct gfc__EnvironmentDesc {
     pub __vfptr: *const gfc__EnvironmentDesc____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__EnvironmentDesc
     pub mApplied: bool,
 }
 
-impl gfc__EnvironmentDesc {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__EnvironmentDesc {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__EnvironmentDesc {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -6920,6 +7322,8 @@ pub struct gfc__EnvironmentDesc____vftable {
 #[repr(C)]
 pub struct keen__ZoneMemoryAllocator {
     pub __vfptr: *const keen__ZoneMemoryAllocator____vftable,
+    // keen__MemoryAllocator
+    // keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
     pub m_allocator: keen__ZoneAllocatorAdapter,
@@ -6928,19 +7332,20 @@ pub struct keen__ZoneMemoryAllocator {
     pub m_maxAllocatedSize: u32,
     pub m_allocationCount: u32,
     pub m_flags: u32,
+    // keen__ZoneMemoryAllocator
 }
 
-impl keen__ZoneMemoryAllocator {
-    pub fn as_keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter__ptr(
-        &self,
-    ) -> *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
-        self as *const _ as _
+impl AsPtr<keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_>
+    for *const keen__ZoneMemoryAllocator
+{
+    fn as_ptr(self) -> *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
+        self as *const _
     }
+}
 
-    pub fn as_keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter__mut_ptr(
-        &mut self,
-    ) -> *mut keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
-        self as *mut _ as _
+impl AsPtr<keen__MemoryAllocator> for *const keen__ZoneMemoryAllocator {
+    fn as_ptr(self) -> *const keen__MemoryAllocator {
+        self as *const _
     }
 }
 
@@ -6962,6 +7367,8 @@ pub struct keen__ZoneMemoryAllocator____vftable {
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
     pub __vfptr: *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_____vftable,
+    // keen__MemoryAllocator
+    // keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
     pub m_allocator: keen__ZoneAllocatorAdapter,
@@ -6972,13 +7379,9 @@ pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
     pub m_flags: u32,
 }
 
-impl keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
-    pub fn as_keen__MemoryAllocator_ptr(&self) -> *const keen__MemoryAllocator {
-        self as *const _ as _
-    }
-
-    pub fn as_keen__MemoryAllocator_mut_ptr(&mut self) -> *mut keen__MemoryAllocator {
-        self as *mut _ as _
+impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
+    fn as_ptr(self) -> *const keen__MemoryAllocator {
+        self as *const _
     }
 }
 
@@ -7000,6 +7403,8 @@ pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_____vftable {
 #[repr(C)]
 pub struct keen__LowOverheadMemoryAllocator {
     pub __vfptr: *const keen__LowOverheadMemoryAllocator____vftable,
+    // keen__MemoryAllocator
+    // keen__BaseMemoryAllocator_keen__LowOverheadAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
     pub m_allocator: keen__LowOverheadAllocator,
@@ -7008,19 +7413,20 @@ pub struct keen__LowOverheadMemoryAllocator {
     pub m_maxAllocatedSize: u32,
     pub m_allocationCount: u32,
     pub m_flags: u32,
+    // keen__LowOverheadMemoryAllocator
 }
 
-impl keen__LowOverheadMemoryAllocator {
-    pub fn as_keen__BaseMemoryAllocator_keen__LowOverheadAllocator__ptr(
-        &self,
-    ) -> *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
-        self as *const _ as _
+impl AsPtr<keen__BaseMemoryAllocator_keen__LowOverheadAllocator_>
+    for *const keen__LowOverheadMemoryAllocator
+{
+    fn as_ptr(self) -> *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
+        self as *const _
     }
+}
 
-    pub fn as_keen__BaseMemoryAllocator_keen__LowOverheadAllocator__mut_ptr(
-        &mut self,
-    ) -> *mut keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
-        self as *mut _ as _
+impl AsPtr<keen__MemoryAllocator> for *const keen__LowOverheadMemoryAllocator {
+    fn as_ptr(self) -> *const keen__MemoryAllocator {
+        self as *const _
     }
 }
 
@@ -7059,41 +7465,42 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc
 
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__String_const__gfc__String___ {
+    // std___Allocator_base_std__pair_gfc__String_const__gfc__String___
     __pdbindgen_padding: [u8; 1],
+    // std__allocator_std__pair_gfc__String_const__gfc__String___
 }
 
-impl std__allocator_std__pair_gfc__String_const__gfc__String___ {
-    pub fn as_std___Allocator_base_std__pair_gfc__String_const__gfc__String____ptr(
-        &self,
-    ) -> *const std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std__pair_gfc__String_const__gfc__String____mut_ptr(
-        &mut self,
-    ) -> *mut std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_std__pair_gfc__String_const__gfc__String___>
+    for *const std__allocator_std__pair_gfc__String_const__gfc__String___
+{
+    fn as_ptr(self) -> *const std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
 }
 
-impl std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    pub fn as_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0__ptr(&self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-        self as *const _ as _
+impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0__mut_ptr(&mut self) -> *mut std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -7110,54 +7517,46 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gf
 #[repr(C)]
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
 {
+    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
     __pdbindgen_padding: [u8; 1],
+    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ */
 }
 
-impl std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node__ptr(&self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node__mut_ptr(&mut self) -> *mut std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {
-        self as *mut _ as _
+impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {
+    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
 {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-    pub fn as_std___Container_base0_ptr(&self) -> *const std___Container_base0 {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Container_base0_mut_ptr(&mut self) -> *mut std___Container_base0 {
-        self as *mut _ as _
+impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__pair_gfc__String_const__gfc__String_ {
+    // std___Pair_base_gfc__String_const__gfc__String_
     pub first: gfc__String,
     pub second: gfc__String,
+    // std__pair_gfc__String_const__gfc__String_
 }
 
-impl std__pair_gfc__String_const__gfc__String_ {
-    pub fn as_std___Pair_base_gfc__String_const__gfc__String__ptr(
-        &self,
-    ) -> *const std___Pair_base_gfc__String_const__gfc__String_ {
-        self as *const _ as _
-    }
-
-    pub fn as_std___Pair_base_gfc__String_const__gfc__String__mut_ptr(
-        &mut self,
-    ) -> *mut std___Pair_base_gfc__String_const__gfc__String_ {
-        self as *mut _ as _
+impl AsPtr<std___Pair_base_gfc__String_const__gfc__String_>
+    for *const std__pair_gfc__String_const__gfc__String_
+{
+    fn as_ptr(self) -> *const std___Pair_base_gfc__String_const__gfc__String_ {
+        self as *const _
     }
 }
 
@@ -7174,64 +7573,121 @@ pub struct std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
 
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
+    // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    // std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
 }
 
-impl std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0____ptr(&self) -> *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0____mut_ptr(&mut self) -> *mut std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
+    // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
 }
 
-impl std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0____ptr(&self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0____mut_ptr(&mut self) -> *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
 #[repr(C)]
 pub struct std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
+    // std___Container_base0
     __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: compile_error!("malformed PDB: oops"),
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
     pub _Mysize: u32,
     pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
     pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
+    // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    // std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    // std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____
 }
 
-impl std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
-    pub fn as_std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0____ptr(&self) -> *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _ as _
+impl AsPtr<std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
+    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+        self as *const _
     }
+}
 
-    pub fn as_std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0____mut_ptr(&mut self) -> *mut std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *mut _ as _
+impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
+    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
+    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
+    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<std___Container_base0> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
+    fn as_ptr(self) -> *const std___Container_base0 {
+        self as *const _
     }
 }
 
@@ -7258,7 +7714,10 @@ pub struct gfc__AutoRef_gfc__MBSubMesh_ {
 #[repr(C)]
 pub struct gfc__MeshBuilder {
     pub __vfptr: *const gfc__MeshBuilder____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__MeshBuilder
     pub mBounds: gfc__BoundingVolume,
     pub mVertexFormat: gfc__VertexFormat,
     pub mSubMeshes: gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_,
@@ -7267,13 +7726,15 @@ pub struct gfc__MeshBuilder {
     pub mFlags: gfc__TFlags_unsigned_long_,
 }
 
-impl gfc__MeshBuilder {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__MeshBuilder {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__MeshBuilder {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -7312,19 +7773,17 @@ pub struct gfc__MBWeight {
 #[repr(C)]
 pub struct gfc__MeshCache {
     pub __vfptr: *const gfc__MeshCache____vftable,
+    // gfc__ResourceCache
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
     pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
+    // gfc__MeshCache
     pub mReloadInfo: gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_,
 }
 
-impl gfc__MeshCache {
-    pub fn as_gfc__ResourceCache_ptr(&self) -> *const gfc__ResourceCache {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__ResourceCache_mut_ptr(&mut self) -> *mut gfc__ResourceCache {
-        self as *mut _ as _
+impl AsPtr<gfc__ResourceCache> for *const gfc__MeshCache {
+    fn as_ptr(self) -> *const gfc__ResourceCache {
+        self as *const _
     }
 }
 
@@ -7385,22 +7844,41 @@ pub struct gfc__MeshCache__ReloadInfo {
 #[repr(C)]
 pub struct gfc__MeshResourceUnopt {
     pub __vfptr: *const gfc__MeshResourceUnopt____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Resource
     pub mState: i32,
     pub mPackageID: i32,
+    // gfc__ResourceType_gfc__Mesh_2_
     pub mResource: gfc__AutoRef_gfc__Mesh_,
+    // gfc__MeshResource
     pub mName: gfc__HString,
+    // gfc__MeshResourceUnopt
     pub mBuilder: gfc__AutoRef_gfc__MeshBuilder_,
     pub mFinalizeMesh: gfc__AutoRef_gfc__Mesh_,
 }
 
-impl gfc__MeshResourceUnopt {
-    pub fn as_gfc__MeshResource_ptr(&self) -> *const gfc__MeshResource {
-        self as *const _ as _
+impl AsPtr<gfc__MeshResource> for *const gfc__MeshResourceUnopt {
+    fn as_ptr(self) -> *const gfc__MeshResource {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__MeshResource_mut_ptr(&mut self) -> *mut gfc__MeshResource {
-        self as *mut _ as _
+impl AsPtr<gfc__ResourceType_gfc__Mesh_2_> for *const gfc__MeshResourceUnopt {
+    fn as_ptr(self) -> *const gfc__ResourceType_gfc__Mesh_2_ {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__Resource> for *const gfc__MeshResourceUnopt {
+    fn as_ptr(self) -> *const gfc__Resource {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__MeshResourceUnopt {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -7416,19 +7894,24 @@ pub struct gfc__MeshResourceUnopt____vftable {
 #[repr(C)]
 pub struct gfc__ResourceType_gfc__Mesh_2_ {
     pub __vfptr: *const gfc__ResourceType_gfc__Mesh_2_____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Resource
     pub mState: i32,
     pub mPackageID: i32,
+    // gfc__ResourceType_gfc__Mesh_2_
     pub mResource: gfc__AutoRef_gfc__Mesh_,
 }
 
-impl gfc__ResourceType_gfc__Mesh_2_ {
-    pub fn as_gfc__Resource_ptr(&self) -> *const gfc__Resource {
-        self as *const _ as _
+impl AsPtr<gfc__Resource> for *const gfc__ResourceType_gfc__Mesh_2_ {
+    fn as_ptr(self) -> *const gfc__Resource {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Resource_mut_ptr(&mut self) -> *mut gfc__Resource {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__ResourceType_gfc__Mesh_2_ {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -7453,16 +7936,21 @@ pub struct gfc__AutoRef_gfc__Mesh_ {
 #[repr(C)]
 pub struct gfc__MeshReader {
     pub __vfptr: *const gfc__MeshReader____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    /* gfc__ObjectReader
+     * gfc__MeshReader */
 }
 
-impl gfc__MeshReader {
-    pub fn as_gfc__ObjectReader_ptr(&self) -> *const gfc__ObjectReader {
-        self as *const _ as _
+impl AsPtr<gfc__ObjectReader> for *const gfc__MeshReader {
+    fn as_ptr(self) -> *const gfc__ObjectReader {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__ObjectReader_mut_ptr(&mut self) -> *mut gfc__ObjectReader {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__MeshReader {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -7486,7 +7974,10 @@ pub struct gfc__MBBone {
 #[repr(C)]
 pub struct gfc__MBSubMesh {
     pub __vfptr: *const gfc__MBSubMesh____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__MBSubMesh
     pub PrimType: i32,
     pub HasWeights: bool,
     pub MaterialID: i32,
@@ -7505,13 +7996,15 @@ pub struct gfc__MBSubMesh {
     pub Indices: gfc__Vector_unsigned_long_0_gfc__CAllocator_,
 }
 
-impl gfc__MBSubMesh {
-    pub fn as_gfc__Object_ptr(&self) -> *const gfc__Object {
-        self as *const _ as _
+impl AsPtr<gfc__Object> for *const gfc__MBSubMesh {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
     }
+}
 
-    pub fn as_gfc__Object_mut_ptr(&mut self) -> *mut gfc__Object {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__MBSubMesh {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 
@@ -7540,16 +8033,14 @@ pub struct gfc__MBSubMesh____vftable {
 #[repr(C)]
 pub struct gfc__ObjectWriter {
     pub __vfptr: *const gfc__ObjectWriter____vftable,
+    // gfc__IRefObject
     pub ReferenceCount: i32,
+    // gfc__ObjectWriter
 }
 
-impl gfc__ObjectWriter {
-    pub fn as_gfc__IRefObject_ptr(&self) -> *const gfc__IRefObject {
-        self as *const _ as _
-    }
-
-    pub fn as_gfc__IRefObject_mut_ptr(&mut self) -> *mut gfc__IRefObject {
-        self as *mut _ as _
+impl AsPtr<gfc__IRefObject> for *const gfc__ObjectWriter {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
     }
 }
 

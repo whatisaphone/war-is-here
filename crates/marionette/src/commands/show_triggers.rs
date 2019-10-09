@@ -4,6 +4,7 @@ use crate::{
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
+use pdbindgen_runtime::StaticCast;
 use std::convert::TryFrom;
 
 pub fn run(_command: &str) {
@@ -72,12 +73,7 @@ unsafe fn scan(group: *mut target::gfc__WorldGroup) {
 
         if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
             let position = init_with(|this| {
-                ((*(*trigger.as_ptr()).__vfptr).getPosition)(
-                    (*(*(*trigger.as_ptr()).as_gfc__DetectorObject_mut_ptr())
-                        .as_gfc__PhysicsShapeObject_mut_ptr())
-                    .as_gfc__WorldObject_mut_ptr(),
-                    this,
-                );
+                ((*(*trigger.as_ptr()).__vfptr).getPosition)(trigger.as_ptr().static_cast(), this);
             });
             mark(
                 (*group).mRegionID,
@@ -103,15 +99,15 @@ unsafe fn mark(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
     #[allow(clippy::cast_ptr_alignment)]
     let obj = obj.as_ptr() as *mut target::gfc__StaticObject;
 
-    target::gfc__WorldObject__setRegionID((*obj).as_gfc__WorldObject_mut_ptr(), region_id);
-    target::gfc__WorldObject__setLayerID((*obj).as_gfc__WorldObject_mut_ptr(), layer_id);
+    target::gfc__WorldObject__setRegionID(obj.static_cast(), region_id);
+    target::gfc__WorldObject__setLayerID(obj.static_cast(), layer_id);
     target::gfc__StaticObject__setPackageName(obj, hstring!("vfx_shared").as_ptr());
     target::gfc__StaticObject__setObjectName(obj, hstring!("sphere").as_ptr());
 
     ((*(*obj).__vfptr).setPosition)(
-        (*obj).as_gfc__WorldObject_mut_ptr(),
+        obj.static_cast(),
         &target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z },
     );
 
-    ((*(*obj).__vfptr).addObjectToWorld)((*obj).as_gfc__WorldObject_mut_ptr(), world.as_ptr());
+    ((*(*obj).__vfptr).addObjectToWorld)(obj.static_cast(), world.as_ptr());
 }

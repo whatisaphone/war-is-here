@@ -2,6 +2,7 @@
 
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
+use pdbindgen_runtime::StaticCast;
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -49,7 +50,7 @@ unsafe fn go(args: &Args) {
     let obj = obj.as_ptr() as *mut target::gfc__KinematicActor;
 
     ((*(*obj).__vfptr).setPosition)(
-        (*(*obj).as_gfc__Actor_mut_ptr()).as_gfc__WorldObject_mut_ptr(),
+        obj.static_cast(),
         &target::gfc__TVector3_float_gfc__FloatMath_ {
             x: args.x,
             y: args.y,
@@ -57,8 +58,5 @@ unsafe fn go(args: &Args) {
         },
     );
 
-    ((*(*obj).__vfptr).addObjectToWorld)(
-        (*(*obj).as_gfc__Actor_mut_ptr()).as_gfc__WorldObject_mut_ptr(),
-        world.as_ptr(),
-    );
+    ((*(*obj).__vfptr).addObjectToWorld)(obj.static_cast(), world.as_ptr());
 }
