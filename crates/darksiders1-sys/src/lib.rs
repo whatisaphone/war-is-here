@@ -2,7 +2,6 @@
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
 // #![warn(clippy::cargo)]
-#![allow(dead_code)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
 pub use bind::bind;
