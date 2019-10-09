@@ -7,7 +7,7 @@ use std::{
 };
 
 #[repr(transparent)]
-pub struct Heap<T>(*mut T);
+pub struct Heap<T: ?Sized>(*mut T);
 
 impl<T> Heap<T> {
     pub fn new(x: T) -> Self {
@@ -19,15 +19,18 @@ impl<T> Heap<T> {
             Self(p)
         }
     }
+}
 
-    pub fn into_raw(self) -> *mut T {
-        let raw = self.0;
-        mem::forget(self);
+impl<T: ?Sized> Heap<T> {
+    #[allow(clippy::wrong_self_convention)]
+    pub fn into_raw(this: Self) -> *mut T {
+        let raw = this.0;
+        mem::forget(this);
         raw
     }
 }
 
-impl<T> Drop for Heap<T> {
+impl<T: ?Sized> Drop for Heap<T> {
     fn drop(&mut self) {
         unsafe {
             ptr::drop_in_place(&mut **self);
@@ -36,7 +39,7 @@ impl<T> Drop for Heap<T> {
     }
 }
 
-impl<T> Deref for Heap<T> {
+impl<T: ?Sized> Deref for Heap<T> {
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
@@ -44,7 +47,7 @@ impl<T> Deref for Heap<T> {
     }
 }
 
-impl<T> DerefMut for Heap<T> {
+impl<T: ?Sized> DerefMut for Heap<T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         unsafe { self.0.as_mut().unwrap() }
     }

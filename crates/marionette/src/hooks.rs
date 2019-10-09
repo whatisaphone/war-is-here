@@ -168,7 +168,7 @@ mod hook {
             let object_name = unsafe { gfc::HString::from_ptr(objectName) };
             if let Some(ovurride) = override_get_object3d(packageID, object_name) {
                 unsafe {
-                    *result = autoref_cast!(ovurride, target::gfc__AutoRef_gfc__Object3D_);
+                    *result = gfc::AutoRef2::lower(ovurride);
                 }
                 return result;
             }

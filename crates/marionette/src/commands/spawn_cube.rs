@@ -77,14 +77,14 @@ static NODE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("the_injected_node"
 pub fn override_get_object3d(
     _package_id: i32,
     object_name: &gfc::HString,
-) -> Option<gfc::AutoRef<gfc::Object3D>> {
+) -> Option<gfc::AutoRef2<gfc::Object3D>> {
     if object_name == &*MAGIC_OBJECT_NAME {
         return Some(build_magic_object());
     }
     None
 }
 
-fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
+fn build_magic_object() -> gfc::AutoRef2<gfc::Object3D> {
     unsafe {
         let object = Heap::new(gfc::Object3D::new());
 
@@ -110,7 +110,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
             p: gfc::AutoRef::into_ptr(visual),
         });
 
-        gfc::AutoRef::from_ptr((*Heap::into_raw(object)).as_ptr().static_cast())
+        gfc::AutoRef2::new(object)
     }
 }
 

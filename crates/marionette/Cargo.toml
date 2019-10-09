@@ -25,3 +25,8 @@ features = [
     "libloaderapi",
     "minwindef",
 ]
+
+[build-dependencies]
+glob = "0.3.0"
+grep = "0.2.4"
+indexmap = "1.2.0"
