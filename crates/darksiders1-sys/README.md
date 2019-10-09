@@ -26,7 +26,6 @@ pdbindgen \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
-    -i '^operator new$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \

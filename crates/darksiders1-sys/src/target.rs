@@ -118,7 +118,6 @@ symbols! {
     pub fn gfc__ClassRegistry__classForName;
     pub fn gfc__RegionLayer__getRoot;
     pub fn gfc__WorldRegion__getLayer;
-    pub fn operator_new;
     pub fn gfc__WorldObject__setRegionID;
     pub fn gfc__WorldObject__setLayerID;
     pub fn gfc__ObjectWriter___ObjectWriter;
@@ -131,14 +130,10 @@ symbols! {
     pub fn gfc__KGGraphics__createStaticMesh;
     pub fn gfc__KGGraphics__createStaticMesh_2;
     pub fn gfc__MeshBuilder__MeshBuilder;
-    pub fn operator_new_2;
-    pub fn operator_new_3;
-    pub fn operator_new_4;
     pub fn gfc__String__String;
     pub fn gfc__String___String;
     pub fn gfc__String__String_2;
     pub fn gfc__String__String_3;
     pub fn gfc__String__String_4;
     pub fn gfc__String__String_5;
-    pub fn operator_new_5;
 }

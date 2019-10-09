@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, new},
+    darksiders1::{gfc, Heap},
     hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };
@@ -92,31 +92,31 @@ pub fn override_get_object3d(
 
 fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
     unsafe {
-        let object = new(gfc::Object3D::new);
+        let object = Heap::new(gfc::Object3D::new());
 
         #[allow(clippy::cast_ptr_alignment)]
-        let skeleton = (*(*object).as_ptr()).mSkeleton.p as *mut target::gfc__Skeleton3D;
+        let skeleton = (*object.as_ptr()).mSkeleton.p as *mut target::gfc__Skeleton3D;
 
         *gfc::HString::from_ptr_mut(&mut (*skeleton).mName) = NODE_NAME.clone();
 
-        let visual = new(|| {
-            init_with(|this| {
-                target::gfc__StaticMeshVisual__StaticMeshVisual(this);
-            })
-        });
-        *gfc::HString::from_ptr_mut(&mut (*visual).mRefNode) = NODE_NAME.clone();
-        *gfc::HString::from_ptr_mut(&mut (*visual).mMeshName) = MAGIC_MESH_NAME.clone();
-        (*visual).mMeshID = 0;
-        let visual = gfc::AutoRef::<target::gfc__StaticMeshVisual>::from_ptr(visual.static_cast());
+        let mut visual = Heap::new(init_with(|this| {
+            target::gfc__StaticMeshVisual__StaticMeshVisual(this);
+        }));
+        *gfc::HString::from_ptr_mut(&mut visual.mRefNode) = NODE_NAME.clone();
+        *gfc::HString::from_ptr_mut(&mut visual.mMeshName) = MAGIC_MESH_NAME.clone();
+        visual.mMeshID = 0;
+        let visual = gfc::AutoRef::<target::gfc__StaticMeshVisual>::from_ptr(
+            Heap::into_raw(visual).static_cast(),
+        );
 
         let skeleton_visuals = gfc::Vector::<target::gfc__AutoRef_gfc__Visual_>::from_ptr_mut(
-            &mut (*(*object).as_ptr()).mVisuals,
+            &mut (*object.as_ptr()).mVisuals,
         );
         skeleton_visuals.add(target::gfc__AutoRef_gfc__Visual_ {
             p: gfc::AutoRef::into_ptr(visual),
         });
 
-        gfc::AutoRef::from_ptr((*object).as_ptr().static_cast())
+        gfc::AutoRef::from_ptr((*Heap::into_raw(object)).as_ptr().static_cast())
     }
 }
 
@@ -170,13 +170,11 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
 
 fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
     unsafe {
-        let mut builder = new(|| {
-            init_with(|this| {
-                target::gfc__MeshBuilder__MeshBuilder(this);
-            })
-        });
+        let mut builder = Heap::new(init_with(|this| {
+            target::gfc__MeshBuilder__MeshBuilder(this);
+        }));
 
-        (*builder).mBounds = target::gfc__BoundingVolume {
+        builder.mBounds = target::gfc__BoundingVolume {
             b: target::gfc__TBox_float_gfc__FloatMath_ {
                 min: target::gfc__TVector3_float_gfc__FloatMath_ {
                     x: -100.0,
@@ -201,7 +199,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
         };
 
         let vertex_format_format =
-            gfc::Vector::<u16>::from_ptr_mut(&mut (*builder).mVertexFormat.mFormat);
+            gfc::Vector::<u16>::from_ptr_mut(&mut builder.mVertexFormat.mFormat);
         // wtf are these
         vertex_format_format.add(1);
         vertex_format_format.add(2);
@@ -212,7 +210,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
         vertex_format_format.add(4);
         vertex_format_format.add(7);
 
-        let sub_mesh = new(|| {
+        let sub_mesh = Heap::new({
             let mut sub_mesh = init_with(|this| target::gfc__MBSubMesh__MBSubMesh(this));
             sub_mesh.PrimType = 0;
             sub_mesh.MaterialID = 0;
@@ -350,18 +348,22 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
             sub_mesh
         });
-        let sub_mesh = gfc::AutoRef::<target::gfc__MBSubMesh>::from_ptr(sub_mesh.static_cast());
+        let sub_mesh = gfc::AutoRef::<target::gfc__MBSubMesh>::from_ptr(
+            Heap::into_raw(sub_mesh).static_cast(),
+        );
 
         let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
-            &mut (*builder).mSubMeshes,
+            &mut builder.mSubMeshes,
         );
         sub_meshes.add(target::gfc__AutoRef_gfc__MBSubMesh_ {
             p: gfc::AutoRef::into_ptr(sub_mesh),
         });
 
-        (*builder).mFlags.flags = 31;
+        builder.mFlags.flags = 31;
 
-        let builder = gfc::AutoRef::<target::gfc__MeshBuilder>::from_ptr(builder.static_cast());
+        let builder = gfc::AutoRef::<target::gfc__MeshBuilder>::from_ptr(
+            Heap::into_raw(builder).static_cast(),
+        );
         target::gfc__AutoRef_gfc__MeshBuilder_ {
             p: gfc::AutoRef::into_ptr(builder),
         }

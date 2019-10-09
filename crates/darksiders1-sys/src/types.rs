@@ -2450,11 +2450,6 @@ pub struct gfc__ValueStack___Stack {
 }
 
 #[repr(C)]
-pub struct gfc__LinkMyNew {
-    pub unused: u32,
-}
-
-#[repr(C)]
 pub struct gfc__Event {
     pub mEvent: keen__Event,
 }
@@ -8047,4 +8042,9 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ObjectWriter {
 #[repr(C)]
 pub struct gfc__ObjectWriter____vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__MeshBuilder_ {
+    pub p: *mut gfc__IRefObject,
 }

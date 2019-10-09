@@ -4,11 +4,6 @@ use super::{types::*, types3::*};
 use pdbindgen_runtime::AsPtr;
 
 #[repr(C)]
-pub struct gfc__AutoRef_gfc__MeshBuilder_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__MBSubMesh_,
     pub mSize: i32,
@@ -8715,4 +8710,14 @@ pub struct keen__DownsampleDepthContext {
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub vertexData: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding: [u8; 24],
+}
+
+#[repr(C)]
+pub struct keen__CombinedGraphicsStateObjectPool {
+    pub m_blendStatePool: keen__GraphicsStateObjectPool_keen__BlendState_,
+    pub m_rasterizerStatePool: keen__GraphicsStateObjectPool_keen__RasterizerState_,
+    pub m_samplerStatePool: keen__GraphicsStateObjectPool_keen__SamplerState_,
+    pub m_depthStencilStatePool: keen__GraphicsStateObjectPool_keen__DepthStencilState_,
+    pub m_vertexFormatPool: keen__GraphicsStateObjectPool_keen__VertexFormat_,
+    pub m_vertexInputBindingPool: keen__GraphicsStateObjectPool_keen__VertexInputBinding_,
 }

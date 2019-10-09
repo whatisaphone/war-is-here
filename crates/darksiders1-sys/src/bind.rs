@@ -107,7 +107,6 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ClassRegistry__classForName);
     bind!(text, gfc__RegionLayer__getRoot);
     bind!(text, gfc__WorldRegion__getLayer);
-    bind!(text, operator_new);
     bind!(text, gfc__WorldObject__setRegionID);
     bind!(text, gfc__WorldObject__setLayerID);
     bind!(text, gfc__ObjectWriter___ObjectWriter);
@@ -120,14 +119,10 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__KGGraphics__createStaticMesh);
     bind!(text, gfc__KGGraphics__createStaticMesh_2);
     bind!(text, gfc__MeshBuilder__MeshBuilder);
-    bind!(text, operator_new_2);
-    bind!(text, operator_new_3);
-    bind!(text, operator_new_4);
     bind!(text, gfc__String__String);
     bind!(text, gfc__String___String);
     bind!(text, gfc__String__String_2);
     bind!(text, gfc__String__String_3);
     bind!(text, gfc__String__String_4);
     bind!(text, gfc__String__String_5);
-    bind!(text, operator_new_5);
 }

@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, new},
+    darksiders1::{gfc, Heap},
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
@@ -10,9 +10,10 @@ use pdbindgen_runtime::StaticCast;
 /// `gfc::MeshReader::readObject`.
 pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
     unsafe {
-        let stream = new(|| gfc::ByteInputStream::new(COOKED));
-        let stream =
-            gfc::AutoRef::<gfc::ByteInputStream>::from_ptr((*stream).as_ptr().static_cast());
+        let stream = Heap::new(gfc::ByteInputStream::new(COOKED));
+        let stream = gfc::AutoRef::<gfc::ByteInputStream>::from_ptr(
+            (*Heap::into_raw(stream)).as_ptr().static_cast(),
+        );
         let mut reader = init_with(|this| target::gfc__MeshReader__MeshReader(this));
         let mut valid = true;
         let object = init_with(|p| {

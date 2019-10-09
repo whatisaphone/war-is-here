@@ -4,16 +4,6 @@ use super::{types::*, types2::*};
 use pdbindgen_runtime::AsPtr;
 
 #[repr(C)]
-pub struct keen__CombinedGraphicsStateObjectPool {
-    pub m_blendStatePool: keen__GraphicsStateObjectPool_keen__BlendState_,
-    pub m_rasterizerStatePool: keen__GraphicsStateObjectPool_keen__RasterizerState_,
-    pub m_samplerStatePool: keen__GraphicsStateObjectPool_keen__SamplerState_,
-    pub m_depthStencilStatePool: keen__GraphicsStateObjectPool_keen__DepthStencilState_,
-    pub m_vertexFormatPool: keen__GraphicsStateObjectPool_keen__VertexFormat_,
-    pub m_vertexInputBindingPool: keen__GraphicsStateObjectPool_keen__VertexInputBinding_,
-}
-
-#[repr(C)]
 pub struct keen__GraphicsSystem {
     // keen__GraphicsSystemBase
     pub pShaderFactory: *mut keen__ShaderFactory,
@@ -9039,11 +9029,6 @@ pub struct hkDefaultTaskQueue {
 
 #[repr(C)]
 pub struct hkArrayBase_hkTimerData_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkPlacementNewArg {
     _opaque: [u8; 0],
 }
 

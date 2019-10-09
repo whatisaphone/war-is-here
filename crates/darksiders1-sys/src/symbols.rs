@@ -99,7 +99,6 @@ symbols! {
     pub static gfc__ClassRegistry__classForName: unsafe extern "thiscall" fn(this: *mut gfc__ClassRegistry, _: *const gfc__HString, _: bool, _: bool) -> *mut gfc__Class = Text(0xa16e50);
     pub static gfc__RegionLayer__getRoot: unsafe extern "thiscall" fn(this: *const gfc__RegionLayer, result: *mut gfc__AutoRef_gfc__WorldGroup_) -> *mut gfc__AutoRef_gfc__WorldGroup_ = Text(0x769ed0);
     pub static gfc__WorldRegion__getLayer: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion, result: *mut gfc__AutoRef_gfc__RegionLayer_, _: i32) -> *mut gfc__AutoRef_gfc__RegionLayer_ = Text(0x769f60);
-    pub static operator_new: unsafe extern "C" fn(_: u32, _: *mut hkPlacementNewArg) -> *mut () = Text(0x738540);
     pub static gfc__WorldObject__setRegionID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20ac80);
     pub static gfc__WorldObject__setLayerID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20aca0);
     pub static gfc__ObjectWriter___ObjectWriter: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter) = Text(0x2103c0);
@@ -112,14 +111,10 @@ symbols! {
     pub static gfc__KGGraphics__createStaticMesh: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, result: *mut gfc__AutoRef_gfc__StaticMesh_) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xe1e30);
     pub static gfc__KGGraphics__createStaticMesh_2: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: *mut gfc__MeshBuilder) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xe1ec0);
     pub static gfc__MeshBuilder__MeshBuilder: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) = Text(0xe4d20);
-    pub static operator_new_2: unsafe extern "C" fn(_: u32) -> *mut () = Text(0x5b4e0);
-    pub static operator_new_3: unsafe extern "C" fn(_: u32, _: *mut (), _: *mut gfc__LinkMyNew) -> *mut () = Text(0x5b5a0);
-    pub static operator_new_4: unsafe extern "C" fn(_: u32, _: u32, _: *const i8, _: i32, _: *mut gfc__LinkMyNew) -> *mut () = Text(0x5b5c0);
     pub static gfc__String__String: unsafe extern "thiscall" fn(this: *mut gfc__String) = Text(0x67070);
     pub static gfc__String___String: unsafe extern "thiscall" fn(this: *mut gfc__String) = Text(0x67110);
     pub static gfc__String__String_2: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const gfc__String) = Text(0x69030);
     pub static gfc__String__String_3: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const gfc__String, _: i32, _: i32) = Text(0x69060);
     pub static gfc__String__String_4: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const i8) = Text(0x69530);
     pub static gfc__String__String_5: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const std__basic_string_char_std__char_traits_char__std__allocator_char___) = Text(0x69570);
-    pub static operator_new_5: unsafe extern "C" fn(_: u32, _: *mut ()) -> *mut () = Text(0x22230);
 }
