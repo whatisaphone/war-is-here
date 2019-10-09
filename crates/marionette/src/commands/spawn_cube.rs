@@ -118,7 +118,7 @@ pub fn override_get_static_mesh(
     _package_id: i32,
     mesh_name: &gfc::HString,
     _idx: i32,
-) -> Option<gfc::AutoRef<gfc::StaticMesh>> {
+) -> Option<gfc::AutoRef2<gfc::StaticMesh>> {
     if mesh_name == &*MAGIC_MESH_NAME {
         // let mesh = use_mesh_from_game(package_id);
         let mesh = build_cube_mesh();
@@ -144,7 +144,7 @@ fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef<gfc::StaticMesh> {
     }
 }
 
-fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
+fn build_cube_mesh() -> gfc::AutoRef2<gfc::StaticMesh> {
     let graphics = gfc::KGGraphics::get_instance();
 
     let builder = build_cube_meshbuilder();
@@ -154,7 +154,7 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
         let result = init_with(|p| {
             ((*(*graphics.as_ptr()).__vfptr).createStaticMesh)(graphics.as_ptr(), p, builder);
         });
-        gfc::AutoRef::from_ptr(result.p)
+        gfc::AutoRef2::lift(result)
     }
 }
 

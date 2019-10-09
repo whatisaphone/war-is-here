@@ -130,7 +130,7 @@ mod hook {
             let mesh_name = unsafe { gfc::HString::from_ptr(meshName) };
             if let Some(ovurride) = override_get_static_mesh(packageID, mesh_name, idx) {
                 unsafe {
-                    *result = autoref_cast!(ovurride, target::gfc__AutoRef_gfc__StaticMesh_);
+                    *result = gfc::AutoRef2::lower(ovurride);
                 }
                 return result;
             }

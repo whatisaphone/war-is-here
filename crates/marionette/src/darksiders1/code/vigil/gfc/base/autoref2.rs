@@ -36,6 +36,10 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
         Self(p)
     }
 
+    pub fn from_raw(p: *mut T) -> Self {
+        Self(p)
+    }
+
     #[allow(clippy::wrong_self_convention)]
     pub fn into_raw(this: Self) -> *mut T {
         let raw = this.0;
@@ -48,6 +52,13 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
         T: AutoRefLower,
     {
         AutoRefLower::lower(this)
+    }
+
+    pub fn lift(this: <T as AutoRefLower>::TargetAutoRef) -> Self
+    where
+        T: AutoRefLower,
+    {
+        AutoRefLower::lift(this)
     }
 }
 
@@ -63,23 +74,37 @@ pub trait AutoRefLower: AsRef<IRefObject> + Lower {
     type TargetAutoRef;
 
     fn lower(this: AutoRef2<Self>) -> Self::TargetAutoRef;
+    fn lift(autoref: Self::TargetAutoRef) -> AutoRef2<Self>;
 }
 
-impl AutoRefLower for gfc::Object3D {
-    type TargetAutoRef = target::gfc__AutoRef_gfc__Object3D_;
+macro_rules! impl_autoref_lower {
+    ($type:ty, $target:path) => {
+        impl AutoRefLower for $type {
+            type TargetAutoRef = $target;
 
-    fn lower(this: AutoRef2<Self>) -> Self::TargetAutoRef {
-        let p = AutoRef2::into_raw(this);
-        target::gfc__AutoRef_gfc__Object3D_ {
-            p: Lower::lower(p).static_cast(),
+            fn lower(this: AutoRef2<Self>) -> $target {
+                let p = AutoRef2::into_raw(this);
+                $target {
+                    p: Lower::lower(p).static_cast(),
+                }
+            }
+
+            fn lift(autoref: $target) -> AutoRef2<Self> {
+                let p = Lower::lift(autoref.p.cast());
+                AutoRef2::from_raw(p)
+            }
         }
-    }
+    };
 }
+
+impl_autoref_lower!(gfc::Object3D, target::gfc__AutoRef_gfc__Object3D_);
+impl_autoref_lower!(gfc::StaticMesh, target::gfc__AutoRef_gfc__StaticMesh_);
 
 pub trait Lower {
     type Target;
 
     fn lower(this: *mut Self) -> *mut Self::Target;
+    fn lift(p: *mut Self::Target) -> *mut Self;
 }
 
 impl Lower for gfc::Object3D {
@@ -87,5 +112,21 @@ impl Lower for gfc::Object3D {
 
     fn lower(this: *mut Self) -> *mut Self::Target {
         unsafe { (*this).as_ptr() }
+    }
+
+    fn lift(p: *mut Self::Target) -> *mut Self {
+        unsafe { Self::from_ptr(p) as *const Self as *mut Self }
+    }
+}
+
+impl Lower for gfc::StaticMesh {
+    type Target = target::gfc__StaticMesh;
+
+    fn lower(this: *mut Self) -> *mut Self::Target {
+        unsafe { (*this).as_ptr() }
+    }
+
+    fn lift(p: *mut Self::Target) -> *mut Self {
+        unsafe { Self::from_ptr(p) as *const Self as *mut Self }
     }
 }
