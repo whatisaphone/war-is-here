@@ -47,7 +47,7 @@ macro_rules! struct_wrapper_drop {
 }
 
 macro_rules! struct_wrapper_super {
-    ($sub:ty, $super:ty, $cast_method:ident $(,)?) => {
+    ($sub:ty, $super:ty) => {
         impl std::ops::Deref for $sub {
             type Target = $super;
 

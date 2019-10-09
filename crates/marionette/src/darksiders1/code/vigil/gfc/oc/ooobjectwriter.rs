@@ -4,11 +4,7 @@ use pdbindgen_runtime::StaticCast;
 use std::{mem, ptr};
 
 struct_wrapper!(OOObjectWriter, target::gfc__OOObjectWriter);
-struct_wrapper_super!(
-    OOObjectWriter,
-    gfc::ObjectWriter,
-    as_gfc__ObjectWriter_mut_ptr,
-);
+struct_wrapper_super!(OOObjectWriter, gfc::ObjectWriter);
 
 type OOObjectWriterObjectDatabase = gfc::Vector<gfc::AutoRef<gfc::Object>>;
 

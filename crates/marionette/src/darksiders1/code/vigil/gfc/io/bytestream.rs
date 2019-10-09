@@ -3,11 +3,7 @@ use darksiders1_sys::target;
 use std::convert::TryFrom;
 
 struct_wrapper!(ByteInputStream, target::gfc__ByteInputStream);
-struct_wrapper_super!(
-    ByteInputStream,
-    gfc::InputStream,
-    as_gfc__InputStream_mut_ptr,
-);
+struct_wrapper_super!(ByteInputStream, gfc::InputStream);
 struct_wrapper_drop!(
     ByteInputStream,
     target::gfc__ByteInputStream___ByteInputStream,
@@ -33,11 +29,7 @@ impl ByteInputStream {
 }
 
 struct_wrapper!(ByteOutputStream, target::gfc__ByteOutputStream);
-struct_wrapper_super!(
-    ByteOutputStream,
-    gfc::OutputStream,
-    as_gfc__OutputStream_mut_ptr,
-);
+struct_wrapper_super!(ByteOutputStream, gfc::OutputStream);
 struct_wrapper_drop!(
     ByteOutputStream,
     target::gfc__ByteOutputStream___ByteOutputStream,

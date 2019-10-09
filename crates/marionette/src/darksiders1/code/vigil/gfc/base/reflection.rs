@@ -2,7 +2,7 @@ use crate::{darksiders1::gfc, utils::mem::init_with};
 use darksiders1_sys::target;
 
 struct_wrapper!(Class, target::gfc__Class);
-struct_wrapper_super!(Class, gfc::IRefObject, as_gfc__IRefObject_mut_ptr);
+struct_wrapper_super!(Class, gfc::IRefObject);
 
 impl Class {
     pub fn new_instance(&self) -> gfc::AutoRef<gfc::Object> {
