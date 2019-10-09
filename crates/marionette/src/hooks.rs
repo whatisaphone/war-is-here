@@ -3,7 +3,7 @@
 use crate::utils::detour::TypedDetour;
 use darksiders1_sys::target;
 use parking_lot::{Mutex, RwLock};
-use pdbindgen_runtime::BindArgs;
+use pdbindgen_runtime::{main_module, BindArgs};
 use std::collections::VecDeque;
 
 static DETOURS: RwLock<Option<GodObject>> = RwLock::new(None);
@@ -26,7 +26,7 @@ pub fn install() {
     assert!(guard.is_none());
 
     unsafe {
-        darksiders1_sys::bind(&BindArgs::create());
+        darksiders1_sys::bind(&BindArgs::create(main_module()));
 
         macro_rules! hook {
             ($name:ident) => {
