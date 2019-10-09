@@ -73,7 +73,7 @@ unsafe fn scan(group: *mut target::gfc__WorldGroup) {
 
         if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
             let position = init_with(|this| {
-                ((*(*trigger.as_ptr()).__vfptr).getPosition)(trigger.as_ptr().static_cast(), this);
+                ((*(*trigger.as_ptr()).__vfptr).getPosition)(trigger.as_ptr(), this);
             });
             mark(
                 (*group).mRegionID,
@@ -104,10 +104,11 @@ unsafe fn mark(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
     target::gfc__StaticObject__setPackageName(obj, hstring!("vfx_shared").as_ptr());
     target::gfc__StaticObject__setObjectName(obj, hstring!("sphere").as_ptr());
 
-    ((*(*obj).__vfptr).setPosition)(
-        obj.static_cast(),
-        &target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z },
-    );
+    ((*(*obj).__vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+        x,
+        y,
+        z,
+    });
 
-    ((*(*obj).__vfptr).addObjectToWorld)(obj.static_cast(), world.as_ptr());
+    ((*(*obj).__vfptr).addObjectToWorld)(obj, world.as_ptr());
 }

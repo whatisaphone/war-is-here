@@ -128,17 +128,24 @@ impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__Tls
 
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator_____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(
+        this: *mut keen__BaseMemoryAllocator_keen__TlsfAllocator_,
+        _: u32,
+    ) -> *mut (),
     pub allocate: unsafe extern "thiscall" fn(
-        this: *mut keen__MemoryAllocator,
+        this: *mut keen__BaseMemoryAllocator_keen__TlsfAllocator_,
         _: u32,
         _: u32,
         _: u32,
         _: *const i8,
     ) -> *mut (),
-    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
-    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+    pub free: unsafe extern "thiscall" fn(
+        this: *mut keen__BaseMemoryAllocator_keen__TlsfAllocator_,
+        _: *mut (),
+    ),
+    pub getName: unsafe extern "thiscall" fn(
+        this: *const keen__BaseMemoryAllocator_keen__TlsfAllocator_,
+    ) -> *const i8,
 }
 
 #[repr(C)]
@@ -194,16 +201,16 @@ impl AsPtr<keen__MemoryAllocator> for *const keen__TlsfMemoryAllocator {
 #[repr(C)]
 pub struct keen__TlsfMemoryAllocator____vftable {
     pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+        unsafe extern "thiscall" fn(this: *mut keen__TlsfMemoryAllocator, _: u32) -> *mut (),
     pub allocate: unsafe extern "thiscall" fn(
-        this: *mut keen__MemoryAllocator,
+        this: *mut keen__TlsfMemoryAllocator,
         _: u32,
         _: u32,
         _: u32,
         _: *const i8,
     ) -> *mut (),
-    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
-    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__TlsfMemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__TlsfMemoryAllocator) -> *const i8,
 }
 
 #[repr(C)]
@@ -1547,60 +1554,60 @@ impl AsPtr<keen__FileDeviceInterface> for *const keen__AliasPathFileDevice {
 #[repr(C)]
 pub struct keen__AliasPathFileDevice____vftable {
     pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+        unsafe extern "thiscall" fn(this: *mut keen__AliasPathFileDevice, _: u32) -> *mut (),
     pub openFile: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__AliasPathFileDevice,
         result: *mut keen__IoResult_unsigned_short_,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: keen__FileAccessMode,
     ) -> *mut keen__IoResult_unsigned_short_,
     pub closeFile:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__AliasPathFileDevice, _: u16) -> keen__IoError,
     pub freeMountData: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__AliasPathFileDevice,
         _: *mut keen__MemoryAllocator,
         _: *mut keen__FileDeviceMountData,
     ) -> keen__IoError,
     pub read: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__AliasPathFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *mut (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub write: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__AliasPathFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *const (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub flushWriteBuffer:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__AliasPathFileDevice, _: u16) -> keen__IoError,
     pub getSize: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__AliasPathFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setPosition: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__AliasPathFileDevice,
         _: u16,
         _: u64,
     ) -> keen__IoError,
     pub getPosition: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__AliasPathFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setFilePermissionByName: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__AliasPathFileDevice,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: bool,
     ) -> keen__IoError,
     pub getFileStatusByName: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__AliasPathFileDevice,
         _: *mut keen__FileStatus,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
@@ -1628,60 +1635,60 @@ impl AsPtr<keen__FileDeviceInterface> for *const keen__NativeFileDevice {
 #[repr(C)]
 pub struct keen__NativeFileDevice____vftable {
     pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+        unsafe extern "thiscall" fn(this: *mut keen__NativeFileDevice, _: u32) -> *mut (),
     pub openFile: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__NativeFileDevice,
         result: *mut keen__IoResult_unsigned_short_,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: keen__FileAccessMode,
     ) -> *mut keen__IoResult_unsigned_short_,
     pub closeFile:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__NativeFileDevice, _: u16) -> keen__IoError,
     pub freeMountData: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__NativeFileDevice,
         _: *mut keen__MemoryAllocator,
         _: *mut keen__FileDeviceMountData,
     ) -> keen__IoError,
     pub read: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__NativeFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *mut (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub write: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__NativeFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *const (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub flushWriteBuffer:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__NativeFileDevice, _: u16) -> keen__IoError,
     pub getSize: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__NativeFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setPosition: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__NativeFileDevice,
         _: u16,
         _: u64,
     ) -> keen__IoError,
     pub getPosition: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__NativeFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setFilePermissionByName: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__NativeFileDevice,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: bool,
     ) -> keen__IoError,
     pub getFileStatusByName: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__NativeFileDevice,
         _: *mut keen__FileStatus,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
@@ -1722,60 +1729,60 @@ impl AsPtr<keen__FileDeviceInterface> for *const keen__PakFileDevice {
 #[repr(C)]
 pub struct keen__PakFileDevice____vftable {
     pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+        unsafe extern "thiscall" fn(this: *mut keen__PakFileDevice, _: u32) -> *mut (),
     pub openFile: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__PakFileDevice,
         result: *mut keen__IoResult_unsigned_short_,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: keen__FileAccessMode,
     ) -> *mut keen__IoResult_unsigned_short_,
     pub closeFile:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__PakFileDevice, _: u16) -> keen__IoError,
     pub freeMountData: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__PakFileDevice,
         _: *mut keen__MemoryAllocator,
         _: *mut keen__FileDeviceMountData,
     ) -> keen__IoError,
     pub read: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__PakFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *mut (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub write: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__PakFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *const (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub flushWriteBuffer:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__PakFileDevice, _: u16) -> keen__IoError,
     pub getSize: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__PakFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setPosition: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__PakFileDevice,
         _: u16,
         _: u64,
     ) -> keen__IoError,
     pub getPosition: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__PakFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setFilePermissionByName: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__PakFileDevice,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: bool,
     ) -> keen__IoError,
     pub getFileStatusByName: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__PakFileDevice,
         _: *mut keen__FileStatus,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
@@ -1830,60 +1837,60 @@ impl AsPtr<keen__FileDeviceInterface> for *const keen__MemoryFileDevice {
 #[repr(C)]
 pub struct keen__MemoryFileDevice____vftable {
     pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u32) -> *mut (),
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryFileDevice, _: u32) -> *mut (),
     pub openFile: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__MemoryFileDevice,
         result: *mut keen__IoResult_unsigned_short_,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: keen__FileAccessMode,
     ) -> *mut keen__IoResult_unsigned_short_,
     pub closeFile:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryFileDevice, _: u16) -> keen__IoError,
     pub freeMountData: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__MemoryFileDevice,
         _: *mut keen__MemoryAllocator,
         _: *mut keen__FileDeviceMountData,
     ) -> keen__IoError,
     pub read: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__MemoryFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *mut (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub write: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__MemoryFileDevice,
         result: *mut keen__IoResult_unsigned_int_,
         _: u16,
         _: *const (),
         _: u32,
     ) -> *mut keen__IoResult_unsigned_int_,
     pub flushWriteBuffer:
-        unsafe extern "thiscall" fn(this: *mut keen__FileDeviceInterface, _: u16) -> keen__IoError,
+        unsafe extern "thiscall" fn(this: *mut keen__MemoryFileDevice, _: u16) -> keen__IoError,
     pub getSize: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__MemoryFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setPosition: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__MemoryFileDevice,
         _: u16,
         _: u64,
     ) -> keen__IoError,
     pub getPosition: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__MemoryFileDevice,
         result: *mut keen__IoResult_unsigned___int64_,
         _: u16,
     ) -> *mut keen__IoResult_unsigned___int64_,
     pub setFilePermissionByName: unsafe extern "thiscall" fn(
-        this: *mut keen__FileDeviceInterface,
+        this: *mut keen__MemoryFileDevice,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
         _: bool,
     ) -> keen__IoError,
     pub getFileStatusByName: unsafe extern "thiscall" fn(
-        this: *const keen__FileDeviceInterface,
+        this: *const keen__MemoryFileDevice,
         _: *mut keen__FileStatus,
         _: *const keen__FileDeviceMountData,
         _: *const i8,
@@ -2077,17 +2084,24 @@ impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__Low
 
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__LowOverheadAllocator_____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(
+        this: *mut keen__BaseMemoryAllocator_keen__LowOverheadAllocator_,
+        _: u32,
+    ) -> *mut (),
     pub allocate: unsafe extern "thiscall" fn(
-        this: *mut keen__MemoryAllocator,
+        this: *mut keen__BaseMemoryAllocator_keen__LowOverheadAllocator_,
         _: u32,
         _: u32,
         _: u32,
         _: *const i8,
     ) -> *mut (),
-    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
-    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+    pub free: unsafe extern "thiscall" fn(
+        this: *mut keen__BaseMemoryAllocator_keen__LowOverheadAllocator_,
+        _: *mut (),
+    ),
+    pub getName: unsafe extern "thiscall" fn(
+        this: *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_,
+    ) -> *const i8,
 }
 
 #[repr(C)]
@@ -2492,8 +2506,9 @@ impl AsPtr<gfc__IRefObject> for *const gfc__InputStream {
 
 #[repr(C)]
 pub struct gfc__InputStream____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: u32) -> *mut (),
+    pub getType:
+        unsafe extern "thiscall" fn(this: *const gfc__InputStream) -> gfc__Stream__StreamType,
     pub available: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> i64,
     pub close: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
     pub markSupported: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> bool,
@@ -2630,21 +2645,21 @@ impl AsPtr<gfc__IRefObject> for *const gfc__SoundDesc {
 
 #[repr(C)]
 pub struct gfc__SoundDesc____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SoundDesc, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__SoundDesc) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__SoundDesc, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__SoundDesc) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__SoundDesc) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__SoundDesc,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__SoundDesc) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__SoundDesc, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__SoundDesc,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -2673,7 +2688,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Resource {
 
 #[repr(C)]
 pub struct gfc__Resource____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Resource, _: u32) -> *mut (),
     pub getType: unsafe extern "thiscall" fn(this: *const gfc__Resource) -> i32,
     pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
     pub unload: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
@@ -2864,7 +2879,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Object {
 
 #[repr(C)]
 pub struct gfc__Object____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
     pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
@@ -2922,8 +2937,9 @@ impl AsPtr<gfc__IRefObject> for *const gfc__OutputStream {
 
 #[repr(C)]
 pub struct gfc__OutputStream____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: u32) -> *mut (),
+    pub getType:
+        unsafe extern "thiscall" fn(this: *const gfc__OutputStream) -> gfc__Stream__StreamType,
     pub close: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
     pub write: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: *const (), _: i32),
     pub flush: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
@@ -2956,7 +2972,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Property {
 
 #[repr(C)]
 pub struct gfc__Property____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Property, _: u32) -> *mut (),
     pub getType: unsafe extern "thiscall" fn(this: *const gfc__Property) -> i32,
     pub getTypeClass: unsafe extern "thiscall" fn(this: *const gfc__Property) -> *mut gfc__Class,
     pub getElementType: unsafe extern "thiscall" fn(this: *const gfc__Property) -> i32,
@@ -3069,7 +3085,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Stream {
 
 #[repr(C)]
 pub struct gfc__Stream____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Stream, _: u32) -> *mut (),
     pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
 }
 
@@ -3130,7 +3146,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Class {
 
 #[repr(C)]
 pub struct gfc__Class____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Class, _: u32) -> *mut (),
     pub getTypeID: unsafe extern "thiscall" fn(this: *mut gfc__Class) -> i32,
     pub getName: unsafe extern "thiscall" fn(this: *const gfc__Class) -> *const gfc__HString,
     pub getParent: unsafe extern "thiscall" fn(this: *const gfc__Class) -> *mut gfc__Class,
@@ -3180,7 +3196,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Environment {
 
 #[repr(C)]
 pub struct gfc__Environment____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Environment, _: u32) -> *mut (),
 }
 
 #[repr(C)]
@@ -3206,7 +3222,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Method {
 
 #[repr(C)]
 pub struct gfc__Method____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Method, _: u32) -> *mut (),
     pub getParamCount: unsafe extern "thiscall" fn(this: *const gfc__Method) -> i32,
     pub getParamTypeAt: unsafe extern "thiscall" fn(this: *const gfc__Method, _: i32) -> i32,
     pub getReturnType: unsafe extern "thiscall" fn(this: *const gfc__Method) -> i32,
@@ -4097,30 +4113,32 @@ impl AsPtr<gfc__IRefObject> for *const gfc__StaticMesh {
 
 #[repr(C)]
 pub struct gfc__StaticMesh____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> gfc__Mesh__Type,
-    pub isCompressed: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> bool,
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__StaticMesh) -> gfc__Mesh__Type,
+    pub isCompressed: unsafe extern "thiscall" fn(this: *const gfc__StaticMesh) -> bool,
     pub getGroup:
-        unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: i32) -> *mut gfc__Mesh__Group,
-    pub getGroupCount: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> i32,
-    pub getGroupIDAt: unsafe extern "thiscall" fn(this: *const gfc__Mesh, _: i32) -> i32,
+        unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: i32) -> *mut gfc__Mesh__Group,
+    pub getGroupCount: unsafe extern "thiscall" fn(this: *const gfc__StaticMesh) -> i32,
+    pub getGroupIDAt: unsafe extern "thiscall" fn(this: *const gfc__StaticMesh, _: i32) -> i32,
     pub getGroupNameAt:
-        unsafe extern "thiscall" fn(this: *const gfc__Mesh, _: i32) -> *const gfc__String,
-    pub beginCreate: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut gfc__MeshBuilder),
-    pub create: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut gfc__MeshBuilder),
-    pub endCreate: unsafe extern "thiscall" fn(this: *mut gfc__Mesh),
+        unsafe extern "thiscall" fn(this: *const gfc__StaticMesh, _: i32) -> *const gfc__String,
+    pub beginCreate:
+        unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: *mut gfc__MeshBuilder),
+    pub create: unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: *mut gfc__MeshBuilder),
+    pub endCreate: unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh),
     pub getBoundingBox: unsafe extern "thiscall" fn(
-        this: *const gfc__Mesh,
+        this: *const gfc__StaticMesh,
     ) -> *const gfc__TBox_float_gfc__FloatMath_,
     pub getVertexBuffer: unsafe extern "thiscall" fn(
-        this: *const gfc__Mesh,
+        this: *const gfc__StaticMesh,
         result: *mut gfc__AutoRef_gfc__VertexBuffer_,
     ) -> *mut gfc__AutoRef_gfc__VertexBuffer_,
     pub getIndexBuffer: unsafe extern "thiscall" fn(
-        this: *const gfc__Mesh,
+        this: *const gfc__StaticMesh,
         result: *mut gfc__AutoRef_gfc__IndexBuffer_,
     ) -> *mut gfc__AutoRef_gfc__IndexBuffer_,
-    pub updateAddress: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: *mut (), _: *mut ()),
+    pub updateAddress:
+        unsafe extern "thiscall" fn(this: *mut gfc__StaticMesh, _: *mut (), _: *mut ()),
     pub isLightmapped: unsafe extern "thiscall" fn(this: *const gfc__StaticMesh) -> bool,
     pub testCollision: unsafe extern "thiscall" fn(
         this: *mut gfc__StaticMesh,
@@ -4217,7 +4235,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__VertexBuffer {
 
 #[repr(C)]
 pub struct gfc__VertexBuffer____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__VertexBuffer, _: u32) -> *mut (),
     pub release: unsafe extern "thiscall" fn(this: *mut gfc__VertexBuffer),
     pub getSize: unsafe extern "thiscall" fn(this: *const gfc__VertexBuffer) -> u32,
     pub getVertexCount: unsafe extern "thiscall" fn(this: *const gfc__VertexBuffer) -> u32,
@@ -4268,7 +4286,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__IndexBuffer {
 
 #[repr(C)]
 pub struct gfc__IndexBuffer____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IndexBuffer, _: u32) -> *mut (),
     pub lock: unsafe extern "thiscall" fn(this: *mut gfc__IndexBuffer, _: i32),
     pub unlock: unsafe extern "thiscall" fn(this: *mut gfc__IndexBuffer),
     pub locked: unsafe extern "thiscall" fn(this: *const gfc__IndexBuffer) -> bool,
@@ -4408,27 +4426,26 @@ impl AsPtr<gfc__IRefObject> for *const gfc__FogDesc {
 
 #[repr(C)]
 pub struct gfc__FogDesc____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__FogDesc, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__FogDesc) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__FogDesc, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__FogDesc) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__FogDesc) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__FogDesc,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__FogDesc) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__FogDesc, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__FogDesc,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
-    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
-    pub restore:
-        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
+    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__FogDesc, _: *mut gfc__Renderer),
+    pub restore: unsafe extern "thiscall" fn(this: *mut gfc__FogDesc, _: *mut gfc__Renderer),
 }
 
 #[repr(C)]
@@ -4818,7 +4835,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Camera3D {
 
 #[repr(C)]
 pub struct gfc__Camera3D____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Camera3D, _: u32) -> *mut (),
     pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Camera3D),
     pub sortRenderNodes: unsafe extern "thiscall" fn(this: *mut gfc__Camera3D),
     pub setLightInfluences: unsafe extern "thiscall" fn(this: *mut gfc__Camera3D),
@@ -4871,27 +4888,32 @@ impl AsPtr<gfc__IRefObject> for *const gfc__DepthOfFieldDesc {
 
 #[repr(C)]
 pub struct gfc__DepthOfFieldDesc____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__DepthOfFieldDesc, _: u32) -> *mut (),
+    pub getClass:
+        unsafe extern "thiscall" fn(this: *const gfc__DepthOfFieldDesc) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__DepthOfFieldDesc, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__DepthOfFieldDesc) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__DepthOfFieldDesc) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__DepthOfFieldDesc,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__DepthOfFieldDesc) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__DepthOfFieldDesc,
+        _: *const u64,
+    ) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__DepthOfFieldDesc,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
-    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
+    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__DepthOfFieldDesc, _: *mut gfc__Renderer),
     pub restore:
-        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
+        unsafe extern "thiscall" fn(this: *mut gfc__DepthOfFieldDesc, _: *mut gfc__Renderer),
 }
 
 #[repr(C)]
@@ -5066,27 +5088,30 @@ impl AsPtr<gfc__IRefObject> for *const gfc__CameraBlurDesc {
 
 #[repr(C)]
 pub struct gfc__CameraBlurDesc____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__CameraBlurDesc, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__CameraBlurDesc) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__CameraBlurDesc, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__CameraBlurDesc) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__CameraBlurDesc) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__CameraBlurDesc,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__CameraBlurDesc) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__CameraBlurDesc,
+        _: *const u64,
+    ) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__CameraBlurDesc,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
-    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
-    pub restore:
-        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
+    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__CameraBlurDesc, _: *mut gfc__Renderer),
+    pub restore: unsafe extern "thiscall" fn(this: *mut gfc__CameraBlurDesc, _: *mut gfc__Renderer),
 }
 
 #[repr(C)]
@@ -5147,7 +5172,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Shader {
 
 #[repr(C)]
 pub struct gfc__Shader____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Shader, _: u32) -> *mut (),
     pub createFromDesc: unsafe extern "thiscall" fn(
         this: *mut gfc__Shader,
         _: gfc__AutoRef_gfc__ShaderDesc_,
@@ -5243,21 +5268,21 @@ impl AsPtr<gfc__IRefObject> for *const gfc__WorldObject {
 
 #[repr(C)]
 pub struct gfc__WorldObject____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__WorldObject) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__WorldObject) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__WorldObject,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__WorldObject,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -5582,7 +5607,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Image {
 
 #[repr(C)]
 pub struct gfc__Image____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Image, _: u32) -> *mut (),
 }
 
 #[repr(C)]
@@ -5660,21 +5685,21 @@ impl AsPtr<gfc__IRefObject> for *const gfc__World {
 
 #[repr(C)]
 pub struct gfc__World____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__World, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__World) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__World, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__World) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__World) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__World,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__World) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__World, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__World,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -5734,27 +5759,26 @@ impl AsPtr<gfc__IRefObject> for *const gfc__AmbientDesc {
 
 #[repr(C)]
 pub struct gfc__AmbientDesc____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__AmbientDesc, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__AmbientDesc) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__AmbientDesc, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__AmbientDesc) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__AmbientDesc) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__AmbientDesc,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__AmbientDesc) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__AmbientDesc, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__AmbientDesc,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
-    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
-    pub restore:
-        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
+    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__AmbientDesc, _: *mut gfc__Renderer),
+    pub restore: unsafe extern "thiscall" fn(this: *mut gfc__AmbientDesc, _: *mut gfc__Renderer),
 }
 
 #[repr(C)]
@@ -5788,7 +5812,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Texture {
 
 #[repr(C)]
 pub struct gfc__Texture____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Texture, _: u32) -> *mut (),
     pub getType: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> gfc__Texture__Type,
     pub getFormat: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> gfc__ImageFormat,
     pub getWidth: unsafe extern "thiscall" fn(this: *const gfc__Texture) -> u16,
@@ -5915,14 +5939,16 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ByteOutputStream {
 
 #[repr(C)]
 pub struct gfc__ByteOutputStream____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
-    pub close: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
-    pub write: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: *const (), _: i32),
-    pub flush: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream),
-    pub isSeekable: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream) -> bool,
-    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream, _: u64, _: i32),
-    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__OutputStream) -> i64,
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream, _: u32) -> *mut (),
+    pub getType:
+        unsafe extern "thiscall" fn(this: *const gfc__ByteOutputStream) -> gfc__Stream__StreamType,
+    pub close: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream),
+    pub write: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream, _: *const (), _: i32),
+    pub flush: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream),
+    pub isSeekable: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream) -> bool,
+    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream, _: u64, _: i32),
+    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream) -> i64,
 }
 
 #[repr(C)]
@@ -6005,7 +6031,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Mesh {
 
 #[repr(C)]
 pub struct gfc__Mesh____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Mesh, _: u32) -> *mut (),
     pub getType: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> gfc__Mesh__Type,
     pub isCompressed: unsafe extern "thiscall" fn(this: *const gfc__Mesh) -> bool,
     pub getGroup:
@@ -6094,21 +6120,21 @@ impl AsPtr<gfc__IRefObject> for *const gfc__WorldRegion {
 
 #[repr(C)]
 pub struct gfc__WorldRegion____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__WorldRegion) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__WorldRegion) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__WorldRegion,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__WorldRegion,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -6172,7 +6198,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ObjectReader {
 
 #[repr(C)]
 pub struct gfc__ObjectReader____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ObjectReader, _: u32) -> *mut (),
     pub readObject: unsafe extern "thiscall" fn(
         this: *mut gfc__ObjectReader,
         result: *mut gfc__AutoRef_gfc__Object_,
@@ -6254,21 +6280,21 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Material {
 
 #[repr(C)]
 pub struct gfc__Material____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Material, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Material) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Material, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Material) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Material) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__Material,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__Material) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__Material, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__Material,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -6489,55 +6515,56 @@ impl AsPtr<gfc__Graphics> for *const gfc__KGGraphics {
 
 #[repr(C)]
 pub struct gfc__KGGraphics____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: u32) -> *mut (),
     pub init: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         _: u16,
         _: u16,
         _: u8,
         _: bool,
     ) -> bool,
-    pub isInitialized: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> bool,
-    pub release: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+    pub isInitialized: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> bool,
+    pub release: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
     pub getSceneBackBufferSize:
-        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: *mut u16, _: *mut u16),
+        unsafe extern "thiscall" fn(this: *const gfc__KGGraphics, _: *mut u16, _: *mut u16),
     pub getScreenBackBufferSize:
-        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: *mut u16, _: *mut u16),
-    pub getAspectRatio: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> f32,
-    pub acquireThreadOwnership: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
-    pub releaseThreadOwnership: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
-    pub update: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> bool,
-    pub begin3D: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> bool,
-    pub end3D: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
-    pub getWaitForVSync: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> bool,
-    pub setWaitForVSync: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: bool),
-    pub unsetSamplers: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+        unsafe extern "thiscall" fn(this: *const gfc__KGGraphics, _: *mut u16, _: *mut u16),
+    pub getAspectRatio: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> f32,
+    pub acquireThreadOwnership: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
+    pub releaseThreadOwnership: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics) -> bool,
+    pub begin3D: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics) -> bool,
+    pub end3D: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
+    pub getWaitForVSync: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> bool,
+    pub setWaitForVSync: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: bool),
+    pub unsetSamplers: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
     pub getWorldMatrix:
-        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: *mut gfc__Matrix4),
+        unsafe extern "thiscall" fn(this: *const gfc__KGGraphics, _: *mut gfc__Matrix4),
     pub setWorldMatrix:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *const gfc__Matrix4),
     pub commitWorldMatrix:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *const gfc__Matrix4),
     pub getViewMatrix:
-        unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *const gfc__Matrix4,
+        unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> *const gfc__Matrix4,
     pub setViewMatrix:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *const gfc__Matrix4),
     pub getProjectionMatrix:
-        unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *const gfc__Matrix4,
+        unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> *const gfc__Matrix4,
     pub setProjectionMatrix:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Matrix4),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *const gfc__Matrix4),
     pub getViewProjMatrix:
-        unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *const gfc__Matrix4,
-    pub setViewport: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *const gfc__Viewport),
+        unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> *const gfc__Matrix4,
+    pub setViewport:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *const gfc__Viewport),
     pub getViewport: unsafe extern "thiscall" fn(
-        this: *const gfc__Graphics,
+        this: *const gfc__KGGraphics,
         _: *mut i32,
         _: *mut i32,
         _: *mut i32,
         _: *mut i32,
     ),
     pub clear: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         _: bool,
         _: bool,
         _: bool,
@@ -6546,44 +6573,54 @@ pub struct gfc__KGGraphics____vftable {
         _: u32,
     ),
     pub clear_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         _: *const gfc__TVector3_float_gfc__FloatMath_,
     ),
-    pub pushClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
-    pub popClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
-    pub enableClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
-    pub disableClip: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
-    pub setDepthTestMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
-    pub setCullMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
-    pub setBlendMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32),
-    pub getBlendMode: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> i32,
+    pub pushClip: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: i32),
+    pub popClip: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: i32),
+    pub enableClip: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: i32),
+    pub disableClip: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
+    pub setDepthTestMode: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: i32),
+    pub setCullMode: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: i32),
+    pub setBlendMode: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: i32),
+    pub getBlendMode: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> i32,
     pub setBlendFactor: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         _: *const gfc__TVector4_float_gfc__FloatMath_,
     ),
-    pub setGamma: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: f32),
-    pub setPostProcessEffect: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32),
-    pub setAntiAliasingType: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32),
-    pub setTextureFilteringMode: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32),
-    pub setShader: unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__Shader),
-    pub getShader: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> *mut gfc__Shader,
+    pub setGamma: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: f32),
+    pub setPostProcessEffect: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: u32),
+    pub setAntiAliasingType: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: u32),
+    pub setTextureFilteringMode: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: u32),
+    pub setShader: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *mut gfc__Shader),
+    pub getShader: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> *mut gfc__Shader,
     pub setVertexDeclaration:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexDeclaration),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *mut gfc__VertexDeclaration),
     pub setIndexBuffer:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__IndexBuffer),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *mut gfc__IndexBuffer),
     pub setVertexBuffer:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexBuffer),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *mut gfc__VertexBuffer),
     pub setVertexBufferMasked:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: *mut gfc__VertexBuffer, _: u32),
-    pub drawFullScreenQuad: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: *mut gfc__VertexBuffer, _: u32),
+    pub drawFullScreenQuad: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
     pub drawRect:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: i32, _: i32, _: i32, _: i32),
-    pub drawPrimitiveUP:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32, _: u32, _: *const (), _: u32),
-    pub drawPrimitiveRetained:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32, _: u32, _: *const (), _: u32),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: i32, _: i32, _: i32, _: i32),
+    pub drawPrimitiveUP: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGGraphics,
+        _: u32,
+        _: u32,
+        _: *const (),
+        _: u32,
+    ),
+    pub drawPrimitiveRetained: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGGraphics,
+        _: u32,
+        _: u32,
+        _: *const (),
+        _: u32,
+    ),
     pub drawIndexedPrimitiveUP: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         _: u32,
         _: u32,
         _: u32,
@@ -6592,9 +6629,9 @@ pub struct gfc__KGGraphics____vftable {
         _: u32,
     ),
     pub drawPrimitives:
-        unsafe extern "thiscall" fn(this: *mut gfc__Graphics, _: u32, _: u32, _: u32),
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, _: u32, _: u32, _: u32),
     pub drawPrimitivesIndexed: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         _: u32,
         _: u32,
         _: u32,
@@ -6602,61 +6639,61 @@ pub struct gfc__KGGraphics____vftable {
         _: u32,
     ),
     pub setRenderTarget: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         _: *mut gfc__Texture,
         _: *mut gfc__Texture,
         _: i32,
     ),
-    pub setDefaultRenderTarget: unsafe extern "thiscall" fn(this: *const gfc__Graphics),
-    pub setDefaultDepthStencilTarget: unsafe extern "thiscall" fn(this: *const gfc__Graphics),
+    pub setDefaultRenderTarget: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics),
+    pub setDefaultDepthStencilTarget: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics),
     pub createVertexDeclaration:
         unsafe extern "thiscall" fn(
-            this: *mut gfc__Graphics,
+            this: *mut gfc__KGGraphics,
             result: *mut gfc__AutoRef_gfc__VertexDeclaration_,
             _: *const gfc__VertexFormat,
         ) -> *mut gfc__AutoRef_gfc__VertexDeclaration_,
     pub createVertexBuffer: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__VertexBuffer_,
         _: i32,
         _: u32,
     )
         -> *mut gfc__AutoRef_gfc__VertexBuffer_,
     pub createVertexBuffer_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__VertexBuffer_,
     )
         -> *mut gfc__AutoRef_gfc__VertexBuffer_,
     pub createIndexBuffer: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__IndexBuffer_,
         _: u32,
         _: bool,
     ) -> *mut gfc__AutoRef_gfc__IndexBuffer_,
     pub createMeshBuilder: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__MeshBuilder_,
     ) -> *mut gfc__AutoRef_gfc__MeshBuilder_,
     pub createStaticMesh: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__StaticMesh_,
         _: *mut gfc__MeshBuilder,
     ) -> *mut gfc__AutoRef_gfc__StaticMesh_,
     pub createStaticMesh_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__StaticMesh_,
     ) -> *mut gfc__AutoRef_gfc__StaticMesh_,
     pub createSkinMesh: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__SkinMesh_,
         _: *mut gfc__MeshBuilder,
     ) -> *mut gfc__AutoRef_gfc__SkinMesh_,
     pub createSkinMesh_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__SkinMesh_,
     ) -> *mut gfc__AutoRef_gfc__SkinMesh_,
     pub createRenderTexture: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__RenderTexture_,
         _: u16,
         _: u16,
@@ -6664,7 +6701,7 @@ pub struct gfc__KGGraphics____vftable {
     )
         -> *mut gfc__AutoRef_gfc__RenderTexture_,
     pub createRenderTarget: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: u16,
         _: u16,
@@ -6672,27 +6709,27 @@ pub struct gfc__KGGraphics____vftable {
         _: gfc__ImageFormat,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createRenderTarget_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: u16,
         _: u16,
         _: gfc__ImageFormat,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createRenderDepth: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: u16,
         _: u16,
         _: gfc__ImageFormat,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createRenderCubemap: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: u16,
         _: gfc__ImageFormat,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createTexture: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: *mut (),
         _: u32,
@@ -6700,21 +6737,21 @@ pub struct gfc__KGGraphics____vftable {
         _: bool,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createTexture_2: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: *const gfc__String,
         _: bool,
         _: bool,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createTexture_3: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: *mut gfc__Image,
         _: bool,
         _: bool,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createTexture_4: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: i32,
         _: i32,
@@ -6723,46 +6760,47 @@ pub struct gfc__KGGraphics____vftable {
         _: bool,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createCubemap: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: i32,
         _: gfc__ImageFormat,
         _: bool,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createLightmap: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
         _: i32,
         _: i32,
         _: gfc__ImageFormat,
     ) -> *mut gfc__AutoRef_gfc__Texture_,
     pub createShader: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Shader_,
     ) -> *mut gfc__AutoRef_gfc__Shader_,
     pub createShaderCompiler: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__ShaderCompiler_,
     )
         -> *mut gfc__AutoRef_gfc__ShaderCompiler_,
     pub createQuery: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Query_,
         _: i32,
     ) -> *mut gfc__AutoRef_gfc__Query_,
     pub createCamera: unsafe extern "thiscall" fn(
-        this: *mut gfc__Graphics,
+        this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Camera3D_,
         _: i32,
     ) -> *mut gfc__AutoRef_gfc__Camera3D_,
-    pub createRenderer: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> *mut gfc__Renderer,
-    pub getPlatform: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> i32,
-    pub getDepthBias: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> f32,
-    pub getDecalDepthBias: unsafe extern "thiscall" fn(this: *const gfc__Graphics) -> f32,
-    pub recover: unsafe extern "thiscall" fn(this: *mut gfc__Graphics) -> bool,
+    pub createRenderer:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics) -> *mut gfc__Renderer,
+    pub getPlatform: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> i32,
+    pub getDepthBias: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> f32,
+    pub getDecalDepthBias: unsafe extern "thiscall" fn(this: *const gfc__KGGraphics) -> f32,
+    pub recover: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics) -> bool,
     pub isMeshFormatSupported:
-        unsafe extern "thiscall" fn(this: *const gfc__Graphics, _: i32) -> bool,
-    pub blockUntilDefragged: unsafe extern "thiscall" fn(this: *mut gfc__Graphics),
+        unsafe extern "thiscall" fn(this: *const gfc__KGGraphics, _: i32) -> bool,
+    pub blockUntilDefragged: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics),
     pub createRenderTargetEx: unsafe extern "thiscall" fn(
         this: *mut gfc__KGGraphics,
         result: *mut gfc__AutoRef_gfc__Texture_,
@@ -6825,7 +6863,8 @@ impl AsPtr<gfc__IRefObject> for *const gfc__VertexDeclaration {
 
 #[repr(C)]
 pub struct gfc__VertexDeclaration____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__VertexDeclaration, _: u32) -> *mut (),
 }
 
 #[repr(C)]
@@ -6959,24 +6998,26 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ByteInputStream {
 
 #[repr(C)]
 pub struct gfc__ByteInputStream____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Stream) -> gfc__Stream__StreamType,
-    pub available: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> i64,
-    pub close: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
-    pub markSupported: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> bool,
-    pub mark: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
-    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__InputStream),
-    pub seekSupported: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> bool,
-    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: u64, _: i32),
-    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> i64,
-    pub skipBytes: unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: i32),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream, _: u32) -> *mut (),
+    pub getType:
+        unsafe extern "thiscall" fn(this: *const gfc__ByteInputStream) -> gfc__Stream__StreamType,
+    pub available: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream) -> i64,
+    pub close: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream),
+    pub markSupported: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream) -> bool,
+    pub mark: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream),
+    pub seekSupported: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream) -> bool,
+    pub seek: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream, _: u64, _: i32),
+    pub tell: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream) -> i64,
+    pub skipBytes: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream, _: i32),
     pub clone: unsafe extern "thiscall" fn(
-        this: *mut gfc__InputStream,
+        this: *mut gfc__ByteInputStream,
         result: *mut gfc__AutoRef_gfc__InputStream_,
     ) -> *mut gfc__AutoRef_gfc__InputStream_,
-    pub getBuffer: unsafe extern "thiscall" fn(this: *mut gfc__InputStream) -> *const u8,
+    pub getBuffer: unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream) -> *const u8,
     pub read_raw:
-        unsafe extern "thiscall" fn(this: *mut gfc__InputStream, _: *mut (), _: i32) -> i32,
+        unsafe extern "thiscall" fn(this: *mut gfc__ByteInputStream, _: *mut (), _: i32) -> i32,
 }
 
 #[repr(C)]
@@ -7096,22 +7137,15 @@ impl AsPtr<gfc__Hierarchical_gfc__Node3D_> for *const gfc__Skeleton3D {
 
 #[repr(C)]
 pub struct gfc__Skeleton3D____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: u32) -> *mut (),
-    pub addFront:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub addBack:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub add:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
-    pub remove_2:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
-    pub added:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub removed:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D, _: u32) -> *mut (),
+    pub addFront: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D, _: *mut gfc__Node3D),
+    pub addBack: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D, _: *mut gfc__Node3D),
+    pub add: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D, _: *mut gfc__Node3D),
+    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D),
+    pub remove_2: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D, _: *mut gfc__Node3D),
+    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D),
+    pub added: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D, _: *mut gfc__Node3D),
+    pub removed: unsafe extern "thiscall" fn(this: *mut gfc__Skeleton3D, _: *mut gfc__Node3D),
 }
 
 #[repr(C)]
@@ -7173,22 +7207,15 @@ impl AsPtr<gfc__Hierarchical_gfc__Node3D_> for *const gfc__Node3D {
 
 #[repr(C)]
 pub struct gfc__Node3D____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: u32) -> *mut (),
-    pub addFront:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub addBack:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub add:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
-    pub remove_2:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_),
-    pub added:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
-    pub removed:
-        unsafe extern "thiscall" fn(this: *mut gfc__Hierarchical_gfc__Node3D_, _: *mut gfc__Node3D),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, _: u32) -> *mut (),
+    pub addFront: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, _: *mut gfc__Node3D),
+    pub addBack: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, _: *mut gfc__Node3D),
+    pub add: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, _: *mut gfc__Node3D),
+    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Node3D),
+    pub remove_2: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, _: *mut gfc__Node3D),
+    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Node3D),
+    pub added: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, _: *mut gfc__Node3D),
+    pub removed: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, _: *mut gfc__Node3D),
 }
 
 #[repr(C)]
@@ -7244,27 +7271,26 @@ impl AsPtr<gfc__IRefObject> for *const gfc__HDRDesc {
 
 #[repr(C)]
 pub struct gfc__HDRDesc____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__HDRDesc, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__HDRDesc) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__HDRDesc, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__HDRDesc) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__HDRDesc) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__HDRDesc,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__HDRDesc) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__HDRDesc, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__HDRDesc,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
-    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
-    pub restore:
-        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *mut gfc__Renderer),
+    pub apply: unsafe extern "thiscall" fn(this: *mut gfc__HDRDesc, _: *mut gfc__Renderer),
+    pub restore: unsafe extern "thiscall" fn(this: *mut gfc__HDRDesc, _: *mut gfc__Renderer),
 }
 
 #[repr(C)]
@@ -7291,21 +7317,25 @@ impl AsPtr<gfc__IRefObject> for *const gfc__EnvironmentDesc {
 
 #[repr(C)]
 pub struct gfc__EnvironmentDesc____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__EnvironmentDesc) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__EnvironmentDesc) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__EnvironmentDesc,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__EnvironmentDesc) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__EnvironmentDesc,
+        _: *const u64,
+    ) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__EnvironmentDesc,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -7347,16 +7377,16 @@ impl AsPtr<keen__MemoryAllocator> for *const keen__ZoneMemoryAllocator {
 #[repr(C)]
 pub struct keen__ZoneMemoryAllocator____vftable {
     pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+        unsafe extern "thiscall" fn(this: *mut keen__ZoneMemoryAllocator, _: u32) -> *mut (),
     pub allocate: unsafe extern "thiscall" fn(
-        this: *mut keen__MemoryAllocator,
+        this: *mut keen__ZoneMemoryAllocator,
         _: u32,
         _: u32,
         _: u32,
         _: *const i8,
     ) -> *mut (),
-    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
-    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__ZoneMemoryAllocator, _: *mut ()),
+    pub getName: unsafe extern "thiscall" fn(this: *const keen__ZoneMemoryAllocator) -> *const i8,
 }
 
 #[repr(C)]
@@ -7382,17 +7412,24 @@ impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__Zon
 
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_____vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(
+        this: *mut keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_,
+        _: u32,
+    ) -> *mut (),
     pub allocate: unsafe extern "thiscall" fn(
-        this: *mut keen__MemoryAllocator,
+        this: *mut keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_,
         _: u32,
         _: u32,
         _: u32,
         _: *const i8,
     ) -> *mut (),
-    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
-    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+    pub free: unsafe extern "thiscall" fn(
+        this: *mut keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_,
+        _: *mut (),
+    ),
+    pub getName: unsafe extern "thiscall" fn(
+        this: *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_,
+    ) -> *const i8,
 }
 
 #[repr(C)]
@@ -7428,16 +7465,17 @@ impl AsPtr<keen__MemoryAllocator> for *const keen__LowOverheadMemoryAllocator {
 #[repr(C)]
 pub struct keen__LowOverheadMemoryAllocator____vftable {
     pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: u32) -> *mut (),
+        unsafe extern "thiscall" fn(this: *mut keen__LowOverheadMemoryAllocator, _: u32) -> *mut (),
     pub allocate: unsafe extern "thiscall" fn(
-        this: *mut keen__MemoryAllocator,
+        this: *mut keen__LowOverheadMemoryAllocator,
         _: u32,
         _: u32,
         _: u32,
         _: *const i8,
     ) -> *mut (),
-    pub free: unsafe extern "thiscall" fn(this: *mut keen__MemoryAllocator, _: *mut ()),
-    pub getName: unsafe extern "thiscall" fn(this: *const keen__MemoryAllocator) -> *const i8,
+    pub free: unsafe extern "thiscall" fn(this: *mut keen__LowOverheadMemoryAllocator, _: *mut ()),
+    pub getName:
+        unsafe extern "thiscall" fn(this: *const keen__LowOverheadMemoryAllocator) -> *const i8,
 }
 
 #[repr(C)]
@@ -7735,21 +7773,21 @@ impl AsPtr<gfc__IRefObject> for *const gfc__MeshBuilder {
 
 #[repr(C)]
 pub struct gfc__MeshBuilder____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__MeshBuilder) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__MeshBuilder) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__MeshBuilder,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__MeshBuilder,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -7784,44 +7822,44 @@ impl AsPtr<gfc__ResourceCache> for *const gfc__MeshCache {
 
 #[repr(C)]
 pub struct gfc__MeshCache____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: u32) -> *mut (),
     pub loadDefaultResource:
-        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: gfc__AutoRef_gfc__File_),
-    pub initThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
-    pub shutdownThread: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache),
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: gfc__AutoRef_gfc__File_),
+    pub initThread: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache),
+    pub shutdownThread: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache),
     pub analyzeResource: unsafe extern "thiscall" fn(
-        this: *mut gfc__ResourceCache,
+        this: *mut gfc__MeshCache,
         _: *mut gfc__ResourceAnalyzeInfo,
     ) -> bool,
     pub canCreateBuffersInThread:
-        unsafe extern "thiscall" fn(this: *const gfc__ResourceCache, _: i32) -> bool,
+        unsafe extern "thiscall" fn(this: *const gfc__MeshCache, _: i32) -> bool,
     pub createBuffers:
-        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceBufferInfo),
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__ResourceBufferInfo),
     pub freeBuffers:
-        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__ResourceLoadInfo),
     pub loadResource:
-        unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: *mut gfc__ResourceLoadInfo),
-    pub canReloadResources: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
-    pub reloadsQueued: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__ResourceLoadInfo),
+    pub canReloadResources: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
+    pub reloadsQueued: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
     pub reloadResource: unsafe extern "thiscall" fn(
-        this: *mut gfc__ResourceCache,
+        this: *mut gfc__MeshCache,
         _: *mut gfc__ResourceLoadInfo,
     ) -> bool,
-    pub needUnlinkResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub needUnlinkResource: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
     pub unlinkResource: unsafe extern "thiscall" fn(
-        this: *mut gfc__ResourceCache,
+        this: *mut gfc__MeshCache,
         _: *mut (),
         _: *const gfc__HString,
         _: *const gfc__HString,
     ),
-    pub needUnloadResource: unsafe extern "thiscall" fn(this: *const gfc__ResourceCache) -> bool,
+    pub needUnloadResource: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
     pub unloadResource: unsafe extern "thiscall" fn(
-        this: *mut gfc__ResourceCache,
+        this: *mut gfc__MeshCache,
         _: *mut (),
         _: *mut gfc__ResourceLoadInfo,
     ),
     pub freeResource: unsafe extern "thiscall" fn(
-        this: *mut gfc__ResourceCache,
+        this: *mut gfc__MeshCache,
         _: *mut (),
         _: *const gfc__HString,
         _: *const gfc__HString,
@@ -7879,11 +7917,12 @@ impl AsPtr<gfc__IRefObject> for *const gfc__MeshResourceUnopt {
 
 #[repr(C)]
 pub struct gfc__MeshResourceUnopt____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Resource) -> i32,
-    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
-    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
-    pub isUnoptimized: unsafe extern "thiscall" fn(this: *const gfc__MeshResource) -> bool,
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshResourceUnopt, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__MeshResourceUnopt) -> i32,
+    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__MeshResourceUnopt),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__MeshResourceUnopt),
+    pub isUnoptimized: unsafe extern "thiscall" fn(this: *const gfc__MeshResourceUnopt) -> bool,
 }
 
 #[repr(C)]
@@ -7912,10 +7951,11 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ResourceType_gfc__Mesh_2_ {
 
 #[repr(C)]
 pub struct gfc__ResourceType_gfc__Mesh_2_____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Resource) -> i32,
-    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
-    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__Resource),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceType_gfc__Mesh_2_, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__ResourceType_gfc__Mesh_2_) -> i32,
+    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__ResourceType_gfc__Mesh_2_),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__ResourceType_gfc__Mesh_2_),
 }
 
 #[repr(C)]
@@ -7951,9 +7991,9 @@ impl AsPtr<gfc__IRefObject> for *const gfc__MeshReader {
 
 #[repr(C)]
 pub struct gfc__MeshReader____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader, _: u32) -> *mut (),
     pub readObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__ObjectReader,
+        this: *mut gfc__MeshReader,
         result: *mut gfc__AutoRef_gfc__Object_,
         _: gfc__AutoRef_gfc__InputStream_,
     ) -> *mut gfc__AutoRef_gfc__Object_,
@@ -8005,21 +8045,21 @@ impl AsPtr<gfc__IRefObject> for *const gfc__MBSubMesh {
 
 #[repr(C)]
 pub struct gfc__MBSubMesh____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Object) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__MBSubMesh) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__MBSubMesh) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) -> *mut (),
     pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__MBSubMesh,
         result: *mut gfc__HString,
     ) -> *mut gfc__HString,
     pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object) -> *mut gfc__Environment,
+        unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) -> *mut gfc__Environment,
     pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__Object, _: *const u64) -> *mut gfc__Method,
+        unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: *const u64) -> *mut gfc__Method,
     pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__Object,
+        this: *mut gfc__MBSubMesh,
         _: *mut gfc__ObjectCloner,
         _: gfc__AutoRef_gfc__Object_,
     ),
@@ -8041,7 +8081,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ObjectWriter {
 
 #[repr(C)]
 pub struct gfc__ObjectWriter____vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IRefObject, _: u32) -> *mut (),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter, _: u32) -> *mut (),
 }
 
 #[repr(C)]

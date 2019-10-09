@@ -2,7 +2,6 @@
 
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
-use pdbindgen_runtime::StaticCast;
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -49,14 +48,11 @@ unsafe fn go(args: &Args) {
     #[allow(clippy::cast_ptr_alignment)]
     let obj = obj.as_ptr() as *mut target::gfc__KinematicActor;
 
-    ((*(*obj).__vfptr).setPosition)(
-        obj.static_cast(),
-        &target::gfc__TVector3_float_gfc__FloatMath_ {
-            x: args.x,
-            y: args.y,
-            z: args.z,
-        },
-    );
+    ((*(*obj).__vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+        x: args.x,
+        y: args.y,
+        z: args.z,
+    });
 
-    ((*(*obj).__vfptr).addObjectToWorld)(obj.static_cast(), world.as_ptr());
+    ((*(*obj).__vfptr).addObjectToWorld)(obj, world.as_ptr());
 }

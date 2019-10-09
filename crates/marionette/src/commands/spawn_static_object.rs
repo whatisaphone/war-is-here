@@ -1,6 +1,5 @@
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
-use pdbindgen_runtime::StaticCast;
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -73,18 +72,16 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
 
     target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
-    ((*(*obj).__vfptr).setPosition)(
-        obj.static_cast(),
-        &target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z },
-    );
-    ((*(*obj).__vfptr).setScale)(
-        obj.static_cast(),
-        &target::gfc__TVector3_float_gfc__FloatMath_ {
-            x: args.scale,
-            y: args.scale,
-            z: args.scale,
-        },
-    );
+    ((*(*obj).__vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+        x,
+        y,
+        z,
+    });
+    ((*(*obj).__vfptr).setScale)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+        x: args.scale,
+        y: args.scale,
+        z: args.scale,
+    });
 
-    ((*(*obj).__vfptr).addObjectToWorld)(obj.static_cast(), world.as_ptr());
+    ((*(*obj).__vfptr).addObjectToWorld)(obj, world.as_ptr());
 }
