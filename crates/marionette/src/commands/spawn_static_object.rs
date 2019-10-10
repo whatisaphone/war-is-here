@@ -58,17 +58,11 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
     let package_name = gfc::HString::from_str(&args.package_name);
     let object_name = gfc::HString::from_str(&args.object_name);
 
-    let darksiders = gfc::OblivionGame::get_instance();
-    let world = darksiders.get_world();
-
-    let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();
-    let class = class_registry
+    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
         .class_for_name(&hstring!("StaticObject"), true)
         .unwrap();
-
     let obj = class.new_instance();
-    #[allow(clippy::cast_ptr_alignment)]
-    let obj = obj.as_ptr() as *mut target::gfc__StaticObject;
+    let obj = obj.as_ptr().cast::<target::gfc__StaticObject>();
 
     target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
@@ -83,5 +77,6 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
         z: args.scale,
     });
 
+    let world = gfc::OblivionGame::get_instance().get_world();
     ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
 }

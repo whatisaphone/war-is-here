@@ -82,28 +82,22 @@ unsafe fn scan(group: *mut target::gfc__WorldGroup) {
 }
 
 unsafe fn mark(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
-    let darksiders = gfc::OblivionGame::get_instance();
-    let world = darksiders.get_world();
-
-    let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();
-    let class = class_registry
+    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
         .class_for_name(&hstring!("StaticObject"), true)
         .unwrap();
-
     let obj = class.new_instance();
-    #[allow(clippy::cast_ptr_alignment)]
-    let obj = obj.as_ptr() as *mut target::gfc__StaticObject;
+    let obj = obj.as_ptr().cast::<target::gfc__StaticObject>();
 
     target::gfc__WorldObject__setRegionID(obj.static_cast(), region_id);
     target::gfc__WorldObject__setLayerID(obj.static_cast(), layer_id);
     target::gfc__StaticObject__setPackageName(obj, hstring!("vfx_shared").as_ptr());
     target::gfc__StaticObject__setObjectName(obj, hstring!("sphere").as_ptr());
-
     ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
         x,
         y,
         z,
     });
 
+    let world = gfc::OblivionGame::get_instance().get_world();
     ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
 }

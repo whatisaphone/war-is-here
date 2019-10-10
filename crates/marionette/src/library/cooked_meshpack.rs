@@ -27,7 +27,7 @@ pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
         }
 
         let object = object.into_raw();
-        let object = object as *mut target::gfc__MeshBuilder;
+        let object = object.cast::<target::gfc__MeshBuilder>();
         gfc::LoweredAutoRef::from_raw(object)
     }
 }

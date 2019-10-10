@@ -38,15 +38,11 @@ struct Args {
 unsafe fn go(args: &Args) {
     let classname = gfc::HString::from_str(&args.classname);
 
-    let darksiders = gfc::OblivionGame::get_instance();
-    let world = darksiders.get_world();
-
-    let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();
-    let class = class_registry.class_for_name(&classname, true).unwrap();
-
+    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
+        .class_for_name(&classname, true)
+        .unwrap();
     let obj = class.new_instance();
-    #[allow(clippy::cast_ptr_alignment)]
-    let obj = obj.as_ptr() as *mut target::gfc__KinematicActor;
+    let obj = obj.as_ptr().cast::<target::gfc__KinematicActor>();
 
     ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.x,
@@ -54,5 +50,6 @@ unsafe fn go(args: &Args) {
         z: args.z,
     });
 
+    let world = gfc::OblivionGame::get_instance().get_world();
     ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
 }

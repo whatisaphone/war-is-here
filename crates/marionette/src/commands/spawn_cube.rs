@@ -44,17 +44,11 @@ struct Args {
 }
 
 unsafe fn go(args: &Args) {
-    let darksiders = gfc::OblivionGame::get_instance();
-    let world = darksiders.get_world();
-
-    let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();
-    let class = class_registry
+    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
         .class_for_name(&hstring!("StaticObject"), true)
         .unwrap();
-
     let obj = class.new_instance();
-    #[allow(clippy::cast_ptr_alignment)]
-    let obj = obj.as_ptr() as *mut target::gfc__StaticObject;
+    let obj = obj.as_ptr().cast::<target::gfc__StaticObject>();
 
     target::gfc__StaticObject__setPackageName(obj, MAGIC_PACKAGE_NAME.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, MAGIC_OBJECT_NAME.as_ptr());
@@ -69,6 +63,7 @@ unsafe fn go(args: &Args) {
         z: args.scale,
     });
 
+    let world = gfc::OblivionGame::get_instance().get_world();
     ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
 }
 

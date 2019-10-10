@@ -93,7 +93,8 @@ impl<T> Vector<T> {
         let new_data = gfc::mem_alloc(
             u32::try_from(mem::size_of::<T>()).unwrap() * u32::try_from(new_capacity).unwrap(),
             u32::try_from(mem::align_of::<T>()).unwrap(),
-        ) as *mut T;
+        )
+        .cast::<T>();
 
         unsafe {
             ptr::copy_nonoverlapping(self.data, new_data, usize::try_from(self.size).unwrap());
