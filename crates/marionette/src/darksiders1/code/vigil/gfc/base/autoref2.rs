@@ -1,4 +1,4 @@
-use crate::darksiders1::{gfc, Heap};
+use crate::darksiders1::{code::vigil::gfc::base::object::Lower, gfc, Heap};
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{
@@ -99,34 +99,3 @@ macro_rules! impl_autoref_lower {
 
 impl_autoref_lower!(gfc::Object3D, target::gfc__AutoRef_gfc__Object3D_);
 impl_autoref_lower!(gfc::StaticMesh, target::gfc__AutoRef_gfc__StaticMesh_);
-
-pub trait Lower {
-    type Target;
-
-    fn lower(this: *mut Self) -> *mut Self::Target;
-    fn lift(p: *mut Self::Target) -> *mut Self;
-}
-
-impl Lower for gfc::Object3D {
-    type Target = target::gfc__Object3D;
-
-    fn lower(this: *mut Self) -> *mut Self::Target {
-        unsafe { (*this).as_ptr() }
-    }
-
-    fn lift(p: *mut Self::Target) -> *mut Self {
-        unsafe { Self::from_ptr(p) as *const Self as *mut Self }
-    }
-}
-
-impl Lower for gfc::StaticMesh {
-    type Target = target::gfc__StaticMesh;
-
-    fn lower(this: *mut Self) -> *mut Self::Target {
-        unsafe { (*this).as_ptr() }
-    }
-
-    fn lift(p: *mut Self::Target) -> *mut Self {
-        unsafe { Self::from_ptr(p) as *const Self as *mut Self }
-    }
-}

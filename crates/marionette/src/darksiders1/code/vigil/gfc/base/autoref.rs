@@ -6,8 +6,6 @@ use std::{
     ops::{Deref, DerefMut},
 };
 
-struct_wrapper!(IRefObject, target::gfc__IRefObject);
-
 // These binding names are a little bit ridiculous.
 macro_rules! constructor {
     () => {

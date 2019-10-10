@@ -31,6 +31,22 @@ macro_rules! struct_wrapper {
                 result
             }
         }
+
+        impl $crate::darksiders1::code::vigil::gfc::base::object::Lift for $inner {
+            type Target = $name;
+
+            fn lift(this: *mut Self) -> *mut $name {
+                unsafe { &mut *(this as *mut $name) }
+            }
+
+            fn lower(this: *mut $name) -> *mut Self {
+                unsafe { &mut *(this as *mut Self) }
+            }
+        }
+
+        impl $crate::darksiders1::code::vigil::gfc::base::object::Lower for $name {
+            type Target = $inner;
+        }
     };
 }
 

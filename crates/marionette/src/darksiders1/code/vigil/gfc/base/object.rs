@@ -24,3 +24,25 @@ pub fn object_safecast<To: Reflect>(p: &Object) -> Option<gfc::AutoRef<To>> {
 pub unsafe trait Reflect {
     fn class() -> &'static gfc::Class;
 }
+
+pub trait Lift {
+    type Target: ?Sized;
+
+    fn lift(this: *mut Self) -> *mut Self::Target;
+    fn lower(this: *mut Self::Target) -> *mut Self;
+}
+
+pub trait Lower
+where
+    Self::Target: Lift<Target = Self>,
+{
+    type Target: ?Sized;
+
+    fn lift(this: *mut Self::Target) -> *mut Self {
+        Self::Target::lift(this)
+    }
+
+    fn lower(this: *mut Self) -> *mut Self::Target {
+        Self::Target::lower(this)
+    }
+}
