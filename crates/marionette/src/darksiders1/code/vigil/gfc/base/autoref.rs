@@ -17,7 +17,7 @@ impl IRefObject {
     unsafe fn release_ref(&self) {
         if self.reference_count().fetch_add(-1, Ordering::SeqCst) == 0 {
             let mut_self = &self.inner as *const _ as *mut _;
-            ((*self.inner.__vfptr).__vecDelDtor)(mut_self, 1);
+            ((*self.inner.vfptr).__vecDelDtor)(mut_self, 1);
         }
     }
 

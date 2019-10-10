@@ -7,7 +7,7 @@ struct_wrapper_super!(Object, gfc::IRefObject);
 impl Object {
     pub fn class(&self) -> &gfc::Class {
         unsafe {
-            let result = ((*self.inner.__vfptr).getClass)(self.as_ptr());
+            let result = ((*self.inner.vfptr).getClass)(self.as_ptr());
             gfc::Class::from_ptr(result)
         }
     }

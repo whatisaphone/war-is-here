@@ -72,16 +72,16 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
 
     target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
-    ((*(*obj).__vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+    ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
         x,
         y,
         z,
     });
-    ((*(*obj).__vfptr).setScale)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+    ((*(*obj).vfptr).setScale)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.scale,
         y: args.scale,
         z: args.scale,
     });
 
-    ((*(*obj).__vfptr).addObjectToWorld)(obj, world.as_ptr());
+    ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
 }

@@ -48,11 +48,11 @@ unsafe fn go(args: &Args) {
     #[allow(clippy::cast_ptr_alignment)]
     let obj = obj.as_ptr() as *mut target::gfc__KinematicActor;
 
-    ((*(*obj).__vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+    ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.x,
         y: args.y,
         z: args.z,
     });
 
-    ((*(*obj).__vfptr).addObjectToWorld)(obj, world.as_ptr());
+    ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
 }

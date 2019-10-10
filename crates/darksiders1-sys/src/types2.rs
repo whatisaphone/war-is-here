@@ -31,7 +31,7 @@ pub struct gfc__Vector_gfc__MBBone_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__MeshResource {
-    pub __vfptr: *const gfc__MeshResource____vftable,
+    pub vfptr: *const gfc__MeshResource__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Resource
@@ -62,7 +62,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__MeshResource {
 }
 
 #[repr(C)]
-pub struct gfc__MeshResource____vftable {
+pub struct gfc__MeshResource__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshResource, _: u32) -> *mut (),
     pub getType: unsafe extern "thiscall" fn(this: *const gfc__MeshResource) -> i32,
     pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__MeshResource),
@@ -133,7 +133,7 @@ pub struct gfc__AutoRef_gfc___UIControl_ {
 
 #[repr(C)]
 pub struct gfc__Darksiders {
-    pub __vfptr: *const gfc__Darksiders____vftable,
+    pub vfptr: *const gfc__Darksiders__vftable,
     // gfc__OblivionGame
     __pdbindgen_padding: [u8; 4],
     pub mpLocalGameSession: *mut unit4__LocalGameSession,
@@ -249,7 +249,7 @@ impl AsPtr<gfc__OblivionGame> for *const gfc__Darksiders {
 }
 
 #[repr(C)]
-pub struct gfc__Darksiders____vftable {
+pub struct gfc__Darksiders__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: u32) -> *mut (),
     pub onDraw: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders),
     pub onDrawUI: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders),
@@ -340,7 +340,7 @@ pub struct gfc__AutoRef_gfc__Camera3D_ {
 
 #[repr(C)]
 pub struct gfc__WorldManager {
-    pub __vfptr: *const gfc__WorldManager____vftable,
+    pub vfptr: *const gfc__WorldManager__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__WorldManager
@@ -367,7 +367,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__WorldManager {
 }
 
 #[repr(C)]
-pub struct gfc__WorldManager____vftable {
+pub struct gfc__WorldManager__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__WorldManager, _: u32) -> *mut (),
     pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__WorldManager),
     pub loadRegions: unsafe extern "thiscall" fn(
@@ -469,7 +469,7 @@ impl AsPtr<gfc___UIEvent> for *const gfc__KeyboardEvent {
 
 #[repr(C)]
 pub struct gfc__Hierarchical_gfc___UIControl_ {
-    pub __vfptr: *const gfc__Hierarchical_gfc___UIControl_____vftable,
+    pub vfptr: *const gfc__Hierarchical_gfc___UIControl___vftable,
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
     pub mTail: gfc__AutoRef_gfc___UIControl_,
@@ -478,7 +478,7 @@ pub struct gfc__Hierarchical_gfc___UIControl_ {
 }
 
 #[repr(C)]
-pub struct gfc__Hierarchical_gfc___UIControl_____vftable {
+pub struct gfc__Hierarchical_gfc___UIControl___vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(
         this: *mut gfc__Hierarchical_gfc___UIControl_,
         _: u32,
@@ -602,7 +602,7 @@ pub struct gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Helper {
-    pub __vfptr: *const gfc__Helper____vftable,
+    pub vfptr: *const gfc__Helper__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -627,7 +627,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Helper {
 }
 
 #[repr(C)]
-pub struct gfc__Helper____vftable {
+pub struct gfc__Helper__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Helper, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Helper) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Helper, _: *const gfc__HString),
@@ -659,7 +659,7 @@ pub struct gfc__Helper__QueuedListenerInfo {
 
 #[repr(C)]
 pub struct gfc__OblivionGame {
-    pub __vfptr: *const gfc__OblivionGame____vftable,
+    pub vfptr: *const gfc__OblivionGame__vftable,
     __pdbindgen_padding: [u8; 4],
     pub mpLocalGameSession: *mut unit4__LocalGameSession,
     pub mpInputSystem: *mut keen__InputSystem,
@@ -717,7 +717,7 @@ pub struct gfc__OblivionGame {
 }
 
 #[repr(C)]
-pub struct gfc__OblivionGame____vftable {
+pub struct gfc__OblivionGame__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: u32) -> *mut (),
     pub onDraw: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
     pub onDrawUI: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame),
@@ -823,11 +823,11 @@ pub struct gfc__AutoRef_gfc__RichPresenceManager_ {
 
 #[repr(C)]
 pub struct gfc___UIControl {
-    pub __vfptr: *const gfc___UIControl____vftable,
+    pub vfptr: *const gfc___UIControl__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
-    pub __vfptr_2: *const gfc__Hierarchical_gfc___UIControl_____vftable,
+    pub vfptr_2: *const gfc__Hierarchical_gfc___UIControl___vftable,
     // gfc__Hierarchical_gfc___UIControl_
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
@@ -890,7 +890,7 @@ impl AsPtr<gfc__Hierarchical_gfc___UIControl_> for *const gfc___UIControl {
 }
 
 #[repr(C)]
-pub struct gfc___UIControl____vftable {
+pub struct gfc___UIControl__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: u32) -> *mut (),
     pub addFront: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc___UIControl),
     pub addBack: unsafe extern "thiscall" fn(this: *mut gfc___UIControl, _: *mut gfc___UIControl),
@@ -1155,11 +1155,11 @@ pub struct unit4__LocalGameSession__LocalUserData {
 
 #[repr(C)]
 pub struct unit4__SaveDataDescriptionInterface {
-    pub __vfptr: *const unit4__SaveDataDescriptionInterface____vftable,
+    pub vfptr: *const unit4__SaveDataDescriptionInterface__vftable,
 }
 
 #[repr(C)]
-pub struct unit4__SaveDataDescriptionInterface____vftable {
+pub struct unit4__SaveDataDescriptionInterface__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(
         this: *mut unit4__SaveDataDescriptionInterface,
         _: u32,
@@ -1260,11 +1260,11 @@ pub struct hkArrayBase_unsigned_char_ {
 
 #[repr(C)]
 pub struct hkpPhantomOverlapListener {
-    pub __vfptr: *const hkpPhantomOverlapListener____vftable,
+    pub vfptr: *const hkpPhantomOverlapListener__vftable,
 }
 
 #[repr(C)]
-pub struct hkpPhantomOverlapListener____vftable {
+pub struct hkpPhantomOverlapListener__vftable {
     pub collidableAddedCallback: unsafe extern "thiscall" fn(
         this: *mut hkpPhantomOverlapListener,
         _: *const hkpCollidableAddedEvent,
@@ -1305,11 +1305,11 @@ pub struct hkSimplePropertyValue {
 
 #[repr(C)]
 pub struct hkpShapeCollectionFilter {
-    pub __vfptr: *const hkpShapeCollectionFilter____vftable,
+    pub vfptr: *const hkpShapeCollectionFilter__vftable,
 }
 
 #[repr(C)]
-pub struct hkpShapeCollectionFilter____vftable {
+pub struct hkpShapeCollectionFilter__vftable {
     pub isCollisionEnabled: unsafe extern "thiscall" fn(
         this: *const hkpShapeCollectionFilter,
         result: *mut hkBool,
@@ -1690,11 +1690,11 @@ impl AsPtr<hkpConstraintAtom> for *const hkpSimpleContactConstraintAtom {
 
 #[repr(C)]
 pub struct hkpRayShapeCollectionFilter {
-    pub __vfptr: *const hkpRayShapeCollectionFilter____vftable,
+    pub vfptr: *const hkpRayShapeCollectionFilter__vftable,
 }
 
 #[repr(C)]
-pub struct hkpRayShapeCollectionFilter____vftable {
+pub struct hkpRayShapeCollectionFilter__vftable {
     pub isCollisionEnabled: unsafe extern "thiscall" fn(
         this: *const hkpRayShapeCollectionFilter,
         result: *mut hkBool,
@@ -1854,7 +1854,7 @@ impl AsPtr<hkArrayBase_hkpContactImpulseLimitBreachedListener___>
 
 #[repr(C)]
 pub struct hkpMaxSizeMotion {
-    pub __vfptr: *const hkpMaxSizeMotion____vftable,
+    pub vfptr: *const hkpMaxSizeMotion__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -1902,7 +1902,7 @@ impl AsPtr<hkBaseObject> for *const hkpMaxSizeMotion {
 }
 
 #[repr(C)]
-pub struct hkpMaxSizeMotion____vftable {
+pub struct hkpMaxSizeMotion__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpMaxSizeMotion, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpMaxSizeMotion),
     pub getClassType: unsafe extern "thiscall" fn(this: *const hkpMaxSizeMotion) -> *const hkClass,
@@ -2040,11 +2040,11 @@ pub struct hkpCollidable__BoundingVolumeData {
 
 #[repr(C)]
 pub struct hkpContactListener {
-    pub __vfptr: *const hkpContactListener____vftable,
+    pub vfptr: *const hkpContactListener__vftable,
 }
 
 #[repr(C)]
-pub struct hkpContactListener____vftable {
+pub struct hkpContactListener__vftable {
     pub contactPointCallback:
         unsafe extern "thiscall" fn(this: *mut hkpContactListener, _: *const hkpContactPointEvent),
     pub collisionAddedCallback:
@@ -2201,7 +2201,7 @@ pub struct hkRefPtr_hkWorldMemoryAvailableWatchDog_ {
 
 #[repr(C)]
 pub struct hkpConstraintOwner {
-    pub __vfptr: *const hkpConstraintOwner____vftable,
+    pub vfptr: *const hkpConstraintOwner__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -2222,7 +2222,7 @@ impl AsPtr<hkBaseObject> for *const hkpConstraintOwner {
 }
 
 #[repr(C)]
-pub struct hkpConstraintOwner____vftable {
+pub struct hkpConstraintOwner__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner, _: u32) -> *mut (),
     pub __first_virtual_table_function__:
         unsafe extern "thiscall" fn(this: *mut hkpConstraintOwner),
@@ -2331,11 +2331,11 @@ pub struct hkArrayBase_hkpWorldDeletionListener___ {
 
 #[repr(C)]
 pub struct hkpRayCollidableFilter {
-    pub __vfptr: *const hkpRayCollidableFilter____vftable,
+    pub vfptr: *const hkpRayCollidableFilter__vftable,
 }
 
 #[repr(C)]
-pub struct hkpRayCollidableFilter____vftable {
+pub struct hkpRayCollidableFilter__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpRayCollidableFilter, _: u32) -> *mut (),
     pub isCollisionEnabled: unsafe extern "thiscall" fn(
@@ -2356,11 +2356,11 @@ pub struct hkpConstraintInfo {
 
 #[repr(C)]
 pub struct hkpBroadPhaseListener {
-    pub __vfptr: *const hkpBroadPhaseListener____vftable,
+    pub vfptr: *const hkpBroadPhaseListener__vftable,
 }
 
 #[repr(C)]
-pub struct hkpBroadPhaseListener____vftable {
+pub struct hkpBroadPhaseListener__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpBroadPhaseListener, _: u32) -> *mut (),
     pub addCollisionPair: unsafe extern "thiscall" fn(
@@ -2419,7 +2419,7 @@ pub struct gfc__Clipper {
 
 #[repr(C)]
 pub struct gfc__VisScriptVariable {
-    pub __vfptr: *const gfc__VisScriptVariable____vftable,
+    pub vfptr: *const gfc__VisScriptVariable__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -2457,7 +2457,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__VisScriptVariable {
 }
 
 #[repr(C)]
-pub struct gfc__VisScriptVariable____vftable {
+pub struct gfc__VisScriptVariable__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__VisScriptVariable, _: u32) -> *mut (),
     pub getClass:
@@ -2536,7 +2536,7 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__FullScreenFXGroup__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__ModuleSystem {
-    pub __vfptr: *const gfc__ModuleSystem____vftable,
+    pub vfptr: *const gfc__ModuleSystem__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -2566,7 +2566,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ModuleSystem {
 }
 
 #[repr(C)]
-pub struct gfc__ModuleSystem____vftable {
+pub struct gfc__ModuleSystem__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ModuleSystem, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__ModuleSystem) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__ModuleSystem, _: *const gfc__HString),
@@ -2600,7 +2600,7 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__CameraCinematicGroup__0_gfc__CAllocator
 
 #[repr(C)]
 pub struct gfc__VisScriptModule {
-    pub __vfptr: *const gfc__VisScriptModule____vftable,
+    pub vfptr: *const gfc__VisScriptModule__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -2635,7 +2635,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__VisScriptModule {
 }
 
 #[repr(C)]
-pub struct gfc__VisScriptModule____vftable {
+pub struct gfc__VisScriptModule__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__VisScriptModule) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptModule, _: *const gfc__HString),
@@ -2696,7 +2696,7 @@ pub struct gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__VisScriptEntity {
-    pub __vfptr: *const gfc__VisScriptEntity____vftable,
+    pub vfptr: *const gfc__VisScriptEntity__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -2721,7 +2721,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__VisScriptEntity {
 }
 
 #[repr(C)]
-pub struct gfc__VisScriptEntity____vftable {
+pub struct gfc__VisScriptEntity__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__VisScriptEntity) -> *mut gfc__Class,
@@ -2772,7 +2772,7 @@ pub struct gfc__AutoRef_gfc__VariableConnectionInfo_ {
 
 #[repr(C)]
 pub struct gfc__Visual {
-    pub __vfptr: *const gfc__Visual____vftable,
+    pub vfptr: *const gfc__Visual__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -2800,7 +2800,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Visual {
 }
 
 #[repr(C)]
-pub struct gfc__Visual____vftable {
+pub struct gfc__Visual__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Visual) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Visual, _: *const gfc__HString),
@@ -2893,11 +2893,11 @@ pub struct gfc__AutoRef_gfc__DirectorCinematicGroup_ {
 
 #[repr(C)]
 pub struct gfc__ResourceListener {
-    pub __vfptr: *const gfc__ResourceListener____vftable,
+    pub vfptr: *const gfc__ResourceListener__vftable,
 }
 
 #[repr(C)]
-pub struct gfc__ResourceListener____vftable {
+pub struct gfc__ResourceListener__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__ResourceListener, _: u32) -> *mut (),
     pub packageUnloading: unsafe extern "thiscall" fn(this: *mut gfc__ResourceListener, _: i32),
@@ -2905,7 +2905,7 @@ pub struct gfc__ResourceListener____vftable {
 
 #[repr(C)]
 pub struct gfc__StaticMeshVisual {
-    pub __vfptr: *const gfc__StaticMeshVisual____vftable,
+    pub vfptr: *const gfc__StaticMeshVisual__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -2918,7 +2918,7 @@ pub struct gfc__StaticMeshVisual {
     pub mForceFade: f32,
     pub mObjectColor: gfc__TVector3_float_gfc__FloatMath_,
     pub mObject: *mut gfc__Object3D,
-    pub __vfptr_2: *const gfc__SceneObject____vftable,
+    pub vfptr_2: *const gfc__SceneObject__vftable,
     // gfc__SceneObject
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
@@ -2927,7 +2927,7 @@ pub struct gfc__StaticMeshVisual {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub __vfptr_3: *const gfc__IRenderCallback____vftable,
+    pub vfptr_3: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
     pub mLocked: bool,
     // gfc__StaticMeshVisual
@@ -2980,7 +2980,7 @@ impl AsPtr<gfc__IRenderCallback> for *const gfc__StaticMeshVisual {
 }
 
 #[repr(C)]
-pub struct gfc__StaticMeshVisual____vftable {
+pub struct gfc__StaticMeshVisual__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual, _: u32) -> *mut (),
     pub render: unsafe extern "thiscall" fn(
@@ -3088,7 +3088,7 @@ pub struct gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__SceneObject {
-    pub __vfptr: *const gfc__SceneObject____vftable,
+    pub vfptr: *const gfc__SceneObject__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -3099,7 +3099,7 @@ pub struct gfc__SceneObject {
 }
 
 #[repr(C)]
-pub struct gfc__SceneObject____vftable {
+pub struct gfc__SceneObject__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject, _: u32) -> *mut (),
     pub removeFromScene: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
     pub cacheBoundingVolume: unsafe extern "thiscall" fn(this: *mut gfc__SceneObject),
@@ -3157,7 +3157,7 @@ pub struct gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__DetectorObject {
-    pub __vfptr: *const gfc__DetectorObject____vftable,
+    pub vfptr: *const gfc__DetectorObject__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -3212,7 +3212,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__DetectorObject {
 }
 
 #[repr(C)]
-pub struct gfc__DetectorObject____vftable {
+pub struct gfc__DetectorObject__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__DetectorObject, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__DetectorObject) -> *mut gfc__Class,
@@ -3380,7 +3380,7 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__VisScriptEntity__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__SceneManager {
-    pub __vfptr: *const gfc__SceneManager____vftable,
+    pub vfptr: *const gfc__SceneManager__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__SceneManager
@@ -3411,7 +3411,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__SceneManager {
 }
 
 #[repr(C)]
-pub struct gfc__SceneManager____vftable {
+pub struct gfc__SceneManager__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneManager, _: u32) -> *mut (),
     pub cull: unsafe extern "thiscall" fn(
         this: *mut gfc__SceneManager,
@@ -3439,7 +3439,7 @@ pub struct gfc__SceneManager____vftable {
 
 #[repr(C)]
 pub struct gfc__PhysicsShapeObject {
-    pub __vfptr: *const gfc__PhysicsShapeObject____vftable,
+    pub vfptr: *const gfc__PhysicsShapeObject__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -3484,7 +3484,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__PhysicsShapeObject {
 }
 
 #[repr(C)]
-pub struct gfc__PhysicsShapeObject____vftable {
+pub struct gfc__PhysicsShapeObject__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__PhysicsShapeObject, _: u32) -> *mut (),
     pub getClass:
@@ -3637,7 +3637,7 @@ pub struct gfc__PhysicsShapeObject____vftable {
 
 #[repr(C)]
 pub struct gfc__Cinematic {
-    pub __vfptr: *const gfc__Cinematic____vftable,
+    pub vfptr: *const gfc__Cinematic__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -3693,7 +3693,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Cinematic {
 }
 
 #[repr(C)]
-pub struct gfc__Cinematic____vftable {
+pub struct gfc__Cinematic__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Cinematic, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Cinematic) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Cinematic, _: *const gfc__HString),
@@ -3820,7 +3820,7 @@ pub struct gfc__Cinematic____vftable {
 
 #[repr(C)]
 pub struct gfc__WorldGroup {
-    pub __vfptr: *const gfc__WorldGroup____vftable,
+    pub vfptr: *const gfc__WorldGroup__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -3862,7 +3862,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__WorldGroup {
 }
 
 #[repr(C)]
-pub struct gfc__WorldGroup____vftable {
+pub struct gfc__WorldGroup__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__WorldGroup, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__WorldGroup) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__WorldGroup, _: *const gfc__HString),
@@ -4215,7 +4215,7 @@ impl AsPtr<hkArrayBase_hkpIslandPostCollideListener___>
 
 #[repr(C)]
 pub struct hkLocalFrameCollector {
-    pub __vfptr: *const hkLocalFrameCollector____vftable,
+    pub vfptr: *const hkLocalFrameCollector__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -4235,7 +4235,7 @@ impl AsPtr<hkBaseObject> for *const hkLocalFrameCollector {
 }
 
 #[repr(C)]
-pub struct hkLocalFrameCollector____vftable {
+pub struct hkLocalFrameCollector__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkLocalFrameCollector, _: u32) -> *mut (),
     pub __first_virtual_table_function__:
@@ -4356,11 +4356,11 @@ impl AsPtr<hkArrayBase_hkpWorldPostCollideListener___>
 
 #[repr(C)]
 pub struct hkpCollidableCollidableFilter {
-    pub __vfptr: *const hkpCollidableCollidableFilter____vftable,
+    pub vfptr: *const hkpCollidableCollidableFilter__vftable,
 }
 
 #[repr(C)]
-pub struct hkpCollidableCollidableFilter____vftable {
+pub struct hkpCollidableCollidableFilter__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpCollidableCollidableFilter, _: u32) -> *mut (),
     pub isCollisionEnabled: unsafe extern "thiscall" fn(
@@ -4434,11 +4434,11 @@ pub struct hkPadSpu_hkpConstraintInstance___ {
 
 #[repr(C)]
 pub struct hkpShapeModifier {
-    pub __vfptr: *const hkpShapeModifier____vftable,
+    pub vfptr: *const hkpShapeModifier__vftable,
 }
 
 #[repr(C)]
-pub struct hkpShapeModifier____vftable {
+pub struct hkpShapeModifier__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpShapeModifier, _: u32) -> *mut (),
     pub modifyShape: unsafe extern "thiscall" fn(this: *mut hkpShapeModifier, _: *mut hkpShape),
 }
@@ -4452,7 +4452,7 @@ pub struct hkArrayBase_hkpEntity___ {
 
 #[repr(C)]
 pub struct hkpKeyframedRigidMotion {
-    pub __vfptr: *const hkpKeyframedRigidMotion____vftable,
+    pub vfptr: *const hkpKeyframedRigidMotion__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -4493,7 +4493,7 @@ impl AsPtr<hkBaseObject> for *const hkpKeyframedRigidMotion {
 }
 
 #[repr(C)]
-pub struct hkpKeyframedRigidMotion____vftable {
+pub struct hkpKeyframedRigidMotion__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpKeyframedRigidMotion, _: u32) -> *mut (),
     pub __first_virtual_table_function__:
@@ -4688,7 +4688,7 @@ pub struct hkPadSpu_hkpProcessCollisionOutput__PotentialInfo___ {
 
 #[repr(C)]
 pub struct hkpSimpleContactConstraintData {
-    pub __vfptr: *const hkpSimpleContactConstraintData____vftable,
+    pub vfptr: *const hkpSimpleContactConstraintData__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -4721,7 +4721,7 @@ impl AsPtr<hkBaseObject> for *const hkpSimpleContactConstraintData {
 }
 
 #[repr(C)]
-pub struct hkpSimpleContactConstraintData____vftable {
+pub struct hkpSimpleContactConstraintData__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpSimpleContactConstraintData, _: u32) -> *mut (),
     pub __first_virtual_table_function__:
@@ -5033,7 +5033,7 @@ pub struct hkArrayBase_hkStackTracer__CallTree__Node_ {
 
 #[repr(C)]
 pub struct hkWorldMemoryAvailableWatchDog {
-    pub __vfptr: *const hkWorldMemoryAvailableWatchDog____vftable,
+    pub vfptr: *const hkWorldMemoryAvailableWatchDog__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -5053,7 +5053,7 @@ impl AsPtr<hkBaseObject> for *const hkWorldMemoryAvailableWatchDog {
 }
 
 #[repr(C)]
-pub struct hkWorldMemoryAvailableWatchDog____vftable {
+pub struct hkWorldMemoryAvailableWatchDog__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog, _: u32) -> *mut (),
     pub __first_virtual_table_function__:
@@ -5082,11 +5082,11 @@ pub struct hkWorldMemoryAvailableWatchDog__MemUsageInfo {
 
 #[repr(C)]
 pub struct hkMemoryAllocator__ExtendedInterface {
-    pub __vfptr: *const hkMemoryAllocator__ExtendedInterface____vftable,
+    pub vfptr: *const hkMemoryAllocator__ExtendedInterface__vftable,
 }
 
 #[repr(C)]
-pub struct hkMemoryAllocator__ExtendedInterface____vftable {
+pub struct hkMemoryAllocator__ExtendedInterface__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(
         this: *mut hkMemoryAllocator__ExtendedInterface,
         _: u32,
@@ -5162,7 +5162,7 @@ impl AsPtr<hkArrayBase_hkpEntityListener___>
 
 #[repr(C)]
 pub struct hkLocalFrameGroup {
-    pub __vfptr: *const hkLocalFrameGroup____vftable,
+    pub vfptr: *const hkLocalFrameGroup__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -5183,7 +5183,7 @@ impl AsPtr<hkBaseObject> for *const hkLocalFrameGroup {
 }
 
 #[repr(C)]
-pub struct hkLocalFrameGroup____vftable {
+pub struct hkLocalFrameGroup__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkLocalFrameGroup, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkLocalFrameGroup),
     pub getClassType: unsafe extern "thiscall" fn(this: *const hkLocalFrameGroup) -> *const hkClass,
@@ -5209,7 +5209,7 @@ impl AsPtr<hkArrayBase_hkpSimulationIsland___>
 
 #[repr(C)]
 pub struct hkLocalFrame {
-    pub __vfptr: *const hkLocalFrame____vftable,
+    pub vfptr: *const hkLocalFrame__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -5229,7 +5229,7 @@ impl AsPtr<hkBaseObject> for *const hkLocalFrame {
 }
 
 #[repr(C)]
-pub struct hkLocalFrame____vftable {
+pub struct hkLocalFrame__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkLocalFrame, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkLocalFrame),
     pub getClassType: unsafe extern "thiscall" fn(this: *const hkLocalFrame) -> *const hkClass,
@@ -5326,11 +5326,11 @@ pub struct hkpShape__CalcSizeForSpuInput {
 
 #[repr(C)]
 pub struct hkBaseObject {
-    pub __vfptr: *const hkBaseObject____vftable,
+    pub vfptr: *const hkBaseObject__vftable,
 }
 
 #[repr(C)]
-pub struct hkBaseObject____vftable {
+pub struct hkBaseObject__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkBaseObject, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkBaseObject),
 }
@@ -5343,7 +5343,7 @@ pub struct List_gfc__AutoRef_gfc__WorldObject_____ListNode {
 
 #[repr(C)]
 pub struct gfc__OmniLightGizmo {
-    pub __vfptr: *const gfc__OmniLightGizmo____vftable,
+    pub vfptr: *const gfc__OmniLightGizmo__vftable,
     // gfc__SceneObject
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
@@ -5352,7 +5352,7 @@ pub struct gfc__OmniLightGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub __vfptr_2: *const gfc__IRenderCallback____vftable,
+    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
     pub mLocked: bool,
     // gfc__Gizmo
@@ -5379,7 +5379,7 @@ impl AsPtr<gfc__IRenderCallback> for *const gfc__OmniLightGizmo {
 }
 
 #[repr(C)]
-pub struct gfc__OmniLightGizmo____vftable {
+pub struct gfc__OmniLightGizmo__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__OmniLightGizmo, _: u32) -> *mut (),
     pub render: unsafe extern "thiscall" fn(
@@ -5435,7 +5435,7 @@ pub struct gfc__OmniLightGizmo____vftable {
 
 #[repr(C)]
 pub struct gfc__StaticLightingVisualOpt {
-    pub __vfptr: *const gfc__StaticLightingVisualOpt____vftable,
+    pub vfptr: *const gfc__StaticLightingVisualOpt__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -5469,7 +5469,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__StaticLightingVisualOpt {
 }
 
 #[repr(C)]
-pub struct gfc__StaticLightingVisualOpt____vftable {
+pub struct gfc__StaticLightingVisualOpt__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__StaticLightingVisualOpt, _: u32) -> *mut (),
     pub getClass:
@@ -5502,12 +5502,12 @@ pub struct gfc__StaticLightingVisualOpt____vftable {
 
 #[repr(C)]
 pub struct gfc__CollisionObject {
-    pub __vfptr: *const gfc__CollisionObject____vftable,
+    pub vfptr: *const gfc__CollisionObject__vftable,
     pub mCollisionManager: *mut gfc__CollisionManager,
 }
 
 #[repr(C)]
-pub struct gfc__CollisionObject____vftable {
+pub struct gfc__CollisionObject__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__CollisionObject, _: u32) -> *mut (),
     pub getShape: unsafe extern "thiscall" fn(
@@ -5534,7 +5534,7 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Visual__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__StaticLightingObjectOpt {
-    pub __vfptr: *const gfc__StaticLightingObjectOpt____vftable,
+    pub vfptr: *const gfc__StaticLightingObjectOpt__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -5558,7 +5558,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__StaticLightingObjectOpt {
 }
 
 #[repr(C)]
-pub struct gfc__StaticLightingObjectOpt____vftable {
+pub struct gfc__StaticLightingObjectOpt__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__StaticLightingObjectOpt, _: u32) -> *mut (),
     pub getClass:
@@ -5608,7 +5608,7 @@ pub struct gfc__AutoRef_gfc__ParticleController_ {
 
 #[repr(C)]
 pub struct gfc__RegionLayer {
-    pub __vfptr: *const gfc__RegionLayer____vftable,
+    pub vfptr: *const gfc__RegionLayer__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -5637,7 +5637,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__RegionLayer {
 }
 
 #[repr(C)]
-pub struct gfc__RegionLayer____vftable {
+pub struct gfc__RegionLayer__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__RegionLayer, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__RegionLayer) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__RegionLayer, _: *const gfc__HString),
@@ -5660,7 +5660,7 @@ pub struct gfc__RegionLayer____vftable {
 
 #[repr(C)]
 pub struct gfc__Object3DCache {
-    pub __vfptr: *const gfc__Object3DCache____vftable,
+    pub vfptr: *const gfc__Object3DCache__vftable,
     // gfc__ResourceCache
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
@@ -5675,7 +5675,7 @@ impl AsPtr<gfc__ResourceCache> for *const gfc__Object3DCache {
 }
 
 #[repr(C)]
-pub struct gfc__Object3DCache____vftable {
+pub struct gfc__Object3DCache__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, _: u32) -> *mut (),
     pub loadDefaultResource:
         unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, _: gfc__AutoRef_gfc__File_),
@@ -5732,7 +5732,7 @@ pub struct gfc__AutoRef_gfc__AnimationController_ {
 
 #[repr(C)]
 pub struct gfc__IconGizmo {
-    pub __vfptr: *const gfc__IconGizmo____vftable,
+    pub vfptr: *const gfc__IconGizmo__vftable,
     // gfc__SceneObject
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
@@ -5741,7 +5741,7 @@ pub struct gfc__IconGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub __vfptr_2: *const gfc__IRenderCallback____vftable,
+    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
     pub mLocked: bool,
     // gfc__Gizmo
@@ -5769,7 +5769,7 @@ impl AsPtr<gfc__IRenderCallback> for *const gfc__IconGizmo {
 }
 
 #[repr(C)]
-pub struct gfc__IconGizmo____vftable {
+pub struct gfc__IconGizmo__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__IconGizmo, _: u32) -> *mut (),
     pub render: unsafe extern "thiscall" fn(
         this: *mut gfc__IconGizmo,
@@ -5824,7 +5824,7 @@ pub struct gfc__IconGizmo____vftable {
 
 #[repr(C)]
 pub struct gfc__Object3D {
-    pub __vfptr: *const gfc__Object3D____vftable,
+    pub vfptr: *const gfc__Object3D__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -5857,7 +5857,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__Object3D {
 }
 
 #[repr(C)]
-pub struct gfc__Object3D____vftable {
+pub struct gfc__Object3D__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Object3D, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Object3D) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Object3D, _: *const gfc__HString),
@@ -5880,7 +5880,7 @@ pub struct gfc__Object3D____vftable {
 
 #[repr(C)]
 pub struct gfc__ScenePortal {
-    pub __vfptr: *const gfc__ScenePortal____vftable,
+    pub vfptr: *const gfc__ScenePortal__vftable,
     pub mCellAID: u32,
     pub mCellBID: u32,
     pub mSceneManager: *mut gfc__SceneManager,
@@ -5890,7 +5890,7 @@ pub struct gfc__ScenePortal {
 }
 
 #[repr(C)]
-pub struct gfc__ScenePortal____vftable {
+pub struct gfc__ScenePortal__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal, _: u32) -> *mut (),
     pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__ScenePortal) -> *mut gfc__Object,
     pub pickObject: unsafe extern "thiscall" fn(
@@ -5919,7 +5919,7 @@ pub struct gfc__ScenePortal____vftable {
 
 #[repr(C)]
 pub struct gfc__StaticObject {
-    pub __vfptr: *const gfc__StaticObject____vftable,
+    pub vfptr: *const gfc__StaticObject__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -5965,7 +5965,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__StaticObject {
 }
 
 #[repr(C)]
-pub struct gfc__StaticObject____vftable {
+pub struct gfc__StaticObject__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__StaticObject) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: *const gfc__HString),
@@ -6102,7 +6102,7 @@ pub struct gfc__StaticObject____vftable {
 
 #[repr(C)]
 pub struct gfc__StaticLightingRegionOpt {
-    pub __vfptr: *const gfc__StaticLightingRegionOpt____vftable,
+    pub vfptr: *const gfc__StaticLightingRegionOpt__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -6130,7 +6130,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__StaticLightingRegionOpt {
 }
 
 #[repr(C)]
-pub struct gfc__StaticLightingRegionOpt____vftable {
+pub struct gfc__StaticLightingRegionOpt__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__StaticLightingRegionOpt, _: u32) -> *mut (),
     pub getClass:
@@ -6168,7 +6168,7 @@ pub struct gfc__AutoRef_gfc__LightVisual_ {
 
 #[repr(C)]
 pub struct gfc__SceneLight {
-    pub __vfptr: *const gfc__SceneLight____vftable,
+    pub vfptr: *const gfc__SceneLight__vftable,
     pub mDrawCounter: u32,
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
@@ -6177,7 +6177,7 @@ pub struct gfc__SceneLight {
 }
 
 #[repr(C)]
-pub struct gfc__SceneLight____vftable {
+pub struct gfc__SceneLight__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight, _: u32) -> *mut (),
     pub getLightType: unsafe extern "thiscall" fn(this: *mut gfc__SceneLight) -> u8,
     pub getBoundingBox: unsafe extern "thiscall" fn(
@@ -6203,7 +6203,7 @@ pub struct gfc__SceneLight____vftable {
 
 #[repr(C)]
 pub struct gfc__OmniLight {
-    pub __vfptr: *const gfc__OmniLight____vftable,
+    pub vfptr: *const gfc__OmniLight__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -6255,7 +6255,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__OmniLight {
 }
 
 #[repr(C)]
-pub struct gfc__OmniLight____vftable {
+pub struct gfc__OmniLight__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__OmniLight) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight, _: *const gfc__HString),
@@ -6383,11 +6383,11 @@ pub struct gfc__OmniLight____vftable {
 
 #[repr(C)]
 pub struct gfc__Body {
-    pub __vfptr: *const gfc__Body____vftable,
+    pub vfptr: *const gfc__Body__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
-    pub __vfptr_2: *const gfc__CollisionObject____vftable,
+    pub vfptr_2: *const gfc__CollisionObject__vftable,
     // gfc__CollisionObject
     pub mCollisionManager: *mut gfc__CollisionManager,
     // gfc__Body
@@ -6420,7 +6420,7 @@ impl AsPtr<gfc__CollisionObject> for *const gfc__Body {
 }
 
 #[repr(C)]
-pub struct gfc__Body____vftable {
+pub struct gfc__Body__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Body, _: u32) -> *mut (),
     pub getShape: unsafe extern "thiscall" fn(
         this: *const gfc__Body,
@@ -6458,7 +6458,7 @@ pub struct gfc__Vector_gfc__SceneObserver___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__WorldObjectGizmo {
-    pub __vfptr: *const gfc__WorldObjectGizmo____vftable,
+    pub vfptr: *const gfc__WorldObjectGizmo__vftable,
     // gfc__SceneObject
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
@@ -6467,7 +6467,7 @@ pub struct gfc__WorldObjectGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub __vfptr_2: *const gfc__IRenderCallback____vftable,
+    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
     pub mLocked: bool,
     // gfc__Gizmo
@@ -6495,7 +6495,7 @@ impl AsPtr<gfc__IRenderCallback> for *const gfc__WorldObjectGizmo {
 }
 
 #[repr(C)]
-pub struct gfc__WorldObjectGizmo____vftable {
+pub struct gfc__WorldObjectGizmo__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__WorldObjectGizmo, _: u32) -> *mut (),
     pub render: unsafe extern "thiscall" fn(
@@ -6555,7 +6555,7 @@ pub struct gfc__WorldObjectGizmo____vftable {
 
 #[repr(C)]
 pub struct gfc__PSystem {
-    pub __vfptr: *const gfc__PSystem____vftable,
+    pub vfptr: *const gfc__PSystem__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -6589,7 +6589,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__PSystem {
 }
 
 #[repr(C)]
-pub struct gfc__PSystem____vftable {
+pub struct gfc__PSystem__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__PSystem, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__PSystem) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__PSystem, _: *const gfc__HString),
@@ -6617,7 +6617,7 @@ pub struct gfc__AutoRef_gfc__Skeleton3D_ {
 
 #[repr(C)]
 pub struct gfc__Gizmo {
-    pub __vfptr: *const gfc__Gizmo____vftable,
+    pub vfptr: *const gfc__Gizmo__vftable,
     // gfc__SceneObject
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
@@ -6626,7 +6626,7 @@ pub struct gfc__Gizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub __vfptr_2: *const gfc__IRenderCallback____vftable,
+    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
     pub mLocked: bool,
     // gfc__Gizmo
@@ -6646,7 +6646,7 @@ impl AsPtr<gfc__IRenderCallback> for *const gfc__Gizmo {
 }
 
 #[repr(C)]
-pub struct gfc__Gizmo____vftable {
+pub struct gfc__Gizmo__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Gizmo, _: u32) -> *mut (),
     pub render: unsafe extern "thiscall" fn(
         this: *mut gfc__Gizmo,
@@ -6718,7 +6718,7 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Constraint__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__SceneCell {
-    pub __vfptr: *const gfc__SceneCell____vftable,
+    pub vfptr: *const gfc__SceneCell__vftable,
     pub mObjects: gfc__Vector_gfc__SceneObject___0_gfc__CAllocator_,
     pub mLights: gfc__Vector_gfc__SceneLight___0_gfc__CAllocator_,
     pub mPortals: gfc__Vector_gfc__ScenePortal___0_gfc__CAllocator_,
@@ -6730,7 +6730,7 @@ pub struct gfc__SceneCell {
 }
 
 #[repr(C)]
-pub struct gfc__SceneCell____vftable {
+pub struct gfc__SceneCell__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell, _: u32) -> *mut (),
     pub getType: unsafe extern "thiscall" fn(this: *mut gfc__SceneCell) -> i32,
     pub pointInCell: unsafe extern "thiscall" fn(
@@ -6773,7 +6773,7 @@ pub struct gfc__AutoRef_gfc__Visual_ {
 
 #[repr(C)]
 pub struct gfc__WorldLight {
-    pub __vfptr: *const gfc__WorldLight____vftable,
+    pub vfptr: *const gfc__WorldLight__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -6815,7 +6815,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__WorldLight {
 }
 
 #[repr(C)]
-pub struct gfc__WorldLight____vftable {
+pub struct gfc__WorldLight__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__WorldLight, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__WorldLight) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__WorldLight, _: *const gfc__HString),
@@ -6982,13 +6982,13 @@ pub struct gfc__RegionLoadRequest {
 
 #[repr(C)]
 pub struct gfc__SceneOccluder {
-    pub __vfptr: *const gfc__SceneOccluder____vftable,
+    pub vfptr: *const gfc__SceneOccluder__vftable,
     pub mSceneManager: *mut gfc__SceneManager,
     pub mDrawCounter: u32,
 }
 
 #[repr(C)]
-pub struct gfc__SceneOccluder____vftable {
+pub struct gfc__SceneOccluder__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder, _: u32) -> *mut (),
     pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneOccluder) -> *mut gfc__Object,
     pub pickObject: unsafe extern "thiscall" fn(
@@ -7052,12 +7052,12 @@ pub struct gfc__WorldLoadRequest {
 
 #[repr(C)]
 pub struct hkpRayHitCollector {
-    pub __vfptr: *const hkpRayHitCollector____vftable,
+    pub vfptr: *const hkpRayHitCollector__vftable,
     pub m_earlyOutHitFraction: f32,
 }
 
 #[repr(C)]
-pub struct hkpRayHitCollector____vftable {
+pub struct hkpRayHitCollector__vftable {
     pub addRayHit: unsafe extern "thiscall" fn(
         this: *mut hkpRayHitCollector,
         _: *const hkpCdBody,
@@ -7143,7 +7143,7 @@ pub struct hkpShapeBufferStorage {
 
 #[repr(C)]
 pub struct hkpCollisionAgent {
-    pub __vfptr: *const hkpCollisionAgent____vftable,
+    pub vfptr: *const hkpCollisionAgent__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -7164,7 +7164,7 @@ impl AsPtr<hkBaseObject> for *const hkpCollisionAgent {
 }
 
 #[repr(C)]
-pub struct hkpCollisionAgent____vftable {
+pub struct hkpCollisionAgent__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent),
     pub getClassType: unsafe extern "thiscall" fn(this: *const hkpCollisionAgent) -> *const hkClass,
@@ -7281,12 +7281,12 @@ pub struct hkFlags_enum_hkClassEnum__FlagValues_unsigned_int_ {
 
 #[repr(C)]
 pub struct hkpCdPointCollector {
-    pub __vfptr: *const hkpCdPointCollector____vftable,
+    pub vfptr: *const hkpCdPointCollector__vftable,
     pub m_earlyOutDistance: f32,
 }
 
 #[repr(C)]
-pub struct hkpCdPointCollector____vftable {
+pub struct hkpCdPointCollector__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpCdPointCollector, _: u32) -> *mut (),
     pub addCdPoint:
@@ -7316,12 +7316,12 @@ pub struct hkPadSpu_hkpConvexListFilter_const___ {
 
 #[repr(C)]
 pub struct hkpCdBodyPairCollector {
-    pub __vfptr: *const hkpCdBodyPairCollector____vftable,
+    pub vfptr: *const hkpCdBodyPairCollector__vftable,
     pub m_earlyOut: hkBool,
 }
 
 #[repr(C)]
-pub struct hkpCdBodyPairCollector____vftable {
+pub struct hkpCdBodyPairCollector__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpCdBodyPairCollector, _: u32) -> *mut (),
     pub addCdBodyPair: unsafe extern "thiscall" fn(
@@ -7341,7 +7341,7 @@ pub struct hkArrayBase_unsigned_int_ {
 
 #[repr(C)]
 pub struct gfc__SceneObserver {
-    pub __vfptr: *const gfc__SceneObserver____vftable,
+    pub vfptr: *const gfc__SceneObserver__vftable,
     pub mSceneManager: *mut gfc__SceneManager,
     pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
     pub mInvalid: bool,
@@ -7350,7 +7350,7 @@ pub struct gfc__SceneObserver {
 }
 
 #[repr(C)]
-pub struct gfc__SceneObserver____vftable {
+pub struct gfc__SceneObserver__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObserver, _: u32) -> *mut (),
     pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObserver) -> *mut gfc__Object,
 }
@@ -7362,11 +7362,11 @@ pub struct hkPadSpu_hkpConstraintRuntime___ {
 
 #[repr(C)]
 pub struct hkpNullBroadPhaseListener {
-    pub __vfptr: *const hkpNullBroadPhaseListener____vftable,
+    pub vfptr: *const hkpNullBroadPhaseListener__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
-    pub __vfptr_2: *const hkpBroadPhaseListener____vftable,
+    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
     /* hkpBroadPhaseListener
      * hkpNullBroadPhaseListener */
 }
@@ -7390,7 +7390,7 @@ impl AsPtr<hkpBroadPhaseListener> for *const hkpNullBroadPhaseListener {
 }
 
 #[repr(C)]
-pub struct hkpNullBroadPhaseListener____vftable {
+pub struct hkpNullBroadPhaseListener__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpNullBroadPhaseListener, _: u32) -> *mut (),
     pub addCollisionPair: unsafe extern "thiscall" fn(
@@ -7407,7 +7407,7 @@ pub struct hkpNullBroadPhaseListener____vftable {
 
 #[repr(C)]
 pub struct hkpAction {
-    pub __vfptr: *const hkpAction____vftable,
+    pub vfptr: *const hkpAction__vftable,
     // hkBaseObject
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
@@ -7431,7 +7431,7 @@ impl AsPtr<hkBaseObject> for *const hkpAction {
 }
 
 #[repr(C)]
-pub struct hkpAction____vftable {
+pub struct hkpAction__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpAction, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpAction),
     pub getClassType: unsafe extern "thiscall" fn(this: *const hkpAction) -> *const hkClass,
@@ -7497,11 +7497,11 @@ pub struct hkMemorySnapshot__Allocation {
 
 #[repr(C)]
 pub struct hkpWorldDeletionListener {
-    pub __vfptr: *const hkpWorldDeletionListener____vftable,
+    pub vfptr: *const hkpWorldDeletionListener__vftable,
 }
 
 #[repr(C)]
-pub struct hkpWorldDeletionListener____vftable {
+pub struct hkpWorldDeletionListener__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpWorldDeletionListener, _: u32) -> *mut (),
     pub worldDeletedCallback:
@@ -7512,11 +7512,11 @@ pub struct hkpWorldDeletionListener____vftable {
 
 #[repr(C)]
 pub struct hkpEntityListener {
-    pub __vfptr: *const hkpEntityListener____vftable,
+    pub vfptr: *const hkpEntityListener__vftable,
 }
 
 #[repr(C)]
-pub struct hkpEntityListener____vftable {
+pub struct hkpEntityListener__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: u32) -> *mut (),
     pub entityAddedCallback:
         unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: *mut hkpEntity),
@@ -7603,11 +7603,11 @@ impl AsPtr<hkpBroadPhaseHandlePair> for *const hkpTypedBroadPhaseHandlePair {
 
 #[repr(C)]
 pub struct hkpWorldPostSimulationListener {
-    pub __vfptr: *const hkpWorldPostSimulationListener____vftable,
+    pub vfptr: *const hkpWorldPostSimulationListener__vftable,
 }
 
 #[repr(C)]
-pub struct hkpWorldPostSimulationListener____vftable {
+pub struct hkpWorldPostSimulationListener__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkpWorldPostSimulationListener, _: u32) -> *mut (),
     pub postSimulationCallback:
@@ -7637,7 +7637,7 @@ pub struct gfc__AutoRef_gfc__BezierCurve_ {
 
 #[repr(C)]
 pub struct gfc__PhysicsDetectRegion {
-    pub __vfptr: *const gfc__PhysicsDetectRegion____vftable,
+    pub vfptr: *const gfc__PhysicsDetectRegion__vftable,
     // hkpWorldPostSimulationListener
     // gfc__PhysicsDetectRegion
     pub mPhantomOverlapListenerProxy: gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
@@ -7656,7 +7656,7 @@ impl AsPtr<hkpWorldPostSimulationListener> for *const gfc__PhysicsDetectRegion {
 }
 
 #[repr(C)]
-pub struct gfc__PhysicsDetectRegion____vftable {
+pub struct gfc__PhysicsDetectRegion__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion, _: u32) -> *mut (),
     pub postSimulationCallback:
@@ -7696,7 +7696,7 @@ pub struct gfc__PhysicsDetectRegion__BodyInfo {
 
 #[repr(C)]
 pub struct gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy {
-    pub __vfptr: *const gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy____vftable,
+    pub vfptr: *const gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy__vftable,
     /* hkpPhantomOverlapListener
      * gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy */
 }
@@ -7710,7 +7710,7 @@ impl AsPtr<hkpPhantomOverlapListener>
 }
 
 #[repr(C)]
-pub struct gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy____vftable {
+pub struct gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy__vftable {
     pub collidableAddedCallback: unsafe extern "thiscall" fn(
         this: *mut gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
         _: *const hkpCollidableAddedEvent,
@@ -7753,7 +7753,7 @@ pub struct gfc__Vector_gfc__TraversalWaypoint__UnreachableWaypoint_0_gfc__CAlloc
 
 #[repr(C)]
 pub struct gfc__TraversalWaypoint {
-    pub __vfptr: *const gfc__TraversalWaypoint____vftable,
+    pub vfptr: *const gfc__TraversalWaypoint__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -7805,7 +7805,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__TraversalWaypoint {
 }
 
 #[repr(C)]
-pub struct gfc__TraversalWaypoint____vftable {
+pub struct gfc__TraversalWaypoint__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: u32) -> *mut (),
     pub getClass:
@@ -7958,7 +7958,7 @@ pub struct gfc__TraversalWaypoint__UnreachableWaypoint {
 
 #[repr(C)]
 pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo {
-    pub __vfptr: *const gfc__TraversalWaypoint__TraversalWaypointGizmo____vftable,
+    pub vfptr: *const gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable,
     // gfc__SceneObject
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
@@ -7967,7 +7967,7 @@ pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub __vfptr_2: *const gfc__IRenderCallback____vftable,
+    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
     pub mLocked: bool,
     // gfc__Gizmo
@@ -8002,7 +8002,7 @@ impl AsPtr<gfc__IRenderCallback> for *const gfc__TraversalWaypoint__TraversalWay
 }
 
 #[repr(C)]
-pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo____vftable {
+pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(
         this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
         _: u32,
@@ -8093,7 +8093,7 @@ pub struct gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__CollisionManager {
-    pub __vfptr: *const gfc__CollisionManager____vftable,
+    pub vfptr: *const gfc__CollisionManager__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__CollisionManager
@@ -8108,7 +8108,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__CollisionManager {
 }
 
 #[repr(C)]
-pub struct gfc__CollisionManager____vftable {
+pub struct gfc__CollisionManager__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__CollisionManager, _: u32) -> *mut (),
 }
@@ -8162,7 +8162,7 @@ impl AsPtr<std___Pair_base_gfc__String_const__gfc__StateMapValue_>
 
 #[repr(C)]
 pub struct gfc__ModSysContainerModule {
-    pub __vfptr: *const gfc__ModSysContainerModule____vftable,
+    pub vfptr: *const gfc__ModSysContainerModule__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__Object
@@ -8212,7 +8212,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__ModSysContainerModule {
 }
 
 #[repr(C)]
-pub struct gfc__ModSysContainerModule____vftable {
+pub struct gfc__ModSysContainerModule__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32) -> *mut (),
     pub getClass: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> *mut gfc__Class,
     pub setState: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *const gfc__HString),
@@ -8320,7 +8320,7 @@ pub struct gfc__AutoRef_gfc__ClassLoader_ {
 
 #[repr(C)]
 pub struct gfc__OOObjectWriter {
-    pub __vfptr: *const gfc__OOObjectWriter____vftable,
+    pub vfptr: *const gfc__OOObjectWriter__vftable,
     // gfc__IRefObject
     pub ReferenceCount: i32,
     // gfc__ObjectWriter
@@ -8342,7 +8342,7 @@ impl AsPtr<gfc__IRefObject> for *const gfc__OOObjectWriter {
 }
 
 #[repr(C)]
-pub struct gfc__OOObjectWriter____vftable {
+pub struct gfc__OOObjectWriter__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut gfc__OOObjectWriter, _: u32) -> *mut (),
 }
@@ -8357,7 +8357,7 @@ pub struct gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsign
 
 #[repr(C)]
 pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
-    pub __vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_____vftable,
+    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable,
     // CCallbackBase
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
@@ -8385,7 +8385,7 @@ impl AsPtr<CCallbackBase> for *const CCallback_keen__ISteamStatsCallback_UserSta
 }
 
 #[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_____vftable {
+pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable {
     pub Run: unsafe extern "thiscall" fn(
         this: *mut CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
         _: *mut (),
@@ -8410,7 +8410,7 @@ pub struct UserStatsReceived_t {
 
 #[repr(C)]
 pub struct CCallbackImpl_16_ {
-    pub __vfptr: *const CCallbackImpl_16_____vftable,
+    pub vfptr: *const CCallbackImpl_16___vftable,
     // CCallbackBase
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
@@ -8424,7 +8424,7 @@ impl AsPtr<CCallbackBase> for *const CCallbackImpl_16_ {
 }
 
 #[repr(C)]
-pub struct CCallbackImpl_16_____vftable {
+pub struct CCallbackImpl_16___vftable {
     pub Run: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_, _: *mut (), _: bool, _: u64),
     pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_, _: *mut ()),
     pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_) -> i32,
@@ -8537,13 +8537,13 @@ pub struct unit4__RankingBoardCacheEntry {
 
 #[repr(C)]
 pub struct keen__ISteamAchievementsCallback {
-    pub __vfptr: *const keen__ISteamAchievementsCallback____vftable,
+    pub vfptr: *const keen__ISteamAchievementsCallback__vftable,
     pub m_onUserAchievementStored:
         CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
 }
 
 #[repr(C)]
-pub struct keen__ISteamAchievementsCallback____vftable {
+pub struct keen__ISteamAchievementsCallback__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut keen__ISteamAchievementsCallback, _: u32) -> *mut (),
     pub onUserAchievementStored: unsafe extern "thiscall" fn(
@@ -8554,7 +8554,7 @@ pub struct keen__ISteamAchievementsCallback____vftable {
 
 #[repr(C)]
 pub struct keen__SteamStats {
-    pub __vfptr: *const keen__SteamStats____vftable,
+    pub vfptr: *const keen__SteamStats__vftable,
     // keen__ISteamStatsCallback
     pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
     pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
@@ -8579,7 +8579,7 @@ impl AsPtr<keen__ISteamStatsCallback> for *const keen__SteamStats {
 }
 
 #[repr(C)]
-pub struct keen__SteamStats____vftable {
+pub struct keen__SteamStats__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: u32) -> *mut (),
     pub onUserStatsReceived:
         unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: *mut UserStatsReceived_t),
@@ -8595,11 +8595,11 @@ pub struct keen__Array_unit4__RankingBoardCacheEntry_ {
 
 #[repr(C)]
 pub struct keen__SteamAchievements {
-    pub __vfptr: *const keen__SteamAchievements____vftable,
+    pub vfptr: *const keen__SteamAchievements__vftable,
     // keen__ISteamAchievementsCallback
     pub m_onUserAchievementStored:
         CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-    pub __vfptr_2: *const keen__ISteamStatsCallback____vftable,
+    pub vfptr_2: *const keen__ISteamStatsCallback__vftable,
     // keen__ISteamStatsCallback
     pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
     pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
@@ -8626,7 +8626,7 @@ impl AsPtr<keen__ISteamStatsCallback> for *const keen__SteamAchievements {
 }
 
 #[repr(C)]
-pub struct keen__SteamAchievements____vftable {
+pub struct keen__SteamAchievements__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut keen__SteamAchievements, _: u32) -> *mut (),
     pub onUserStatsReceived: unsafe extern "thiscall" fn(
@@ -8644,13 +8644,13 @@ pub struct keen__SizedArray_unit4__RankingListEntry_ {
 
 #[repr(C)]
 pub struct keen__ISteamStatsCallback {
-    pub __vfptr: *const keen__ISteamStatsCallback____vftable,
+    pub vfptr: *const keen__ISteamStatsCallback__vftable,
     pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
     pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
 }
 
 #[repr(C)]
-pub struct keen__ISteamStatsCallback____vftable {
+pub struct keen__ISteamStatsCallback__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut keen__ISteamStatsCallback, _: u32) -> *mut (),
     pub onUserStatsReceived: unsafe extern "thiscall" fn(
@@ -8671,7 +8671,7 @@ pub struct UserStatsStored_t {
 
 #[repr(C)]
 pub struct CCallbackImpl_152_ {
-    pub __vfptr: *const CCallbackImpl_152_____vftable,
+    pub vfptr: *const CCallbackImpl_152___vftable,
     // CCallbackBase
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
@@ -8685,7 +8685,7 @@ impl AsPtr<CCallbackBase> for *const CCallbackImpl_152_ {
 }
 
 #[repr(C)]
-pub struct CCallbackImpl_152_____vftable {
+pub struct CCallbackImpl_152___vftable {
     pub Run:
         unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_, _: *mut (), _: bool, _: u64),
     pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_, _: *mut ()),
@@ -8694,7 +8694,7 @@ pub struct CCallbackImpl_152_____vftable {
 
 #[repr(C)]
 pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
-    pub __vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_____vftable,
+    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable,
     // CCallbackBase
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
@@ -8720,7 +8720,7 @@ impl AsPtr<CCallbackBase> for *const CCallback_keen__ISteamStatsCallback_UserSta
 }
 
 #[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_____vftable {
+pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable {
     pub Run: unsafe extern "thiscall" fn(
         this: *mut CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
         _: *mut (),
@@ -8738,8 +8738,8 @@ pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_____vftable {
 
 #[repr(C)]
 pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
-    pub __vfptr:
-        *const CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_____vftable,
+    pub vfptr:
+        *const CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0___vftable,
     // CCallbackBase
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
@@ -8769,7 +8769,7 @@ impl AsPtr<CCallbackBase>
 }
 
 #[repr(C)]
-pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_____vftable {
+pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0___vftable {
     pub Run: unsafe extern "thiscall" fn(
         this: *mut CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
         _: *mut (),
@@ -8787,7 +8787,7 @@ pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
 
 #[repr(C)]
 pub struct CCallbackImpl_24_ {
-    pub __vfptr: *const CCallbackImpl_24_____vftable,
+    pub vfptr: *const CCallbackImpl_24___vftable,
     // CCallbackBase
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
@@ -8801,7 +8801,7 @@ impl AsPtr<CCallbackBase> for *const CCallbackImpl_24_ {
 }
 
 #[repr(C)]
-pub struct CCallbackImpl_24_____vftable {
+pub struct CCallbackImpl_24___vftable {
     pub Run: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_, _: *mut (), _: bool, _: u64),
     pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_, _: *mut ()),
     pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_) -> i32,
