@@ -112,11 +112,3 @@ macro_rules! hstring {
         gfc::HString::from_cstr(cstr)
     }};
 }
-
-macro_rules! autoref_cast {
-    ($autoref:expr, $type:path) => {{
-        $type {
-            p: gfc::AutoRef::into_ptr($autoref),
-        }
-    }};
-}

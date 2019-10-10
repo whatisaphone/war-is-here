@@ -1,5 +1,8 @@
 use crate::{
-    darksiders1::{gfc, List},
+    darksiders1::{
+        gfc::{self, AutoRefUnwrap},
+        List,
+    },
     hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };
@@ -19,8 +22,7 @@ unsafe fn go() {
     let darksiders = gfc::OblivionGame::get_instance();
     let world = darksiders.get_world();
 
-    #[allow(clippy::cast_ptr_alignment)]
-    let root = (*world.as_ptr()).mRoot.p as *mut target::gfc__WorldGroup;
+    let root = gfc::AutoRefWrap::borrow(&(*world.as_ptr()).mRoot);
     scan(root);
 
     let region_data = gfc::Vector::<target::gfc__AutoRef_gfc__WorldRegionData_>::from_ptr(
@@ -31,8 +33,7 @@ unsafe fn go() {
         let region = init_with(|this| {
             target::gfc__World__getRegion(world.as_ptr(), this, r);
         });
-        #[allow(clippy::cast_ptr_alignment)]
-        let region = region.p as *mut target::gfc__WorldRegion;
+        let region = region.borrow();
         if region.is_null() {
             continue;
         }
@@ -45,8 +46,7 @@ unsafe fn go() {
             let layer = init_with(|this| {
                 target::gfc__WorldRegion__getLayer(region, this, l);
             });
-            #[allow(clippy::cast_ptr_alignment)]
-            let layer = layer.p as *mut target::gfc__RegionLayer;
+            let layer = layer.borrow();
             if layer.is_null() {
                 continue;
             }
@@ -54,8 +54,7 @@ unsafe fn go() {
             let root = init_with(|this| {
                 target::gfc__RegionLayer__getRoot(layer, this);
             });
-            #[allow(clippy::cast_ptr_alignment)]
-            let root = root.p as *mut target::gfc__WorldGroup;
+            let root = root.borrow();
             scan(root);
         }
     }
@@ -65,7 +64,7 @@ unsafe fn scan(group: *mut target::gfc__WorldGroup) {
     let objects = &mut (*group).mObjects;
     let objects = List::<target::gfc__AutoRef_gfc__WorldObject_>::from_ptr(objects);
     for object in objects {
-        let object = gfc::Object::from_ptr(object.p as *mut target::gfc__Object);
+        let object = gfc::Object::from_ptr(object.borrow().static_cast());
 
         if let Some(group) = gfc::object_safecast::<gfc::WorldGroup>(object) {
             scan(group.as_ptr());

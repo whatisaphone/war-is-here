@@ -28,6 +28,7 @@ impl IRefObject {
 
 pub struct AutoRef2<T: AsRef<IRefObject> + ?Sized>(*mut T);
 
+#[allow(clippy::use_self)]
 impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
     pub fn new(p: Heap<T>) -> Self {
         let p = Heap::into_raw(p);
@@ -46,6 +47,20 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
         let raw = this.0;
         mem::forget(this);
         raw
+    }
+
+    unsafe fn map<U: AsRef<IRefObject> + ?Sized>(
+        this: Self,
+        f: impl FnOnce(*mut T) -> *mut U,
+    ) -> AutoRef2<U> {
+        AutoRef2::from_raw(f(Self::into_raw(this)))
+    }
+
+    pub fn cast<U: AsRef<IRefObject> + ?Sized>(this: Self) -> AutoRef2<U>
+    where
+        T: AsRef<U>,
+    {
+        unsafe { Self::map(this, |p| AsRef::<U>::as_ref(&*p) as *const U as *mut U) }
     }
 
     pub fn lower(this: Self) -> <T::Target as AutoRefWrap>::Struct
@@ -96,7 +111,23 @@ pub unsafe trait AutoRefWrap {
 
     unsafe fn wrap(p: *mut Self) -> Self::Struct;
     fn from_raw(p: *mut Self) -> Self::Struct;
+    fn borrow(this: *const Self::Struct) -> *mut Self;
     fn into_raw(this: Self::Struct) -> *mut Self;
+}
+
+pub unsafe trait AutoRefUnwrap: Sized
+where
+    Self::Target: AutoRefWrap<Struct = Self>,
+{
+    type Target;
+
+    fn into_raw(this: Self) -> *mut Self::Target {
+        Self::Target::into_raw(this)
+    }
+
+    fn borrow(&self) -> *mut Self::Target {
+        Self::Target::borrow(self)
+    }
 }
 
 macro_rules! impl_autoref_wrap {
@@ -105,22 +136,33 @@ macro_rules! impl_autoref_wrap {
             type Struct = $autoref;
 
             unsafe fn wrap(p: *mut Self) -> $autoref {
-                let p: *mut target::gfc__IRefObject = p.static_cast();
-                IRefObject::from_ptr(p).add_ref();
-                $autoref { p }
+                IRefObject::from_ptr(p.static_cast()).add_ref();
+                Self::from_raw(p)
             }
 
             fn from_raw(p: *mut Self) -> $autoref {
                 $autoref { p: p.static_cast() }
             }
 
+            fn borrow(this: *const $autoref) -> *mut Self {
+                unsafe { (*this).p }.cast()
+            }
+
             fn into_raw(this: $autoref) -> *mut Self {
                 this.p.cast()
             }
         }
+
+        unsafe impl AutoRefUnwrap for $autoref {
+            type Target = $inner;
+        }
     };
 }
 
+impl_autoref_wrap!(
+    target::gfc__InputStream,
+    target::gfc__AutoRef_gfc__InputStream_,
+);
 impl_autoref_wrap!(target::gfc__MBSubMesh, target::gfc__AutoRef_gfc__MBSubMesh_);
 impl_autoref_wrap!(
     target::gfc__MeshBuilder,
@@ -133,7 +175,27 @@ impl_autoref_wrap!(
     target::gfc__AutoRef_gfc__OutputStream_,
 );
 impl_autoref_wrap!(
+    target::gfc__RegionLayer,
+    target::gfc__AutoRef_gfc__RegionLayer_,
+);
+impl_autoref_wrap!(
+    target::gfc__Skeleton3D,
+    target::gfc__AutoRef_gfc__Skeleton3D_,
+);
+impl_autoref_wrap!(
     target::gfc__StaticMesh,
     target::gfc__AutoRef_gfc__StaticMesh_,
 );
 impl_autoref_wrap!(target::gfc__Visual, target::gfc__AutoRef_gfc__Visual_);
+impl_autoref_wrap!(
+    target::gfc__WorldGroup,
+    target::gfc__AutoRef_gfc__WorldGroup_,
+);
+impl_autoref_wrap!(
+    target::gfc__WorldObject,
+    target::gfc__AutoRef_gfc__WorldObject_,
+);
+impl_autoref_wrap!(
+    target::gfc__WorldRegion,
+    target::gfc__AutoRef_gfc__WorldRegion_,
+);

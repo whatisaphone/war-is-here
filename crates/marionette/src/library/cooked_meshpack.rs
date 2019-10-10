@@ -3,24 +3,20 @@ use crate::{
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
-use pdbindgen_runtime::StaticCast;
 
 /// This function reads `city01_glass2_04.meshpack` into a `gfc::MeshBuilder`,
 /// the same way the game does in `gfc::MeshCache::loadMesh` and
 /// `gfc::MeshReader::readObject`.
 pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
     unsafe {
-        let stream = Heap::new(gfc::ByteInputStream::new(COOKED));
-        let stream = gfc::AutoRef::<gfc::ByteInputStream>::from_ptr(
-            (*Heap::into_raw(stream)).as_ptr().static_cast(),
-        );
+        let stream = gfc::AutoRef2::new(Heap::new(gfc::ByteInputStream::new(COOKED)));
         let mut reader = init_with(|this| target::gfc__MeshReader__MeshReader(this));
         let mut valid = true;
         let object = init_with(|p| {
             target::gfc__MeshReader__readObject(
                 &mut reader,
                 p,
-                autoref_cast!(stream, target::gfc__AutoRef_gfc__InputStream_),
+                gfc::AutoRef2::lower(gfc::AutoRef2::cast::<gfc::InputStream>(stream)),
                 &mut valid,
             );
         });
@@ -28,10 +24,9 @@ pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             println!("cooked MeshBuilder is not valid!");
         }
 
-        let object = object.p as *mut target::gfc__MeshBuilder;
-        target::gfc__AutoRef_gfc__MeshBuilder_ {
-            p: object.static_cast(),
-        }
+        let object = gfc::AutoRefUnwrap::into_raw(object);
+        let object = object as *mut target::gfc__MeshBuilder;
+        gfc::AutoRefWrap::from_raw(object)
     }
 }
 

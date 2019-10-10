@@ -1,6 +1,6 @@
 use crate::{
     darksiders1::{
-        gfc::{self, AutoRefWrap},
+        gfc::{self, AutoRefUnwrap, AutoRefWrap},
         Heap,
     },
     hooks::ON_POST_UPDATE_QUEUE,
@@ -91,8 +91,7 @@ fn build_magic_object() -> gfc::AutoRef2<gfc::Object3D> {
     unsafe {
         let object = Heap::new(gfc::Object3D::new());
 
-        #[allow(clippy::cast_ptr_alignment)]
-        let skeleton = (*object.as_ptr()).mSkeleton.p as *mut target::gfc__Skeleton3D;
+        let skeleton = (*object.as_ptr()).mSkeleton.borrow();
 
         *gfc::HString::from_ptr_mut(&mut (*skeleton).mName) = NODE_NAME.clone();
 
@@ -128,7 +127,7 @@ pub fn override_get_static_mesh(
 }
 
 #[allow(dead_code)]
-fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef<gfc::StaticMesh> {
+fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef2<gfc::StaticMesh> {
     let cache = gfc::Singleton::<gfc::KGMeshCache>::get_instance();
     unsafe {
         let mesh = init_with(|p| {
@@ -140,7 +139,7 @@ fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef<gfc::StaticMesh> {
                 0,
             );
         });
-        gfc::AutoRef::from_ptr(mesh.p)
+        gfc::AutoRef2::lift(mesh)
     }
 }
 
@@ -148,11 +147,14 @@ fn build_cube_mesh() -> gfc::AutoRef2<gfc::StaticMesh> {
     let graphics = gfc::KGGraphics::get_instance();
 
     let builder = build_cube_meshbuilder();
-    let builder = builder.p as *mut target::gfc__MeshBuilder;
 
     unsafe {
         let result = init_with(|p| {
-            ((*(*graphics.as_ptr()).__vfptr).createStaticMesh)(graphics.as_ptr(), p, builder);
+            ((*(*graphics.as_ptr()).__vfptr).createStaticMesh)(
+                graphics.as_ptr(),
+                p,
+                builder.borrow(),
+            );
         });
         gfc::AutoRef2::lift(result)
     }
