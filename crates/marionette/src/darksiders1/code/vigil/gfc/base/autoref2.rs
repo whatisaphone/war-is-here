@@ -1,4 +1,4 @@
-use crate::darksiders1::{code::vigil::gfc::base::object::Lower, gfc, Heap};
+use crate::darksiders1::{code::vigil::gfc::base::object::Lower, Heap};
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{
@@ -47,18 +47,24 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
         raw
     }
 
-    pub fn lower(this: Self) -> <T as AutoRefLower>::TargetAutoRef
+    pub fn lower(this: Self) -> <T::Target as AutoRefWrap>::Struct
     where
-        T: AutoRefLower,
+        T: Lower,
+        T::Target: AutoRefWrap,
     {
-        AutoRefLower::lower(this)
+        let p = Self::into_raw(this);
+        let p = Lower::lower(p);
+        AutoRefWrap::wrap(p)
     }
 
-    pub fn lift(this: <T as AutoRefLower>::TargetAutoRef) -> Self
+    pub fn lift(autoref: <T::Target as AutoRefWrap>::Struct) -> Self
     where
-        T: AutoRefLower,
+        T: Lower,
+        T::Target: AutoRefWrap,
     {
-        AutoRefLower::lift(this)
+        let p = AutoRefWrap::unwrap(autoref);
+        let p = Lower::lift(p);
+        Self::from_raw(p)
     }
 }
 
@@ -70,32 +76,37 @@ impl<T: AsRef<IRefObject> + ?Sized> Drop for AutoRef2<T> {
     }
 }
 
-pub trait AutoRefLower: AsRef<IRefObject> + Lower {
-    type TargetAutoRef;
+/// The PDB doesn't use the right type for `AutoRef<T>`'s field. For example,
+/// `AutoRef<WorldObject>` has a field of type `*mut gfc__IRefObject`, whereas
+/// it really _should_ be typed as `*mut gfc__WorldObject`.
+///
+/// This trait encodes into the type system the correct field type for each
+/// `AutoRef` instantiation.
+pub trait AutoRefWrap {
+    type Struct;
 
-    fn lower(this: AutoRef2<Self>) -> Self::TargetAutoRef;
-    fn lift(autoref: Self::TargetAutoRef) -> AutoRef2<Self>;
+    fn wrap(p: *mut Self) -> Self::Struct;
+    fn unwrap(this: Self::Struct) -> *mut Self;
 }
 
-macro_rules! impl_autoref_lower {
-    ($type:ty, $target:path) => {
-        impl AutoRefLower for $type {
-            type TargetAutoRef = $target;
+macro_rules! impl_autoref_wrap {
+    ($inner:ty, $autoref:path $(,)?) => {
+        impl AutoRefWrap for $inner {
+            type Struct = $autoref;
 
-            fn lower(this: AutoRef2<Self>) -> $target {
-                let p = AutoRef2::into_raw(this);
-                $target {
-                    p: Lower::lower(p).static_cast(),
-                }
+            fn wrap(p: *mut Self) -> $autoref {
+                $autoref { p: p.static_cast() }
             }
 
-            fn lift(autoref: $target) -> AutoRef2<Self> {
-                let p = Lower::lift(autoref.p.cast());
-                AutoRef2::from_raw(p)
+            fn unwrap(this: $autoref) -> *mut Self {
+                this.p.cast()
             }
         }
     };
 }
 
-impl_autoref_lower!(gfc::Object3D, target::gfc__AutoRef_gfc__Object3D_);
-impl_autoref_lower!(gfc::StaticMesh, target::gfc__AutoRef_gfc__StaticMesh_);
+impl_autoref_wrap!(target::gfc__Object3D, target::gfc__AutoRef_gfc__Object3D_);
+impl_autoref_wrap!(
+    target::gfc__StaticMesh,
+    target::gfc__AutoRef_gfc__StaticMesh_,
+);
