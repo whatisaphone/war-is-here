@@ -14,4 +14,4 @@ impl<T> TVector3<T> {
     }
 }
 
-impl_lift_lower_transmute!(TVector3<f32>, target::gfc__TVector3_float_gfc__FloatMath_);
+impl_lift_lower!(TVector3<f32>, target::gfc__TVector3_float_gfc__FloatMath_);

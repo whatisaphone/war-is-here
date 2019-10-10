@@ -32,23 +32,15 @@ macro_rules! struct_wrapper {
             }
         }
 
-        impl_lift_lower_transmute!($name, $inner);
+        impl_lift_lower!($name, $inner);
     };
 }
 
-macro_rules! impl_lift_lower_transmute {
+macro_rules! impl_lift_lower {
     ($lifted:ty, $lowered:ty) => {
         #[allow(clippy::use_self)]
         impl $crate::darksiders1::code::vigil::gfc::base::object::Lift for $lowered {
             type Target = $lifted;
-
-            fn lift(this: *mut Self) -> *mut $lifted {
-                unsafe { &mut *(this as *mut $lifted) }
-            }
-
-            fn lower(this: *mut $lifted) -> *mut Self {
-                unsafe { &mut *(this as *mut Self) }
-            }
         }
 
         #[allow(clippy::use_self)]

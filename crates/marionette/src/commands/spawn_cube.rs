@@ -104,7 +104,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
 
         let skeleton_visuals = gfc::Vector::from_ptr_mut(&mut (*object.as_ptr()).mVisuals);
         skeleton_visuals.add(LoweredAutoRef::from_ptr(
-            Heap::into_raw(visual).static_cast::<*mut target::gfc__Visual>(),
+            Heap::into_raw(visual).static_cast(),
         ));
 
         object
@@ -335,9 +335,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             sub_mesh
         });
 
-        let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
-            &mut builder.mSubMeshes,
-        );
+        let sub_meshes = gfc::Vector::from_ptr_mut(&mut builder.mSubMeshes);
         sub_meshes.add(LoweredAutoRef::from_ptr(Heap::into_raw(sub_mesh)));
 
         builder.mFlags.flags = 31;

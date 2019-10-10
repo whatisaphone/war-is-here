@@ -29,7 +29,7 @@ impl IRefObject {
     }
 }
 
-pub struct AutoRef<T: AsRef<IRefObject> + ?Sized>(*mut T);
+pub struct AutoRef<T: AsRef<IRefObject>>(*mut T);
 
 impl<T: AsRef<IRefObject>> AutoRef<T> {
     pub fn new(x: T) -> Self {
@@ -42,7 +42,7 @@ impl<T: AsRef<IRefObject>> AutoRef<T> {
 }
 
 #[allow(clippy::use_self)]
-impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
+impl<T: AsRef<IRefObject>> AutoRef<T> {
     pub unsafe fn from_ptr(p: *const T) -> Self {
         (*p).as_ref().add_ref();
         Self::from_raw(p)
@@ -67,14 +67,14 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
         }
     }
 
-    unsafe fn map<U: AsRef<IRefObject> + ?Sized>(
+    unsafe fn map<U: AsRef<IRefObject>>(
         this: Self,
         f: impl FnOnce(*mut T) -> *mut U,
     ) -> AutoRef<U> {
         AutoRef::from_raw(f(Self::into_raw(this)))
     }
 
-    pub fn cast<U: AsRef<IRefObject> + ?Sized>(this: Self) -> AutoRef<U>
+    pub fn cast<U: AsRef<IRefObject>>(this: Self) -> AutoRef<U>
     where
         T: AsRef<U>,
     {
@@ -97,12 +97,12 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
         T::Target: LoweredAutoRefTarget,
     {
         let p = autoref.into_raw();
-        let p = Lower::lift(p);
+        let p = Lift::lift(p);
         Self::from_raw(p)
     }
 }
 
-impl<T: AsRef<IRefObject> + ?Sized> Drop for AutoRef<T> {
+impl<T: AsRef<IRefObject>> Drop for AutoRef<T> {
     fn drop(&mut self) {
         unsafe {
             self.as_ref().release_ref();
@@ -110,7 +110,7 @@ impl<T: AsRef<IRefObject> + ?Sized> Drop for AutoRef<T> {
     }
 }
 
-impl<T: AsRef<IRefObject> + ?Sized> Deref for AutoRef<T> {
+impl<T: AsRef<IRefObject>> Deref for AutoRef<T> {
     type Target = T;
 
     fn deref(&self) -> &Self::Target {
@@ -118,7 +118,7 @@ impl<T: AsRef<IRefObject> + ?Sized> Deref for AutoRef<T> {
     }
 }
 
-impl<T: AsRef<IRefObject> + ?Sized> Clone for AutoRef<T> {
+impl<T: AsRef<IRefObject>> Clone for AutoRef<T> {
     fn clone(&self) -> Self {
         unsafe {
             self.as_ref().add_ref();
@@ -137,7 +137,7 @@ pub trait LoweredAutoRef: Sized
 where
     Self::Target: LoweredAutoRefTarget<Struct = Self>,
 {
-    type Target: ?Sized;
+    type Target;
 
     unsafe fn from_ptr(p: *mut Self::Target) -> Self;
     fn from_raw(p: *mut Self::Target) -> Self;
@@ -145,7 +145,7 @@ where
     fn ptr(&self) -> *mut Self::Target;
 }
 
-pub trait LoweredAutoRefTarget
+pub trait LoweredAutoRefTarget: Sized
 where
     Self::Struct: LoweredAutoRef<Target = Self>,
 {
@@ -182,24 +182,16 @@ macro_rules! lowered_autoref {
 }
 
 #[allow(clippy::use_self)]
-impl<T: ?Sized> Lift for T
+impl<T> Lift for T
 where
     T: LoweredAutoRef,
     T::Target: Lift,
     <T::Target as Lift>::Target: AsRef<IRefObject>,
 {
     type Target = AutoRef<<T::Target as Lift>::Target>;
-
-    fn lift(this: *mut Self) -> *mut Self::Target {
-        unsafe { &mut *(this as *mut Self::Target) }
-    }
-
-    fn lower(this: *mut Self::Target) -> *mut Self {
-        unsafe { &mut *(this as *mut Self) }
-    }
 }
 
-impl<T: ?Sized> Lower for AutoRef<T>
+impl<T> Lower for AutoRef<T>
 where
     T: AsRef<IRefObject> + Lower,
     T::Target: LoweredAutoRefTarget,

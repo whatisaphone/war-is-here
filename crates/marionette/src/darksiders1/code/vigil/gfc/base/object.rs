@@ -25,32 +25,29 @@ pub unsafe trait Reflect: AsRef<gfc::IRefObject> {
     fn class() -> &'static gfc::Class;
 }
 
-pub trait Lift
+pub trait Lift: Sized
 where
     Self::Target: Lower<Target = Self>,
 {
-    type Target: ?Sized;
+    type Target;
 
-    fn lift(this: *mut Self) -> *mut Self::Target;
-    fn lower(this: *mut Self::Target) -> *mut Self;
+    fn lift(this: *mut Self) -> *mut Self::Target {
+        this as *mut _
+    }
 }
 
-pub trait Lower
+pub trait Lower: Sized
 where
     Self::Target: Lift<Target = Self>,
 {
-    type Target: ?Sized;
-
-    fn lift(this: *mut Self::Target) -> *mut Self {
-        Self::Target::lift(this)
-    }
+    type Target;
 
     fn lower(this: *mut Self) -> *mut Self::Target {
-        Self::Target::lower(this)
+        this as *mut _
     }
 }
 
 // Numbers are, obviously, the same on both sides of the divide.
-impl_lift_lower_transmute!(u8, u8);
-impl_lift_lower_transmute!(u16, u16);
-impl_lift_lower_transmute!(u32, u32);
+impl_lift_lower!(u8, u8);
+impl_lift_lower!(u16, u16);
+impl_lift_lower!(u32, u32);
