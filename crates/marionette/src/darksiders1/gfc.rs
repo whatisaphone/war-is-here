@@ -6,8 +6,7 @@ pub use crate::darksiders1::code::vigil::{
     drivers::keengraphics::{kggraphics::KGGraphics, kgmeshcache::KGMeshCache},
     gfc::{
         base::{
-            autoref::AutoRef,
-            autoref2::{AutoRef2, AutoRefUnwrap, AutoRefWrap, IRefObject},
+            autoref::{AutoRef, AutoRefUnwrap, AutoRefWrap, IRefObject},
             object::{object_safecast, Object},
             reflection::{Class, ClassRegistry},
         },

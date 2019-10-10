@@ -130,7 +130,7 @@ mod hook {
             let mesh_name = unsafe { gfc::HString::from_ptr(meshName) };
             if let Some(ovurride) = override_get_static_mesh(packageID, mesh_name, idx) {
                 unsafe {
-                    *result = gfc::AutoRef2::lower(ovurride);
+                    *result = gfc::AutoRef::lower(ovurride);
                 }
                 return result;
             }
@@ -168,7 +168,7 @@ mod hook {
             let object_name = unsafe { gfc::HString::from_ptr(objectName) };
             if let Some(ovurride) = override_get_object3d(packageID, object_name) {
                 unsafe {
-                    *result = gfc::AutoRef2::lower(ovurride);
+                    *result = gfc::AutoRef::lower(ovurride);
                 }
                 return result;
             }
