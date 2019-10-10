@@ -1,5 +1,8 @@
 use crate::{
-    darksiders1::{gfc, Heap},
+    darksiders1::{
+        gfc::{self, AutoRefWrap},
+        Heap,
+    },
     hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };
@@ -99,16 +102,13 @@ fn build_magic_object() -> gfc::AutoRef2<gfc::Object3D> {
         *gfc::HString::from_ptr_mut(&mut visual.mRefNode) = NODE_NAME.clone();
         *gfc::HString::from_ptr_mut(&mut visual.mMeshName) = MAGIC_MESH_NAME.clone();
         visual.mMeshID = 0;
-        let visual = gfc::AutoRef::<target::gfc__StaticMeshVisual>::from_ptr(
-            Heap::into_raw(visual).static_cast(),
-        );
 
         let skeleton_visuals = gfc::Vector::<target::gfc__AutoRef_gfc__Visual_>::from_ptr_mut(
             &mut (*object.as_ptr()).mVisuals,
         );
-        skeleton_visuals.add(target::gfc__AutoRef_gfc__Visual_ {
-            p: gfc::AutoRef::into_ptr(visual),
-        });
+        skeleton_visuals.add(AutoRefWrap::wrap(
+            Heap::into_raw(visual).static_cast::<*mut target::gfc__Visual>(),
+        ));
 
         gfc::AutoRef2::new(object)
     }
@@ -338,24 +338,14 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
             sub_mesh
         });
-        let sub_mesh = gfc::AutoRef::<target::gfc__MBSubMesh>::from_ptr(
-            Heap::into_raw(sub_mesh).static_cast(),
-        );
 
         let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
             &mut builder.mSubMeshes,
         );
-        sub_meshes.add(target::gfc__AutoRef_gfc__MBSubMesh_ {
-            p: gfc::AutoRef::into_ptr(sub_mesh),
-        });
+        sub_meshes.add(AutoRefWrap::wrap(Heap::into_raw(sub_mesh)));
 
         builder.mFlags.flags = 31;
 
-        let builder = gfc::AutoRef::<target::gfc__MeshBuilder>::from_ptr(
-            Heap::into_raw(builder).static_cast(),
-        );
-        target::gfc__AutoRef_gfc__MeshBuilder_ {
-            p: gfc::AutoRef::into_ptr(builder),
-        }
+        AutoRefWrap::wrap(Heap::into_raw(builder))
     }
 }

@@ -54,7 +54,7 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
     {
         let p = Self::into_raw(this);
         let p = Lower::lower(p);
-        AutoRefWrap::wrap(p)
+        AutoRefWrap::from_raw(p)
     }
 
     pub fn lift(autoref: <T::Target as AutoRefWrap>::Struct) -> Self
@@ -62,7 +62,7 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
         T: Lower,
         T::Target: AutoRefWrap,
     {
-        let p = AutoRefWrap::unwrap(autoref);
+        let p = AutoRefWrap::into_raw(autoref);
         let p = Lower::lift(p);
         Self::from_raw(p)
     }
@@ -82,31 +82,44 @@ impl<T: AsRef<IRefObject> + ?Sized> Drop for AutoRef2<T> {
 ///
 /// This trait encodes into the type system the correct field type for each
 /// `AutoRef` instantiation.
-pub trait AutoRefWrap {
+pub unsafe trait AutoRefWrap {
     type Struct;
 
-    fn wrap(p: *mut Self) -> Self::Struct;
-    fn unwrap(this: Self::Struct) -> *mut Self;
+    unsafe fn wrap(p: *mut Self) -> Self::Struct;
+    fn from_raw(p: *mut Self) -> Self::Struct;
+    fn into_raw(this: Self::Struct) -> *mut Self;
 }
 
 macro_rules! impl_autoref_wrap {
     ($inner:ty, $autoref:path $(,)?) => {
-        impl AutoRefWrap for $inner {
+        unsafe impl AutoRefWrap for $inner {
             type Struct = $autoref;
 
-            fn wrap(p: *mut Self) -> $autoref {
+            unsafe fn wrap(p: *mut Self) -> $autoref {
+                let p: *mut target::gfc__IRefObject = p.static_cast();
+                IRefObject::from_ptr(p).add_ref();
+                $autoref { p }
+            }
+
+            fn from_raw(p: *mut Self) -> $autoref {
                 $autoref { p: p.static_cast() }
             }
 
-            fn unwrap(this: $autoref) -> *mut Self {
+            fn into_raw(this: $autoref) -> *mut Self {
                 this.p.cast()
             }
         }
     };
 }
 
+impl_autoref_wrap!(target::gfc__MBSubMesh, target::gfc__AutoRef_gfc__MBSubMesh_);
+impl_autoref_wrap!(
+    target::gfc__MeshBuilder,
+    target::gfc__AutoRef_gfc__MeshBuilder_,
+);
 impl_autoref_wrap!(target::gfc__Object3D, target::gfc__AutoRef_gfc__Object3D_);
 impl_autoref_wrap!(
     target::gfc__StaticMesh,
     target::gfc__AutoRef_gfc__StaticMesh_,
 );
+impl_autoref_wrap!(target::gfc__Visual, target::gfc__AutoRef_gfc__Visual_);

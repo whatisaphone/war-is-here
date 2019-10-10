@@ -7,7 +7,7 @@ pub use crate::darksiders1::code::vigil::{
     gfc::{
         base::{
             autoref::AutoRef,
-            autoref2::{AutoRef2, IRefObject},
+            autoref2::{AutoRef2, AutoRefWrap, IRefObject},
             object::{object_safecast, Object},
             reflection::{Class, ClassRegistry},
         },
