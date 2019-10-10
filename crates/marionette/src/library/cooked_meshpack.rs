@@ -1,4 +1,7 @@
-use crate::{darksiders1::gfc, utils::mem::init_with};
+use crate::{
+    darksiders1::gfc::{self, AutoRefUnwrap},
+    utils::mem::init_with,
+};
 use darksiders1_sys::target;
 
 /// This function reads `city01_glass2_04.meshpack` into a `gfc::MeshBuilder`,
@@ -21,7 +24,7 @@ pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             println!("cooked MeshBuilder is not valid!");
         }
 
-        let object = gfc::AutoRefUnwrap::into_raw(object);
+        let object = object.into_raw();
         let object = object as *mut target::gfc__MeshBuilder;
         gfc::AutoRefWrap::from_raw(object)
     }

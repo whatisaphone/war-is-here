@@ -22,7 +22,7 @@ unsafe fn go() {
     let darksiders = gfc::OblivionGame::get_instance();
     let world = darksiders.get_world();
 
-    let root = gfc::AutoRefWrap::borrow(&(*world.as_ptr()).mRoot);
+    let root = (*world.as_ptr()).mRoot.ptr();
     scan(root);
 
     let region_data = gfc::Vector::<target::gfc__AutoRef_gfc__WorldRegionData_>::from_ptr(
@@ -33,7 +33,7 @@ unsafe fn go() {
         let region = init_with(|this| {
             target::gfc__World__getRegion(world.as_ptr(), this, r);
         });
-        let region = region.borrow();
+        let region = region.ptr();
         if region.is_null() {
             continue;
         }
@@ -46,7 +46,7 @@ unsafe fn go() {
             let layer = init_with(|this| {
                 target::gfc__WorldRegion__getLayer(region, this, l);
             });
-            let layer = layer.borrow();
+            let layer = layer.ptr();
             if layer.is_null() {
                 continue;
             }
@@ -54,7 +54,7 @@ unsafe fn go() {
             let root = init_with(|this| {
                 target::gfc__RegionLayer__getRoot(layer, this);
             });
-            let root = root.borrow();
+            let root = root.ptr();
             scan(root);
         }
     }
@@ -64,7 +64,7 @@ unsafe fn scan(group: *mut target::gfc__WorldGroup) {
     let objects = &mut (*group).mObjects;
     let objects = List::<target::gfc__AutoRef_gfc__WorldObject_>::from_ptr(objects);
     for object in objects {
-        let object = gfc::Object::from_ptr(object.borrow().static_cast());
+        let object = gfc::Object::from_ptr(object.ptr().static_cast());
 
         if let Some(group) = gfc::object_safecast::<gfc::WorldGroup>(object) {
             scan(group.as_ptr());

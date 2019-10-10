@@ -91,7 +91,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
     unsafe {
         let object = gfc::AutoRef::new(gfc::Object3D::new());
 
-        let skeleton = (*object.as_ptr()).mSkeleton.borrow();
+        let skeleton = (*object.as_ptr()).mSkeleton.ptr();
 
         *gfc::HString::from_ptr_mut(&mut (*skeleton).mName) = NODE_NAME.clone();
 
@@ -105,7 +105,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
         let skeleton_visuals = gfc::Vector::<target::gfc__AutoRef_gfc__Visual_>::from_ptr_mut(
             &mut (*object.as_ptr()).mVisuals,
         );
-        skeleton_visuals.add(AutoRefWrap::wrap(
+        skeleton_visuals.add(AutoRefWrap::from_ptr(
             Heap::into_raw(visual).static_cast::<*mut target::gfc__Visual>(),
         ));
 
@@ -149,11 +149,7 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
 
     unsafe {
         let result = init_with(|p| {
-            ((*(*graphics.as_ptr()).__vfptr).createStaticMesh)(
-                graphics.as_ptr(),
-                p,
-                builder.borrow(),
-            );
+            ((*(*graphics.as_ptr()).__vfptr).createStaticMesh)(graphics.as_ptr(), p, builder.ptr());
         });
         gfc::AutoRef::lift(result)
     }
@@ -343,10 +339,10 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
         let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
             &mut builder.mSubMeshes,
         );
-        sub_meshes.add(AutoRefWrap::wrap(Heap::into_raw(sub_mesh)));
+        sub_meshes.add(AutoRefWrap::from_ptr(Heap::into_raw(sub_mesh)));
 
         builder.mFlags.flags = 31;
 
-        AutoRefWrap::wrap(Heap::into_raw(builder))
+        AutoRefWrap::from_ptr(Heap::into_raw(builder))
     }
 }

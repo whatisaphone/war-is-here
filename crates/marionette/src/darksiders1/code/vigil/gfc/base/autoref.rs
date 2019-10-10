@@ -42,7 +42,7 @@ impl<T: AsRef<IRefObject>> AutoRef<T> {
 impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
     pub unsafe fn from_ptr(p: *const T) -> Self {
         (*p).as_ref().add_ref();
-        Self(p as *mut T)
+        Self::from_raw(p)
     }
 
     pub unsafe fn from_raw(p: *const T) -> Self {
@@ -57,7 +57,7 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
     }
 
     pub fn get_mut(this: &mut Self) -> Option<&mut T> {
-        if unsafe { (*this.0).as_ref() }.inner.ReferenceCount == 1 {
+        if this.as_ref().inner.ReferenceCount == 1 {
             Some(unsafe { &mut *this.0 })
         } else {
             None
@@ -124,10 +124,10 @@ impl<T: AsRef<IRefObject> + ?Sized> Deref for AutoRef<T> {
 pub unsafe trait AutoRefWrap {
     type Struct;
 
-    unsafe fn wrap(p: *mut Self) -> Self::Struct;
+    unsafe fn from_ptr(p: *mut Self) -> Self::Struct;
     fn from_raw(p: *mut Self) -> Self::Struct;
-    fn borrow(this: *const Self::Struct) -> *mut Self;
     fn into_raw(this: Self::Struct) -> *mut Self;
+    fn ptr(this: *const Self::Struct) -> *mut Self;
 }
 
 pub unsafe trait AutoRefUnwrap: Sized
@@ -136,12 +136,12 @@ where
 {
     type Target;
 
-    fn into_raw(this: Self) -> *mut Self::Target {
-        Self::Target::into_raw(this)
+    fn into_raw(self) -> *mut Self::Target {
+        Self::Target::into_raw(self)
     }
 
-    fn borrow(&self) -> *mut Self::Target {
-        Self::Target::borrow(self)
+    fn ptr(&self) -> *mut Self::Target {
+        Self::Target::ptr(self)
     }
 }
 
@@ -150,21 +150,21 @@ macro_rules! impl_autoref_wrap {
         unsafe impl AutoRefWrap for $inner {
             type Struct = $autoref;
 
-            unsafe fn wrap(p: *mut Self) -> $autoref {
+            unsafe fn from_ptr(p: *mut Self) -> $autoref {
                 IRefObject::from_ptr(p.static_cast()).add_ref();
                 Self::from_raw(p)
             }
 
             fn from_raw(p: *mut Self) -> $autoref {
-                $autoref { p: p.static_cast() }
-            }
-
-            fn borrow(this: *const $autoref) -> *mut Self {
-                unsafe { (*this).p }.cast()
+                $autoref { p: p.cast() }
             }
 
             fn into_raw(this: $autoref) -> *mut Self {
-                this.p.cast()
+                this.ptr()
+            }
+
+            fn ptr(this: *const $autoref) -> *mut Self {
+                unsafe { (*this).p }.cast()
             }
         }
 
