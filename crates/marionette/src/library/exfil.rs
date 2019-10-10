@@ -1,4 +1,4 @@
-use crate::darksiders1::{gfc, Heap};
+use crate::darksiders1::gfc;
 use std::{fs, slice};
 
 const PATH: &str = r"C:\Users\John\AppData\Local\Temp";
@@ -41,7 +41,7 @@ pub fn dump_object_to_file(object: &gfc::Object, prefix: &str) {
 pub fn dump_object_to_bytes(object: &gfc::Object) -> gfc::AutoRef<gfc::ByteOutputStream> {
     let mut writer = gfc::OOObjectWriter::new();
 
-    let mut stream = gfc::AutoRef::new(Heap::new(gfc::ByteOutputStream::new()));
+    let mut stream = gfc::AutoRef::new(gfc::ByteOutputStream::new());
     writer.write_object(object, gfc::AutoRef::get_mut(&mut stream).unwrap(), false);
 
     stream

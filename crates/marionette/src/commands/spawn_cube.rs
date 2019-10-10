@@ -89,7 +89,7 @@ pub fn override_get_object3d(
 
 fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
     unsafe {
-        let object = Heap::new(gfc::Object3D::new());
+        let object = gfc::AutoRef::new(gfc::Object3D::new());
 
         let skeleton = (*object.as_ptr()).mSkeleton.borrow();
 
@@ -109,7 +109,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
             Heap::into_raw(visual).static_cast::<*mut target::gfc__Visual>(),
         ));
 
-        gfc::AutoRef::new(object)
+        object
     }
 }
 
@@ -119,7 +119,6 @@ pub fn override_get_static_mesh(
     _idx: i32,
 ) -> Option<gfc::AutoRef<gfc::StaticMesh>> {
     if mesh_name == &*MAGIC_MESH_NAME {
-        // let mesh = use_mesh_from_game(package_id);
         let mesh = build_cube_mesh();
         return Some(mesh);
     }

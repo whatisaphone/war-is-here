@@ -18,7 +18,7 @@ pub fn object_safecast<To: Reflect>(p: &Object) -> Option<gfc::AutoRef<To>> {
     if !class.instanceof(To::class()) {
         return None;
     }
-    Some(unsafe { gfc::AutoRef::from_raw(p as *const Object as *mut Object as *mut To) })
+    Some(unsafe { gfc::AutoRef::from_ptr(p as *const Object as *mut Object as *mut To) })
 }
 
 pub unsafe trait Reflect: AsRef<gfc::IRefObject> {

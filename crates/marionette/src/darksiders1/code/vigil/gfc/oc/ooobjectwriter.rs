@@ -33,8 +33,8 @@ impl OOObjectWriter {
         unsafe {
             target::gfc__OOObjectWriter__writeObject(
                 self.as_ptr(),
-                gfc::AutoRef::lower(gfc::AutoRef::from_raw(object)),
-                gfc::AutoRef::lower(gfc::AutoRef::from_raw(output)),
+                gfc::AutoRef::lower(gfc::AutoRef::from_ptr(object)),
+                gfc::AutoRef::lower(gfc::AutoRef::from_ptr(output)),
                 write_defaults,
             );
         }

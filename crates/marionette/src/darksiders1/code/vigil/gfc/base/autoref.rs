@@ -28,14 +28,21 @@ impl IRefObject {
 
 pub struct AutoRef<T: AsRef<IRefObject> + ?Sized>(*mut T);
 
-#[allow(clippy::use_self)]
-impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
-    pub fn new(p: Heap<T>) -> Self {
-        let p = Heap::into_raw(p);
+impl<T: AsRef<IRefObject>> AutoRef<T> {
+    pub fn new(x: T) -> Self {
+        let p = Heap::into_raw(Heap::new(x));
         unsafe {
             (*p).as_ref().add_ref();
         }
         Self(p)
+    }
+}
+
+#[allow(clippy::use_self)]
+impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
+    pub unsafe fn from_ptr(p: *const T) -> Self {
+        (*p).as_ref().add_ref();
+        Self(p as *mut T)
     }
 
     pub unsafe fn from_raw(p: *const T) -> Self {

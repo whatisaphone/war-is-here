@@ -1,7 +1,4 @@
-use crate::{
-    darksiders1::{gfc, Heap},
-    utils::mem::init_with,
-};
+use crate::{darksiders1::gfc, utils::mem::init_with};
 use darksiders1_sys::target;
 
 /// This function reads `city01_glass2_04.meshpack` into a `gfc::MeshBuilder`,
@@ -9,7 +6,7 @@ use darksiders1_sys::target;
 /// `gfc::MeshReader::readObject`.
 pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
     unsafe {
-        let stream = gfc::AutoRef::new(Heap::new(gfc::ByteInputStream::new(COOKED)));
+        let stream = gfc::AutoRef::new(gfc::ByteInputStream::new(COOKED));
         let mut reader = init_with(|this| target::gfc__MeshReader__MeshReader(this));
         let mut valid = true;
         let object = init_with(|p| {
