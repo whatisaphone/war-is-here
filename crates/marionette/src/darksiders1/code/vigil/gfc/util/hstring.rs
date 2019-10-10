@@ -12,13 +12,20 @@ impl HString {
     }
 
     pub fn from_cstr(src: &CStr) -> Self {
-        let inner =
-            unsafe { init_with(|this| target::gfc__HString__HString_3(this, src.as_ptr(), true)) };
+        let inner = unsafe {
+            init_with(|this| {
+                target::gfc__HString__HString_3(this, src.as_ptr(), true);
+            })
+        };
         Self { inner }
     }
 
     pub fn from_hash(hash: u64) -> Self {
-        let inner = unsafe { init_with(|this| target::gfc__HString__HString_4(this, hash)) };
+        let inner = unsafe {
+            init_with(|this| {
+                target::gfc__HString__HString_4(this, hash);
+            })
+        };
         Self { inner }
     }
 

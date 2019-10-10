@@ -198,7 +198,9 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
         vertex_format_format.add(7);
 
         let sub_mesh = Heap::new({
-            let mut sub_mesh = init_with(|this| target::gfc__MBSubMesh__MBSubMesh(this));
+            let mut sub_mesh = init_with(|this| {
+                target::gfc__MBSubMesh__MBSubMesh(this);
+            });
             sub_mesh.PrimType = 0;
             sub_mesh.MaterialID = 0;
             sub_mesh.MaterialName = gfc::String::from_cstr(cstr!("City01_glass")).into_raw();

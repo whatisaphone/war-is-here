@@ -10,7 +10,9 @@ use darksiders1_sys::target;
 pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
     unsafe {
         let stream = gfc::AutoRef::new(gfc::ByteInputStream::new(COOKED));
-        let mut reader = init_with(|this| target::gfc__MeshReader__MeshReader(this));
+        let mut reader = init_with(|this| {
+            target::gfc__MeshReader__MeshReader(this);
+        });
         let mut valid = true;
         let object = init_with(|p| {
             target::gfc__MeshReader__readObject(

@@ -21,7 +21,7 @@ impl ByteInputStream {
                     u32::try_from(buffer.len()).unwrap(),
                     take_local_copy,
                     take_ownership,
-                )
+                );
             })
         };
         Self { inner }

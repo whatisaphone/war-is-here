@@ -30,8 +30,8 @@ unsafe fn go() {
     );
     for (r, _) in region_data.iter().enumerate() {
         let r = i32::try_from(r).unwrap();
-        let region = init_with(|this| {
-            target::gfc__World__getRegion(world.as_ptr(), this, r);
+        let region = init_with(|p| {
+            target::gfc__World__getRegion(world.as_ptr(), p, r);
         });
         let region = region.ptr();
         if region.is_null() {
@@ -43,16 +43,16 @@ unsafe fn go() {
         );
         for (l, _) in layer_data.iter().enumerate() {
             let l = i32::try_from(l).unwrap();
-            let layer = init_with(|this| {
-                target::gfc__WorldRegion__getLayer(region, this, l);
+            let layer = init_with(|p| {
+                target::gfc__WorldRegion__getLayer(region, p, l);
             });
             let layer = layer.ptr();
             if layer.is_null() {
                 continue;
             }
 
-            let root = init_with(|this| {
-                target::gfc__RegionLayer__getRoot(layer, this);
+            let root = init_with(|p| {
+                target::gfc__RegionLayer__getRoot(layer, p);
             });
             let root = root.ptr();
             scan(root);
@@ -71,12 +71,12 @@ unsafe fn scan(group: *mut target::gfc__WorldGroup) {
         }
 
         if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
-            let position = init_with(|this| {
-                ((*(*trigger.as_ptr()).vfptr).getPosition)(trigger.as_ptr(), this);
+            let position = init_with(|p| {
+                ((*(*trigger.as_ptr()).vfptr).getPosition)(trigger.as_ptr(), p);
             });
             mark(
-                (*group).mRegionID,
-                (*group).mLayerID,
+                (*trigger.as_ptr()).mRegionID,
+                (*trigger.as_ptr()).mLayerID,
                 position.x,
                 position.y,
                 position.z,
