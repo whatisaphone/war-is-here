@@ -3,6 +3,7 @@ use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{
     mem,
+    ops::Deref,
     sync::atomic::{AtomicI32, Ordering},
 };
 
@@ -36,7 +37,7 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
         Self(p)
     }
 
-    pub fn from_raw(p: *mut T) -> Self {
+    pub unsafe fn from_raw(p: *mut T) -> Self {
         Self(p)
     }
 
@@ -57,7 +58,7 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef2<T> {
         AutoRefWrap::from_raw(p)
     }
 
-    pub fn lift(autoref: <T::Target as AutoRefWrap>::Struct) -> Self
+    pub unsafe fn lift(autoref: <T::Target as AutoRefWrap>::Struct) -> Self
     where
         T: Lower,
         T::Target: AutoRefWrap,
@@ -73,6 +74,14 @@ impl<T: AsRef<IRefObject> + ?Sized> Drop for AutoRef2<T> {
         unsafe {
             (*self.0).as_ref().release_ref();
         }
+    }
+}
+
+impl<T: AsRef<IRefObject> + ?Sized> Deref for AutoRef2<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        unsafe { &*self.0 }
     }
 }
 

@@ -13,15 +13,15 @@ impl Object {
     }
 }
 
-pub fn object_safecast<To: Reflect>(p: &Object) -> Option<gfc::AutoRef<To>> {
+pub fn object_safecast<To: Reflect>(p: &Object) -> Option<gfc::AutoRef2<To>> {
     let class = p.class();
     if !class.instanceof(To::class()) {
         return None;
     }
-    Some(unsafe { gfc::AutoRef::from_ptr(p.as_ptr() as *mut target::gfc__IRefObject) })
+    Some(unsafe { gfc::AutoRef2::from_raw(p as *const Object as *mut Object as *mut To) })
 }
 
-pub unsafe trait Reflect {
+pub unsafe trait Reflect: AsRef<gfc::IRefObject> {
     fn class() -> &'static gfc::Class;
 }
 

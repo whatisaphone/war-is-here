@@ -5,12 +5,12 @@ struct_wrapper!(Class, target::gfc__Class);
 struct_wrapper_super!(Class, gfc::IRefObject);
 
 impl Class {
-    pub fn new_instance(&self) -> gfc::AutoRef<gfc::Object> {
+    pub fn new_instance(&self) -> gfc::AutoRef2<gfc::Object> {
         unsafe {
             let obj = init_with(|this| {
                 ((*self.inner.__vfptr).newInstance)(self.as_ptr(), this);
             });
-            gfc::AutoRef::from_ptr(obj.p)
+            gfc::AutoRef2::lift(obj)
         }
     }
 
