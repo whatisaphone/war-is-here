@@ -46,7 +46,7 @@ impl ByteOutputStream {
     }
 
     fn output(&self) -> &gfc::Vector<u8> {
-        unsafe { gfc::Vector::from_ptr(&mut (*self.as_ptr()).mOutput) }
+        unsafe { gfc::Vector::from_ptr(&(*self.as_ptr()).mOutput) }
     }
 
     pub fn bytes(&self) -> &[u8] {

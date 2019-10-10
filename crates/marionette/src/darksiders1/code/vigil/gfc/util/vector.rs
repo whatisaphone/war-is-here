@@ -1,4 +1,5 @@
 use crate::darksiders1::gfc;
+use darksiders1_sys::target;
 use std::{
     convert::{TryFrom, TryInto},
     mem,
@@ -32,7 +33,11 @@ impl<T> Vector<T> {
         Self::default()
     }
 
-    pub unsafe fn from_ptr<'a, X>(p: *mut X) -> &'a Self {
+    pub unsafe fn from_ptr<'a, V>(p: *const V) -> &'a Self
+    where
+        T: LoweredVectorElement<Vec = V>,
+        V: LoweredVector<Element = T>,
+    {
         &*(p as *const Self)
     }
 
@@ -144,3 +149,40 @@ impl<T> IndexMut<usize> for Vector<T> {
         unsafe { &mut *self.data.add(index) }
     }
 }
+
+pub unsafe trait LoweredVector: Sized
+where
+    Self::Element: LoweredVectorElement<Vec = Self>,
+{
+    type Element;
+}
+
+pub unsafe trait LoweredVectorElement: Sized
+where
+    Self::Vec: LoweredVector<Element = Self>,
+{
+    type Vec;
+}
+
+macro_rules! lowered_vector {
+    ($vec:ty, $element:ty $(,)?) => {
+        unsafe impl LoweredVector for $vec {
+            type Element = $element;
+        }
+
+        #[allow(clippy::use_self)]
+        unsafe impl LoweredVectorElement for $element {
+            type Vec = $vec;
+        }
+    };
+}
+
+lowered_vector!(target::gfc__Vector_unsigned_char_0_gfc__CAllocator_, u8);
+lowered_vector!(
+    target::gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_,
+    target::gfc__AutoRef_gfc__RegionLayerData_,
+);
+lowered_vector!(
+    target::gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator_,
+    target::gfc__AutoRef_gfc__WorldRegionData_,
+);
