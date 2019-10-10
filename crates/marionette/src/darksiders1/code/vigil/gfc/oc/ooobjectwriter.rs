@@ -1,4 +1,7 @@
-use crate::{darksiders1::gfc, utils::mem::init_with};
+use crate::{
+    darksiders1::gfc::{self, AutoRefWrap},
+    utils::mem::init_with,
+};
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{mem, ptr};
@@ -6,7 +9,7 @@ use std::{mem, ptr};
 struct_wrapper!(OOObjectWriter, target::gfc__OOObjectWriter);
 struct_wrapper_super!(OOObjectWriter, gfc::ObjectWriter);
 
-type OOObjectWriterObjectDatabase = gfc::Vector<gfc::AutoRef<gfc::Object>>;
+type OOObjectWriterObjectDatabase = gfc::Vector<gfc::AutoRef2<gfc::Object>>;
 
 impl OOObjectWriter {
     pub fn new() -> Self {
@@ -31,12 +34,10 @@ impl OOObjectWriter {
         write_defaults: bool,
     ) {
         unsafe {
-            let object = gfc::AutoRef::<gfc::Object>::from_ptr(object.as_ptr().static_cast());
-            let output = gfc::AutoRef::<gfc::OutputStream>::from_ptr(output.as_ptr().static_cast());
             target::gfc__OOObjectWriter__writeObject(
                 self.as_ptr(),
-                autoref_cast!(object, target::gfc__AutoRef_gfc__Object_),
-                autoref_cast!(output, target::gfc__AutoRef_gfc__OutputStream_),
+                AutoRefWrap::wrap(object.as_ptr()),
+                AutoRefWrap::wrap(output.as_ptr()),
                 write_defaults,
             );
         }

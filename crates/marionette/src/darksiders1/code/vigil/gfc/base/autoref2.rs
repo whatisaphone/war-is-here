@@ -117,7 +117,12 @@ impl_autoref_wrap!(
     target::gfc__MeshBuilder,
     target::gfc__AutoRef_gfc__MeshBuilder_,
 );
+impl_autoref_wrap!(target::gfc__Object, target::gfc__AutoRef_gfc__Object_);
 impl_autoref_wrap!(target::gfc__Object3D, target::gfc__AutoRef_gfc__Object3D_);
+impl_autoref_wrap!(
+    target::gfc__OutputStream,
+    target::gfc__AutoRef_gfc__OutputStream_,
+);
 impl_autoref_wrap!(
     target::gfc__StaticMesh,
     target::gfc__AutoRef_gfc__StaticMesh_,
