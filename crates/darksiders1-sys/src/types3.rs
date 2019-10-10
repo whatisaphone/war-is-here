@@ -4,6 +4,51 @@ use super::{types::*, types2::*};
 use pdbindgen_runtime::AsPtr;
 
 #[repr(C)]
+pub struct keen__GraphicsSystemBase {
+    pub pShaderFactory: *mut keen__ShaderFactory,
+    pub pSystemAllocator: *mut keen__MemoryAllocator,
+    pub stateObjectPool: keen__CombinedGraphicsStateObjectPool,
+    pub stockObjects: keen__StockObjects,
+}
+
+#[repr(C)]
+pub struct keen__GraphicsStateObjectPool_keen__VertexInputBinding_ {
+    pub m_allocator: keen__PoolAllocator_keen__VertexInputBinding_,
+    pub m_cache: keen__GraphicsStateObjectCache,
+    pub m_peakSize: u32,
+    pub m_cacheHits: u32,
+    pub m_cacheRequests: u32,
+}
+
+#[repr(C)]
+pub struct keen__DownsampleDepthContext {
+    pub shaders: keen__DownsampleDepthVariants,
+    pub copyDepthShader: keen__CopyDepthVariants,
+    pub pConstantBuffer: *mut keen__DynamicConstantBuffer,
+    pub pRasterizerState: *const keen__RasterizerState,
+    pub pDepthBufferSamplerState: *const keen__SamplerState,
+    pub pVertexInputBinding: *const keen__VertexInputBinding,
+    pub pCopyVertexInputBinding: *const keen__VertexInputBinding,
+    pub pDepthBlendState: *const keen__BlendState,
+    pub pDepthDepthStencilState: *const keen__DepthStencilState,
+    pub pStencilBlendState: *const keen__BlendState,
+    pub pStencilDepthStencilState: *const keen__DepthStencilState,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub vertexData: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 24],
+}
+
+#[repr(C)]
+pub struct keen__CombinedGraphicsStateObjectPool {
+    pub m_blendStatePool: keen__GraphicsStateObjectPool_keen__BlendState_,
+    pub m_rasterizerStatePool: keen__GraphicsStateObjectPool_keen__RasterizerState_,
+    pub m_samplerStatePool: keen__GraphicsStateObjectPool_keen__SamplerState_,
+    pub m_depthStencilStatePool: keen__GraphicsStateObjectPool_keen__DepthStencilState_,
+    pub m_vertexFormatPool: keen__GraphicsStateObjectPool_keen__VertexFormat_,
+    pub m_vertexInputBindingPool: keen__GraphicsStateObjectPool_keen__VertexInputBinding_,
+}
+
+#[repr(C)]
 pub struct keen__GraphicsSystem {
     // keen__GraphicsSystemBase
     pub pShaderFactory: *mut keen__ShaderFactory,

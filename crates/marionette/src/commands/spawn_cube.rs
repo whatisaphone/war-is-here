@@ -102,9 +102,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
         *gfc::HString::from_ptr_mut(&mut visual.mMeshName) = MAGIC_MESH_NAME.clone();
         visual.mMeshID = 0;
 
-        let skeleton_visuals = gfc::Vector::<target::gfc__AutoRef_gfc__Visual_>::from_ptr_mut(
-            &mut (*object.as_ptr()).mVisuals,
-        );
+        let skeleton_visuals = gfc::Vector::from_ptr_mut(&mut (*object.as_ptr()).mVisuals);
         skeleton_visuals.add(LoweredAutoRef::from_ptr(
             Heap::into_raw(visual).static_cast::<*mut target::gfc__Visual>(),
         ));
@@ -185,8 +183,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             r#type: 0,
         };
 
-        let vertex_format_format =
-            gfc::Vector::<u16>::from_ptr_mut(&mut builder.mVertexFormat.mFormat);
+        let vertex_format_format = gfc::Vector::lift_mut(&mut builder.mVertexFormat.mFormat);
         // wtf are these
         vertex_format_format.add(1);
         vertex_format_format.add(2);
@@ -206,7 +203,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             sub_mesh.MaterialName = gfc::String::from_cstr(cstr!("City01_glass")).into_raw();
             sub_mesh.VertexCount = 8;
 
-            let position = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut sub_mesh.Position);
+            let position = gfc::Vector::lift_mut(&mut sub_mesh.Position);
             position.add(gfc::TVector3::new(-1.0, -1.0, -1.0));
             position.add(gfc::TVector3::new(1.0, -1.0, -1.0));
             position.add(gfc::TVector3::new(1.0, 1.0, -1.0));
@@ -216,7 +213,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             position.add(gfc::TVector3::new(1.0, -1.0, 1.0));
             position.add(gfc::TVector3::new(-1.0, -1.0, 1.0));
 
-            let normal = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut sub_mesh.Normal);
+            let normal = gfc::Vector::lift_mut(&mut sub_mesh.Normal);
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
@@ -226,7 +223,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
 
-            let tangent = gfc::Vector::<gfc::TVector4<f32>>::from_ptr_mut(&mut sub_mesh.Tangent);
+            let tangent = gfc::Vector::lift_mut(&mut sub_mesh.Tangent);
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
@@ -236,7 +233,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
 
-            let binormal = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut sub_mesh.Binormal);
+            let binormal = gfc::Vector::lift_mut(&mut sub_mesh.Binormal);
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
@@ -246,7 +243,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
 
-            let tex0 = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut sub_mesh.Tex0);
+            let tex0 = gfc::Vector::lift_mut(&mut sub_mesh.Tex0);
             tex0.add(gfc::TVector3::new(0.970, -0.033, 0.0));
             tex0.add(gfc::TVector3::new(0.970, -0.599, 0.0));
             tex0.add(gfc::TVector3::new(0.759, -0.599, 0.0));
@@ -256,7 +253,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tex0.add(gfc::TVector3::new(0.759, -0.033, 0.0));
             tex0.add(gfc::TVector3::new(0.759, -0.599, 0.0));
 
-            let tex1 = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut sub_mesh.Tex1);
+            let tex1 = gfc::Vector::lift_mut(&mut sub_mesh.Tex1);
             tex1.add(gfc::TVector3::new(-198.432, 94.423, 0.0));
             tex1.add(gfc::TVector3::new(-198.432, 94.423, 0.0));
             tex1.add(gfc::TVector3::new(-198.432, 110.157, 0.0));
@@ -266,7 +263,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tex1.add(gfc::TVector3::new(-198.432, 110.157, 0.0));
             tex1.add(gfc::TVector3::new(-198.432, 110.157, 0.0));
 
-            let tex2 = gfc::Vector::<gfc::TVector3<f32>>::from_ptr_mut(&mut sub_mesh.Tex2);
+            let tex2 = gfc::Vector::lift_mut(&mut sub_mesh.Tex2);
             tex2.add(gfc::TVector3::new(0.454, 67.799, 0.0));
             tex2.add(gfc::TVector3::new(0.454, 0.201, 0.0));
             tex2.add(gfc::TVector3::new(23.546, 0.201, 0.0));
@@ -276,7 +273,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tex2.add(gfc::TVector3::new(23.546, 67.799, 0.0));
             tex2.add(gfc::TVector3::new(23.546, 0.201, 0.0));
 
-            let color0 = gfc::Vector::<gfc::TVector4<f32>>::from_ptr_mut(&mut sub_mesh.Color0);
+            let color0 = gfc::Vector::lift_mut(&mut sub_mesh.Color0);
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
@@ -286,7 +283,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
 
-            let indices = gfc::Vector::from_ptr_mut(&mut sub_mesh.Indices);
+            let indices = gfc::Vector::lift_mut(&mut sub_mesh.Indices);
             indices.add(0);
             indices.add(1);
             indices.add(2);

@@ -12,11 +12,13 @@ pdbindgen \
     -o src \
     -i '^gfc::Player$' \
     -i '^gfc::RegionLayer$' \
+    -i '^gfc::RegionLayerData$' \
     -i '^gfc::Skeleton3D$' \
     -i '^gfc::StaticMesh$' \
     -i '^gfc::StaticMeshVisual$' \
     -i '^gfc::TriggerRegion$' \
     -i '^gfc::WorldRegion$' \
+    -i '^gfc::WorldRegionData$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGGraphics,.+>::InstanceHandle$' \

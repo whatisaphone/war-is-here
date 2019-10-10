@@ -28,10 +28,11 @@ pub use crate::darksiders1::code::vigil::{
         world::{
             resource::resourcecache::ResourceCache,
             triggerregion::TriggerRegion,
-            visuals::{object3d::Object3D, object3dcache::Object3DCache},
-            world::World,
+            visuals::{object3d::Object3D, object3dcache::Object3DCache, visual::Visual},
+            world::{World, WorldRegionData},
             worldgroup::WorldGroup,
             worldmanager::WorldObject,
+            worldregion::RegionLayerData,
         },
     },
 };

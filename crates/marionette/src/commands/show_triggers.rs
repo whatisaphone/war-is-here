@@ -25,7 +25,7 @@ unsafe fn go() {
     let root = (*world.as_ptr()).mRoot.ptr();
     scan(root);
 
-    let region_data = gfc::Vector::from_ptr(&(*world.as_ptr()).mRegionData);
+    let region_data = gfc::Vector::lift(&(*world.as_ptr()).mRegionData);
     for (r, _) in region_data.iter().enumerate() {
         let r = i32::try_from(r).unwrap();
         let region = init_with(|p| {
@@ -36,7 +36,7 @@ unsafe fn go() {
             continue;
         }
 
-        let layer_data = gfc::Vector::from_ptr(&(*region).mLayerData);
+        let layer_data = gfc::Vector::lift(&(*region).mLayerData);
         for (l, _) in layer_data.iter().enumerate() {
             let l = i32::try_from(l).unwrap();
             let layer = init_with(|p| {

@@ -5890,6 +5890,58 @@ pub struct gfc__AutoRef_gfc__Animation_ {
 }
 
 #[repr(C)]
+pub struct gfc__WorldRegionData {
+    pub vfptr: *const gfc__WorldRegionData__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldRegionData
+    pub mID: i32,
+    pub mName: gfc__HString,
+    pub mRegion: gfc__AutoRef_gfc__WorldRegion_,
+    pub mLayers: gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_,
+    pub mCanLoad: bool,
+}
+
+impl AsPtr<gfc__Object> for *const gfc__WorldRegionData {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__WorldRegionData {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__WorldRegionData__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__WorldRegionData, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__WorldRegionData) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__WorldRegionData, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__WorldRegionData) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegionData) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__WorldRegionData,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__WorldRegionData) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__WorldRegionData,
+        _: *const u64,
+    ) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__WorldRegionData,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__VertexBuffer_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -6170,6 +6222,58 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__HDRDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__RegionLayerData {
+    pub vfptr: *const gfc__RegionLayerData__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__RegionLayerData
+    pub mID: i32,
+    pub mName: gfc__HString,
+    pub mBoundingBox: gfc__TBox_float_gfc__FloatMath_,
+    pub mPackageIDs: gfc__Vector_int_0_gfc__CAllocator_,
+    pub mLayer: gfc__AutoRef_gfc__RegionLayer_,
+}
+
+impl AsPtr<gfc__Object> for *const gfc__RegionLayerData {
+    fn as_ptr(self) -> *const gfc__Object {
+        self as *const _
+    }
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__RegionLayerData {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__RegionLayerData__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__RegionLayerData, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__RegionLayerData) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__RegionLayerData, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__RegionLayerData) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__RegionLayerData) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__RegionLayerData,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__RegionLayerData) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__RegionLayerData,
+        _: *const u64,
+    ) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__RegionLayerData,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
 }
 
 #[repr(C)]
@@ -8041,50 +8145,4 @@ impl AsPtr<gfc__IRefObject> for *const gfc__MBSubMesh {
     fn as_ptr(self) -> *const gfc__IRefObject {
         self as *const _
     }
-}
-
-#[repr(C)]
-pub struct gfc__MBSubMesh__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__MBSubMesh) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__MBSubMesh) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) -> *mut (),
-    pub getScriptState: unsafe extern "thiscall" fn(
-        this: *mut gfc__MBSubMesh,
-        result: *mut gfc__HString,
-    ) -> *mut gfc__HString,
-    pub getScriptEnvironment:
-        unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) -> *mut gfc__Environment,
-    pub getMethodByID:
-        unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(
-        this: *mut gfc__MBSubMesh,
-        _: *mut gfc__ObjectCloner,
-        _: gfc__AutoRef_gfc__Object_,
-    ),
-}
-
-#[repr(C)]
-pub struct gfc__ObjectWriter {
-    pub vfptr: *const gfc__ObjectWriter__vftable,
-    // gfc__IRefObject
-    pub ReferenceCount: i32,
-    // gfc__ObjectWriter
-}
-
-impl AsPtr<gfc__IRefObject> for *const gfc__ObjectWriter {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
-
-#[repr(C)]
-pub struct gfc__ObjectWriter__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__MeshBuilder_ {
-    pub p: *mut gfc__IRefObject,
 }

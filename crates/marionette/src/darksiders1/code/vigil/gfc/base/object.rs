@@ -49,3 +49,8 @@ where
         Self::Target::lower(this)
     }
 }
+
+// Numbers are, obviously, the same on both sides of the divide.
+impl_lift_lower_transmute!(u8, u8);
+impl_lift_lower_transmute!(u16, u16);
+impl_lift_lower_transmute!(u32, u32);

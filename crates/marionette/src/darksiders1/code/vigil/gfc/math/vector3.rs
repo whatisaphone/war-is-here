@@ -1,3 +1,5 @@
+use darksiders1_sys::target;
+
 #[repr(C)]
 #[derive(Clone)]
 pub struct TVector3<T> {
@@ -11,3 +13,5 @@ impl<T> TVector3<T> {
         Self { x, y, z }
     }
 }
+
+impl_lift_lower_transmute!(TVector3<f32>, target::gfc__TVector3_float_gfc__FloatMath_);

@@ -1,4 +1,7 @@
-use crate::darksiders1::gfc;
+use crate::darksiders1::{
+    code::vigil::gfc::base::object::{Lift, Lower},
+    gfc,
+};
 use darksiders1_sys::target;
 use std::{
     convert::{TryFrom, TryInto},
@@ -35,13 +38,35 @@ impl<T> Vector<T> {
 
     pub unsafe fn from_ptr<'a, V>(p: *const V) -> &'a Self
     where
-        T: LoweredVectorElement<Vec = V>,
         V: LoweredVector<Element = T>,
+        T: LoweredVectorElement<Vec = V>,
     {
         &*(p as *const Self)
     }
 
-    pub unsafe fn from_ptr_mut<'a, X>(p: *mut X) -> &'a mut Self {
+    pub unsafe fn from_ptr_mut<'a, V>(p: *mut V) -> &'a mut Self
+    where
+        V: LoweredVector<Element = T>,
+        T: LoweredVectorElement<Vec = V>,
+    {
+        &mut *(p as *mut Self)
+    }
+
+    pub unsafe fn lift<'a, V>(p: *const V) -> &'a Self
+    where
+        V: LoweredVector,
+        V::Element: Lift<Target = T>,
+        T: Lower<Target = <V as LoweredVector>::Element>,
+    {
+        &*(p as *mut Self)
+    }
+
+    pub unsafe fn lift_mut<'a, V>(p: *mut V) -> &'a mut Self
+    where
+        V: LoweredVector,
+        V::Element: Lift<Target = T>,
+        T: Lower<Target = <V as LoweredVector>::Element>,
+    {
         &mut *(p as *mut Self)
     }
 
@@ -177,12 +202,34 @@ macro_rules! lowered_vector {
     };
 }
 
-lowered_vector!(target::gfc__Vector_unsigned_char_0_gfc__CAllocator_, u8);
+lowered_vector!(
+    target::gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_,
+    target::gfc__AutoRef_gfc__MBSubMesh_,
+);
+lowered_vector!(
+    target::gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    target::gfc__AutoRef_gfc__Object_,
+);
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_,
     target::gfc__AutoRef_gfc__RegionLayerData_,
 );
 lowered_vector!(
+    target::gfc__Vector_gfc__AutoRef_gfc__Visual__0_gfc__CAllocator_,
+    target::gfc__AutoRef_gfc__Visual_,
+);
+lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator_,
     target::gfc__AutoRef_gfc__WorldRegionData_,
 );
+lowered_vector!(
+    target::gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    target::gfc__TVector3_float_gfc__FloatMath_,
+);
+lowered_vector!(
+    target::gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
+    target::gfc__TVector4_float_gfc__FloatMath_,
+);
+lowered_vector!(target::gfc__Vector_unsigned_char_0_gfc__CAllocator_, u8);
+lowered_vector!(target::gfc__Vector_unsigned_long_0_gfc__CAllocator_, u32);
+lowered_vector!(target::gfc__Vector_unsigned_short_0_gfc__CAllocator_, u16);

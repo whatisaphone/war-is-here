@@ -1,4 +1,7 @@
-use crate::darksiders1::{code::vigil::gfc::base::object::Lower, Heap};
+use crate::darksiders1::{
+    code::vigil::gfc::base::object::{Lift, Lower},
+    Heap,
+};
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{
@@ -178,6 +181,32 @@ macro_rules! lowered_autoref {
     };
 }
 
+#[allow(clippy::use_self)]
+impl<T: ?Sized> Lift for T
+where
+    T: LoweredAutoRef,
+    T::Target: Lift,
+    <T::Target as Lift>::Target: AsRef<IRefObject>,
+{
+    type Target = AutoRef<<T::Target as Lift>::Target>;
+
+    fn lift(this: *mut Self) -> *mut Self::Target {
+        unsafe { &mut *(this as *mut Self::Target) }
+    }
+
+    fn lower(this: *mut Self::Target) -> *mut Self {
+        unsafe { &mut *(this as *mut Self) }
+    }
+}
+
+impl<T: ?Sized> Lower for AutoRef<T>
+where
+    T: AsRef<IRefObject> + Lower,
+    T::Target: LoweredAutoRefTarget,
+{
+    type Target = <T::Target as LoweredAutoRefTarget>::Struct;
+}
+
 lowered_autoref!(
     target::gfc__AutoRef_gfc__InputStream_,
     target::gfc__InputStream,
@@ -196,6 +225,10 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayer_,
     target::gfc__RegionLayer,
+);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__RegionLayerData_,
+    target::gfc__RegionLayerData,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__Skeleton3D_,
@@ -217,4 +250,8 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldRegion_,
     target::gfc__WorldRegion,
+);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__WorldRegionData_,
+    target::gfc__WorldRegionData,
 );

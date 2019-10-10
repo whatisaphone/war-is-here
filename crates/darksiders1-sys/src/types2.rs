@@ -4,6 +4,52 @@ use super::{types::*, types3::*};
 use pdbindgen_runtime::AsPtr;
 
 #[repr(C)]
+pub struct gfc__MBSubMesh__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__MBSubMesh) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__MBSubMesh) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__MBSubMesh,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__MBSubMesh,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__ObjectWriter {
+    pub vfptr: *const gfc__ObjectWriter__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__ObjectWriter
+}
+
+impl AsPtr<gfc__IRefObject> for *const gfc__ObjectWriter {
+    fn as_ptr(self) -> *const gfc__IRefObject {
+        self as *const _
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ObjectWriter__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__MeshBuilder_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__MBSubMesh_,
     pub mSize: i32,
@@ -8857,49 +8903,4 @@ pub struct keen__TextureData {
 #[repr(C)]
 pub struct keen__PoolAllocator_keen__DepthStencilState_ {
     pub m_pool: keen__BasePoolAllocator,
-}
-
-#[repr(C)]
-pub struct keen__GraphicsSystemBase {
-    pub pShaderFactory: *mut keen__ShaderFactory,
-    pub pSystemAllocator: *mut keen__MemoryAllocator,
-    pub stateObjectPool: keen__CombinedGraphicsStateObjectPool,
-    pub stockObjects: keen__StockObjects,
-}
-
-#[repr(C)]
-pub struct keen__GraphicsStateObjectPool_keen__VertexInputBinding_ {
-    pub m_allocator: keen__PoolAllocator_keen__VertexInputBinding_,
-    pub m_cache: keen__GraphicsStateObjectCache,
-    pub m_peakSize: u32,
-    pub m_cacheHits: u32,
-    pub m_cacheRequests: u32,
-}
-
-#[repr(C)]
-pub struct keen__DownsampleDepthContext {
-    pub shaders: keen__DownsampleDepthVariants,
-    pub copyDepthShader: keen__CopyDepthVariants,
-    pub pConstantBuffer: *mut keen__DynamicConstantBuffer,
-    pub pRasterizerState: *const keen__RasterizerState,
-    pub pDepthBufferSamplerState: *const keen__SamplerState,
-    pub pVertexInputBinding: *const keen__VertexInputBinding,
-    pub pCopyVertexInputBinding: *const keen__VertexInputBinding,
-    pub pDepthBlendState: *const keen__BlendState,
-    pub pDepthDepthStencilState: *const keen__DepthStencilState,
-    pub pStencilBlendState: *const keen__BlendState,
-    pub pStencilDepthStencilState: *const keen__DepthStencilState,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub vertexData: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 24],
-}
-
-#[repr(C)]
-pub struct keen__CombinedGraphicsStateObjectPool {
-    pub m_blendStatePool: keen__GraphicsStateObjectPool_keen__BlendState_,
-    pub m_rasterizerStatePool: keen__GraphicsStateObjectPool_keen__RasterizerState_,
-    pub m_samplerStatePool: keen__GraphicsStateObjectPool_keen__SamplerState_,
-    pub m_depthStencilStatePool: keen__GraphicsStateObjectPool_keen__DepthStencilState_,
-    pub m_vertexFormatPool: keen__GraphicsStateObjectPool_keen__VertexFormat_,
-    pub m_vertexInputBindingPool: keen__GraphicsStateObjectPool_keen__VertexInputBinding_,
 }

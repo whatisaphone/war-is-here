@@ -45,9 +45,7 @@ impl Drop for OOObjectWriter {
     fn drop(&mut self) {
         // Rewrite of missing destructor
         unsafe {
-            ptr::drop_in_place(OOObjectWriterObjectDatabase::from_ptr_mut(
-                &mut (*self.as_ptr()).mObjectDatabase,
-            ));
+            ptr::drop_in_place(gfc::Vector::lift_mut(&mut (*self.as_ptr()).mObjectDatabase));
             target::gfc__ObjectWriter___ObjectWriter(self.as_ptr().static_cast())
         }
     }
