@@ -27,14 +27,14 @@ impl OOObjectWriter {
     pub fn write_object(
         &mut self,
         object: &gfc::Object,
-        output: &mut gfc::OutputStream,
+        output: gfc::AutoRef<gfc::OutputStream>,
         write_defaults: bool,
     ) {
         unsafe {
             target::gfc__OOObjectWriter__writeObject(
                 self.as_ptr(),
                 gfc::AutoRef::lower(gfc::AutoRef::from_ptr(object)),
-                gfc::AutoRef::lower(gfc::AutoRef::from_ptr(output)),
+                gfc::AutoRef::lower(output),
                 write_defaults,
             );
         }

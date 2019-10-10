@@ -78,22 +78,22 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
         unsafe { Self::map(this, |p| AsRef::<U>::as_ref(&*p) as *const U as *mut U) }
     }
 
-    pub fn lower(this: Self) -> <T::Target as AutoRefWrap>::Struct
+    pub fn lower(this: Self) -> <T::Target as LoweredAutoRefTarget>::Struct
     where
         T: Lower,
-        T::Target: AutoRefWrap,
+        T::Target: LoweredAutoRefTarget,
     {
         let p = Self::into_raw(this);
         let p = Lower::lower(p);
-        AutoRefWrap::from_raw(p)
+        <T::Target as LoweredAutoRefTarget>::Struct::from_raw(p)
     }
 
-    pub unsafe fn lift(autoref: <T::Target as AutoRefWrap>::Struct) -> Self
+    pub unsafe fn lift(autoref: <T::Target as LoweredAutoRefTarget>::Struct) -> Self
     where
         T: Lower,
-        T::Target: AutoRefWrap,
+        T::Target: LoweredAutoRefTarget,
     {
-        let p = AutoRefWrap::into_raw(autoref);
+        let p = autoref.into_raw();
         let p = Lower::lift(p);
         Self::from_raw(p)
     }
@@ -102,7 +102,7 @@ impl<T: AsRef<IRefObject> + ?Sized> AutoRef<T> {
 impl<T: AsRef<IRefObject> + ?Sized> Drop for AutoRef<T> {
     fn drop(&mut self) {
         unsafe {
-            (*self.0).as_ref().release_ref();
+            self.as_ref().release_ref();
         }
     }
 }
@@ -115,102 +115,106 @@ impl<T: AsRef<IRefObject> + ?Sized> Deref for AutoRef<T> {
     }
 }
 
+impl<T: AsRef<IRefObject> + ?Sized> Clone for AutoRef<T> {
+    fn clone(&self) -> Self {
+        unsafe {
+            self.as_ref().add_ref();
+        }
+        Self(self.0)
+    }
+}
+
 /// The PDB structs don't use the right type for `AutoRef<T>`'s field. For
 /// example, `AutoRef<WorldObject>` has a field of type `*mut gfc__IRefObject`,
 /// whereas it really _should_ be typed as `*mut gfc__WorldObject`.
 ///
 /// This trait encodes into the type system the correct field type for each
 /// `AutoRef` instantiation in the PDB.
-pub unsafe trait AutoRefWrap {
-    type Struct;
-
-    unsafe fn from_ptr(p: *mut Self) -> Self::Struct;
-    fn from_raw(p: *mut Self) -> Self::Struct;
-    fn into_raw(this: Self::Struct) -> *mut Self;
-    fn ptr(this: *const Self::Struct) -> *mut Self;
-}
-
-pub unsafe trait AutoRefUnwrap: Sized
+pub trait LoweredAutoRef: Sized
 where
-    Self::Target: AutoRefWrap<Struct = Self>,
+    Self::Target: LoweredAutoRefTarget<Struct = Self>,
 {
-    type Target;
+    type Target: ?Sized;
 
-    fn into_raw(self) -> *mut Self::Target {
-        Self::Target::into_raw(self)
-    }
-
-    fn ptr(&self) -> *mut Self::Target {
-        Self::Target::ptr(self)
-    }
+    unsafe fn from_ptr(p: *mut Self::Target) -> Self;
+    fn from_raw(p: *mut Self::Target) -> Self;
+    fn into_raw(self) -> *mut Self::Target;
+    fn ptr(&self) -> *mut Self::Target;
 }
 
-macro_rules! impl_autoref_wrap {
-    ($inner:ty, $autoref:path $(,)?) => {
-        unsafe impl AutoRefWrap for $inner {
-            type Struct = $autoref;
+pub trait LoweredAutoRefTarget
+where
+    Self::Struct: LoweredAutoRef<Target = Self>,
+{
+    type Struct;
+}
 
-            unsafe fn from_ptr(p: *mut Self) -> $autoref {
+macro_rules! lowered_autoref {
+    ($autoref:ty, $target:path $(,)?) => {
+        impl LoweredAutoRef for $autoref {
+            type Target = $target;
+
+            unsafe fn from_ptr(p: *mut $target) -> Self {
                 IRefObject::from_ptr(p.static_cast()).add_ref();
                 Self::from_raw(p)
             }
 
-            fn from_raw(p: *mut Self) -> $autoref {
-                $autoref { p: p.cast() }
+            fn from_raw(p: *mut $target) -> Self {
+                Self { p: p.cast() }
             }
 
-            fn into_raw(this: $autoref) -> *mut Self {
-                this.ptr()
+            fn into_raw(self) -> *mut $target {
+                self.ptr()
             }
 
-            fn ptr(this: *const $autoref) -> *mut Self {
-                unsafe { (*this).p }.cast()
+            fn ptr(&self) -> *mut $target {
+                self.p.cast()
             }
         }
 
-        unsafe impl AutoRefUnwrap for $autoref {
-            type Target = $inner;
+        impl LoweredAutoRefTarget for $target {
+            type Struct = $autoref;
         }
     };
 }
 
-impl_autoref_wrap!(
-    target::gfc__InputStream,
+lowered_autoref!(
     target::gfc__AutoRef_gfc__InputStream_,
+    target::gfc__InputStream,
 );
-impl_autoref_wrap!(target::gfc__MBSubMesh, target::gfc__AutoRef_gfc__MBSubMesh_);
-impl_autoref_wrap!(
-    target::gfc__MeshBuilder,
+lowered_autoref!(target::gfc__AutoRef_gfc__MBSubMesh_, target::gfc__MBSubMesh);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__MeshBuilder_,
+    target::gfc__MeshBuilder,
 );
-impl_autoref_wrap!(target::gfc__Object, target::gfc__AutoRef_gfc__Object_);
-impl_autoref_wrap!(target::gfc__Object3D, target::gfc__AutoRef_gfc__Object3D_);
-impl_autoref_wrap!(
-    target::gfc__OutputStream,
+lowered_autoref!(target::gfc__AutoRef_gfc__Object_, target::gfc__Object);
+lowered_autoref!(target::gfc__AutoRef_gfc__Object3D_, target::gfc__Object3D);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__OutputStream_,
+    target::gfc__OutputStream,
 );
-impl_autoref_wrap!(
-    target::gfc__RegionLayer,
+lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayer_,
+    target::gfc__RegionLayer,
 );
-impl_autoref_wrap!(
-    target::gfc__Skeleton3D,
+lowered_autoref!(
     target::gfc__AutoRef_gfc__Skeleton3D_,
+    target::gfc__Skeleton3D,
 );
-impl_autoref_wrap!(
-    target::gfc__StaticMesh,
+lowered_autoref!(
     target::gfc__AutoRef_gfc__StaticMesh_,
+    target::gfc__StaticMesh,
 );
-impl_autoref_wrap!(target::gfc__Visual, target::gfc__AutoRef_gfc__Visual_);
-impl_autoref_wrap!(
-    target::gfc__WorldGroup,
+lowered_autoref!(target::gfc__AutoRef_gfc__Visual_, target::gfc__Visual);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldGroup_,
+    target::gfc__WorldGroup,
 );
-impl_autoref_wrap!(
-    target::gfc__WorldObject,
+lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldObject_,
+    target::gfc__WorldObject,
 );
-impl_autoref_wrap!(
-    target::gfc__WorldRegion,
+lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldRegion_,
+    target::gfc__WorldRegion,
 );

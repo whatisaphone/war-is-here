@@ -1,6 +1,6 @@
 use crate::{
     darksiders1::{
-        gfc::{self, AutoRefUnwrap, AutoRefWrap},
+        gfc::{self, LoweredAutoRef},
         Heap,
     },
     hooks::ON_POST_UPDATE_QUEUE,
@@ -105,7 +105,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
         let skeleton_visuals = gfc::Vector::<target::gfc__AutoRef_gfc__Visual_>::from_ptr_mut(
             &mut (*object.as_ptr()).mVisuals,
         );
-        skeleton_visuals.add(AutoRefWrap::from_ptr(
+        skeleton_visuals.add(LoweredAutoRef::from_ptr(
             Heap::into_raw(visual).static_cast::<*mut target::gfc__Visual>(),
         ));
 
@@ -339,10 +339,10 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
         let sub_meshes = gfc::Vector::<target::gfc__AutoRef_gfc__MBSubMesh_>::from_ptr_mut(
             &mut builder.mSubMeshes,
         );
-        sub_meshes.add(AutoRefWrap::from_ptr(Heap::into_raw(sub_mesh)));
+        sub_meshes.add(LoweredAutoRef::from_ptr(Heap::into_raw(sub_mesh)));
 
         builder.mFlags.flags = 31;
 
-        AutoRefWrap::from_ptr(Heap::into_raw(builder))
+        LoweredAutoRef::from_ptr(Heap::into_raw(builder))
     }
 }

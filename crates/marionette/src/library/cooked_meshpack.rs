@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::gfc::{self, AutoRefUnwrap},
+    darksiders1::gfc::{self, LoweredAutoRef},
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
@@ -26,7 +26,7 @@ pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
         let object = object.into_raw();
         let object = object as *mut target::gfc__MeshBuilder;
-        gfc::AutoRefWrap::from_raw(object)
+        gfc::LoweredAutoRef::from_raw(object)
     }
 }
 

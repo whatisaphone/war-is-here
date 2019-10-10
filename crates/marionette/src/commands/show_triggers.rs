@@ -1,6 +1,6 @@
 use crate::{
     darksiders1::{
-        gfc::{self, AutoRefUnwrap},
+        gfc::{self, LoweredAutoRef},
         List,
     },
     hooks::ON_POST_UPDATE_QUEUE,
