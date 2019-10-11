@@ -1,7 +1,7 @@
 #![allow(non_camel_case_types, non_snake_case, unused_imports)]
 
 use super::{types2::*, types3::*};
-use pdbindgen_runtime::AsPtr;
+use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
 pub struct unit4__StatUpdateData {
@@ -120,11 +120,7 @@ pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
     pub m_flags: u32,
 }
 
-impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
-    fn as_ptr(self) -> *const keen__MemoryAllocator {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__MemoryAllocator> for keen__BaseMemoryAllocator_keen__TlsfAllocator_ {}
 
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator___vftable {
@@ -186,17 +182,12 @@ pub struct keen__TlsfMemoryAllocator {
     // keen__TlsfMemoryAllocator
 }
 
-impl AsPtr<keen__BaseMemoryAllocator_keen__TlsfAllocator_> for *const keen__TlsfMemoryAllocator {
-    fn as_ptr(self) -> *const keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
-        self as *const _
-    }
+unsafe impl UpcastToNop<keen__BaseMemoryAllocator_keen__TlsfAllocator_>
+    for keen__TlsfMemoryAllocator
+{
 }
 
-impl AsPtr<keen__MemoryAllocator> for *const keen__TlsfMemoryAllocator {
-    fn as_ptr(self) -> *const keen__MemoryAllocator {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__MemoryAllocator> for keen__TlsfMemoryAllocator {}
 
 #[repr(C)]
 pub struct keen__TlsfMemoryAllocator__vftable {
@@ -289,11 +280,7 @@ pub struct keen__UserAccountSystem {
     pub accountCount: u32,
 }
 
-impl AsPtr<keen__UserAccountSystemBase> for *const keen__UserAccountSystem {
-    fn as_ptr(self) -> *const keen__UserAccountSystemBase {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__UserAccountSystemBase> for keen__UserAccountSystem {}
 
 #[repr(C)]
 pub struct LeaderboardEntry_t {
@@ -563,23 +550,11 @@ pub struct ID3D11ShaderResourceView {
      * ID3D11ShaderResourceView */
 }
 
-impl AsPtr<ID3D11View> for *const ID3D11ShaderResourceView {
-    fn as_ptr(self) -> *const ID3D11View {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11View> for ID3D11ShaderResourceView {}
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11ShaderResourceView {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11ShaderResourceView {}
 
-impl AsPtr<IUnknown> for *const ID3D11ShaderResourceView {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11ShaderResourceView {}
 
 #[repr(C)]
 pub struct ID3D11View {
@@ -589,17 +564,9 @@ pub struct ID3D11View {
      * ID3D11View */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11View {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11View {}
 
-impl AsPtr<IUnknown> for *const ID3D11View {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11View {}
 
 #[repr(C)]
 pub struct ID3D11InputLayout {
@@ -609,17 +576,9 @@ pub struct ID3D11InputLayout {
      * ID3D11InputLayout */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11InputLayout {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11InputLayout {}
 
-impl AsPtr<IUnknown> for *const ID3D11InputLayout {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11InputLayout {}
 
 #[repr(C)]
 pub struct ID3D11DeviceChild {
@@ -628,11 +587,7 @@ pub struct ID3D11DeviceChild {
     // ID3D11DeviceChild
 }
 
-impl AsPtr<IUnknown> for *const ID3D11DeviceChild {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11DeviceChild {}
 
 #[repr(C)]
 pub struct ID3D11DepthStencilState {
@@ -642,17 +597,9 @@ pub struct ID3D11DepthStencilState {
      * ID3D11DepthStencilState */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11DepthStencilState {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11DepthStencilState {}
 
-impl AsPtr<IUnknown> for *const ID3D11DepthStencilState {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11DepthStencilState {}
 
 #[repr(C)]
 pub struct ID3D11SamplerState {
@@ -662,17 +609,9 @@ pub struct ID3D11SamplerState {
      * ID3D11SamplerState */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11SamplerState {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11SamplerState {}
 
-impl AsPtr<IUnknown> for *const ID3D11SamplerState {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11SamplerState {}
 
 #[repr(C)]
 pub struct _D3D11_SIGNATURE_PARAMETER_DESC {
@@ -695,23 +634,11 @@ pub struct ID3D11RenderTargetView {
      * ID3D11RenderTargetView */
 }
 
-impl AsPtr<ID3D11View> for *const ID3D11RenderTargetView {
-    fn as_ptr(self) -> *const ID3D11View {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11View> for ID3D11RenderTargetView {}
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11RenderTargetView {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11RenderTargetView {}
 
-impl AsPtr<IUnknown> for *const ID3D11RenderTargetView {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11RenderTargetView {}
 
 #[repr(C)]
 pub struct ID3D11Device {
@@ -720,11 +647,7 @@ pub struct ID3D11Device {
     // ID3D11Device
 }
 
-impl AsPtr<IUnknown> for *const ID3D11Device {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11Device {}
 
 #[repr(C)]
 pub struct ID3D11DepthStencilView {
@@ -735,23 +658,11 @@ pub struct ID3D11DepthStencilView {
      * ID3D11DepthStencilView */
 }
 
-impl AsPtr<ID3D11View> for *const ID3D11DepthStencilView {
-    fn as_ptr(self) -> *const ID3D11View {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11View> for ID3D11DepthStencilView {}
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11DepthStencilView {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11DepthStencilView {}
 
-impl AsPtr<IUnknown> for *const ID3D11DepthStencilView {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11DepthStencilView {}
 
 #[repr(C)]
 pub struct ID3D11VertexShader {
@@ -761,17 +672,9 @@ pub struct ID3D11VertexShader {
      * ID3D11VertexShader */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11VertexShader {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11VertexShader {}
 
-impl AsPtr<IUnknown> for *const ID3D11VertexShader {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11VertexShader {}
 
 #[repr(C)]
 pub struct ID3D11BlendState {
@@ -781,17 +684,9 @@ pub struct ID3D11BlendState {
      * ID3D11BlendState */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11BlendState {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11BlendState {}
 
-impl AsPtr<IUnknown> for *const ID3D11BlendState {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11BlendState {}
 
 #[repr(C)]
 pub struct ID3D11PixelShader {
@@ -801,17 +696,9 @@ pub struct ID3D11PixelShader {
      * ID3D11PixelShader */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11PixelShader {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11PixelShader {}
 
-impl AsPtr<IUnknown> for *const ID3D11PixelShader {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11PixelShader {}
 
 #[repr(C)]
 pub struct keen__DepthStencilState {
@@ -822,11 +709,7 @@ pub struct keen__DepthStencilState {
     pub pState: *mut ID3D11DepthStencilState,
 }
 
-impl AsPtr<keen__GraphicsStateObject> for *const keen__DepthStencilState {
-    fn as_ptr(self) -> *const keen__GraphicsStateObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__GraphicsStateObject> for keen__DepthStencilState {}
 
 #[repr(C)]
 pub struct keen__GraphicsStateObject {
@@ -938,11 +821,7 @@ pub struct keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObje
     /* keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_ */
 }
 
-impl AsPtr<keen__InternalListBase> for *const keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_ {
-    fn as_ptr(self) -> *const keen__InternalListBase {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__InternalListBase> for keen__InternalList_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_ {}
 
 #[repr(C)]
 pub struct keen__RasterizerState {
@@ -953,11 +832,7 @@ pub struct keen__RasterizerState {
     pub pState: *mut ID3D11RasterizerState,
 }
 
-impl AsPtr<keen__GraphicsStateObject> for *const keen__RasterizerState {
-    fn as_ptr(self) -> *const keen__GraphicsStateObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__GraphicsStateObject> for keen__RasterizerState {}
 
 #[repr(C)]
 pub struct keen__PoolAllocator_keen__HashMap_unsigned_int_keen__GraphicsStateObject___keen__DefaultHashmapTraits_unsigned_int_keen__GraphicsStateObject_______Entry_
@@ -1028,11 +903,7 @@ pub struct keen__SamplerState {
     pub pState: *mut ID3D11SamplerState,
 }
 
-impl AsPtr<keen__GraphicsStateObject> for *const keen__SamplerState {
-    fn as_ptr(self) -> *const keen__GraphicsStateObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__GraphicsStateObject> for keen__SamplerState {}
 
 #[repr(C)]
 pub struct keen__BlendState {
@@ -1043,11 +914,7 @@ pub struct keen__BlendState {
     pub pState: *mut ID3D11BlendState,
 }
 
-impl AsPtr<keen__GraphicsStateObject> for *const keen__BlendState {
-    fn as_ptr(self) -> *const keen__GraphicsStateObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__GraphicsStateObject> for keen__BlendState {}
 
 #[repr(C)]
 pub struct keen__ShaderPipeline {
@@ -1066,11 +933,7 @@ pub struct keen__VertexInputBinding {
     pub geometryModeMask: u32,
 }
 
-impl AsPtr<keen__GraphicsStateObject> for *const keen__VertexInputBinding {
-    fn as_ptr(self) -> *const keen__GraphicsStateObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__GraphicsStateObject> for keen__VertexInputBinding {}
 
 #[repr(C)]
 pub struct keen__DataBuffer {
@@ -1120,11 +983,7 @@ pub struct keen__VertexFormat {
     pub streamStride: [u32; 3],
 }
 
-impl AsPtr<keen__GraphicsStateObject> for *const keen__VertexFormat {
-    fn as_ptr(self) -> *const keen__GraphicsStateObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__GraphicsStateObject> for keen__VertexFormat {}
 
 #[repr(C)]
 pub struct ID3D11Buffer {
@@ -1135,23 +994,11 @@ pub struct ID3D11Buffer {
      * ID3D11Buffer */
 }
 
-impl AsPtr<ID3D11Resource> for *const ID3D11Buffer {
-    fn as_ptr(self) -> *const ID3D11Resource {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11Resource> for ID3D11Buffer {}
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11Buffer {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11Buffer {}
 
-impl AsPtr<IUnknown> for *const ID3D11Buffer {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11Buffer {}
 
 #[repr(C)]
 pub struct ID3D11Resource {
@@ -1161,17 +1008,9 @@ pub struct ID3D11Resource {
      * ID3D11Resource */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11Resource {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11Resource {}
 
-impl AsPtr<IUnknown> for *const ID3D11Resource {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11Resource {}
 
 #[repr(C)]
 pub struct ID3D11RasterizerState {
@@ -1181,17 +1020,9 @@ pub struct ID3D11RasterizerState {
      * ID3D11RasterizerState */
 }
 
-impl AsPtr<ID3D11DeviceChild> for *const ID3D11RasterizerState {
-    fn as_ptr(self) -> *const ID3D11DeviceChild {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11RasterizerState {}
 
-impl AsPtr<IUnknown> for *const ID3D11RasterizerState {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for ID3D11RasterizerState {}
 
 #[repr(C)]
 pub struct keen__SaveDataSystem {
@@ -1545,11 +1376,7 @@ pub struct keen__AliasPathFileDevice {
     pub m_streams: keen__FileStreamAllocator_keen__AliasPathFileDevice__StreamEntry_,
 }
 
-impl AsPtr<keen__FileDeviceInterface> for *const keen__AliasPathFileDevice {
-    fn as_ptr(self) -> *const keen__FileDeviceInterface {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__FileDeviceInterface> for keen__AliasPathFileDevice {}
 
 #[repr(C)]
 pub struct keen__AliasPathFileDevice__vftable {
@@ -1626,11 +1453,7 @@ pub struct keen__NativeFileDevice {
     pub m_useReadThread: bool,
 }
 
-impl AsPtr<keen__FileDeviceInterface> for *const keen__NativeFileDevice {
-    fn as_ptr(self) -> *const keen__FileDeviceInterface {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__FileDeviceInterface> for keen__NativeFileDevice {}
 
 #[repr(C)]
 pub struct keen__NativeFileDevice__vftable {
@@ -1720,11 +1543,7 @@ pub struct keen__PakFileDevice {
     pub m_chunkAllocator: keen__TlsfMemoryAllocator,
 }
 
-impl AsPtr<keen__FileDeviceInterface> for *const keen__PakFileDevice {
-    fn as_ptr(self) -> *const keen__FileDeviceInterface {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__FileDeviceInterface> for keen__PakFileDevice {}
 
 #[repr(C)]
 pub struct keen__PakFileDevice__vftable {
@@ -1806,10 +1625,9 @@ pub struct keen__FileSystemDeviceEntry {
     pub isInternalDevice: bool,
 }
 
-impl AsPtr<keen__ListEntry_keen__FileSystemDeviceEntry_> for *const keen__FileSystemDeviceEntry {
-    fn as_ptr(self) -> *const keen__ListEntry_keen__FileSystemDeviceEntry_ {
-        self as *const _
-    }
+unsafe impl UpcastToNop<keen__ListEntry_keen__FileSystemDeviceEntry_>
+    for keen__FileSystemDeviceEntry
+{
 }
 
 #[repr(C)]
@@ -1828,11 +1646,7 @@ pub struct keen__MemoryFileDevice {
     pub m_fileIndices: keen__IndexArray,
 }
 
-impl AsPtr<keen__FileDeviceInterface> for *const keen__MemoryFileDevice {
-    fn as_ptr(self) -> *const keen__FileDeviceInterface {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__FileDeviceInterface> for keen__MemoryFileDevice {}
 
 #[repr(C)]
 pub struct keen__MemoryFileDevice__vftable {
@@ -2021,11 +1835,7 @@ pub struct keen__MemoryFileDeviceMountData {
     pub fileHandle: u32,
 }
 
-impl AsPtr<keen__FileDeviceMountData> for *const keen__MemoryFileDeviceMountData {
-    fn as_ptr(self) -> *const keen__FileDeviceMountData {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__FileDeviceMountData> for keen__MemoryFileDeviceMountData {}
 
 #[repr(C)]
 pub struct keen__Array_keen__NativeFileDevice__ReadThreadContext_ {
@@ -2050,11 +1860,7 @@ pub struct keen__FileSystemMountPoint {
     pub pFirstDevice: *mut keen__FileSystemDeviceEntry,
 }
 
-impl AsPtr<keen__TreeNode_keen__FileSystemMountPoint_> for *const keen__FileSystemMountPoint {
-    fn as_ptr(self) -> *const keen__TreeNode_keen__FileSystemMountPoint_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__TreeNode_keen__FileSystemMountPoint_> for keen__FileSystemMountPoint {}
 
 #[repr(C)]
 pub struct keen__IndexArray {
@@ -2076,10 +1882,9 @@ pub struct keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
     pub m_flags: u32,
 }
 
-impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
-    fn as_ptr(self) -> *const keen__MemoryAllocator {
-        self as *const _
-    }
+unsafe impl UpcastToNop<keen__MemoryAllocator>
+    for keen__BaseMemoryAllocator_keen__LowOverheadAllocator_
+{
 }
 
 #[repr(C)]
@@ -2123,11 +1928,7 @@ pub struct IDirectInput8A {
     // IDirectInput8A
 }
 
-impl AsPtr<IUnknown> for *const IDirectInput8A {
-    fn as_ptr(self) -> *const IUnknown {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<IUnknown> for IDirectInput8A {}
 
 #[repr(C)]
 pub struct keen__InputSystem {
@@ -2251,11 +2052,7 @@ pub struct std__allocator_char_ {
     // std__allocator_char_
 }
 
-impl AsPtr<std___Allocator_base_char_> for *const std__allocator_char_ {
-    fn as_ptr(self) -> *const std___Allocator_base_char_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Allocator_base_char_> for std__allocator_char_ {}
 
 #[repr(C)]
 pub struct std___Container_base0 {
@@ -2275,11 +2072,7 @@ pub struct std___String_val_char_std__allocator_char___ {
     pub _Alval: std__allocator_char_,
 }
 
-impl AsPtr<std___Container_base0> for *const std___String_val_char_std__allocator_char___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___String_val_char_std__allocator_char___ {}
 
 #[repr(C)]
 pub struct std___Allocator_base_char_ {
@@ -2300,20 +2093,14 @@ pub struct std__basic_string_char_std__char_traits_char__std__allocator_char___ 
     // std__basic_string_char_std__char_traits_char__std__allocator_char___
 }
 
-impl AsPtr<std___String_val_char_std__allocator_char___>
-    for *const std__basic_string_char_std__char_traits_char__std__allocator_char___
+unsafe impl UpcastToNop<std___String_val_char_std__allocator_char___>
+    for std__basic_string_char_std__char_traits_char__std__allocator_char___
 {
-    fn as_ptr(self) -> *const std___String_val_char_std__allocator_char___ {
-        self as *const _
-    }
 }
 
-impl AsPtr<std___Container_base0>
-    for *const std__basic_string_char_std__char_traits_char__std__allocator_char___
+unsafe impl UpcastToNop<std___Container_base0>
+    for std__basic_string_char_std__char_traits_char__std__allocator_char___
 {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -2492,17 +2279,9 @@ pub struct gfc__InputStream {
     pub mBufferPtr: *mut u8,
 }
 
-impl AsPtr<gfc__Stream> for *const gfc__InputStream {
-    fn as_ptr(self) -> *const gfc__Stream {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Stream> for gfc__InputStream {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__InputStream {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__InputStream {}
 
 #[repr(C)]
 pub struct gfc__InputStream__vftable {
@@ -2631,17 +2410,9 @@ pub struct gfc__SoundDesc {
     pub mFlags: gfc__TFlags_unsigned_short_,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__SoundDesc {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__SoundDesc {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__SoundDesc {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__SoundDesc {}
 
 #[repr(C)]
 pub struct gfc__SoundDesc__vftable {
@@ -2680,11 +2451,7 @@ pub struct gfc__Resource {
     pub mPackageID: i32,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Resource {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Resource {}
 
 #[repr(C)]
 pub struct gfc__Resource__vftable {
@@ -2871,11 +2638,7 @@ pub struct gfc__Object {
     // gfc__Object
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Object {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Object {}
 
 #[repr(C)]
 pub struct gfc__Object__vftable {
@@ -2923,17 +2686,9 @@ pub struct gfc__OutputStream {
     pub mEndianess: i32,
 }
 
-impl AsPtr<gfc__Stream> for *const gfc__OutputStream {
-    fn as_ptr(self) -> *const gfc__Stream {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Stream> for gfc__OutputStream {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__OutputStream {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__OutputStream {}
 
 #[repr(C)]
 pub struct gfc__OutputStream__vftable {
@@ -2964,11 +2719,7 @@ pub struct gfc__Property {
     pub mContextFlags: u8,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Property {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Property {}
 
 #[repr(C)]
 pub struct gfc__Property__vftable {
@@ -3077,11 +2828,7 @@ pub struct gfc__Stream {
     // gfc__Stream
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Stream {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Stream {}
 
 #[repr(C)]
 pub struct gfc__Stream__vftable {
@@ -3138,11 +2885,7 @@ pub struct gfc__Class {
     pub mStubCalled: bool,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Class {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Class {}
 
 #[repr(C)]
 pub struct gfc__Class__vftable {
@@ -3188,11 +2931,7 @@ pub struct gfc__Environment {
     pub mTempEnv: bool,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Environment {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Environment {}
 
 #[repr(C)]
 pub struct gfc__Environment__vftable {
@@ -3214,11 +2953,7 @@ pub struct gfc__Method {
     pub mContextFlags: u8,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Method {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Method {}
 
 #[repr(C)]
 pub struct gfc__Method__vftable {
@@ -3282,17 +3017,9 @@ pub struct std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoR
     /* std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ */
 }
 
-impl AsPtr<std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____> for *const std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
-    fn as_ptr(self) -> *const std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____> for std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {}
 
-impl AsPtr<std___Container_base0> for *const std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {}
 
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
@@ -3310,29 +3037,13 @@ pub struct std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_g
     // std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
 }
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
@@ -3348,17 +3059,9 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Param
     pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____,
 }
 
-impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node {
@@ -3377,15 +3080,10 @@ pub struct std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parame
     // std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
 }
 
-impl AsPtr<std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____>
-    for *const std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
+unsafe impl
+    UpcastToNop<std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____>
+    for std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
 {
-    fn as_ptr(
-        self,
-    ) -> *const std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
-    {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -3398,11 +3096,7 @@ pub struct std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {}
 
 #[repr(C)]
 pub struct std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____
@@ -3418,11 +3112,7 @@ pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__Aut
     /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ */
 }
 
-impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {
-    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {}
 
 #[repr(C)]
 pub struct std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
@@ -3432,14 +3122,10 @@ pub struct std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object__
     // std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___
 }
 
-impl AsPtr<std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___>
-    for *const std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___
+unsafe impl
+    UpcastToNop<std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___>
+    for std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___
 {
-    fn as_ptr(
-        self,
-    ) -> *const std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -3458,29 +3144,13 @@ pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter
     // std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
 }
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
 #[repr(C)]
 pub struct std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
@@ -3499,35 +3169,15 @@ pub struct std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc
     // std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______
 }
 
-impl AsPtr<std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
-    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {}
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {}
 
-impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {}
 
-impl AsPtr<std___Container_base0> for *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {}
 
 #[repr(C)]
 pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
@@ -3537,12 +3187,9 @@ pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
     // std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___
 }
 
-impl AsPtr<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___>
-    for *const std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___
+unsafe impl UpcastToNop<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___>
+    for std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter___
 {
-    fn as_ptr(self) -> *const std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -3562,35 +3209,15 @@ pub struct std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__les
     // std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______
 }
 
-impl AsPtr<std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {}
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {}
 
-impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {}
 
-impl AsPtr<std___Container_base0> for *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {}
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
@@ -3606,17 +3233,9 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoR
     pub _Alval: std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____,
 }
 
-impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node {
@@ -3638,11 +3257,7 @@ pub struct std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std_
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {}
 
 #[repr(C)]
 pub struct std__allocator_gfc__AutoRef_gfc__ImageSurface___ {
@@ -3651,12 +3266,9 @@ pub struct std__allocator_gfc__AutoRef_gfc__ImageSurface___ {
     // std__allocator_gfc__AutoRef_gfc__ImageSurface___
 }
 
-impl AsPtr<std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___>
-    for *const std__allocator_gfc__AutoRef_gfc__ImageSurface___
+unsafe impl UpcastToNop<std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___>
+    for std__allocator_gfc__AutoRef_gfc__ImageSurface___
 {
-    fn as_ptr(self) -> *const std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -3674,23 +3286,11 @@ pub struct std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoR
     // std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
 }
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {}
 
 #[repr(C)]
 pub struct std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object___ {
@@ -3706,11 +3306,7 @@ pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__Aut
     /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ */
 }
 
-impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {
-    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {}
 
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____ {
@@ -3719,12 +3315,11 @@ pub struct std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldCo
     // std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
 }
 
-impl AsPtr<std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____>
-    for *const std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
+unsafe impl
+    UpcastToNop<
+        std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____,
+    > for std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
 {
-    fn as_ptr(self) -> *const std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____{
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -3740,11 +3335,7 @@ pub struct std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__
     pub _Alval: std__allocator_gfc__AutoRef_gfc__ImageSurface___,
 }
 
-impl AsPtr<std___Container_base0> for *const std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____ {}
 
 #[repr(C)]
 pub struct std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____ {
@@ -3767,29 +3358,13 @@ pub struct std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComp
     // std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
 }
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
@@ -3805,17 +3380,9 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__World
     pub _Alval: std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____,
 }
 
-impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
 #[repr(C)]
 pub struct std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___ {
@@ -3837,23 +3404,11 @@ pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Param
     // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
 }
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {}
 
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
@@ -3870,23 +3425,11 @@ pub struct std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__World
     // std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
 }
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {}
 
 #[repr(C)]
 pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_
@@ -3911,35 +3454,15 @@ pub struct std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HSt
     // std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______
 }
 
-impl AsPtr<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
-    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {}
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {}
 
-impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {}
 
-impl AsPtr<std___Container_base0> for *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {}
 
 #[repr(C)]
 pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_
@@ -3955,11 +3478,7 @@ pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Obj
     /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ */
 }
 
-impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {
-    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {}
 
 #[repr(C)]
 pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
@@ -3974,11 +3493,7 @@ pub struct std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRe
     // std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____
 }
 
-impl AsPtr<std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____> for *const std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {
-    fn as_ptr(self) -> *const std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____> for std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {}
 
 #[repr(C)]
 pub struct std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
@@ -3990,11 +3505,7 @@ pub struct std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object_
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {}
 
 #[repr(C)]
 pub struct gfc__LightData {
@@ -4064,12 +3575,9 @@ pub struct gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_ {
     pub mFixedData: [u8; 40],
 }
 
-impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_>
-    for *const gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_
+unsafe impl UpcastToNop<gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_>
+    for gfc__FixedVector_gfc__AutoRef_gfc__HDRDesc__10_0_gfc__CAllocator_
 {
-    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -4082,12 +3590,9 @@ pub struct gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAlloc
     pub mFixedData: [u8; 40],
 }
 
-impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_>
-    for *const gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAllocator_
+unsafe impl UpcastToNop<gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_>
+    for gfc__FixedVector_gfc__AutoRef_gfc__DepthOfFieldDesc__10_0_gfc__CAllocator_
 {
-    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -4099,17 +3604,9 @@ pub struct gfc__StaticMesh {
      * gfc__StaticMesh */
 }
 
-impl AsPtr<gfc__Mesh> for *const gfc__StaticMesh {
-    fn as_ptr(self) -> *const gfc__Mesh {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Mesh> for gfc__StaticMesh {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__StaticMesh {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__StaticMesh {}
 
 #[repr(C)]
 pub struct gfc__StaticMesh__vftable {
@@ -4227,11 +3724,7 @@ pub struct gfc__VertexBuffer {
     // gfc__VertexBuffer
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__VertexBuffer {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__VertexBuffer {}
 
 #[repr(C)]
 pub struct gfc__VertexBuffer__vftable {
@@ -4278,11 +3771,7 @@ pub struct gfc__IndexBuffer {
     // gfc__IndexBuffer
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__IndexBuffer {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__IndexBuffer {}
 
 #[repr(C)]
 pub struct gfc__IndexBuffer__vftable {
@@ -4406,23 +3895,11 @@ pub struct gfc__FogDesc {
     __pdbindgen_padding_2: [u8; 12],
 }
 
-impl AsPtr<gfc__EnvironmentDesc> for *const gfc__FogDesc {
-    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__EnvironmentDesc> for gfc__FogDesc {}
 
-impl AsPtr<gfc__Object> for *const gfc__FogDesc {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__FogDesc {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__FogDesc {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__FogDesc {}
 
 #[repr(C)]
 pub struct gfc__FogDesc__vftable {
@@ -4753,12 +4230,9 @@ pub struct gfc__FixedVector_gfc__AutoRef_gfc__AmbientDesc__10_0_gfc__CAllocator_
     pub mFixedData: [u8; 40],
 }
 
-impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_>
-    for *const gfc__FixedVector_gfc__AutoRef_gfc__AmbientDesc__10_0_gfc__CAllocator_
+unsafe impl UpcastToNop<gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_>
+    for gfc__FixedVector_gfc__AutoRef_gfc__AmbientDesc__10_0_gfc__CAllocator_
 {
-    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__AmbientDesc__0_gfc__CAllocator_ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -4827,11 +4301,7 @@ pub struct gfc__Camera3D {
     __pdbindgen_padding_3: [u8; 8],
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Camera3D {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Camera3D {}
 
 #[repr(C)]
 pub struct gfc__Camera3D__vftable {
@@ -4868,23 +4338,11 @@ pub struct gfc__DepthOfFieldDesc {
     __pdbindgen_padding_2: [u8; 12],
 }
 
-impl AsPtr<gfc__EnvironmentDesc> for *const gfc__DepthOfFieldDesc {
-    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__EnvironmentDesc> for gfc__DepthOfFieldDesc {}
 
-impl AsPtr<gfc__Object> for *const gfc__DepthOfFieldDesc {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__DepthOfFieldDesc {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__DepthOfFieldDesc {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__DepthOfFieldDesc {}
 
 #[repr(C)]
 pub struct gfc__DepthOfFieldDesc__vftable {
@@ -5068,23 +4526,11 @@ pub struct gfc__CameraBlurDesc {
     pub mManager: *mut gfc__EnvironmentManager,
 }
 
-impl AsPtr<gfc__EnvironmentDesc> for *const gfc__CameraBlurDesc {
-    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__EnvironmentDesc> for gfc__CameraBlurDesc {}
 
-impl AsPtr<gfc__Object> for *const gfc__CameraBlurDesc {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__CameraBlurDesc {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__CameraBlurDesc {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__CameraBlurDesc {}
 
 #[repr(C)]
 pub struct gfc__CameraBlurDesc__vftable {
@@ -5164,11 +4610,7 @@ pub struct gfc__Shader {
     pub mLocked: bool,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Shader {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Shader {}
 
 #[repr(C)]
 pub struct gfc__Shader__vftable {
@@ -5254,17 +4696,9 @@ pub struct gfc__WorldObject {
     pub mPackageID: i32,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__WorldObject {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__WorldObject {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__WorldObject {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__WorldObject {}
 
 #[repr(C)]
 pub struct gfc__WorldObject__vftable {
@@ -5526,42 +4960,19 @@ pub struct gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc
     // gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____
 }
 
-impl AsPtr<std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
-    fn as_ptr(self) -> *const std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______> for gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {}
 
-impl AsPtr<std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
-    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {}
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___> for gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {}
 
-impl AsPtr<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_> for gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {}
 
-impl AsPtr<std___Container_base0>
-    for *const gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____
+unsafe impl UpcastToNop<std___Container_base0>
+    for gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____
 {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -5599,11 +5010,7 @@ pub struct gfc__Image {
     pub mSurfaces: std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Image {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Image {}
 
 #[repr(C)]
 pub struct gfc__Image__vftable {
@@ -5671,17 +5078,9 @@ pub struct gfc__World {
     pub mIsSettling: bool,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__World {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__World {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__World {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__World {}
 
 #[repr(C)]
 pub struct gfc__World__vftable {
@@ -5739,23 +5138,11 @@ pub struct gfc__AmbientDesc {
     __pdbindgen_padding: [u8; 12],
 }
 
-impl AsPtr<gfc__EnvironmentDesc> for *const gfc__AmbientDesc {
-    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__EnvironmentDesc> for gfc__AmbientDesc {}
 
-impl AsPtr<gfc__Object> for *const gfc__AmbientDesc {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__AmbientDesc {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__AmbientDesc {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__AmbientDesc {}
 
 #[repr(C)]
 pub struct gfc__AmbientDesc__vftable {
@@ -5804,11 +5191,7 @@ pub struct gfc__Texture {
     pub mName: gfc__HString,
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Texture {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Texture {}
 
 #[repr(C)]
 pub struct gfc__Texture__vftable {
@@ -5903,17 +5286,9 @@ pub struct gfc__WorldRegionData {
     pub mCanLoad: bool,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__WorldRegionData {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__WorldRegionData {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__WorldRegionData {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__WorldRegionData {}
 
 #[repr(C)]
 pub struct gfc__WorldRegionData__vftable {
@@ -5971,23 +5346,11 @@ pub struct gfc__ByteOutputStream {
     pub mOutput: gfc__Vector_unsigned_char_0_gfc__CAllocator_,
 }
 
-impl AsPtr<gfc__OutputStream> for *const gfc__ByteOutputStream {
-    fn as_ptr(self) -> *const gfc__OutputStream {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__OutputStream> for gfc__ByteOutputStream {}
 
-impl AsPtr<gfc__Stream> for *const gfc__ByteOutputStream {
-    fn as_ptr(self) -> *const gfc__Stream {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Stream> for gfc__ByteOutputStream {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__ByteOutputStream {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__ByteOutputStream {}
 
 #[repr(C)]
 pub struct gfc__ByteOutputStream__vftable {
@@ -6035,14 +5398,9 @@ pub struct gfc__FixedVector_gfc__AutoRef_gfc__FullScreenEffectDesc__10_0_gfc__CA
     pub mFixedData: [u8; 40],
 }
 
-impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator_>
-    for *const gfc__FixedVector_gfc__AutoRef_gfc__FullScreenEffectDesc__10_0_gfc__CAllocator_
+unsafe impl UpcastToNop<gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator_>
+    for gfc__FixedVector_gfc__AutoRef_gfc__FullScreenEffectDesc__10_0_gfc__CAllocator_
 {
-    fn as_ptr(
-        self,
-    ) -> *const gfc__Vector_gfc__AutoRef_gfc__FullScreenEffectDesc__0_gfc__CAllocator_ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -6075,11 +5433,7 @@ pub struct gfc__Mesh {
     // gfc__Mesh
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Mesh {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Mesh {}
 
 #[repr(C)]
 pub struct gfc__Mesh__vftable {
@@ -6158,17 +5512,9 @@ pub struct gfc__WorldRegion {
     pub mHide: bool,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__WorldRegion {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__WorldRegion {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__WorldRegion {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__WorldRegion {}
 
 #[repr(C)]
 pub struct gfc__WorldRegion__vftable {
@@ -6238,17 +5584,9 @@ pub struct gfc__RegionLayerData {
     pub mLayer: gfc__AutoRef_gfc__RegionLayer_,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__RegionLayerData {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__RegionLayerData {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__RegionLayerData {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__RegionLayerData {}
 
 #[repr(C)]
 pub struct gfc__RegionLayerData__vftable {
@@ -6294,11 +5632,7 @@ pub struct gfc__ObjectReader {
     // gfc__ObjectReader
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__ObjectReader {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__ObjectReader {}
 
 #[repr(C)]
 pub struct gfc__ObjectReader__vftable {
@@ -6370,17 +5704,9 @@ pub struct gfc__Material {
     pub mShaderContext: gfc__AutoRef_gfc__ShaderContext_,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__Material {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__Material {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Material {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Material {}
 
 #[repr(C)]
 pub struct gfc__Material__vftable {
@@ -6611,11 +5937,7 @@ pub struct gfc__KGGraphics {
     __pdbindgen_padding_7: [u8; 4],
 }
 
-impl AsPtr<gfc__Graphics> for *const gfc__KGGraphics {
-    fn as_ptr(self) -> *const gfc__Graphics {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Graphics> for gfc__KGGraphics {}
 
 #[repr(C)]
 pub struct gfc__KGGraphics__vftable {
@@ -6936,12 +6258,9 @@ pub struct gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocat
     pub mFixedData: [u8; 40],
 }
 
-impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_>
-    for *const gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocator_
+unsafe impl UpcastToNop<gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_>
+    for gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocator_
 {
-    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -6959,11 +6278,7 @@ pub struct gfc__VertexDeclaration {
     // gfc__VertexDeclaration
 }
 
-impl AsPtr<gfc__IRefObject> for *const gfc__VertexDeclaration {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__VertexDeclaration {}
 
 #[repr(C)]
 pub struct gfc__VertexDeclaration__vftable {
@@ -6981,12 +6296,9 @@ pub struct gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_ {
     pub mFixedData: [u8; 40],
 }
 
-impl AsPtr<gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_>
-    for *const gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_
+unsafe impl UpcastToNop<gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_>
+    for gfc__FixedVector_gfc__AutoRef_gfc__FogDesc__10_0_gfc__CAllocator_
 {
-    fn as_ptr(self) -> *const gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -7015,41 +6327,17 @@ pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__les
     // gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____
 }
 
-impl AsPtr<std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
-    fn as_ptr(self) -> *const std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______> for gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {}
 
-impl AsPtr<std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
-    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {}
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___> for gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {}
 
-impl AsPtr<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_> for gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {}
 
-impl AsPtr<std___Container_base0> for *const gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {}
 
 #[repr(C)]
 pub struct gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_ {
@@ -7082,23 +6370,11 @@ pub struct gfc__ByteInputStream {
     pub mOwnsBuffer: bool,
 }
 
-impl AsPtr<gfc__InputStream> for *const gfc__ByteInputStream {
-    fn as_ptr(self) -> *const gfc__InputStream {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__InputStream> for gfc__ByteInputStream {}
 
-impl AsPtr<gfc__Stream> for *const gfc__ByteInputStream {
-    fn as_ptr(self) -> *const gfc__Stream {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Stream> for gfc__ByteInputStream {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__ByteInputStream {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__ByteInputStream {}
 
 #[repr(C)]
 pub struct gfc__ByteInputStream__vftable {
@@ -7142,42 +6418,19 @@ pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HSt
     // gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___
 }
 
-impl AsPtr<std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
-    fn as_ptr(self) -> *const std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {}
 
-impl AsPtr<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
-    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {}
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {}
 
-impl AsPtr<std___Container_base0>
-    for *const gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___
+unsafe impl UpcastToNop<std___Container_base0>
+    for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___
 {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -7215,27 +6468,15 @@ pub struct gfc__Skeleton3D {
     pub mRefNode: gfc__HString,
 }
 
-impl AsPtr<gfc__Node3D> for *const gfc__Skeleton3D {
-    fn as_ptr(self) -> *const gfc__Node3D {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Node3D> for gfc__Skeleton3D {}
 
-impl AsPtr<gfc__Object> for *const gfc__Skeleton3D {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__Skeleton3D {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Skeleton3D {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Skeleton3D {}
 
-impl AsPtr<gfc__Hierarchical_gfc__Node3D_> for *const gfc__Skeleton3D {
-    fn as_ptr(self) -> *const gfc__Hierarchical_gfc__Node3D_ {
-        (self as usize + 0x8) as *const _
+unsafe impl UpcastTo<gfc__Hierarchical_gfc__Node3D_> for gfc__Skeleton3D {
+    fn upcast_to(p: *const Self) -> *const gfc__Hierarchical_gfc__Node3D_ {
+        (p as usize + 0x8) as *const _
     }
 }
 
@@ -7291,21 +6532,13 @@ pub struct gfc__Node3D {
     pub mName: gfc__HString,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__Node3D {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__Node3D {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__Node3D {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Node3D {}
 
-impl AsPtr<gfc__Hierarchical_gfc__Node3D_> for *const gfc__Node3D {
-    fn as_ptr(self) -> *const gfc__Hierarchical_gfc__Node3D_ {
-        (self as usize + 0x8) as *const _
+unsafe impl UpcastTo<gfc__Hierarchical_gfc__Node3D_> for gfc__Node3D {
+    fn upcast_to(p: *const Self) -> *const gfc__Hierarchical_gfc__Node3D_ {
+        (p as usize + 0x8) as *const _
     }
 }
 
@@ -7355,23 +6588,11 @@ pub struct gfc__HDRDesc {
     pub mManager: *mut gfc__EnvironmentManager,
 }
 
-impl AsPtr<gfc__EnvironmentDesc> for *const gfc__HDRDesc {
-    fn as_ptr(self) -> *const gfc__EnvironmentDesc {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__EnvironmentDesc> for gfc__HDRDesc {}
 
-impl AsPtr<gfc__Object> for *const gfc__HDRDesc {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__HDRDesc {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__HDRDesc {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__HDRDesc {}
 
 #[repr(C)]
 pub struct gfc__HDRDesc__vftable {
@@ -7407,17 +6628,9 @@ pub struct gfc__EnvironmentDesc {
     pub mApplied: bool,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__EnvironmentDesc {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__EnvironmentDesc {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__EnvironmentDesc {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__EnvironmentDesc {}
 
 #[repr(C)]
 pub struct gfc__EnvironmentDesc__vftable {
@@ -7464,19 +6677,12 @@ pub struct keen__ZoneMemoryAllocator {
     // keen__ZoneMemoryAllocator
 }
 
-impl AsPtr<keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_>
-    for *const keen__ZoneMemoryAllocator
+unsafe impl UpcastToNop<keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_>
+    for keen__ZoneMemoryAllocator
 {
-    fn as_ptr(self) -> *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
-        self as *const _
-    }
 }
 
-impl AsPtr<keen__MemoryAllocator> for *const keen__ZoneMemoryAllocator {
-    fn as_ptr(self) -> *const keen__MemoryAllocator {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__MemoryAllocator> for keen__ZoneMemoryAllocator {}
 
 #[repr(C)]
 pub struct keen__ZoneMemoryAllocator__vftable {
@@ -7508,10 +6714,9 @@ pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
     pub m_flags: u32,
 }
 
-impl AsPtr<keen__MemoryAllocator> for *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
-    fn as_ptr(self) -> *const keen__MemoryAllocator {
-        self as *const _
-    }
+unsafe impl UpcastToNop<keen__MemoryAllocator>
+    for keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_
+{
 }
 
 #[repr(C)]
@@ -7552,19 +6757,12 @@ pub struct keen__LowOverheadMemoryAllocator {
     // keen__LowOverheadMemoryAllocator
 }
 
-impl AsPtr<keen__BaseMemoryAllocator_keen__LowOverheadAllocator_>
-    for *const keen__LowOverheadMemoryAllocator
+unsafe impl UpcastToNop<keen__BaseMemoryAllocator_keen__LowOverheadAllocator_>
+    for keen__LowOverheadMemoryAllocator
 {
-    fn as_ptr(self) -> *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
-        self as *const _
-    }
 }
 
-impl AsPtr<keen__MemoryAllocator> for *const keen__LowOverheadMemoryAllocator {
-    fn as_ptr(self) -> *const keen__MemoryAllocator {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<keen__MemoryAllocator> for keen__LowOverheadMemoryAllocator {}
 
 #[repr(C)]
 pub struct keen__LowOverheadMemoryAllocator__vftable {
@@ -7607,12 +6805,9 @@ pub struct std__allocator_std__pair_gfc__String_const__gfc__String___ {
     // std__allocator_std__pair_gfc__String_const__gfc__String___
 }
 
-impl AsPtr<std___Allocator_base_std__pair_gfc__String_const__gfc__String___>
-    for *const std__allocator_std__pair_gfc__String_const__gfc__String___
+unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__String_const__gfc__String___>
+    for std__allocator_std__pair_gfc__String_const__gfc__String___
 {
-    fn as_ptr(self) -> *const std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -7629,17 +6824,9 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gf
     pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
 }
 
-impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node {
@@ -7659,11 +6846,7 @@ pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__Stri
     /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ */
 }
 
-impl AsPtr<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_> for *const std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {
-    fn as_ptr(self) -> *const std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {}
 
 #[repr(C)]
 pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
@@ -7675,11 +6858,7 @@ pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std_
     pub comp: compile_error!("malformed PDB: oops"),
 }
 
-impl AsPtr<std___Container_base0> for *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {}
 
 #[repr(C)]
 pub struct std__pair_gfc__String_const__gfc__String_ {
@@ -7689,12 +6868,9 @@ pub struct std__pair_gfc__String_const__gfc__String_ {
     // std__pair_gfc__String_const__gfc__String_
 }
 
-impl AsPtr<std___Pair_base_gfc__String_const__gfc__String_>
-    for *const std__pair_gfc__String_const__gfc__String_
+unsafe impl UpcastToNop<std___Pair_base_gfc__String_const__gfc__String_>
+    for std__pair_gfc__String_const__gfc__String_
 {
-    fn as_ptr(self) -> *const std___Pair_base_gfc__String_const__gfc__String_ {
-        self as *const _
-    }
 }
 
 #[repr(C)]
@@ -7724,29 +6900,13 @@ pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__S
     // std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
 }
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
@@ -7763,23 +6923,11 @@ pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gf
     // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
 }
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
-impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
-impl AsPtr<std___Container_base0> for *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
 
 #[repr(C)]
 pub struct std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
@@ -7798,35 +6946,15 @@ pub struct std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocato
     // std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____
 }
 
-impl AsPtr<std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
-    fn as_ptr(self) -> *const std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
 
-impl AsPtr<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
-    fn as_ptr(self) -> *const std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
 
-impl AsPtr<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
-    fn as_ptr(self) -> *const std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
 
-impl AsPtr<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
-    fn as_ptr(self) -> *const std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
 
-impl AsPtr<std___Container_base0> for *const std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
-    fn as_ptr(self) -> *const std___Container_base0 {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
 
 #[repr(C)]
 pub struct gfc__MBWeights {
@@ -7863,17 +6991,9 @@ pub struct gfc__MeshBuilder {
     pub mFlags: gfc__TFlags_unsigned_long_,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__MeshBuilder {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__MeshBuilder {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__MeshBuilder {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshBuilder {}
 
 #[repr(C)]
 pub struct gfc__MeshBuilder__vftable {
@@ -7918,11 +7038,7 @@ pub struct gfc__MeshCache {
     pub mReloadInfo: gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_,
 }
 
-impl AsPtr<gfc__ResourceCache> for *const gfc__MeshCache {
-    fn as_ptr(self) -> *const gfc__ResourceCache {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__ResourceCache> for gfc__MeshCache {}
 
 #[repr(C)]
 pub struct gfc__MeshCache__vftable {
@@ -7995,29 +7111,13 @@ pub struct gfc__MeshResourceUnopt {
     pub mFinalizeMesh: gfc__AutoRef_gfc__Mesh_,
 }
 
-impl AsPtr<gfc__MeshResource> for *const gfc__MeshResourceUnopt {
-    fn as_ptr(self) -> *const gfc__MeshResource {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__MeshResource> for gfc__MeshResourceUnopt {}
 
-impl AsPtr<gfc__ResourceType_gfc__Mesh_2_> for *const gfc__MeshResourceUnopt {
-    fn as_ptr(self) -> *const gfc__ResourceType_gfc__Mesh_2_ {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__ResourceType_gfc__Mesh_2_> for gfc__MeshResourceUnopt {}
 
-impl AsPtr<gfc__Resource> for *const gfc__MeshResourceUnopt {
-    fn as_ptr(self) -> *const gfc__Resource {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Resource> for gfc__MeshResourceUnopt {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__MeshResourceUnopt {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshResourceUnopt {}
 
 #[repr(C)]
 pub struct gfc__MeshResourceUnopt__vftable {
@@ -8041,17 +7141,9 @@ pub struct gfc__ResourceType_gfc__Mesh_2_ {
     pub mResource: gfc__AutoRef_gfc__Mesh_,
 }
 
-impl AsPtr<gfc__Resource> for *const gfc__ResourceType_gfc__Mesh_2_ {
-    fn as_ptr(self) -> *const gfc__Resource {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Resource> for gfc__ResourceType_gfc__Mesh_2_ {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__ResourceType_gfc__Mesh_2_ {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__ResourceType_gfc__Mesh_2_ {}
 
 #[repr(C)]
 pub struct gfc__ResourceType_gfc__Mesh_2___vftable {
@@ -8081,17 +7173,9 @@ pub struct gfc__MeshReader {
      * gfc__MeshReader */
 }
 
-impl AsPtr<gfc__ObjectReader> for *const gfc__MeshReader {
-    fn as_ptr(self) -> *const gfc__ObjectReader {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__ObjectReader> for gfc__MeshReader {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__MeshReader {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshReader {}
 
 #[repr(C)]
 pub struct gfc__MeshReader__vftable {
@@ -8135,14 +7219,6 @@ pub struct gfc__MBSubMesh {
     pub Indices: gfc__Vector_unsigned_long_0_gfc__CAllocator_,
 }
 
-impl AsPtr<gfc__Object> for *const gfc__MBSubMesh {
-    fn as_ptr(self) -> *const gfc__Object {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__Object> for gfc__MBSubMesh {}
 
-impl AsPtr<gfc__IRefObject> for *const gfc__MBSubMesh {
-    fn as_ptr(self) -> *const gfc__IRefObject {
-        self as *const _
-    }
-}
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MBSubMesh {}
