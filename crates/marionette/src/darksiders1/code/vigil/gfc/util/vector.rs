@@ -1,4 +1,4 @@
-use crate::darksiders1::{gfc, Lift, Lower};
+use crate::darksiders1::{gfc, Lift, Lift1, Lift2, Lower};
 use darksiders1_sys::target;
 use std::{
     convert::{TryFrom, TryInto},
@@ -188,14 +188,31 @@ where
 }
 
 macro_rules! lowered_vector {
-    ($vec:ty, $element:ty $(,)?) => {
-        unsafe impl LoweredVector for $vec {
+    ($vector:ty, $element:ty $(,)?) => {
+        unsafe impl LoweredVector for $vector {
             type Element = $element;
         }
 
         #[allow(clippy::use_self)]
         unsafe impl LoweredVectorElement for $element {
-            type Vec = $vec;
+            type Vec = $vector;
+        }
+
+        unsafe impl Lift1 for $vector {
+            type Target = Vector<$element>;
+
+            fn lift1(self) -> Self::Target {
+                unsafe { mem::transmute(self) }
+            }
+        }
+    };
+    (: lift: $vector:ty, $element:ty) => {
+        impl Lift2 for $vector {
+            type Target = Vector<<$element as Lift2>::Target>;
+
+            fn lift2(self) -> Self::Target {
+                unsafe { mem::transmute(self) }
+            }
         }
     };
 }
@@ -207,6 +224,11 @@ lowered_vector!(
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
     target::gfc__AutoRef_gfc__Object_,
+);
+lowered_vector!(
+    :lift:
+    target::gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    target::gfc__AutoRef_gfc__Object_
 );
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_,
@@ -225,9 +247,21 @@ lowered_vector!(
     target::gfc__TVector3_float_gfc__FloatMath_,
 );
 lowered_vector!(
+    :lift:
+    target::gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    target::gfc__TVector3_float_gfc__FloatMath_
+);
+lowered_vector!(
     target::gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
     target::gfc__TVector4_float_gfc__FloatMath_,
 );
+lowered_vector!(
+    :lift:
+    target::gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
+    target::gfc__TVector4_float_gfc__FloatMath_
+);
 lowered_vector!(target::gfc__Vector_unsigned_char_0_gfc__CAllocator_, u8);
 lowered_vector!(target::gfc__Vector_unsigned_long_0_gfc__CAllocator_, u32);
+lowered_vector!(:lift: target::gfc__Vector_unsigned_long_0_gfc__CAllocator_, u32);
 lowered_vector!(target::gfc__Vector_unsigned_short_0_gfc__CAllocator_, u16);
+lowered_vector!(:lift: target::gfc__Vector_unsigned_short_0_gfc__CAllocator_, u16);

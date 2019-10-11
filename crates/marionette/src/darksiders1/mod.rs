@@ -3,7 +3,7 @@
 pub use code::vigil::gfc::{
     base::{
         autoref::LoweredAutoRef,
-        object::{Lift, Lower},
+        object::{Lift, Lift1, Lift2, Lower},
     },
     memory::memoverloads::Heap,
     util::list::List,

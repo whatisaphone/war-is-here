@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, Heap, LoweredAutoRef},
+    darksiders1::{gfc, Heap, Lift1, Lift2, LoweredAutoRef},
     hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };
@@ -128,7 +128,7 @@ fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef<gfc::StaticMesh> {
                 0,
             );
         });
-        gfc::AutoRef::lift(mesh)
+        mesh.lift2()
     }
 }
 
@@ -141,7 +141,7 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
         let result = init_with(|p| {
             ((*(*graphics.as_ptr()).vfptr).createStaticMesh)(graphics.as_ptr(), p, builder.ptr());
         });
-        gfc::AutoRef::lift(result)
+        result.lift2()
     }
 }
 
@@ -175,7 +175,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             r#type: 0,
         };
 
-        let vertex_format_format = gfc::Vector::lift_mut(&mut builder.mVertexFormat.mFormat);
+        let vertex_format_format = builder.mVertexFormat.mFormat.lift2_mut();
         // wtf are these
         vertex_format_format.add(1);
         vertex_format_format.add(2);
@@ -195,7 +195,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             sub_mesh.MaterialName = gfc::String::from_cstr(cstr!("City01_glass")).into_raw();
             sub_mesh.VertexCount = 8;
 
-            let position = gfc::Vector::lift_mut(&mut sub_mesh.Position);
+            let position = sub_mesh.Position.lift2_mut();
             position.add(gfc::TVector3::new(-1.0, -1.0, -1.0));
             position.add(gfc::TVector3::new(1.0, -1.0, -1.0));
             position.add(gfc::TVector3::new(1.0, 1.0, -1.0));
@@ -205,7 +205,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             position.add(gfc::TVector3::new(1.0, -1.0, 1.0));
             position.add(gfc::TVector3::new(-1.0, -1.0, 1.0));
 
-            let normal = gfc::Vector::lift_mut(&mut sub_mesh.Normal);
+            let normal = sub_mesh.Normal.lift2_mut();
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
@@ -215,7 +215,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
 
-            let tangent = gfc::Vector::lift_mut(&mut sub_mesh.Tangent);
+            let tangent = sub_mesh.Tangent.lift2_mut();
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
@@ -225,7 +225,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
             tangent.add(gfc::TVector4::new(1.0, 0.0, 0.0, 1.0));
 
-            let binormal = gfc::Vector::lift_mut(&mut sub_mesh.Binormal);
+            let binormal = sub_mesh.Binormal.lift2_mut();
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
@@ -235,7 +235,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
             binormal.add(gfc::TVector3::new(0.0, 1.0, 0.0));
 
-            let tex0 = gfc::Vector::lift_mut(&mut sub_mesh.Tex0);
+            let tex0 = sub_mesh.Tex0.lift2_mut();
             tex0.add(gfc::TVector3::new(0.970, -0.033, 0.0));
             tex0.add(gfc::TVector3::new(0.970, -0.599, 0.0));
             tex0.add(gfc::TVector3::new(0.759, -0.599, 0.0));
@@ -245,7 +245,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tex0.add(gfc::TVector3::new(0.759, -0.033, 0.0));
             tex0.add(gfc::TVector3::new(0.759, -0.599, 0.0));
 
-            let tex1 = gfc::Vector::lift_mut(&mut sub_mesh.Tex1);
+            let tex1 = sub_mesh.Tex1.lift2_mut();
             tex1.add(gfc::TVector3::new(-198.432, 94.423, 0.0));
             tex1.add(gfc::TVector3::new(-198.432, 94.423, 0.0));
             tex1.add(gfc::TVector3::new(-198.432, 110.157, 0.0));
@@ -255,7 +255,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tex1.add(gfc::TVector3::new(-198.432, 110.157, 0.0));
             tex1.add(gfc::TVector3::new(-198.432, 110.157, 0.0));
 
-            let tex2 = gfc::Vector::lift_mut(&mut sub_mesh.Tex2);
+            let tex2 = sub_mesh.Tex2.lift2_mut();
             tex2.add(gfc::TVector3::new(0.454, 67.799, 0.0));
             tex2.add(gfc::TVector3::new(0.454, 0.201, 0.0));
             tex2.add(gfc::TVector3::new(23.546, 0.201, 0.0));
@@ -265,7 +265,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             tex2.add(gfc::TVector3::new(23.546, 67.799, 0.0));
             tex2.add(gfc::TVector3::new(23.546, 0.201, 0.0));
 
-            let color0 = gfc::Vector::lift_mut(&mut sub_mesh.Color0);
+            let color0 = sub_mesh.Color0.lift2_mut();
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
@@ -275,7 +275,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
             color0.add(gfc::TVector4::new(255.0, 255.0, 255.0, 255.0));
 
-            let indices = gfc::Vector::lift_mut(&mut sub_mesh.Indices);
+            let indices = sub_mesh.Indices.lift2_mut();
             indices.add(0);
             indices.add(1);
             indices.add(2);
@@ -327,7 +327,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             sub_mesh
         });
 
-        let sub_meshes = gfc::Vector::from_ptr_mut(&mut builder.mSubMeshes);
+        let sub_meshes = builder.mSubMeshes.lift1_mut();
         sub_meshes.add(LoweredAutoRef::from_ptr(Heap::into_raw(sub_mesh)));
 
         builder.mFlags.flags = 31;

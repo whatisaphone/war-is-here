@@ -50,6 +50,22 @@ macro_rules! impl_lift_lower {
     };
 }
 
+macro_rules! impl_lift_lower2 {
+    ($lifted:ty, $lowered:ty) => {
+        #[allow(clippy::use_self)]
+        impl $crate::darksiders1::Lift2 for $lowered {
+            type Target = $lifted;
+
+            fn lift2(self) -> Self::Target {
+                #[allow(clippy::useless_transmute)]
+                unsafe {
+                    ::std::mem::transmute(self)
+                }
+            }
+        }
+    };
+}
+
 macro_rules! struct_wrapper_drop {
     ($name:ty, $destructor:path $(,)?) => {
         impl Drop for $name {

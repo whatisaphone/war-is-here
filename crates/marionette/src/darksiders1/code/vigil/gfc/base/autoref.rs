@@ -1,4 +1,4 @@
-use crate::darksiders1::{Heap, Lift, Lower};
+use crate::darksiders1::{Heap, Lift, Lift2, Lower};
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{
@@ -151,6 +151,9 @@ where
 
 macro_rules! lowered_autoref {
     ($autoref:ty, $target:path $(,)?) => {
+        lowered_autoref!(:base: $autoref, $target);
+    };
+    (:base: $autoref:ty, $target:path) => {
         impl LoweredAutoRef for $autoref {
             type Target = $target;
 
@@ -176,24 +179,15 @@ macro_rules! lowered_autoref {
             type Struct = $autoref;
         }
     };
-}
+    (:lift: $autoref:ty, $target:path) => {
+        impl Lift2 for $autoref {
+            type Target = AutoRef<<$target as Lift>::Target>;
 
-#[allow(clippy::use_self)]
-impl<T> Lift for T
-where
-    T: LoweredAutoRef,
-    T::Target: Lift,
-    <T::Target as Lift>::Target: AsRef<IRefObject>,
-{
-    type Target = AutoRef<<T::Target as Lift>::Target>;
-}
-
-impl<T> Lower for AutoRef<T>
-where
-    T: AsRef<IRefObject> + Lower,
-    T::Target: LoweredAutoRefTarget,
-{
-    type Target = <T::Target as LoweredAutoRefTarget>::Struct;
+            fn lift2(self) -> Self::Target {
+                unsafe { mem::transmute(self) }
+            }
+        }
+    }
 }
 
 lowered_autoref!(
@@ -206,6 +200,7 @@ lowered_autoref!(
     target::gfc__MeshBuilder,
 );
 lowered_autoref!(target::gfc__AutoRef_gfc__Object_, target::gfc__Object);
+lowered_autoref!(:lift: target::gfc__AutoRef_gfc__Object_, target::gfc__Object);
 lowered_autoref!(target::gfc__AutoRef_gfc__Object3D_, target::gfc__Object3D);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__OutputStream_,
@@ -227,14 +222,29 @@ lowered_autoref!(
     target::gfc__AutoRef_gfc__StaticMesh_,
     target::gfc__StaticMesh,
 );
+lowered_autoref!(
+    :lift:
+    target::gfc__AutoRef_gfc__StaticMesh_,
+    target::gfc__StaticMesh
+);
 lowered_autoref!(target::gfc__AutoRef_gfc__Visual_, target::gfc__Visual);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldGroup_,
     target::gfc__WorldGroup,
 );
 lowered_autoref!(
+    :lift:
+    target::gfc__AutoRef_gfc__WorldGroup_,
+    target::gfc__WorldGroup
+);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldObject_,
     target::gfc__WorldObject,
+);
+lowered_autoref!(
+    :lift:
+    target::gfc__AutoRef_gfc__WorldObject_,
+    target::gfc__WorldObject
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldRegion_,
