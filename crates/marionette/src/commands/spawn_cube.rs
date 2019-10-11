@@ -1,8 +1,5 @@
 use crate::{
-    darksiders1::{
-        gfc::{self, LoweredAutoRef},
-        Heap,
-    },
+    darksiders1::{gfc, Heap, LoweredAutoRef},
     hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };

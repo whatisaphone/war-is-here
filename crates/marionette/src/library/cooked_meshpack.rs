@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::gfc::{self, LoweredAutoRef},
+    darksiders1::{gfc, LoweredAutoRef},
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
@@ -28,7 +28,7 @@ pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
 
         let object = object.into_raw();
         let object = object.cast::<target::gfc__MeshBuilder>();
-        gfc::LoweredAutoRef::from_raw(object)
+        LoweredAutoRef::from_raw(object)
     }
 }
 

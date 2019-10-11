@@ -1,7 +1,4 @@
-use crate::darksiders1::{
-    code::vigil::gfc::base::object::{Lift, Lower},
-    Heap,
-};
+use crate::darksiders1::{Heap, Lift, Lower};
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{

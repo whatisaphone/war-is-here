@@ -1,7 +1,4 @@
-use crate::darksiders1::{
-    code::vigil::gfc::base::object::{Lift, Lower},
-    gfc,
-};
+use crate::darksiders1::{gfc, Lift, Lower};
 use darksiders1_sys::target;
 use std::{
     convert::{TryFrom, TryInto},
