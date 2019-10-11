@@ -31,8 +31,8 @@ where
 {
     type Target;
 
-    fn lift(this: *mut Self) -> *mut Self::Target {
-        this as *mut _
+    fn lift(this: *const Self) -> *mut Self::Target {
+        this as *const _ as *mut _
     }
 }
 
@@ -42,8 +42,8 @@ where
 {
     type Target;
 
-    fn lower(this: *mut Self) -> *mut Self::Target {
-        this as *mut _
+    fn lower(this: *const Self) -> *mut Self::Target {
+        this as *const _ as *mut _
     }
 }
 

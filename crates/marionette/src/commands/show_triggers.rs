@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, List, LoweredAutoRef},
+    darksiders1::{gfc, Lift, List, LoweredAutoRef},
     hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };
@@ -19,7 +19,7 @@ unsafe fn go() {
     let darksiders = gfc::OblivionGame::get_instance();
     let world = darksiders.get_world();
 
-    let root = (*world.as_ptr()).mRoot.ptr();
+    let root = Lift::lift(&(*world.as_ptr()).mRoot).as_ref().unwrap();
     scan(root);
 
     let region_data = gfc::Vector::lift(&(*world.as_ptr()).mRegionData);
@@ -47,20 +47,20 @@ unsafe fn go() {
             let root = init_with(|p| {
                 target::gfc__RegionLayer__getRoot(layer, p);
             });
-            let root = root.ptr();
-            scan(root);
+            let root = gfc::AutoRef::lift(root);
+            scan(&root);
         }
     }
 }
 
-unsafe fn scan(group: *mut target::gfc__WorldGroup) {
-    let objects = &mut (*group).mObjects;
+unsafe fn scan(group: &gfc::WorldGroup) {
+    let objects = &mut (*group.as_ptr()).mObjects;
     let objects = List::<target::gfc__AutoRef_gfc__WorldObject_>::from_ptr(objects);
     for object in objects {
-        let object = gfc::Object::from_ptr(object.ptr().static_cast());
+        let object = Lift::lift(object).as_ref().unwrap();
 
         if let Some(group) = gfc::object_safecast::<gfc::WorldGroup>(object) {
-            scan(group.as_ptr());
+            scan(&group);
         }
 
         if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
