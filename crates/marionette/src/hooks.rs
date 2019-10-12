@@ -12,6 +12,7 @@ pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>
     Mutex::new(None);
 
 pub struct GodObject {
+    gfc___UIManager__draw: target::gfc___UIManager__draw,
     gfc__Darksiders__onPostUpdateInterval: target::gfc__Darksiders__onPostUpdateInterval,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
     gfc__MeshCache__getStaticMesh: target::gfc__MeshCache__getStaticMesh,
@@ -34,6 +35,7 @@ pub fn install() {
             };
         }
 
+        let gfc___UIManager__draw = hook!(gfc___UIManager__draw);
         let gfc__Darksiders__onPostUpdateInterval = hook!(gfc__Darksiders__onPostUpdateInterval);
         let gfc__Darksiders__processInputEvent = hook!(gfc__Darksiders__processInputEvent);
         let gfc__MeshCache__getStaticMesh = hook!(gfc__MeshCache__getStaticMesh);
@@ -42,6 +44,7 @@ pub fn install() {
         let gfc__ResourceCache__getResource = hook!(gfc__ResourceCache__getResource);
 
         *guard = Some(GodObject {
+            gfc___UIManager__draw: gfc___UIManager__draw.trampoline(),
             gfc__Darksiders__onPostUpdateInterval: gfc__Darksiders__onPostUpdateInterval
                 .trampoline(),
             gfc__Darksiders__processInputEvent: gfc__Darksiders__processInputEvent.trampoline(),
@@ -50,6 +53,7 @@ pub fn install() {
             gfc__Object3DCache__get: gfc__Object3DCache__get.trampoline(),
             gfc__ResourceCache__getResource: gfc__ResourceCache__getResource.trampoline(),
             _cleanup: vec![
+                Box::new(gfc___UIManager__draw),
                 Box::new(gfc__Darksiders__onPostUpdateInterval),
                 Box::new(gfc__Darksiders__processInputEvent),
                 Box::new(gfc__MeshCache__getStaticMesh),
@@ -75,8 +79,28 @@ mod hook {
         commands::spawn_cube::{override_get_object3d, override_get_static_mesh},
         darksiders1::{gfc, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
+        library::bitmap_font,
     };
     use darksiders1_sys::target;
+
+    pub extern "thiscall" fn gfc___UIManager__draw(
+        this: *mut target::gfc___UIManager,
+        renderer: *mut target::gfc__UIRenderer,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        unsafe { (detours.gfc___UIManager__draw)(this, renderer) }
+
+        unsafe {
+            target::gfc__UIRenderer__begin(renderer, true);
+            target::gfc__UIRenderer__setMaterial(renderer, (*renderer).mSolidMaterial.p.cast());
+
+            bitmap_font::draw_string(renderer, 10.0, 10.0, "bacon is your friend \x01");
+
+            target::gfc__UIRenderer__endRendering(renderer);
+        }
+    }
 
     pub extern "thiscall" fn gfc__Darksiders__onPostUpdateInterval(
         this: *mut target::gfc__Darksiders,

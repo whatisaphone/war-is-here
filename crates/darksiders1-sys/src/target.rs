@@ -1,7 +1,7 @@
 #![allow(non_camel_case_types, non_upper_case_globals)]
 
 use super::map;
-pub use super::{symbols::*, types::*, types2::*, types3::*};
+pub use super::{symbols::*, types::*, types2::*, types3::*, types4::*};
 use std::{mem, ptr};
 
 fn transmute_hack() {
@@ -49,7 +49,17 @@ symbols! {
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
+    pub static gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+    pub fn gfc__UIRenderer__setMaterial;
+    pub fn gfc__UIRenderer__fillRect;
+    pub fn gfc__UIRenderer__drawLine;
+    pub fn gfc__UIRenderer__beginRendering;
+    pub fn gfc__UIRenderer__endRendering;
+    pub fn gfc__UIRenderer__pushClip;
+    pub fn gfc__UIRenderer__popClip;
+    pub fn gfc__UIRenderer__UIRenderer;
+    pub fn gfc__UIRenderer__updateTime;
     pub fn gfc__MeshReader__MeshReader;
     pub fn gfc__MeshCache__getStaticMesh;
     pub fn gfc__MBSubMesh__MBSubMesh;
@@ -57,6 +67,10 @@ symbols! {
     pub fn gfc__MeshReader__readObject;
     pub fn gfc__MeshCache__loadMesh;
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_;
+    pub fn gfc__UIRenderer__identity;
+    pub fn gfc__UIRenderer__multiplyColor;
+    pub fn gfc___UIManager__draw;
+    pub fn gfc___UIManager__draw_2;
     pub fn gfc__OblivionGame__getWorld;
     pub fn gfc__OmniLight__setStaticOnly;
     pub fn gfc__OmniLight__getStaticOnly;
@@ -124,9 +138,21 @@ symbols! {
     pub fn gfc__World__getRegion_2;
     pub fn gfc__Darksiders__processInputEvent;
     pub fn gfc__Darksiders__onPostUpdateInterval;
+    pub fn gfc__UIRenderer__translate;
+    pub fn gfc__UIRenderer__rotate;
+    pub fn gfc__UIRenderer__scale;
+    pub fn gfc__UIRenderer__clearShader;
     pub fn gfc__LoadMapMenu__LoadMapMenu;
     pub fn gfc__WindowHelper__pushWindow;
     pub fn gfc__TeleportHelper__warpToMap;
+    pub fn gfc__UIRenderer__end;
+    pub fn gfc__UIRenderer__setColor;
+    pub fn gfc__UIRenderer__setSolidMaterial;
+    pub fn gfc__UIRenderer__pushTransform;
+    pub fn gfc__UIRenderer__pushParams;
+    pub fn gfc__UIRenderer__begin;
+    pub fn gfc__UIRenderer__popTransform;
+    pub fn gfc__UIRenderer__popParams;
     pub fn gfc__KGGraphics__createStaticMesh;
     pub fn gfc__KGGraphics__createStaticMesh_2;
     pub fn gfc__MeshBuilder__MeshBuilder;

@@ -1,8 +1,1009 @@
 #![allow(non_camel_case_types, non_snake_case, unused_imports)]
 #![allow(clippy::use_self)]
 
-use super::{types::*, types2::*};
+use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
+
+#[repr(C)]
+pub struct gfc__ModSysContainerModule {
+    pub vfptr: *const gfc__ModSysContainerModule__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__VisScriptEntity
+    pub mID: u32,
+    pub mComment: gfc__HString,
+    pub mLocationX: i32,
+    pub mLocationY: i32,
+    pub mModuleSystem: *mut gfc__ModuleSystem,
+    // gfc__VisScriptModule
+    pub mEventLinks: gfc__Vector_gfc__ModuleEventLink_0_gfc__CAllocator_,
+    pub mInputLinks: gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_,
+    pub mVariableLinks: gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator_,
+    // gfc__ModSysContainerModule
+    pub mEnable: bool,
+    pub mIncludeName: gfc__HString,
+    pub mInternalModuleSystem: gfc__AutoRef_gfc__ModuleSystem_,
+    pub mInputModule: gfc__AutoRef_gfc__InputModule_,
+    pub mActionNames: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mEventNames: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mVariableConnections:
+        gfc__Vector_gfc__AutoRef_gfc__VariableConnectionInfo__0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__VisScriptModule> for gfc__ModSysContainerModule {}
+
+unsafe impl UpcastToNop<gfc__VisScriptEntity> for gfc__ModSysContainerModule {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__ModSysContainerModule {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__ModSysContainerModule {}
+
+impl gfc__ModSysContainerModule {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getUILabel(&self) -> *const i8 {
+        ((*self.vfptr).getUILabel)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn compile(&self, a1: *mut gfc__ModuleSystem) {
+        ((*self.vfptr).compile)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn begin(&self, a1: *mut gfc__Object) {
+        ((*self.vfptr).begin)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn end(&self) {
+        ((*self.vfptr).end)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn clearDeadLinks(&self, a1: *mut gfc__ModuleSystem) {
+        ((*self.vfptr).clearDeadLinks)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getCategory(&self) -> i32 {
+        ((*self.vfptr).getCategory)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getNumActions(&self) -> i32 {
+        ((*self.vfptr).getNumActions)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getActionID(&self, a1: i32) -> u32 {
+        ((*self.vfptr).getActionID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getActionName(&self, a1: i32) -> *const i8 {
+        ((*self.vfptr).getActionName)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getNumEvents(&self) -> i32 {
+        ((*self.vfptr).getNumEvents)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getEventID(&self, a1: i32) -> u32 {
+        ((*self.vfptr).getEventID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getEventName(&self, a1: i32) -> *const i8 {
+        ((*self.vfptr).getEventName)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getNumVariableConnections(&self) -> i32 {
+        ((*self.vfptr).getNumVariableConnections)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getVariableConnectionID(&self, a1: i32) -> u32 {
+        ((*self.vfptr).getVariableConnectionID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getVariableConnectionInfo(
+        &self,
+        result: *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
+        a2: i32,
+    ) -> *mut gfc__AutoRef_gfc__VariableConnectionInfo_ {
+        ((*self.vfptr).getVariableConnectionInfo)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn doEvent(&self, a1: u32) {
+        ((*self.vfptr).doEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn execute(&self, a1: u32) {
+        ((*self.vfptr).execute)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getVariableValue(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        a2: u32,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).getVariableValue)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setVariableValue(&self, a1: u32, a2: gfc__AutoRef_gfc__Value_) {
+        ((*self.vfptr).setVariableValue)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn tryAgain(&self) {
+        ((*self.vfptr).tryAgain)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getVariablesIn(
+        &self,
+        result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+        a2: u32,
+    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
+        ((*self.vfptr).getVariablesIn)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVariablesOut(
+        &self,
+        result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+        a2: u32,
+    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
+        ((*self.vfptr).getVariablesOut)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn executeInternal(&self, a1: u32) {
+        ((*self.vfptr).executeInternal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn hasVariableIn(&self, a1: u32) -> bool {
+        ((*self.vfptr).hasVariableIn)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn hasVariableOut(&self, a1: u32) -> bool {
+        ((*self.vfptr).hasVariableOut)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ModSysContainerModule__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__HString) -> *mut gfc__HString,
+    pub getScriptEnvironment: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__ObjectCloner, _: gfc__AutoRef_gfc__Object_),
+    pub getUILabel: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> *const i8,
+    pub compile: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__ModuleSystem),
+    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__Object),
+    pub end: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule),
+    pub clearDeadLinks: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__ModuleSystem),
+    pub getCategory: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
+    pub getNumActions: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
+    pub getActionID: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> u32,
+    pub getActionName: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> *const i8,
+    pub getNumEvents: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
+    pub getEventID: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> u32,
+    pub getEventName: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> *const i8,
+    pub getNumVariableConnections: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
+    pub getVariableConnectionID: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> u32,
+    pub getVariableConnectionInfo: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, result: *mut gfc__AutoRef_gfc__VariableConnectionInfo_, _: i32) -> *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
+    pub doEvent: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32),
+    pub execute: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32),
+    pub getVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__AutoRef_gfc__Value_, _: u32) -> *mut gfc__AutoRef_gfc__Value_,
+    pub setVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32, _: gfc__AutoRef_gfc__Value_),
+    pub tryAgain: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule),
+    pub getVariablesIn: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_, _: u32) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+    pub getVariablesOut: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_, _: u32) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+    pub executeInternal: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32),
+    pub hasVariableIn: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32) -> bool,
+    pub hasVariableOut: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__VisScriptVariable_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__InputModule_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__VariableConnectionInfo__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__VisScriptVariable_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_ {
+    pub mHashSize: u32,
+    pub mpHashTable: *mut u32,
+    pub mPairs: gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_,
+    pub mNextAvailable: u32,
+    pub mCount: u32,
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
+{
+    pub mNext: u32,
+    pub mKey: u64,
+    pub mValue: gfc__AutoRef_gfc__Variable_,
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Property__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
+{
+    pub mNext: u32,
+    pub mKey: u64,
+    pub mValue: gfc__AutoRef_gfc__Property_,
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Method__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
+{
+    pub mNext: u32,
+    pub mKey: u64,
+    pub mValue: gfc__AutoRef_gfc__Method_,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__ClassLoader_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__OOObjectWriter {
+    pub vfptr: *const gfc__OOObjectWriter__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__ObjectWriter
+    // gfc__OOObjectWriter
+    pub mObjectDatabase: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+    pub mWriteDefaults: bool,
+}
+
+unsafe impl UpcastToNop<gfc__ObjectWriter> for gfc__OOObjectWriter {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__OOObjectWriter {}
+
+impl gfc__OOObjectWriter {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__OOObjectWriter__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__OOObjectWriter, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair
+{
+    pub mNext: u32,
+    pub mKey: gfc__HString,
+    pub mValue: gfc__AutoRef_gfc__Class_,
+}
+
+#[repr(C)]
+pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
+    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable,
+    // CCallbackBase
+    pub m_nCallbackFlags: u8,
+    pub m_iCallback: i32,
+    // CCallbackImpl_24_
+    // CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_
+    pub m_pObj: *mut keen__ISteamStatsCallback,
+    pub m_Func: *mut unsafe extern "thiscall" fn(
+        this: *mut keen__ISteamStatsCallback,
+        _: *mut UserStatsReceived_t,
+    ),
+}
+
+unsafe impl UpcastToNop<CCallbackImpl_24_>
+    for CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_
+{
+}
+
+unsafe impl UpcastToNop<CCallbackBase>
+    for CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_
+{
+}
+
+impl CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
+    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
+        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
+        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
+        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable {
+    pub Run: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
+        _: *mut (),
+        _: bool,
+        _: u64,
+    ),
+    pub Run_2: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
+        _: *mut (),
+    ),
+    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
+    ) -> i32,
+}
+
+#[repr(C)]
+pub struct UserStatsReceived_t {
+    pub m_nGameID: u64,
+    pub m_eResult: EResult,
+    pub m_steamIDUser: CSteamID,
+}
+
+#[repr(C)]
+pub struct CCallbackImpl_16_ {
+    pub vfptr: *const CCallbackImpl_16___vftable,
+    // CCallbackBase
+    pub m_nCallbackFlags: u8,
+    pub m_iCallback: i32,
+    // CCallbackImpl_16_
+}
+
+unsafe impl UpcastToNop<CCallbackBase> for CCallbackImpl_16_ {}
+
+impl CCallbackImpl_16_ {
+    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
+        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
+        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
+        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct CCallbackImpl_16___vftable {
+    pub Run: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_, _: *mut (), _: bool, _: u64),
+    pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_, _: *mut ()),
+    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_) -> i32,
+}
+
+#[repr(C)]
+pub struct UserAchievementStored_t {
+    pub m_nGameID: u64,
+    pub m_bGroupAchievement: bool,
+    pub m_rgchAchievementName: [i8; 128],
+    pub m_nCurProgress: u32,
+    pub m_nMaxProgress: u32,
+}
+
+#[repr(C)]
+pub struct unit4__SystemServicesUserId {
+    pub providerData: [i8; 36],
+    pub guestIndex: u8,
+    pub isValid: bool,
+}
+
+#[repr(C)]
+pub struct unit4__RankingReceiveData {
+    pub cachedBoards: keen__Array_unit4__RankingBoardCacheEntry_,
+    pub servingFromCache: bool,
+    pub downloadInProgress: bool,
+    pub tableId: u16,
+    pub user: keen__UserAccount,
+    pub r#type: unit4__RankingListQueryType,
+    pub offset: u32,
+    pub entriesToQuery: u32,
+    pub cacheToUseForResult: u32,
+}
+
+#[repr(C)]
+pub struct unit4__SystemServicesUserInfo {
+    pub id: unit4__SystemServicesUserId,
+    pub localAccountId: keen__UserAccountId,
+    pub displayName: [i8; 64],
+}
+
+#[repr(C)]
+pub struct unit4__RankingListEntry {
+    pub userInfo: unit4__SystemServicesUserInfo,
+    pub rank: u32,
+    pub score: u32,
+}
+
+#[repr(C)]
+pub struct unit4__SystemServicesInteractionData {
+    pub id: u32,
+    pub responseOptions: [u32; 2],
+    pub responseOptionCount: u32,
+    pub user: keen__UserAccountId,
+}
+
+#[repr(C)]
+pub struct unit4__SystemServicesBase {
+    pub currentTimeInMs: u32,
+    pub rankingSendData: unit4__RankingSendData,
+    pub rankingReceiveData: unit4__RankingReceiveData,
+    pub currentRankingError: unit4__RankingError,
+    pub rankingSendInteraction: unit4__SystemServicesInteractionData,
+    pub onlineInteraction: unit4__SystemServicesInteractionData,
+}
+
+#[repr(C)]
+pub struct unit4__RankingSendData {
+    pub sendInPogress: bool,
+    pub tableId: u16,
+    pub user: keen__UserAccount,
+    pub score: u32,
+}
+
+#[repr(C)]
+pub struct unit4__SystemServices {
+    // unit4__SystemServicesBase
+    pub currentTimeInMs: u32,
+    pub rankingSendData: unit4__RankingSendData,
+    pub rankingReceiveData: unit4__RankingReceiveData,
+    pub currentRankingError: unit4__RankingError,
+    pub rankingSendInteraction: unit4__SystemServicesInteractionData,
+    pub onlineInteraction: unit4__SystemServicesInteractionData,
+    // unit4__SystemServices
+    pub steamAchievements: keen__SteamAchievements,
+    pub steamStats: keen__SteamStats,
+    pub pPresenceStrings: [*const i8; 64],
+    pub presenceStringCount: u32,
+    pub sendRankingStep: unit4__SystemServices__SendRankingStep,
+    pub sendRankingCall: u64,
+    pub receiveRankingStep: unit4__SystemServices__ReceiveRankingStep,
+    pub receiveRankingCall: u64,
+}
+
+unsafe impl UpcastToNop<unit4__SystemServicesBase> for unit4__SystemServices {}
+
+#[repr(C)]
+pub struct unit4__RankingBoardCacheEntry {
+    pub tableId: u16,
+    pub user: keen__UserAccount,
+    pub r#type: unit4__RankingListQueryType,
+    pub entries: keen__SizedArray_unit4__RankingListEntry_,
+    pub totalEntriesOnBoard: u32,
+    pub downloadTimeInMs: u32,
+}
+
+#[repr(C)]
+pub struct keen__ISteamAchievementsCallback {
+    pub vfptr: *const keen__ISteamAchievementsCallback__vftable,
+    pub m_onUserAchievementStored:
+        CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
+}
+
+impl keen__ISteamAchievementsCallback {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onUserAchievementStored(
+        &self,
+        a1: *mut UserAchievementStored_t,
+    ) {
+        ((*self.vfptr).onUserAchievementStored)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct keen__ISteamAchievementsCallback__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__ISteamAchievementsCallback, _: u32) -> *mut (),
+    pub onUserAchievementStored: unsafe extern "thiscall" fn(
+        this: *mut keen__ISteamAchievementsCallback,
+        _: *mut UserAchievementStored_t,
+    ),
+}
+
+#[repr(C)]
+pub struct keen__SteamStats {
+    pub vfptr: *const keen__SteamStats__vftable,
+    // keen__ISteamStatsCallback
+    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
+    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
+    // keen__SteamStats
+    pub m_pSteamUserStats: *mut ISteamUserStats,
+    pub m_gameSteamID64: u64,
+    pub m_pStatUpdateMap: *const unit4__StatUpdateData,
+    pub m_statUpdateCount: u32,
+    pub m_requestingUserStats: bool,
+    pub m_statsAvailable: bool,
+    pub m_storingStats: bool,
+    pub m_hasUnstoredStats: bool,
+    pub m_secondsSinceLastUpdate: f32,
+    pub m_hasCached: bool,
+    pub m_cachedAdds: [f64; 64],
+}
+
+unsafe impl UpcastToNop<keen__ISteamStatsCallback> for keen__SteamStats {}
+
+impl keen__SteamStats {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onUserStatsReceived(&self, a1: *mut UserStatsReceived_t) {
+        ((*self.vfptr).onUserStatsReceived)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onUserStatsStored(&self, a1: *mut UserStatsStored_t) {
+        ((*self.vfptr).onUserStatsStored)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct keen__SteamStats__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: u32) -> *mut (),
+    pub onUserStatsReceived:
+        unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: *mut UserStatsReceived_t),
+    pub onUserStatsStored:
+        unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: *mut UserStatsStored_t),
+}
+
+#[repr(C)]
+pub struct keen__Array_unit4__RankingBoardCacheEntry_ {
+    pub m_pData: *mut unit4__RankingBoardCacheEntry,
+    pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct keen__SteamAchievements {
+    pub vfptr: *const keen__SteamAchievements__vftable,
+    // keen__ISteamAchievementsCallback
+    pub m_onUserAchievementStored:
+        CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
+    pub vfptr_2: *const keen__ISteamStatsCallback__vftable,
+    // keen__ISteamStatsCallback
+    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
+    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
+    // keen__SteamAchievements
+    pub m_pSteamUserStats: *mut ISteamUserStats,
+    pub m_gameSteamID64: u64,
+    pub m_pAchievementIdMap: *const u32,
+    pub m_pAchievementUnlockCountMap: *const u32,
+    pub m_achievementCount: u32,
+    pub m_platinumAchievementId: u32,
+    pub m_platinumAchievementUnlocked: bool,
+}
+
+unsafe impl UpcastToNop<keen__ISteamAchievementsCallback> for keen__SteamAchievements {}
+
+unsafe impl UpcastTo<keen__ISteamStatsCallback> for keen__SteamAchievements {
+    fn upcast_to(p: *const Self) -> *const keen__ISteamStatsCallback {
+        (p as usize + 0x18) as *const _
+    }
+}
+
+impl keen__SteamAchievements {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onUserStatsReceived(&self, a1: *mut UserStatsReceived_t) {
+        ((*self.vfptr).onUserStatsReceived)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct keen__SteamAchievements__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__SteamAchievements, _: u32) -> *mut (),
+    pub onUserStatsReceived: unsafe extern "thiscall" fn(
+        this: *mut keen__SteamAchievements,
+        _: *mut UserStatsReceived_t,
+    ),
+}
+
+#[repr(C)]
+pub struct keen__SizedArray_unit4__RankingListEntry_ {
+    pub m_pData: *mut unit4__RankingListEntry,
+    pub m_size: u32,
+    pub m_capacity: u32,
+}
+
+#[repr(C)]
+pub struct keen__ISteamStatsCallback {
+    pub vfptr: *const keen__ISteamStatsCallback__vftable,
+    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
+    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
+}
+
+impl keen__ISteamStatsCallback {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onUserStatsReceived(&self, a1: *mut UserStatsReceived_t) {
+        ((*self.vfptr).onUserStatsReceived)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onUserStatsStored(&self, a1: *mut UserStatsStored_t) {
+        ((*self.vfptr).onUserStatsStored)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct keen__ISteamStatsCallback__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut keen__ISteamStatsCallback, _: u32) -> *mut (),
+    pub onUserStatsReceived: unsafe extern "thiscall" fn(
+        this: *mut keen__ISteamStatsCallback,
+        _: *mut UserStatsReceived_t,
+    ),
+    pub onUserStatsStored: unsafe extern "thiscall" fn(
+        this: *mut keen__ISteamStatsCallback,
+        _: *mut UserStatsStored_t,
+    ),
+}
+
+#[repr(C)]
+pub struct UserStatsStored_t {
+    pub m_nGameID: u64,
+    pub m_eResult: EResult,
+}
+
+#[repr(C)]
+pub struct CCallbackImpl_152_ {
+    pub vfptr: *const CCallbackImpl_152___vftable,
+    // CCallbackBase
+    pub m_nCallbackFlags: u8,
+    pub m_iCallback: i32,
+    // CCallbackImpl_152_
+}
+
+unsafe impl UpcastToNop<CCallbackBase> for CCallbackImpl_152_ {}
+
+impl CCallbackImpl_152_ {
+    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
+        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
+        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
+        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct CCallbackImpl_152___vftable {
+    pub Run:
+        unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_, _: *mut (), _: bool, _: u64),
+    pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_, _: *mut ()),
+    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_) -> i32,
+}
+
+#[repr(C)]
+pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
+    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable,
+    // CCallbackBase
+    pub m_nCallbackFlags: u8,
+    pub m_iCallback: i32,
+    // CCallbackImpl_16_
+    // CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_
+    pub m_pObj: *mut keen__ISteamStatsCallback,
+    pub m_Func: *mut unsafe extern "thiscall" fn(
+        this: *mut keen__ISteamStatsCallback,
+        _: *mut UserStatsStored_t,
+    ),
+}
+
+unsafe impl UpcastToNop<CCallbackImpl_16_>
+    for CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_
+{
+}
+
+unsafe impl UpcastToNop<CCallbackBase>
+    for CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_
+{
+}
+
+impl CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
+    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
+        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
+        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
+        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable {
+    pub Run: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
+        _: *mut (),
+        _: bool,
+        _: u64,
+    ),
+    pub Run_2: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
+        _: *mut (),
+    ),
+    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
+    ) -> i32,
+}
+
+#[repr(C)]
+pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
+    pub vfptr:
+        *const CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0___vftable,
+    // CCallbackBase
+    pub m_nCallbackFlags: u8,
+    pub m_iCallback: i32,
+    // CCallbackImpl_152_
+    // CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
+    pub m_pObj: *mut keen__ISteamAchievementsCallback,
+    pub m_Func: *mut unsafe extern "thiscall" fn(
+        this: *mut keen__ISteamAchievementsCallback,
+        _: *mut UserAchievementStored_t,
+    ),
+}
+
+unsafe impl UpcastToNop<CCallbackImpl_152_>
+    for CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
+{
+}
+
+unsafe impl UpcastToNop<CCallbackBase>
+    for CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
+{
+}
+
+impl CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
+    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
+        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
+        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
+        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0___vftable {
+    pub Run: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
+        _: *mut (),
+        _: bool,
+        _: u64,
+    ),
+    pub Run_2: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
+        _: *mut (),
+    ),
+    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(
+        this: *mut CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
+    ) -> i32,
+}
+
+#[repr(C)]
+pub struct CCallbackImpl_24_ {
+    pub vfptr: *const CCallbackImpl_24___vftable,
+    // CCallbackBase
+    pub m_nCallbackFlags: u8,
+    pub m_iCallback: i32,
+    // CCallbackImpl_24_
+}
+
+unsafe impl UpcastToNop<CCallbackBase> for CCallbackImpl_24_ {}
+
+impl CCallbackImpl_24_ {
+    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
+        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
+        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
+        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct CCallbackImpl_24___vftable {
+    pub Run: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_, _: *mut (), _: bool, _: u64),
+    pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_, _: *mut ()),
+    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_) -> i32,
+}
+
+#[repr(C)]
+pub struct ID3D11DeviceContext {
+    // IUnknown
+    pub lpVtbl: *mut IUnknownVtbl,
+    /* ID3D11DeviceChild
+     * ID3D11DeviceContext */
+}
+
+unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11DeviceContext {}
+
+unsafe impl UpcastToNop<IUnknown> for ID3D11DeviceContext {}
+
+#[repr(C)]
+pub struct IDXGIDeviceSubObject {
+    // IUnknown
+    pub lpVtbl: *mut IUnknownVtbl,
+    /* IDXGIObject
+     * IDXGIDeviceSubObject */
+}
+
+unsafe impl UpcastToNop<IDXGIObject> for IDXGIDeviceSubObject {}
+
+unsafe impl UpcastToNop<IUnknown> for IDXGIDeviceSubObject {}
+
+#[repr(C)]
+pub struct DXGI_MODE_DESC {
+    pub Width: u32,
+    pub Height: u32,
+    pub RefreshRate: DXGI_RATIONAL,
+    pub Format: DXGI_FORMAT,
+    pub ScanlineOrdering: DXGI_MODE_SCANLINE_ORDER,
+    pub Scaling: DXGI_MODE_SCALING,
+}
+
+#[repr(C)]
+pub struct DXGI_RATIONAL {
+    pub Numerator: u32,
+    pub Denominator: u32,
+}
+
+#[repr(C)]
+pub struct DXGI_SWAP_CHAIN_DESC {
+    pub BufferDesc: DXGI_MODE_DESC,
+    pub SampleDesc: DXGI_SAMPLE_DESC,
+    pub BufferUsage: u32,
+    pub BufferCount: u32,
+    pub OutputWindow: *mut HWND__,
+    pub Windowed: i32,
+    pub SwapEffect: DXGI_SWAP_EFFECT,
+    pub Flags: u32,
+}
+
+#[repr(C)]
+pub struct keen__ScreenCapture {
+    pub pGraphicsSystem: *mut keen__GraphicsSystem,
+    pub pFileSystem: *mut keen__FileSystem,
+    pub width: u32,
+    pub height: u32,
+    pub captureTargetData: keen__TextureData,
+    pub captureCopyData: keen__TextureData,
+    pub pCaptureTarget: *const keen__RenderTarget,
+    pub pNoGammaCaptureTarget: *const keen__RenderTarget,
+    pub frameBuffer: keen__Array_unsigned_char___,
+    pub frameBufferWriteIndex: u32,
+    pub tempBuffer: keen__Array_unsigned_char___,
+    pub tempBufferWriteIndex: u32,
+    pub tempBufferReadIndex: u32,
+    pub immediateRenderer: keen__ImmediateRenderer,
+    pub basePath: [i8; 128],
+    pub subPath: [i8; 128],
+    pub filenamePrefix: [i8; 128],
+    pub thread: keen__Thread,
+    pub threadStarted: bool,
+    pub tempBufferDataCount: keen__Semaphore,
+    pub tempBufferFreeCount: keen__Semaphore,
+    pub captureCount: u32,
+    pub saveFrameIndex: u32,
+    pub state: keen__ScreenCaptureState,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__SamplerState_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__GraphicsStateObjectPool_keen__RasterizerState_ {
+    pub m_allocator: keen__PoolAllocator_keen__RasterizerState_,
+    pub m_cache: keen__GraphicsStateObjectCache,
+    pub m_peakSize: u32,
+    pub m_cacheHits: u32,
+    pub m_cacheRequests: u32,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__RasterizerState_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
+
+#[repr(C)]
+pub struct keen__TextureData {
+    pub description: keen__TextureDescription,
+    pub pTexture: *mut ID3D11Resource,
+    pub pShaderView: *mut ID3D11ShaderResourceView,
+    pub d3dFormat: DXGI_FORMAT,
+}
+
+#[repr(C)]
+pub struct keen__PoolAllocator_keen__DepthStencilState_ {
+    pub m_pool: keen__BasePoolAllocator,
+}
 
 #[repr(C)]
 pub struct keen__GraphicsSystemBase {
@@ -10,6 +1011,48 @@ pub struct keen__GraphicsSystemBase {
     pub pSystemAllocator: *mut keen__MemoryAllocator,
     pub stateObjectPool: keen__CombinedGraphicsStateObjectPool,
     pub stockObjects: keen__StockObjects,
+}
+
+#[repr(C)]
+pub struct keen__ImmediateRenderer {
+    pub m_pCommandWriter: *mut keen__GraphicsCommandWriter,
+    pub m_pVertexData: *mut (),
+    pub m_pGraphicsSystem: *mut keen__GraphicsSystem,
+    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
+    pub m_pRasterizerStates: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
+    pub m_pBlendStates: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
+    pub m_pDepthStencilState: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
+    pub m_pSamplerState: compile_error!("unimplemented feature: sizeof array 0x0"),
+    __pdbindgen_padding: [u8; 172],
+    pub m_pShaderParameterBuffer: *mut keen__DynamicConstantBuffer,
+    pub m_pFragmentParameterBuffer: *mut keen__DynamicConstantBuffer,
+    pub m_pShaderPipeline: *const keen__ShaderPipeline,
+    pub m_pShaderPipelineVolumeSlice: *const keen__ShaderPipeline,
+    pub m_pVertexFormat: *const keen__VertexFormat,
+    pub m_pVertexInputBinding: *const keen__VertexInputBinding,
+    pub m_pWhiteTexture: *const keen__TextureData,
+    pub m_viewProjectionMatrix: keen__Matrix44,
+    pub m_worldMatrix: keen__Matrix43,
+    pub m_screenWidth: u32,
+    pub m_screenHeight: u32,
+    pub m_mvpMatrixDirty: bool,
+    pub m_endFinalRenderPass: bool,
+    pub m_cullMode: keen__ImmediateCullMode,
+    pub m_fillMode: keen__ImmediateFillMode,
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_renderPassCameraData: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding_2: [u8; 912],
+    pub m_renderPassCameras: [*const keen__Camera; 4],
+    pub m_currentRenderPassStackSize: u32,
+}
+
+#[repr(C)]
+pub struct keen__Array_unsigned_char___ {
+    pub m_pData: *mut *mut u8,
+    pub m_size: u32,
 }
 
 #[repr(C)]
@@ -72,17 +1115,17 @@ pub struct keen__GraphicsSystem {
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub emptyFragmentShader: keen__FragmentShader,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub pDefaultSwapChain: *mut compile_error!("malformed PDB: oops"),
+    pub pDefaultSwapChain: *mut keen__RenderSwapChain,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub pCurrentSwapChain: *mut compile_error!("malformed PDB: oops"),
+    pub pCurrentSwapChain: *mut keen__RenderSwapChain,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub currentFrameNumber: u32,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub pScreenCapture: *mut compile_error!("malformed PDB: oops"),
+    pub pScreenCapture: *mut keen__ScreenCapture,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub previousFullscreenMode: compile_error!("malformed PDB: oops"),
+    pub previousFullscreenMode: keen__graphics__WindowMode,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub fullscreenMode: compile_error!("malformed PDB: oops"),
+    pub fullscreenMode: keen__graphics__WindowMode,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub exclusiveModeWidth: u32,
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
@@ -117,6 +1160,25 @@ pub struct keen__GraphicsStateObjectPool_keen__DepthStencilState_ {
     pub m_peakSize: u32,
     pub m_cacheHits: u32,
     pub m_cacheRequests: u32,
+}
+
+#[repr(C)]
+pub struct keen__RenderSwapChain {
+    pub pGraphicsSystem: *mut keen__GraphicsSystem,
+    pub depthBufferFormat: keen__PixelFormat,
+    pub windowHandle: *mut HWND__,
+    pub backBufferColorData: keen__TextureData,
+    pub backBufferDepthData: keen__TextureData,
+    pub backBufferRenderTarget: keen__RenderTarget,
+    pub noGammaBackBufferRenderTarget: keen__RenderTarget,
+    pub pSwapChain: *mut IDXGISwapChain,
+    pub swapChainDescription: DXGI_SWAP_CHAIN_DESC,
+    pub pBackBufferRenderTargetView: *mut ID3D11RenderTargetView,
+    pub pNoGammaBackBufferRenderTargetView: *mut ID3D11RenderTargetView,
+    pub pBackBufferDepthView: *mut ID3D11DepthStencilView,
+    pub windowWidth: u32,
+    pub windowHeight: u32,
+    pub presentationInterval: u32,
 }
 
 #[repr(C)]
@@ -196,6 +1258,30 @@ pub struct keen__StockObjects {
     pub m_textures: compile_error!("unimplemented feature: class layout 0x0"),
     __pdbindgen_padding_2: [u8; 32],
 }
+
+#[repr(C)]
+pub struct IDXGIObject {
+    // IUnknown
+    pub lpVtbl: *mut IUnknownVtbl,
+    // IDXGIObject
+}
+
+unsafe impl UpcastToNop<IUnknown> for IDXGIObject {}
+
+#[repr(C)]
+pub struct IDXGISwapChain {
+    // IUnknown
+    pub lpVtbl: *mut IUnknownVtbl,
+    /* IDXGIObject
+     * IDXGIDeviceSubObject
+     * IDXGISwapChain */
+}
+
+unsafe impl UpcastToNop<IDXGIDeviceSubObject> for IDXGISwapChain {}
+
+unsafe impl UpcastToNop<IDXGIObject> for IDXGISwapChain {}
+
+unsafe impl UpcastToNop<IUnknown> for IDXGISwapChain {}
 
 #[repr(C)]
 pub struct List_gfc__KinematicActor__KAnimation_ {
@@ -6623,6 +7709,645 @@ pub struct gfc__TeleportHelper__vftable {
 }
 
 #[repr(C)]
+pub struct gfc__Hud {
+    pub vfptr: *const gfc__Hud__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    pub vfptr_2: *const gfc__Hierarchical_gfc___UIControl___vftable,
+    // gfc__Hierarchical_gfc___UIControl_
+    pub mParent: *mut gfc___UIControl,
+    pub mHead: gfc__AutoRef_gfc___UIControl_,
+    pub mTail: gfc__AutoRef_gfc___UIControl_,
+    pub mNext: gfc__AutoRef_gfc___UIControl_,
+    pub mPrev: gfc__AutoRef_gfc___UIControl_,
+    // gfc___UIControl
+    pub mID: i32,
+    pub mName: gfc__HString,
+    pub mOpacity: f32,
+    pub mContext: i32,
+    pub mWindowSize: i32,
+    pub mVisual: gfc__AutoRef_gfc___UIVisual_,
+    pub mClipMask: gfc__HString,
+    pub mIgnoreHideUI: bool,
+    pub mAnchorPoint: u8,
+    pub mAnchorRelativePoint: u8,
+    pub mAnchorRelativeCtrl: gfc__HString,
+    pub mAnchorRelSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorRelOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub OnEvent: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnAction: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnMouse: gfc__TUIEventBroadcaster_gfc__MouseEvent_,
+    pub OnKeyboard: gfc__TUIEventBroadcaster_gfc__KeyboardEvent_,
+    pub OnFocus: gfc__TUIEventBroadcaster_gfc__FocusEvent_,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mLastVisibilityState: bool,
+    pub mPackageID: i32,
+    pub mIndents: gfc__TRect_float_,
+    pub mPosition: gfc__TVector2_float_gfc__FloatMath_,
+    pub mSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub mRotation: f32,
+    pub mScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mLayoutManager: gfc__AutoRef_gfc__UILayoutManager_,
+    pub mLayoutHint: f32,
+    pub mCurrentActions: gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_,
+    pub mClipMaterial: gfc__AutoRef_gfc__Material_,
+    pub mOnInitCalledAlready: bool,
+    pub mFirstDraw: bool,
+    pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
+    // gfc__UIScriptControl
+    // gfc__Hud
+    pub mHudGearID: i32,
+    pub mHudSoulsID: i32,
+    pub mHudTextID: i32,
+    pub mHudTimerID: i32,
+    pub mHudComboID: i32,
+    pub mHudChallengeCounterID: i32,
+    pub mHudWrathID: i32,
+    pub mHudBossHealthID: i32,
+    pub mHudSmallIconID: i32,
+    pub mHudActiveGearID: i32,
+    pub mHudScreenFadeID: i32,
+    pub mHudCharacterTitleID: i32,
+    pub mHudEnvironmentTitleID: i32,
+}
+
+unsafe impl UpcastToNop<gfc__UIScriptControl> for gfc__Hud {}
+
+unsafe impl UpcastToNop<gfc___UIControl> for gfc__Hud {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__Hud {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Hud {}
+
+unsafe impl UpcastTo<gfc__Hierarchical_gfc___UIControl_> for gfc__Hud {
+    fn upcast_to(p: *const Self) -> *const gfc__Hierarchical_gfc___UIControl_ {
+        (p as usize + 0x8) as *const _
+    }
+}
+
+impl gfc__Hud {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addFront(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).addFront)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addBack(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).addBack)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn add(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).add)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn remove(&self) {
+        ((*self.vfptr).remove)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn remove_2(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).remove_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clear(&self) {
+        ((*self.vfptr).clear)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn added(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).added)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removed(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).removed)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn invalidateHierarchy(&self) {
+        ((*self.vfptr).invalidateHierarchy)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getEnabled(&self) -> bool {
+        ((*self.vfptr).getEnabled)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setVisible(&self, a1: bool) {
+        ((*self.vfptr).setVisible)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getVisible(&self) -> bool {
+        ((*self.vfptr).getVisible)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setFocusTraversable(&self, a1: bool) {
+        ((*self.vfptr).setFocusTraversable)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getFocusTraversable(&self) -> bool {
+        ((*self.vfptr).getFocusTraversable)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setMouseEnabled(&self, a1: bool) {
+        ((*self.vfptr).setMouseEnabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getMouseEnabled(&self) -> bool {
+        ((*self.vfptr).getMouseEnabled)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setLayoutEnabled(&self, a1: bool) {
+        ((*self.vfptr).setLayoutEnabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLayoutEnabled(&self) -> bool {
+        ((*self.vfptr).getLayoutEnabled)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setClipChildren(&self, a1: bool) {
+        ((*self.vfptr).setClipChildren)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClipChildren(&self) -> bool {
+        ((*self.vfptr).getClipChildren)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setRegisterControl(&self, a1: bool) {
+        ((*self.vfptr).setRegisterControl)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRegisterControl(&self) -> bool {
+        ((*self.vfptr).getRegisterControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setText(&self, a1: *const gfc__WString) {
+        ((*self.vfptr).setText)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSize(&self, a1: *const gfc__TVector2_float_gfc__FloatMath_) {
+        ((*self.vfptr).setSize)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSizeValid(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setSizeValid)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getSize(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getSize)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getPreferredSize(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPreferredSize)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setPosition(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setPosition)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getPosition(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getAbsolutePosition(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getAbsolutePosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setRotation(&self, a1: f32) {
+        ((*self.vfptr).setRotation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRotation(&self) -> f32 {
+        ((*self.vfptr).getRotation)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setScale(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setScale)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScale(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setLayoutManager(
+        &self,
+        a1: gfc__AutoRef_gfc__UILayoutManager_,
+    ) {
+        ((*self.vfptr).setLayoutManager)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLayoutManager(
+        &self,
+        result: *mut gfc__AutoRef_gfc__UILayoutManager_,
+    ) -> *mut gfc__AutoRef_gfc__UILayoutManager_ {
+        ((*self.vfptr).getLayoutManager)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setLayoutHint(&self, a1: f32) {
+        ((*self.vfptr).setLayoutHint)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLayoutHint(&self) -> f32 {
+        ((*self.vfptr).getLayoutHint)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addAction(&self, a1: gfc__AutoRef_gfc___UIAction_) {
+        ((*self.vfptr).addAction)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeAction(&self, a1: gfc__AutoRef_gfc___UIAction_) {
+        ((*self.vfptr).removeAction)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clearAllActions(&self) {
+        ((*self.vfptr).clearAllActions)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn updateActions(&self, a1: f32) {
+        ((*self.vfptr).updateActions)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn invalidateLayout(&self) {
+        ((*self.vfptr).invalidateLayout)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doAnchorLayout(&self) {
+        ((*self.vfptr).doAnchorLayout)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doLayout(&self) {
+        ((*self.vfptr).doLayout)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setAnchorOffset(
+        &self,
+        a1: gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setAnchorOffset)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnchorOffset(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getAnchorOffset)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn draw(
+        &self,
+        a1: *mut gfc__UIRenderer,
+        a2: *mut gfc__TRect_long_,
+    ) {
+        ((*self.vfptr).draw)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn pick(
+        &self,
+        a1: gfc__TVector2_int_gfc__FloatMath_,
+        a2: bool,
+    ) -> *mut gfc___UIControl {
+        ((*self.vfptr).pick)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getControlByID(&self, a1: i32) -> *mut gfc___UIControl {
+        ((*self.vfptr).getControlByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getControlByName(
+        &self,
+        a1: *const gfc__HString,
+    ) -> *mut gfc___UIControl {
+        ((*self.vfptr).getControlByName)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setControlText(
+        &self,
+        a1: *const gfc__HString,
+        a2: *const gfc__WString,
+    ) -> bool {
+        ((*self.vfptr).setControlText)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setControlTextA(
+        &self,
+        a1: *const gfc__HString,
+        a2: *const gfc__String,
+    ) -> bool {
+        ((*self.vfptr).setControlTextA)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setControlVisible(
+        &self,
+        a1: *const gfc__HString,
+        a2: bool,
+    ) -> bool {
+        ((*self.vfptr).setControlVisible)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setControlEnabled(
+        &self,
+        a1: *const gfc__HString,
+        a2: bool,
+    ) -> bool {
+        ((*self.vfptr).setControlEnabled)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn processMouseEvent(&self, a1: *mut gfc__MouseEvent) {
+        ((*self.vfptr).processMouseEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn processKeyboardEvent(&self, a1: *mut gfc__KeyboardEvent) {
+        ((*self.vfptr).processKeyboardEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn processFocusEvent(&self, a1: *mut gfc__FocusEvent) {
+        ((*self.vfptr).processFocusEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onInit(&self) {
+        ((*self.vfptr).onInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onReInit(&self) {
+        ((*self.vfptr).onReInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onDeInit(&self) {
+        ((*self.vfptr).onDeInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onVisibilityLost(&self) {
+        ((*self.vfptr).onVisibilityLost)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setDialogResults(&self, a1: gfc__AutoRef_gfc__Value_) {
+        ((*self.vfptr).setDialogResults)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLastDialogResult(
+        &self,
+        a1: *mut gfc__AutoRef_gfc__Value_,
+    ) -> bool {
+        ((*self.vfptr).getLastDialogResult)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn unregisterToolTipEvent(&self) {
+        ((*self.vfptr).unregisterToolTipEvent)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getInputListener(
+        &self,
+        result: *mut gfc__AutoRef_gfc___UIControl_,
+    ) -> *mut gfc__AutoRef_gfc___UIControl_ {
+        ((*self.vfptr).getInputListener)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn initControl(&self) {
+        ((*self.vfptr).initControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn postInitControl(&self) {
+        ((*self.vfptr).postInitControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deinitControl(&self) {
+        ((*self.vfptr).deinitControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reinitControl(&self) {
+        ((*self.vfptr).reinitControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doInit(&self) {
+        ((*self.vfptr).doInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn drawInternal(&self, a1: *mut gfc__UIRenderer) {
+        ((*self.vfptr).drawInternal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnchorPosition(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        a2: *mut gfc___UIControl,
+        a3: u8,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getAnchorPosition)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getGlobalScale(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getGlobalScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getParentSize(
+        &self,
+        a1: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getParentSize)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Hud__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: u32) -> *mut (),
+    pub addFront: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc___UIControl),
+    pub addBack: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc___UIControl),
+    pub add: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc___UIControl),
+    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub remove_2: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc___UIControl),
+    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub added: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc___UIControl),
+    pub removed: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc___UIControl),
+    pub invalidateHierarchy: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub getEnabled: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> bool,
+    pub setVisible: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: bool),
+    pub getVisible: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> bool,
+    pub setFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: bool),
+    pub getFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> bool,
+    pub setMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: bool),
+    pub getMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> bool,
+    pub setLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: bool),
+    pub getLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> bool,
+    pub setClipChildren: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: bool),
+    pub getClipChildren: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> bool,
+    pub setRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: bool),
+    pub getRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> bool,
+    pub setText: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *const gfc__WString),
+    pub setSize: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub setSizeValid: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getPreferredSize: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getAbsolutePosition:
+        unsafe extern "thiscall" fn(
+            this: *mut gfc__Hud,
+            result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: f32),
+    pub getRotation: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> f32,
+    pub setScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setLayoutManager:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: gfc__AutoRef_gfc__UILayoutManager_),
+    pub getLayoutManager: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__AutoRef_gfc__UILayoutManager_,
+    )
+        -> *mut gfc__AutoRef_gfc__UILayoutManager_,
+    pub setLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: f32),
+    pub getLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc__Hud) -> f32,
+    pub addAction:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: gfc__AutoRef_gfc___UIAction_),
+    pub removeAction:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: gfc__AutoRef_gfc___UIAction_),
+    pub clearAllActions: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub updateActions: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: f32),
+    pub invalidateLayout: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub doAnchorLayout: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub doLayout: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub setAnchorOffset:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: gfc__TVector2_float_gfc__FloatMath_),
+    pub getAnchorOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub draw: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *mut gfc__UIRenderer,
+        _: *mut gfc__TRect_long_,
+    ),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: f32),
+    pub pick: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: gfc__TVector2_int_gfc__FloatMath_,
+        _: bool,
+    ) -> *mut gfc___UIControl,
+    pub getControlByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: i32) -> *mut gfc___UIControl,
+    pub getControlByName: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *const gfc__HString,
+    ) -> *mut gfc___UIControl,
+    pub setControlText: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *const gfc__HString,
+        _: *const gfc__WString,
+    ) -> bool,
+    pub setControlTextA: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        _: *const gfc__HString,
+        _: *const gfc__String,
+    ) -> bool,
+    pub setControlVisible:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *const gfc__HString, _: bool) -> bool,
+    pub setControlEnabled:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *const gfc__HString, _: bool) -> bool,
+    pub processMouseEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc__MouseEvent),
+    pub processKeyboardEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc__KeyboardEvent),
+    pub processFocusEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc__FocusEvent),
+    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub onReInit: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub onDeInit: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub onVisibilityLost: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub setDialogResults:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: gfc__AutoRef_gfc__Value_),
+    pub getLastDialogResult:
+        unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc__AutoRef_gfc__Value_) -> bool,
+    pub unregisterToolTipEvent: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub getInputListener: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__AutoRef_gfc___UIControl_,
+    ) -> *mut gfc__AutoRef_gfc___UIControl_,
+    pub initControl: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub postInitControl: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub deinitControl: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub reinitControl: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub doInit: unsafe extern "thiscall" fn(this: *mut gfc__Hud),
+    pub drawInternal: unsafe extern "thiscall" fn(this: *mut gfc__Hud, _: *mut gfc__UIRenderer),
+    pub getAnchorPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Hud,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        _: *mut gfc___UIControl,
+        _: u8,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getGlobalScale: unsafe extern "thiscall" fn(
+        this: *const gfc__Hud,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getParentSize: unsafe extern "thiscall" fn(
+        this: *const gfc__Hud,
+        _: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__HudChallengeCounterData_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__DraggableActor {
     pub vfptr: *const gfc__DraggableActor__vftable,
     // gfc__IRefObject
@@ -7670,6 +9395,802 @@ pub struct gfc__DraggableActor__vftable {
         -> *mut gfc__TVector3_float_gfc__FloatMath_,
     pub updateLastGroundMaterial: unsafe extern "thiscall" fn(this: *mut gfc__DraggableActor),
     pub doHitPause: unsafe extern "thiscall" fn(this: *mut gfc__DraggableActor, _: f32),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__UICategories_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__HudTimerData_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__UICategoryPackages_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__DSUIManager {
+    pub vfptr: *const gfc__DSUIManager__vftable,
+    // gfc___UIManager
+    __pdbindgen_padding: [u8; 12],
+    pub mUIRenderer: gfc__UIRenderer,
+    pub mDimensions: gfc__TVector2_int_gfc__FloatMath_,
+    pub mHideUI: bool,
+    pub mHideUIFrameCount: i32,
+    pub mMousePos: gfc__TVector2_int_gfc__FloatMath_,
+    pub mLastMouseMove: gfc__AutoRef_gfc___UIControl_,
+    pub mLastMouseClicked: gfc__AutoRef_gfc___UIControl_,
+    pub mFocusedControl: gfc__AutoRef_gfc___UIControl_,
+    pub mCaptureControl: gfc__AutoRef_gfc___UIControl_,
+    pub mControls: List_gfc__AutoRef_gfc___UIControl___,
+    pub mSystemControl: gfc__AutoRef_gfc___UIControl_,
+    pub mLastMouseBtnClicked: [i32; 5],
+    pub mRemoveList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mAddList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mFonts: gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___,
+    pub mGlobalControls: gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___,
+    pub mUpdateList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mUpdateRemovalList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mLastDeltaT: f32,
+    pub mScriptEnvironment: gfc__AutoRef_gfc__Environment_,
+    pub mTimer: gfc__AutoRef_gfc__UITimer_,
+    pub mGlobalScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mCrosshairScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mIsIterating: bool,
+    pub mResized: bool,
+    __pdbindgen_padding_2: [u8; 6],
+    // gfc__DSUIManager
+    pub mSounds: gfc__AutoRef_gfc__SoundList_,
+    pub mHUD: *mut gfc__Hud,
+    pub mHiddenCount: i32,
+    pub mCurrentCategory: gfc__AutoRef_gfc__UICategoryPackages_,
+    pub mUICategories: gfc__AutoRef_gfc__UICategories_,
+    pub mTimerData: gfc__AutoRef_gfc__HudTimerData_,
+    pub mCounterData: gfc__AutoRef_gfc__HudChallengeCounterData_,
+    pub mLoadMarker: gfc__AutoRef_gfc__PackageMarker_,
+    pub mCategoryListeners: List_gfc__AutoRef_gfc__Object___,
+    pub mHideMinimap: bool,
+}
+
+unsafe impl UpcastToNop<gfc___UIManager> for gfc__DSUIManager {}
+
+impl gfc__DSUIManager {
+    pub unsafe extern "thiscall" fn init(&self) {
+        ((*self.vfptr).init)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn shutdown(&self) {
+        ((*self.vfptr).shutdown)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onLoss(&self) {
+        ((*self.vfptr).onLoss)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onRecovery(&self) {
+        ((*self.vfptr).onRecovery)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addControl(&self, a1: *mut gfc___UIControl, a2: bool) {
+        ((*self.vfptr).addControl)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn removeControl(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).removeControl)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn playSound(&self, a1: *const gfc__String) {
+        ((*self.vfptr).playSound)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHideUI(&self, a1: bool) {
+        ((*self.vfptr).setHideUI)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isUIHidden(&self) -> bool {
+        ((*self.vfptr).isUIHidden)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn drawControlsInternal(&self, a1: *mut gfc__UIRenderer) {
+        ((*self.vfptr).drawControlsInternal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updateInternal(&self, a1: f32) {
+        ((*self.vfptr).updateInternal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn initSounds(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).initSounds)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn reset(&self) {
+        ((*self.vfptr).reset)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn dispose(&self) {
+        ((*self.vfptr).dispose)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn changeUICategory(&self, a1: *const gfc__HString) -> bool {
+        ((*self.vfptr).changeUICategory)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__DSUIManager__vftable {
+    pub init: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
+    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
+    pub onLoss: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
+    pub onRecovery: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
+    pub addControl:
+        unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *mut gfc___UIControl, _: bool),
+    pub removeControl:
+        unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *mut gfc___UIControl),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: f32),
+    pub playSound: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *const gfc__String),
+    pub setHideUI: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: bool),
+    pub isUIHidden: unsafe extern "thiscall" fn(this: *const gfc__DSUIManager) -> bool,
+    pub drawControlsInternal:
+        unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *mut gfc__UIRenderer),
+    pub updateInternal: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: f32),
+    pub initSounds:
+        unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *const gfc__HString),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
+    pub dispose: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
+    pub changeUICategory:
+        unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *const gfc__HString) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__UIScriptControl {
+    pub vfptr: *const gfc__UIScriptControl__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    pub vfptr_2: *const gfc__Hierarchical_gfc___UIControl___vftable,
+    // gfc__Hierarchical_gfc___UIControl_
+    pub mParent: *mut gfc___UIControl,
+    pub mHead: gfc__AutoRef_gfc___UIControl_,
+    pub mTail: gfc__AutoRef_gfc___UIControl_,
+    pub mNext: gfc__AutoRef_gfc___UIControl_,
+    pub mPrev: gfc__AutoRef_gfc___UIControl_,
+    // gfc___UIControl
+    pub mID: i32,
+    pub mName: gfc__HString,
+    pub mOpacity: f32,
+    pub mContext: i32,
+    pub mWindowSize: i32,
+    pub mVisual: gfc__AutoRef_gfc___UIVisual_,
+    pub mClipMask: gfc__HString,
+    pub mIgnoreHideUI: bool,
+    pub mAnchorPoint: u8,
+    pub mAnchorRelativePoint: u8,
+    pub mAnchorRelativeCtrl: gfc__HString,
+    pub mAnchorRelSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorRelOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub OnEvent: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnAction: gfc__TUIEventBroadcaster_gfc___UIEvent_,
+    pub OnMouse: gfc__TUIEventBroadcaster_gfc__MouseEvent_,
+    pub OnKeyboard: gfc__TUIEventBroadcaster_gfc__KeyboardEvent_,
+    pub OnFocus: gfc__TUIEventBroadcaster_gfc__FocusEvent_,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mLastVisibilityState: bool,
+    pub mPackageID: i32,
+    pub mIndents: gfc__TRect_float_,
+    pub mPosition: gfc__TVector2_float_gfc__FloatMath_,
+    pub mSize: gfc__TVector2_float_gfc__FloatMath_,
+    pub mAnchorOffset: gfc__TVector2_float_gfc__FloatMath_,
+    pub mRotation: f32,
+    pub mScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mLayoutManager: gfc__AutoRef_gfc__UILayoutManager_,
+    pub mLayoutHint: f32,
+    pub mCurrentActions: gfc__Vector_gfc__AutoRef_gfc___UIAction__0_gfc__CAllocator_,
+    pub mClipMaterial: gfc__AutoRef_gfc__Material_,
+    pub mOnInitCalledAlready: bool,
+    pub mFirstDraw: bool,
+    pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
+    // gfc__UIScriptControl
+}
+
+unsafe impl UpcastToNop<gfc___UIControl> for gfc__UIScriptControl {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__UIScriptControl {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__UIScriptControl {}
+
+unsafe impl UpcastTo<gfc__Hierarchical_gfc___UIControl_> for gfc__UIScriptControl {
+    fn upcast_to(p: *const Self) -> *const gfc__Hierarchical_gfc___UIControl_ {
+        (p as usize + 0x8) as *const _
+    }
+}
+
+impl gfc__UIScriptControl {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addFront(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).addFront)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addBack(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).addBack)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn add(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).add)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn remove(&self) {
+        ((*self.vfptr).remove)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn remove_2(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).remove_2)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clear(&self) {
+        ((*self.vfptr).clear)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn added(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).added)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removed(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).removed)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn invalidateHierarchy(&self) {
+        ((*self.vfptr).invalidateHierarchy)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getEnabled(&self) -> bool {
+        ((*self.vfptr).getEnabled)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setVisible(&self, a1: bool) {
+        ((*self.vfptr).setVisible)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getVisible(&self) -> bool {
+        ((*self.vfptr).getVisible)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setFocusTraversable(&self, a1: bool) {
+        ((*self.vfptr).setFocusTraversable)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getFocusTraversable(&self) -> bool {
+        ((*self.vfptr).getFocusTraversable)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setMouseEnabled(&self, a1: bool) {
+        ((*self.vfptr).setMouseEnabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getMouseEnabled(&self) -> bool {
+        ((*self.vfptr).getMouseEnabled)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setLayoutEnabled(&self, a1: bool) {
+        ((*self.vfptr).setLayoutEnabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLayoutEnabled(&self) -> bool {
+        ((*self.vfptr).getLayoutEnabled)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setClipChildren(&self, a1: bool) {
+        ((*self.vfptr).setClipChildren)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClipChildren(&self) -> bool {
+        ((*self.vfptr).getClipChildren)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setRegisterControl(&self, a1: bool) {
+        ((*self.vfptr).setRegisterControl)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRegisterControl(&self) -> bool {
+        ((*self.vfptr).getRegisterControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setText(&self, a1: *const gfc__WString) {
+        ((*self.vfptr).setText)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSize(&self, a1: *const gfc__TVector2_float_gfc__FloatMath_) {
+        ((*self.vfptr).setSize)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSizeValid(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setSizeValid)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getSize(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getSize)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getPreferredSize(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPreferredSize)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setPosition(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setPosition)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getPosition(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getAbsolutePosition(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getAbsolutePosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setRotation(&self, a1: f32) {
+        ((*self.vfptr).setRotation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRotation(&self) -> f32 {
+        ((*self.vfptr).getRotation)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setScale(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setScale)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScale(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setLayoutManager(
+        &self,
+        a1: gfc__AutoRef_gfc__UILayoutManager_,
+    ) {
+        ((*self.vfptr).setLayoutManager)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLayoutManager(
+        &self,
+        result: *mut gfc__AutoRef_gfc__UILayoutManager_,
+    ) -> *mut gfc__AutoRef_gfc__UILayoutManager_ {
+        ((*self.vfptr).getLayoutManager)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setLayoutHint(&self, a1: f32) {
+        ((*self.vfptr).setLayoutHint)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLayoutHint(&self) -> f32 {
+        ((*self.vfptr).getLayoutHint)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addAction(&self, a1: gfc__AutoRef_gfc___UIAction_) {
+        ((*self.vfptr).addAction)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeAction(&self, a1: gfc__AutoRef_gfc___UIAction_) {
+        ((*self.vfptr).removeAction)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clearAllActions(&self) {
+        ((*self.vfptr).clearAllActions)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn updateActions(&self, a1: f32) {
+        ((*self.vfptr).updateActions)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn invalidateLayout(&self) {
+        ((*self.vfptr).invalidateLayout)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doAnchorLayout(&self) {
+        ((*self.vfptr).doAnchorLayout)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doLayout(&self) {
+        ((*self.vfptr).doLayout)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setAnchorOffset(
+        &self,
+        a1: gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setAnchorOffset)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnchorOffset(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getAnchorOffset)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn draw(
+        &self,
+        a1: *mut gfc__UIRenderer,
+        a2: *mut gfc__TRect_long_,
+    ) {
+        ((*self.vfptr).draw)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn pick(
+        &self,
+        a1: gfc__TVector2_int_gfc__FloatMath_,
+        a2: bool,
+    ) -> *mut gfc___UIControl {
+        ((*self.vfptr).pick)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getControlByID(&self, a1: i32) -> *mut gfc___UIControl {
+        ((*self.vfptr).getControlByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getControlByName(
+        &self,
+        a1: *const gfc__HString,
+    ) -> *mut gfc___UIControl {
+        ((*self.vfptr).getControlByName)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setControlText(
+        &self,
+        a1: *const gfc__HString,
+        a2: *const gfc__WString,
+    ) -> bool {
+        ((*self.vfptr).setControlText)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setControlTextA(
+        &self,
+        a1: *const gfc__HString,
+        a2: *const gfc__String,
+    ) -> bool {
+        ((*self.vfptr).setControlTextA)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setControlVisible(
+        &self,
+        a1: *const gfc__HString,
+        a2: bool,
+    ) -> bool {
+        ((*self.vfptr).setControlVisible)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setControlEnabled(
+        &self,
+        a1: *const gfc__HString,
+        a2: bool,
+    ) -> bool {
+        ((*self.vfptr).setControlEnabled)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn processMouseEvent(&self, a1: *mut gfc__MouseEvent) {
+        ((*self.vfptr).processMouseEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn processKeyboardEvent(&self, a1: *mut gfc__KeyboardEvent) {
+        ((*self.vfptr).processKeyboardEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn processFocusEvent(&self, a1: *mut gfc__FocusEvent) {
+        ((*self.vfptr).processFocusEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onInit(&self) {
+        ((*self.vfptr).onInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onReInit(&self) {
+        ((*self.vfptr).onReInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onDeInit(&self) {
+        ((*self.vfptr).onDeInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onVisibilityLost(&self) {
+        ((*self.vfptr).onVisibilityLost)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setDialogResults(&self, a1: gfc__AutoRef_gfc__Value_) {
+        ((*self.vfptr).setDialogResults)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getLastDialogResult(
+        &self,
+        a1: *mut gfc__AutoRef_gfc__Value_,
+    ) -> bool {
+        ((*self.vfptr).getLastDialogResult)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn unregisterToolTipEvent(&self) {
+        ((*self.vfptr).unregisterToolTipEvent)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getInputListener(
+        &self,
+        result: *mut gfc__AutoRef_gfc___UIControl_,
+    ) -> *mut gfc__AutoRef_gfc___UIControl_ {
+        ((*self.vfptr).getInputListener)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn initControl(&self) {
+        ((*self.vfptr).initControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn postInitControl(&self) {
+        ((*self.vfptr).postInitControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deinitControl(&self) {
+        ((*self.vfptr).deinitControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reinitControl(&self) {
+        ((*self.vfptr).reinitControl)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doInit(&self) {
+        ((*self.vfptr).doInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn drawInternal(&self, a1: *mut gfc__UIRenderer) {
+        ((*self.vfptr).drawInternal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnchorPosition(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        a2: *mut gfc___UIControl,
+        a3: u8,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getAnchorPosition)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getGlobalScale(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getGlobalScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getParentSize(
+        &self,
+        a1: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getParentSize)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__UIScriptControl__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: u32) -> *mut (),
+    pub addFront:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc___UIControl),
+    pub addBack:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc___UIControl),
+    pub add: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc___UIControl),
+    pub remove: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub remove_2:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc___UIControl),
+    pub clear: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub added:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc___UIControl),
+    pub removed:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc___UIControl),
+    pub invalidateHierarchy: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub getEnabled: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> bool,
+    pub setVisible: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: bool),
+    pub getVisible: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> bool,
+    pub setFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: bool),
+    pub getFocusTraversable: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> bool,
+    pub setMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: bool),
+    pub getMouseEnabled: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> bool,
+    pub setLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: bool),
+    pub getLayoutEnabled: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> bool,
+    pub setClipChildren: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: bool),
+    pub getClipChildren: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> bool,
+    pub setRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: bool),
+    pub getRegisterControl: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> bool,
+    pub setText:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *const gfc__WString),
+    pub setSize: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub setSizeValid: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub getSize: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getPreferredSize: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getAbsolutePosition:
+        unsafe extern "thiscall" fn(
+            this: *mut gfc__UIScriptControl,
+            result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: f32),
+    pub getRotation: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> f32,
+    pub setScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setLayoutManager: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: gfc__AutoRef_gfc__UILayoutManager_,
+    ),
+    pub getLayoutManager: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__AutoRef_gfc__UILayoutManager_,
+    )
+        -> *mut gfc__AutoRef_gfc__UILayoutManager_,
+    pub setLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: f32),
+    pub getLayoutHint: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl) -> f32,
+    pub addAction: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: gfc__AutoRef_gfc___UIAction_,
+    ),
+    pub removeAction: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: gfc__AutoRef_gfc___UIAction_,
+    ),
+    pub clearAllActions: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub updateActions: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: f32),
+    pub invalidateLayout: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub doAnchorLayout: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub doLayout: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub setAnchorOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: gfc__TVector2_float_gfc__FloatMath_,
+    ),
+    pub getAnchorOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub draw: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *mut gfc__UIRenderer,
+        _: *mut gfc__TRect_long_,
+    ),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: f32),
+    pub pick: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: gfc__TVector2_int_gfc__FloatMath_,
+        _: bool,
+    ) -> *mut gfc___UIControl,
+    pub getControlByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: i32,
+    ) -> *mut gfc___UIControl,
+    pub getControlByName: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__HString,
+    ) -> *mut gfc___UIControl,
+    pub setControlText: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__HString,
+        _: *const gfc__WString,
+    ) -> bool,
+    pub setControlTextA: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__HString,
+        _: *const gfc__String,
+    ) -> bool,
+    pub setControlVisible: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__HString,
+        _: bool,
+    ) -> bool,
+    pub setControlEnabled: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *const gfc__HString,
+        _: bool,
+    ) -> bool,
+    pub processMouseEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc__MouseEvent),
+    pub processKeyboardEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc__KeyboardEvent),
+    pub processFocusEvent:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc__FocusEvent),
+    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub onReInit: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub onDeInit: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub onVisibilityLost: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub setDialogResults:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: gfc__AutoRef_gfc__Value_),
+    pub getLastDialogResult: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        _: *mut gfc__AutoRef_gfc__Value_,
+    ) -> bool,
+    pub unregisterToolTipEvent: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub getInputListener: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__AutoRef_gfc___UIControl_,
+    ) -> *mut gfc__AutoRef_gfc___UIControl_,
+    pub initControl: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub postInitControl: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub deinitControl: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub reinitControl: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub doInit: unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl),
+    pub drawInternal:
+        unsafe extern "thiscall" fn(this: *mut gfc__UIScriptControl, _: *mut gfc__UIRenderer),
+    pub getAnchorPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__UIScriptControl,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        _: *mut gfc___UIControl,
+        _: u8,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getGlobalScale: unsafe extern "thiscall" fn(
+        this: *const gfc__UIScriptControl,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub getParentSize: unsafe extern "thiscall" fn(
+        this: *const gfc__UIScriptControl,
+        _: *mut gfc__TVector2_float_gfc__FloatMath_,
+    ),
 }
 
 #[repr(C)]
@@ -16314,6 +18835,8 @@ pub struct hkpShape__vftable {
 
 pub type keen__FileAccessMode = i32;
 
+pub type keen__ProjectionType = i32;
+
 pub type kaiko__LocalGameSessionInteractionId = i32;
 
 pub type keen__PixelFormat = i32;
@@ -16327,6 +18850,8 @@ pub type D3D_NAME = i32;
 pub type D3D_REGISTER_COMPONENT_TYPE = i32;
 
 pub type keen__PrimitiveType = i32;
+
+pub type keen__graphics__WindowMode = i32;
 
 pub type keen__SaveData__OperationStatus = i32;
 
@@ -16419,84 +18944,3 @@ pub type unit4__RankingError = i32;
 pub type EResult = i32;
 
 pub type ELeaderboardDataRequest = i32;
-
-pub type ELeaderboardUploadScoreMethod = i32;
-
-pub type unit4__SystemServices__ReceiveRankingStep = i32;
-
-pub type unit4__SystemServices__SendRankingStep = i32;
-
-pub type unit4__LocalPlayerType = i32;
-
-pub type gfc__MoveInput__DirectionHemispheres = i32;
-
-pub type gfc__MoveInput__DirectionQuad = i32;
-
-pub type hkpPhantomType = i32;
-
-pub type hkpStepResult = i32;
-
-pub type hkWorldOperation__Result = i32;
-
-pub type hkpBodyOperation__ExecutionState = i32;
-
-pub type hkpSimulation__ResetCollisionInformation = i32;
-
-pub type hkpSimulation__FindContacts = i32;
-
-pub type hkpToiResourceMgrResponse = i32;
-
-#[repr(C)]
-pub struct keen__LocalPlayerIdStructureType {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct gfc__OblivionGameDebug {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkSpuCollisionCallbackUtil {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkdWorld {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hknpWorld {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkSpuThreadPool {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkpConstraintRuntime {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkDefaultTaskQueue {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkTimerData_ {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct ELeaderboardSortMethod {
-    _opaque: [u8; 0],
-}
-
-#[repr(C)]
-pub struct ELeaderboardDisplayType {
-    _opaque: [u8; 0],
-}

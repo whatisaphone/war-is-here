@@ -1,7 +1,7 @@
 #![allow(non_camel_case_types, non_upper_case_globals, unused_imports)]
 #![allow(clippy::unreadable_literal)]
 
-use super::{types::*, types2::*, types3::*};
+use super::{types::*, types2::*, types3::*, types4::*};
 
 macro_rules! symbols {
     () => {};
@@ -30,7 +30,17 @@ symbols! {
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__Darksiders = Data(0xa1afc);
     pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle: *mut gfc__Object3DCache = Data(0xa1a8c);
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle: *mut gfc__ClassRegistry = Data(0xa4230);
+    pub static gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__DSUIManager = Data(0xa4258);
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__WindowHelper = Data(0xa1b0c);
+    pub static gfc__UIRenderer__setMaterial: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: *mut gfc__Material) = Text(0xfb8320);
+    pub static gfc__UIRenderer__fillRect: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32, _: f32, _: f32, _: *const gfc__TVector4_float_gfc__FloatMath_, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0xfb8480);
+    pub static gfc__UIRenderer__drawLine: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32, _: f32, _: f32) = Text(0xfb8be0);
+    pub static gfc__UIRenderer__beginRendering: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: bool) = Text(0xfb8f80);
+    pub static gfc__UIRenderer__endRendering: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfb9020);
+    pub static gfc__UIRenderer__pushClip: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32, _: f32, _: f32, _: *const gfc__TVector4_float_gfc__FloatMath_, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0xfd1930);
+    pub static gfc__UIRenderer__popClip: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfd4aa0);
+    pub static gfc__UIRenderer__UIRenderer: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfe9430);
+    pub static gfc__UIRenderer__updateTime: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfec7d0);
     pub static gfc__MeshReader__MeshReader: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader) = Text(0xf5f9e0);
     pub static gfc__MeshCache__getStaticMesh: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: i32, _: *const gfc__HString, _: i32) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xf68630);
     pub static gfc__MBSubMesh__MBSubMesh: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) = Text(0xf6baf0);
@@ -38,6 +48,10 @@ symbols! {
     pub static gfc__MeshReader__readObject: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader, result: *mut gfc__AutoRef_gfc__Object_, _: gfc__AutoRef_gfc__InputStream_, _: *mut bool) -> *mut gfc__AutoRef_gfc__Object_ = Text(0xf91000);
     pub static gfc__MeshCache__loadMesh: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__MeshResourceUnopt, _: i32, _: gfc__AutoRef_gfc__InputStream_, _: gfc__HString, _: i32) -> i32 = Text(0xf91df0);
     pub static gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_, _: *mut gfc__IRefObject) = Text(0xf1b740);
+    pub static gfc__UIRenderer__identity: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xea40f0);
+    pub static gfc__UIRenderer__multiplyColor: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0xea4150);
+    pub static gfc___UIManager__draw: unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: *mut gfc__UIRenderer) = Text(0xed5b70);
+    pub static gfc___UIManager__draw_2: unsafe extern "thiscall" fn(this: *mut gfc___UIManager) = Text(0xeec300);
     pub static gfc__OblivionGame__getWorld: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> *mut gfc__World = Text(0xe816a0);
     pub static gfc__OmniLight__setStaticOnly: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight, _: bool) = Text(0xe26960);
     pub static gfc__OmniLight__getStaticOnly: unsafe extern "thiscall" fn(this: *const gfc__OmniLight) -> bool = Text(0xe26970);
@@ -105,9 +119,21 @@ symbols! {
     pub static gfc__World__getRegion_2: unsafe extern "thiscall" fn(this: *mut gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0x223730);
     pub static gfc__Darksiders__processInputEvent: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent) -> bool = Text(0x27b4b0);
     pub static gfc__Darksiders__onPostUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: f32) = Text(0x295c90);
+    pub static gfc__UIRenderer__translate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb170);
+    pub static gfc__UIRenderer__rotate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32) = Text(0x1eb1b0);
+    pub static gfc__UIRenderer__scale: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb1e0);
+    pub static gfc__UIRenderer__clearShader: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0x1eeab0);
     pub static gfc__LoadMapMenu__LoadMapMenu: unsafe extern "thiscall" fn(this: *mut gfc__LoadMapMenu) = Text(0x201d50);
     pub static gfc__WindowHelper__pushWindow: unsafe extern "thiscall" fn(this: *mut gfc__WindowHelper, _: *const gfc__HString) = Text(0x1bc090);
     pub static gfc__TeleportHelper__warpToMap: unsafe extern "thiscall" fn(this: *mut gfc__TeleportHelper, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString) = Text(0x1bcf30);
+    pub static gfc__UIRenderer__end: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xed500);
+    pub static gfc__UIRenderer__setColor: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0x10b370);
+    pub static gfc__UIRenderer__setSolidMaterial: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0x10b3b0);
+    pub static gfc__UIRenderer__pushTransform: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0x13b280);
+    pub static gfc__UIRenderer__pushParams: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0x13b510);
+    pub static gfc__UIRenderer__begin: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: bool) = Text(0x143ca0);
+    pub static gfc__UIRenderer__popTransform: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0x143fc0);
+    pub static gfc__UIRenderer__popParams: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0x144130);
     pub static gfc__KGGraphics__createStaticMesh: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, result: *mut gfc__AutoRef_gfc__StaticMesh_) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xe1e30);
     pub static gfc__KGGraphics__createStaticMesh_2: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: *mut gfc__MeshBuilder) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xe1ec0);
     pub static gfc__MeshBuilder__MeshBuilder: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) = Text(0xe4d20);

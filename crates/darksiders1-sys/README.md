@@ -21,6 +21,7 @@ pdbindgen \
     -i '^gfc::WorldRegionData$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::DSUIManager,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGGraphics,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGMeshCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Object3DCache,.+>::InstanceHandle$' \
@@ -30,6 +31,7 @@ pdbindgen \
     -i '^gfc::WorldGroup::_Class$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
+    -i '^gfc::_UIManager::draw$' \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
     -i '^gfc::ByteInputStream::~?ByteInputStream$' \
     -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
@@ -59,6 +61,7 @@ pdbindgen \
     -i '^gfc::StaticObject::setPackageName$' \
     -i '^gfc::String::~?String$' \
     -i '^gfc::TeleportHelper::warpToMap$' \
+    -i '^gfc::UIRenderer::\w+$' \
     -i '^gfc::WindowHelper::pushWindow$' \
     -i '^gfc::World::getRegion$' \
     -i '^gfc::WorldGroup::getObjects$' \

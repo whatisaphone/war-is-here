@@ -29,7 +29,17 @@ pub unsafe fn bind(args: &BindArgs) {
     );
     bind!(data, gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
+    bind!(data, gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
+    bind!(text, gfc__UIRenderer__setMaterial);
+    bind!(text, gfc__UIRenderer__fillRect);
+    bind!(text, gfc__UIRenderer__drawLine);
+    bind!(text, gfc__UIRenderer__beginRendering);
+    bind!(text, gfc__UIRenderer__endRendering);
+    bind!(text, gfc__UIRenderer__pushClip);
+    bind!(text, gfc__UIRenderer__popClip);
+    bind!(text, gfc__UIRenderer__UIRenderer);
+    bind!(text, gfc__UIRenderer__updateTime);
     bind!(text, gfc__MeshReader__MeshReader);
     bind!(text, gfc__MeshCache__getStaticMesh);
     bind!(text, gfc__MBSubMesh__MBSubMesh);
@@ -40,6 +50,10 @@ pub unsafe fn bind(args: &BindArgs) {
         text,
         gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject_
     );
+    bind!(text, gfc__UIRenderer__identity);
+    bind!(text, gfc__UIRenderer__multiplyColor);
+    bind!(text, gfc___UIManager__draw);
+    bind!(text, gfc___UIManager__draw_2);
     bind!(text, gfc__OblivionGame__getWorld);
     bind!(text, gfc__OmniLight__setStaticOnly);
     bind!(text, gfc__OmniLight__getStaticOnly);
@@ -113,9 +127,21 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__World__getRegion_2);
     bind!(text, gfc__Darksiders__processInputEvent);
     bind!(text, gfc__Darksiders__onPostUpdateInterval);
+    bind!(text, gfc__UIRenderer__translate);
+    bind!(text, gfc__UIRenderer__rotate);
+    bind!(text, gfc__UIRenderer__scale);
+    bind!(text, gfc__UIRenderer__clearShader);
     bind!(text, gfc__LoadMapMenu__LoadMapMenu);
     bind!(text, gfc__WindowHelper__pushWindow);
     bind!(text, gfc__TeleportHelper__warpToMap);
+    bind!(text, gfc__UIRenderer__end);
+    bind!(text, gfc__UIRenderer__setColor);
+    bind!(text, gfc__UIRenderer__setSolidMaterial);
+    bind!(text, gfc__UIRenderer__pushTransform);
+    bind!(text, gfc__UIRenderer__pushParams);
+    bind!(text, gfc__UIRenderer__begin);
+    bind!(text, gfc__UIRenderer__popTransform);
+    bind!(text, gfc__UIRenderer__popParams);
     bind!(text, gfc__KGGraphics__createStaticMesh);
     bind!(text, gfc__KGGraphics__createStaticMesh_2);
     bind!(text, gfc__MeshBuilder__MeshBuilder);

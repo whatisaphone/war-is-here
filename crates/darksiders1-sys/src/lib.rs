@@ -14,6 +14,7 @@ pub mod target;
 mod types;
 mod types2;
 mod types3;
+mod types4;
 
 #[cfg(test)]
 mod tests {

@@ -1,8 +1,562 @@
 #![allow(non_camel_case_types, non_snake_case, unused_imports)]
 #![allow(clippy::use_self)]
 
-use super::{types::*, types3::*};
+use super::{types::*, types3::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
+
+#[repr(C)]
+pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__String_,
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
+    // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+#[repr(C)]
+pub struct std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__String_,
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
+    // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    // std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    // std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____
+}
+
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {}
+
+#[repr(C)]
+pub struct gfc__MBWeights {
+    pub Weight0: gfc__MBWeight,
+    pub Weight1: gfc__MBWeight,
+    pub Weight2: gfc__MBWeight,
+    pub Weight3: gfc__MBWeight,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__MBWeights_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__MBWeights,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__MBSubMesh_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__MeshBuilder {
+    pub vfptr: *const gfc__MeshBuilder__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__MeshBuilder
+    pub mBounds: gfc__BoundingVolume,
+    pub mVertexFormat: gfc__VertexFormat,
+    pub mSubMeshes: gfc__Vector_gfc__AutoRef_gfc__MBSubMesh__0_gfc__CAllocator_,
+    pub mBones: gfc__Vector_gfc__MBBone_0_gfc__CAllocator_,
+    pub mUserData: gfc__Map_gfc__String_gfc__String_std__less_gfc__String___,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__MeshBuilder {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshBuilder {}
+
+impl gfc__MeshBuilder {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn computeTangentVectors(&self, a1: *mut gfc__MBSubMesh) {
+        ((*self.vfptr).computeTangentVectors)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn optimize(&self, a1: *mut gfc__MBSubMesh) -> bool {
+        ((*self.vfptr).optimize)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshBuilder__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__MeshBuilder) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__MeshBuilder) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshBuilder,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshBuilder,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub computeTangentVectors:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: *mut gfc__MBSubMesh),
+    pub optimize:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder, _: *mut gfc__MBSubMesh) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__MBWeight {
+    pub Index: i32,
+    pub Value: f32,
+}
+
+#[repr(C)]
+pub struct gfc__MeshCache {
+    pub vfptr: *const gfc__MeshCache__vftable,
+    // gfc__ResourceCache
+    pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mType: i32,
+    pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
+    // gfc__MeshCache
+    pub mReloadInfo: gfc__Vector_gfc__MeshCache__ReloadInfo_0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__ResourceCache> for gfc__MeshCache {}
+
+impl gfc__MeshCache {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn loadDefaultResource(&self, a1: gfc__AutoRef_gfc__File_) {
+        ((*self.vfptr).loadDefaultResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn initThread(&self) {
+        ((*self.vfptr).initThread)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn shutdownThread(&self) {
+        ((*self.vfptr).shutdownThread)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn analyzeResource(
+        &self,
+        a1: *mut gfc__ResourceAnalyzeInfo,
+    ) -> bool {
+        ((*self.vfptr).analyzeResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn canCreateBuffersInThread(&self, a1: i32) -> bool {
+        ((*self.vfptr).canCreateBuffersInThread)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn createBuffers(&self, a1: *mut gfc__ResourceBufferInfo) {
+        ((*self.vfptr).createBuffers)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn freeBuffers(&self, a1: *mut gfc__ResourceLoadInfo) {
+        ((*self.vfptr).freeBuffers)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn loadResource(&self, a1: *mut gfc__ResourceLoadInfo) {
+        ((*self.vfptr).loadResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn canReloadResources(&self) -> bool {
+        ((*self.vfptr).canReloadResources)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reloadsQueued(&self) -> bool {
+        ((*self.vfptr).reloadsQueued)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reloadResource(&self, a1: *mut gfc__ResourceLoadInfo) -> bool {
+        ((*self.vfptr).reloadResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn needUnlinkResource(&self) -> bool {
+        ((*self.vfptr).needUnlinkResource)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unlinkResource(
+        &self,
+        a1: *mut (),
+        a2: *const gfc__HString,
+        a3: *const gfc__HString,
+    ) {
+        ((*self.vfptr).unlinkResource)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn needUnloadResource(&self) -> bool {
+        ((*self.vfptr).needUnloadResource)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unloadResource(
+        &self,
+        a1: *mut (),
+        a2: *mut gfc__ResourceLoadInfo,
+    ) {
+        ((*self.vfptr).unloadResource)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn freeResource(
+        &self,
+        a1: *mut (),
+        a2: *const gfc__HString,
+        a3: *const gfc__HString,
+    ) {
+        ((*self.vfptr).freeResource)(self as *const _ as *mut _, a1, a2, a3)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshCache__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: u32) -> *mut (),
+    pub loadDefaultResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: gfc__AutoRef_gfc__File_),
+    pub initThread: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache),
+    pub shutdownThread: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache),
+    pub analyzeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshCache,
+        _: *mut gfc__ResourceAnalyzeInfo,
+    ) -> bool,
+    pub canCreateBuffersInThread:
+        unsafe extern "thiscall" fn(this: *const gfc__MeshCache, _: i32) -> bool,
+    pub createBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__ResourceBufferInfo),
+    pub freeBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__ResourceLoadInfo),
+    pub loadResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, _: *mut gfc__ResourceLoadInfo),
+    pub canReloadResources: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
+    pub reloadsQueued: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
+    pub reloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshCache,
+        _: *mut gfc__ResourceLoadInfo,
+    ) -> bool,
+    pub needUnlinkResource: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
+    pub unlinkResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+    pub needUnloadResource: unsafe extern "thiscall" fn(this: *const gfc__MeshCache) -> bool,
+    pub unloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshCache,
+        _: *mut (),
+        _: *mut gfc__ResourceLoadInfo,
+    ),
+    pub freeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__MeshCache__ReloadInfo {
+    pub PackageID: i32,
+    pub Name: gfc__HString,
+    pub Buffer: *mut u8,
+    pub Length: u32,
+}
+
+#[repr(C)]
+pub struct gfc__MeshResourceUnopt {
+    pub vfptr: *const gfc__MeshResourceUnopt__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Resource
+    pub mState: i32,
+    pub mPackageID: i32,
+    // gfc__ResourceType_gfc__Mesh_2_
+    pub mResource: gfc__AutoRef_gfc__Mesh_,
+    // gfc__MeshResource
+    pub mName: gfc__HString,
+    // gfc__MeshResourceUnopt
+    pub mBuilder: gfc__AutoRef_gfc__MeshBuilder_,
+    pub mFinalizeMesh: gfc__AutoRef_gfc__Mesh_,
+}
+
+unsafe impl UpcastToNop<gfc__MeshResource> for gfc__MeshResourceUnopt {}
+
+unsafe impl UpcastToNop<gfc__ResourceType_gfc__Mesh_2_> for gfc__MeshResourceUnopt {}
+
+unsafe impl UpcastToNop<gfc__Resource> for gfc__MeshResourceUnopt {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshResourceUnopt {}
+
+impl gfc__MeshResourceUnopt {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> i32 {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn finalize(&self) {
+        ((*self.vfptr).finalize)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unload(&self) {
+        ((*self.vfptr).unload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isUnoptimized(&self) -> bool {
+        ((*self.vfptr).isUnoptimized)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshResourceUnopt__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshResourceUnopt, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__MeshResourceUnopt) -> i32,
+    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__MeshResourceUnopt),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__MeshResourceUnopt),
+    pub isUnoptimized: unsafe extern "thiscall" fn(this: *const gfc__MeshResourceUnopt) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__ResourceType_gfc__Mesh_2_ {
+    pub vfptr: *const gfc__ResourceType_gfc__Mesh_2___vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Resource
+    pub mState: i32,
+    pub mPackageID: i32,
+    // gfc__ResourceType_gfc__Mesh_2_
+    pub mResource: gfc__AutoRef_gfc__Mesh_,
+}
+
+unsafe impl UpcastToNop<gfc__Resource> for gfc__ResourceType_gfc__Mesh_2_ {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__ResourceType_gfc__Mesh_2_ {}
+
+impl gfc__ResourceType_gfc__Mesh_2_ {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> i32 {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn finalize(&self) {
+        ((*self.vfptr).finalize)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unload(&self) {
+        ((*self.vfptr).unload)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__ResourceType_gfc__Mesh_2___vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__ResourceType_gfc__Mesh_2_, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__ResourceType_gfc__Mesh_2_) -> i32,
+    pub finalize: unsafe extern "thiscall" fn(this: *mut gfc__ResourceType_gfc__Mesh_2_),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__ResourceType_gfc__Mesh_2_),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__SkinMesh_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Mesh_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__MeshReader {
+    pub vfptr: *const gfc__MeshReader__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    /* gfc__ObjectReader
+     * gfc__MeshReader */
+}
+
+unsafe impl UpcastToNop<gfc__ObjectReader> for gfc__MeshReader {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshReader {}
+
+impl gfc__MeshReader {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn readObject(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Object_,
+        a2: gfc__AutoRef_gfc__InputStream_,
+    ) -> *mut gfc__AutoRef_gfc__Object_ {
+        ((*self.vfptr).readObject)(self as *const _ as *mut _, result, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshReader__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader, _: u32) -> *mut (),
+    pub readObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__MeshReader,
+        result: *mut gfc__AutoRef_gfc__Object_,
+        _: gfc__AutoRef_gfc__InputStream_,
+    ) -> *mut gfc__AutoRef_gfc__Object_,
+}
+
+#[repr(C)]
+pub struct gfc__MBBone {
+    pub Offset: gfc__Matrix4,
+    pub ID: i32,
+    pub Name: gfc__String,
+}
+
+#[repr(C)]
+pub struct gfc__MBSubMesh {
+    pub vfptr: *const gfc__MBSubMesh__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__MBSubMesh
+    pub PrimType: i32,
+    pub HasWeights: bool,
+    pub MaterialID: i32,
+    pub MaterialName: gfc__String,
+    pub VertexCount: i32,
+    pub Position: gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Normal: gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Tangent: gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Binormal: gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Tex0: gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Tex1: gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Tex2: gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Color0: gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Color1: gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
+    pub Weights: gfc__Vector_gfc__MBWeights_0_gfc__CAllocator_,
+    pub Indices: gfc__Vector_unsigned_long_0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__MBSubMesh {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MBSubMesh {}
+
+impl gfc__MBSubMesh {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+}
 
 #[repr(C)]
 pub struct gfc__MBSubMesh__vftable {
@@ -135,7 +689,7 @@ pub struct gfc__Map_gfc__String_gfc__String_std__less_gfc__String___ {
     __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
+    pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
     pub _Mysize: u32,
@@ -159,6 +713,340 @@ unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc_
 
 unsafe impl UpcastToNop<std___Container_base0>
     for gfc__Map_gfc__String_gfc__String_std__less_gfc__String___
+{
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Font_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+#[repr(C)]
+pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+#[repr(C)]
+pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Font___ {
+    pub first: gfc__HString,
+    pub second: gfc__AutoRef_gfc__Font_,
+}
+
+#[repr(C)]
+pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_
+{
+    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_
+    __pdbindgen_padding: [u8; 1],
+    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_ */
+}
+
+unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_ {}
+
+#[repr(C)]
+pub struct std__pair_gfc__HString_const__gfc___UIControl___ {
+    // std___Pair_base_gfc__HString_const__gfc___UIControl___
+    pub first: gfc__HString,
+    pub second: *mut gfc___UIControl,
+    // std__pair_gfc__HString_const__gfc___UIControl___
+}
+
+unsafe impl UpcastToNop<std___Pair_base_gfc__HString_const__gfc___UIControl___>
+    for std__pair_gfc__HString_const__gfc___UIControl___
+{
+}
+
+#[repr(C)]
+pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_
+{
+    __pdbindgen_padding: [u8; 1],
+}
+
+#[repr(C)]
+pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+#[repr(C)]
+pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_
+{
+    __pdbindgen_padding: [u8; 1],
+}
+
+#[repr(C)]
+pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_> for std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+#[repr(C)]
+pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_
+{
+    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_
+    __pdbindgen_padding: [u8; 1],
+    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_ */
+}
+
+unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_ {}
+
+#[repr(C)]
+pub struct std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    // std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______
+}
+
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______ {}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_> for std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______ {}
+
+#[repr(C)]
+pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font___ {
+    // std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Font___
+    pub first: gfc__HString,
+    pub second: gfc__AutoRef_gfc__Font_,
+    // std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font___
+}
+
+unsafe impl UpcastToNop<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Font___>
+    for std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font___
+{
+}
+
+#[repr(C)]
+pub struct std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    // std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______
+}
+
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______ {}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_> for std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______ {}
+
+#[repr(C)]
+pub struct std___Pair_base_gfc__HString_const__gfc___UIControl___ {
+    pub first: gfc__HString,
+    pub second: *mut gfc___UIControl,
+}
+
+#[repr(C)]
+pub struct std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____ {
+    // std___Allocator_base_std__pair_gfc__HString_const__gfc___UIControl_____
+    __pdbindgen_padding: [u8; 1],
+    // std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____
+}
+
+unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__HString_const__gfc___UIControl_____>
+    for std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____
+{
+}
+
+#[repr(C)]
+pub struct std___Allocator_base_std__pair_gfc__HString_const__gfc___UIControl_____ {
+    __pdbindgen_padding: [u8; 1],
+}
+
+#[repr(C)]
+pub struct std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____ {
+    __pdbindgen_padding: [u8; 1],
+}
+
+#[repr(C)]
+pub struct std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
+{
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_ {}
+
+#[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____,
+}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_> for std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {}
+
+#[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node {
+    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Myval: std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font___,
+    pub _Color: i8,
+    pub _Isnil: i8,
+}
+
+#[repr(C)]
+pub struct std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
+{
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_ {}
+
+#[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____,
+}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_> for std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {}
+
+#[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node {
+    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Myval: std__pair_gfc__HString_const__gfc___UIControl___,
+    pub _Color: i8,
+    pub _Isnil: i8,
+}
+
+#[repr(C)]
+pub struct std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____ {
+    // std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____
+    __pdbindgen_padding: [u8; 1],
+    // std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____
+}
+
+unsafe impl
+    UpcastToNop<std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____>
+    for std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____
 {
 }
 
@@ -886,6 +1774,39 @@ pub struct gfc__FocusEvent {
 }
 
 unsafe impl UpcastToNop<gfc___UIEvent> for gfc__FocusEvent {}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
+    // std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______
+    // gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___
+}
+
+unsafe impl UpcastToNop<std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_> for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Container_base0>
+    for gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___
+{
+}
 
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__MediaManager_ {
@@ -2053,6 +2974,140 @@ pub struct gfc__AutoRef_gfc__Monster_ {
 }
 
 #[repr(C)]
+pub struct gfc___UIManager {
+    pub vfptr: *const gfc___UIManager__vftable,
+    __pdbindgen_padding: [u8; 12],
+    pub mUIRenderer: gfc__UIRenderer,
+    pub mDimensions: gfc__TVector2_int_gfc__FloatMath_,
+    pub mHideUI: bool,
+    pub mHideUIFrameCount: i32,
+    pub mMousePos: gfc__TVector2_int_gfc__FloatMath_,
+    pub mLastMouseMove: gfc__AutoRef_gfc___UIControl_,
+    pub mLastMouseClicked: gfc__AutoRef_gfc___UIControl_,
+    pub mFocusedControl: gfc__AutoRef_gfc___UIControl_,
+    pub mCaptureControl: gfc__AutoRef_gfc___UIControl_,
+    pub mControls: List_gfc__AutoRef_gfc___UIControl___,
+    pub mSystemControl: gfc__AutoRef_gfc___UIControl_,
+    pub mLastMouseBtnClicked: [i32; 5],
+    pub mRemoveList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mAddList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mFonts: gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___,
+    pub mGlobalControls: gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___,
+    pub mUpdateList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mUpdateRemovalList: List_gfc__AutoRef_gfc___UIControl___,
+    pub mLastDeltaT: f32,
+    pub mScriptEnvironment: gfc__AutoRef_gfc__Environment_,
+    pub mTimer: gfc__AutoRef_gfc__UITimer_,
+    pub mGlobalScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mCrosshairScale: gfc__TVector2_float_gfc__FloatMath_,
+    pub mIsIterating: bool,
+    pub mResized: bool,
+    __pdbindgen_padding_2: [u8; 6],
+}
+
+impl gfc___UIManager {
+    pub unsafe extern "thiscall" fn init(&self) {
+        ((*self.vfptr).init)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn shutdown(&self) {
+        ((*self.vfptr).shutdown)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onLoss(&self) {
+        ((*self.vfptr).onLoss)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onRecovery(&self) {
+        ((*self.vfptr).onRecovery)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addControl(&self, a1: *mut gfc___UIControl, a2: bool) {
+        ((*self.vfptr).addControl)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn removeControl(&self, a1: *mut gfc___UIControl) {
+        ((*self.vfptr).removeControl)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn playSound(&self, a1: *const gfc__String) {
+        ((*self.vfptr).playSound)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHideUI(&self, a1: bool) {
+        ((*self.vfptr).setHideUI)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isUIHidden(&self) -> bool {
+        ((*self.vfptr).isUIHidden)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn drawControlsInternal(&self, a1: *mut gfc__UIRenderer) {
+        ((*self.vfptr).drawControlsInternal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updateInternal(&self, a1: f32) {
+        ((*self.vfptr).updateInternal)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc___UIManager__vftable {
+    pub init: unsafe extern "thiscall" fn(this: *mut gfc___UIManager),
+    pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc___UIManager),
+    pub onLoss: unsafe extern "thiscall" fn(this: *mut gfc___UIManager),
+    pub onRecovery: unsafe extern "thiscall" fn(this: *mut gfc___UIManager),
+    pub addControl:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: *mut gfc___UIControl, _: bool),
+    pub removeControl:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: *mut gfc___UIControl),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: f32),
+    pub playSound: unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: *const gfc__String),
+    pub setHideUI: unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: bool),
+    pub isUIHidden: unsafe extern "thiscall" fn(this: *const gfc___UIManager) -> bool,
+    pub drawControlsInternal:
+        unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: *mut gfc__UIRenderer),
+    pub updateInternal: unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: f32),
+}
+
+#[repr(C)]
+pub struct gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__HString_,
+    // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____,
+    // std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    // std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
+    // std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______
+    // gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___
+}
+
+unsafe impl UpcastToNop<std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______> for gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___> for gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_> for gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___ {}
+
+unsafe impl UpcastToNop<std___Container_base0>
+    for gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___
+{
+}
+
+#[repr(C)]
 pub struct gfc__TUIEventBroadcaster_gfc__FocusEvent_ {
     pub mDelegates:
         gfc__Vector_gfc__AutoRef_gfc__TUIEventDelegate_gfc__FocusEvent____0_gfc__CAllocator_,
@@ -2093,8 +3148,26 @@ pub struct gfc__Vector_gfc__WorldQueueItem___0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__UITimer_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__GameCamera_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct List_gfc__AutoRef_gfc__Object___ {
+    pub mList: *mut List_gfc__AutoRef_gfc__Object_____ListNode,
+    pub mTail: *mut List_gfc__AutoRef_gfc__Object_____ListNode,
+    pub mSize: i32,
+}
+
+#[repr(C)]
+pub struct List_gfc__AutoRef_gfc__Object_____ListNode {
+    pub next: *mut List_gfc__AutoRef_gfc__Object_____ListNode,
+    pub value: gfc__AutoRef_gfc__Object_,
 }
 
 #[repr(C)]
@@ -2166,6 +3239,19 @@ pub struct unit4__SaveDataDescriptionInterface__vftable {
 pub struct keen__Array_unit4__LocalGameSession__LocalUserData_ {
     pub m_pData: *mut unit4__LocalGameSession__LocalUserData,
     pub m_size: u32,
+}
+
+#[repr(C)]
+pub struct List_gfc__AutoRef_gfc___UIControl___ {
+    pub mList: *mut List_gfc__AutoRef_gfc___UIControl_____ListNode,
+    pub mTail: *mut List_gfc__AutoRef_gfc___UIControl_____ListNode,
+    pub mSize: i32,
+}
+
+#[repr(C)]
+pub struct List_gfc__AutoRef_gfc___UIControl_____ListNode {
+    pub next: *mut List_gfc__AutoRef_gfc___UIControl_____ListNode,
+    pub value: gfc__AutoRef_gfc___UIControl_,
 }
 
 #[repr(C)]
@@ -2455,7 +3541,7 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__
     __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
+    pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
     pub _Mysize: u32,
@@ -2474,7 +3560,7 @@ pub struct std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__Strin
     __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
+    pub comp: std__less_gfc__String_,
 }
 
 unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_ {}
@@ -2503,7 +3589,7 @@ pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__
     __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
+    pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
     pub _Mysize: u32,
@@ -2534,7 +3620,7 @@ pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less
     __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
+    pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
     pub _Mysize: u32,
@@ -2568,7 +3654,7 @@ pub struct std__map_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__a
     __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
     #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: compile_error!("malformed PDB: oops"),
+    pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
     pub _Mysize: u32,
@@ -14268,937 +15354,4 @@ pub struct std__pair_gfc__String_const__gfc__StateMapValue_ {
 unsafe impl UpcastToNop<std___Pair_base_gfc__String_const__gfc__StateMapValue_>
     for std__pair_gfc__String_const__gfc__StateMapValue_
 {
-}
-
-#[repr(C)]
-pub struct gfc__ModSysContainerModule {
-    pub vfptr: *const gfc__ModSysContainerModule__vftable,
-    // gfc__IRefObject
-    pub ReferenceCount: i32,
-    // gfc__Object
-    // gfc__VisScriptEntity
-    pub mID: u32,
-    pub mComment: gfc__HString,
-    pub mLocationX: i32,
-    pub mLocationY: i32,
-    pub mModuleSystem: *mut gfc__ModuleSystem,
-    // gfc__VisScriptModule
-    pub mEventLinks: gfc__Vector_gfc__ModuleEventLink_0_gfc__CAllocator_,
-    pub mInputLinks: gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_,
-    pub mVariableLinks: gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator_,
-    // gfc__ModSysContainerModule
-    pub mEnable: bool,
-    pub mIncludeName: gfc__HString,
-    pub mInternalModuleSystem: gfc__AutoRef_gfc__ModuleSystem_,
-    pub mInputModule: gfc__AutoRef_gfc__InputModule_,
-    pub mActionNames: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
-    pub mEventNames: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
-    pub mVariableConnections:
-        gfc__Vector_gfc__AutoRef_gfc__VariableConnectionInfo__0_gfc__CAllocator_,
-}
-
-unsafe impl UpcastToNop<gfc__VisScriptModule> for gfc__ModSysContainerModule {}
-
-unsafe impl UpcastToNop<gfc__VisScriptEntity> for gfc__ModSysContainerModule {}
-
-unsafe impl UpcastToNop<gfc__Object> for gfc__ModSysContainerModule {}
-
-unsafe impl UpcastToNop<gfc__IRefObject> for gfc__ModSysContainerModule {}
-
-impl gfc__ModSysContainerModule {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
-        ((*self.vfptr).getClass)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
-        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
-        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
-        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getScriptState(
-        &self,
-        result: *mut gfc__HString,
-    ) -> *mut gfc__HString {
-        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
-    }
-
-    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
-        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
-        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn cloneObject(
-        &self,
-        a1: *mut gfc__ObjectCloner,
-        a2: gfc__AutoRef_gfc__Object_,
-    ) {
-        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getUILabel(&self) -> *const i8 {
-        ((*self.vfptr).getUILabel)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn compile(&self, a1: *mut gfc__ModuleSystem) {
-        ((*self.vfptr).compile)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn begin(&self, a1: *mut gfc__Object) {
-        ((*self.vfptr).begin)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn end(&self) {
-        ((*self.vfptr).end)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn clearDeadLinks(&self, a1: *mut gfc__ModuleSystem) {
-        ((*self.vfptr).clearDeadLinks)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getCategory(&self) -> i32 {
-        ((*self.vfptr).getCategory)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getNumActions(&self) -> i32 {
-        ((*self.vfptr).getNumActions)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getActionID(&self, a1: i32) -> u32 {
-        ((*self.vfptr).getActionID)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getActionName(&self, a1: i32) -> *const i8 {
-        ((*self.vfptr).getActionName)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getNumEvents(&self) -> i32 {
-        ((*self.vfptr).getNumEvents)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getEventID(&self, a1: i32) -> u32 {
-        ((*self.vfptr).getEventID)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getEventName(&self, a1: i32) -> *const i8 {
-        ((*self.vfptr).getEventName)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getNumVariableConnections(&self) -> i32 {
-        ((*self.vfptr).getNumVariableConnections)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getVariableConnectionID(&self, a1: i32) -> u32 {
-        ((*self.vfptr).getVariableConnectionID)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getVariableConnectionInfo(
-        &self,
-        result: *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
-        a2: i32,
-    ) -> *mut gfc__AutoRef_gfc__VariableConnectionInfo_ {
-        ((*self.vfptr).getVariableConnectionInfo)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn doEvent(&self, a1: u32) {
-        ((*self.vfptr).doEvent)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn execute(&self, a1: u32) {
-        ((*self.vfptr).execute)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getVariableValue(
-        &self,
-        result: *mut gfc__AutoRef_gfc__Value_,
-        a2: u32,
-    ) -> *mut gfc__AutoRef_gfc__Value_ {
-        ((*self.vfptr).getVariableValue)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn setVariableValue(&self, a1: u32, a2: gfc__AutoRef_gfc__Value_) {
-        ((*self.vfptr).setVariableValue)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn tryAgain(&self) {
-        ((*self.vfptr).tryAgain)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getVariablesIn(
-        &self,
-        result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
-        a2: u32,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
-        ((*self.vfptr).getVariablesIn)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getVariablesOut(
-        &self,
-        result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
-        a2: u32,
-    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
-        ((*self.vfptr).getVariablesOut)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn executeInternal(&self, a1: u32) {
-        ((*self.vfptr).executeInternal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn hasVariableIn(&self, a1: u32) -> bool {
-        ((*self.vfptr).hasVariableIn)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn hasVariableOut(&self, a1: u32) -> bool {
-        ((*self.vfptr).hasVariableOut)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct gfc__ModSysContainerModule__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32) -> *mut (),
-    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> *mut gfc__Class,
-    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *const gfc__HString),
-    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> *const (),
-    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule) -> *mut (),
-    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__HString) -> *mut gfc__HString,
-    pub getScriptEnvironment: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule) -> *mut gfc__Environment,
-    pub getMethodByID: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *const u64) -> *mut gfc__Method,
-    pub cloneObject: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__ObjectCloner, _: gfc__AutoRef_gfc__Object_),
-    pub getUILabel: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> *const i8,
-    pub compile: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__ModuleSystem),
-    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__Object),
-    pub end: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule),
-    pub clearDeadLinks: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: *mut gfc__ModuleSystem),
-    pub getCategory: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
-    pub getNumActions: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
-    pub getActionID: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> u32,
-    pub getActionName: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> *const i8,
-    pub getNumEvents: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
-    pub getEventID: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> u32,
-    pub getEventName: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> *const i8,
-    pub getNumVariableConnections: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule) -> i32,
-    pub getVariableConnectionID: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, _: i32) -> u32,
-    pub getVariableConnectionInfo: unsafe extern "thiscall" fn(this: *const gfc__ModSysContainerModule, result: *mut gfc__AutoRef_gfc__VariableConnectionInfo_, _: i32) -> *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
-    pub doEvent: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32),
-    pub execute: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32),
-    pub getVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__AutoRef_gfc__Value_, _: u32) -> *mut gfc__AutoRef_gfc__Value_,
-    pub setVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32, _: gfc__AutoRef_gfc__Value_),
-    pub tryAgain: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule),
-    pub getVariablesIn: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_, _: u32) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
-    pub getVariablesOut: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_, _: u32) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
-    pub executeInternal: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32),
-    pub hasVariableIn: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32) -> bool,
-    pub hasVariableOut: unsafe extern "thiscall" fn(this: *mut gfc__ModSysContainerModule, _: u32) -> bool,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__VisScriptVariable_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__InputModule_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__VariableConnectionInfo__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__VisScriptVariable_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_ {
-    pub mData: *mut gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_ {
-    pub mHashSize: u32,
-    pub mpHashTable: *mut u32,
-    pub mPairs: gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_,
-    pub mNextAvailable: u32,
-    pub mCount: u32,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Variable__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
-{
-    pub mNext: u32,
-    pub mKey: u64,
-    pub mValue: gfc__AutoRef_gfc__Variable_,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Property__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
-{
-    pub mNext: u32,
-    pub mKey: u64,
-    pub mValue: gfc__AutoRef_gfc__Property_,
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Method__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
-{
-    pub mNext: u32,
-    pub mKey: u64,
-    pub mValue: gfc__AutoRef_gfc__Method_,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__ClassLoader_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__OOObjectWriter {
-    pub vfptr: *const gfc__OOObjectWriter__vftable,
-    // gfc__IRefObject
-    pub ReferenceCount: i32,
-    // gfc__ObjectWriter
-    // gfc__OOObjectWriter
-    pub mObjectDatabase: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
-    pub mWriteDefaults: bool,
-}
-
-unsafe impl UpcastToNop<gfc__ObjectWriter> for gfc__OOObjectWriter {}
-
-unsafe impl UpcastToNop<gfc__IRefObject> for gfc__OOObjectWriter {}
-
-impl gfc__OOObjectWriter {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct gfc__OOObjectWriter__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut gfc__OOObjectWriter, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair
-{
-    pub mNext: u32,
-    pub mKey: gfc__HString,
-    pub mValue: gfc__AutoRef_gfc__Class_,
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
-    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable,
-    // CCallbackBase
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    // CCallbackImpl_24_
-    // CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_
-    pub m_pObj: *mut keen__ISteamStatsCallback,
-    pub m_Func: *mut unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsReceived_t,
-    ),
-}
-
-unsafe impl UpcastToNop<CCallbackImpl_24_>
-    for CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_
-{
-}
-
-unsafe impl UpcastToNop<CCallbackBase>
-    for CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_
-{
-}
-
-impl CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
-    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
-        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
-        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
-        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable {
-    pub Run: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-        _: *mut (),
-        _: bool,
-        _: u64,
-    ),
-    pub Run_2: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-        _: *mut (),
-    ),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-    ) -> i32,
-}
-
-#[repr(C)]
-pub struct UserStatsReceived_t {
-    pub m_nGameID: u64,
-    pub m_eResult: EResult,
-    pub m_steamIDUser: CSteamID,
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_16_ {
-    pub vfptr: *const CCallbackImpl_16___vftable,
-    // CCallbackBase
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    // CCallbackImpl_16_
-}
-
-unsafe impl UpcastToNop<CCallbackBase> for CCallbackImpl_16_ {}
-
-impl CCallbackImpl_16_ {
-    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
-        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
-        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
-        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_16___vftable {
-    pub Run: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_, _: *mut (), _: bool, _: u64),
-    pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_, _: *mut ()),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_16_) -> i32,
-}
-
-#[repr(C)]
-pub struct UserAchievementStored_t {
-    pub m_nGameID: u64,
-    pub m_bGroupAchievement: bool,
-    pub m_rgchAchievementName: [i8; 128],
-    pub m_nCurProgress: u32,
-    pub m_nMaxProgress: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesUserId {
-    pub providerData: [i8; 36],
-    pub guestIndex: u8,
-    pub isValid: bool,
-}
-
-#[repr(C)]
-pub struct unit4__RankingReceiveData {
-    pub cachedBoards: keen__Array_unit4__RankingBoardCacheEntry_,
-    pub servingFromCache: bool,
-    pub downloadInProgress: bool,
-    pub tableId: u16,
-    pub user: keen__UserAccount,
-    pub r#type: unit4__RankingListQueryType,
-    pub offset: u32,
-    pub entriesToQuery: u32,
-    pub cacheToUseForResult: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesUserInfo {
-    pub id: unit4__SystemServicesUserId,
-    pub localAccountId: keen__UserAccountId,
-    pub displayName: [i8; 64],
-}
-
-#[repr(C)]
-pub struct unit4__RankingListEntry {
-    pub userInfo: unit4__SystemServicesUserInfo,
-    pub rank: u32,
-    pub score: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesInteractionData {
-    pub id: u32,
-    pub responseOptions: [u32; 2],
-    pub responseOptionCount: u32,
-    pub user: keen__UserAccountId,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServicesBase {
-    pub currentTimeInMs: u32,
-    pub rankingSendData: unit4__RankingSendData,
-    pub rankingReceiveData: unit4__RankingReceiveData,
-    pub currentRankingError: unit4__RankingError,
-    pub rankingSendInteraction: unit4__SystemServicesInteractionData,
-    pub onlineInteraction: unit4__SystemServicesInteractionData,
-}
-
-#[repr(C)]
-pub struct unit4__RankingSendData {
-    pub sendInPogress: bool,
-    pub tableId: u16,
-    pub user: keen__UserAccount,
-    pub score: u32,
-}
-
-#[repr(C)]
-pub struct unit4__SystemServices {
-    // unit4__SystemServicesBase
-    pub currentTimeInMs: u32,
-    pub rankingSendData: unit4__RankingSendData,
-    pub rankingReceiveData: unit4__RankingReceiveData,
-    pub currentRankingError: unit4__RankingError,
-    pub rankingSendInteraction: unit4__SystemServicesInteractionData,
-    pub onlineInteraction: unit4__SystemServicesInteractionData,
-    // unit4__SystemServices
-    pub steamAchievements: keen__SteamAchievements,
-    pub steamStats: keen__SteamStats,
-    pub pPresenceStrings: [*const i8; 64],
-    pub presenceStringCount: u32,
-    pub sendRankingStep: unit4__SystemServices__SendRankingStep,
-    pub sendRankingCall: u64,
-    pub receiveRankingStep: unit4__SystemServices__ReceiveRankingStep,
-    pub receiveRankingCall: u64,
-}
-
-unsafe impl UpcastToNop<unit4__SystemServicesBase> for unit4__SystemServices {}
-
-#[repr(C)]
-pub struct unit4__RankingBoardCacheEntry {
-    pub tableId: u16,
-    pub user: keen__UserAccount,
-    pub r#type: unit4__RankingListQueryType,
-    pub entries: keen__SizedArray_unit4__RankingListEntry_,
-    pub totalEntriesOnBoard: u32,
-    pub downloadTimeInMs: u32,
-}
-
-#[repr(C)]
-pub struct keen__ISteamAchievementsCallback {
-    pub vfptr: *const keen__ISteamAchievementsCallback__vftable,
-    pub m_onUserAchievementStored:
-        CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-}
-
-impl keen__ISteamAchievementsCallback {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn onUserAchievementStored(
-        &self,
-        a1: *mut UserAchievementStored_t,
-    ) {
-        ((*self.vfptr).onUserAchievementStored)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct keen__ISteamAchievementsCallback__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__ISteamAchievementsCallback, _: u32) -> *mut (),
-    pub onUserAchievementStored: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamAchievementsCallback,
-        _: *mut UserAchievementStored_t,
-    ),
-}
-
-#[repr(C)]
-pub struct keen__SteamStats {
-    pub vfptr: *const keen__SteamStats__vftable,
-    // keen__ISteamStatsCallback
-    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-    // keen__SteamStats
-    pub m_pSteamUserStats: *mut ISteamUserStats,
-    pub m_gameSteamID64: u64,
-    pub m_pStatUpdateMap: *const unit4__StatUpdateData,
-    pub m_statUpdateCount: u32,
-    pub m_requestingUserStats: bool,
-    pub m_statsAvailable: bool,
-    pub m_storingStats: bool,
-    pub m_hasUnstoredStats: bool,
-    pub m_secondsSinceLastUpdate: f32,
-    pub m_hasCached: bool,
-    pub m_cachedAdds: [f64; 64],
-}
-
-unsafe impl UpcastToNop<keen__ISteamStatsCallback> for keen__SteamStats {}
-
-impl keen__SteamStats {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn onUserStatsReceived(&self, a1: *mut UserStatsReceived_t) {
-        ((*self.vfptr).onUserStatsReceived)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn onUserStatsStored(&self, a1: *mut UserStatsStored_t) {
-        ((*self.vfptr).onUserStatsStored)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct keen__SteamStats__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: u32) -> *mut (),
-    pub onUserStatsReceived:
-        unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: *mut UserStatsReceived_t),
-    pub onUserStatsStored:
-        unsafe extern "thiscall" fn(this: *mut keen__SteamStats, _: *mut UserStatsStored_t),
-}
-
-#[repr(C)]
-pub struct keen__Array_unit4__RankingBoardCacheEntry_ {
-    pub m_pData: *mut unit4__RankingBoardCacheEntry,
-    pub m_size: u32,
-}
-
-#[repr(C)]
-pub struct keen__SteamAchievements {
-    pub vfptr: *const keen__SteamAchievements__vftable,
-    // keen__ISteamAchievementsCallback
-    pub m_onUserAchievementStored:
-        CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-    pub vfptr_2: *const keen__ISteamStatsCallback__vftable,
-    // keen__ISteamStatsCallback
-    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-    // keen__SteamAchievements
-    pub m_pSteamUserStats: *mut ISteamUserStats,
-    pub m_gameSteamID64: u64,
-    pub m_pAchievementIdMap: *const u32,
-    pub m_pAchievementUnlockCountMap: *const u32,
-    pub m_achievementCount: u32,
-    pub m_platinumAchievementId: u32,
-    pub m_platinumAchievementUnlocked: bool,
-}
-
-unsafe impl UpcastToNop<keen__ISteamAchievementsCallback> for keen__SteamAchievements {}
-
-unsafe impl UpcastTo<keen__ISteamStatsCallback> for keen__SteamAchievements {
-    fn upcast_to(p: *const Self) -> *const keen__ISteamStatsCallback {
-        (p as usize + 0x18) as *const _
-    }
-}
-
-impl keen__SteamAchievements {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn onUserStatsReceived(&self, a1: *mut UserStatsReceived_t) {
-        ((*self.vfptr).onUserStatsReceived)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct keen__SteamAchievements__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__SteamAchievements, _: u32) -> *mut (),
-    pub onUserStatsReceived: unsafe extern "thiscall" fn(
-        this: *mut keen__SteamAchievements,
-        _: *mut UserStatsReceived_t,
-    ),
-}
-
-#[repr(C)]
-pub struct keen__SizedArray_unit4__RankingListEntry_ {
-    pub m_pData: *mut unit4__RankingListEntry,
-    pub m_size: u32,
-    pub m_capacity: u32,
-}
-
-#[repr(C)]
-pub struct keen__ISteamStatsCallback {
-    pub vfptr: *const keen__ISteamStatsCallback__vftable,
-    pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
-    pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-}
-
-impl keen__ISteamStatsCallback {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn onUserStatsReceived(&self, a1: *mut UserStatsReceived_t) {
-        ((*self.vfptr).onUserStatsReceived)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn onUserStatsStored(&self, a1: *mut UserStatsStored_t) {
-        ((*self.vfptr).onUserStatsStored)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct keen__ISteamStatsCallback__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut keen__ISteamStatsCallback, _: u32) -> *mut (),
-    pub onUserStatsReceived: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsReceived_t,
-    ),
-    pub onUserStatsStored: unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsStored_t,
-    ),
-}
-
-#[repr(C)]
-pub struct UserStatsStored_t {
-    pub m_nGameID: u64,
-    pub m_eResult: EResult,
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_152_ {
-    pub vfptr: *const CCallbackImpl_152___vftable,
-    // CCallbackBase
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    // CCallbackImpl_152_
-}
-
-unsafe impl UpcastToNop<CCallbackBase> for CCallbackImpl_152_ {}
-
-impl CCallbackImpl_152_ {
-    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
-        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
-        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
-        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_152___vftable {
-    pub Run:
-        unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_, _: *mut (), _: bool, _: u64),
-    pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_, _: *mut ()),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_152_) -> i32,
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
-    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable,
-    // CCallbackBase
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    // CCallbackImpl_16_
-    // CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_
-    pub m_pObj: *mut keen__ISteamStatsCallback,
-    pub m_Func: *mut unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamStatsCallback,
-        _: *mut UserStatsStored_t,
-    ),
-}
-
-unsafe impl UpcastToNop<CCallbackImpl_16_>
-    for CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_
-{
-}
-
-unsafe impl UpcastToNop<CCallbackBase>
-    for CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_
-{
-}
-
-impl CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
-    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
-        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
-        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
-        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable {
-    pub Run: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-        _: *mut (),
-        _: bool,
-        _: u64,
-    ),
-    pub Run_2: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-        _: *mut (),
-    ),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
-    ) -> i32,
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
-    pub vfptr:
-        *const CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0___vftable,
-    // CCallbackBase
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    // CCallbackImpl_152_
-    // CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
-    pub m_pObj: *mut keen__ISteamAchievementsCallback,
-    pub m_Func: *mut unsafe extern "thiscall" fn(
-        this: *mut keen__ISteamAchievementsCallback,
-        _: *mut UserAchievementStored_t,
-    ),
-}
-
-unsafe impl UpcastToNop<CCallbackImpl_152_>
-    for CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
-{
-}
-
-unsafe impl UpcastToNop<CCallbackBase>
-    for CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
-{
-}
-
-impl CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
-    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
-        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
-        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
-        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0___vftable {
-    pub Run: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-        _: *mut (),
-        _: bool,
-        _: u64,
-    ),
-    pub Run_2: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-        _: *mut (),
-    ),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(
-        this: *mut CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-    ) -> i32,
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_24_ {
-    pub vfptr: *const CCallbackImpl_24___vftable,
-    // CCallbackBase
-    pub m_nCallbackFlags: u8,
-    pub m_iCallback: i32,
-    // CCallbackImpl_24_
-}
-
-unsafe impl UpcastToNop<CCallbackBase> for CCallbackImpl_24_ {}
-
-impl CCallbackImpl_24_ {
-    pub unsafe extern "thiscall" fn Run(&self, a1: *mut (), a2: bool, a3: u64) {
-        ((*self.vfptr).Run)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn Run_2(&self, a1: *mut ()) {
-        ((*self.vfptr).Run_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn GetCallbackSizeBytes(&self) -> i32 {
-        ((*self.vfptr).GetCallbackSizeBytes)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct CCallbackImpl_24___vftable {
-    pub Run: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_, _: *mut (), _: bool, _: u64),
-    pub Run_2: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_, _: *mut ()),
-    pub GetCallbackSizeBytes: unsafe extern "thiscall" fn(this: *mut CCallbackImpl_24_) -> i32,
-}
-
-#[repr(C)]
-pub struct ID3D11DeviceContext {
-    // IUnknown
-    pub lpVtbl: *mut IUnknownVtbl,
-    /* ID3D11DeviceChild
-     * ID3D11DeviceContext */
-}
-
-unsafe impl UpcastToNop<ID3D11DeviceChild> for ID3D11DeviceContext {}
-
-unsafe impl UpcastToNop<IUnknown> for ID3D11DeviceContext {}
-
-#[repr(C)]
-pub struct keen__PoolAllocator_keen__SamplerState_ {
-    pub m_pool: keen__BasePoolAllocator,
-}
-
-#[repr(C)]
-pub struct keen__GraphicsStateObjectPool_keen__RasterizerState_ {
-    pub m_allocator: keen__PoolAllocator_keen__RasterizerState_,
-    pub m_cache: keen__GraphicsStateObjectCache,
-    pub m_peakSize: u32,
-    pub m_cacheHits: u32,
-    pub m_cacheRequests: u32,
-}
-
-#[repr(C)]
-pub struct keen__PoolAllocator_keen__RasterizerState_ {
-    pub m_pool: keen__BasePoolAllocator,
-}
-
-#[repr(C)]
-pub struct keen__TextureData {
-    pub description: keen__TextureDescription,
-    pub pTexture: *mut ID3D11Resource,
-    pub pShaderView: *mut ID3D11ShaderResourceView,
-    pub d3dFormat: DXGI_FORMAT,
-}
-
-#[repr(C)]
-pub struct keen__PoolAllocator_keen__DepthStencilState_ {
-    pub m_pool: keen__BasePoolAllocator,
 }
