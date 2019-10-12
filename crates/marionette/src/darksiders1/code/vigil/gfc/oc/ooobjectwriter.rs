@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, Lift2},
+    darksiders1::{gfc, Lift},
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
@@ -48,7 +48,7 @@ impl Drop for OOObjectWriter {
     fn drop(&mut self) {
         // Rewrite of missing destructor
         unsafe {
-            ptr::drop_in_place((*self.as_ptr()).mObjectDatabase.lift2_ptr());
+            ptr::drop_in_place((*self.as_ptr()).mObjectDatabase.lift_mut());
             target::gfc__ObjectWriter___ObjectWriter(self.as_ptr().static_cast())
         }
     }

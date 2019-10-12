@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, Lift1, Lift2, List, LoweredAutoRef},
+    darksiders1::{gfc, Lift, Lift1, List, LoweredAutoRef},
     hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };
@@ -18,7 +18,7 @@ pub fn run(_command: &str) {
 unsafe fn go() {
     let world = gfc::OblivionGame::get_instance().get_world();
 
-    let root = (*world.as_ptr()).mRoot.lift2_ref();
+    let root = (*world.as_ptr()).mRoot.lift_ref();
     scan(root);
 
     let region_data = (*world.as_ptr()).mRegionData.lift1_ref();
@@ -46,7 +46,7 @@ unsafe fn go() {
             let root = init_with(|p| {
                 target::gfc__RegionLayer__getRoot(layer, p);
             });
-            let root = root.lift2();
+            let root = root.lift();
             scan(&root);
         }
     }
@@ -56,7 +56,7 @@ unsafe fn scan(group: &gfc::WorldGroup) {
     let objects = &mut (*group.as_ptr()).mObjects;
     let objects = List::<target::gfc__AutoRef_gfc__WorldObject_>::from_ptr(objects);
     for object in objects {
-        let object = object.lift2_ref();
+        let object = object.lift_ref();
 
         if let Some(group) = gfc::object_safecast::<gfc::WorldGroup>(object) {
             scan(&group);

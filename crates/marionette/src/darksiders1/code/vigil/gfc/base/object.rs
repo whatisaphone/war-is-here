@@ -25,14 +25,21 @@ pub unsafe trait Reflect: AsRef<gfc::IRefObject> {
     fn class() -> &'static gfc::Class;
 }
 
-pub trait Lift: Sized
-where
-    Self::Target: Lower<Target = Self>,
-{
+pub unsafe trait Lift: Sized {
     type Target;
 
-    fn lift(this: *const Self) -> *mut Self::Target {
-        this as *const _ as *mut _
+    fn lift(self) -> Self::Target;
+
+    fn lift_ptr(p: *const Self) -> *const Self::Target {
+        p as *const _
+    }
+
+    fn lift_ref(&self) -> &Self::Target {
+        unsafe { &*(self as *const _ as *const _) }
+    }
+
+    fn lift_mut(&mut self) -> &mut Self::Target {
+        unsafe { &mut *(self as *mut _ as *mut _) }
     }
 }
 
@@ -42,108 +49,24 @@ where
 {
     type Target;
 
-    fn lower(this: *const Self) -> *mut Self::Target {
-        this as *const _ as *mut _
+    fn lower(self) -> Self::Target;
+
+    fn lower_ptr(p: *const Self) -> *mut Self::Target {
+        p as *const _ as *mut _
     }
 }
 
-pub unsafe trait Lift1 {
+pub unsafe trait Lift1: Sized {
     type Target;
 
     fn lift1(self) -> Self::Target;
 
-    fn lift1_ptr(&self) -> *mut Self::Target {
-        unsafe { &mut *(self as *const Self as *const Self::Target as *mut Self::Target) }
+    fn lift1_ref(&self) -> &Self::Target {
+        unsafe { &*(self as *const _ as *const _) }
     }
 
-    unsafe fn lift1_ref(&self) -> &Self::Target {
-        &*(self as *const Self as *const Self::Target)
-    }
-
-    unsafe fn lift1_mut(&mut self) -> &mut Self::Target {
-        &mut *(self as *mut Self as *mut Self::Target)
-    }
-}
-
-unsafe impl<T: Lift> Lift1 for *const T {
-    type Target = *const T::Target;
-
-    fn lift1(self) -> Self::Target {
-        self as *const _
-    }
-}
-
-unsafe impl<T: Lift> Lift1 for *mut T {
-    type Target = *mut T::Target;
-
-    fn lift1(self) -> Self::Target {
-        self as *mut _
-    }
-}
-
-unsafe impl<'a, T: Lift> Lift1 for &'a T {
-    type Target = &'a T::Target;
-
-    fn lift1(self) -> Self::Target {
-        unsafe { &*(self as *const T as *const _) }
-    }
-}
-
-unsafe impl<'a, T: Lift> Lift1 for &'a mut T {
-    type Target = &'a mut T::Target;
-
-    fn lift1(self) -> Self::Target {
-        unsafe { &mut *(self as *mut T as *mut _) }
-    }
-}
-
-pub trait Lift2 {
-    type Target;
-
-    fn lift2(self) -> Self::Target;
-
-    fn lift2_ptr(&self) -> *mut Self::Target {
-        unsafe { &mut *(self as *const Self as *const Self::Target as *mut Self::Target) }
-    }
-
-    unsafe fn lift2_ref(&self) -> &Self::Target {
-        &*(self as *const Self as *const Self::Target)
-    }
-
-    unsafe fn lift2_mut(&mut self) -> &mut Self::Target {
-        &mut *(self as *mut Self as *mut Self::Target)
-    }
-}
-
-impl<T: Lift> Lift2 for *const T {
-    type Target = *const T::Target;
-
-    fn lift2(self) -> Self::Target {
-        self as *const _
-    }
-}
-
-impl<T: Lift> Lift2 for *mut T {
-    type Target = *mut T::Target;
-
-    fn lift2(self) -> Self::Target {
-        self as *mut _
-    }
-}
-
-impl<'a, T: Lift> Lift2 for &'a T {
-    type Target = &'a T::Target;
-
-    fn lift2(self) -> Self::Target {
-        unsafe { &*(self as *const T as *const _) }
-    }
-}
-
-impl<'a, T: Lift> Lift2 for &'a mut T {
-    type Target = &'a mut T::Target;
-
-    fn lift2(self) -> Self::Target {
-        unsafe { &mut *(self as *mut T as *mut _) }
+    fn lift1_mut(&mut self) -> &mut Self::Target {
+        unsafe { &mut *(self as *mut _ as *mut _) }
     }
 }
 
@@ -151,6 +74,3 @@ impl<'a, T: Lift> Lift2 for &'a mut T {
 impl_lift_lower!(u8, u8);
 impl_lift_lower!(u16, u16);
 impl_lift_lower!(u32, u32);
-
-impl_lift_lower2!(u16, u16);
-impl_lift_lower2!(u32, u32);

@@ -1,4 +1,4 @@
-use crate::darksiders1::{Heap, Lift, Lift2, Lower};
+use crate::darksiders1::{Heap, Lift, Lower};
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
 use std::{
@@ -84,7 +84,7 @@ impl<T: AsRef<IRefObject>> AutoRef<T> {
         T::Target: LoweredAutoRefTarget,
     {
         let p = Self::into_raw(this);
-        let p = Lower::lower(p);
+        let p = Lower::lower_ptr(p);
         <T::Target as LoweredAutoRefTarget>::Struct::from_raw(p)
     }
 
@@ -94,7 +94,7 @@ impl<T: AsRef<IRefObject>> AutoRef<T> {
         T::Target: LoweredAutoRefTarget,
     {
         let p = autoref.into_raw();
-        let p = Lift::lift(p);
+        let p = Lift::lift_ptr(p);
         Self::from_raw(p)
     }
 }
@@ -180,10 +180,10 @@ macro_rules! lowered_autoref {
         }
     };
     (:lift: $autoref:ty, $target:path) => {
-        impl Lift2 for $autoref {
+        unsafe impl Lift for $autoref {
             type Target = AutoRef<<$target as Lift>::Target>;
 
-            fn lift2(self) -> Self::Target {
+            fn lift(self) -> Self::Target {
                 unsafe { mem::transmute(self) }
             }
         }

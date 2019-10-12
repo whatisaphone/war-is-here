@@ -1,4 +1,4 @@
-use crate::darksiders1::{gfc, Lift, Lift1, Lift2, Lower};
+use crate::darksiders1::{gfc, Lift, Lift1, Lower};
 use darksiders1_sys::target;
 use std::{
     convert::{TryFrom, TryInto},
@@ -207,10 +207,10 @@ macro_rules! lowered_vector {
         }
     };
     (: lift: $vector:ty, $element:ty) => {
-        impl Lift2 for $vector {
-            type Target = Vector<<$element as Lift2>::Target>;
+        unsafe impl Lift for $vector {
+            type Target = Vector<<$element as Lift>::Target>;
 
-            fn lift2(self) -> Self::Target {
+            fn lift(self) -> Self::Target {
                 unsafe { mem::transmute(self) }
             }
         }
