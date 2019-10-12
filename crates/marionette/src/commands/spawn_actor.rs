@@ -44,12 +44,12 @@ unsafe fn go(args: &Args) {
     let obj = class.new_instance();
     let obj = obj.as_ptr().cast::<target::gfc__KinematicActor>();
 
-    ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.x,
         y: args.y,
         z: args.z,
     });
 
     let world = gfc::OblivionGame::get_instance().get_world();
-    ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
+    (*obj).addObjectToWorld(world.as_ptr());
 }

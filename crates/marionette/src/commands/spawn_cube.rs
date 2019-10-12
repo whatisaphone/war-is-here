@@ -49,19 +49,19 @@ unsafe fn go(args: &Args) {
 
     target::gfc__StaticObject__setPackageName(obj, MAGIC_PACKAGE_NAME.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, MAGIC_OBJECT_NAME.as_ptr());
-    ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.x,
         y: args.y,
         z: args.z,
     });
-    ((*(*obj).vfptr).setScale)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+    (*obj).setScale(&target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.scale,
         y: args.scale,
         z: args.scale,
     });
 
     let world = gfc::OblivionGame::get_instance().get_world();
-    ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
+    (*obj).addObjectToWorld(world.as_ptr());
 }
 
 static MAGIC_PACKAGE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("city01_streets"));
@@ -139,7 +139,7 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
 
     unsafe {
         let result = init_with(|p| {
-            ((*(*graphics.as_ptr()).vfptr).createStaticMesh)(graphics.as_ptr(), p, builder.ptr());
+            (*graphics.as_ptr()).createStaticMesh(p, builder.ptr());
         });
         result.lift()
     }

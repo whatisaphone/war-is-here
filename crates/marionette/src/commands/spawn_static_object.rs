@@ -66,17 +66,13 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
 
     target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
-    ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
-        x,
-        y,
-        z,
-    });
-    ((*(*obj).vfptr).setScale)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
+    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z });
+    (*obj).setScale(&target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.scale,
         y: args.scale,
         z: args.scale,
     });
 
     let world = gfc::OblivionGame::get_instance().get_world();
-    ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
+    (*obj).addObjectToWorld(world.as_ptr());
 }

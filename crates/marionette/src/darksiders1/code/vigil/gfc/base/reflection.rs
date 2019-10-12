@@ -11,7 +11,7 @@ impl Class {
     pub fn new_instance(&self) -> gfc::AutoRef<gfc::Object> {
         unsafe {
             let obj = init_with(|p| {
-                ((*self.inner.vfptr).newInstance)(self.as_ptr(), p);
+                self.inner.newInstance(p);
             });
             obj.lift()
         }
@@ -19,13 +19,13 @@ impl Class {
 
     pub fn name(&self) -> &gfc::HString {
         unsafe {
-            let result = ((*self.inner.vfptr).getName)(self.as_ptr());
+            let result = self.inner.getName();
             gfc::HString::from_ptr(result)
         }
     }
 
     pub fn instanceof(&self, class: &Self) -> bool {
-        unsafe { ((*self.inner.vfptr).instanceof)(self.as_ptr(), class.as_ptr()) }
+        unsafe { self.inner.instanceof(class.as_ptr()) }
     }
 }
 

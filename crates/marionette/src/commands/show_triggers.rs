@@ -64,7 +64,7 @@ unsafe fn scan(group: &gfc::WorldGroup) {
 
         if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
             let position = init_with(|p| {
-                ((*(*trigger.as_ptr()).vfptr).getPosition)(trigger.as_ptr(), p);
+                (*trigger.as_ptr()).getPosition(p);
             });
             mark(
                 (*trigger.as_ptr()).mRegionID,
@@ -88,12 +88,8 @@ unsafe fn mark(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
     target::gfc__WorldObject__setLayerID(obj.static_cast(), layer_id);
     target::gfc__StaticObject__setPackageName(obj, hstring!("vfx_shared").as_ptr());
     target::gfc__StaticObject__setObjectName(obj, hstring!("sphere").as_ptr());
-    ((*(*obj).vfptr).setPosition)(obj, &target::gfc__TVector3_float_gfc__FloatMath_ {
-        x,
-        y,
-        z,
-    });
+    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z });
 
     let world = gfc::OblivionGame::get_instance().get_world();
-    ((*(*obj).vfptr).addObjectToWorld)(obj, world.as_ptr());
+    (*obj).addObjectToWorld(world.as_ptr());
 }
