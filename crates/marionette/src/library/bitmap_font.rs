@@ -4,8 +4,21 @@ use crate::darksiders1::{gfc, Lower};
 use darksiders1_sys::target;
 
 pub unsafe fn draw_string(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32, s: &str) {
-    for (i, ch) in s.chars().enumerate() {
-        draw_char(renderer, x + SCALE * (i * FONT_WIDTH) as f32, y, ch);
+    let mut dx = 0;
+    let mut dy = 0;
+    for ch in s.chars() {
+        if ch == '\n' {
+            dx = 0;
+            dy += 1;
+            continue;
+        }
+        draw_char(
+            renderer,
+            x + SCALE * (dx * FONT_WIDTH) as f32,
+            y + SCALE * (dy * FONT_HEIGHT) as f32,
+            ch,
+        );
+        dx += 1;
     }
 }
 
