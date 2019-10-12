@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, LoweredAutoRef},
+    darksiders1::{gfc, Lower, LoweredAutoRef},
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
@@ -18,7 +18,7 @@ pub fn city01_glass2_04() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             target::gfc__MeshReader__readObject(
                 &mut reader,
                 p,
-                gfc::AutoRef::lower(gfc::AutoRef::cast::<gfc::InputStream>(stream)),
+                Lower::lower(gfc::AutoRef::cast::<gfc::InputStream>(stream)),
                 &mut valid,
             );
         });

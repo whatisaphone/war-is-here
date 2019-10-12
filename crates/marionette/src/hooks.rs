@@ -73,7 +73,7 @@ pub fn uninstall() {
 mod hook {
     use crate::{
         commands::spawn_cube::{override_get_object3d, override_get_static_mesh},
-        darksiders1::gfc,
+        darksiders1::{gfc, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
     };
     use darksiders1_sys::target;
@@ -130,7 +130,7 @@ mod hook {
             let mesh_name = unsafe { gfc::HString::from_ptr(meshName) };
             if let Some(ovurride) = override_get_static_mesh(packageID, mesh_name, idx) {
                 unsafe {
-                    *result = gfc::AutoRef::lower(ovurride);
+                    *result = Lower::lower(ovurride);
                 }
                 return result;
             }
@@ -168,7 +168,7 @@ mod hook {
             let object_name = unsafe { gfc::HString::from_ptr(objectName) };
             if let Some(ovurride) = override_get_object3d(packageID, object_name) {
                 unsafe {
-                    *result = gfc::AutoRef::lower(ovurride);
+                    *result = Lower::lower(ovurride);
                 }
                 return result;
             }

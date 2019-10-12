@@ -94,7 +94,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
         *gfc::HString::from_ptr_mut(&mut visual.mMeshName) = MAGIC_MESH_NAME.clone();
         visual.mMeshID = 0;
 
-        let skeleton_visuals = gfc::Vector::from_ptr_mut(&mut (*object.as_ptr()).mVisuals);
+        let skeleton_visuals = (*object.as_ptr()).mVisuals.lift1_mut();
         skeleton_visuals.add(LoweredAutoRef::from_ptr(
             Heap::into_raw(visual).static_cast(),
         ));

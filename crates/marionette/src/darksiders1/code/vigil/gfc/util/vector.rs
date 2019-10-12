@@ -33,40 +33,6 @@ impl<T> Vector<T> {
         Self::default()
     }
 
-    pub unsafe fn from_ptr<'a, V>(p: *const V) -> &'a Self
-    where
-        V: LoweredVector<Element = T>,
-        T: LoweredVectorElement<Vec = V>,
-    {
-        &*(p as *const Self)
-    }
-
-    pub unsafe fn from_ptr_mut<'a, V>(p: *mut V) -> &'a mut Self
-    where
-        V: LoweredVector<Element = T>,
-        T: LoweredVectorElement<Vec = V>,
-    {
-        &mut *(p as *mut Self)
-    }
-
-    pub unsafe fn lift<'a, V>(p: *const V) -> &'a Self
-    where
-        V: LoweredVector,
-        V::Element: Lift<Target = T>,
-        T: Lower<Target = <V as LoweredVector>::Element>,
-    {
-        &*(p as *mut Self)
-    }
-
-    pub unsafe fn lift_mut<'a, V>(p: *mut V) -> &'a mut Self
-    where
-        V: LoweredVector,
-        V::Element: Lift<Target = T>,
-        T: Lower<Target = <V as LoweredVector>::Element>,
-    {
-        &mut *(p as *mut Self)
-    }
-
     pub fn as_slice(&self) -> &[T] {
         self
     }
@@ -189,6 +155,13 @@ where
 
 macro_rules! lowered_vector {
     ($vector:ty, $element:ty $(,)?) => {
+        lowered_vector!(@base => $vector, $element);
+    };
+    ($vector:ty, $element:ty, lift = true $(,)?) => {
+        lowered_vector!($vector, $element);
+        lowered_vector!(@lift => $vector, $element);
+    };
+    (@base => $vector:ty, $element:ty) => {
         unsafe impl LoweredVector for $vector {
             type Element = $element;
         }
@@ -206,11 +179,19 @@ macro_rules! lowered_vector {
             }
         }
     };
-    (: lift: $vector:ty, $element:ty) => {
+    (@lift => $vector:ty, $element:ty) => {
         unsafe impl Lift for $vector {
             type Target = Vector<<$element as Lift>::Target>;
 
             fn lift(self) -> Self::Target {
+                unsafe { mem::transmute(self) }
+            }
+        }
+
+        impl Lower for Vector<<$element as Lift>::Target> {
+            type Target = $vector;
+
+            fn lower(self) -> Self::Target {
                 unsafe { mem::transmute(self) }
             }
         }
@@ -224,11 +205,7 @@ lowered_vector!(
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
     target::gfc__AutoRef_gfc__Object_,
-);
-lowered_vector!(
-    :lift:
-    target::gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
-    target::gfc__AutoRef_gfc__Object_
+    lift = true,
 );
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_,
@@ -245,23 +222,25 @@ lowered_vector!(
 lowered_vector!(
     target::gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
     target::gfc__TVector3_float_gfc__FloatMath_,
-);
-lowered_vector!(
-    :lift:
-    target::gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
-    target::gfc__TVector3_float_gfc__FloatMath_
+    lift = true,
 );
 lowered_vector!(
     target::gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
     target::gfc__TVector4_float_gfc__FloatMath_,
+    lift = true,
 );
 lowered_vector!(
-    :lift:
-    target::gfc__Vector_gfc__TVector4_float_gfc__FloatMath__0_gfc__CAllocator_,
-    target::gfc__TVector4_float_gfc__FloatMath_
+    target::gfc__Vector_unsigned_char_0_gfc__CAllocator_,
+    u8,
+    lift = true,
 );
-lowered_vector!(target::gfc__Vector_unsigned_char_0_gfc__CAllocator_, u8);
-lowered_vector!(target::gfc__Vector_unsigned_long_0_gfc__CAllocator_, u32);
-lowered_vector!(:lift: target::gfc__Vector_unsigned_long_0_gfc__CAllocator_, u32);
-lowered_vector!(target::gfc__Vector_unsigned_short_0_gfc__CAllocator_, u16);
-lowered_vector!(:lift: target::gfc__Vector_unsigned_short_0_gfc__CAllocator_, u16);
+lowered_vector!(
+    target::gfc__Vector_unsigned_long_0_gfc__CAllocator_,
+    u32,
+    lift = true,
+);
+lowered_vector!(
+    target::gfc__Vector_unsigned_short_0_gfc__CAllocator_,
+    u16,
+    lift = true,
+);

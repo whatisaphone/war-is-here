@@ -77,26 +77,6 @@ impl<T: AsRef<IRefObject>> AutoRef<T> {
     {
         unsafe { Self::map(this, |p| AsRef::<U>::as_ref(&*p) as *const U as *mut U) }
     }
-
-    pub fn lower(this: Self) -> <T::Target as LoweredAutoRefTarget>::Struct
-    where
-        T: Lower,
-        T::Target: LoweredAutoRefTarget,
-    {
-        let p = Self::into_raw(this);
-        let p = Lower::lower_ptr(p);
-        <T::Target as LoweredAutoRefTarget>::Struct::from_raw(p)
-    }
-
-    pub unsafe fn lift(autoref: <T::Target as LoweredAutoRefTarget>::Struct) -> Self
-    where
-        T: Lower,
-        T::Target: LoweredAutoRefTarget,
-    {
-        let p = autoref.into_raw();
-        let p = Lift::lift_ptr(p);
-        Self::from_raw(p)
-    }
 }
 
 impl<T: AsRef<IRefObject>> Drop for AutoRef<T> {
@@ -151,9 +131,13 @@ where
 
 macro_rules! lowered_autoref {
     ($autoref:ty, $target:path $(,)?) => {
-        lowered_autoref!(:base: $autoref, $target);
+        lowered_autoref!(@base => $autoref, $target);
     };
-    (:base: $autoref:ty, $target:path) => {
+    ($autoref:ty, $target:path, lift = true $(,)?) => {
+        lowered_autoref!($autoref, $target);
+        lowered_autoref!(@lift => $autoref, $target);
+    };
+    (@base => $autoref:ty, $target:path) => {
         impl LoweredAutoRef for $autoref {
             type Target = $target;
 
@@ -179,11 +163,19 @@ macro_rules! lowered_autoref {
             type Struct = $autoref;
         }
     };
-    (:lift: $autoref:ty, $target:path) => {
+    (@lift => $autoref:ty, $target:path) => {
         unsafe impl Lift for $autoref {
             type Target = AutoRef<<$target as Lift>::Target>;
 
             fn lift(self) -> Self::Target {
+                unsafe { mem::transmute(self) }
+            }
+        }
+
+        impl Lower for AutoRef<<$target as Lift>::Target> {
+            type Target = $autoref;
+
+            fn lower(self) -> Self::Target {
                 unsafe { mem::transmute(self) }
             }
         }
@@ -193,18 +185,27 @@ macro_rules! lowered_autoref {
 lowered_autoref!(
     target::gfc__AutoRef_gfc__InputStream_,
     target::gfc__InputStream,
+    lift = true,
 );
 lowered_autoref!(target::gfc__AutoRef_gfc__MBSubMesh_, target::gfc__MBSubMesh);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__MeshBuilder_,
     target::gfc__MeshBuilder,
 );
-lowered_autoref!(target::gfc__AutoRef_gfc__Object_, target::gfc__Object);
-lowered_autoref!(:lift: target::gfc__AutoRef_gfc__Object_, target::gfc__Object);
-lowered_autoref!(target::gfc__AutoRef_gfc__Object3D_, target::gfc__Object3D);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Object_,
+    target::gfc__Object,
+    lift = true,
+);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Object3D_,
+    target::gfc__Object3D,
+    lift = true,
+);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__OutputStream_,
     target::gfc__OutputStream,
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayer_,
@@ -221,30 +222,18 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__StaticMesh_,
     target::gfc__StaticMesh,
-);
-lowered_autoref!(
-    :lift:
-    target::gfc__AutoRef_gfc__StaticMesh_,
-    target::gfc__StaticMesh
+    lift = true,
 );
 lowered_autoref!(target::gfc__AutoRef_gfc__Visual_, target::gfc__Visual);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldGroup_,
     target::gfc__WorldGroup,
-);
-lowered_autoref!(
-    :lift:
-    target::gfc__AutoRef_gfc__WorldGroup_,
-    target::gfc__WorldGroup
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldObject_,
     target::gfc__WorldObject,
-);
-lowered_autoref!(
-    :lift:
-    target::gfc__AutoRef_gfc__WorldObject_,
-    target::gfc__WorldObject
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldRegion_,

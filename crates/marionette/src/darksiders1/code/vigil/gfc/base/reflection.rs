@@ -1,4 +1,7 @@
-use crate::{darksiders1::gfc, utils::mem::init_with};
+use crate::{
+    darksiders1::{gfc, Lift},
+    utils::mem::init_with,
+};
 use darksiders1_sys::target;
 
 struct_wrapper!(Class, target::gfc__Class);
@@ -10,7 +13,7 @@ impl Class {
             let obj = init_with(|p| {
                 ((*self.inner.vfptr).newInstance)(self.as_ptr(), p);
             });
-            gfc::AutoRef::lift(obj)
+            obj.lift()
         }
     }
 

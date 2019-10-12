@@ -1,4 +1,7 @@
-use crate::{darksiders1::gfc, utils::mem::init_with};
+use crate::{
+    darksiders1::{gfc, Lift},
+    utils::mem::init_with,
+};
 use darksiders1_sys::target;
 use std::convert::TryFrom;
 
@@ -46,7 +49,7 @@ impl ByteOutputStream {
     }
 
     fn output(&self) -> &gfc::Vector<u8> {
-        unsafe { gfc::Vector::lift(&(*self.as_ptr()).mOutput) }
+        unsafe { (*self.as_ptr()).mOutput.lift_ref() }
     }
 
     pub fn bytes(&self) -> &[u8] {

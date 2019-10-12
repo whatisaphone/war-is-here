@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, Lift},
+    darksiders1::{gfc, Lift, Lower},
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
@@ -36,8 +36,8 @@ impl OOObjectWriter {
         unsafe {
             target::gfc__OOObjectWriter__writeObject(
                 self.as_ptr(),
-                gfc::AutoRef::lower(gfc::AutoRef::from_ptr(object)),
-                gfc::AutoRef::lower(output),
+                Lower::lower(gfc::AutoRef::from_ptr(object)),
+                Lower::lower(output),
                 write_defaults,
             );
         }
