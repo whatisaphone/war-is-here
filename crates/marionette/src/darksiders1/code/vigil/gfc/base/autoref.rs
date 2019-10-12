@@ -55,14 +55,6 @@ impl<T: AsRef<IRefObject>> AutoRef<T> {
         raw
     }
 
-    pub fn get_mut(this: &mut Self) -> Option<&mut T> {
-        if this.as_ref().inner.ReferenceCount == 1 {
-            Some(unsafe { &mut *this.0 })
-        } else {
-            None
-        }
-    }
-
     unsafe fn map<U: AsRef<IRefObject>>(
         this: Self,
         f: impl FnOnce(*mut T) -> *mut U,
