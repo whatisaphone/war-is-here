@@ -52,7 +52,9 @@ symbols! {
     pub static gfc__UIRenderer__multiplyColor: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0xea4150);
     pub static gfc___UIManager__draw: unsafe extern "thiscall" fn(this: *mut gfc___UIManager, _: *mut gfc__UIRenderer) = Text(0xed5b70);
     pub static gfc___UIManager__draw_2: unsafe extern "thiscall" fn(this: *mut gfc___UIManager) = Text(0xeec300);
+    pub static gfc__OblivionGame__getProjMatrix: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, result: *mut gfc__Matrix4) -> *mut gfc__Matrix4 = Text(0xe7f230);
     pub static gfc__OblivionGame__getWorld: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> *mut gfc__World = Text(0xe816a0);
+    pub static gfc__OblivionGame__getViewMatrix: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, result: *mut gfc__Matrix4) -> *mut gfc__Matrix4 = Text(0xe81980);
     pub static gfc__OmniLight__setStaticOnly: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight, _: bool) = Text(0xe26960);
     pub static gfc__OmniLight__getStaticOnly: unsafe extern "thiscall" fn(this: *const gfc__OmniLight) -> bool = Text(0xe26970);
     pub static gfc__OmniLight__doRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight) = Text(0xe271c0);

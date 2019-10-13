@@ -76,10 +76,12 @@ pub fn uninstall() {
 
 mod hook {
     use crate::{
-        commands::spawn_cube::{override_get_object3d, override_get_static_mesh},
+        commands::{
+            show_triggers,
+            spawn_cube::{override_get_object3d, override_get_static_mesh},
+        },
         darksiders1::{gfc, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
-        library::bitmap_font,
     };
     use darksiders1_sys::target;
 
@@ -93,12 +95,7 @@ mod hook {
         unsafe { (detours.gfc___UIManager__draw)(this, renderer) }
 
         unsafe {
-            target::gfc__UIRenderer__begin(renderer, true);
-            target::gfc__UIRenderer__setMaterial(renderer, (*renderer).mSolidMaterial.p.cast());
-
-            bitmap_font::draw_string(renderer, 10.0, 10.0, "bacon is your friend \x01");
-
-            target::gfc__UIRenderer__endRendering(renderer);
+            show_triggers::draw(renderer);
         }
     }
 

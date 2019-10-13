@@ -10,6 +10,7 @@ The developers were generous enough to include a PDB with the game, so creating 
 pdbindgen \
     /path/to/darksiders1.pdb \
     -o src \
+    -i '^gfc::GameCamera$' \
     -i '^gfc::Player$' \
     -i '^gfc::RegionLayer$' \
     -i '^gfc::RegionLayerData$' \
@@ -52,6 +53,8 @@ pdbindgen \
     -i '^gfc::Object3DCache::get$' \
     -i '^gfc::ObjectWriter::~?ObjectWriter$' \
     -i '^gfc::OOObjectWriter::writeObject$' \
+    -i '^gfc::OblivionGame::getProjMatrix$' \
+    -i '^gfc::OblivionGame::getViewMatrix$' \
     -i '^gfc::OblivionGame::getWorld$' \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::RegionLayer::getRoot$' \

@@ -173,12 +173,18 @@ macro_rules! lowered_autoref {
     }
 }
 
+lowered_autoref!(target::gfc__AutoRef_gfc__Camera3D_, target::gfc__Camera3D);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__GameCamera_,
+    target::gfc__GameCamera,
+);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__InputStream_,
     target::gfc__InputStream,
     lift = true,
 );
 lowered_autoref!(target::gfc__AutoRef_gfc__MBSubMesh_, target::gfc__MBSubMesh);
+lowered_autoref!(target::gfc__AutoRef_gfc__Material_, target::gfc__Material);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__MeshBuilder_,
     target::gfc__MeshBuilder,

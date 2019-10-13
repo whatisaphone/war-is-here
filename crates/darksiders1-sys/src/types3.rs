@@ -5,6 +5,29 @@ use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node {
+    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
+    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
+    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
+    pub _Myval: std__pair_gfc__String_const__gfc__StateMapValue_,
+    pub _Color: i8,
+    pub _Isnil: i8,
+}
+
+#[repr(C)]
+pub struct std__pair_gfc__String_const__gfc__StateMapValue_ {
+    // std___Pair_base_gfc__String_const__gfc__StateMapValue_
+    pub first: gfc__String,
+    pub second: gfc__StateMapValue,
+    // std__pair_gfc__String_const__gfc__StateMapValue_
+}
+
+unsafe impl UpcastToNop<std___Pair_base_gfc__String_const__gfc__StateMapValue_>
+    for std__pair_gfc__String_const__gfc__StateMapValue_
+{
+}
+
+#[repr(C)]
 pub struct gfc__ModSysContainerModule {
     pub vfptr: *const gfc__ModSysContainerModule__vftable,
     // gfc__IRefObject
@@ -3022,6 +3045,192 @@ pub struct gfc__Actor__vftable {
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__ActorDesc_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__GameCamera {
+    pub vfptr: *const gfc__GameCamera__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__ISynchronized
+    pub mLock: gfc__Lock,
+    // gfc__GameCamera
+    pub mLiquidRegions: gfc__Vector_gfc__AutoRef_gfc__LiquidRegion__0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__GameCamera {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__GameCamera {}
+
+unsafe impl UpcastTo<gfc__ISynchronized> for gfc__GameCamera {
+    fn upcast_to(p: *const Self) -> *const gfc__ISynchronized {
+        (p as usize + 0x8) as *const _
+    }
+}
+
+impl gfc__GameCamera {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn begin(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).begin)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn end(&self) {
+        ((*self.vfptr).end)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn render(
+        &self,
+        a1: *mut gfc__UIRenderer,
+        a2: *const gfc__Matrix4,
+    ) {
+        ((*self.vfptr).render)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getMatrix(
+        &self,
+        result: *mut gfc__Matrix4,
+    ) -> *mut gfc__Matrix4 {
+        ((*self.vfptr).getMatrix)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getCameraDirection(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getCameraDirection)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getCameraPos(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getCameraPos)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getCameraDirectionOfInterest(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getCameraDirectionOfInterest)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getFOV(&self) -> f32 {
+        ((*self.vfptr).getFOV)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setFocusActor(&self, a1: gfc__AutoRef_gfc__Actor_) {
+        ((*self.vfptr).setFocusActor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getFocusActor(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Actor_,
+    ) -> *mut gfc__AutoRef_gfc__Actor_ {
+        ((*self.vfptr).getFocusActor)(self as *const _ as *mut _, result)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__GameCamera__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__GameCamera, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__GameCamera) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__GameCamera, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__GameCamera) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__GameCamera) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__GameCamera,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__GameCamera) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__GameCamera, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__GameCamera,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub begin:
+        unsafe extern "thiscall" fn(this: *mut gfc__GameCamera, _: gfc__AutoRef_gfc__WorldObject_),
+    pub end: unsafe extern "thiscall" fn(this: *mut gfc__GameCamera),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__GameCamera, _: f32),
+    pub render: unsafe extern "thiscall" fn(
+        this: *mut gfc__GameCamera,
+        _: *mut gfc__UIRenderer,
+        _: *const gfc__Matrix4,
+    ),
+    pub getMatrix: unsafe extern "thiscall" fn(
+        this: *mut gfc__GameCamera,
+        result: *mut gfc__Matrix4,
+    ) -> *mut gfc__Matrix4,
+    pub getCameraDirection: unsafe extern "thiscall" fn(
+        this: *mut gfc__GameCamera,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getCameraPos: unsafe extern "thiscall" fn(
+        this: *mut gfc__GameCamera,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getCameraDirectionOfInterest:
+        unsafe extern "thiscall" fn(
+            this: *mut gfc__GameCamera,
+            result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getFOV: unsafe extern "thiscall" fn(this: *mut gfc__GameCamera) -> f32,
+    pub setFocusActor:
+        unsafe extern "thiscall" fn(this: *mut gfc__GameCamera, _: gfc__AutoRef_gfc__Actor_),
+    pub getFocusActor: unsafe extern "thiscall" fn(
+        this: *mut gfc__GameCamera,
+        result: *mut gfc__AutoRef_gfc__Actor_,
+    ) -> *mut gfc__AutoRef_gfc__Actor_,
 }
 
 #[repr(C)]
@@ -18936,11 +19145,3 @@ pub type hkpConstraintData__UpdateAtomsResult__Enum = i32;
 pub type hkpBroadPhase__Capabilities = i32;
 
 pub type hkpBroadPhase__BroadPhaseType = i32;
-
-pub type unit4__RankingListQueryType = i32;
-
-pub type unit4__RankingError = i32;
-
-pub type EResult = i32;
-
-pub type ELeaderboardDataRequest = i32;

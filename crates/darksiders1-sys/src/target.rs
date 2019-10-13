@@ -71,7 +71,9 @@ symbols! {
     pub fn gfc__UIRenderer__multiplyColor;
     pub fn gfc___UIManager__draw;
     pub fn gfc___UIManager__draw_2;
+    pub fn gfc__OblivionGame__getProjMatrix;
     pub fn gfc__OblivionGame__getWorld;
+    pub fn gfc__OblivionGame__getViewMatrix;
     pub fn gfc__OmniLight__setStaticOnly;
     pub fn gfc__OmniLight__getStaticOnly;
     pub fn gfc__OmniLight__doRemoveFromWorld;

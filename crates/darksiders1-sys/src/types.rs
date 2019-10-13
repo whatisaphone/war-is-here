@@ -3579,6 +3579,11 @@ pub struct gfc__ClassRegistry {
 }
 
 #[repr(C)]
+pub struct gfc__Lock {
+    pub mMutex: gfc__Mutex,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_ {
     pub mData: *mut gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsigned___int64_gfc__HString__gfc__CAllocator___KeyValuePair,
     pub mSize: i32,
@@ -4646,6 +4651,11 @@ pub struct gfc__Vector_float_0_gfc__CAllocator_ {
     pub mData: *mut f32,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__ISynchronized {
+    pub mLock: gfc__Lock,
 }
 
 #[repr(C)]
@@ -11705,32 +11715,3 @@ pub struct std___Pair_base_gfc__String_const__gfc__String_ {
     pub first: gfc__String,
     pub second: gfc__String,
 }
-
-#[repr(C)]
-pub struct std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
-    __pdbindgen_padding: [u8; 1],
-}
-
-#[repr(C)]
-pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
-    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: std__less_gfc__String_,
-    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
-    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
-    pub _Mysize: u32,
-    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
-    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
-    // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
-    // std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
-}
-
-unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
-
-unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
-
-unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
-
-unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}

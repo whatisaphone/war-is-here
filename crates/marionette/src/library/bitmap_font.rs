@@ -23,7 +23,6 @@ pub unsafe fn draw_string(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32
 }
 
 pub unsafe fn draw_char(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32, ch: char) {
-    let scale = 2.0;
     let ch = if (ch as usize) < 256 {
         ch as usize
     } else {
@@ -36,10 +35,10 @@ pub unsafe fn draw_char(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32, 
             if on {
                 target::gfc__UIRenderer__fillRect(
                     renderer,
-                    x + col as f32 * scale,
-                    y + row as f32 * scale,
-                    scale,
-                    scale,
+                    x + col as f32 * SCALE,
+                    y + row as f32 * SCALE,
+                    SCALE,
+                    SCALE,
                     &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
                     &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
                 )

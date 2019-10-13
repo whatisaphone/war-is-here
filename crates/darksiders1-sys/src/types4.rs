@@ -4,6 +4,14 @@
 use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
+pub type unit4__RankingListQueryType = i32;
+
+pub type unit4__RankingError = i32;
+
+pub type EResult = i32;
+
+pub type ELeaderboardDataRequest = i32;
+
 pub type ELeaderboardUploadScoreMethod = i32;
 
 pub type unit4__SystemServices__ReceiveRankingStep = i32;

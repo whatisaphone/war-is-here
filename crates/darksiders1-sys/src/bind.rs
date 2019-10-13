@@ -54,7 +54,9 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__UIRenderer__multiplyColor);
     bind!(text, gfc___UIManager__draw);
     bind!(text, gfc___UIManager__draw_2);
+    bind!(text, gfc__OblivionGame__getProjMatrix);
     bind!(text, gfc__OblivionGame__getWorld);
+    bind!(text, gfc__OblivionGame__getViewMatrix);
     bind!(text, gfc__OmniLight__setStaticOnly);
     bind!(text, gfc__OmniLight__getStaticOnly);
     bind!(text, gfc__OmniLight__doRemoveFromWorld);

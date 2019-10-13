@@ -5,6 +5,35 @@ use super::{types::*, types3::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
+    __pdbindgen_padding: [u8; 1],
+}
+
+#[repr(C)]
+pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__String_,
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
+    // std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    // std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+}
+
+unsafe impl UpcastToNop<std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+unsafe impl UpcastToNop<std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+#[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
     // std___Container_base0
     __pdbindgen_padding: [u8; 1],
@@ -15331,27 +15360,4 @@ pub struct gfc__AutoRef_gfc__CinematicGroup_ {
 pub struct std___Pair_base_gfc__String_const__gfc__StateMapValue_ {
     pub first: gfc__String,
     pub second: gfc__StateMapValue,
-}
-
-#[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node {
-    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
-    pub _Myval: std__pair_gfc__String_const__gfc__StateMapValue_,
-    pub _Color: i8,
-    pub _Isnil: i8,
-}
-
-#[repr(C)]
-pub struct std__pair_gfc__String_const__gfc__StateMapValue_ {
-    // std___Pair_base_gfc__String_const__gfc__StateMapValue_
-    pub first: gfc__String,
-    pub second: gfc__StateMapValue,
-    // std__pair_gfc__String_const__gfc__StateMapValue_
-}
-
-unsafe impl UpcastToNop<std___Pair_base_gfc__String_const__gfc__StateMapValue_>
-    for std__pair_gfc__String_const__gfc__StateMapValue_
-{
 }
