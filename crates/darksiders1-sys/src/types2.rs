@@ -15311,6 +15311,241 @@ pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable {
 }
 
 #[repr(C)]
+pub struct hkpBoxShape {
+    pub vfptr: *const hkpBoxShape__vftable,
+    // hkBaseObject
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkcdShape
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    // hkpShapeBase
+    // hkpShape
+    pub m_userData: u32,
+    // hkpSphereRepShape
+    // hkpConvexShape
+    pub m_radius: f32,
+    // hkpBoxShape
+    __pdbindgen_padding: [u8; 12],
+    pub m_halfExtents: hkVector4f,
+}
+
+unsafe impl UpcastToNop<hkpConvexShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkpSphereRepShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkpShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkpShapeBase> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkcdShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkpBoxShape {}
+
+impl hkpBoxShape {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isConvex(&self) -> bool {
+        ((*self.vfptr).isConvex)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAabb(
+        &self,
+        a1: *const hkTransformf,
+        a2: f32,
+        a3: *mut hkAabb,
+    ) {
+        ((*self.vfptr).getAabb)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn castRay(
+        &self,
+        result: *mut hkBool,
+        a2: *const hkpShapeRayCastInput,
+        a3: *mut hkpShapeRayCastOutput,
+    ) -> *mut hkBool {
+        ((*self.vfptr).castRay)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn castRayWithCollector(
+        &self,
+        a1: *const hkpShapeRayCastInput,
+        a2: *const hkpCdBody,
+        a3: *mut hkpRayHitCollector,
+    ) {
+        ((*self.vfptr).castRayWithCollector)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn castRayBundle(
+        &self,
+        result: *mut hkVector4fComparison,
+        a2: *const hkpShapeRayBundleCastInput,
+        a3: *mut hkpShapeRayBundleCastOutput,
+        a4: *const hkVector4fComparison,
+    ) -> *mut hkVector4fComparison {
+        ((*self.vfptr).castRayBundle)(self as *const _ as *mut _, result, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn getSupportingVertex(
+        &self,
+        a1: *const hkVector4f,
+        a2: *mut hkcdVertex,
+    ) {
+        ((*self.vfptr).getSupportingVertex)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn convertVertexIdsToVertices(
+        &self,
+        a1: *const u16,
+        a2: i32,
+        a3: *mut hkcdVertex,
+    ) {
+        ((*self.vfptr).convertVertexIdsToVertices)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getCentre(&self, a1: *mut hkVector4f) {
+        ((*self.vfptr).getCentre)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getNumCollisionSpheres(&self) -> i32 {
+        ((*self.vfptr).getNumCollisionSpheres)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getCollisionSpheres(
+        &self,
+        a1: *mut hkSphere,
+    ) -> *const hkSphere {
+        ((*self.vfptr).getCollisionSpheres)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn weldContactPoint(
+        &self,
+        a1: *mut u16,
+        a2: *mut u8,
+        a3: *mut hkVector4f,
+        a4: *const hkTransformf,
+        a5: *const hkpConvexShape,
+        a6: *const hkTransformf,
+        a7: *mut hkVector4f,
+    ) -> i32 {
+        ((*self.vfptr).weldContactPoint)(self as *const _ as *mut _, a1, a2, a3, a4, a5, a6, a7)
+    }
+
+    pub unsafe extern "thiscall" fn getContainer(&self) -> *const hkpShapeContainer {
+        ((*self.vfptr).getContainer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMaximumProjection(&self, a1: *const hkVector4f) -> f32 {
+        ((*self.vfptr).getMaximumProjection)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn calcSizeForSpu(
+        &self,
+        a1: *const hkpShape__CalcSizeForSpuInput,
+        a2: i32,
+    ) -> i32 {
+        ((*self.vfptr).calcSizeForSpu)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getFirstVertex(&self, a1: *mut hkVector4f) {
+        ((*self.vfptr).getFirstVertex)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getSize(&self) -> i32 {
+        ((*self.vfptr).getSize)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct hkpBoxShape__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpBoxShape, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpBoxShape),
+    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpBoxShape),
+    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> bool,
+    pub getAabb: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        _: *const hkTransformf,
+        _: f32,
+        _: *mut hkAabb,
+    ),
+    pub castRay: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        result: *mut hkBool,
+        _: *const hkpShapeRayCastInput,
+        _: *mut hkpShapeRayCastOutput,
+    ) -> *mut hkBool,
+    pub castRayWithCollector: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        _: *const hkpShapeRayCastInput,
+        _: *const hkpCdBody,
+        _: *mut hkpRayHitCollector,
+    ),
+    pub castRayBundle: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        result: *mut hkVector4fComparison,
+        _: *const hkpShapeRayBundleCastInput,
+        _: *mut hkpShapeRayBundleCastOutput,
+        _: *const hkVector4fComparison,
+    ) -> *mut hkVector4fComparison,
+    pub getSupportingVertex: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        _: *const hkVector4f,
+        _: *mut hkcdVertex,
+    ),
+    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        _: *const u16,
+        _: i32,
+        _: *mut hkcdVertex,
+    ),
+    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *mut hkVector4f),
+    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> i32,
+    pub getCollisionSpheres:
+        unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *mut hkSphere) -> *const hkSphere,
+    pub weldContactPoint: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        _: *mut u16,
+        _: *mut u8,
+        _: *mut hkVector4f,
+        _: *const hkTransformf,
+        _: *const hkpConvexShape,
+        _: *const hkTransformf,
+        _: *mut hkVector4f,
+    ) -> i32,
+    pub getContainer:
+        unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> *const hkpShapeContainer,
+    pub getMaximumProjection:
+        unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *const hkVector4f) -> f32,
+    pub calcSizeForSpu: unsafe extern "thiscall" fn(
+        this: *const hkpBoxShape,
+        _: *const hkpShape__CalcSizeForSpuInput,
+        _: i32,
+    ) -> i32,
+    pub getFirstVertex: unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *mut hkVector4f),
+    pub getSize: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> i32,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_ {
     pub mData: *mut *mut gfc__CollisionObject,
     pub mSize: i32,
@@ -15349,15 +15584,4 @@ pub struct gfc__AutoRef_gfc__CameraCinematicGroup_ {
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__FullScreenFXGroup_ {
     pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__CinematicGroup_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct std___Pair_base_gfc__String_const__gfc__StateMapValue_ {
-    pub first: gfc__String,
-    pub second: gfc__StateMapValue,
 }

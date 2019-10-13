@@ -4,6 +4,10 @@
 use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
+pub type hkpBroadPhase__Capabilities = i32;
+
+pub type hkpBroadPhase__BroadPhaseType = i32;
+
 pub type unit4__RankingListQueryType = i32;
 
 pub type unit4__RankingError = i32;

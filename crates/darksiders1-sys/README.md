@@ -20,6 +20,7 @@ pdbindgen \
     -i '^gfc::TriggerRegion$' \
     -i '^gfc::WorldRegion$' \
     -i '^gfc::WorldRegionData$' \
+    -i '^hkpBoxShape$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::DSUIManager,.+>::InstanceHandle$' \

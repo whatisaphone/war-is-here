@@ -1,7 +1,10 @@
 pub use crate::darksiders1::code::vigil::{
     darksiders::{
         client::darksiders::Darksiders,
-        world::{detectorobject::DetectorObject, physics::physicsshapeobject::PhysicsShapeObject},
+        world::{
+            detectorobject::DetectorObject,
+            physics::physicsshapeobject::{PhysicsShapeObject, PhysicsShapeObject__Detect},
+        },
     },
     drivers::keengraphics::{kggraphics::KGGraphics, kgmeshcache::KGMeshCache},
     gfc::{
@@ -21,7 +24,7 @@ pub use crate::darksiders1::code::vigil::{
             objectwriter::ObjectWriter,
             stream::{InputStream, OutputStream, Stream},
         },
-        math::{vector3::TVector3, vector4::TVector4},
+        math::{matrix4::Matrix4, rect::TRect, vector3::TVector3, vector4::TVector4},
         memory::memop::{mem_alloc, mem_free},
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},

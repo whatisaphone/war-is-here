@@ -5,6 +5,17 @@ use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__CinematicGroup_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct std___Pair_base_gfc__String_const__gfc__StateMapValue_ {
+    pub first: gfc__String,
+    pub second: gfc__StateMapValue,
+}
+
+#[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node {
     pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
     pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
@@ -19141,7 +19152,3 @@ pub type hkJobQueueHwSetup__SpuSchedulePolicy = i32;
 pub type hkJobQueueHwSetup__CellRules = i32;
 
 pub type hkpConstraintData__UpdateAtomsResult__Enum = i32;
-
-pub type hkpBroadPhase__Capabilities = i32;
-
-pub type hkpBroadPhase__BroadPhaseType = i32;
