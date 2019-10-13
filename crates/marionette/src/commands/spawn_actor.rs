@@ -50,6 +50,7 @@ unsafe fn go(args: &Args) {
         z: args.z,
     });
 
-    let world = gfc::OblivionGame::get_instance().get_world();
-    (*obj).addObjectToWorld(world.as_ptr());
+    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
+        (*obj).addObjectToWorld(world.as_ptr());
+    }
 }

@@ -30,7 +30,10 @@ unsafe fn go() {
 }
 
 unsafe fn walk(visitor: &mut dyn FnMut(&gfc::WorldObject)) {
-    let world = gfc::OblivionGame::get_instance().get_world();
+    let world = match gfc::OblivionGame::get_instance().get_world() {
+        Some(world) => world,
+        None => return,
+    };
 
     let root = (*world.as_ptr()).mRoot.lift_ref();
     walk_group(root, visitor);
@@ -106,8 +109,9 @@ unsafe fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
     target::gfc__StaticObject__setObjectName(obj, hstring!("sphere").as_ptr());
     (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z });
 
-    let world = gfc::OblivionGame::get_instance().get_world();
-    (*obj).addObjectToWorld(world.as_ptr());
+    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
+        (*obj).addObjectToWorld(world.as_ptr());
+    }
 }
 
 static ENABLED: AtomicBool = AtomicBool::new(false);
