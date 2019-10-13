@@ -44,7 +44,13 @@ impl fmt::Display for Pretty<&na::Matrix4x1<f32>> {
     }
 }
 
-macro_rules! pretty_value_reference {
+impl fmt::Display for Pretty<&na::Point3<f32>> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "({:.0}, {:.0}, {:.0})", self.0.x, self.0.y, self.0.z)
+    }
+}
+
+macro_rules! pretty_by_value {
     ($type:ty) => {
         #[allow(clippy::use_self)]
         impl fmt::Display for Pretty<$type> {
@@ -55,5 +61,6 @@ macro_rules! pretty_value_reference {
     };
 }
 
-pretty_value_reference!(na::Matrix4<f32>);
-pretty_value_reference!(na::Matrix4x1<f32>);
+pretty_by_value!(na::Matrix4<f32>);
+pretty_by_value!(na::Matrix4x1<f32>);
+pretty_by_value!(na::Point3<f32>);

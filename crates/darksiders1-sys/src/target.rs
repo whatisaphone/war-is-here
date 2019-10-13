@@ -100,6 +100,10 @@ symbols! {
     pub fn gfc__OmniLight__OmniLight;
     pub fn gfc__OmniLight__getBoundingBox;
     pub fn gfc__OmniLight__doAddToWorld;
+    pub fn gfc__StaticObject__StaticObject;
+    pub fn gfc__StaticObject___StaticObject;
+    pub fn gfc__StaticObject__StaticObject_2;
+    pub fn gfc__StaticObject__StaticObject_3;
     pub fn gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2;
     pub fn gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_;
     pub fn gfc__World__getRegion;

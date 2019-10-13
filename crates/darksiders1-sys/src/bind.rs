@@ -83,6 +83,10 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__OmniLight__OmniLight);
     bind!(text, gfc__OmniLight__getBoundingBox);
     bind!(text, gfc__OmniLight__doAddToWorld);
+    bind!(text, gfc__StaticObject__StaticObject);
+    bind!(text, gfc__StaticObject___StaticObject);
+    bind!(text, gfc__StaticObject__StaticObject_2);
+    bind!(text, gfc__StaticObject__StaticObject_3);
     bind!(
         text,
         gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2

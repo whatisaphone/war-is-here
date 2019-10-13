@@ -61,6 +61,7 @@ pdbindgen \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
     -i '^gfc::StaticMeshVisual::~?StaticMeshVisual$' \
+    -i '^gfc::StaticObject::~?StaticObject$' \
     -i '^gfc::StaticObject::setObjectName$' \
     -i '^gfc::StaticObject::setPackageName$' \
     -i '^gfc::String::~?String$' \

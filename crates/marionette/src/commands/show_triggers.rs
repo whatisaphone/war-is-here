@@ -2,9 +2,16 @@ use crate::{
     darksiders1::{gfc, Lift, Lift1, List, LoweredAutoRef},
     hooks::ON_POST_UPDATE_QUEUE,
     library::bitmap_font,
-    utils::{coordinate_transformer::CoordinateTransformer, debug_draw, mem::init_with},
+    utils::{
+        coordinate_transformer::CoordinateTransformer,
+        debug_draw,
+        debug_draw_3d,
+        geometry::box_edges,
+        mem::init_with,
+    },
 };
 use darksiders1_sys::target;
+use na::Point3;
 use pdbindgen_runtime::StaticCast;
 use std::{
     convert::TryFrom,
@@ -87,6 +94,8 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
     let position = init_with(|p| {
         (*trigger.as_ptr()).getPosition(p);
     });
+    let position = Point3::from(position.lift());
+
     add_marker(
         (*trigger.as_ptr()).mRegionID,
         (*trigger.as_ptr()).mLayerID,
@@ -94,6 +103,15 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
         position.y,
         position.z,
     );
+
+    match get_shape(&trigger) {
+        Shape::Aabb(b0x) => {
+            for &[p, q] in &box_edges(Point3::from(b0x.min.lift()), Point3::from(b0x.max.lift())) {
+                debug_draw_3d::chunky_line(p, q);
+            }
+        }
+        Shape::Other(_) => {}
+    }
 }
 
 unsafe fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
@@ -134,8 +152,8 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
 
         let position = init_with(|p| {
             (*trigger_region.as_ptr()).getPosition(p);
-        })
-        .lift();
+        });
+        let position = Point3::from(position.lift());
         let screen = transformer.world_to_screen(&position);
 
         if screen.z >= 0.0 && screen.z < 500.0 {
@@ -162,7 +180,7 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
                 Shape::Other(s) => {
                     bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, s);
                 }
-            };
+            }
         }
     });
 

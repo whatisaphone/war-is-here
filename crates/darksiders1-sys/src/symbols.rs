@@ -81,6 +81,10 @@ symbols! {
     pub static gfc__OmniLight__OmniLight: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight) = Text(0xe4c9b0);
     pub static gfc__OmniLight__getBoundingBox: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight, _: *mut gfc__TBox_float_gfc__FloatMath_) = Text(0xe4cae0);
     pub static gfc__OmniLight__doAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__OmniLight) = Text(0xe4cd00);
+    pub static gfc__StaticObject__StaticObject: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject) = Text(0xe54d60);
+    pub static gfc__StaticObject___StaticObject: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject) = Text(0xe54eb0);
+    pub static gfc__StaticObject__StaticObject_2: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: *const gfc__String, _: *const gfc__String) = Text(0xe54f60);
+    pub static gfc__StaticObject__StaticObject_3: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: i32) = Text(0xe55020);
     pub static gfc__AutoRef_gfc__IRefObject___AutoRef_gfc__IRefObject__2: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_) = Text(0xdd24b0);
     pub static gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_: unsafe extern "thiscall" fn(this: *mut gfc__AutoRef_gfc__IRefObject_) = Text(0xdd24c0);
     pub static gfc__World__getRegion: unsafe extern "thiscall" fn(this: *const gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0xdd61f0);

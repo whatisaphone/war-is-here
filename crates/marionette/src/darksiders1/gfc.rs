@@ -31,6 +31,7 @@ pub use crate::darksiders1::code::vigil::{
         util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},
         world::{
             resource::resourcecache::ResourceCache,
+            staticobject::StaticObject,
             triggerregion::TriggerRegion,
             visuals::{object3d::Object3D, object3dcache::Object3DCache, visual::Visual},
             world::{World, WorldRegionData},

@@ -38,7 +38,7 @@ pub fn build_object() -> gfc::AutoRef<gfc::Object3D> {
 pub fn build_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
     let graphics = gfc::KGGraphics::get_instance();
 
-    let builder = build_cube_meshbuilder();
+    let builder = build_meshbuilder();
 
     unsafe {
         let result = init_with(|p| {
@@ -48,7 +48,7 @@ pub fn build_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
     }
 }
 
-fn build_cube_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
+fn build_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
     let size = 25.0;
 
     unsafe {

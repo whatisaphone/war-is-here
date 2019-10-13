@@ -1,69 +1,28 @@
 #![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 
 use crate::{
-    darksiders1::{gfc, Lower},
-    utils::{coordinate_transformer::CoordinateTransformer, liang_barsky::liang_barsky},
+    darksiders1::{gfc, Lift, Lower},
+    utils::{
+        coordinate_transformer::CoordinateTransformer,
+        geometry::box_edges,
+        liang_barsky::liang_barsky,
+    },
 };
 use darksiders1_sys::target;
-use na::{Point2, Vector3};
+use na::{Point2, Point3};
 
 pub unsafe fn box_wireframe(
     renderer: *mut target::gfc__UIRenderer,
     transformer: &CoordinateTransformer,
     b0x: &target::gfc__TBox_float_gfc__FloatMath_,
 ) {
-    for (p, q) in &[
-        (
-            Vector3::new(b0x.min.x, b0x.min.y, b0x.min.z),
-            Vector3::new(b0x.max.x, b0x.min.y, b0x.min.z),
-        ),
-        (
-            Vector3::new(b0x.min.x, b0x.min.y, b0x.min.z),
-            Vector3::new(b0x.min.x, b0x.max.y, b0x.min.z),
-        ),
-        (
-            Vector3::new(b0x.min.x, b0x.max.y, b0x.min.z),
-            Vector3::new(b0x.max.x, b0x.max.y, b0x.min.z),
-        ),
-        (
-            Vector3::new(b0x.max.x, b0x.min.y, b0x.min.z),
-            Vector3::new(b0x.max.x, b0x.max.y, b0x.min.z),
-        ),
-        (
-            Vector3::new(b0x.min.x, b0x.min.y, b0x.max.z),
-            Vector3::new(b0x.max.x, b0x.min.y, b0x.max.z),
-        ),
-        (
-            Vector3::new(b0x.min.x, b0x.min.y, b0x.max.z),
-            Vector3::new(b0x.min.x, b0x.max.y, b0x.max.z),
-        ),
-        (
-            Vector3::new(b0x.min.x, b0x.max.y, b0x.max.z),
-            Vector3::new(b0x.max.x, b0x.max.y, b0x.max.z),
-        ),
-        (
-            Vector3::new(b0x.max.x, b0x.min.y, b0x.max.z),
-            Vector3::new(b0x.max.x, b0x.max.y, b0x.max.z),
-        ),
-        (
-            Vector3::new(b0x.min.x, b0x.min.y, b0x.min.z),
-            Vector3::new(b0x.min.x, b0x.min.y, b0x.max.z),
-        ),
-        (
-            Vector3::new(b0x.max.x, b0x.min.y, b0x.min.z),
-            Vector3::new(b0x.max.x, b0x.min.y, b0x.max.z),
-        ),
-        (
-            Vector3::new(b0x.min.x, b0x.max.y, b0x.min.z),
-            Vector3::new(b0x.min.x, b0x.max.y, b0x.max.z),
-        ),
-        (
-            Vector3::new(b0x.max.x, b0x.max.y, b0x.min.z),
-            Vector3::new(b0x.max.x, b0x.max.y, b0x.max.z),
-        ),
-    ] {
-        let p = transformer.world_to_screen(&p);
-        let q = transformer.world_to_screen(&q);
+    let edges = box_edges(
+        Point3::from(*b0x.min.lift_ref()),
+        Point3::from(*b0x.max.lift_ref()),
+    );
+    for [p, q] in &edges {
+        let p = transformer.world_to_screen(p);
+        let q = transformer.world_to_screen(q);
         clunky_draw_line(renderer, Point2::new(p.x, p.y), Point2::new(q.x, q.y));
     }
 }

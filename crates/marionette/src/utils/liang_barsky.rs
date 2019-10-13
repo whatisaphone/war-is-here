@@ -4,14 +4,14 @@ use na::Point2;
 // https://en.wikipedia.org/wiki/Liang–Barsky_algorithm
 #[allow(clippy::similar_names)]
 pub fn liang_barsky(
-    window: &gfc::TRect<f32>,
+    rect: &gfc::TRect<f32>,
     p: Point2<f32>,
     q: Point2<f32>,
 ) -> Option<[Point2<f32>; 2]> {
-    let xmin = window.left;
-    let xmax = window.right;
-    let ymin = window.top;
-    let ymax = window.bottom;
+    let xmin = rect.left;
+    let xmax = rect.right;
+    let ymin = rect.top;
+    let ymax = rect.bottom;
     let x1 = p.x;
     let y1 = p.y;
     let x2 = q.x;

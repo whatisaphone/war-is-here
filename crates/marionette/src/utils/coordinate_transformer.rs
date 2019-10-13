@@ -5,7 +5,7 @@ use crate::{
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
-use na::{Matrix4, Vector3, Vector4};
+use na::{Matrix4, Point3};
 use pdbindgen_runtime::StaticCast;
 
 pub struct CoordinateTransformer {
@@ -39,15 +39,10 @@ impl CoordinateTransformer {
         }
     }
 
-    pub fn world_to_screen(&self, world: &Vector3<f32>) -> Vector3<f32> {
-        let world_homo = Vector4::new(world.x, world.y, world.z, 1.0);
-        let screen = self.view_proj * world_homo;
+    pub fn world_to_screen(&self, world: &Point3<f32>) -> Point3<f32> {
+        let screen = self.view_proj * world.to_homogeneous();
         let x = (1.0 + screen.x / screen.w) * self.viewport_width / 2.0;
         let y = (1.0 - screen.y / screen.w) * self.viewport_height / 2.0;
-        if screen.z >= 0.0 {
-            Vector3::new(x, y, screen.z)
-        } else {
-            Vector3::new(-x, -y, screen.z)
-        }
+        Point3::new(x, y, screen.z)
     }
 }

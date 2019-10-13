@@ -1,4 +1,5 @@
 pub mod resource;
+pub mod staticobject;
 pub mod triggerregion;
 pub mod visuals;
 pub mod world;
