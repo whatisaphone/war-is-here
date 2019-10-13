@@ -1,7 +1,7 @@
 #![allow(clippy::similar_names)]
 
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
-use darksiders1_sys::target;
+use na::Point3;
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -42,15 +42,11 @@ unsafe fn go(args: &Args) {
         .class_for_name(&classname, true)
         .unwrap();
     let obj = class.new_instance();
-    let obj = obj.as_ptr().cast::<target::gfc__KinematicActor>();
+    let obj = gfc::AutoRef::from_raw(gfc::AutoRef::into_raw(obj).cast::<gfc::WorldObject>());
 
-    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ {
-        x: args.x,
-        y: args.y,
-        z: args.z,
-    });
+    obj.set_position(&Point3::new(args.x, args.y, args.z));
 
     if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
-        (*obj).addObjectToWorld(world.as_ptr());
+        obj.add_object_to_world(world);
     }
 }

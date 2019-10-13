@@ -1,9 +1,6 @@
 #![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 
-use crate::{
-    darksiders1::{gfc, Lower},
-    library::objects::gritty_cube,
-};
+use crate::{darksiders1::gfc, library::objects::gritty_cube};
 use darksiders1_sys::target;
 use na::{Point3, Vector3};
 
@@ -14,25 +11,23 @@ pub fn chunky_line(p: Point3<f32>, q: Point3<f32>) {
 
     for point in clunky_line_3d(p, q) {
         let cube = make_cube(point);
-        unsafe {
-            (*cube.as_ptr()).addObjectToWorld(world.as_ptr());
-        }
+        cube.add_object_to_world(world);
     }
 }
 
-fn make_cube(p: Point3<f32>) -> gfc::AutoRef<gfc::WorldObject> {
+fn make_cube(pos: Point3<f32>) -> gfc::AutoRef<gfc::WorldObject> {
     let obj = gfc::AutoRef::new(gfc::StaticObject::new());
 
     unsafe {
         target::gfc__StaticObject__setPackageName(obj.as_ptr(), gritty_cube::PACKAGE_NAME.as_ptr());
         target::gfc__StaticObject__setObjectName(obj.as_ptr(), gritty_cube::OBJECT_NAME.as_ptr());
-        (*obj.as_ptr()).setPosition(&Lower::lower(p.coords));
-        (*obj.as_ptr()).setScale(&Lower::lower(Vector3::new(
-            SCALE / 25.0 / 2.0,
-            SCALE / 25.0 / 2.0,
-            SCALE / 25.0 / 2.0,
-        )));
     }
+    obj.set_position(&pos);
+    obj.set_scale(&Vector3::new(
+        SCALE / 25.0 / 2.0,
+        SCALE / 25.0 / 2.0,
+        SCALE / 25.0 / 2.0,
+    ));
 
     gfc::AutoRef::cast(obj)
 }

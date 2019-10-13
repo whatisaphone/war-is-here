@@ -1,5 +1,6 @@
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
+use na::{Point3, Vector3};
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -49,26 +50,14 @@ unsafe fn go(args: &Args) {
     let package_name = gfc::HString::from_str(&args.package_name);
     let object_name = gfc::HString::from_str(&args.object_name);
 
-    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
-        .class_for_name(&hstring!("StaticObject"), true)
-        .unwrap();
-    let obj = class.new_instance();
-    let obj = obj.as_ptr().cast::<target::gfc__StaticObject>();
+    let obj = gfc::AutoRef::new(gfc::StaticObject::new());
 
-    target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
-    target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
-    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ {
-        x: args.x,
-        y: args.y,
-        z: args.z,
-    });
-    (*obj).setScale(&target::gfc__TVector3_float_gfc__FloatMath_ {
-        x: args.scale,
-        y: args.scale,
-        z: args.scale,
-    });
+    target::gfc__StaticObject__setPackageName(obj.as_ptr(), package_name.as_ptr());
+    target::gfc__StaticObject__setObjectName(obj.as_ptr(), object_name.as_ptr());
+    obj.set_position(&Point3::new(args.x, args.y, args.z));
+    obj.set_scale(&Vector3::new(args.scale, args.scale, args.scale));
 
     if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
-        (*obj).addObjectToWorld(world.as_ptr());
+        obj.add_object_to_world(world);
     }
 }

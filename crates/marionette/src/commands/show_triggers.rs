@@ -114,21 +114,19 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
     }
 }
 
-unsafe fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
-    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
-        .class_for_name(&hstring!("StaticObject"), true)
-        .unwrap();
-    let obj = class.new_instance();
-    let obj = obj.as_ptr().cast::<target::gfc__StaticObject>();
+fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
+    let obj = gfc::AutoRef::new(gfc::StaticObject::new());
 
-    target::gfc__WorldObject__setRegionID(obj.static_cast(), region_id);
-    target::gfc__WorldObject__setLayerID(obj.static_cast(), layer_id);
-    target::gfc__StaticObject__setPackageName(obj, hstring!("vfx_shared").as_ptr());
-    target::gfc__StaticObject__setObjectName(obj, hstring!("sphere").as_ptr());
-    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z });
+    unsafe {
+        target::gfc__WorldObject__setRegionID(obj.as_ptr().static_cast(), region_id);
+        target::gfc__WorldObject__setLayerID(obj.as_ptr().static_cast(), layer_id);
+        target::gfc__StaticObject__setPackageName(obj.as_ptr(), hstring!("vfx_shared").as_ptr());
+        target::gfc__StaticObject__setObjectName(obj.as_ptr(), hstring!("sphere").as_ptr());
+    }
+    obj.set_position(&Point3::new(x, y, z));
 
-    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
-        (*obj).addObjectToWorld(world.as_ptr());
+    if let Some(world) = unsafe { gfc::OblivionGame::get_instance().get_world() } {
+        obj.add_object_to_world(world);
     }
 }
 
