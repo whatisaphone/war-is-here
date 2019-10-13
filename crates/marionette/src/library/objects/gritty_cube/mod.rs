@@ -1,85 +1,17 @@
 use crate::{
     darksiders1::{gfc, Heap, Lift, Lift1, LoweredAutoRef},
-    hooks::ON_POST_UPDATE_QUEUE,
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
 use once_cell::sync::Lazy;
 use pdbindgen_runtime::StaticCast;
 
-pub fn run(command: &str) {
-    let args = match parse(command) {
-        Ok(args) => args,
-        Err(()) => {
-            println!("parse error");
-            return;
-        }
-    };
-    let mut guard = ON_POST_UPDATE_QUEUE.lock();
-    guard
-        .as_mut()
-        .unwrap()
-        .push_back(Box::new(move || unsafe { go(&args) }));
-}
+pub static PACKAGE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("city01_streets"));
+pub static OBJECT_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("gritty_cube"));
+pub static MESH_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("gritty_cube"));
+static NODE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("gritty_cube"));
 
-fn parse(command: &str) -> Result<Args, ()> {
-    let mut words = command.split_ascii_whitespace();
-    words.next().ok_or(())?;
-    let x = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
-    let y = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
-    let z = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
-    let scale = words.next().ok_or(())?.parse::<f32>().map_err(|_| ())?;
-    Ok(Args { x, y, z, scale })
-}
-
-#[derive(Debug)]
-struct Args {
-    x: f32,
-    y: f32,
-    z: f32,
-    scale: f32,
-}
-
-unsafe fn go(args: &Args) {
-    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
-        .class_for_name(&hstring!("StaticObject"), true)
-        .unwrap();
-    let obj = class.new_instance();
-    let obj = obj.as_ptr().cast::<target::gfc__StaticObject>();
-
-    target::gfc__StaticObject__setPackageName(obj, MAGIC_PACKAGE_NAME.as_ptr());
-    target::gfc__StaticObject__setObjectName(obj, MAGIC_OBJECT_NAME.as_ptr());
-    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ {
-        x: args.x,
-        y: args.y,
-        z: args.z,
-    });
-    (*obj).setScale(&target::gfc__TVector3_float_gfc__FloatMath_ {
-        x: args.scale,
-        y: args.scale,
-        z: args.scale,
-    });
-
-    let world = gfc::OblivionGame::get_instance().get_world();
-    (*obj).addObjectToWorld(world.as_ptr());
-}
-
-static MAGIC_PACKAGE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("city01_streets"));
-static MAGIC_OBJECT_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("injected_object3d_name"));
-static MAGIC_MESH_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("injected_mesh_name"));
-static NODE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("the_injected_node"));
-
-pub fn override_get_object3d(
-    _package_id: i32,
-    object_name: &gfc::HString,
-) -> Option<gfc::AutoRef<gfc::Object3D>> {
-    if object_name == &*MAGIC_OBJECT_NAME {
-        return Some(build_magic_object());
-    }
-    None
-}
-
-fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
+pub fn build_object() -> gfc::AutoRef<gfc::Object3D> {
     unsafe {
         let object = gfc::AutoRef::new(gfc::Object3D::new());
 
@@ -91,7 +23,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
             target::gfc__StaticMeshVisual__StaticMeshVisual(this);
         }));
         *gfc::HString::from_ptr_mut(&mut visual.mRefNode) = NODE_NAME.clone();
-        *gfc::HString::from_ptr_mut(&mut visual.mMeshName) = MAGIC_MESH_NAME.clone();
+        *gfc::HString::from_ptr_mut(&mut visual.mMeshName) = MESH_NAME.clone();
         visual.mMeshID = 0;
 
         let skeleton_visuals = (*object.as_ptr()).mVisuals.lift1_mut();
@@ -103,36 +35,7 @@ fn build_magic_object() -> gfc::AutoRef<gfc::Object3D> {
     }
 }
 
-pub fn override_get_static_mesh(
-    _package_id: i32,
-    mesh_name: &gfc::HString,
-    _idx: i32,
-) -> Option<gfc::AutoRef<gfc::StaticMesh>> {
-    if mesh_name == &*MAGIC_MESH_NAME {
-        let mesh = build_cube_mesh();
-        return Some(mesh);
-    }
-    None
-}
-
-#[allow(dead_code)]
-fn use_mesh_from_game(package_id: i32) -> gfc::AutoRef<gfc::StaticMesh> {
-    let cache = gfc::Singleton::<gfc::KGMeshCache>::get_instance();
-    unsafe {
-        let mesh = init_with(|p| {
-            target::gfc__MeshCache__getStaticMesh(
-                cache.as_ptr().static_cast(),
-                p,
-                package_id,
-                hstring!("city01_glass2_04").as_ptr(),
-                0,
-            );
-        });
-        mesh.lift()
-    }
-}
-
-fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
+pub fn build_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
     let graphics = gfc::KGGraphics::get_instance();
 
     let builder = build_cube_meshbuilder();
@@ -146,6 +49,8 @@ fn build_cube_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
 }
 
 fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
+    let size = 25.0;
+
     unsafe {
         let mut builder = Heap::new(init_with(|this| {
             target::gfc__MeshBuilder__MeshBuilder(this);
@@ -154,14 +59,14 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
         builder.mBounds = target::gfc__BoundingVolume {
             b: target::gfc__TBox_float_gfc__FloatMath_ {
                 min: target::gfc__TVector3_float_gfc__FloatMath_ {
-                    x: -100.0,
-                    y: -100.0,
-                    z: -100.0,
+                    x: -size,
+                    y: -size,
+                    z: -size,
                 },
                 max: target::gfc__TVector3_float_gfc__FloatMath_ {
-                    x: 100.0,
-                    y: 100.0,
-                    z: 100.0,
+                    x: size,
+                    y: size,
+                    z: size,
                 },
             },
             s: target::gfc__TSphere_float_gfc__FloatMath_ {
@@ -196,14 +101,14 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             sub_mesh.VertexCount = 8;
 
             let position = sub_mesh.Position.lift_mut();
-            position.add(gfc::TVector3::new(-1.0, -1.0, -1.0));
-            position.add(gfc::TVector3::new(1.0, -1.0, -1.0));
-            position.add(gfc::TVector3::new(1.0, 1.0, -1.0));
-            position.add(gfc::TVector3::new(-1.0, 1.0, -1.0));
-            position.add(gfc::TVector3::new(-1.0, 1.0, 1.0));
-            position.add(gfc::TVector3::new(1.0, 1.0, 1.0));
-            position.add(gfc::TVector3::new(1.0, -1.0, 1.0));
-            position.add(gfc::TVector3::new(-1.0, -1.0, 1.0));
+            position.add(gfc::TVector3::new(-size, -size, -size));
+            position.add(gfc::TVector3::new(size, -size, -size));
+            position.add(gfc::TVector3::new(size, size, -size));
+            position.add(gfc::TVector3::new(-size, size, -size));
+            position.add(gfc::TVector3::new(-size, size, size));
+            position.add(gfc::TVector3::new(size, size, size));
+            position.add(gfc::TVector3::new(size, -size, size));
+            position.add(gfc::TVector3::new(-size, -size, size));
 
             let normal = sub_mesh.Normal.lift_mut();
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));

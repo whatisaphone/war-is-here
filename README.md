@@ -8,11 +8,52 @@ Still very rudimentary. First, run `dev/inject.sh`. This will spin up a UDP serv
 
 All these were tested in Crossroads, so you might want to go there first. Things to try:
 
+### Commands
+
+Commands are sent over UDP. For an easy way to send them, install `netcat` (`nc`) and run:
+
 ```sh
-nc -u localhost 12345 -w 1 <<<'spawn_actor vulgrim_chime/vulgrim_chime_medium -4000 -28000 200'
-nc -u localhost 12345 -w 1 <<<'spawn_static_object city01_streets ci_shoppingstrip -4000 -24000 50 1'
-nc -u localhost 12345 -w 1 <<<'spawn_static_object city01_streets ci_shoppingstrip -4000 -28000 75 0.01'
-nc -u localhost 12345 -w 1 <<<'spawn_cube -4000 -28000 150 25'
+nc -u localhost 12345 -w 1 <<<'your_command_here'
+```
+
+#### `spawn_actor`
+
+Spawn an `Actor` class into the world.
+
+```sh
+spawn_actor vulgrim_chime/vulgrim_chime_medium -4000 -28000 200
+spawn_actor ci_streetpropsset01/ci_streetlight_r -4000 -28000 0
+```
+
+#### `spawn_static_object`
+
+Spawn an `o3d` resource into the world.
+
+```sh
+spawn_static_object city01_streets ci_shoppingstrip -4000 -24000 50 1
+spawn_static_object city01_streets city01_glass2_04 -4000 -28000 180 1
+```
+
+You can also spawn objects that are part of this mod (not included with the original game):
+
+```sh
+spawn_static_object city01_streets gritty_cube -4000 -28000 180 1
+```
+
+#### `show_triggers`
+
+Show triggers in the world.
+
+```sh
+show_triggers
+```
+
+#### `teleport`
+
+Send the player to any area in the game.
+
+```sh
+teleport overworld CI_01
 ```
 
 ## Development

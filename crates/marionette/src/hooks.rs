@@ -76,12 +76,10 @@ pub fn uninstall() {
 
 mod hook {
     use crate::{
-        commands::{
-            show_triggers,
-            spawn_cube::{override_get_object3d, override_get_static_mesh},
-        },
+        commands::show_triggers,
         darksiders1::{gfc, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
+        library::objects::{override_get_object3d, override_get_static_mesh},
     };
     use darksiders1_sys::target;
 

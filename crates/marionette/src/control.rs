@@ -22,7 +22,6 @@ fn handle_message(message: &[u8]) -> bool {
     match command {
         "show_triggers" => commands::show_triggers::run(message),
         "spawn_actor" => commands::spawn_actor::run(message),
-        "spawn_cube" => commands::spawn_cube::run(message),
         "spawn_static_object" => commands::spawn_static_object::run(message),
         "teleport" => commands::teleport::run(message),
         "shutdown" => return false,

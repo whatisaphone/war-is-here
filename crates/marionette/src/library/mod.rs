@@ -3,3 +3,4 @@
 pub mod bitmap_font;
 pub mod cooked_meshpack;
 pub mod exfil;
+pub mod objects;

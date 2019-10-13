@@ -45,16 +45,7 @@ struct Args {
     scale: f32,
 }
 
-#[allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 unsafe fn go(args: &Args) {
-    for x in (args.x as i32 - 50..=args.x as i32 + 50).step_by(50) {
-        for y in (args.y as i32 - 50..=args.y as i32 + 50).step_by(50) {
-            once(args, x as f32, y as f32, args.z);
-        }
-    }
-}
-
-unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
     let package_name = gfc::HString::from_str(&args.package_name);
     let object_name = gfc::HString::from_str(&args.object_name);
 
@@ -66,7 +57,11 @@ unsafe fn once(args: &Args, x: f32, y: f32, z: f32) {
 
     target::gfc__StaticObject__setPackageName(obj, package_name.as_ptr());
     target::gfc__StaticObject__setObjectName(obj, object_name.as_ptr());
-    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ { x, y, z });
+    (*obj).setPosition(&target::gfc__TVector3_float_gfc__FloatMath_ {
+        x: args.x,
+        y: args.y,
+        z: args.z,
+    });
     (*obj).setScale(&target::gfc__TVector3_float_gfc__FloatMath_ {
         x: args.scale,
         y: args.scale,
