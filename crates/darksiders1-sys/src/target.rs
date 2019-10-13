@@ -158,6 +158,7 @@ symbols! {
     pub fn gfc__KGGraphics__createStaticMesh;
     pub fn gfc__KGGraphics__createStaticMesh_2;
     pub fn gfc__MeshBuilder__MeshBuilder;
+    pub fn gfc__MeshBuilder___MeshBuilder;
     pub fn gfc__String__String;
     pub fn gfc__String___String;
     pub fn gfc__String__String_2;

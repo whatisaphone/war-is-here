@@ -147,6 +147,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__KGGraphics__createStaticMesh);
     bind!(text, gfc__KGGraphics__createStaticMesh_2);
     bind!(text, gfc__MeshBuilder__MeshBuilder);
+    bind!(text, gfc__MeshBuilder___MeshBuilder);
     bind!(text, gfc__String__String);
     bind!(text, gfc__String___String);
     bind!(text, gfc__String__String_2);

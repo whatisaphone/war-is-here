@@ -45,7 +45,7 @@ pdbindgen \
     -i '^gfc::KGGraphics::createStaticMesh$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
     -i '^gfc::MBSubMesh::MBSubMesh$' \
-    -i '^gfc::MeshBuilder::MeshBuilder$' \
+    -i '^gfc::MeshBuilder::~?MeshBuilder$' \
     -i '^gfc::MeshCache::getStaticMesh$' \
     -i '^gfc::MeshCache::loadMesh$' \
     -i '^gfc::MeshReader::MeshReader$' \

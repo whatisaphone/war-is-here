@@ -17,6 +17,7 @@ pub use crate::darksiders1::code::vigil::{
         graphics::{
             graphics::Graphics,
             mesh::{Mesh, StaticMesh},
+            meshbuilder::MeshBuilder,
             meshcache::MeshCache,
         },
         io::{

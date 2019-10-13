@@ -42,21 +42,19 @@ pub fn build_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
 
     unsafe {
         let result = init_with(|p| {
-            (*graphics.as_ptr()).createStaticMesh(p, builder.ptr());
+            (*graphics.as_ptr()).createStaticMesh(p, builder.as_ptr());
         });
         result.lift()
     }
 }
 
-fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
+fn build_cube_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
     let size = 25.0;
 
     unsafe {
-        let mut builder = Heap::new(init_with(|this| {
-            target::gfc__MeshBuilder__MeshBuilder(this);
-        }));
+        let builder = gfc::MeshBuilder::new();
 
-        builder.mBounds = target::gfc__BoundingVolume {
+        (*builder.as_ptr()).mBounds = target::gfc__BoundingVolume {
             b: target::gfc__TBox_float_gfc__FloatMath_ {
                 min: target::gfc__TVector3_float_gfc__FloatMath_ {
                     x: -size,
@@ -80,7 +78,7 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             r#type: 0,
         };
 
-        let vertex_format_format = builder.mVertexFormat.mFormat.lift_mut();
+        let vertex_format_format = (*builder.as_ptr()).mVertexFormat.mFormat.lift_mut();
         // wtf are these
         vertex_format_format.add(1);
         vertex_format_format.add(2);
@@ -232,11 +230,11 @@ fn build_cube_meshbuilder() -> target::gfc__AutoRef_gfc__MeshBuilder_ {
             sub_mesh
         });
 
-        let sub_meshes = builder.mSubMeshes.lift1_mut();
+        let sub_meshes = (*builder.as_ptr()).mSubMeshes.lift1_mut();
         sub_meshes.add(LoweredAutoRef::from_ptr(Heap::into_raw(sub_mesh)));
 
-        builder.mFlags.flags = 31;
+        (*builder.as_ptr()).mFlags.flags = 31;
 
-        LoweredAutoRef::from_ptr(Heap::into_raw(builder))
+        gfc::AutoRef::new(builder)
     }
 }
