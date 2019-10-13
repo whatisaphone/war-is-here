@@ -40,7 +40,11 @@ impl CoordinateTransformer {
     }
 
     pub fn world_to_screen(&self, world: &Point3<f32>) -> Point3<f32> {
-        let screen = self.view_proj * world.to_homogeneous();
+        let mut screen = self.view_proj * world.to_homogeneous();
+        if screen.z < 0.0 {
+            screen.x = -screen.x;
+            screen.y = -screen.y;
+        }
         let x = (1.0 + screen.x / screen.w) * self.viewport_width / 2.0;
         let y = (1.0 - screen.y / screen.w) * self.viewport_height / 2.0;
         Point3::new(x, y, screen.z)
