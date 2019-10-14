@@ -1,8 +1,9 @@
 use crate::{
-    darksiders1::{gfc, Heap, Lift, Lift1, LoweredAutoRef},
+    darksiders1::{gfc, Heap, Lift, Lift1, Lower, LoweredAutoRef},
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
+use na::Point3;
 use once_cell::sync::Lazy;
 use pdbindgen_runtime::StaticCast;
 
@@ -17,13 +18,13 @@ pub fn build_object() -> gfc::AutoRef<gfc::Object3D> {
 
         let skeleton = (*object.as_ptr()).mSkeleton.ptr();
 
-        *gfc::HString::from_ptr_mut(&mut (*skeleton).mName) = NODE_NAME.clone();
+        *(*skeleton).mName.lift_mut() = NODE_NAME.clone();
 
         let mut visual = Heap::new(init_with(|this| {
             target::gfc__StaticMeshVisual__StaticMeshVisual(this);
         }));
-        *gfc::HString::from_ptr_mut(&mut visual.mRefNode) = NODE_NAME.clone();
-        *gfc::HString::from_ptr_mut(&mut visual.mMeshName) = MESH_NAME.clone();
+        *visual.mRefNode.lift_mut() = NODE_NAME.clone();
+        *visual.mMeshName.lift_mut() = MESH_NAME.clone();
         visual.mMeshID = 0;
 
         let skeleton_visuals = (*object.as_ptr()).mVisuals.lift1_mut();
@@ -40,39 +41,27 @@ pub fn build_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
 
     let builder = build_meshbuilder();
 
-    unsafe {
-        let result = init_with(|p| {
+    let result = unsafe {
+        init_with(|p| {
             (*graphics.as_ptr()).createStaticMesh(p, builder.as_ptr());
-        });
-        result.lift()
-    }
+        })
+    };
+    result.lift()
 }
 
 fn build_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
-    let size = 25.0;
+    let half_size = 25.0;
 
     unsafe {
-        let builder = gfc::MeshBuilder::new();
+        let builder = gfc::AutoRef::new(gfc::MeshBuilder::new());
 
         (*builder.as_ptr()).mBounds = target::gfc__BoundingVolume {
-            b: target::gfc__TBox_float_gfc__FloatMath_ {
-                min: target::gfc__TVector3_float_gfc__FloatMath_ {
-                    x: -size,
-                    y: -size,
-                    z: -size,
-                },
-                max: target::gfc__TVector3_float_gfc__FloatMath_ {
-                    x: size,
-                    y: size,
-                    z: size,
-                },
-            },
+            b: Lower::lower(gfc::TBox::new(
+                Point3::new(-half_size, -half_size, -half_size),
+                Point3::new(half_size, half_size, half_size),
+            )),
             s: target::gfc__TSphere_float_gfc__FloatMath_ {
-                center: target::gfc__TVector3_float_gfc__FloatMath_ {
-                    x: 0.0,
-                    y: 0.0,
-                    z: 0.0,
-                },
+                center: Lower::lower(Point3::origin().coords),
                 radius: 0.0,
             },
             r#type: 0,
@@ -99,14 +88,14 @@ fn build_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
             sub_mesh.VertexCount = 8;
 
             let position = sub_mesh.Position.lift_mut();
-            position.add(gfc::TVector3::new(-size, -size, -size));
-            position.add(gfc::TVector3::new(size, -size, -size));
-            position.add(gfc::TVector3::new(size, size, -size));
-            position.add(gfc::TVector3::new(-size, size, -size));
-            position.add(gfc::TVector3::new(-size, size, size));
-            position.add(gfc::TVector3::new(size, size, size));
-            position.add(gfc::TVector3::new(size, -size, size));
-            position.add(gfc::TVector3::new(-size, -size, size));
+            position.add(gfc::TVector3::new(-half_size, -half_size, -half_size));
+            position.add(gfc::TVector3::new(half_size, -half_size, -half_size));
+            position.add(gfc::TVector3::new(half_size, half_size, -half_size));
+            position.add(gfc::TVector3::new(-half_size, half_size, -half_size));
+            position.add(gfc::TVector3::new(-half_size, half_size, half_size));
+            position.add(gfc::TVector3::new(half_size, half_size, half_size));
+            position.add(gfc::TVector3::new(half_size, -half_size, half_size));
+            position.add(gfc::TVector3::new(-half_size, -half_size, half_size));
 
             let normal = sub_mesh.Normal.lift_mut();
             normal.add(gfc::TVector3::new(0.0, 0.0, 1.0));
@@ -235,6 +224,6 @@ fn build_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
 
         (*builder.as_ptr()).mFlags.flags = 31;
 
-        gfc::AutoRef::new(builder)
+        builder
     }
 }
