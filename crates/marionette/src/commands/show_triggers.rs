@@ -110,6 +110,14 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
                 debug_draw_3d::chunky_line(p, q);
             }
         }
+        Shape::Box(size, transform) => {
+            for &[p, q] in &box_edges(Point3::origin() - size / 2.0, Point3::origin() + size / 2.0)
+            {
+                let p = Point3::from_homogeneous(transform * p.to_homogeneous()).unwrap();
+                let q = Point3::from_homogeneous(transform * q.to_homogeneous()).unwrap();
+                debug_draw_3d::chunky_line(p, q);
+            }
+        }
         Shape::Other(_) => {}
     }
 }
@@ -175,6 +183,9 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
                 Shape::Aabb(bounds) => {
                     debug_draw::box_wireframe(renderer, &transformer, &bounds);
                 }
+                Shape::Box(_size, _transform) => {
+                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "box");
+                }
                 Shape::Other(s) => {
                     bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, s);
                 }
@@ -188,9 +199,14 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
 unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
     match object.shape() {
         gfc::PhysicsShapeObject__Detect::Aabb => {
-            Shape::Aabb((*object.as_ptr()).mBounds.lift_ref().clone())
+            let bounds = (*object.as_ptr()).mBounds.lift_ref().clone();
+            Shape::Aabb(bounds)
         }
-        gfc::PhysicsShapeObject__Detect::Box => Shape::Other("box"),
+        gfc::PhysicsShapeObject__Detect::Box => {
+            let size = *(*object.as_ptr()).mSize.lift_ref();
+            let transform = object.get_transform();
+            Shape::Box(size, transform)
+        }
         gfc::PhysicsShapeObject__Detect::Sphere => Shape::Other("sphere"),
         gfc::PhysicsShapeObject__Detect::Cylinder => Shape::Other("cylinder"),
     }
@@ -198,5 +214,6 @@ unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
 
 pub enum Shape {
     Aabb(gfc::TBox<f32>),
+    Box(gfc::TVector3<f32>, gfc::Matrix4<f32>),
     Other(&'static str),
 }

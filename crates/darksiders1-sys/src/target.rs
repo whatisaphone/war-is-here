@@ -136,6 +136,7 @@ symbols! {
     pub fn gfc__ByteOutputStream___ByteOutputStream;
     pub fn gfc__ByteOutputStream__ByteOutputStream_2;
     pub fn gfc__ClassRegistry__classForName;
+    pub fn gfc__PhysicsShapeObject__getTransform;
     pub fn gfc__RegionLayer__getRoot;
     pub fn gfc__WorldRegion__getLayer;
     pub fn gfc__WorldObject__setRegionID;

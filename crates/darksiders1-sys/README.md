@@ -58,6 +58,7 @@ pdbindgen \
     -i '^gfc::OblivionGame::getViewMatrix$' \
     -i '^gfc::OblivionGame::getWorld$' \
     -i '^gfc::OmniLight::\w+$' \
+    -i '^gfc::PhysicsShapeObject::getTransform$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
     -i '^gfc::StaticMeshVisual::~?StaticMeshVisual$' \

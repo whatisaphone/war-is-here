@@ -1,4 +1,7 @@
-use crate::darksiders1::gfc;
+use crate::{
+    darksiders1::{gfc, Lift},
+    utils::mem::init_with,
+};
 use darksiders1_sys::target;
 use num_enum::TryFromPrimitive;
 use std::convert::TryFrom;
@@ -15,6 +18,15 @@ impl PhysicsShapeObject {
     pub fn shape(&self) -> PhysicsShapeObject__Detect {
         let raw = unsafe { (*self.as_ptr()).mShape };
         PhysicsShapeObject__Detect::try_from(raw).unwrap()
+    }
+
+    pub fn get_transform(&self) -> gfc::Matrix4<f32> {
+        unsafe {
+            init_with(|p| {
+                target::gfc__PhysicsShapeObject__getTransform(self.as_ptr(), p);
+            })
+        }
+        .lift()
     }
 }
 

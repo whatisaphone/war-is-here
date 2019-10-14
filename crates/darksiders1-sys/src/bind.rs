@@ -125,6 +125,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ByteOutputStream___ByteOutputStream);
     bind!(text, gfc__ByteOutputStream__ByteOutputStream_2);
     bind!(text, gfc__ClassRegistry__classForName);
+    bind!(text, gfc__PhysicsShapeObject__getTransform);
     bind!(text, gfc__RegionLayer__getRoot);
     bind!(text, gfc__WorldRegion__getLayer);
     bind!(text, gfc__WorldObject__setRegionID);

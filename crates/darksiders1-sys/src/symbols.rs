@@ -117,6 +117,7 @@ symbols! {
     pub static gfc__ByteOutputStream___ByteOutputStream: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream) = Text(0xa21f40);
     pub static gfc__ByteOutputStream__ByteOutputStream_2: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream, _: i32) = Text(0xa21fb0);
     pub static gfc__ClassRegistry__classForName: unsafe extern "thiscall" fn(this: *mut gfc__ClassRegistry, _: *const gfc__HString, _: bool, _: bool) -> *mut gfc__Class = Text(0xa16e50);
+    pub static gfc__PhysicsShapeObject__getTransform: unsafe extern "thiscall" fn(this: *mut gfc__PhysicsShapeObject, _: *mut gfc__Matrix4) = Text(0x8ed360);
     pub static gfc__RegionLayer__getRoot: unsafe extern "thiscall" fn(this: *const gfc__RegionLayer, result: *mut gfc__AutoRef_gfc__WorldGroup_) -> *mut gfc__AutoRef_gfc__WorldGroup_ = Text(0x769ed0);
     pub static gfc__WorldRegion__getLayer: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion, result: *mut gfc__AutoRef_gfc__RegionLayer_, _: i32) -> *mut gfc__AutoRef_gfc__RegionLayer_ = Text(0x769f60);
     pub static gfc__WorldObject__setRegionID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20ac80);
