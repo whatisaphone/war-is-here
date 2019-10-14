@@ -1,7 +1,7 @@
 #![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 
 use crate::{
-    darksiders1::{gfc, Lift, Lower},
+    darksiders1::{gfc, Lower},
     utils::{
         coordinate_transformer::CoordinateTransformer,
         geometry::box_edges,
@@ -9,18 +9,14 @@ use crate::{
     },
 };
 use darksiders1_sys::target;
-use na::{Point2, Point3};
+use na::Point2;
 
 pub unsafe fn box_wireframe(
     renderer: *mut target::gfc__UIRenderer,
     transformer: &CoordinateTransformer,
-    b0x: &target::gfc__TBox_float_gfc__FloatMath_,
+    bounds: &gfc::TBox<f32>,
 ) {
-    let edges = box_edges(
-        Point3::from(*b0x.min.lift_ref()),
-        Point3::from(*b0x.max.lift_ref()),
-    );
-    for [p, q] in &edges {
+    for [p, q] in &box_edges(bounds.min, bounds.max) {
         let p = transformer.world_to_screen(p);
         let q = transformer.world_to_screen(q);
         clunky_draw_line(renderer, Point2::new(p.x, p.y), Point2::new(q.x, q.y));

@@ -25,7 +25,7 @@ pub use crate::darksiders1::code::vigil::{
             objectwriter::ObjectWriter,
             stream::{InputStream, OutputStream, Stream},
         },
-        math::{matrix4::Matrix4, rect::TRect, vector3::TVector3, vector4::TVector4},
+        math::{boxx::TBox, matrix4::Matrix4, rect::TRect, vector3::TVector3, vector4::TVector4},
         memory::memop::{mem_alloc, mem_free},
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},

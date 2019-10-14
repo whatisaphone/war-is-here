@@ -105,8 +105,8 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
     );
 
     match get_shape(&trigger) {
-        Shape::Aabb(b0x) => {
-            for &[p, q] in &box_edges(Point3::from(b0x.min.lift()), Point3::from(b0x.max.lift())) {
+        Shape::Aabb(bounds) => {
+            for &[p, q] in &box_edges(bounds.min, bounds.max) {
                 debug_draw_3d::chunky_line(p, q);
             }
         }
@@ -172,8 +172,8 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
             bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, object_name);
 
             match get_shape(&trigger_region) {
-                Shape::Aabb(b0x) => {
-                    debug_draw::box_wireframe(renderer, &transformer, &b0x);
+                Shape::Aabb(bounds) => {
+                    debug_draw::box_wireframe(renderer, &transformer, &bounds);
                 }
                 Shape::Other(s) => {
                     bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, s);
@@ -188,7 +188,7 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
 unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
     match object.shape() {
         gfc::PhysicsShapeObject__Detect::Aabb => {
-            Shape::Aabb(std::ptr::read(&(*object.as_ptr()).mBounds))
+            Shape::Aabb((*object.as_ptr()).mBounds.lift_ref().clone())
         }
         gfc::PhysicsShapeObject__Detect::Box => Shape::Other("box"),
         gfc::PhysicsShapeObject__Detect::Sphere => Shape::Other("sphere"),
@@ -197,6 +197,6 @@ unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
 }
 
 pub enum Shape {
-    Aabb(target::gfc__TBox_float_gfc__FloatMath_),
+    Aabb(gfc::TBox<f32>),
     Other(&'static str),
 }
