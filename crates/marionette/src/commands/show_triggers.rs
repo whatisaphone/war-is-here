@@ -107,7 +107,7 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
     match get_shape(&trigger) {
         Shape::Aabb(bounds) => {
             for &[p, q] in &box_edges(bounds.min, bounds.max) {
-                debug_draw_3d::chunky_line(p, q);
+                debug_draw_3d::line(p, q);
             }
         }
         Shape::Box(size, transform) => {
@@ -115,7 +115,7 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
             {
                 let p = Point3::from_homogeneous(transform * p.to_homogeneous()).unwrap();
                 let q = Point3::from_homogeneous(transform * q.to_homogeneous()).unwrap();
-                debug_draw_3d::chunky_line(p, q);
+                debug_draw_3d::line(p, q);
             }
         }
         Shape::Other(_) => {}

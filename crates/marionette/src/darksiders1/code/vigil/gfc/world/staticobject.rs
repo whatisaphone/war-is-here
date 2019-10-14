@@ -1,4 +1,7 @@
-use crate::{darksiders1::gfc, utils::mem::init_with};
+use crate::{
+    darksiders1::{gfc, Lower},
+    utils::mem::init_with,
+};
 use darksiders1_sys::target;
 
 struct_wrapper!(StaticObject, target::gfc__StaticObject);
@@ -13,5 +16,17 @@ impl StaticObject {
             })
         };
         Self { inner }
+    }
+
+    pub fn set_package_name(&self, v: &gfc::HString) {
+        unsafe {
+            target::gfc__StaticObject__setPackageName(self.as_ptr(), Lower::lower_ptr(v));
+        }
+    }
+
+    pub fn set_object_name(&self, v: &gfc::HString) {
+        unsafe {
+            target::gfc__StaticObject__setObjectName(self.as_ptr(), Lower::lower_ptr(v));
+        }
     }
 }
