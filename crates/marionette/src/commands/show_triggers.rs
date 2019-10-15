@@ -6,7 +6,7 @@ use crate::{
         coordinate_transformer::CoordinateTransformer,
         debug_draw,
         debug_draw_3d,
-        geometry::box_edges,
+        geometry::{box_edges, icosahedron},
         mem::init_with,
     },
 };
@@ -118,6 +118,11 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
                 debug_draw_3d::line(p, q);
             }
         }
+        Shape::Sphere(radius, center) => {
+            for [p, q] in icosahedron() {
+                debug_draw_3d::line(center + p.coords * radius, center + q.coords * radius);
+            }
+        }
         Shape::Other(_) => {}
     }
 }
@@ -186,6 +191,9 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
                 Shape::Box(_size, _transform) => {
                     bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "box");
                 }
+                Shape::Sphere(_radius, _center) => {
+                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "sphere");
+                }
                 Shape::Other(s) => {
                     bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, s);
                 }
@@ -207,7 +215,11 @@ unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
             let transform = object.get_transform();
             Shape::Box(size, transform)
         }
-        gfc::PhysicsShapeObject__Detect::Sphere => Shape::Other("sphere"),
+        gfc::PhysicsShapeObject__Detect::Sphere => {
+            let radius = (*object.as_ptr()).mSize.z * 0.5;
+            let position = Point3::from(*(*object.as_ptr()).mPosition.lift_ref());
+            Shape::Sphere(radius, position)
+        }
         gfc::PhysicsShapeObject__Detect::Cylinder => Shape::Other("cylinder"),
     }
 }
@@ -215,5 +227,6 @@ unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
 pub enum Shape {
     Aabb(gfc::TBox<f32>),
     Box(gfc::TVector3<f32>, gfc::Matrix4<f32>),
+    Sphere(f32, Point3<f32>),
     Other(&'static str),
 }
