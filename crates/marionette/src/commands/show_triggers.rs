@@ -6,7 +6,7 @@ use crate::{
         coordinate_transformer::CoordinateTransformer,
         debug_draw,
         debug_draw_3d,
-        geometry::{box_edges, icosahedron},
+        geometry::{box_edges, icosphere},
         mem::init_with,
     },
 };
@@ -119,7 +119,7 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
             }
         }
         Shape::Sphere(radius, center) => {
-            for [p, q] in icosahedron() {
+            for [p, q] in icosphere() {
                 debug_draw_3d::line(center + p.coords * radius, center + q.coords * radius);
             }
         }
