@@ -91,10 +91,7 @@ unsafe fn walk_group(group: &gfc::WorldGroup, visitor: &mut dyn FnMut(&gfc::Worl
 }
 
 unsafe fn mark(trigger: &gfc::TriggerRegion) {
-    let position = init_with(|p| {
-        (*trigger.as_ptr()).getPosition(p);
-    });
-    let position = Point3::from(position.lift());
+    let position = trigger.get_position();
 
     add_marker(
         (*trigger.as_ptr()).mRegionID,
@@ -161,10 +158,7 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
             _ => return,
         };
 
-        let position = init_with(|p| {
-            (*trigger_region.as_ptr()).getPosition(p);
-        });
-        let position = Point3::from(position.lift());
+        let position = trigger_region.get_position();
         let screen = transformer.world_to_screen(&position);
 
         if screen.z >= 0.0 && screen.z < 500.0 {

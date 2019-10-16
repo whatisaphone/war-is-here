@@ -1,6 +1,10 @@
-use crate::darksiders1::{
-    gfc::{self, TVector3Ext},
-    Lower,
+use crate::{
+    darksiders1::{
+        gfc::{self, TVector3Ext},
+        Lift,
+        Lower,
+    },
+    utils::mem::init_with,
 };
 use darksiders1_sys::target;
 use na::{Point3, UnitQuaternion, Vector3};
@@ -13,6 +17,15 @@ impl WorldObject {
         unsafe {
             self.inner.setPosition(Lower::lower_ptr(&pos.coords));
         }
+    }
+
+    pub fn get_position(&self) -> Point3<f32> {
+        let pos = unsafe {
+            init_with(|p| {
+                self.inner.getPosition(p);
+            })
+        };
+        Point3::from(pos.lift())
     }
 
     pub fn set_rotation(&self, rot: &UnitQuaternion<f32>) {
