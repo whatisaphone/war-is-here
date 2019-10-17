@@ -22,6 +22,7 @@ macro_rules! symbols {
 
 symbols! {
     pub static gfc__OmniLight___Class: *mut gfc__Class = Data(0x88cf24);
+    pub static gfc__WorldObject___Class: *mut gfc__Class = Data(0x88ba8c);
     pub static gfc__WorldGroup___Class: *mut gfc__Class = Data(0x88ba80);
     pub static gfc__TriggerRegion___Class: *mut gfc__Class = Data(0x58c510);
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);

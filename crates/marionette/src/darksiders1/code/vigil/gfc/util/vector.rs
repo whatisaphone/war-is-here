@@ -197,6 +197,10 @@ lowered_vector!(
     target::gfc__AutoRef_gfc__WorldRegionData_,
 );
 lowered_vector!(
+    target::gfc__Vector_gfc__RigidBody___0_gfc__CAllocator_,
+    *mut target::gfc__RigidBody,
+);
+lowered_vector!(
     target::gfc__Vector_gfc__TVector3_float_gfc__FloatMath__0_gfc__CAllocator_,
     target::gfc__TVector3_float_gfc__FloatMath_,
     lift = true,

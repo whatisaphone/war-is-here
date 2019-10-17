@@ -94,11 +94,9 @@ macro_rules! struct_wrapper_super {
 
 macro_rules! impl_reflection {
     ($type:ty, $class:expr) => {
-        use $crate::darksiders1::{code::vigil::gfc::base::object::Reflect, gfc};
-
-        unsafe impl Reflect for $type {
-            fn class() -> &'static gfc::Class {
-                unsafe { gfc::Class::from_ptr(*$class) }
+        unsafe impl $crate::darksiders1::gfc::Reflect for $type {
+            fn class() -> &'static $crate::darksiders1::gfc::Class {
+                unsafe { $crate::darksiders1::gfc::Class::from_ptr(*$class) }
             }
         }
     };

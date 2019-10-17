@@ -161,6 +161,11 @@ macro_rules! lowered_autoref {
 
 lowered_autoref!(target::gfc__AutoRef_gfc__Camera3D_, target::gfc__Camera3D);
 lowered_autoref!(
+    target::gfc__AutoRef_gfc__CShape_,
+    target::gfc__CShape,
+    lift = true,
+);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__GameCamera_,
     target::gfc__GameCamera,
 );
@@ -198,6 +203,10 @@ lowered_autoref!(
     target::gfc__AutoRef_gfc__Parameter_,
     target::gfc__Parameter,
     lift = true,
+);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__PhysicsManager_,
+    target::gfc__PhysicsManager,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayer_,

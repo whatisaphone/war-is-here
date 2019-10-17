@@ -12,6 +12,7 @@ pub unsafe fn bind(args: &BindArgs) {
     }
 
     bind!(data, gfc__OmniLight___Class);
+    bind!(data, gfc__WorldObject___Class);
     bind!(data, gfc__WorldGroup___Class);
     bind!(data, gfc__TriggerRegion___Class);
     bind!(

@@ -1,3 +1,5 @@
+pub mod collision;
+pub mod physics;
 pub mod resource;
 pub mod staticobject;
 pub mod triggerregion;

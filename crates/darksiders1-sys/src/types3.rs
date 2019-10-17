@@ -5,6 +5,2354 @@ use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__TraversalLink_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__TraversalWaypoint___0_gfc__CAllocator_ {
+    pub mData: *mut *mut gfc__TraversalWaypoint,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__TraversalLink__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__TraversalLink_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__WorldLoadRequest {
+    pub Regions: gfc__Vector_gfc__RegionLoadRequest_0_gfc__CAllocator_,
+    pub Marker: gfc__AutoRef_gfc__PackageMarker_,
+    pub State: i32,
+    pub Required: bool,
+}
+
+#[repr(C)]
+pub struct hkpRayHitCollector {
+    pub vfptr: *const hkpRayHitCollector__vftable,
+    pub m_earlyOutHitFraction: f32,
+}
+
+impl hkpRayHitCollector {
+    pub unsafe extern "thiscall" fn addRayHit(
+        &self,
+        a1: *const hkpCdBody,
+        a2: *const hkpShapeRayCastCollectorOutput,
+    ) {
+        ((*self.vfptr).addRayHit)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct hkpRayHitCollector__vftable {
+    pub addRayHit: unsafe extern "thiscall" fn(
+        this: *mut hkpRayHitCollector,
+        _: *const hkpCdBody,
+        _: *const hkpShapeRayCastCollectorOutput,
+    ),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpRayHitCollector, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Constraint_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__RagdollBoneMapping__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__RagdollBoneMapping_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__RagdollBoneMapping_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__PhantomBody {
+    pub vfptr: *const gfc__PhantomBody__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    pub vfptr_2: *const gfc__CollisionObject__vftable,
+    // gfc__CollisionObject
+    pub mCollisionManager: *mut gfc__CollisionManager,
+    // gfc__Body
+    pub mObject: *mut gfc__Object3D,
+    pub mNode: gfc__AutoRef_gfc__Node3D_,
+    pub mNodeName: gfc__HString,
+    pub mShape: gfc__AutoRef_gfc__CShape_,
+    pub mElementData: gfc__AutoRef_gfc__Object_,
+    pub mElementType: u16,
+    pub mAutoActivate: bool,
+    pub mBodyType: u8,
+    // gfc__PhantomBody
+    pub mHavokShape: *mut hkpShape,
+    pub mPhantom: *mut hkpShapePhantom,
+    pub mLastNodeVersion: i32,
+    pub mActivateCount: i32,
+    pub mPhantomID: u8,
+    pub mPhantomFlags: u8,
+    pub mClothCollisionChannels: u32,
+}
+
+unsafe impl UpcastToNop<gfc__Body> for gfc__PhantomBody {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__PhantomBody {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__PhantomBody {}
+
+unsafe impl UpcastTo<gfc__CollisionObject> for gfc__PhantomBody {
+    fn upcast_to(p: *const Self) -> *const gfc__CollisionObject {
+        (p as usize + 0x8) as *const _
+    }
+}
+
+impl gfc__PhantomBody {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getShape(
+        &self,
+        result: *mut gfc__AutoRef_gfc__CShape_,
+    ) -> *mut gfc__AutoRef_gfc__CShape_ {
+        ((*self.vfptr).getShape)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getMatrix(&self, a1: *mut gfc__Matrix4) {
+        ((*self.vfptr).getMatrix)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getContext(&self) -> *mut gfc__Object {
+        ((*self.vfptr).getContext)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getGroupContext(&self) -> *mut () {
+        ((*self.vfptr).getGroupContext)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getBoundingBox(
+        &self,
+        a1: *mut gfc__TBox_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getBoundingBox)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setBodyType(&self, a1: u8) {
+        ((*self.vfptr).setBodyType)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn attach(&self, a1: *mut gfc__Object3D) {
+        ((*self.vfptr).attach)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detach(&self) {
+        ((*self.vfptr).detach)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn invalidateNode(&self) {
+        ((*self.vfptr).invalidateNode)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addToWorld(&self) {
+        ((*self.vfptr).addToWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromWorld(&self) {
+        ((*self.vfptr).removeFromWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn preload(&self, a1: i32) {
+        ((*self.vfptr).preload)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__PhantomBody__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody, _: u32) -> *mut (),
+    pub getShape: unsafe extern "thiscall" fn(
+        this: *const gfc__PhantomBody,
+        result: *mut gfc__AutoRef_gfc__CShape_,
+    ) -> *mut gfc__AutoRef_gfc__CShape_,
+    pub getMatrix: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody, _: *mut gfc__Matrix4),
+    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody) -> *mut gfc__Object,
+    pub getGroupContext: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody) -> *mut (),
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhantomBody,
+        _: *mut gfc__TBox_float_gfc__FloatMath_,
+    ),
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhantomBody,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub setBodyType: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody, _: u8),
+    pub attach: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody, _: *mut gfc__Object3D),
+    pub detach: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody),
+    pub invalidateNode: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody),
+    pub addToWorld: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody),
+    pub removeFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody),
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__PhantomBody, _: i32),
+}
+
+#[repr(C)]
+pub struct gfc__RagdollMapper {
+    pub vfptr: *const gfc__RagdollMapper__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__RagdollMapper
+    pub mRootBody: gfc__AutoRef_gfc__RigidBody_,
+    pub mBones: gfc__Vector_gfc__AutoRef_gfc__RagdollBoneMapping__0_gfc__CAllocator_,
+    pub mStabilizer: *mut hkRagdollStabilizer,
+    pub mDefaultStepsUntilStabilize: i32,
+    pub mStepsUntilStabilize: i32,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__RagdollMapper {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__RagdollMapper {}
+
+impl gfc__RagdollMapper {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__RagdollMapper__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__RagdollMapper, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__RagdollMapper) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__RagdollMapper, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__RagdollMapper) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__RagdollMapper) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__RagdollMapper,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__RagdollMapper) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__RagdollMapper,
+        _: *const u64,
+    ) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__RagdollMapper,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Emitter_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpCollisionDispatcher__ShapeInheritance_ {
+    pub m_data: *mut hkpCollisionDispatcher__ShapeInheritance,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpCollisionDispatcher__ShapeInheritance_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpCollisionDispatcher__ShapeInheritance_
+    pub m_data: *mut hkpCollisionDispatcher__ShapeInheritance,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_hkpCollisionDispatcher__ShapeInheritance_hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_hkpCollisionDispatcher__ShapeInheritance_>
+    for hkArray_hkpCollisionDispatcher__ShapeInheritance_hkContainerHeapAllocator_
+{
+}
+
+#[repr(C)]
+pub struct hkFlags_enum_hkClassMember__FlagValues_unsigned_short_ {
+    pub m_storage: u16,
+}
+
+#[repr(C)]
+pub struct hkpCollisionQualityInfo {
+    pub m_keepContact: f32,
+    pub m_create4dContact: f32,
+    pub m_createContact: f32,
+    pub m_manifoldTimDistance: f32,
+    pub m_useContinuousPhysics: hkPadSpu_unsigned_int_,
+    pub m_useSimpleToiHandling: hkBool,
+    pub m_minSeparation: f32,
+    pub m_minExtraSeparation: f32,
+    pub m_minSafeDeltaTime: f32,
+    pub m_minAbsoluteSafeDeltaTime: f32,
+    pub m_toiSeparation: f32,
+    pub m_toiExtraSeparation: f32,
+    pub m_toiAccuracy: f32,
+    pub m_maxContraintViolation: f32,
+    pub m_minToiDeltaTime: f32,
+    pub m_constraintPriority: u16,
+    pub m_enableToiWeldRejection: hkBool,
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpCollisionDispatcher___ {
+    pub m_storage: *mut hkpCollisionDispatcher,
+}
+
+#[repr(C)]
+pub struct hkpShapeBufferStorage {
+    pub m_storage: [i8; 512],
+}
+
+#[repr(C)]
+pub struct hkpCollisionAgent {
+    pub vfptr: *const hkpCollisionAgent__vftable,
+    // hkBaseObject
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkpCollisionAgent
+    pub m_contactMgr: *mut hkpContactMgr,
+}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkpCollisionAgent {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkpCollisionAgent {}
+
+impl hkpCollisionAgent {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getPenetrations(
+        &self,
+        a1: *const hkpCdBody,
+        a2: *const hkpCdBody,
+        a3: *const hkpCollisionInput,
+        a4: *mut hkpCdBodyPairCollector,
+    ) {
+        ((*self.vfptr).getPenetrations)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn getClosestPoints(
+        &self,
+        a1: *const hkpCdBody,
+        a2: *const hkpCdBody,
+        a3: *const hkpCollisionInput,
+        a4: *mut hkpCdPointCollector,
+    ) {
+        ((*self.vfptr).getClosestPoints)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn linearCast(
+        &self,
+        a1: *const hkpCdBody,
+        a2: *const hkpCdBody,
+        a3: *const hkpLinearCastCollisionInput,
+        a4: *mut hkpCdPointCollector,
+        a5: *mut hkpCdPointCollector,
+    ) {
+        ((*self.vfptr).linearCast)(self as *const _ as *mut _, a1, a2, a3, a4, a5)
+    }
+
+    pub unsafe extern "thiscall" fn processCollision(
+        &self,
+        a1: *const hkpCdBody,
+        a2: *const hkpCdBody,
+        a3: *const hkpProcessCollisionInput,
+        a4: *mut hkpProcessCollisionOutput,
+    ) {
+        ((*self.vfptr).processCollision)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn cleanup(&self, a1: *mut hkpConstraintOwner) {
+        ((*self.vfptr).cleanup)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updateShapeCollectionFilter(
+        &self,
+        a1: *const hkpCdBody,
+        a2: *const hkpCdBody,
+        a3: *const hkpCollisionInput,
+        a4: *mut hkpConstraintOwner,
+    ) {
+        ((*self.vfptr).updateShapeCollectionFilter)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn invalidateTim(&self, a1: *const hkpCollisionInput) {
+        ((*self.vfptr).invalidateTim)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn warpTime(
+        &self,
+        a1: f32,
+        a2: f32,
+        a3: *const hkpCollisionInput,
+    ) {
+        ((*self.vfptr).warpTime)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn removePoint(&self, a1: u16) {
+        ((*self.vfptr).removePoint)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn commitPotential(&self, a1: u16) {
+        ((*self.vfptr).commitPotential)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn createZombie(&self, a1: u16) {
+        ((*self.vfptr).createZombie)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct hkpCollisionAgent__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent),
+    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpCollisionAgent) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpCollisionAgent),
+    pub getPenetrations: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionAgent,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpCollisionInput,
+        _: *mut hkpCdBodyPairCollector,
+    ),
+    pub getClosestPoints: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionAgent,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpCollisionInput,
+        _: *mut hkpCdPointCollector,
+    ),
+    pub linearCast: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionAgent,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpLinearCastCollisionInput,
+        _: *mut hkpCdPointCollector,
+        _: *mut hkpCdPointCollector,
+    ),
+    pub processCollision: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionAgent,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpProcessCollisionInput,
+        _: *mut hkpProcessCollisionOutput,
+    ),
+    pub cleanup:
+        unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent, _: *mut hkpConstraintOwner),
+    pub updateShapeCollectionFilter: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionAgent,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+        _: *const hkpCollisionInput,
+        _: *mut hkpConstraintOwner,
+    ),
+    pub invalidateTim:
+        unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent, _: *const hkpCollisionInput),
+    pub warpTime: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionAgent,
+        _: f32,
+        _: f32,
+        _: *const hkpCollisionInput,
+    ),
+    pub removePoint: unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent, _: u16),
+    pub commitPotential: unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent, _: u16),
+    pub createZombie: unsafe extern "thiscall" fn(this: *mut hkpCollisionAgent, _: u16),
+}
+
+#[repr(C)]
+pub struct hkArray_unsigned_int_hkContainerHeapAllocator_ {
+    // hkArrayBase_unsigned_int_
+    pub m_data: *mut u32,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_unsigned_int_hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_unsigned_int_>
+    for hkArray_unsigned_int_hkContainerHeapAllocator_
+{
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpCollisionQualityInfo___ {
+    pub m_storage: *mut hkpCollisionQualityInfo,
+}
+
+#[repr(C)]
+pub struct hkpProcessCollisionInput {
+    // hkpCollisionInput
+    pub m_dispatcher: hkPadSpu_hkpCollisionDispatcher___,
+    pub m_weldClosestPoints: hkPadSpu_unsigned_int_,
+    pub m_forceAcceptContactPoints: hkPadSpu_unsigned_int_,
+    pub m_tolerance: hkPadSpu_float_,
+    pub m_filter: hkPadSpu_hkpCollisionFilter_const___,
+    pub m_convexListFilter: hkPadSpu_hkpConvexListFilter_const___,
+    pub m_createPredictiveAgents: hkPadSpu_unsigned_int_,
+    __pdbindgen_padding: [u8; 4],
+    pub m_aabb32Info: hkpCollisionInput__Aabb32Info,
+    // hkpProcessCollisionInput
+    pub m_stepInfo: hkStepInfo,
+    pub m_collisionQualityInfo: hkPadSpu_hkpCollisionQualityInfo___,
+    pub m_spareAgentSector: *mut hkpAgent1nSector,
+    pub m_dynamicsInfo: *mut (),
+    pub m_enableDeprecatedWelding: hkBool,
+    pub m_allowToSkipConfirmedCallbacks: hkBool,
+    pub m_config: *mut hkpCollisionAgentConfig,
+    __pdbindgen_padding_2: [u8; 12],
+}
+
+unsafe impl UpcastToNop<hkpCollisionInput> for hkpProcessCollisionInput {}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpCollisionFilter_const___ {
+    pub m_storage: *const hkpCollisionFilter,
+}
+
+#[repr(C)]
+pub struct hkFlags_enum_hkClassEnum__FlagValues_unsigned_int_ {
+    pub m_storage: u32,
+}
+
+#[repr(C)]
+pub struct hkpCdPointCollector {
+    pub vfptr: *const hkpCdPointCollector__vftable,
+    pub m_earlyOutDistance: f32,
+}
+
+impl hkpCdPointCollector {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addCdPoint(&self, a1: *const hkpCdPoint) {
+        ((*self.vfptr).addCdPoint)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn reset(&self) {
+        ((*self.vfptr).reset)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct hkpCdPointCollector__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpCdPointCollector, _: u32) -> *mut (),
+    pub addCdPoint:
+        unsafe extern "thiscall" fn(this: *mut hkpCdPointCollector, _: *const hkpCdPoint),
+    pub reset: unsafe extern "thiscall" fn(this: *mut hkpCdPointCollector),
+}
+
+#[repr(C)]
+pub struct hkClassEnum__Item {
+    pub m_value: i32,
+    pub m_name: *const i8,
+}
+
+#[repr(C)]
+pub struct hkArray_float_hkContainerHeapAllocator_ {
+    // hkArrayBase_float_
+    pub m_data: *mut f32,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_float_hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_float_> for hkArray_float_hkContainerHeapAllocator_ {}
+
+#[repr(C)]
+pub struct hkpAgent1nSector {
+    pub m_bytesAllocated: u32,
+    pub m_pad0: u32,
+    pub m_pad1: u32,
+    pub m_pad2: u32,
+    pub m_data: [u8; 496],
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpConvexListFilter_const___ {
+    pub m_storage: *const hkpConvexListFilter,
+}
+
+#[repr(C)]
+pub struct hkpCdBodyPairCollector {
+    pub vfptr: *const hkpCdBodyPairCollector__vftable,
+    pub m_earlyOut: hkBool,
+}
+
+impl hkpCdBodyPairCollector {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addCdBodyPair(
+        &self,
+        a1: *const hkpCdBody,
+        a2: *const hkpCdBody,
+    ) {
+        ((*self.vfptr).addCdBodyPair)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn reset(&self) {
+        ((*self.vfptr).reset)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct hkpCdBodyPairCollector__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpCdBodyPairCollector, _: u32) -> *mut (),
+    pub addCdBodyPair: unsafe extern "thiscall" fn(
+        this: *mut hkpCdBodyPairCollector,
+        _: *const hkpCdBody,
+        _: *const hkpCdBody,
+    ),
+    pub reset: unsafe extern "thiscall" fn(this: *mut hkpCdBodyPairCollector),
+}
+
+#[repr(C)]
+pub struct hkArrayBase_float_ {
+    pub m_data: *mut f32,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_unsigned_int_ {
+    pub m_data: *mut u32,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__SceneObserver {
+    pub vfptr: *const gfc__SceneObserver__vftable,
+    pub mSceneManager: *mut gfc__SceneManager,
+    pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mInvalid: bool,
+    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
+    pub mWarpDistanceThreshold: f32,
+}
+
+impl gfc__SceneObserver {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getContext(&self) -> *mut gfc__Object {
+        ((*self.vfptr).getContext)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__SceneObserver__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SceneObserver, _: u32) -> *mut (),
+    pub getContext: unsafe extern "thiscall" fn(this: *mut gfc__SceneObserver) -> *mut gfc__Object,
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpConstraintRuntime___ {
+    pub m_storage: *mut hkpConstraintRuntime,
+}
+
+#[repr(C)]
+pub struct hkpNullBroadPhaseListener {
+    pub vfptr: *const hkpNullBroadPhaseListener__vftable,
+    // hkBaseObject
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
+    /* hkpBroadPhaseListener
+     * hkpNullBroadPhaseListener */
+}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkpNullBroadPhaseListener {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkpNullBroadPhaseListener {}
+
+unsafe impl UpcastTo<hkpBroadPhaseListener> for hkpNullBroadPhaseListener {
+    fn upcast_to(p: *const Self) -> *const hkpBroadPhaseListener {
+        (p as usize + 0x8) as *const _
+    }
+}
+
+impl hkpNullBroadPhaseListener {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addCollisionPair(&self, a1: *mut hkpTypedBroadPhaseHandlePair) {
+        ((*self.vfptr).addCollisionPair)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeCollisionPair(
+        &self,
+        a1: *mut hkpTypedBroadPhaseHandlePair,
+    ) {
+        ((*self.vfptr).removeCollisionPair)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct hkpNullBroadPhaseListener__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpNullBroadPhaseListener, _: u32) -> *mut (),
+    pub addCollisionPair: unsafe extern "thiscall" fn(
+        this: *mut hkpNullBroadPhaseListener,
+        _: *mut hkpTypedBroadPhaseHandlePair,
+    ),
+    pub removeCollisionPair: unsafe extern "thiscall" fn(
+        this: *mut hkpNullBroadPhaseListener,
+        _: *mut hkpTypedBroadPhaseHandlePair,
+    ),
+    pub deleteThisReferencedObject:
+        unsafe extern "thiscall" fn(this: *const hkpNullBroadPhaseListener),
+}
+
+#[repr(C)]
+pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Sample___ {
+    pub first: gfc__HString,
+    pub second: gfc__AutoRef_gfc__Sample_,
+}
+
+#[repr(C)]
+pub struct std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node {
+    pub _Left: *mut std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node,
+    pub _Parent: *mut std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node,
+    pub _Right: *mut std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node,
+    pub _Myval: *mut gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo___,
+    pub _Color: i8,
+    pub _Isnil: i8,
+}
+
+#[repr(C)]
+pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample___ {
+    // std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Sample___
+    pub first: gfc__HString,
+    pub second: gfc__AutoRef_gfc__Sample_,
+    // std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample___
+}
+
+unsafe impl UpcastToNop<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Sample___>
+    for std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample___
+{
+}
+
+#[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node {
+    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
+    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
+    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
+    pub _Myval: std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample___,
+    pub _Color: i8,
+    pub _Isnil: i8,
+}
+
+#[repr(C)]
+pub struct hkpAction {
+    pub vfptr: *const hkpAction__vftable,
+    // hkBaseObject
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkpAction
+    pub m_world: *mut hkpWorld,
+    pub m_island: *mut hkpSimulationIsland,
+    pub m_userData: u32,
+    pub m_name: hkStringPtr,
+}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkpAction {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkpAction {}
+
+impl hkpAction {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn applyAction(&self, a1: *const hkStepInfo) {
+        ((*self.vfptr).applyAction)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getEntities(
+        &self,
+        a1: *mut hkArray_hkpEntity___hkContainerHeapAllocator_,
+    ) {
+        ((*self.vfptr).getEntities)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getPhantoms(
+        &self,
+        a1: *mut hkArray_hkpPhantom___hkContainerHeapAllocator_,
+    ) {
+        ((*self.vfptr).getPhantoms)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn entityRemovedCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).entityRemovedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clone(
+        &self,
+        a1: *const hkArray_hkpEntity___hkContainerHeapAllocator_,
+        a2: *const hkArray_hkpPhantom___hkContainerHeapAllocator_,
+    ) -> *mut hkpAction {
+        ((*self.vfptr).clone)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct hkpAction__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpAction, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpAction),
+    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpAction) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpAction),
+    pub applyAction: unsafe extern "thiscall" fn(this: *mut hkpAction, _: *const hkStepInfo),
+    pub getEntities: unsafe extern "thiscall" fn(
+        this: *mut hkpAction,
+        _: *mut hkArray_hkpEntity___hkContainerHeapAllocator_,
+    ),
+    pub getPhantoms: unsafe extern "thiscall" fn(
+        this: *mut hkpAction,
+        _: *mut hkArray_hkpPhantom___hkContainerHeapAllocator_,
+    ),
+    pub entityRemovedCallback: unsafe extern "thiscall" fn(this: *mut hkpAction, _: *mut hkpEntity),
+    pub clone: unsafe extern "thiscall" fn(
+        this: *const hkpAction,
+        _: *const hkArray_hkpEntity___hkContainerHeapAllocator_,
+        _: *const hkArray_hkpPhantom___hkContainerHeapAllocator_,
+    ) -> *mut hkpAction,
+}
+
+#[repr(C)]
+pub struct hkPadSpu_hkpJacobianSchema___ {
+    pub m_storage: *mut hkpJacobianSchema,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkMemorySnapshot__Allocation_ {
+    pub m_data: *mut hkMemorySnapshot__Allocation,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArray_hkAabb_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkAabb_
+    pub m_data: *mut hkAabb,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_hkAabb_hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_hkAabb_> for hkArray_hkAabb_hkContainerHeapAllocator_ {}
+
+#[repr(C)]
+pub struct hkMemorySnapshot__Provider {
+    pub m_name: [i8; 32],
+    pub m_parentIndices: hkArrayBase_int_,
+}
+
+#[repr(C)]
+pub struct hkMemorySnapshot__Allocation {
+    pub m_start: *const (),
+    pub m_size: i32,
+    pub m_sourceId: i32,
+    pub m_traceId: i32,
+    pub m_status: hkEnum_enum_hkMemorySnapshot__StatusBits_signed_char_,
+}
+
+#[repr(C)]
+pub struct hkpWorldDeletionListener {
+    pub vfptr: *const hkpWorldDeletionListener__vftable,
+}
+
+impl hkpWorldDeletionListener {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn worldDeletedCallback(&self, a1: *mut hkpWorld) {
+        ((*self.vfptr).worldDeletedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn worldRemoveAllCallback(&self, a1: *mut hkpWorld) {
+        ((*self.vfptr).worldRemoveAllCallback)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct hkpWorldDeletionListener__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldDeletionListener, _: u32) -> *mut (),
+    pub worldDeletedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldDeletionListener, _: *mut hkpWorld),
+    pub worldRemoveAllCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldDeletionListener, _: *mut hkpWorld),
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpConstraintInstance___ {
+    pub m_data: *mut *mut hkpConstraintInstance,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkpEntityListener {
+    pub vfptr: *const hkpEntityListener__vftable,
+}
+
+impl hkpEntityListener {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn entityAddedCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).entityAddedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn entityRemovedCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).entityRemovedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn entityShapeSetCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).entityShapeSetCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn entitySetMotionTypeCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).entitySetMotionTypeCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn entityDeletedCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).entityDeletedCallback)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct hkpEntityListener__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: u32) -> *mut (),
+    pub entityAddedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: *mut hkpEntity),
+    pub entityRemovedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: *mut hkpEntity),
+    pub entityShapeSetCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: *mut hkpEntity),
+    pub entitySetMotionTypeCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: *mut hkpEntity),
+    pub entityDeletedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpEntityListener, _: *mut hkpEntity),
+}
+
+#[repr(C)]
+pub struct hkFlags_enum_hkClass__FlagValues_unsigned_int_ {
+    pub m_storage: u32,
+}
+
+#[repr(C)]
+pub struct hkpBroadPhaseHandlePair {
+    pub m_a: *mut hkpBroadPhaseHandle,
+    pub m_b: *mut hkpBroadPhaseHandle,
+}
+
+#[repr(C)]
+pub struct gfc__CInfo {
+    pub Type: i32,
+    pub Position: gfc__TVector3_float_gfc__FloatMath_,
+    pub Normal: gfc__TVector3_float_gfc__FloatMath_,
+    pub Depth: f32,
+    pub PolyNormal: gfc__TVector3_float_gfc__FloatMath_,
+    pub Object1: *mut gfc__CollisionObject,
+    pub Object2: *mut gfc__CollisionObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__DebrisManager__Debris_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__DebrisManager__Debris,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__CachedKeyframe {
+    pub Position: hkVector4f,
+    pub Rotation: hkQuaternionf,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__StaticObject_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__StaticObject__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__StaticObject_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__DebrisManager {
+    pub vfptr: *const gfc__DebrisManager__vftable,
+    // gfc__ResourceListener
+    // gfc__DebrisManager
+    pub mWorld: *mut gfc__World,
+    pub mTime: f32,
+    pub mDebrisObjects: gfc__Vector_gfc__AutoRef_gfc__StaticObject__0_gfc__CAllocator_,
+    pub mLargeObjects: gfc__Vector_gfc__DebrisManager__Debris_0_gfc__CAllocator_,
+    pub mQueuedBodies: gfc__Vector_gfc__AutoRef_gfc__RigidBody__0_gfc__CAllocator_,
+    pub mDesc: gfc__AutoRef_gfc__DebrisManagerDesc_,
+}
+
+unsafe impl UpcastToNop<gfc__ResourceListener> for gfc__DebrisManager {}
+
+impl gfc__DebrisManager {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn packageUnloading(&self, a1: i32) {
+        ((*self.vfptr).packageUnloading)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__DebrisManager__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__DebrisManager, _: u32) -> *mut (),
+    pub packageUnloading: unsafe extern "thiscall" fn(this: *mut gfc__DebrisManager, _: i32),
+}
+
+#[repr(C)]
+pub struct gfc__DebrisManager__Debris {
+    pub Obj: gfc__AutoRef_gfc__StaticObject_,
+    pub RemainingTime: f32,
+    pub Fading: bool,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__DebrisManagerDesc_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__RigidBody__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__RigidBody_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkRagdollStabilizer {
+    pub vfptr: *const hkRagdollStabilizer__vftable,
+    pub m_bodies: hkArray_hkpRigidBody___hkContainerHeapAllocator_,
+    pub m_constraints: hkArray_hkpConstraintInstance___hkContainerHeapAllocator_,
+    pub m_oldImpulses: hkArray_float_hkContainerHeapAllocator_,
+    pub m_linearDamping: f32,
+    pub m_angularDamping: f32,
+    pub m_gain: f32,
+    pub m_threshold: f32,
+}
+
+impl hkRagdollStabilizer {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct hkRagdollStabilizer__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkRagdollStabilizer, _: u32) -> *mut (),
+}
+
+#[repr(C)]
+pub struct hkpConstraintQueryOut {
+    pub m_jacobianSchemas: hkPadSpu_hkpJacobianSchema___,
+    pub m_constraintRuntime: hkPadSpu_hkpConstraintRuntime___,
+    pub m_instanceRuntime: hkPadSpu_hkpConstraintRuntime___,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpBroadPhaseHandlePair_ {
+    pub m_data: *mut hkpBroadPhaseHandlePair,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpBroadPhaseHandlePair_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpBroadPhaseHandlePair_
+    pub m_data: *mut hkpBroadPhaseHandlePair,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_hkpBroadPhaseHandlePair_hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_hkpBroadPhaseHandlePair_>
+    for hkArray_hkpBroadPhaseHandlePair_hkContainerHeapAllocator_
+{
+}
+
+#[repr(C)]
+pub struct hkpTypedBroadPhaseDispatcher {
+    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
+    pub m_broadPhaseListeners: compile_error!("unimplemented feature: sizeof array 0x0"),
+    __pdbindgen_padding: [u8; 256],
+    pub m_nullBroadPhaseListener: hkpNullBroadPhaseListener,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpBroadPhaseHandle___ {
+    pub m_data: *mut *mut hkpBroadPhaseHandle,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkpTypedBroadPhaseHandlePair {
+    // hkpBroadPhaseHandlePair
+    pub m_a: *mut hkpBroadPhaseHandle,
+    pub m_b: *mut hkpBroadPhaseHandle,
+    // hkpTypedBroadPhaseHandlePair
+}
+
+unsafe impl UpcastToNop<hkpBroadPhaseHandlePair> for hkpTypedBroadPhaseHandlePair {}
+
+#[repr(C)]
+pub struct hkArray_hkpRigidBody___hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpRigidBody___
+    pub m_data: *mut *mut hkpRigidBody,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_hkpRigidBody___hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_hkpRigidBody___>
+    for hkArray_hkpRigidBody___hkContainerHeapAllocator_
+{
+}
+
+#[repr(C)]
+pub struct hkpWorldPostSimulationListener {
+    pub vfptr: *const hkpWorldPostSimulationListener__vftable,
+}
+
+impl hkpWorldPostSimulationListener {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn postSimulationCallback(&self, a1: *mut hkpWorld) {
+        ((*self.vfptr).postSimulationCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn inactiveEntityMovedCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).inactiveEntityMovedCallback)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct hkpWorldPostSimulationListener__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldPostSimulationListener, _: u32) -> *mut (),
+    pub postSimulationCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldPostSimulationListener, _: *mut hkpWorld),
+    pub inactiveEntityMovedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpWorldPostSimulationListener, _: *mut hkpEntity),
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkAabb_ {
+    pub m_data: *mut hkAabb,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkMemorySnapshot__Provider_ {
+    pub m_data: *mut hkMemorySnapshot__Provider,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkpRigidBody___ {
+    pub m_data: *mut *mut hkpRigidBody,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkArray_hkpConstraintInstance___hkContainerHeapAllocator_ {
+    // hkArrayBase_hkpConstraintInstance___
+    pub m_data: *mut *mut hkpConstraintInstance,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_hkpConstraintInstance___hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_hkpConstraintInstance___>
+    for hkArray_hkpConstraintInstance___hkContainerHeapAllocator_
+{
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__BezierCurve_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__PhysicsDetectRegion {
+    pub vfptr: *const gfc__PhysicsDetectRegion__vftable,
+    // hkpWorldPostSimulationListener
+    // gfc__PhysicsDetectRegion
+    pub mPhantomOverlapListenerProxy: gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
+    pub mWorld: *mut gfc__World,
+    pub mPhantom: *mut hkpPhantom,
+    pub mBodies: gfc__Vector_gfc__PhysicsDetectRegion__BodyInfo_0_gfc__CAllocator_,
+    pub mNumContainedBodies: i32,
+    pub mIsShapeDetector: bool,
+    pub mAABBListChanged: bool,
+}
+
+unsafe impl UpcastToNop<hkpWorldPostSimulationListener> for gfc__PhysicsDetectRegion {}
+
+impl gfc__PhysicsDetectRegion {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn postSimulationCallback(&self, a1: *mut hkpWorld) {
+        ((*self.vfptr).postSimulationCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn inactiveEntityMovedCallback(&self, a1: *mut hkpEntity) {
+        ((*self.vfptr).inactiveEntityMovedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addToWorld(&self, a1: *mut gfc__World) {
+        ((*self.vfptr).addToWorld)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromWorld(&self) {
+        ((*self.vfptr).removeFromWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn bodyEntered(&self, a1: *mut gfc__Body) {
+        ((*self.vfptr).bodyEntered)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn bodyExited(
+        &self,
+        a1: *mut gfc__Body,
+        a2: *mut gfc__WorldObject,
+    ) {
+        ((*self.vfptr).bodyExited)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn postSimulationCallback_2(&self) {
+        ((*self.vfptr).postSimulationCallback_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn collidableAddedCallback(
+        &self,
+        a1: *const hkpCollidableAddedEvent,
+    ) {
+        ((*self.vfptr).collidableAddedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn collidableRemovedCallback(
+        &self,
+        a1: *const hkpCollidableRemovedEvent,
+    ) {
+        ((*self.vfptr).collidableRemovedCallback)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__PhysicsDetectRegion__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion, _: u32) -> *mut (),
+    pub postSimulationCallback:
+        unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion, _: *mut hkpWorld),
+    pub inactiveEntityMovedCallback:
+        unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion, _: *mut hkpEntity),
+    pub addToWorld:
+        unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion, _: *mut gfc__World),
+    pub removeFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion),
+    pub bodyEntered:
+        unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion, _: *mut gfc__Body),
+    pub bodyExited: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhysicsDetectRegion,
+        _: *mut gfc__Body,
+        _: *mut gfc__WorldObject,
+    ),
+    pub postSimulationCallback_2: unsafe extern "thiscall" fn(this: *mut gfc__PhysicsDetectRegion),
+    pub collidableAddedCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhysicsDetectRegion,
+        _: *const hkpCollidableAddedEvent,
+    ),
+    pub collidableRemovedCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhysicsDetectRegion,
+        _: *const hkpCollidableRemovedEvent,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__PhysicsDetectRegion__BodyInfo {
+    pub mBody: gfc__AutoRef_gfc__Body_,
+    pub mObject: gfc__AutoRef_gfc__WorldObject_,
+    pub mAABBState: u8,
+    pub mShapeState: u8,
+    pub mAABBStatePrev: u8,
+    pub mShapeStatePrev: u8,
+}
+
+#[repr(C)]
+pub struct gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy {
+    pub vfptr: *const gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy__vftable,
+    /* hkpPhantomOverlapListener
+     * gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy */
+}
+
+unsafe impl UpcastToNop<hkpPhantomOverlapListener>
+    for gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy
+{
+}
+
+impl gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy {
+    pub unsafe extern "thiscall" fn collidableAddedCallback(
+        &self,
+        a1: *const hkpCollidableAddedEvent,
+    ) {
+        ((*self.vfptr).collidableAddedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn collidableRemovedCallback(
+        &self,
+        a1: *const hkpCollidableRemovedEvent,
+    ) {
+        ((*self.vfptr).collidableRemovedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy__vftable {
+    pub collidableAddedCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
+        _: *const hkpCollidableAddedEvent,
+    ),
+    pub collidableRemovedCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
+        _: *const hkpCollidableRemovedEvent,
+    ),
+    pub __vecDelDtor: unsafe extern "thiscall" fn(
+        this: *mut gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
+        _: u32,
+    ) -> *mut (),
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__PhysicsDetectRegion__BodyInfo_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__PhysicsDetectRegion__BodyInfo,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Actor_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__Actor_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__TraversalWaypoint__UnreachableWaypoint_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__TraversalWaypoint__UnreachableWaypoint,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__TraversalWaypoint {
+    pub vfptr: *const gfc__TraversalWaypoint__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
+    pub mObjectID: u32,
+    pub mRegionID: u16,
+    pub mLayerID: u16,
+    pub mName: gfc__HString,
+    pub mEventGroupID: i32,
+    pub mWorld: *mut gfc__World,
+    pub mGroup: *mut gfc__WorldObject,
+    pub mLightGroup: u32,
+    pub mEventHandlers: *mut gfc__WorldObject__EventHandlerNode,
+    pub mEventHandlerLocks: i32,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mPackageID: i32,
+    // gfc__TraversalWaypoint
+    pub mSeed: i32,
+    pub mWaypointType: i32,
+    pub mOpenSpaceID: i32,
+    pub mLinks: gfc__Vector_gfc__AutoRef_gfc__TraversalLink__0_gfc__CAllocator_,
+    pub mUnreachableWaypoints:
+        gfc__Vector_gfc__TraversalWaypoint__UnreachableWaypoint_0_gfc__CAllocator_,
+    pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mRotation: gfc__TVector3_float_gfc__FloatMath_,
+    pub mUpVector: gfc__TVector3_float_gfc__FloatMath_,
+    pub mInvTransform: gfc__Matrix4,
+    pub mBoundingBox: gfc__TBox_float_gfc__FloatMath_,
+    pub mScale: f32,
+    pub mGizmo: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+}
+
+unsafe impl UpcastToNop<gfc__WorldObject> for gfc__TraversalWaypoint {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__TraversalWaypoint {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__TraversalWaypoint {}
+
+impl gfc__TraversalWaypoint {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setPosition(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setPosition)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setRotation(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setRotation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRotation(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getRotation)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setScale(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setScale)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScale(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getBoundingBox(
+        &self,
+        a1: *mut gfc__TBox_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getBoundingBox)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doAddToWorld(&self) {
+        ((*self.vfptr).doAddToWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doRemoveFromWorld(&self) {
+        ((*self.vfptr).doRemoveFromWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn placedInEditor(&self) {
+        ((*self.vfptr).placedInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn droppedToGroundInEditor(&self) {
+        ((*self.vfptr).droppedToGroundInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn preload(&self) {
+        ((*self.vfptr).preload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn begin(&self) {
+        ((*self.vfptr).begin)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updatePost(&self, a1: f32) {
+        ((*self.vfptr).updatePost)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn render(
+        &self,
+        a1: *mut gfc__Renderer,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).render)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn drawDebug(&self) {
+        ((*self.vfptr).drawDebug)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getPackageID(&self) -> i32 {
+        ((*self.vfptr).getPackageID)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn playSound(
+        &self,
+        a1: *mut gfc__SoundDesc,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn playSound_2(
+        &self,
+        a1: i32,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound_2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn stopSound(&self, a1: i32) {
+        ((*self.vfptr).stopSound)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHide(&self, a1: bool) {
+        ((*self.vfptr).setHide)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setFreeze(&self, a1: bool) {
+        ((*self.vfptr).setFreeze)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setLocked(&self, a1: bool) {
+        ((*self.vfptr).setLocked)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSelected(&self, a1: bool) {
+        ((*self.vfptr).setSelected)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisabled(&self, a1: bool) {
+        ((*self.vfptr).setDisabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisplayNames(&self, a1: bool) {
+        ((*self.vfptr).setDisplayNames)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setError(&self, a1: bool) {
+        ((*self.vfptr).setError)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSettled(&self, a1: bool) {
+        ((*self.vfptr).setSettled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isGroup(&self) -> bool {
+        ((*self.vfptr).isGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).addObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).removeObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn inGroup(&self) -> bool {
+        ((*self.vfptr).inGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isRoot(&self) -> bool {
+        ((*self.vfptr).isRoot)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromGroup(&self) {
+        ((*self.vfptr).removeFromGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getGroup(&self) -> *mut gfc__WorldObject {
+        ((*self.vfptr).getGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getObject(&self) -> *mut gfc__Object3D {
+        ((*self.vfptr).getObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setObject(&self, a1: *mut gfc__Object3D) {
+        ((*self.vfptr).setObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnimation(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        a2: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_ {
+        ((*self.vfptr).getAnimation)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn addObjectToWorld(&self, a1: *mut gfc__World) {
+        ((*self.vfptr).addObjectToWorld)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addToLayer(&self) {
+        ((*self.vfptr).addToLayer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromPathFinding(&self, a1: *mut gfc__TraversalWaypoint) {
+        ((*self.vfptr).removeFromPathFinding)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detachFromObject(&self) {
+        ((*self.vfptr).detachFromObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onAttachedToObject(
+        &self,
+        a1: *mut gfc__WorldObject,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+        a3: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).onAttachedToObject)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn onDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onChildDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onChildDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn overrideHitEffect(&self, a1: f32, a2: *mut gfc__Body) -> bool {
+        ((*self.vfptr).overrideHitEffect)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn supportsStaticLighting(&self) -> bool {
+        ((*self.vfptr).supportsStaticLighting)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn staticLightingIsDynamic(&self) -> bool {
+        ((*self.vfptr).staticLightingIsDynamic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAORayLength(&self) -> i32 {
+        ((*self.vfptr).getAORayLength)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn initStaticLighting(
+        &self,
+        a1: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool {
+        ((*self.vfptr).initStaticLighting)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clearStaticLighting(&self) {
+        ((*self.vfptr).clearStaticLighting)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__TraversalWaypoint__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: u32) -> *mut (),
+    pub getClass:
+        unsafe extern "thiscall" fn(this: *const gfc__TraversalWaypoint) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: *const gfc__HString),
+    pub getScriptData:
+        unsafe extern "thiscall" fn(this: *const gfc__TraversalWaypoint) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *const u64,
+    ) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *mut gfc__TBox_float_gfc__FloatMath_,
+    ),
+    pub doAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub doRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub placedInEditor: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub droppedToGroundInEditor: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: f32),
+    pub updatePost: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: f32),
+    pub render: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *mut gfc__Renderer,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub drawDebug: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub getPackageID: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> i32,
+    pub playSound: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *mut gfc__SoundDesc,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub playSound_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: i32,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub stopSound: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: i32),
+    pub setHide: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub setFreeze: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub setLocked: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub setSelected: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub setDisabled: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub setDisplayNames: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub setError: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub setSettled: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: bool),
+    pub isGroup: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> bool,
+    pub addObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: gfc__AutoRef_gfc__WorldObject_,
+    ),
+    pub removeObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: gfc__AutoRef_gfc__WorldObject_,
+    ),
+    pub inGroup: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> bool,
+    pub isRoot: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> bool,
+    pub removeFromGroup: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub getGroup:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> *mut gfc__WorldObject,
+    pub getObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> *mut gfc__Object3D,
+    pub setObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: *mut gfc__Object3D),
+    pub getAnimation: unsafe extern "thiscall" fn(
+        this: *const gfc__TraversalWaypoint,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        _: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_,
+    pub addObjectToWorld:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: *mut gfc__World),
+    pub addToLayer: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub removeFromPathFinding: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *mut gfc__TraversalWaypoint,
+    ),
+    pub detachFromObject: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+    pub onAttachedToObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *mut gfc__WorldObject,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub onDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: *mut gfc__WorldObject),
+    pub onChildDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint, _: *mut gfc__WorldObject),
+    pub overrideHitEffect: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: f32,
+        _: *mut gfc__Body,
+    ) -> bool,
+    pub supportsStaticLighting:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> bool,
+    pub staticLightingIsDynamic:
+        unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> bool,
+    pub getAORayLength: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint) -> i32,
+    pub initStaticLighting: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint,
+        _: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool,
+    pub clearStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__TraversalWaypoint),
+}
+
+#[repr(C)]
+pub struct gfc__TraversalWaypoint__UnreachableWaypoint {
+    pub waypoint: gfc__AutoRef_gfc__TraversalWaypoint_,
+    pub pathFlags: u32,
+}
+
+#[repr(C)]
+pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo {
+    pub vfptr: *const gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable,
+    // gfc__SceneObject
+    pub mType: gfc__SceneObject__Type,
+    pub mDrawCounter: u32,
+    pub mCachedBoundingVolume: gfc__BoundingVolume,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mSceneManager: *mut gfc__SceneManager,
+    pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
+    pub mHashID: u32,
+    pub vfptr_2: *const gfc__IRenderCallback__vftable,
+    // gfc__IRenderCallback
+    pub mLocked: bool,
+    // gfc__Gizmo
+    pub mObject: *mut gfc__WorldObject,
+    // gfc__WorldObjectGizmo
+    pub mGizmoColor: gfc__TVector4_float_gfc__FloatMath_,
+    // gfc__TraversalWaypoint__TraversalWaypointGizmo
+}
+
+unsafe impl UpcastToNop<gfc__WorldObjectGizmo> for gfc__TraversalWaypoint__TraversalWaypointGizmo {}
+
+unsafe impl UpcastToNop<gfc__Gizmo> for gfc__TraversalWaypoint__TraversalWaypointGizmo {}
+
+unsafe impl UpcastToNop<gfc__SceneObject> for gfc__TraversalWaypoint__TraversalWaypointGizmo {}
+
+unsafe impl UpcastTo<gfc__IRenderCallback> for gfc__TraversalWaypoint__TraversalWaypointGizmo {
+    fn upcast_to(p: *const Self) -> *const gfc__IRenderCallback {
+        (p as usize + 0x50) as *const _
+    }
+}
+
+impl gfc__TraversalWaypoint__TraversalWaypointGizmo {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn render(
+        &self,
+        a1: *mut gfc__Camera3D,
+        a2: *mut gfc__RenderNode,
+    ) {
+        ((*self.vfptr).render)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn renderDepthOnly(
+        &self,
+        a1: *mut gfc__Camera3D,
+        a2: *mut gfc__RenderNode,
+    ) {
+        ((*self.vfptr).renderDepthOnly)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn startGeometry(&self, a1: *mut gfc__RenderNode) {
+        ((*self.vfptr).startGeometry)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn finishGeometry(&self, a1: *mut gfc__RenderNode) {
+        ((*self.vfptr).finishGeometry)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn prepGeometry(&self, a1: *mut gfc__RenderNode) {
+        ((*self.vfptr).prepGeometry)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cullAndSubmit(
+        &self,
+        a1: *const gfc__Clipper,
+        a2: *mut gfc__Camera3D,
+        a3: u32,
+    ) {
+        ((*self.vfptr).cullAndSubmit)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn submit(&self, a1: *mut gfc__Camera3D, a2: bool, a3: u32) {
+        ((*self.vfptr).submit)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn submitHidden(&self, a1: *mut gfc__Camera3D, a2: u32) {
+        ((*self.vfptr).submitHidden)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getContext(&self) -> *mut gfc__Object {
+        ((*self.vfptr).getContext)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn pickObject(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+        a3: *mut f32,
+        a4: bool,
+    ) -> bool {
+        ((*self.vfptr).pickObject)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn isStatic(&self) -> bool {
+        ((*self.vfptr).isStatic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isHighPriority(&self) -> bool {
+        ((*self.vfptr).isHighPriority)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn writeText(&self, a1: *mut gfc__AutoRef_gfc__OutputStream_) {
+        ((*self.vfptr).writeText)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setIsSky(&self, a1: bool) {
+        ((*self.vfptr).setIsSky)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getIsSky(&self) -> bool {
+        ((*self.vfptr).getIsSky)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getHide(&self) -> bool {
+        ((*self.vfptr).getHide)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getFreeze(&self) -> bool {
+        ((*self.vfptr).getFreeze)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getLocked(&self) -> bool {
+        ((*self.vfptr).getLocked)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: u32,
+    ) -> *mut (),
+    pub render: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__Camera3D,
+        _: *mut gfc__RenderNode,
+    ),
+    pub renderDepthOnly: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__Camera3D,
+        _: *mut gfc__RenderNode,
+    ),
+    pub startGeometry: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__RenderNode,
+    ),
+    pub finishGeometry: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__RenderNode,
+    ),
+    pub prepGeometry: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__RenderNode,
+    ),
+    pub cullAndSubmit: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *const gfc__Clipper,
+        _: *mut gfc__Camera3D,
+        _: u32,
+    ),
+    pub submit: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__Camera3D,
+        _: bool,
+        _: u32,
+    ),
+    pub submitHidden: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__Camera3D,
+        _: u32,
+    ),
+    pub getContext: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+    ) -> *mut gfc__Object,
+    pub pickObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *mut f32,
+        _: bool,
+    ) -> bool,
+    pub isStatic: unsafe extern "thiscall" fn(
+        this: *const gfc__TraversalWaypoint__TraversalWaypointGizmo,
+    ) -> bool,
+    pub isHighPriority: unsafe extern "thiscall" fn(
+        this: *const gfc__TraversalWaypoint__TraversalWaypointGizmo,
+    ) -> bool,
+    pub writeText: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: *mut gfc__AutoRef_gfc__OutputStream_,
+    ),
+    pub setIsSky: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+        _: bool,
+    ),
+    pub getIsSky: unsafe extern "thiscall" fn(
+        this: *const gfc__TraversalWaypoint__TraversalWaypointGizmo,
+    ) -> bool,
+    pub getHide: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+    ) -> bool,
+    pub getFreeze: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+    ) -> bool,
+    pub getLocked: unsafe extern "thiscall" fn(
+        this: *mut gfc__TraversalWaypoint__TraversalWaypointGizmo,
+    ) -> bool,
+}
+
+#[repr(C)]
+pub struct hkpBoxShape {
+    pub vfptr: *const hkpBoxShape__vftable,
+    // hkBaseObject
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkcdShape
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+    // hkpShapeBase
+    // hkpShape
+    pub m_userData: u32,
+    // hkpSphereRepShape
+    // hkpConvexShape
+    pub m_radius: f32,
+    // hkpBoxShape
+    __pdbindgen_padding: [u8; 12],
+    pub m_halfExtents: hkVector4f,
+}
+
+unsafe impl UpcastToNop<hkpConvexShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkpSphereRepShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkpShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkpShapeBase> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkcdShape> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkpBoxShape {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkpBoxShape {}
+
+impl hkpBoxShape {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isConvex(&self) -> bool {
+        ((*self.vfptr).isConvex)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAabb(
+        &self,
+        a1: *const hkTransformf,
+        a2: f32,
+        a3: *mut hkAabb,
+    ) {
+        ((*self.vfptr).getAabb)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn castRay(
+        &self,
+        result: *mut hkBool,
+        a2: *const hkpShapeRayCastInput,
+        a3: *mut hkpShapeRayCastOutput,
+    ) -> *mut hkBool {
+        ((*self.vfptr).castRay)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn castRayWithCollector(
+        &self,
+        a1: *const hkpShapeRayCastInput,
+        a2: *const hkpCdBody,
+        a3: *mut hkpRayHitCollector,
+    ) {
+        ((*self.vfptr).castRayWithCollector)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn castRayBundle(
+        &self,
+        result: *mut hkVector4fComparison,
+        a2: *const hkpShapeRayBundleCastInput,
+        a3: *mut hkpShapeRayBundleCastOutput,
+        a4: *const hkVector4fComparison,
+    ) -> *mut hkVector4fComparison {
+        ((*self.vfptr).castRayBundle)(self as *const _ as *mut _, result, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn getSupportingVertex(
+        &self,
+        a1: *const hkVector4f,
+        a2: *mut hkcdVertex,
+    ) {
+        ((*self.vfptr).getSupportingVertex)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn convertVertexIdsToVertices(
+        &self,
+        a1: *const u16,
+        a2: i32,
+        a3: *mut hkcdVertex,
+    ) {
+        ((*self.vfptr).convertVertexIdsToVertices)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getCentre(&self, a1: *mut hkVector4f) {
+        ((*self.vfptr).getCentre)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getNumCollisionSpheres(&self) -> i32 {
+        ((*self.vfptr).getNumCollisionSpheres)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getCollisionSpheres(
+        &self,
+        a1: *mut hkSphere,
+    ) -> *const hkSphere {
+        ((*self.vfptr).getCollisionSpheres)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn weldContactPoint(
+        &self,
+        a1: *mut u16,
+        a2: *mut u8,
+        a3: *mut hkVector4f,
+        a4: *const hkTransformf,
+        a5: *const hkpConvexShape,
+        a6: *const hkTransformf,
+        a7: *mut hkVector4f,
+    ) -> i32 {
+        ((*self.vfptr).weldContactPoint)(self as *const _ as *mut _, a1, a2, a3, a4, a5, a6, a7)
+    }
+
+    pub unsafe extern "thiscall" fn getContainer(&self) -> *const hkpShapeContainer {
+        ((*self.vfptr).getContainer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMaximumProjection(&self, a1: *const hkVector4f) -> f32 {
+        ((*self.vfptr).getMaximumProjection)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn calcSizeForSpu(
+        &self,
+        a1: *const hkpShape__CalcSizeForSpuInput,
+        a2: i32,
+    ) -> i32 {
+        ((*self.vfptr).calcSizeForSpu)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getFirstVertex(&self, a1: *mut hkVector4f) {
+        ((*self.vfptr).getFirstVertex)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getSize(&self) -> i32 {
+        ((*self.vfptr).getSize)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
 pub struct hkpBoxShape__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpBoxShape, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpBoxShape),
@@ -72,6 +2420,13 @@ pub struct hkpBoxShape__vftable {
     ) -> i32,
     pub getFirstVertex: unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *mut hkVector4f),
     pub getSize: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> i32,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__CShape___0_gfc__CAllocator_ {
+    pub mData: *mut *mut gfc__CShape,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
 }
 
 #[repr(C)]
@@ -12868,6 +15223,14 @@ pub struct hkEnum_enum_hkpBvTreeShape__BvTreeType_unsigned_char_ {
 }
 
 #[repr(C)]
+pub struct hkpLinearCastInput {
+    pub m_to: hkVector4f,
+    pub m_maxExtraPenetration: f32,
+    pub m_startPointTolerance: f32,
+    __pdbindgen_padding: [u8; 8],
+}
+
+#[repr(C)]
 pub struct hkpBroadPhase {
     pub vfptr: *const hkpBroadPhase__vftable,
     // hkBaseObject
@@ -15174,8 +17537,103 @@ pub struct hkpContactPointAddedEvent {
 }
 
 #[repr(C)]
+pub struct hkpContactPointConfirmedEvent {
+    pub m_collidableA: *const hkpCollidable,
+    pub m_collidableB: *const hkpCollidable,
+    pub m_callbackFiredFrom: *mut hkpEntity,
+    pub m_contactPoint: *mut hkContactPoint,
+    pub m_contactPointProperties: *mut hkpContactPointProperties,
+    pub m_rotateNormal: f32,
+    pub m_projectedVelocity: f32,
+    pub m_type: hkEnum_enum_hkpContactPointAddedEvent__Type_int_,
+    pub m_contactData: *const hkpSimpleContactConstraintData,
+}
+
+#[repr(C)]
 pub struct hkEnum_enum_hkpContactPointAddedEvent__Type_int_ {
     pub m_storage: i32,
+}
+
+#[repr(C)]
+pub struct hkpCollisionListener {
+    pub vfptr: *const hkpCollisionListener__vftable,
+    /* hkpContactListener
+     * hkpCollisionListener */
+}
+
+unsafe impl UpcastToNop<hkpContactListener> for hkpCollisionListener {}
+
+impl hkpCollisionListener {
+    pub unsafe extern "thiscall" fn contactPointCallback(&self, a1: *const hkpContactPointEvent) {
+        ((*self.vfptr).contactPointCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn collisionAddedCallback(&self, a1: *const hkpCollisionEvent) {
+        ((*self.vfptr).collisionAddedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn collisionRemovedCallback(&self, a1: *const hkpCollisionEvent) {
+        ((*self.vfptr).collisionRemovedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn contactPointAddedCallback(
+        &self,
+        a1: *mut hkpContactPointAddedEvent,
+    ) {
+        ((*self.vfptr).contactPointAddedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn contactPointRemovedCallback(
+        &self,
+        a1: *mut hkpContactPointRemovedEvent,
+    ) {
+        ((*self.vfptr).contactPointRemovedCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn contactProcessCallback(&self, a1: *mut hkpContactProcessEvent) {
+        ((*self.vfptr).contactProcessCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn contactPointConfirmedCallback(
+        &self,
+        a1: *mut hkpContactPointConfirmedEvent,
+    ) {
+        ((*self.vfptr).contactPointConfirmedCallback)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct hkpCollisionListener__vftable {
+    pub contactPointCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionListener,
+        _: *const hkpContactPointEvent,
+    ),
+    pub collisionAddedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpCollisionListener, _: *const hkpCollisionEvent),
+    pub collisionRemovedCallback:
+        unsafe extern "thiscall" fn(this: *mut hkpCollisionListener, _: *const hkpCollisionEvent),
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkpCollisionListener, _: u32) -> *mut (),
+    pub contactPointAddedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionListener,
+        _: *mut hkpContactPointAddedEvent,
+    ),
+    pub contactPointRemovedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionListener,
+        _: *mut hkpContactPointRemovedEvent,
+    ),
+    pub contactProcessCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionListener,
+        _: *mut hkpContactProcessEvent,
+    ),
+    pub contactPointConfirmedCallback: unsafe extern "thiscall" fn(
+        this: *mut hkpCollisionListener,
+        _: *mut hkpContactPointConfirmedEvent,
+    ),
 }
 
 #[repr(C)]
@@ -16287,6 +18745,203 @@ pub struct hkContactPointMaterial {
 }
 
 #[repr(C)]
+pub struct hkpShapePhantom {
+    pub vfptr: *const hkpShapePhantom__vftable,
+    // hkBaseObject
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkpWorldObject
+    pub m_world: *mut hkpWorld,
+    pub m_userData: u32,
+    pub m_collidable: hkpLinkedCollidable,
+    pub m_multiThreadCheck: hkMultiThreadCheck,
+    pub m_name: hkStringPtr,
+    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    // hkpPhantom
+    pub m_overlapListeners: hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_,
+    pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
+    // hkpShapePhantom
+    pub m_motionState: hkMotionState,
+}
+
+unsafe impl UpcastToNop<hkpPhantom> for hkpShapePhantom {}
+
+unsafe impl UpcastToNop<hkpWorldObject> for hkpShapePhantom {}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkpShapePhantom {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkpShapePhantom {}
+
+impl hkpShapePhantom {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setShape(
+        &self,
+        a1: *const hkpShape,
+    ) -> hkWorldOperation__Result {
+        ((*self.vfptr).setShape)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updateShape(
+        &self,
+        a1: *mut hkpShapeModifier,
+    ) -> hkWorldOperation__Result {
+        ((*self.vfptr).updateShape)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getMotionState(&self) -> *mut hkMotionState {
+        ((*self.vfptr).getMotionState)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> hkpPhantomType {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn calcAabb(&self, a1: *mut hkAabb) {
+        ((*self.vfptr).calcAabb)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addOverlappingCollidable(&self, a1: *mut hkpCollidable) {
+        ((*self.vfptr).addOverlappingCollidable)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isOverlappingCollidableAdded(
+        &self,
+        result: *mut hkBool,
+        a2: *const hkpCollidable,
+    ) -> *mut hkBool {
+        ((*self.vfptr).isOverlappingCollidableAdded)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn removeOverlappingCollidable(&self, a1: *mut hkpCollidable) {
+        ((*self.vfptr).removeOverlappingCollidable)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn ensureDeterministicOrder(&self) {
+        ((*self.vfptr).ensureDeterministicOrder)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn clone(&self) -> *mut hkpPhantom {
+        ((*self.vfptr).clone)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn updateShapeCollectionFilter(&self) {
+        ((*self.vfptr).updateShapeCollectionFilter)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deallocateInternalArrays(&self) {
+        ((*self.vfptr).deallocateInternalArrays)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setPositionAndLinearCast(
+        &self,
+        a1: *const hkVector4f,
+        a2: *const hkpLinearCastInput,
+        a3: *mut hkpCdPointCollector,
+        a4: *mut hkpCdPointCollector,
+    ) {
+        ((*self.vfptr).setPositionAndLinearCast)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn setTransformAndLinearCast(
+        &self,
+        a1: *const hkTransformf,
+        a2: *const hkpLinearCastInput,
+        a3: *mut hkpCdPointCollector,
+        a4: *mut hkpCdPointCollector,
+    ) {
+        ((*self.vfptr).setTransformAndLinearCast)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn getClosestPoints(
+        &self,
+        a1: *mut hkpCdPointCollector,
+        a2: *const hkpCollisionInput,
+    ) {
+        ((*self.vfptr).getClosestPoints)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getPenetrations(
+        &self,
+        a1: *mut hkpCdBodyPairCollector,
+        a2: *const hkpCollisionInput,
+    ) {
+        ((*self.vfptr).getPenetrations)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct hkpShapePhantom__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom),
+    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpShapePhantom) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpShapePhantom),
+    pub setShape: unsafe extern "thiscall" fn(
+        this: *mut hkpShapePhantom,
+        _: *const hkpShape,
+    ) -> hkWorldOperation__Result,
+    pub updateShape: unsafe extern "thiscall" fn(
+        this: *mut hkpShapePhantom,
+        _: *mut hkpShapeModifier,
+    ) -> hkWorldOperation__Result,
+    pub getMotionState:
+        unsafe extern "thiscall" fn(this: *mut hkpShapePhantom) -> *mut hkMotionState,
+    pub getType: unsafe extern "thiscall" fn(this: *const hkpShapePhantom) -> hkpPhantomType,
+    pub calcAabb: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom, _: *mut hkAabb),
+    pub addOverlappingCollidable:
+        unsafe extern "thiscall" fn(this: *mut hkpShapePhantom, _: *mut hkpCollidable),
+    pub isOverlappingCollidableAdded: unsafe extern "thiscall" fn(
+        this: *mut hkpShapePhantom,
+        result: *mut hkBool,
+        _: *const hkpCollidable,
+    ) -> *mut hkBool,
+    pub removeOverlappingCollidable:
+        unsafe extern "thiscall" fn(this: *mut hkpShapePhantom, _: *mut hkpCollidable),
+    pub ensureDeterministicOrder: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom),
+    pub clone: unsafe extern "thiscall" fn(this: *const hkpShapePhantom) -> *mut hkpPhantom,
+    pub updateShapeCollectionFilter: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom),
+    pub deallocateInternalArrays: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom),
+    pub setPositionAndLinearCast: unsafe extern "thiscall" fn(
+        this: *mut hkpShapePhantom,
+        _: *const hkVector4f,
+        _: *const hkpLinearCastInput,
+        _: *mut hkpCdPointCollector,
+        _: *mut hkpCdPointCollector,
+    ),
+    pub setTransformAndLinearCast: unsafe extern "thiscall" fn(
+        this: *mut hkpShapePhantom,
+        _: *const hkTransformf,
+        _: *const hkpLinearCastInput,
+        _: *mut hkpCdPointCollector,
+        _: *mut hkpCdPointCollector,
+    ),
+    pub getClosestPoints: unsafe extern "thiscall" fn(
+        this: *mut hkpShapePhantom,
+        _: *mut hkpCdPointCollector,
+        _: *const hkpCollisionInput,
+    ),
+    pub getPenetrations: unsafe extern "thiscall" fn(
+        this: *mut hkpShapePhantom,
+        _: *mut hkpCdBodyPairCollector,
+        _: *const hkpCollisionInput,
+    ),
+}
+
+#[repr(C)]
 pub struct hkpCollisionInput__Aabb32Info {
     pub m_bitOffsetLow: hkVector4f,
     pub m_bitOffsetHigh: hkVector4f,
@@ -16938,2316 +19593,3 @@ impl hkpPhantomBroadPhaseListener {
         ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
     }
 }
-
-#[repr(C)]
-pub struct hkpPhantomBroadPhaseListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpPhantomBroadPhaseListener, _: u32) -> *mut (),
-    pub addCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpPhantomBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub removeCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpPhantomBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub deleteThisReferencedObject:
-        unsafe extern "thiscall" fn(this: *const hkpPhantomBroadPhaseListener),
-}
-
-#[repr(C)]
-pub struct hkpContactMgr {
-    pub vfptr: *const hkpContactMgr__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpContactMgr
-    pub m_type: hkpContactMgr__Type,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpContactMgr {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpContactMgr {}
-
-impl hkpContactMgr {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn addContactPointImpl(
-        &self,
-        a1: *const hkpCdBody,
-        a2: *const hkpCdBody,
-        a3: *const hkpProcessCollisionInput,
-        a4: *mut hkpProcessCollisionOutput,
-        a5: *const hkpGskCache,
-        a6: *mut hkContactPoint,
-    ) -> u16 {
-        ((*self.vfptr).addContactPointImpl)(self as *const _ as *mut _, a1, a2, a3, a4, a5, a6)
-    }
-
-    pub unsafe extern "thiscall" fn reserveContactPointsImpl(
-        &self,
-        result: *mut hkResult,
-        a2: i32,
-    ) -> *mut hkResult {
-        ((*self.vfptr).reserveContactPointsImpl)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn removeContactPointImpl(
-        &self,
-        a1: u16,
-        a2: *mut hkpConstraintOwner,
-    ) {
-        ((*self.vfptr).removeContactPointImpl)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn processContactImpl(
-        &self,
-        a1: *const hkpCollidable,
-        a2: *const hkpCollidable,
-        a3: *const hkpProcessCollisionInput,
-        a4: *mut hkpProcessCollisionData,
-    ) {
-        ((*self.vfptr).processContactImpl)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn addToiImpl(
-        &self,
-        a1: *const hkpCdBody,
-        a2: *const hkpCdBody,
-        a3: *const hkpProcessCollisionInput,
-        a4: *mut hkpProcessCollisionOutput,
-        a5: f32,
-        a6: *mut hkContactPoint,
-        a7: *const hkpGskCache,
-        a8: *mut f32,
-        a9: *mut hkpContactPointProperties,
-    ) -> hkpContactMgr__ToiAccept {
-        ((*self.vfptr).addToiImpl)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-            a3,
-            a4,
-            a5,
-            a6,
-            a7,
-            a8,
-            a9,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn removeToiImpl(
-        &self,
-        a1: *mut hkpConstraintOwner,
-        a2: *mut hkpContactPointProperties,
-    ) {
-        ((*self.vfptr).removeToiImpl)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn cleanup(&self) {
-        ((*self.vfptr).cleanup)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkpContactMgr__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpContactMgr, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpContactMgr),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpContactMgr) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpContactMgr),
-    pub addContactPointImpl: unsafe extern "thiscall" fn(
-        this: *mut hkpContactMgr,
-        _: *const hkpCdBody,
-        _: *const hkpCdBody,
-        _: *const hkpProcessCollisionInput,
-        _: *mut hkpProcessCollisionOutput,
-        _: *const hkpGskCache,
-        _: *mut hkContactPoint,
-    ) -> u16,
-    pub reserveContactPointsImpl: unsafe extern "thiscall" fn(
-        this: *mut hkpContactMgr,
-        result: *mut hkResult,
-        _: i32,
-    ) -> *mut hkResult,
-    pub removeContactPointImpl:
-        unsafe extern "thiscall" fn(this: *mut hkpContactMgr, _: u16, _: *mut hkpConstraintOwner),
-    pub processContactImpl: unsafe extern "thiscall" fn(
-        this: *mut hkpContactMgr,
-        _: *const hkpCollidable,
-        _: *const hkpCollidable,
-        _: *const hkpProcessCollisionInput,
-        _: *mut hkpProcessCollisionData,
-    ),
-    pub addToiImpl: unsafe extern "thiscall" fn(
-        this: *mut hkpContactMgr,
-        _: *const hkpCdBody,
-        _: *const hkpCdBody,
-        _: *const hkpProcessCollisionInput,
-        _: *mut hkpProcessCollisionOutput,
-        _: f32,
-        _: *mut hkContactPoint,
-        _: *const hkpGskCache,
-        _: *mut f32,
-        _: *mut hkpContactPointProperties,
-    ) -> hkpContactMgr__ToiAccept,
-    pub removeToiImpl: unsafe extern "thiscall" fn(
-        this: *mut hkpContactMgr,
-        _: *mut hkpConstraintOwner,
-        _: *mut hkpContactPointProperties,
-    ),
-    pub cleanup: unsafe extern "thiscall" fn(this: *mut hkpContactMgr),
-}
-
-#[repr(C)]
-pub struct hkpWorldExtension {
-    pub vfptr: *const hkpWorldExtension__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpWorldExtension
-    pub m_world: *mut hkpWorld,
-    pub m_id: i32,
-    pub m_attachmentCount: u16,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpWorldExtension {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpWorldExtension {}
-
-impl hkpWorldExtension {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn performAttachments(&self, a1: *mut hkpWorld) {
-        ((*self.vfptr).performAttachments)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn performDetachments(&self, a1: *mut hkpWorld) {
-        ((*self.vfptr).performDetachments)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct hkpWorldExtension__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpWorldExtension, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpWorldExtension),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpWorldExtension) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpWorldExtension),
-    pub performAttachments:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldExtension, _: *mut hkpWorld),
-    pub performDetachments:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldExtension, _: *mut hkpWorld),
-}
-
-#[repr(C)]
-pub struct hkpEntityActivationListener {
-    pub vfptr: *const hkpEntityActivationListener__vftable,
-}
-
-impl hkpEntityActivationListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn entityDeactivatedCallback(&self, a1: *mut hkpEntity) {
-        ((*self.vfptr).entityDeactivatedCallback)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn entityActivatedCallback(&self, a1: *mut hkpEntity) {
-        ((*self.vfptr).entityActivatedCallback)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct hkpEntityActivationListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpEntityActivationListener, _: u32) -> *mut (),
-    pub entityDeactivatedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpEntityActivationListener, _: *mut hkpEntity),
-    pub entityActivatedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpEntityActivationListener, _: *mut hkpEntity),
-}
-
-#[repr(C)]
-pub struct hkViewPtr_hkpConstraintInstance_ {
-    pub m_ptr: *mut hkpConstraintInstance,
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation {
-    pub vfptr: *const hkpMultiThreadedSimulation__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpSimulation
-    pub m_determinismCheckFrameCounter: u32,
-    pub m_world: *mut hkpWorld,
-    pub m_lastProcessingStep: hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_,
-    pub m_currentTime: f32,
-    pub m_currentPsiTime: f32,
-    pub m_physicsDeltaTime: f32,
-    pub m_simulateUntilTime: f32,
-    pub m_frameMarkerPsiSnap: f32,
-    pub m_previousStepResult: u32,
-    // hkpContinuousSimulation
-    __pdbindgen_padding: [u8; 4],
-    pub m_toiEvents: hkArray_hkpToiEvent_hkContainerHeapAllocator_,
-    pub m_entitiesNeedingPsiCollisionDetection:
-        hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    pub m_toiResourceMgr: *mut hkpToiResourceMgr,
-    pub m_toiCounter: i32,
-    // hkpMultiThreadedSimulation
-    pub m_entityEntityBroadPhaseListener:
-        hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener,
-    pub m_phantomBroadPhaseListener: hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener,
-    pub m_broadPhaseBorderListener: hkpMultiThreadedSimulation__MtBroadPhaseBorderListener,
-    pub m_crossIslandPairsCollectingActive: hkBool,
-    pub m_addedCrossIslandPairs: hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_,
-    pub m_addCrossIslandPairCriticalSection: hkCriticalSection,
-    pub m_removedCrossIslandPairs: hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_,
-    pub m_removeCrossIslandPairCriticalSection: hkCriticalSection,
-    pub m_multithreadConfig: hkpMultithreadConfig,
-    pub m_numActiveIslandsAtBeginningOfStep: i32,
-    pub m_numInactiveIslandsAtBeginningOfStep: i32,
-    pub m_jobQueueHandleForToiSolve: *mut hkJobQueue,
-    __pdbindgen_padding_2: [u8; 60],
-    pub m_toiQueueCriticalSection: hkCriticalSection,
-    __pdbindgen_padding_3: [u8; 40],
-    pub m_phantomCriticalSection: hkCriticalSection,
-    __pdbindgen_padding_4: [u8; 40],
-}
-
-unsafe impl UpcastToNop<hkpContinuousSimulation> for hkpMultiThreadedSimulation {}
-
-unsafe impl UpcastToNop<hkpSimulation> for hkpMultiThreadedSimulation {}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpMultiThreadedSimulation {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpMultiThreadedSimulation {}
-
-impl hkpMultiThreadedSimulation {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn stepDeltaTime(&self, a1: f32) -> hkpStepResult {
-        ((*self.vfptr).stepDeltaTime)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn integrate(&self, a1: f32) -> hkpStepResult {
-        ((*self.vfptr).integrate)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn collide(&self) -> hkpStepResult {
-        ((*self.vfptr).collide)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn advanceTime(&self) -> hkpStepResult {
-        ((*self.vfptr).advanceTime)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn stepBeginSt(
-        &self,
-        a1: *mut hkJobQueue,
-        a2: f32,
-    ) -> hkpStepResult {
-        ((*self.vfptr).stepBeginSt)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn finishMtStep(
-        &self,
-        a1: *mut hkJobQueue,
-        a2: *mut hkThreadPool,
-    ) -> hkpStepResult {
-        ((*self.vfptr).finishMtStep)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getMultithreadConfig(&self, a1: *mut hkpMultithreadConfig) {
-        ((*self.vfptr).getMultithreadConfig)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setMultithreadConfig(
-        &self,
-        a1: *const hkpMultithreadConfig,
-        a2: *mut hkJobQueue,
-    ) {
-        ((*self.vfptr).setMultithreadConfig)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn collideEntitiesDiscrete(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-        a4: *const hkStepInfo,
-        a5: hkpSimulation__FindContacts,
-    ) {
-        ((*self.vfptr).collideEntitiesDiscrete)(self as *const _ as *mut _, a1, a2, a3, a4, a5)
-    }
-
-    pub unsafe extern "thiscall" fn resetCollisionInformationForEntities(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-        a4: hkpSimulation__ResetCollisionInformation,
-    ) {
-        ((*self.vfptr).resetCollisionInformationForEntities)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-            a3,
-            a4,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn assertThereIsNoCollisionInformationForEntities(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-    ) {
-        ((*self.vfptr).assertThereIsNoCollisionInformationForEntities)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-            a3,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionInformationForAgent(
-        &self,
-        a1: *mut hkpAgentNnEntry,
-    ) {
-        ((*self.vfptr).removeCollisionInformationForAgent)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn assertThereIsNoCollisionInformationForAgent(
-        &self,
-        a1: *mut hkpAgentNnEntry,
-    ) {
-        ((*self.vfptr).assertThereIsNoCollisionInformationForAgent)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn reintegrateAndRecollideEntities(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-        a4: i32,
-    ) {
-        ((*self.vfptr).reintegrateAndRecollideEntities)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn collideInternal(&self, a1: *const hkStepInfo) {
-        ((*self.vfptr).collideInternal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn warpTime(&self, a1: f32) {
-        ((*self.vfptr).warpTime)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn collideEntitiesOfOneIslandNarrowPhaseContinuous_toiOnly(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *const hkpProcessCollisionInput,
-        a4: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    ) {
-        ((*self.vfptr).collideEntitiesOfOneIslandNarrowPhaseContinuous_toiOnly)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-            a3,
-            a4,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn collideEntitiesNeedingPsiCollisionDetectionNarrowPhase_toiOnly(
-        &self,
-        a1: *const hkpProcessCollisionInput,
-        a2: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    ) {
-        ((*self.vfptr).collideEntitiesNeedingPsiCollisionDetectionNarrowPhase_toiOnly)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn simulateToi(
-        &self,
-        a1: *mut hkpWorld,
-        a2: *mut hkpToiEvent,
-        a3: f32,
-        a4: f32,
-    ) {
-        ((*self.vfptr).simulateToi)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation, _: u32) -> *mut (),
-    pub __first_virtual_table_function__:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkpMultiThreadedSimulation) -> *const hkClass,
-    pub deleteThisReferencedObject:
-        unsafe extern "thiscall" fn(this: *const hkpMultiThreadedSimulation),
-    pub stepDeltaTime:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation, _: f32) -> hkpStepResult,
-    pub integrate:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation, _: f32) -> hkpStepResult,
-    pub collide:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation) -> hkpStepResult,
-    pub advanceTime:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation) -> hkpStepResult,
-    pub stepBeginSt: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut hkJobQueue,
-        _: f32,
-    ) -> hkpStepResult,
-    pub finishMtStep: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut hkJobQueue,
-        _: *mut hkThreadPool,
-    ) -> hkpStepResult,
-    pub getMultithreadConfig: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut hkpMultithreadConfig,
-    ),
-    pub setMultithreadConfig: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *const hkpMultithreadConfig,
-        _: *mut hkJobQueue,
-    ),
-    pub collideEntitiesDiscrete: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-        _: *const hkStepInfo,
-        _: hkpSimulation__FindContacts,
-    ),
-    pub resetCollisionInformationForEntities: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-        _: hkpSimulation__ResetCollisionInformation,
-    ),
-    pub assertThereIsNoCollisionInformationForEntities: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-    ),
-    pub removeCollisionInformationForAgent:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation, _: *mut hkpAgentNnEntry),
-    pub assertThereIsNoCollisionInformationForAgent:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation, _: *mut hkpAgentNnEntry),
-    pub reintegrateAndRecollideEntities: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-        _: i32,
-    ),
-    pub collideInternal:
-        unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation, _: *const hkStepInfo),
-    pub warpTime: unsafe extern "thiscall" fn(this: *mut hkpMultiThreadedSimulation, _: f32),
-    pub collideEntitiesOfOneIslandNarrowPhaseContinuous_toiOnly: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *const hkpProcessCollisionInput,
-        _: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    ),
-    pub collideEntitiesNeedingPsiCollisionDetectionNarrowPhase_toiOnly:
-        unsafe extern "thiscall" fn(
-            this: *mut hkpMultiThreadedSimulation,
-            _: *const hkpProcessCollisionInput,
-            _: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-        ),
-    pub simulateToi: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation,
-        _: *mut hkpWorld,
-        _: *mut hkpToiEvent,
-        _: f32,
-        _: f32,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener {
-    pub vfptr: *const hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener__vftable,
-    // hkpBroadPhaseListener
-    // hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener
-    pub m_simulation: *mut hkpMultiThreadedSimulation,
-}
-
-unsafe impl UpcastToNop<hkpBroadPhaseListener>
-    for hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener
-{
-}
-
-impl hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addCollisionPair(&self, a1: *mut hkpTypedBroadPhaseHandlePair) {
-        ((*self.vfptr).addCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionPair(
-        &self,
-        a1: *mut hkpTypedBroadPhaseHandlePair,
-    ) {
-        ((*self.vfptr).removeCollisionPair)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener,
-        _: u32,
-    ) -> *mut (),
-    pub addCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub removeCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener {
-    pub vfptr: *const hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener__vftable,
-    // hkpBroadPhaseListener
-    // hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener
-    pub m_criticalSection: *mut hkCriticalSection,
-}
-
-unsafe impl UpcastToNop<hkpBroadPhaseListener>
-    for hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener
-{
-}
-
-impl hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addCollisionPair(&self, a1: *mut hkpTypedBroadPhaseHandlePair) {
-        ((*self.vfptr).addCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionPair(
-        &self,
-        a1: *mut hkpTypedBroadPhaseHandlePair,
-    ) {
-        ((*self.vfptr).removeCollisionPair)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener,
-        _: u32,
-    ) -> *mut (),
-    pub addCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub removeCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation__MtBroadPhaseBorderListener {
-    pub vfptr: *const hkpMultiThreadedSimulation__MtBroadPhaseBorderListener__vftable,
-    // hkpBroadPhaseListener
-    // hkpMultiThreadedSimulation__MtBroadPhaseBorderListener
-    pub m_criticalSection: *mut hkCriticalSection,
-}
-
-unsafe impl UpcastToNop<hkpBroadPhaseListener>
-    for hkpMultiThreadedSimulation__MtBroadPhaseBorderListener
-{
-}
-
-impl hkpMultiThreadedSimulation__MtBroadPhaseBorderListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addCollisionPair(&self, a1: *mut hkpTypedBroadPhaseHandlePair) {
-        ((*self.vfptr).addCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionPair(
-        &self,
-        a1: *mut hkpTypedBroadPhaseHandlePair,
-    ) {
-        ((*self.vfptr).removeCollisionPair)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct hkpMultiThreadedSimulation__MtBroadPhaseBorderListener__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtBroadPhaseBorderListener,
-        _: u32,
-    ) -> *mut (),
-    pub addCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtBroadPhaseBorderListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub removeCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpMultiThreadedSimulation__MtBroadPhaseBorderListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpTypedBroadPhaseHandlePair_ {
-    pub m_data: *mut hkpTypedBroadPhaseHandlePair,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_ {
-    // hkArrayBase_hkpTypedBroadPhaseHandlePair_
-    pub m_data: *mut hkpTypedBroadPhaseHandlePair,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-    // hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_
-}
-
-unsafe impl UpcastToNop<hkArrayBase_hkpTypedBroadPhaseHandlePair_>
-    for hkArray_hkpTypedBroadPhaseHandlePair_hkContainerHeapAllocator_
-{
-}
-
-#[repr(C)]
-pub struct hkpContactImpulseLimitBreachedListener {
-    pub vfptr: *const hkpContactImpulseLimitBreachedListener__vftable,
-}
-
-impl hkpContactImpulseLimitBreachedListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn contactImpulseLimitBreachedCallback(
-        &self,
-        a1: *const hkpContactImpulseLimitBreachedListenerInfo,
-        a2: i32,
-    ) {
-        ((*self.vfptr).contactImpulseLimitBreachedCallback)(self as *const _ as *mut _, a1, a2)
-    }
-}
-
-#[repr(C)]
-pub struct hkpContactImpulseLimitBreachedListener__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut hkpContactImpulseLimitBreachedListener,
-        _: u32,
-    ) -> *mut (),
-    pub contactImpulseLimitBreachedCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpContactImpulseLimitBreachedListener,
-        _: *const hkpContactImpulseLimitBreachedListenerInfo,
-        _: i32,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpContactImpulseLimitBreachedListenerInfo {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_data: compile_error!("unimplemented feature: type kind 0x1506"),
-    __pdbindgen_padding: [u8; 16],
-}
-
-#[repr(C)]
-pub struct hkpShapeRayBundleCastOutput {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_outputs: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 320],
-}
-
-#[repr(C)]
-pub struct hkpWorldMaintenanceMgr {
-    pub vfptr: *const hkpWorldMaintenanceMgr__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpWorldMaintenanceMgr
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpWorldMaintenanceMgr {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpWorldMaintenanceMgr {}
-
-impl hkpWorldMaintenanceMgr {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn init(&self, a1: *mut hkpWorld) {
-        ((*self.vfptr).init)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn performMaintenance(
-        &self,
-        a1: *mut hkpWorld,
-        a2: *mut hkStepInfo,
-    ) {
-        ((*self.vfptr).performMaintenance)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn performMaintenanceNoSplit(
-        &self,
-        a1: *mut hkpWorld,
-        a2: *mut hkStepInfo,
-    ) {
-        ((*self.vfptr).performMaintenanceNoSplit)(self as *const _ as *mut _, a1, a2)
-    }
-}
-
-#[repr(C)]
-pub struct hkpWorldMaintenanceMgr__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldMaintenanceMgr, _: u32) -> *mut (),
-    pub __first_virtual_table_function__:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldMaintenanceMgr),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkpWorldMaintenanceMgr) -> *const hkClass,
-    pub deleteThisReferencedObject:
-        unsafe extern "thiscall" fn(this: *const hkpWorldMaintenanceMgr),
-    pub init: unsafe extern "thiscall" fn(this: *mut hkpWorldMaintenanceMgr, _: *mut hkpWorld),
-    pub performMaintenance: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldMaintenanceMgr,
-        _: *mut hkpWorld,
-        _: *mut hkStepInfo,
-    ),
-    pub performMaintenanceNoSplit: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldMaintenanceMgr,
-        _: *mut hkpWorld,
-        _: *mut hkStepInfo,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpEntityEntityBroadPhaseListener {
-    pub vfptr: *const hkpEntityEntityBroadPhaseListener__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
-    // hkpBroadPhaseListener
-    // hkpEntityEntityBroadPhaseListener
-    pub m_world: *mut hkpWorld,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpEntityEntityBroadPhaseListener {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpEntityEntityBroadPhaseListener {}
-
-unsafe impl UpcastTo<hkpBroadPhaseListener> for hkpEntityEntityBroadPhaseListener {
-    fn upcast_to(p: *const Self) -> *const hkpBroadPhaseListener {
-        (p as usize + 0x8) as *const _
-    }
-}
-
-impl hkpEntityEntityBroadPhaseListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addCollisionPair(&self, a1: *mut hkpTypedBroadPhaseHandlePair) {
-        ((*self.vfptr).addCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionPair(
-        &self,
-        a1: *mut hkpTypedBroadPhaseHandlePair,
-    ) {
-        ((*self.vfptr).removeCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkpEntityEntityBroadPhaseListener__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(
-        this: *mut hkpEntityEntityBroadPhaseListener,
-        _: u32,
-    ) -> *mut (),
-    pub addCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpEntityEntityBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub removeCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpEntityEntityBroadPhaseListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub deleteThisReferencedObject:
-        unsafe extern "thiscall" fn(this: *const hkpEntityEntityBroadPhaseListener),
-}
-
-#[repr(C)]
-pub struct hkpBroadPhaseBorderListener {
-    pub vfptr: *const hkpBroadPhaseBorderListener__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
-    /* hkpBroadPhaseListener
-     * hkpBroadPhaseBorderListener */
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpBroadPhaseBorderListener {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpBroadPhaseBorderListener {}
-
-unsafe impl UpcastTo<hkpBroadPhaseListener> for hkpBroadPhaseBorderListener {
-    fn upcast_to(p: *const Self) -> *const hkpBroadPhaseListener {
-        (p as usize + 0x8) as *const _
-    }
-}
-
-impl hkpBroadPhaseBorderListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addCollisionPair(&self, a1: *mut hkpTypedBroadPhaseHandlePair) {
-        ((*self.vfptr).addCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionPair(
-        &self,
-        a1: *mut hkpTypedBroadPhaseHandlePair,
-    ) {
-        ((*self.vfptr).removeCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkpBroadPhaseBorderListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpBroadPhaseBorderListener, _: u32) -> *mut (),
-    pub addCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpBroadPhaseBorderListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub removeCollisionPair: unsafe extern "thiscall" fn(
-        this: *mut hkpBroadPhaseBorderListener,
-        _: *mut hkpTypedBroadPhaseHandlePair,
-    ),
-    pub deleteThisReferencedObject:
-        unsafe extern "thiscall" fn(this: *const hkpBroadPhaseBorderListener),
-}
-
-#[repr(C)]
-pub struct hkpToiResourceMgr {
-    pub vfptr: *const hkpToiResourceMgr__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpToiResourceMgr
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpToiResourceMgr {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpToiResourceMgr {}
-
-impl hkpToiResourceMgr {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn beginToiAndSetupResources(
-        &self,
-        result: *mut hkResult,
-        a2: *const hkpToiEvent,
-        a3: *const hkArray_hkpToiEvent_hkContainerHeapAllocator_,
-        a4: *mut hkpToiResources,
-    ) -> *mut hkResult {
-        ((*self.vfptr).beginToiAndSetupResources)(self as *const _ as *mut _, result, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn cannotSolve(
-        &self,
-        a1: *mut hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_,
-    ) -> hkpToiResourceMgrResponse {
-        ((*self.vfptr).cannotSolve)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn resourcesDepleted(&self) -> hkpToiResourceMgrResponse {
-        ((*self.vfptr).resourcesDepleted)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn endToiAndFreeResources(
-        &self,
-        a1: *const hkpToiEvent,
-        a2: *const hkArray_hkpToiEvent_hkContainerHeapAllocator_,
-        a3: *const hkpToiResources,
-    ) {
-        ((*self.vfptr).endToiAndFreeResources)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn getScratchpadCapacity(&self) -> i32 {
-        ((*self.vfptr).getScratchpadCapacity)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkpToiResourceMgr__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpToiResourceMgr, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpToiResourceMgr),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpToiResourceMgr) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpToiResourceMgr),
-    pub beginToiAndSetupResources: unsafe extern "thiscall" fn(
-        this: *mut hkpToiResourceMgr,
-        result: *mut hkResult,
-        _: *const hkpToiEvent,
-        _: *const hkArray_hkpToiEvent_hkContainerHeapAllocator_,
-        _: *mut hkpToiResources,
-    ) -> *mut hkResult,
-    pub cannotSolve: unsafe extern "thiscall" fn(
-        this: *mut hkpToiResourceMgr,
-        _: *mut hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_,
-    ) -> hkpToiResourceMgrResponse,
-    pub resourcesDepleted:
-        unsafe extern "thiscall" fn(this: *mut hkpToiResourceMgr) -> hkpToiResourceMgrResponse,
-    pub endToiAndFreeResources: unsafe extern "thiscall" fn(
-        this: *mut hkpToiResourceMgr,
-        _: *const hkpToiEvent,
-        _: *const hkArray_hkpToiEvent_hkContainerHeapAllocator_,
-        _: *const hkpToiResources,
-    ),
-    pub getScratchpadCapacity: unsafe extern "thiscall" fn(this: *mut hkpToiResourceMgr) -> i32,
-}
-
-#[repr(C)]
-pub struct hkpToiResources {
-    pub m_minPriorityToProcess: hkpConstraintInstance__ConstraintPriority,
-    pub m_maxNumEntities: i32,
-    pub m_maxNumActiveEntities: i32,
-    pub m_maxNumConstraints: i32,
-    pub m_numToiSolverIterations: i32,
-    pub m_numForcedToiFinalSolverIterations: i32,
-    pub m_scratchpad: *mut i8,
-    pub m_scratchpadSize: i32,
-    pub m_priorityClassMap: *const u8,
-    pub m_priorityClassRatios: *const f32,
-}
-
-#[repr(C)]
-pub struct hkpToiResourceMgr__ConstraintViolationInfo {
-    pub m_constraint: *mut hkpConstraintInstance,
-    pub m_contactPoint: *const hkContactPoint,
-    pub m_contactPointProperties: *const hkpContactPointProperties,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_ {
-    // hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_
-    pub m_data: *mut hkpToiResourceMgr__ConstraintViolationInfo,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-    // hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_
-}
-
-unsafe impl UpcastToNop<hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_>
-    for hkArray_hkpToiResourceMgr__ConstraintViolationInfo_hkContainerHeapAllocator_
-{
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpToiResourceMgr__ConstraintViolationInfo_ {
-    pub m_data: *mut hkpToiResourceMgr__ConstraintViolationInfo,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkpActionListener {
-    pub vfptr: *const hkpActionListener__vftable,
-}
-
-impl hkpActionListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn actionAddedCallback(&self, a1: *mut hkpAction) {
-        ((*self.vfptr).actionAddedCallback)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn actionRemovedCallback(&self, a1: *mut hkpAction) {
-        ((*self.vfptr).actionRemovedCallback)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct hkpActionListener__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpActionListener, _: u32) -> *mut (),
-    pub actionAddedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpActionListener, _: *mut hkpAction),
-    pub actionRemovedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpActionListener, _: *mut hkpAction),
-}
-
-#[repr(C)]
-pub struct hkpIslandActivationListener {
-    pub vfptr: *const hkpIslandActivationListener__vftable,
-}
-
-impl hkpIslandActivationListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn islandActivatedCallback(&self, a1: *mut hkpSimulationIsland) {
-        ((*self.vfptr).islandActivatedCallback)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn islandDeactivatedCallback(&self, a1: *mut hkpSimulationIsland) {
-        ((*self.vfptr).islandDeactivatedCallback)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct hkpIslandActivationListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpIslandActivationListener, _: u32) -> *mut (),
-    pub islandActivatedCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpIslandActivationListener,
-        _: *mut hkpSimulationIsland,
-    ),
-    pub islandDeactivatedCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpIslandActivationListener,
-        _: *mut hkpSimulationIsland,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpWorldPostCollideListener {
-    pub vfptr: *const hkpWorldPostCollideListener__vftable,
-}
-
-impl hkpWorldPostCollideListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn postCollideCallback(
-        &self,
-        a1: *mut hkpWorld,
-        a2: *const hkStepInfo,
-    ) {
-        ((*self.vfptr).postCollideCallback)(self as *const _ as *mut _, a1, a2)
-    }
-}
-
-#[repr(C)]
-pub struct hkpWorldPostCollideListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldPostCollideListener, _: u32) -> *mut (),
-    pub postCollideCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldPostCollideListener,
-        _: *mut hkpWorld,
-        _: *const hkStepInfo,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpWorldPostIntegrateListener {
-    pub vfptr: *const hkpWorldPostIntegrateListener__vftable,
-}
-
-impl hkpWorldPostIntegrateListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn postIntegrateCallback(
-        &self,
-        a1: *mut hkpWorld,
-        a2: *const hkStepInfo,
-    ) {
-        ((*self.vfptr).postIntegrateCallback)(self as *const _ as *mut _, a1, a2)
-    }
-}
-
-#[repr(C)]
-pub struct hkpWorldPostIntegrateListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldPostIntegrateListener, _: u32) -> *mut (),
-    pub postIntegrateCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldPostIntegrateListener,
-        _: *mut hkpWorld,
-        _: *const hkStepInfo,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpIslandPostCollideListener {
-    pub vfptr: *const hkpIslandPostCollideListener__vftable,
-}
-
-impl hkpIslandPostCollideListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn postCollideCallback(
-        &self,
-        a1: *mut hkpSimulationIsland,
-        a2: *const hkStepInfo,
-    ) {
-        ((*self.vfptr).postCollideCallback)(self as *const _ as *mut _, a1, a2)
-    }
-}
-
-#[repr(C)]
-pub struct hkpIslandPostCollideListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpIslandPostCollideListener, _: u32) -> *mut (),
-    pub postCollideCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpIslandPostCollideListener,
-        _: *mut hkpSimulationIsland,
-        _: *const hkStepInfo,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpIslandPostIntegrateListener {
-    pub vfptr: *const hkpIslandPostIntegrateListener__vftable,
-}
-
-impl hkpIslandPostIntegrateListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn postIntegrateCallback(
-        &self,
-        a1: *mut hkpSimulationIsland,
-        a2: *const hkStepInfo,
-    ) {
-        ((*self.vfptr).postIntegrateCallback)(self as *const _ as *mut _, a1, a2)
-    }
-}
-
-#[repr(C)]
-pub struct hkpIslandPostIntegrateListener__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpIslandPostIntegrateListener, _: u32) -> *mut (),
-    pub postIntegrateCallback: unsafe extern "thiscall" fn(
-        this: *mut hkpIslandPostIntegrateListener,
-        _: *mut hkpSimulationIsland,
-        _: *const hkStepInfo,
-    ),
-}
-
-#[repr(C)]
-pub struct hkpEntity {
-    pub vfptr: *const hkpEntity__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpWorldObject
-    pub m_world: *mut hkpWorld,
-    pub m_userData: u32,
-    pub m_collidable: hkpLinkedCollidable,
-    pub m_multiThreadCheck: hkMultiThreadCheck,
-    pub m_name: hkStringPtr,
-    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
-    // hkpEntity
-    pub m_material: hkpMaterial,
-    pub m_limitContactImpulseUtilAndFlag: *mut (),
-    pub m_damageMultiplier: f32,
-    pub m_breakableBody: *mut hkpBreakableBody,
-    pub m_solverData: u32,
-    pub m_storageIndex: u16,
-    pub m_contactPointCallbackDelay: u16,
-    pub m_constraintsMaster: hkSmallArray_hkConstraintInternal_,
-    pub m_constraintsSlave: hkArray_hkViewPtr_hkpConstraintInstance__hkContainerHeapAllocator_,
-    pub m_constraintRuntime: hkArray_unsigned_char_hkContainerHeapAllocator_,
-    pub m_simulationIsland: *mut hkpSimulationIsland,
-    pub m_autoRemoveLevel: i8,
-    pub m_numShapeKeysInContactPointProperties: u8,
-    pub m_responseModifierFlags: u8,
-    pub m_uid: u32,
-    pub m_spuCollisionCallback: hkpEntity__SpuCollisionCallback,
-    __pdbindgen_padding: [u8; 4],
-    pub m_motion: hkpMaxSizeMotion,
-    pub m_contactListeners: hkSmallArray_hkpContactListener___,
-    pub m_actions: hkSmallArray_hkpAction___,
-    pub m_localFrame: hkRefPtr_hkLocalFrame_,
-    pub m_extendedListeners: *mut hkpEntity__ExtendedListeners,
-    pub m_npData: u32,
-    __pdbindgen_padding_2: [u8; 4],
-}
-
-unsafe impl UpcastToNop<hkpWorldObject> for hkpEntity {}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpEntity {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpEntity {}
-
-impl hkpEntity {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setShape(
-        &self,
-        a1: *const hkpShape,
-    ) -> hkWorldOperation__Result {
-        ((*self.vfptr).setShape)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn updateShape(
-        &self,
-        a1: *mut hkpShapeModifier,
-    ) -> hkWorldOperation__Result {
-        ((*self.vfptr).updateShape)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getMotionState(&self) -> *mut hkMotionState {
-        ((*self.vfptr).getMotionState)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deallocateInternalArrays(&self) {
-        ((*self.vfptr).deallocateInternalArrays)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkpEntity__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpEntity, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpEntity),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpEntity) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpEntity),
-    pub setShape: unsafe extern "thiscall" fn(
-        this: *mut hkpEntity,
-        _: *const hkpShape,
-    ) -> hkWorldOperation__Result,
-    pub updateShape: unsafe extern "thiscall" fn(
-        this: *mut hkpEntity,
-        _: *mut hkpShapeModifier,
-    ) -> hkWorldOperation__Result,
-    pub getMotionState: unsafe extern "thiscall" fn(this: *mut hkpEntity) -> *mut hkMotionState,
-    pub deallocateInternalArrays: unsafe extern "thiscall" fn(this: *mut hkpEntity),
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkpMotion__MotionType_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkpMaterial {
-    pub m_responseType: hkEnum_enum_hkpMaterial__ResponseType_signed_char_,
-    pub m_rollingFrictionMultiplier: hkHalf,
-    pub m_friction: f32,
-    pub m_restitution: f32,
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkpConstraintInstance__InstanceType_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkpConstraintInstance {
-    pub vfptr: *const hkpConstraintInstance__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpConstraintInstance
-    pub m_owner: *mut hkpConstraintOwner,
-    pub m_data: *mut hkpConstraintData,
-    pub m_constraintModifiers: *mut hkpModifierConstraintAtom,
-    pub m_entities: [*mut hkpEntity; 2],
-    pub m_priority: hkEnum_enum_hkpConstraintInstance__ConstraintPriority_unsigned_char_,
-    pub m_wantRuntime: hkBool,
-    pub m_destructionRemapInfo:
-        hkEnum_enum_hkpConstraintInstance__OnDestructionRemapInfo_unsigned_char_,
-    pub m_listeners: hkSmallArray_hkpConstraintListener___,
-    pub m_name: hkStringPtr,
-    pub m_userData: u32,
-    pub m_internal: *mut hkConstraintInternal,
-    pub m_uid: u32,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpConstraintInstance {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpConstraintInstance {}
-
-impl hkpConstraintInstance {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn entityAddedCallback(&self, a1: *mut hkpEntity) {
-        ((*self.vfptr).entityAddedCallback)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn entityRemovedCallback(&self, a1: *mut hkpEntity) {
-        ((*self.vfptr).entityRemovedCallback)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn entityDeletedCallback(&self, a1: *mut hkpEntity) {
-        ((*self.vfptr).entityDeletedCallback)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getType(&self) -> hkpConstraintInstance__InstanceType {
-        ((*self.vfptr).getType)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkpConstraintInstance__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpConstraintInstance, _: u32) -> *mut (),
-    pub __first_virtual_table_function__:
-        unsafe extern "thiscall" fn(this: *mut hkpConstraintInstance),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkpConstraintInstance) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpConstraintInstance),
-    pub entityAddedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpConstraintInstance, _: *mut hkpEntity),
-    pub entityRemovedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpConstraintInstance, _: *mut hkpEntity),
-    pub entityDeletedCallback:
-        unsafe extern "thiscall" fn(this: *mut hkpConstraintInstance, _: *mut hkpEntity),
-    pub getType: unsafe extern "thiscall" fn(
-        this: *const hkpConstraintInstance,
-    ) -> hkpConstraintInstance__InstanceType,
-}
-
-#[repr(C)]
-pub struct hkpShapeBase {
-    pub vfptr: *const hkpShapeBase__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkcdShape
-    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
-    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
-    pub m_bitsPerKey: u8,
-    pub m_shapeInfoCodecType:
-        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
-    // hkpShapeBase
-}
-
-unsafe impl UpcastToNop<hkcdShape> for hkpShapeBase {}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpShapeBase {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpShapeBase {}
-
-impl hkpShapeBase {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn isConvex(&self) -> bool {
-        ((*self.vfptr).isConvex)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getAabb(
-        &self,
-        a1: *const hkTransformf,
-        a2: f32,
-        a3: *mut hkAabb,
-    ) {
-        ((*self.vfptr).getAabb)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn castRay(
-        &self,
-        result: *mut hkBool,
-        a2: *const hkpShapeRayCastInput,
-        a3: *mut hkpShapeRayCastOutput,
-    ) -> *mut hkBool {
-        ((*self.vfptr).castRay)(self as *const _ as *mut _, result, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn castRayWithCollector(
-        &self,
-        a1: *const hkpShapeRayCastInput,
-        a2: *const hkpCdBody,
-        a3: *mut hkpRayHitCollector,
-    ) {
-        ((*self.vfptr).castRayWithCollector)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn castRayBundle(
-        &self,
-        result: *mut hkVector4fComparison,
-        a2: *const hkpShapeRayBundleCastInput,
-        a3: *mut hkpShapeRayBundleCastOutput,
-        a4: *const hkVector4fComparison,
-    ) -> *mut hkVector4fComparison {
-        ((*self.vfptr).castRayBundle)(self as *const _ as *mut _, result, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn getSupportingVertex(
-        &self,
-        a1: *const hkVector4f,
-        a2: *mut hkcdVertex,
-    ) {
-        ((*self.vfptr).getSupportingVertex)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn convertVertexIdsToVertices(
-        &self,
-        a1: *const u16,
-        a2: i32,
-        a3: *mut hkcdVertex,
-    ) {
-        ((*self.vfptr).convertVertexIdsToVertices)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn getCentre(&self, a1: *mut hkVector4f) {
-        ((*self.vfptr).getCentre)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getNumCollisionSpheres(&self) -> i32 {
-        ((*self.vfptr).getNumCollisionSpheres)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getCollisionSpheres(
-        &self,
-        a1: *mut hkSphere,
-    ) -> *const hkSphere {
-        ((*self.vfptr).getCollisionSpheres)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn weldContactPoint(
-        &self,
-        a1: *mut u16,
-        a2: *mut u8,
-        a3: *mut hkVector4f,
-        a4: *const hkTransformf,
-        a5: *const hkpConvexShape,
-        a6: *const hkTransformf,
-        a7: *mut hkVector4f,
-    ) -> i32 {
-        ((*self.vfptr).weldContactPoint)(self as *const _ as *mut _, a1, a2, a3, a4, a5, a6, a7)
-    }
-}
-
-#[repr(C)]
-pub struct hkpShapeBase__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpShapeBase, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpShapeBase),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpShapeBase),
-    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> bool,
-    pub getAabb: unsafe extern "thiscall" fn(
-        this: *const hkpShapeBase,
-        _: *const hkTransformf,
-        _: f32,
-        _: *mut hkAabb,
-    ),
-    pub castRay: unsafe extern "thiscall" fn(
-        this: *const hkpShapeBase,
-        result: *mut hkBool,
-        _: *const hkpShapeRayCastInput,
-        _: *mut hkpShapeRayCastOutput,
-    ) -> *mut hkBool,
-    pub castRayWithCollector: unsafe extern "thiscall" fn(
-        this: *const hkpShapeBase,
-        _: *const hkpShapeRayCastInput,
-        _: *const hkpCdBody,
-        _: *mut hkpRayHitCollector,
-    ),
-    pub castRayBundle: unsafe extern "thiscall" fn(
-        this: *const hkpShapeBase,
-        result: *mut hkVector4fComparison,
-        _: *const hkpShapeRayBundleCastInput,
-        _: *mut hkpShapeRayBundleCastOutput,
-        _: *const hkVector4fComparison,
-    ) -> *mut hkVector4fComparison,
-    pub getSupportingVertex: unsafe extern "thiscall" fn(
-        this: *const hkpShapeBase,
-        _: *const hkVector4f,
-        _: *mut hkcdVertex,
-    ),
-    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
-        this: *const hkpShapeBase,
-        _: *const u16,
-        _: i32,
-        _: *mut hkcdVertex,
-    ),
-    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkVector4f),
-    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpShapeBase) -> i32,
-    pub getCollisionSpheres:
-        unsafe extern "thiscall" fn(this: *const hkpShapeBase, _: *mut hkSphere) -> *const hkSphere,
-    pub weldContactPoint: unsafe extern "thiscall" fn(
-        this: *const hkpShapeBase,
-        _: *mut u16,
-        _: *mut u8,
-        _: *mut hkVector4f,
-        _: *const hkTransformf,
-        _: *const hkpConvexShape,
-        _: *const hkTransformf,
-        _: *mut hkVector4f,
-    ) -> i32,
-}
-
-#[repr(C)]
-pub struct hkpMotion {
-    pub vfptr: *const hkpMotion__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpMotion
-    pub m_type: hkEnum_enum_hkpMotion__MotionType_unsigned_char_,
-    pub m_deactivationIntegrateCounter: u8,
-    pub m_deactivationNumInactiveFrames: [u16; 2],
-    pub m_motionState: hkMotionState,
-    pub m_inertiaAndMassInv: hkVector4f,
-    pub m_linearVelocity: hkVector4f,
-    pub m_angularVelocity: hkVector4f,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_deactivationRefPosition: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 32],
-    pub m_deactivationRefOrientation: [u32; 2],
-    pub m_savedMotion: *mut hkpMaxSizeMotion,
-    pub m_savedQualityTypeIndex: u16,
-    pub m_gravityFactor: hkHalf,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpMotion {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpMotion {}
-
-impl hkpMotion {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setMass(&self, a1: *const hkSimdFloat32) {
-        ((*self.vfptr).setMass)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setMass_2(&self, a1: f32) {
-        ((*self.vfptr).setMass_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setMassInv(&self, a1: *const hkSimdFloat32) {
-        ((*self.vfptr).setMassInv)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setMassInv_2(&self, a1: f32) {
-        ((*self.vfptr).setMassInv_2)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getInertiaLocal(&self, a1: *mut hkMatrix3f) {
-        ((*self.vfptr).getInertiaLocal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getInertiaWorld(&self, a1: *mut hkMatrix3f) {
-        ((*self.vfptr).getInertiaWorld)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setInertiaLocal(&self, a1: *const hkMatrix3f) {
-        ((*self.vfptr).setInertiaLocal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setInertiaInvLocal(&self, a1: *const hkMatrix3f) {
-        ((*self.vfptr).setInertiaInvLocal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getInertiaInvLocal(&self, a1: *mut hkMatrix3f) {
-        ((*self.vfptr).getInertiaInvLocal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getInertiaInvWorld(&self, a1: *mut hkMatrix3f) {
-        ((*self.vfptr).getInertiaInvWorld)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setCenterOfMassInLocal(&self, a1: *const hkVector4f) {
-        ((*self.vfptr).setCenterOfMassInLocal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setPosition(&self, a1: *const hkVector4f) {
-        ((*self.vfptr).setPosition)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setRotation(&self, a1: *const hkQuaternionf) {
-        ((*self.vfptr).setRotation)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setPositionAndRotation(
-        &self,
-        a1: *const hkVector4f,
-        a2: *const hkQuaternionf,
-    ) {
-        ((*self.vfptr).setPositionAndRotation)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn setTransform(&self, a1: *const hkTransformf) {
-        ((*self.vfptr).setTransform)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setLinearVelocity(&self, a1: *const hkVector4f) {
-        ((*self.vfptr).setLinearVelocity)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setAngularVelocity(&self, a1: *const hkVector4f) {
-        ((*self.vfptr).setAngularVelocity)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getProjectedPointVelocity(
-        &self,
-        a1: *const hkVector4f,
-        a2: *const hkVector4f,
-        a3: *mut f32,
-        a4: *mut f32,
-    ) {
-        ((*self.vfptr).getProjectedPointVelocity)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn getProjectedPointVelocitySimd(
-        &self,
-        a1: *const hkVector4f,
-        a2: *const hkVector4f,
-        a3: *mut hkSimdFloat32,
-        a4: *mut hkSimdFloat32,
-    ) {
-        ((*self.vfptr).getProjectedPointVelocitySimd)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn applyLinearImpulse(&self, a1: *const hkVector4f) {
-        ((*self.vfptr).applyLinearImpulse)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn applyPointImpulse(
-        &self,
-        a1: *const hkVector4f,
-        a2: *const hkVector4f,
-    ) {
-        ((*self.vfptr).applyPointImpulse)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn applyAngularImpulse(&self, a1: *const hkVector4f) {
-        ((*self.vfptr).applyAngularImpulse)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn applyForce(
-        &self,
-        a1: f32,
-        a2: *const hkVector4f,
-        a3: *const hkVector4f,
-    ) {
-        ((*self.vfptr).applyForce)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn applyForce_2(&self, a1: f32, a2: *const hkVector4f) {
-        ((*self.vfptr).applyForce_2)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn applyTorque(&self, a1: f32, a2: *const hkVector4f) {
-        ((*self.vfptr).applyTorque)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getMotionStateAndVelocitiesAndDeactivationType(
-        &self,
-        a1: *mut hkpMotion,
-    ) {
-        ((*self.vfptr).getMotionStateAndVelocitiesAndDeactivationType)(
-            self as *const _ as *mut _,
-            a1,
-        )
-    }
-}
-
-#[repr(C)]
-pub struct hkpMotion__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpMotion),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpMotion) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpMotion),
-    pub setMass: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkSimdFloat32),
-    pub setMass_2: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32),
-    pub setMassInv: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkSimdFloat32),
-    pub setMassInv_2: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32),
-    pub getInertiaLocal: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub getInertiaWorld: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub setInertiaLocal: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkMatrix3f),
-    pub setInertiaInvLocal: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkMatrix3f),
-    pub getInertiaInvLocal: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub getInertiaInvWorld: unsafe extern "thiscall" fn(this: *const hkpMotion, _: *mut hkMatrix3f),
-    pub setCenterOfMassInLocal:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub setPosition: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub setRotation: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkQuaternionf),
-    pub setPositionAndRotation: unsafe extern "thiscall" fn(
-        this: *mut hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkQuaternionf,
-    ),
-    pub setTransform: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkTransformf),
-    pub setLinearVelocity: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub setAngularVelocity: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub getProjectedPointVelocity: unsafe extern "thiscall" fn(
-        this: *const hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-        _: *mut f32,
-        _: *mut f32,
-    ),
-    pub getProjectedPointVelocitySimd: unsafe extern "thiscall" fn(
-        this: *const hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-        _: *mut hkSimdFloat32,
-        _: *mut hkSimdFloat32,
-    ),
-    pub applyLinearImpulse: unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub applyPointImpulse: unsafe extern "thiscall" fn(
-        this: *mut hkpMotion,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-    ),
-    pub applyAngularImpulse:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *const hkVector4f),
-    pub applyForce: unsafe extern "thiscall" fn(
-        this: *mut hkpMotion,
-        _: f32,
-        _: *const hkVector4f,
-        _: *const hkVector4f,
-    ),
-    pub applyForce_2:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32, _: *const hkVector4f),
-    pub applyTorque:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: f32, _: *const hkVector4f),
-    pub getMotionStateAndVelocitiesAndDeactivationType:
-        unsafe extern "thiscall" fn(this: *mut hkpMotion, _: *mut hkpMotion),
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkpConstraintInstance__OnDestructionRemapInfo_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkpMaterial__ResponseType_signed_char_ {
-    pub m_storage: i8,
-}
-
-#[repr(C)]
-pub struct hkpWorldObject {
-    pub vfptr: *const hkpWorldObject__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpWorldObject
-    pub m_world: *mut hkpWorld,
-    pub m_userData: u32,
-    pub m_collidable: hkpLinkedCollidable,
-    pub m_multiThreadCheck: hkMultiThreadCheck,
-    pub m_name: hkStringPtr,
-    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpWorldObject {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpWorldObject {}
-
-impl hkpWorldObject {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setShape(
-        &self,
-        a1: *const hkpShape,
-    ) -> hkWorldOperation__Result {
-        ((*self.vfptr).setShape)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn updateShape(
-        &self,
-        a1: *mut hkpShapeModifier,
-    ) -> hkWorldOperation__Result {
-        ((*self.vfptr).updateShape)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getMotionState(&self) -> *mut hkMotionState {
-        ((*self.vfptr).getMotionState)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkpWorldObject__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpWorldObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpWorldObject),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpWorldObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpWorldObject),
-    pub setShape: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldObject,
-        _: *const hkpShape,
-    ) -> hkWorldOperation__Result,
-    pub updateShape: unsafe extern "thiscall" fn(
-        this: *mut hkpWorldObject,
-        _: *mut hkpShapeModifier,
-    ) -> hkWorldOperation__Result,
-    pub getMotionState:
-        unsafe extern "thiscall" fn(this: *mut hkpWorldObject) -> *mut hkMotionState,
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkpConstraintInstance__ConstraintPriority_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkpShape {
-    pub vfptr: *const hkpShape__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkcdShape
-    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
-    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
-    pub m_bitsPerKey: u8,
-    pub m_shapeInfoCodecType:
-        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
-    // hkpShapeBase
-    // hkpShape
-    pub m_userData: u32,
-}
-
-unsafe impl UpcastToNop<hkpShapeBase> for hkpShape {}
-
-unsafe impl UpcastToNop<hkcdShape> for hkpShape {}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpShape {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpShape {}
-
-impl hkpShape {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn isConvex(&self) -> bool {
-        ((*self.vfptr).isConvex)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getAabb(
-        &self,
-        a1: *const hkTransformf,
-        a2: f32,
-        a3: *mut hkAabb,
-    ) {
-        ((*self.vfptr).getAabb)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn castRay(
-        &self,
-        result: *mut hkBool,
-        a2: *const hkpShapeRayCastInput,
-        a3: *mut hkpShapeRayCastOutput,
-    ) -> *mut hkBool {
-        ((*self.vfptr).castRay)(self as *const _ as *mut _, result, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn castRayWithCollector(
-        &self,
-        a1: *const hkpShapeRayCastInput,
-        a2: *const hkpCdBody,
-        a3: *mut hkpRayHitCollector,
-    ) {
-        ((*self.vfptr).castRayWithCollector)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn castRayBundle(
-        &self,
-        result: *mut hkVector4fComparison,
-        a2: *const hkpShapeRayBundleCastInput,
-        a3: *mut hkpShapeRayBundleCastOutput,
-        a4: *const hkVector4fComparison,
-    ) -> *mut hkVector4fComparison {
-        ((*self.vfptr).castRayBundle)(self as *const _ as *mut _, result, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn getSupportingVertex(
-        &self,
-        a1: *const hkVector4f,
-        a2: *mut hkcdVertex,
-    ) {
-        ((*self.vfptr).getSupportingVertex)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn convertVertexIdsToVertices(
-        &self,
-        a1: *const u16,
-        a2: i32,
-        a3: *mut hkcdVertex,
-    ) {
-        ((*self.vfptr).convertVertexIdsToVertices)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn getCentre(&self, a1: *mut hkVector4f) {
-        ((*self.vfptr).getCentre)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getNumCollisionSpheres(&self) -> i32 {
-        ((*self.vfptr).getNumCollisionSpheres)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getCollisionSpheres(
-        &self,
-        a1: *mut hkSphere,
-    ) -> *const hkSphere {
-        ((*self.vfptr).getCollisionSpheres)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn weldContactPoint(
-        &self,
-        a1: *mut u16,
-        a2: *mut u8,
-        a3: *mut hkVector4f,
-        a4: *const hkTransformf,
-        a5: *const hkpConvexShape,
-        a6: *const hkTransformf,
-        a7: *mut hkVector4f,
-    ) -> i32 {
-        ((*self.vfptr).weldContactPoint)(self as *const _ as *mut _, a1, a2, a3, a4, a5, a6, a7)
-    }
-
-    pub unsafe extern "thiscall" fn getContainer(&self) -> *const hkpShapeContainer {
-        ((*self.vfptr).getContainer)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getMaximumProjection(&self, a1: *const hkVector4f) -> f32 {
-        ((*self.vfptr).getMaximumProjection)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn calcSizeForSpu(
-        &self,
-        a1: *const hkpShape__CalcSizeForSpuInput,
-        a2: i32,
-    ) -> i32 {
-        ((*self.vfptr).calcSizeForSpu)(self as *const _ as *mut _, a1, a2)
-    }
-}
-
-#[repr(C)]
-pub struct hkpShape__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpShape, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpShape),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpShape) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpShape),
-    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpShape) -> bool,
-    pub getAabb: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        _: *const hkTransformf,
-        _: f32,
-        _: *mut hkAabb,
-    ),
-    pub castRay: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        result: *mut hkBool,
-        _: *const hkpShapeRayCastInput,
-        _: *mut hkpShapeRayCastOutput,
-    ) -> *mut hkBool,
-    pub castRayWithCollector: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        _: *const hkpShapeRayCastInput,
-        _: *const hkpCdBody,
-        _: *mut hkpRayHitCollector,
-    ),
-    pub castRayBundle: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        result: *mut hkVector4fComparison,
-        _: *const hkpShapeRayBundleCastInput,
-        _: *mut hkpShapeRayBundleCastOutput,
-        _: *const hkVector4fComparison,
-    ) -> *mut hkVector4fComparison,
-    pub getSupportingVertex: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        _: *const hkVector4f,
-        _: *mut hkcdVertex,
-    ),
-    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        _: *const u16,
-        _: i32,
-        _: *mut hkcdVertex,
-    ),
-    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpShape, _: *mut hkVector4f),
-    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpShape) -> i32,
-    pub getCollisionSpheres:
-        unsafe extern "thiscall" fn(this: *const hkpShape, _: *mut hkSphere) -> *const hkSphere,
-    pub weldContactPoint: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        _: *mut u16,
-        _: *mut u8,
-        _: *mut hkVector4f,
-        _: *const hkTransformf,
-        _: *const hkpConvexShape,
-        _: *const hkTransformf,
-        _: *mut hkVector4f,
-    ) -> i32,
-    pub getContainer:
-        unsafe extern "thiscall" fn(this: *const hkpShape) -> *const hkpShapeContainer,
-    pub getMaximumProjection:
-        unsafe extern "thiscall" fn(this: *const hkpShape, _: *const hkVector4f) -> f32,
-    pub calcSizeForSpu: unsafe extern "thiscall" fn(
-        this: *const hkpShape,
-        _: *const hkpShape__CalcSizeForSpuInput,
-        _: i32,
-    ) -> i32,
-}
-
-pub type keen__FileAccessMode = i32;
-
-pub type keen__ProjectionType = i32;
-
-pub type kaiko__LocalGameSessionInteractionId = i32;
-
-pub type keen__PixelFormat = i32;
-
-pub type keen__IoError = i32;
-
-pub type DXGI_FORMAT = i32;
-
-pub type D3D_NAME = i32;
-
-pub type D3D_REGISTER_COMPONENT_TYPE = i32;
-
-pub type keen__PrimitiveType = i32;
-
-pub type keen__graphics__WindowMode = i32;
-
-pub type keen__SaveData__OperationStatus = i32;
-
-pub type keen__SaveData__OperationResult = i32;
-
-pub type keen__SaveData__CurrentOperation = i32;
-
-pub type keen__SaveData__SaveDataSystemType = i32;
-
-pub type keen__SaveFlowState = i32;
-
-pub type keen__SaveDataHandler__SaveGameClientState = i32;
-
-pub type keen__ControllerType = i32;
-
-pub type keen__ControllerClass = i32;
-
-pub type keen__InputSystemControllerAutoCatchType = i32;
-
-pub type gfc__Stream__StreamType = i32;
-
-pub type gfc__ImageType = i32;
-
-pub type gfc__ImageFormat = i32;
-
-pub type gfc__Texture__Type = i32;
-
-pub type gfc__Mesh__Type = i32;
-
-pub type gfc__Darksiders__LoadState = i32;
-
-pub type gfc__WorldManager__WorldState = i32;
-
-pub type unit4__LocalGameSession__InteractionStarter = i32;
-
-pub type unit4__LocalGameSession__LocalUserState = i32;
-
-pub type hkpCollidableAccept = i32;
-
-pub type hkResultEnum = i32;
-
-pub type hkpContactPointAccept = i32;
-
-pub type hkJobType = i32;
-
-pub type hkpContactMgr__ToiAccept = i32;
-
-pub type hkpContactMgr__Type = i32;
-
-pub type hkpCollisionEvent__CallbackSource = i32;
-
-pub type hkpConvexListFilter__ConvexListCollisionType = i32;
-
-pub type hkpWorldCinfo__BroadPhaseBorderBehaviour = i32;
-
-pub type hkJobQueue__JobCreationStatus = i32;
-
-pub type hkJobQueue__JobPopFuncResult = i32;
-
-pub type hkJobQueue__WaitPolicy = i32;
-
-pub type hkpConstraintAtom__SolvingMethod = i32;
-
-pub type hkpContactPointEvent__Type = i32;
-
-pub type gfc__StateMapValue__ValueMode = i32;
-
-pub type gfc__SceneObject__Type = i32;

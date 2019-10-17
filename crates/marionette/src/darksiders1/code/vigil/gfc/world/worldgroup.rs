@@ -1,3 +1,4 @@
+use crate::darksiders1::gfc;
 use darksiders1_sys::target;
 
 struct_wrapper!(WorldGroup, target::gfc__WorldGroup);

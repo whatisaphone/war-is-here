@@ -38,11 +38,23 @@ struct Args {
 unsafe fn go(args: &Args) {
     let classname = gfc::HString::from_str(&args.classname);
 
-    let class = gfc::Singleton::<gfc::ClassRegistry>::get_instance()
+    let class = match gfc::Singleton::<gfc::ClassRegistry>::get_instance()
         .class_for_name(&classname, true)
-        .unwrap();
+    {
+        Some(class) => class,
+        None => {
+            println!("class not found");
+            return;
+        }
+    };
     let obj = class.new_instance();
-    let obj = gfc::AutoRef::from_raw(gfc::AutoRef::into_raw(obj).cast::<gfc::WorldObject>());
+    let obj = match gfc::object_safecast::<gfc::WorldObject>(&obj) {
+        Some(obj) => obj,
+        None => {
+            println!("object is not a WorldObject");
+            return;
+        }
+    };
 
     obj.set_position(&Point3::new(args.x, args.y, args.z));
 

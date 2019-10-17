@@ -11,6 +11,7 @@ use na::{Point3, UnitQuaternion, Vector3};
 
 struct_wrapper!(WorldObject, target::gfc__WorldObject);
 struct_wrapper_super!(WorldObject, gfc::Object);
+impl_reflection!(WorldObject, target::gfc__WorldObject___Class);
 
 impl WorldObject {
     pub fn set_position(&self, pos: &Point3<f32>) {

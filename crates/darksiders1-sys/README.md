@@ -10,7 +10,9 @@ The developers were generous enough to include a PDB with the game, so creating 
 pdbindgen \
     /path/to/darksiders1.pdb \
     -o src \
+    -i '^gfc::CShape$' \
     -i '^gfc::GameCamera$' \
+    -i '^gfc::PhysicsManager$' \
     -i '^gfc::Player$' \
     -i '^gfc::RegionLayer$' \
     -i '^gfc::RegionLayerData$' \
@@ -31,6 +33,7 @@ pdbindgen \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
+    -i '^gfc::WorldObject::_Class$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
     -i '^gfc::_UIManager::draw$' \

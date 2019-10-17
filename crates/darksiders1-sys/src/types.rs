@@ -3903,6 +3903,11 @@ pub struct gfc__IRefObject__vftable {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__Sample_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Property__gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_ {
     pub mHashSize: u32,
     pub mpHashTable: *mut u32,
@@ -6859,6 +6864,25 @@ pub struct gfc__ThreadSafeVector_gfc__LightNode___ {
 }
 
 #[repr(C)]
+pub struct gfc__Matrix3 {
+    pub xx: f32,
+    pub xy: f32,
+    pub xz: f32,
+    pub yx: f32,
+    pub yy: f32,
+    pub yz: f32,
+    pub zx: f32,
+    pub zy: f32,
+    pub zz: f32,
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub x: gfc__Matrix3Row,
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub y: gfc__Matrix3Row,
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub z: gfc__Matrix3Row,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__AmbientDesc_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -7613,6 +7637,13 @@ pub struct gfc__TRect_long_ {
     pub top: i32,
     pub right: i32,
     pub bottom: i32,
+}
+
+#[repr(C)]
+pub struct gfc__Matrix3Row {
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
 }
 
 #[repr(C)]
@@ -12251,28 +12282,4 @@ pub struct keen__LowOverheadMemoryAllocator__vftable {
 pub struct keen__ZoneAllocatorAdapter {
     pub m_allocator: keen__ZoneAllocator,
     pub m_allocationCount: u32,
-}
-
-#[repr(C)]
-pub struct keen__ZoneAllocator {
-    pub m_memory: keen__MemoryBlock,
-    pub m_pCurrentAddress: *mut u8,
-}
-
-#[repr(C)]
-pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
-{
-    __pdbindgen_padding: [u8; 1],
-}
-
-#[repr(C)]
-pub struct std__allocator_std__pair_gfc__String_const__gfc__String___ {
-    // std___Allocator_base_std__pair_gfc__String_const__gfc__String___
-    __pdbindgen_padding: [u8; 1],
-    // std__allocator_std__pair_gfc__String_const__gfc__String___
-}
-
-unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__String_const__gfc__String___>
-    for std__allocator_std__pair_gfc__String_const__gfc__String___
-{
 }

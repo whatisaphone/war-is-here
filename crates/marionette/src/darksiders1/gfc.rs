@@ -10,7 +10,7 @@ pub use crate::darksiders1::code::vigil::{
     gfc::{
         base::{
             autoref::{AutoRef, IRefObject},
-            object::{object_safecast, Object},
+            object::{object_safecast, Object, Reflect},
             reflection::{Class, ClassRegistry},
         },
         game::obliviongame::OblivionGame,
@@ -37,10 +37,17 @@ pub use crate::darksiders1::code::vigil::{
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},
         world::{
+            collision::cshape::CShape,
+            physics::rigidbody::RigidBody,
             resource::resourcecache::ResourceCache,
             staticobject::StaticObject,
             triggerregion::TriggerRegion,
-            visuals::{object3d::Object3D, object3dcache::Object3DCache, visual::Visual},
+            visuals::{
+                body::Body,
+                object3d::Object3D,
+                object3dcache::Object3DCache,
+                visual::Visual,
+            },
             world::{World, WorldRegionData},
             worldgroup::WorldGroup,
             worldobject::WorldObject,
