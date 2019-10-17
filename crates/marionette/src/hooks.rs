@@ -15,6 +15,7 @@ pub struct GodObject {
     gfc___UIManager__draw: target::gfc___UIManager__draw,
     gfc__Darksiders__onPostUpdateInterval: target::gfc__Darksiders__onPostUpdateInterval,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
+    gfc__MaterialCache__get: target::gfc__MaterialCache__get,
     gfc__MeshCache__getStaticMesh: target::gfc__MeshCache__getStaticMesh,
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
     gfc__Object3DCache__get: target::gfc__Object3DCache__get,
@@ -38,6 +39,7 @@ pub fn install() {
         let gfc___UIManager__draw = hook!(gfc___UIManager__draw);
         let gfc__Darksiders__onPostUpdateInterval = hook!(gfc__Darksiders__onPostUpdateInterval);
         let gfc__Darksiders__processInputEvent = hook!(gfc__Darksiders__processInputEvent);
+        let gfc__MaterialCache__get = hook!(gfc__MaterialCache__get);
         let gfc__MeshCache__getStaticMesh = hook!(gfc__MeshCache__getStaticMesh);
         let gfc__MeshCache__loadMesh = hook!(gfc__MeshCache__loadMesh);
         let gfc__Object3DCache__get = hook!(gfc__Object3DCache__get);
@@ -48,6 +50,7 @@ pub fn install() {
             gfc__Darksiders__onPostUpdateInterval: gfc__Darksiders__onPostUpdateInterval
                 .trampoline(),
             gfc__Darksiders__processInputEvent: gfc__Darksiders__processInputEvent.trampoline(),
+            gfc__MaterialCache__get: gfc__MaterialCache__get.trampoline(),
             gfc__MeshCache__getStaticMesh: gfc__MeshCache__getStaticMesh.trampoline(),
             gfc__MeshCache__loadMesh: gfc__MeshCache__loadMesh.trampoline(),
             gfc__Object3DCache__get: gfc__Object3DCache__get.trampoline(),
@@ -56,6 +59,7 @@ pub fn install() {
                 Box::new(gfc___UIManager__draw),
                 Box::new(gfc__Darksiders__onPostUpdateInterval),
                 Box::new(gfc__Darksiders__processInputEvent),
+                Box::new(gfc__MaterialCache__get),
                 Box::new(gfc__MeshCache__getStaticMesh),
                 Box::new(gfc__MeshCache__loadMesh),
                 Box::new(gfc__Object3DCache__get),
@@ -79,7 +83,11 @@ mod hook {
         commands::show_triggers,
         darksiders1::{gfc, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
-        library::objects::{override_get_object3d, override_get_static_mesh},
+        library::objects::{
+            override_get_material,
+            override_get_object3d,
+            override_get_static_mesh,
+        },
     };
     use darksiders1_sys::target;
 
@@ -133,6 +141,26 @@ mod hook {
         }
 
         result
+    }
+
+    pub extern "thiscall" fn gfc__MaterialCache__get(
+        this: *mut target::gfc__MaterialCache,
+        result: *mut target::gfc__AutoRef_gfc__Material_,
+        packageID: i32,
+        materialName: *const target::gfc__HString,
+    ) -> *mut target::gfc__AutoRef_gfc__Material_ {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        let material_name = unsafe { gfc::HString::from_ptr(materialName) };
+        if let Some(ovurride) = override_get_material(packageID, material_name) {
+            unsafe {
+                *result = Lower::lower(ovurride);
+            }
+            return result;
+        }
+
+        unsafe { (detours.gfc__MaterialCache__get)(this, result, packageID, materialName) }
     }
 
     pub extern "thiscall" fn gfc__MeshCache__getStaticMesh(

@@ -184,7 +184,11 @@ lowered_autoref!(
     lift = true,
 );
 lowered_autoref!(target::gfc__AutoRef_gfc__MBSubMesh_, target::gfc__MBSubMesh);
-lowered_autoref!(target::gfc__AutoRef_gfc__Material_, target::gfc__Material);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Material_,
+    target::gfc__Material,
+    lift = true,
+);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__MeshBuilder_,
     target::gfc__MeshBuilder,
@@ -202,6 +206,11 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__OutputStream_,
     target::gfc__OutputStream,
+    lift = true,
+);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Parameter_,
+    target::gfc__Parameter,
     lift = true,
 );
 lowered_autoref!(

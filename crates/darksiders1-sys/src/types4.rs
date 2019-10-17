@@ -4,6 +4,18 @@
 use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
+pub type hkpConstraintInstance__InstanceType = i32;
+
+pub type hkpConstraintInstance__ConstraintPriority = i32;
+
+pub type hkcdShapeType__ShapeTypeEnum = i32;
+
+pub type hkJobQueueHwSetup__SpuSchedulePolicy = i32;
+
+pub type hkJobQueueHwSetup__CellRules = i32;
+
+pub type hkpConstraintData__UpdateAtomsResult__Enum = i32;
+
 pub type hkpBroadPhase__Capabilities = i32;
 
 pub type hkpBroadPhase__BroadPhaseType = i32;

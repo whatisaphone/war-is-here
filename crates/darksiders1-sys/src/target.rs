@@ -51,6 +51,7 @@ symbols! {
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
     pub static gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
+    pub fn gfc__Vector4Parameter__Vector4Parameter;
     pub fn gfc__UIRenderer__setMaterial;
     pub fn gfc__UIRenderer__fillRect;
     pub fn gfc__UIRenderer__drawLine;
@@ -58,8 +59,13 @@ symbols! {
     pub fn gfc__UIRenderer__endRendering;
     pub fn gfc__UIRenderer__pushClip;
     pub fn gfc__UIRenderer__popClip;
+    pub fn gfc__Material__setParameter;
+    pub fn gfc__Material__Material;
+    pub fn gfc__Material___Material;
     pub fn gfc__UIRenderer__UIRenderer;
     pub fn gfc__UIRenderer__updateTime;
+    pub fn gfc__MaterialCache__get;
+    pub fn gfc__MaterialCache__get_2;
     pub fn gfc__MeshReader__MeshReader;
     pub fn gfc__MeshCache__getStaticMesh;
     pub fn gfc__MBSubMesh__MBSubMesh;
@@ -139,6 +145,9 @@ symbols! {
     pub fn gfc__PhysicsShapeObject__getTransform;
     pub fn gfc__RegionLayer__getRoot;
     pub fn gfc__WorldRegion__getLayer;
+    pub fn gfc__Vector4Parameter__Vector4Parameter_2;
+    pub fn gfc__Vector4Parameter___Vector4Parameter;
+    pub fn gfc__Vector4Parameter__Vector4Parameter_3;
     pub fn gfc__WorldObject__setRegionID;
     pub fn gfc__WorldObject__setLayerID;
     pub fn gfc__ObjectWriter___ObjectWriter;

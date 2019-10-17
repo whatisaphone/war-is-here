@@ -27,3 +27,10 @@ pub fn override_get_static_mesh(
     }
     None
 }
+
+pub fn override_get_material(
+    _package_id: i32,
+    _material_name: &gfc::HString,
+) -> Option<gfc::AutoRef<gfc::Material>> {
+    None
+}

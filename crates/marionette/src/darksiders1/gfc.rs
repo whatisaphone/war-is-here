@@ -16,6 +16,7 @@ pub use crate::darksiders1::code::vigil::{
         game::obliviongame::OblivionGame,
         graphics::{
             graphics::Graphics,
+            material::{Material, Parameter, Vector4Parameter},
             mesh::{Mesh, StaticMesh},
             meshbuilder::MeshBuilder,
             meshcache::MeshCache,

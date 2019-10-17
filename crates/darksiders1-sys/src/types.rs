@@ -9385,6 +9385,241 @@ pub struct gfc__Vector_gfc__RenderNode___0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
+pub struct gfc__Parameter {
+    pub vfptr: *const gfc__Parameter__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__Parameter
+    pub mName: gfc__HString,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__Parameter {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Parameter {}
+
+impl gfc__Parameter {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> i32 {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setBool(&self, a1: bool, a2: f32) {
+        ((*self.vfptr).setBool)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getBool(&self, a1: f32) -> bool {
+        ((*self.vfptr).getBool)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setFloat(&self, a1: f32, a2: f32) {
+        ((*self.vfptr).setFloat)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getFloat(&self, a1: f32) -> f32 {
+        ((*self.vfptr).getFloat)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setUInt32(&self, a1: u32, a2: f32) {
+        ((*self.vfptr).setUInt32)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getUInt32(&self, a1: f32) -> u32 {
+        ((*self.vfptr).getUInt32)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setVector2(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+        a2: f32,
+    ) {
+        ((*self.vfptr).setVector2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVector2(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        a2: f32,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getVector2)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setVector3(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+        a2: f32,
+    ) {
+        ((*self.vfptr).setVector3)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVector3(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        a2: f32,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getVector3)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setVector4(
+        &self,
+        a1: *const gfc__TVector4_float_gfc__FloatMath_,
+        a2: f32,
+    ) {
+        ((*self.vfptr).setVector4)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVector4(
+        &self,
+        result: *mut gfc__TVector4_float_gfc__FloatMath_,
+        a2: f32,
+    ) -> *mut gfc__TVector4_float_gfc__FloatMath_ {
+        ((*self.vfptr).getVector4)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setMatrix4(&self, a1: *const gfc__Matrix4, a2: f32) {
+        ((*self.vfptr).setMatrix4)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getMatrix4(
+        &self,
+        result: *mut gfc__Matrix4,
+        a2: f32,
+    ) -> *mut gfc__Matrix4 {
+        ((*self.vfptr).getMatrix4)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setTexture(&self, a1: *mut gfc__Texture, a2: f32) {
+        ((*self.vfptr).setTexture)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getTexture(&self, a1: f32) -> *mut gfc__Texture {
+        ((*self.vfptr).getTexture)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn preload(&self, a1: i32) {
+        ((*self.vfptr).preload)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clone(&self) -> *mut gfc__Parameter {
+        ((*self.vfptr).clone)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Parameter__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Parameter) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Parameter) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Parameter) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__Parameter,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Parameter) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Parameter,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Parameter) -> i32,
+    pub setBool: unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: bool, _: f32),
+    pub getBool: unsafe extern "thiscall" fn(this: *const gfc__Parameter, _: f32) -> bool,
+    pub setFloat: unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: f32, _: f32),
+    pub getFloat: unsafe extern "thiscall" fn(this: *const gfc__Parameter, _: f32) -> f32,
+    pub setUInt32: unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: u32, _: f32),
+    pub getUInt32: unsafe extern "thiscall" fn(this: *const gfc__Parameter, _: f32) -> u32,
+    pub setVector2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Parameter,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+        _: f32,
+    ),
+    pub getVector2: unsafe extern "thiscall" fn(
+        this: *const gfc__Parameter,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        _: f32,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setVector3: unsafe extern "thiscall" fn(
+        this: *mut gfc__Parameter,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: f32,
+    ),
+    pub getVector3: unsafe extern "thiscall" fn(
+        this: *const gfc__Parameter,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        _: f32,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setVector4: unsafe extern "thiscall" fn(
+        this: *mut gfc__Parameter,
+        _: *const gfc__TVector4_float_gfc__FloatMath_,
+        _: f32,
+    ),
+    pub getVector4: unsafe extern "thiscall" fn(
+        this: *const gfc__Parameter,
+        result: *mut gfc__TVector4_float_gfc__FloatMath_,
+        _: f32,
+    ) -> *mut gfc__TVector4_float_gfc__FloatMath_,
+    pub setMatrix4:
+        unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: *const gfc__Matrix4, _: f32),
+    pub getMatrix4: unsafe extern "thiscall" fn(
+        this: *const gfc__Parameter,
+        result: *mut gfc__Matrix4,
+        _: f32,
+    ) -> *mut gfc__Matrix4,
+    pub setTexture:
+        unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: *mut gfc__Texture, _: f32),
+    pub getTexture:
+        unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: f32) -> *mut gfc__Texture,
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__Parameter, _: i32),
+    pub clone: unsafe extern "thiscall" fn(this: *const gfc__Parameter) -> *mut gfc__Parameter,
+}
+
+#[repr(C)]
 pub struct gfc__PixelShaderGlobalData {
     pub cameraPos: keen__float3,
     pub time: f32,
@@ -9540,6 +9775,153 @@ pub struct gfc__ObjectReader__vftable {
         result: *mut gfc__AutoRef_gfc__Object_,
         _: gfc__AutoRef_gfc__InputStream_,
     ) -> *mut gfc__AutoRef_gfc__Object_,
+}
+
+#[repr(C)]
+pub struct gfc__MaterialCache {
+    pub vfptr: *const gfc__MaterialCache__vftable,
+    // gfc__ResourceCache
+    pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mType: i32,
+    pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
+    // gfc__MaterialCache
+    pub mErrorMaterial: gfc__AutoRef_gfc__Material_,
+    pub mReleaseQueue: gfc__Vector_gfc__AutoRef_gfc__Object__0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__ResourceCache> for gfc__MaterialCache {}
+
+impl gfc__MaterialCache {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn loadDefaultResource(&self, a1: gfc__AutoRef_gfc__File_) {
+        ((*self.vfptr).loadDefaultResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn initThread(&self) {
+        ((*self.vfptr).initThread)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn shutdownThread(&self) {
+        ((*self.vfptr).shutdownThread)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn analyzeResource(
+        &self,
+        a1: *mut gfc__ResourceAnalyzeInfo,
+    ) -> bool {
+        ((*self.vfptr).analyzeResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn canCreateBuffersInThread(&self, a1: i32) -> bool {
+        ((*self.vfptr).canCreateBuffersInThread)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn createBuffers(&self, a1: *mut gfc__ResourceBufferInfo) {
+        ((*self.vfptr).createBuffers)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn freeBuffers(&self, a1: *mut gfc__ResourceLoadInfo) {
+        ((*self.vfptr).freeBuffers)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn loadResource(&self, a1: *mut gfc__ResourceLoadInfo) {
+        ((*self.vfptr).loadResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn canReloadResources(&self) -> bool {
+        ((*self.vfptr).canReloadResources)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reloadsQueued(&self) -> bool {
+        ((*self.vfptr).reloadsQueued)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reloadResource(&self, a1: *mut gfc__ResourceLoadInfo) -> bool {
+        ((*self.vfptr).reloadResource)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn needUnlinkResource(&self) -> bool {
+        ((*self.vfptr).needUnlinkResource)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unlinkResource(
+        &self,
+        a1: *mut (),
+        a2: *const gfc__HString,
+        a3: *const gfc__HString,
+    ) {
+        ((*self.vfptr).unlinkResource)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn needUnloadResource(&self) -> bool {
+        ((*self.vfptr).needUnloadResource)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unloadResource(
+        &self,
+        a1: *mut (),
+        a2: *mut gfc__ResourceLoadInfo,
+    ) {
+        ((*self.vfptr).unloadResource)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn freeResource(
+        &self,
+        a1: *mut (),
+        a2: *const gfc__HString,
+        a3: *const gfc__HString,
+    ) {
+        ((*self.vfptr).freeResource)(self as *const _ as *mut _, a1, a2, a3)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MaterialCache__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache, _: u32) -> *mut (),
+    pub loadDefaultResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache, _: gfc__AutoRef_gfc__File_),
+    pub initThread: unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache),
+    pub shutdownThread: unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache),
+    pub analyzeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MaterialCache,
+        _: *mut gfc__ResourceAnalyzeInfo,
+    ) -> bool,
+    pub canCreateBuffersInThread:
+        unsafe extern "thiscall" fn(this: *const gfc__MaterialCache, _: i32) -> bool,
+    pub createBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache, _: *mut gfc__ResourceBufferInfo),
+    pub freeBuffers:
+        unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache, _: *mut gfc__ResourceLoadInfo),
+    pub loadResource:
+        unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache, _: *mut gfc__ResourceLoadInfo),
+    pub canReloadResources: unsafe extern "thiscall" fn(this: *const gfc__MaterialCache) -> bool,
+    pub reloadsQueued: unsafe extern "thiscall" fn(this: *const gfc__MaterialCache) -> bool,
+    pub reloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MaterialCache,
+        _: *mut gfc__ResourceLoadInfo,
+    ) -> bool,
+    pub needUnlinkResource: unsafe extern "thiscall" fn(this: *const gfc__MaterialCache) -> bool,
+    pub unlinkResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MaterialCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
+    pub needUnloadResource: unsafe extern "thiscall" fn(this: *const gfc__MaterialCache) -> bool,
+    pub unloadResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MaterialCache,
+        _: *mut (),
+        _: *mut gfc__ResourceLoadInfo,
+    ),
+    pub freeResource: unsafe extern "thiscall" fn(
+        this: *mut gfc__MaterialCache,
+        _: *mut (),
+        _: *const gfc__HString,
+        _: *const gfc__HString,
+    ),
 }
 
 #[repr(C)]
@@ -10765,6 +11147,254 @@ pub struct gfc__DynamicRenderNode {
 }
 
 #[repr(C)]
+pub struct gfc__Vector4Parameter {
+    pub vfptr: *const gfc__Vector4Parameter__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__Parameter
+    pub mName: gfc__HString,
+    // gfc__Vector4Parameter
+    pub mValue: gfc__TVector4_float_gfc__FloatMath_,
+}
+
+unsafe impl UpcastToNop<gfc__Parameter> for gfc__Vector4Parameter {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__Vector4Parameter {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Vector4Parameter {}
+
+impl gfc__Vector4Parameter {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> i32 {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setBool(&self, a1: bool, a2: f32) {
+        ((*self.vfptr).setBool)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getBool(&self, a1: f32) -> bool {
+        ((*self.vfptr).getBool)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setFloat(&self, a1: f32, a2: f32) {
+        ((*self.vfptr).setFloat)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getFloat(&self, a1: f32) -> f32 {
+        ((*self.vfptr).getFloat)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setUInt32(&self, a1: u32, a2: f32) {
+        ((*self.vfptr).setUInt32)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getUInt32(&self, a1: f32) -> u32 {
+        ((*self.vfptr).getUInt32)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setVector2(
+        &self,
+        a1: *const gfc__TVector2_float_gfc__FloatMath_,
+        a2: f32,
+    ) {
+        ((*self.vfptr).setVector2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVector2(
+        &self,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        a2: f32,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_ {
+        ((*self.vfptr).getVector2)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setVector3(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+        a2: f32,
+    ) {
+        ((*self.vfptr).setVector3)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVector3(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        a2: f32,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getVector3)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setVector4(
+        &self,
+        a1: *const gfc__TVector4_float_gfc__FloatMath_,
+        a2: f32,
+    ) {
+        ((*self.vfptr).setVector4)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVector4(
+        &self,
+        result: *mut gfc__TVector4_float_gfc__FloatMath_,
+        a2: f32,
+    ) -> *mut gfc__TVector4_float_gfc__FloatMath_ {
+        ((*self.vfptr).getVector4)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setMatrix4(&self, a1: *const gfc__Matrix4, a2: f32) {
+        ((*self.vfptr).setMatrix4)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getMatrix4(
+        &self,
+        result: *mut gfc__Matrix4,
+        a2: f32,
+    ) -> *mut gfc__Matrix4 {
+        ((*self.vfptr).getMatrix4)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setTexture(&self, a1: *mut gfc__Texture, a2: f32) {
+        ((*self.vfptr).setTexture)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getTexture(&self, a1: f32) -> *mut gfc__Texture {
+        ((*self.vfptr).getTexture)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn preload(&self, a1: i32) {
+        ((*self.vfptr).preload)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clone(&self) -> *mut gfc__Parameter {
+        ((*self.vfptr).clone)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Vector4Parameter__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: u32) -> *mut (),
+    pub getClass:
+        unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__Vector4Parameter,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__Vector4Parameter,
+        _: *const u64,
+    ) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Vector4Parameter,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter) -> i32,
+    pub setBool: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: bool, _: f32),
+    pub getBool: unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter, _: f32) -> bool,
+    pub setFloat: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: f32, _: f32),
+    pub getFloat: unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter, _: f32) -> f32,
+    pub setUInt32: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: u32, _: f32),
+    pub getUInt32: unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter, _: f32) -> u32,
+    pub setVector2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Vector4Parameter,
+        _: *const gfc__TVector2_float_gfc__FloatMath_,
+        _: f32,
+    ),
+    pub getVector2: unsafe extern "thiscall" fn(
+        this: *const gfc__Vector4Parameter,
+        result: *mut gfc__TVector2_float_gfc__FloatMath_,
+        _: f32,
+    ) -> *mut gfc__TVector2_float_gfc__FloatMath_,
+    pub setVector3: unsafe extern "thiscall" fn(
+        this: *mut gfc__Vector4Parameter,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: f32,
+    ),
+    pub getVector3: unsafe extern "thiscall" fn(
+        this: *const gfc__Vector4Parameter,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        _: f32,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setVector4: unsafe extern "thiscall" fn(
+        this: *mut gfc__Vector4Parameter,
+        _: *const gfc__TVector4_float_gfc__FloatMath_,
+        _: f32,
+    ),
+    pub getVector4: unsafe extern "thiscall" fn(
+        this: *const gfc__Vector4Parameter,
+        result: *mut gfc__TVector4_float_gfc__FloatMath_,
+        _: f32,
+    ) -> *mut gfc__TVector4_float_gfc__FloatMath_,
+    pub setMatrix4: unsafe extern "thiscall" fn(
+        this: *mut gfc__Vector4Parameter,
+        _: *const gfc__Matrix4,
+        _: f32,
+    ),
+    pub getMatrix4: unsafe extern "thiscall" fn(
+        this: *const gfc__Vector4Parameter,
+        result: *mut gfc__Matrix4,
+        _: f32,
+    ) -> *mut gfc__Matrix4,
+    pub setTexture:
+        unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: *mut gfc__Texture, _: f32),
+    pub getTexture:
+        unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: f32) -> *mut gfc__Texture,
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: i32),
+    pub clone:
+        unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter) -> *mut gfc__Parameter,
+}
+
+#[repr(C)]
 pub struct gfc__FixedVector_gfc__AutoRef_gfc__CameraBlurDesc__10_0_gfc__CAllocator_ {
     // gfc__Vector_gfc__AutoRef_gfc__CameraBlurDesc__0_gfc__CAllocator_
     pub mData: *mut gfc__AutoRef_gfc__CameraBlurDesc_,
@@ -11645,73 +12275,4 @@ pub struct std__allocator_std__pair_gfc__String_const__gfc__String___ {
 unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__String_const__gfc__String___>
     for std__allocator_std__pair_gfc__String_const__gfc__String___
 {
-}
-
-#[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
-    // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
-    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: std__less_gfc__String_,
-    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
-    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
-    pub _Mysize: u32,
-    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
-    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
-}
-
-unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
-
-unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
-
-#[repr(C)]
-pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node {
-    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
-    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
-    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
-    pub _Myval: std__pair_gfc__String_const__gfc__String_,
-    pub _Color: i8,
-    pub _Isnil: i8,
-}
-
-#[repr(C)]
-pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
-{
-    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
-    __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ */
-}
-
-unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {}
-
-#[repr(C)]
-pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-{
-    // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
-    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
-    pub comp: std__less_gfc__String_,
-}
-
-unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {}
-
-#[repr(C)]
-pub struct std__pair_gfc__String_const__gfc__String_ {
-    // std___Pair_base_gfc__String_const__gfc__String_
-    pub first: gfc__String,
-    pub second: gfc__String,
-    // std__pair_gfc__String_const__gfc__String_
-}
-
-unsafe impl UpcastToNop<std___Pair_base_gfc__String_const__gfc__String_>
-    for std__pair_gfc__String_const__gfc__String_
-{
-}
-
-#[repr(C)]
-pub struct std___Pair_base_gfc__String_const__gfc__String_ {
-    pub first: gfc__String,
-    pub second: gfc__String,
 }

@@ -31,6 +31,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
+    bind!(text, gfc__Vector4Parameter__Vector4Parameter);
     bind!(text, gfc__UIRenderer__setMaterial);
     bind!(text, gfc__UIRenderer__fillRect);
     bind!(text, gfc__UIRenderer__drawLine);
@@ -38,8 +39,13 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__UIRenderer__endRendering);
     bind!(text, gfc__UIRenderer__pushClip);
     bind!(text, gfc__UIRenderer__popClip);
+    bind!(text, gfc__Material__setParameter);
+    bind!(text, gfc__Material__Material);
+    bind!(text, gfc__Material___Material);
     bind!(text, gfc__UIRenderer__UIRenderer);
     bind!(text, gfc__UIRenderer__updateTime);
+    bind!(text, gfc__MaterialCache__get);
+    bind!(text, gfc__MaterialCache__get_2);
     bind!(text, gfc__MeshReader__MeshReader);
     bind!(text, gfc__MeshCache__getStaticMesh);
     bind!(text, gfc__MBSubMesh__MBSubMesh);
@@ -128,6 +134,9 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__PhysicsShapeObject__getTransform);
     bind!(text, gfc__RegionLayer__getRoot);
     bind!(text, gfc__WorldRegion__getLayer);
+    bind!(text, gfc__Vector4Parameter__Vector4Parameter_2);
+    bind!(text, gfc__Vector4Parameter___Vector4Parameter);
+    bind!(text, gfc__Vector4Parameter__Vector4Parameter_3);
     bind!(text, gfc__WorldObject__setRegionID);
     bind!(text, gfc__WorldObject__setLayerID);
     bind!(text, gfc__ObjectWriter___ObjectWriter);

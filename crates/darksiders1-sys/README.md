@@ -44,6 +44,9 @@ pdbindgen \
     -i '^gfc::HString::c_str$' \
     -i '^gfc::KGGraphics::createStaticMesh$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::Material::~?Material$' \
+    -i '^gfc::Material::setParameter$' \
+    -i '^gfc::MaterialCache::get$' \
     -i '^gfc::MBSubMesh::MBSubMesh$' \
     -i '^gfc::MeshBuilder::~?MeshBuilder$' \
     -i '^gfc::MeshCache::getStaticMesh$' \
@@ -68,6 +71,7 @@ pdbindgen \
     -i '^gfc::String::~?String$' \
     -i '^gfc::TeleportHelper::warpToMap$' \
     -i '^gfc::UIRenderer::\w+$' \
+    -i '^gfc::Vector4Parameter::~?Vector4Parameter$' \
     -i '^gfc::WindowHelper::pushWindow$' \
     -i '^gfc::World::getRegion$' \
     -i '^gfc::WorldGroup::getObjects$' \

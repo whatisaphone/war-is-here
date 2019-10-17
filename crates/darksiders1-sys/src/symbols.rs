@@ -32,6 +32,7 @@ symbols! {
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle: *mut gfc__ClassRegistry = Data(0xa4230);
     pub static gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__DSUIManager = Data(0xa4258);
     pub static gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle: *mut gfc__WindowHelper = Data(0xa1b0c);
+    pub static gfc__Vector4Parameter__Vector4Parameter: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter) = Text(0xfa16b0);
     pub static gfc__UIRenderer__setMaterial: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: *mut gfc__Material) = Text(0xfb8320);
     pub static gfc__UIRenderer__fillRect: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32, _: f32, _: f32, _: *const gfc__TVector4_float_gfc__FloatMath_, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0xfb8480);
     pub static gfc__UIRenderer__drawLine: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32, _: f32, _: f32) = Text(0xfb8be0);
@@ -39,8 +40,13 @@ symbols! {
     pub static gfc__UIRenderer__endRendering: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfb9020);
     pub static gfc__UIRenderer__pushClip: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32, _: f32, _: f32, _: *const gfc__TVector4_float_gfc__FloatMath_, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0xfd1930);
     pub static gfc__UIRenderer__popClip: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfd4aa0);
+    pub static gfc__Material__setParameter: unsafe extern "thiscall" fn(this: *mut gfc__Material, _: *const gfc__HString, _: gfc__AutoRef_gfc__Parameter_) = Text(0xfe78c0);
+    pub static gfc__Material__Material: unsafe extern "thiscall" fn(this: *mut gfc__Material) = Text(0xfe9160);
+    pub static gfc__Material___Material: unsafe extern "thiscall" fn(this: *mut gfc__Material) = Text(0xfe9250);
     pub static gfc__UIRenderer__UIRenderer: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfe9430);
     pub static gfc__UIRenderer__updateTime: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer) = Text(0xfec7d0);
+    pub static gfc__MaterialCache__get: unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache, result: *mut gfc__AutoRef_gfc__Material_, _: i32, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Material_ = Text(0xfee7c0);
+    pub static gfc__MaterialCache__get_2: unsafe extern "thiscall" fn(this: *mut gfc__MaterialCache, result: *mut gfc__AutoRef_gfc__Material_, _: *const gfc__HString, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Material_ = Text(0xff33c0);
     pub static gfc__MeshReader__MeshReader: unsafe extern "thiscall" fn(this: *mut gfc__MeshReader) = Text(0xf5f9e0);
     pub static gfc__MeshCache__getStaticMesh: unsafe extern "thiscall" fn(this: *mut gfc__MeshCache, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: i32, _: *const gfc__HString, _: i32) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xf68630);
     pub static gfc__MBSubMesh__MBSubMesh: unsafe extern "thiscall" fn(this: *mut gfc__MBSubMesh) = Text(0xf6baf0);
@@ -120,6 +126,9 @@ symbols! {
     pub static gfc__PhysicsShapeObject__getTransform: unsafe extern "thiscall" fn(this: *mut gfc__PhysicsShapeObject, _: *mut gfc__Matrix4) = Text(0x8ed360);
     pub static gfc__RegionLayer__getRoot: unsafe extern "thiscall" fn(this: *const gfc__RegionLayer, result: *mut gfc__AutoRef_gfc__WorldGroup_) -> *mut gfc__AutoRef_gfc__WorldGroup_ = Text(0x769ed0);
     pub static gfc__WorldRegion__getLayer: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion, result: *mut gfc__AutoRef_gfc__RegionLayer_, _: i32) -> *mut gfc__AutoRef_gfc__RegionLayer_ = Text(0x769f60);
+    pub static gfc__Vector4Parameter__Vector4Parameter_2: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0x5b0ec0);
+    pub static gfc__Vector4Parameter___Vector4Parameter: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter) = Text(0x5b0fa0);
+    pub static gfc__Vector4Parameter__Vector4Parameter_3: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: *const gfc__Vector4Parameter) = Text(0x5c7e60);
     pub static gfc__WorldObject__setRegionID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20ac80);
     pub static gfc__WorldObject__setLayerID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20aca0);
     pub static gfc__ObjectWriter___ObjectWriter: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter) = Text(0x2103c0);

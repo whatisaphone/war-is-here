@@ -5,6 +5,75 @@ use super::{types::*, types3::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__String_,
+    // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
+    pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
+    pub _Mysize: u32,
+    pub _Alnod: std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_,
+    pub _Alval: std__allocator_std__pair_gfc__String_const__gfc__String___,
+}
+
+unsafe impl UpcastToNop<std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_> for std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {}
+
+#[repr(C)]
+pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node {
+    pub _Left: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
+    pub _Parent: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
+    pub _Right: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
+    pub _Myval: std__pair_gfc__String_const__gfc__String_,
+    pub _Color: i8,
+    pub _Isnil: i8,
+}
+
+#[repr(C)]
+pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
+{
+    // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
+    __pdbindgen_padding: [u8; 1],
+    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ */
+}
+
+unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {}
+
+#[repr(C)]
+pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
+{
+    // std___Container_base0
+    __pdbindgen_padding: [u8; 1],
+    // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
+    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    pub comp: std__less_gfc__String_,
+}
+
+unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_ {}
+
+#[repr(C)]
+pub struct std__pair_gfc__String_const__gfc__String_ {
+    // std___Pair_base_gfc__String_const__gfc__String_
+    pub first: gfc__String,
+    pub second: gfc__String,
+    // std__pair_gfc__String_const__gfc__String_
+}
+
+unsafe impl UpcastToNop<std___Pair_base_gfc__String_const__gfc__String_>
+    for std__pair_gfc__String_const__gfc__String_
+{
+}
+
+#[repr(C)]
+pub struct std___Pair_base_gfc__String_const__gfc__String_ {
+    pub first: gfc__String,
+    pub second: gfc__String,
+}
+
+#[repr(C)]
 pub struct std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
     __pdbindgen_padding: [u8; 1],
 }
@@ -15473,115 +15542,4 @@ impl hkpBoxShape {
     pub unsafe extern "thiscall" fn getSize(&self) -> i32 {
         ((*self.vfptr).getSize)(self as *const _ as *mut _)
     }
-}
-
-#[repr(C)]
-pub struct hkpBoxShape__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpBoxShape, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpBoxShape),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkpBoxShape),
-    pub isConvex: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> bool,
-    pub getAabb: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        _: *const hkTransformf,
-        _: f32,
-        _: *mut hkAabb,
-    ),
-    pub castRay: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        result: *mut hkBool,
-        _: *const hkpShapeRayCastInput,
-        _: *mut hkpShapeRayCastOutput,
-    ) -> *mut hkBool,
-    pub castRayWithCollector: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        _: *const hkpShapeRayCastInput,
-        _: *const hkpCdBody,
-        _: *mut hkpRayHitCollector,
-    ),
-    pub castRayBundle: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        result: *mut hkVector4fComparison,
-        _: *const hkpShapeRayBundleCastInput,
-        _: *mut hkpShapeRayBundleCastOutput,
-        _: *const hkVector4fComparison,
-    ) -> *mut hkVector4fComparison,
-    pub getSupportingVertex: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        _: *const hkVector4f,
-        _: *mut hkcdVertex,
-    ),
-    pub convertVertexIdsToVertices: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        _: *const u16,
-        _: i32,
-        _: *mut hkcdVertex,
-    ),
-    pub getCentre: unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *mut hkVector4f),
-    pub getNumCollisionSpheres: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> i32,
-    pub getCollisionSpheres:
-        unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *mut hkSphere) -> *const hkSphere,
-    pub weldContactPoint: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        _: *mut u16,
-        _: *mut u8,
-        _: *mut hkVector4f,
-        _: *const hkTransformf,
-        _: *const hkpConvexShape,
-        _: *const hkTransformf,
-        _: *mut hkVector4f,
-    ) -> i32,
-    pub getContainer:
-        unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> *const hkpShapeContainer,
-    pub getMaximumProjection:
-        unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *const hkVector4f) -> f32,
-    pub calcSizeForSpu: unsafe extern "thiscall" fn(
-        this: *const hkpBoxShape,
-        _: *const hkpShape__CalcSizeForSpuInput,
-        _: i32,
-    ) -> i32,
-    pub getFirstVertex: unsafe extern "thiscall" fn(this: *const hkpBoxShape, _: *mut hkVector4f),
-    pub getSize: unsafe extern "thiscall" fn(this: *const hkpBoxShape) -> i32,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_ {
-    pub mData: *mut *mut gfc__CollisionObject,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__CollisionManager {
-    pub vfptr: *const gfc__CollisionManager__vftable,
-    // gfc__IRefObject
-    pub ReferenceCount: i32,
-    // gfc__CollisionManager
-    pub mObjects: gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_,
-    pub mQueryResult: gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_,
-}
-
-unsafe impl UpcastToNop<gfc__IRefObject> for gfc__CollisionManager {}
-
-impl gfc__CollisionManager {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct gfc__CollisionManager__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut gfc__CollisionManager, _: u32) -> *mut (),
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__CameraCinematicGroup_ {
-    pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__FullScreenFXGroup_ {
-    pub p: *mut gfc__IRefObject,
 }
