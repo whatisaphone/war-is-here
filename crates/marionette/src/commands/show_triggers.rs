@@ -11,7 +11,7 @@ use crate::{
     },
 };
 use darksiders1_sys::target;
-use na::Point3;
+use na::{Matrix4, Point3, Vector3};
 use pdbindgen_runtime::StaticCast;
 use std::{
     convert::TryFrom,
@@ -120,7 +120,7 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
                 debug_draw_3d::line(center + p.coords * radius, center + q.coords * radius);
             }
         }
-        Shape::Other(_) => {}
+        Shape::Cylinder(_radius, _length, _pos) => {}
     }
 }
 
@@ -188,8 +188,8 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
                 Shape::Sphere(_radius, _center) => {
                     bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "sphere");
                 }
-                Shape::Other(s) => {
-                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, s);
+                Shape::Cylinder(_radius, _length, _pos) => {
+                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "cylinder");
                 }
             }
         }
@@ -198,6 +198,7 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
     target::gfc__UIRenderer__endRendering(renderer);
 }
 
+// See `gfc::DetectorObject::doAddToWorld`
 unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
     match object.shape() {
         gfc::PhysicsShapeObject__Detect::Aabb => {
@@ -214,13 +215,18 @@ unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
             let position = Point3::from(*(*object.as_ptr()).mPosition.lift_ref());
             Shape::Sphere(radius, position)
         }
-        gfc::PhysicsShapeObject__Detect::Cylinder => Shape::Other("cylinder"),
+        gfc::PhysicsShapeObject__Detect::Cylinder => {
+            let radius = (*object.as_ptr()).mSize.x * 0.5;
+            let length = (*object.as_ptr()).mSize.z;
+            let position = Point3::from(*(*object.as_ptr()).mPosition.lift_ref());
+            Shape::Cylinder(radius, length, position)
+        }
     }
 }
 
 pub enum Shape {
     Aabb(gfc::TBox<f32>),
-    Box(gfc::TVector3<f32>, gfc::Matrix4<f32>),
+    Box(Vector3<f32>, Matrix4<f32>),
     Sphere(f32, Point3<f32>),
-    Other(&'static str),
+    Cylinder(f32, f32, Point3<f32>),
 }
