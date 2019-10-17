@@ -25,10 +25,7 @@ pub unsafe trait Reflect: AsRef<gfc::IRefObject> {
     fn class() -> &'static gfc::Class;
 }
 
-pub unsafe trait Lift: Sized
-where
-    Self::Target: Lower<Target = Self>,
-{
+pub unsafe trait Lift: Sized {
     type Target;
 
     fn lift(self) -> Self::Target;
@@ -46,10 +43,7 @@ where
     }
 }
 
-pub trait Lower: Sized
-where
-    Self::Target: Lift<Target = Self>,
-{
+pub trait Lower: Sized {
     type Target;
 
     fn lower(self) -> Self::Target;

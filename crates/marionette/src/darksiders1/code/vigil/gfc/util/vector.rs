@@ -139,20 +139,6 @@ impl<T> IndexMut<usize> for Vector<T> {
     }
 }
 
-pub unsafe trait LoweredVector: Sized
-where
-    Self::Element: LoweredVectorElement<Vec = Self>,
-{
-    type Element;
-}
-
-pub unsafe trait LoweredVectorElement: Sized
-where
-    Self::Vec: LoweredVector<Element = Self>,
-{
-    type Vec;
-}
-
 macro_rules! lowered_vector {
     ($vector:ty, $element:ty $(,)?) => {
         lowered_vector!(@base => $vector, $element);
@@ -162,15 +148,6 @@ macro_rules! lowered_vector {
         lowered_vector!(@lift => $vector, $element);
     };
     (@base => $vector:ty, $element:ty) => {
-        unsafe impl LoweredVector for $vector {
-            type Element = $element;
-        }
-
-        #[allow(clippy::use_self)]
-        unsafe impl LoweredVectorElement for $element {
-            type Vec = $vector;
-        }
-
         unsafe impl Lift1 for $vector {
             type Target = Vector<$element>;
 

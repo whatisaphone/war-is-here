@@ -101,23 +101,13 @@ impl<T: AsRef<IRefObject>> Clone for AutoRef<T> {
 ///
 /// This trait encodes into the type system the correct field type for each
 /// `AutoRef` instantiation in the PDB.
-pub trait LoweredAutoRef: Sized
-where
-    Self::Target: LoweredAutoRefTarget<Struct = Self>,
-{
+pub trait LoweredAutoRef: Sized {
     type Target;
 
     unsafe fn from_ptr(p: *mut Self::Target) -> Self;
     fn from_raw(p: *mut Self::Target) -> Self;
     fn into_raw(self) -> *mut Self::Target;
     fn ptr(&self) -> *mut Self::Target;
-}
-
-pub trait LoweredAutoRefTarget: Sized
-where
-    Self::Struct: LoweredAutoRef<Target = Self>,
-{
-    type Struct;
 }
 
 macro_rules! lowered_autoref {
@@ -148,10 +138,6 @@ macro_rules! lowered_autoref {
             fn ptr(&self) -> *mut $target {
                 self.p.cast()
             }
-        }
-
-        impl LoweredAutoRefTarget for $target {
-            type Struct = $autoref;
         }
     };
     (@lift => $autoref:ty, $target:path) => {
