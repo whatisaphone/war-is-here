@@ -44,6 +44,7 @@ symbols! {
     pub static gfc__WorldObject___Class;
     pub static gfc__WorldGroup___Class;
     pub static gfc__TriggerRegion___Class;
+    pub static gfc__Item___Class;
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle;
@@ -144,6 +145,9 @@ symbols! {
     pub fn gfc__ByteOutputStream__ByteOutputStream_2;
     pub fn gfc__ClassRegistry__classForName;
     pub fn gfc__PhysicsShapeObject__getTransform;
+    pub fn gfc__Player__pickupItem;
+    pub fn gfc__Player__pickupItem_2;
+    pub fn gfc__Inventory__addItem;
     pub fn gfc__RegionLayer__getRoot;
     pub fn gfc__WorldRegion__getLayer;
     pub fn gfc__Vector4Parameter__Vector4Parameter_2;

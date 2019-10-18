@@ -10165,8 +10165,188 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__InteractiveTransition__0_gfc__CAllocato
 }
 
 #[repr(C)]
+pub struct gfc__Inventory {
+    pub vfptr: *const gfc__Inventory__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__Inventory
+    pub mOwner: *mut gfc__Character,
+    pub mContainers: gfc__Vector_gfc__AutoRef_gfc__Container__0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__Inventory {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Inventory {}
+
+impl gfc__Inventory {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Inventory__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Inventory, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Inventory) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Inventory, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Inventory) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Inventory) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__Inventory,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Inventory) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Inventory, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Inventory,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__Container {
+    pub vfptr: *const gfc__Container__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__Container
+    pub mName: gfc__HString,
+    pub mNumSlots: i32,
+    pub mOwner: *mut gfc__Character,
+    pub mItems: gfc__Vector_gfc__AutoRef_gfc__Item__0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__Container {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Container {}
+
+impl gfc__Container {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Container__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Container, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Container) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Container, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Container) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Container) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__Container,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Container) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Container, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Container,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__Container__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__Container_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__ChaosLevel_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__Item__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__Item_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
 }
 
 #[repr(C)]
@@ -10277,6 +10457,944 @@ pub struct gfc__WindowHelper__vftable {
     pub init: unsafe extern "thiscall" fn(this: *mut gfc__WindowHelper),
     pub shutdown: unsafe extern "thiscall" fn(this: *mut gfc__WindowHelper),
     pub reset: unsafe extern "thiscall" fn(this: *mut gfc__WindowHelper),
+}
+
+#[repr(C)]
+pub struct gfc__EquippableItem {
+    pub vfptr: *const gfc__EquippableItem__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
+    pub mObjectID: u32,
+    pub mRegionID: u16,
+    pub mLayerID: u16,
+    pub mName: gfc__HString,
+    pub mEventGroupID: i32,
+    pub mWorld: *mut gfc__World,
+    pub mGroup: *mut gfc__WorldObject,
+    pub mLightGroup: u32,
+    pub mEventHandlers: *mut gfc__WorldObject__EventHandlerNode,
+    pub mEventHandlerLocks: i32,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mPackageID: i32,
+    // gfc__Actor
+    pub mFactionOverrideID: i32,
+    pub mMaskOfShadowsState: i32,
+    pub mInActiveMaskRealm: bool,
+    pub mRepulsedThisFrame: bool,
+    pub mPortalsEnabled: bool,
+    pub mInsidePortal: bool,
+    pub mLastHit: gfc__AutoRef_gfc__HitInfo_,
+    pub mLastHitInstigatorPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mCurrentVisualID: i32,
+    pub mObject: gfc__AutoRef_gfc__Object3D_,
+    pub mRagdoll: gfc__AutoRef_gfc__Object3D_,
+    pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mRotation: gfc__TVector3_float_gfc__FloatMath_,
+    pub mHeading: f32,
+    pub mActorDesc: gfc__AutoRef_gfc__ActorDesc_,
+    pub mLastTouchList: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
+    pub mSoundChannels: gfc__Vector_gfc__AutoRef_gfc__ChannelAccessor__0_gfc__CAllocator_,
+    pub mUpdatePhantoms: gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_,
+    pub mWeaponPhantoms: gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_,
+    pub mAttached3DObjects: gfc__Vector_gfc__AutoRef_gfc__Object3D__0_gfc__CAllocator_,
+    pub mLiquidRegions: gfc__Vector_gfc__AutoRef_gfc__LiquidRegion__0_gfc__CAllocator_,
+    pub mFocusNode: *mut gfc__Node3D,
+    pub mSaveData: gfc__AutoRef_gfc__WorldObjectData_,
+    pub mPreloaded: bool,
+    pub mIsEthereal: bool,
+    pub mIsOutOfPhase: bool,
+    pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
+    pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
+    pub mAnimController: gfc__AutoRef_gfc__AnimController_,
+    pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
+    pub mAnimIDGenerator: i32,
+    // gfc__Item
+    pub mValid: bool,
+    pub mAutoPersist: bool,
+    pub mInfoID: u32,
+    pub mContainer: *mut gfc__Container,
+    pub mParticleSystem: i32,
+    // gfc__EquippableItem
+    pub mEquipped: bool,
+    pub mDirectionSlot: i32,
+    pub mMustReequip: bool,
+    pub mHotKey: i32,
+    pub mVisualAttached: bool,
+    pub mMountPoint: i32,
+    pub mQueuedMountPoint: i32,
+    pub mLoadState: i32,
+    pub mLoadMarker: gfc__AutoRef_gfc__PackageMarker_,
+    pub mMountNode: *mut gfc__Node3D,
+    pub mQueuePreload: bool,
+    pub mQueueLoadVisuals: bool,
+    pub mQueueShow: bool,
+    pub mWasVisualAttached: bool,
+    pub mIsVisible: bool,
+    pub mPreviousMountPoint: i32,
+}
+
+unsafe impl UpcastToNop<gfc__Item> for gfc__EquippableItem {}
+
+unsafe impl UpcastToNop<gfc__KinematicActor> for gfc__EquippableItem {}
+
+unsafe impl UpcastToNop<gfc__Actor> for gfc__EquippableItem {}
+
+unsafe impl UpcastToNop<gfc__WorldObject> for gfc__EquippableItem {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__EquippableItem {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__EquippableItem {}
+
+impl gfc__EquippableItem {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setPosition(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setPosition)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setRotation(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setRotation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRotation(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getRotation)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setScale(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setScale)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScale(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getBoundingBox(
+        &self,
+        a1: *mut gfc__TBox_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getBoundingBox)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doAddToWorld(&self) {
+        ((*self.vfptr).doAddToWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doRemoveFromWorld(&self) {
+        ((*self.vfptr).doRemoveFromWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn placedInEditor(&self) {
+        ((*self.vfptr).placedInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn droppedToGroundInEditor(&self) {
+        ((*self.vfptr).droppedToGroundInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn preload(&self) {
+        ((*self.vfptr).preload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn begin(&self) {
+        ((*self.vfptr).begin)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updatePost(&self, a1: f32) {
+        ((*self.vfptr).updatePost)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn render(
+        &self,
+        a1: *mut gfc__Renderer,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).render)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn drawDebug(&self) {
+        ((*self.vfptr).drawDebug)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getPackageID(&self) -> i32 {
+        ((*self.vfptr).getPackageID)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn playSound(
+        &self,
+        a1: *mut gfc__SoundDesc,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn playSound_2(
+        &self,
+        a1: i32,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound_2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn stopSound(&self, a1: i32) {
+        ((*self.vfptr).stopSound)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHide(&self, a1: bool) {
+        ((*self.vfptr).setHide)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setFreeze(&self, a1: bool) {
+        ((*self.vfptr).setFreeze)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setLocked(&self, a1: bool) {
+        ((*self.vfptr).setLocked)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSelected(&self, a1: bool) {
+        ((*self.vfptr).setSelected)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisabled(&self, a1: bool) {
+        ((*self.vfptr).setDisabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisplayNames(&self, a1: bool) {
+        ((*self.vfptr).setDisplayNames)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setError(&self, a1: bool) {
+        ((*self.vfptr).setError)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSettled(&self, a1: bool) {
+        ((*self.vfptr).setSettled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isGroup(&self) -> bool {
+        ((*self.vfptr).isGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).addObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).removeObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn inGroup(&self) -> bool {
+        ((*self.vfptr).inGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isRoot(&self) -> bool {
+        ((*self.vfptr).isRoot)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromGroup(&self) {
+        ((*self.vfptr).removeFromGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getGroup(&self) -> *mut gfc__WorldObject {
+        ((*self.vfptr).getGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getObject(&self) -> *mut gfc__Object3D {
+        ((*self.vfptr).getObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setObject(&self, a1: *mut gfc__Object3D) {
+        ((*self.vfptr).setObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnimation(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        a2: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_ {
+        ((*self.vfptr).getAnimation)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn addObjectToWorld(&self, a1: *mut gfc__World) {
+        ((*self.vfptr).addObjectToWorld)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addToLayer(&self) {
+        ((*self.vfptr).addToLayer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromPathFinding(&self, a1: *mut gfc__TraversalWaypoint) {
+        ((*self.vfptr).removeFromPathFinding)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detachFromObject(&self) {
+        ((*self.vfptr).detachFromObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onAttachedToObject(
+        &self,
+        a1: *mut gfc__WorldObject,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+        a3: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).onAttachedToObject)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn onDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onChildDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onChildDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn overrideHitEffect(&self, a1: f32, a2: *mut gfc__Body) -> bool {
+        ((*self.vfptr).overrideHitEffect)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn supportsStaticLighting(&self) -> bool {
+        ((*self.vfptr).supportsStaticLighting)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn staticLightingIsDynamic(&self) -> bool {
+        ((*self.vfptr).staticLightingIsDynamic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAORayLength(&self) -> i32 {
+        ((*self.vfptr).getAORayLength)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn initStaticLighting(
+        &self,
+        a1: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool {
+        ((*self.vfptr).initStaticLighting)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clearStaticLighting(&self) {
+        ((*self.vfptr).clearStaticLighting)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getActorType(&self) -> i32 {
+        ((*self.vfptr).getActorType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getTriggerType(&self) -> u32 {
+        ((*self.vfptr).getTriggerType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getHeading(&self) -> f32 {
+        ((*self.vfptr).getHeading)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setHeading(&self, a1: f32) {
+        ((*self.vfptr).setHeading)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setScale_2(&self, a1: f32, a2: f32, a3: f32) {
+        ((*self.vfptr).setScale_2)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getCenterPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getCenterPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getTopCenterPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getTopCenterPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setEthereal(&self, a1: bool) {
+        ((*self.vfptr).setEthereal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getEthereal(&self) -> bool {
+        ((*self.vfptr).getEthereal)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setOutOfPhase(&self, a1: bool) {
+        ((*self.vfptr).setOutOfPhase)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getOutOfPhase(&self) -> bool {
+        ((*self.vfptr).getOutOfPhase)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isDynamic(&self) -> bool {
+        ((*self.vfptr).isDynamic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isDead(&self) -> bool {
+        ((*self.vfptr).isDead)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn IsPlayer(&self) -> bool {
+        ((*self.vfptr).IsPlayer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn enteredDetectorObject(
+        &self,
+        a1: gfc__AutoRef_gfc__DetectorObject_,
+    ) {
+        ((*self.vfptr).enteredDetectorObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn exitedDetectorObject(
+        &self,
+        a1: gfc__AutoRef_gfc__DetectorObject_,
+    ) {
+        ((*self.vfptr).exitedDetectorObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn queryStrike(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).queryStrike)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn queryHit(&self, a1: *mut gfc__HitInfo) -> bool {
+        ((*self.vfptr).queryHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doHit(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn recordHit(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).recordHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doKill(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doKill)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onMoveCollide(&self, a1: *mut gfc__Actor, a2: f32) {
+        ((*self.vfptr).onMoveCollide)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn onRepulse(&self) {
+        ((*self.vfptr).onRepulse)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doTouch(&self, a1: *mut gfc__Actor) {
+        ((*self.vfptr).doTouch)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn playSound_3(
+        &self,
+        a1: i32,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound_3)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn playSoundEx(&self, a1: *mut gfc__SoundDesc) -> i32 {
+        ((*self.vfptr).playSoundEx)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isSoundPlaying(&self, a1: i32) -> bool {
+        ((*self.vfptr).isSoundPlaying)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn visualChanged(&self) {
+        ((*self.vfptr).visualChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMoveWeight(&self) -> f32 {
+        ((*self.vfptr).getMoveWeight)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onEnterLiquidRegion(&self) {
+        ((*self.vfptr).onEnterLiquidRegion)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onExitLiquidRegion(&self) {
+        ((*self.vfptr).onExitLiquidRegion)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getCurrentSpline(
+        &self,
+        result: *mut gfc__AutoRef_gfc__BezierCurve_,
+        a2: *mut f32,
+        a3: *mut f32,
+    ) -> *mut gfc__AutoRef_gfc__BezierCurve_ {
+        ((*self.vfptr).getCurrentSpline)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn inArc2D(&self, a1: *mut gfc__WorldObject, a2: f32) -> bool {
+        ((*self.vfptr).inArc2D)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn updateAnimation(&self, a1: f32) {
+        ((*self.vfptr).updateAnimation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onInit(&self) {
+        ((*self.vfptr).onInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onPickup(&self) {
+        ((*self.vfptr).onPickup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onDrop(&self) {
+        ((*self.vfptr).onDrop)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onChanged(&self) {
+        ((*self.vfptr).onChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn attach(&self, a1: *mut gfc__Container) {
+        ((*self.vfptr).attach)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detach(&self) {
+        ((*self.vfptr).detach)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn computeAttributes(&self) {
+        ((*self.vfptr).computeAttributes)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn loadVisuals(&self, a1: *mut gfc__Actor) {
+        ((*self.vfptr).loadVisuals)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn unloadVisuals(&self) {
+        ((*self.vfptr).unloadVisuals)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onLoadSaveData(&self) {
+        ((*self.vfptr).onLoadSaveData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn invokeOnChanged(&self) {
+        ((*self.vfptr).invokeOnChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reset(&self) {
+        ((*self.vfptr).reset)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getDescription(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getDescription)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn doKilled(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doKilled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn load(&self) {
+        ((*self.vfptr).load)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unload(&self) {
+        ((*self.vfptr).unload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isLoaded(&self) -> bool {
+        ((*self.vfptr).isLoaded)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isEquipped(&self) -> bool {
+        ((*self.vfptr).isEquipped)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn attachRef(&self) {
+        ((*self.vfptr).attachRef)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn detachRef(&self) {
+        ((*self.vfptr).detachRef)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAimOffset(
+        &self,
+        a1: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getAimOffset)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHotKey(&self, a1: i32) {
+        ((*self.vfptr).setHotKey)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn equipExclusive(&self) {
+        ((*self.vfptr).equipExclusive)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn equip(&self) {
+        ((*self.vfptr).equip)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unequip(&self) {
+        ((*self.vfptr).unequip)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn show(&self) {
+        ((*self.vfptr).show)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn hide(&self) {
+        ((*self.vfptr).hide)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onLoaded(&self) {
+        ((*self.vfptr).onLoaded)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isBusy(&self) -> bool {
+        ((*self.vfptr).isBusy)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn render_2(
+        &self,
+        a1: *mut gfc__UIRenderer,
+        a2: *const gfc__Matrix4,
+    ) {
+        ((*self.vfptr).render_2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn isReady(&self) -> bool {
+        ((*self.vfptr).isReady)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn autoEquip(&self) {
+        ((*self.vfptr).autoEquip)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn equipAfterLoad(&self) {
+        ((*self.vfptr).equipAfterLoad)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__EquippableItem__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__EquippableItem) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__EquippableItem) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *const u64,
+    ) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__TBox_float_gfc__FloatMath_,
+    ),
+    pub doAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub doRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub placedInEditor: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub droppedToGroundInEditor: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: f32),
+    pub updatePost: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: f32),
+    pub render: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__Renderer,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub drawDebug: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub getPackageID: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> i32,
+    pub playSound: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__SoundDesc,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub playSound_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: i32,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub stopSound: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: i32),
+    pub setHide: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub setFreeze: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub setLocked: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub setSelected: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub setDisabled: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub setDisplayNames: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub setError: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub setSettled: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub isGroup: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub addObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: gfc__AutoRef_gfc__WorldObject_,
+    ),
+    pub removeObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: gfc__AutoRef_gfc__WorldObject_,
+    ),
+    pub inGroup: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub isRoot: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub removeFromGroup: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub getGroup:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> *mut gfc__WorldObject,
+    pub getObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> *mut gfc__Object3D,
+    pub setObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__Object3D),
+    pub getAnimation: unsafe extern "thiscall" fn(
+        this: *const gfc__EquippableItem,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        _: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_,
+    pub addObjectToWorld:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__World),
+    pub addToLayer: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub removeFromPathFinding:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__TraversalWaypoint),
+    pub detachFromObject: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub onAttachedToObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__WorldObject,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub onDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__WorldObject),
+    pub onChildDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__WorldObject),
+    pub overrideHitEffect: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: f32,
+        _: *mut gfc__Body,
+    ) -> bool,
+    pub supportsStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub staticLightingIsDynamic:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub getAORayLength: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> i32,
+    pub initStaticLighting: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool,
+    pub clearStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub getActorType: unsafe extern "thiscall" fn(this: *const gfc__EquippableItem) -> i32,
+    pub getTriggerType: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> u32,
+    pub getHeading: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> f32,
+    pub setHeading: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: f32),
+    pub setScale_2:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: f32, _: f32, _: f32),
+    pub getCenterPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getTopCenterPosition:
+        unsafe extern "thiscall" fn(
+            this: *mut gfc__EquippableItem,
+            result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setEthereal: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub getEthereal: unsafe extern "thiscall" fn(this: *const gfc__EquippableItem) -> bool,
+    pub setOutOfPhase: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: bool),
+    pub getOutOfPhase: unsafe extern "thiscall" fn(this: *const gfc__EquippableItem) -> bool,
+    pub isDynamic: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub isDead: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub IsPlayer: unsafe extern "thiscall" fn(this: *const gfc__EquippableItem) -> bool,
+    pub enteredDetectorObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: gfc__AutoRef_gfc__DetectorObject_,
+    ),
+    pub exitedDetectorObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: gfc__AutoRef_gfc__DetectorObject_,
+    ),
+    pub queryStrike:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__HitInfo),
+    pub queryHit:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__HitInfo) -> bool,
+    pub doHit: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__HitInfo),
+    pub recordHit:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__HitInfo),
+    pub doKill: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__HitInfo),
+    pub onMoveCollide:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__Actor, _: f32),
+    pub onRepulse: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub doTouch: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__Actor),
+    pub playSound_3: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: i32,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub playSoundEx:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__SoundDesc) -> i32,
+    pub isSoundPlaying: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: i32) -> bool,
+    pub visualChanged: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub getMoveWeight: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> f32,
+    pub onEnterLiquidRegion: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub onExitLiquidRegion: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub getCurrentSpline: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        result: *mut gfc__AutoRef_gfc__BezierCurve_,
+        _: *mut f32,
+        _: *mut f32,
+    ) -> *mut gfc__AutoRef_gfc__BezierCurve_,
+    pub inArc2D: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__WorldObject,
+        _: f32,
+    ) -> bool,
+    pub updateAnimation: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: f32),
+    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub onPickup: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub onDrop: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub onChanged: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub attach: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__Container),
+    pub detach: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub computeAttributes: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub loadVisuals:
+        unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__Actor),
+    pub unloadVisuals: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub onLoadSaveData: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub invokeOnChanged: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub getDescription: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub doKilled: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: *mut gfc__HitInfo),
+    pub load: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub isLoaded: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub isEquipped: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub attachRef: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub detachRef: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub getAimOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub setHotKey: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem, _: i32),
+    pub equipExclusive: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub equip: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub unequip: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub show: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub hide: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub onLoaded: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub isBusy: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub render_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__EquippableItem,
+        _: *mut gfc__UIRenderer,
+        _: *const gfc__Matrix4,
+    ),
+    pub isReady: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem) -> bool,
+    pub autoEquip: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
+    pub equipAfterLoad: unsafe extern "thiscall" fn(this: *mut gfc__EquippableItem),
 }
 
 #[repr(C)]
@@ -12084,6 +13202,11 @@ pub struct gfc__DraggableActor__vftable {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__ItemActor_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__UICategories_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -12094,8 +13217,20 @@ pub struct gfc__AutoRef_gfc__HudTimerData_ {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__WeaponEnhancement_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__UICategoryPackages_ {
     pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__WeaponEnhancement__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__WeaponEnhancement_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
 }
 
 #[repr(C)]
@@ -12233,6 +13368,1829 @@ pub struct gfc__DSUIManager__vftable {
     pub dispose: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
     pub changeUICategory:
         unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *const gfc__HString) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__Weapon {
+    pub vfptr: *const gfc__Weapon__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
+    pub mObjectID: u32,
+    pub mRegionID: u16,
+    pub mLayerID: u16,
+    pub mName: gfc__HString,
+    pub mEventGroupID: i32,
+    pub mWorld: *mut gfc__World,
+    pub mGroup: *mut gfc__WorldObject,
+    pub mLightGroup: u32,
+    pub mEventHandlers: *mut gfc__WorldObject__EventHandlerNode,
+    pub mEventHandlerLocks: i32,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mPackageID: i32,
+    // gfc__Actor
+    pub mFactionOverrideID: i32,
+    pub mMaskOfShadowsState: i32,
+    pub mInActiveMaskRealm: bool,
+    pub mRepulsedThisFrame: bool,
+    pub mPortalsEnabled: bool,
+    pub mInsidePortal: bool,
+    pub mLastHit: gfc__AutoRef_gfc__HitInfo_,
+    pub mLastHitInstigatorPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mCurrentVisualID: i32,
+    pub mObject: gfc__AutoRef_gfc__Object3D_,
+    pub mRagdoll: gfc__AutoRef_gfc__Object3D_,
+    pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mRotation: gfc__TVector3_float_gfc__FloatMath_,
+    pub mHeading: f32,
+    pub mActorDesc: gfc__AutoRef_gfc__ActorDesc_,
+    pub mLastTouchList: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
+    pub mSoundChannels: gfc__Vector_gfc__AutoRef_gfc__ChannelAccessor__0_gfc__CAllocator_,
+    pub mUpdatePhantoms: gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_,
+    pub mWeaponPhantoms: gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_,
+    pub mAttached3DObjects: gfc__Vector_gfc__AutoRef_gfc__Object3D__0_gfc__CAllocator_,
+    pub mLiquidRegions: gfc__Vector_gfc__AutoRef_gfc__LiquidRegion__0_gfc__CAllocator_,
+    pub mFocusNode: *mut gfc__Node3D,
+    pub mSaveData: gfc__AutoRef_gfc__WorldObjectData_,
+    pub mPreloaded: bool,
+    pub mIsEthereal: bool,
+    pub mIsOutOfPhase: bool,
+    pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
+    pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
+    pub mAnimController: gfc__AutoRef_gfc__AnimController_,
+    pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
+    pub mAnimIDGenerator: i32,
+    // gfc__Item
+    pub mValid: bool,
+    pub mAutoPersist: bool,
+    pub mInfoID: u32,
+    pub mContainer: *mut gfc__Container,
+    pub mParticleSystem: i32,
+    // gfc__EquippableItem
+    pub mEquipped: bool,
+    pub mDirectionSlot: i32,
+    pub mMustReequip: bool,
+    pub mHotKey: i32,
+    pub mVisualAttached: bool,
+    pub mMountPoint: i32,
+    pub mQueuedMountPoint: i32,
+    pub mLoadState: i32,
+    pub mLoadMarker: gfc__AutoRef_gfc__PackageMarker_,
+    pub mMountNode: *mut gfc__Node3D,
+    pub mQueuePreload: bool,
+    pub mQueueLoadVisuals: bool,
+    pub mQueueShow: bool,
+    pub mWasVisualAttached: bool,
+    pub mIsVisible: bool,
+    pub mPreviousMountPoint: i32,
+    // gfc__Weapon
+    pub mExperience: f32,
+    pub mLevel: i32,
+    pub mAllowEnhancements: bool,
+    pub mEnhancements: gfc__Vector_gfc__AutoRef_gfc__WeaponEnhancement__0_gfc__CAllocator_,
+    pub mNextLevelObjectName: gfc__String,
+    pub mCurrentVisualPermID: i32,
+    pub mRunTimeID: i32,
+    pub mQueueOnActivate: bool,
+    pub mLoadingVisualState: gfc__Weapon__LoadingState,
+    pub mVisualLoadMarker: gfc__AutoRef_gfc__PackageMarker_,
+    pub mSupressPopup: bool,
+}
+
+unsafe impl UpcastToNop<gfc__EquippableItem> for gfc__Weapon {}
+
+unsafe impl UpcastToNop<gfc__Item> for gfc__Weapon {}
+
+unsafe impl UpcastToNop<gfc__KinematicActor> for gfc__Weapon {}
+
+unsafe impl UpcastToNop<gfc__Actor> for gfc__Weapon {}
+
+unsafe impl UpcastToNop<gfc__WorldObject> for gfc__Weapon {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__Weapon {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Weapon {}
+
+impl gfc__Weapon {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setPosition(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setPosition)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setRotation(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setRotation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRotation(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getRotation)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setScale(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setScale)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScale(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getBoundingBox(
+        &self,
+        a1: *mut gfc__TBox_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getBoundingBox)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doAddToWorld(&self) {
+        ((*self.vfptr).doAddToWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doRemoveFromWorld(&self) {
+        ((*self.vfptr).doRemoveFromWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn placedInEditor(&self) {
+        ((*self.vfptr).placedInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn droppedToGroundInEditor(&self) {
+        ((*self.vfptr).droppedToGroundInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn preload(&self) {
+        ((*self.vfptr).preload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn begin(&self) {
+        ((*self.vfptr).begin)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updatePost(&self, a1: f32) {
+        ((*self.vfptr).updatePost)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn render(
+        &self,
+        a1: *mut gfc__Renderer,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).render)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn drawDebug(&self) {
+        ((*self.vfptr).drawDebug)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getPackageID(&self) -> i32 {
+        ((*self.vfptr).getPackageID)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn playSound(
+        &self,
+        a1: *mut gfc__SoundDesc,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn playSound_2(
+        &self,
+        a1: i32,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound_2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn stopSound(&self, a1: i32) {
+        ((*self.vfptr).stopSound)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHide(&self, a1: bool) {
+        ((*self.vfptr).setHide)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setFreeze(&self, a1: bool) {
+        ((*self.vfptr).setFreeze)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setLocked(&self, a1: bool) {
+        ((*self.vfptr).setLocked)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSelected(&self, a1: bool) {
+        ((*self.vfptr).setSelected)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisabled(&self, a1: bool) {
+        ((*self.vfptr).setDisabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisplayNames(&self, a1: bool) {
+        ((*self.vfptr).setDisplayNames)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setError(&self, a1: bool) {
+        ((*self.vfptr).setError)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSettled(&self, a1: bool) {
+        ((*self.vfptr).setSettled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isGroup(&self) -> bool {
+        ((*self.vfptr).isGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).addObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).removeObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn inGroup(&self) -> bool {
+        ((*self.vfptr).inGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isRoot(&self) -> bool {
+        ((*self.vfptr).isRoot)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromGroup(&self) {
+        ((*self.vfptr).removeFromGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getGroup(&self) -> *mut gfc__WorldObject {
+        ((*self.vfptr).getGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getObject(&self) -> *mut gfc__Object3D {
+        ((*self.vfptr).getObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setObject(&self, a1: *mut gfc__Object3D) {
+        ((*self.vfptr).setObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnimation(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        a2: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_ {
+        ((*self.vfptr).getAnimation)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn addObjectToWorld(&self, a1: *mut gfc__World) {
+        ((*self.vfptr).addObjectToWorld)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addToLayer(&self) {
+        ((*self.vfptr).addToLayer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromPathFinding(&self, a1: *mut gfc__TraversalWaypoint) {
+        ((*self.vfptr).removeFromPathFinding)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detachFromObject(&self) {
+        ((*self.vfptr).detachFromObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onAttachedToObject(
+        &self,
+        a1: *mut gfc__WorldObject,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+        a3: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).onAttachedToObject)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn onDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onChildDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onChildDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn overrideHitEffect(&self, a1: f32, a2: *mut gfc__Body) -> bool {
+        ((*self.vfptr).overrideHitEffect)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn supportsStaticLighting(&self) -> bool {
+        ((*self.vfptr).supportsStaticLighting)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn staticLightingIsDynamic(&self) -> bool {
+        ((*self.vfptr).staticLightingIsDynamic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAORayLength(&self) -> i32 {
+        ((*self.vfptr).getAORayLength)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn initStaticLighting(
+        &self,
+        a1: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool {
+        ((*self.vfptr).initStaticLighting)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clearStaticLighting(&self) {
+        ((*self.vfptr).clearStaticLighting)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getActorType(&self) -> i32 {
+        ((*self.vfptr).getActorType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getTriggerType(&self) -> u32 {
+        ((*self.vfptr).getTriggerType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getHeading(&self) -> f32 {
+        ((*self.vfptr).getHeading)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setHeading(&self, a1: f32) {
+        ((*self.vfptr).setHeading)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setScale_2(&self, a1: f32, a2: f32, a3: f32) {
+        ((*self.vfptr).setScale_2)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getCenterPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getCenterPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getTopCenterPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getTopCenterPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setEthereal(&self, a1: bool) {
+        ((*self.vfptr).setEthereal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getEthereal(&self) -> bool {
+        ((*self.vfptr).getEthereal)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setOutOfPhase(&self, a1: bool) {
+        ((*self.vfptr).setOutOfPhase)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getOutOfPhase(&self) -> bool {
+        ((*self.vfptr).getOutOfPhase)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isDynamic(&self) -> bool {
+        ((*self.vfptr).isDynamic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isDead(&self) -> bool {
+        ((*self.vfptr).isDead)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn IsPlayer(&self) -> bool {
+        ((*self.vfptr).IsPlayer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn enteredDetectorObject(
+        &self,
+        a1: gfc__AutoRef_gfc__DetectorObject_,
+    ) {
+        ((*self.vfptr).enteredDetectorObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn exitedDetectorObject(
+        &self,
+        a1: gfc__AutoRef_gfc__DetectorObject_,
+    ) {
+        ((*self.vfptr).exitedDetectorObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn queryStrike(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).queryStrike)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn queryHit(&self, a1: *mut gfc__HitInfo) -> bool {
+        ((*self.vfptr).queryHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doHit(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn recordHit(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).recordHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doKill(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doKill)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onMoveCollide(&self, a1: *mut gfc__Actor, a2: f32) {
+        ((*self.vfptr).onMoveCollide)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn onRepulse(&self) {
+        ((*self.vfptr).onRepulse)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doTouch(&self, a1: *mut gfc__Actor) {
+        ((*self.vfptr).doTouch)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn playSound_3(
+        &self,
+        a1: i32,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound_3)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn playSoundEx(&self, a1: *mut gfc__SoundDesc) -> i32 {
+        ((*self.vfptr).playSoundEx)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isSoundPlaying(&self, a1: i32) -> bool {
+        ((*self.vfptr).isSoundPlaying)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn visualChanged(&self) {
+        ((*self.vfptr).visualChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMoveWeight(&self) -> f32 {
+        ((*self.vfptr).getMoveWeight)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onEnterLiquidRegion(&self) {
+        ((*self.vfptr).onEnterLiquidRegion)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onExitLiquidRegion(&self) {
+        ((*self.vfptr).onExitLiquidRegion)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getCurrentSpline(
+        &self,
+        result: *mut gfc__AutoRef_gfc__BezierCurve_,
+        a2: *mut f32,
+        a3: *mut f32,
+    ) -> *mut gfc__AutoRef_gfc__BezierCurve_ {
+        ((*self.vfptr).getCurrentSpline)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn inArc2D(&self, a1: *mut gfc__WorldObject, a2: f32) -> bool {
+        ((*self.vfptr).inArc2D)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn updateAnimation(&self, a1: f32) {
+        ((*self.vfptr).updateAnimation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onInit(&self) {
+        ((*self.vfptr).onInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onPickup(&self) {
+        ((*self.vfptr).onPickup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onDrop(&self) {
+        ((*self.vfptr).onDrop)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onChanged(&self) {
+        ((*self.vfptr).onChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn attach(&self, a1: *mut gfc__Container) {
+        ((*self.vfptr).attach)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detach(&self) {
+        ((*self.vfptr).detach)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn computeAttributes(&self) {
+        ((*self.vfptr).computeAttributes)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn loadVisuals(&self, a1: *mut gfc__Actor) {
+        ((*self.vfptr).loadVisuals)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn unloadVisuals(&self) {
+        ((*self.vfptr).unloadVisuals)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onLoadSaveData(&self) {
+        ((*self.vfptr).onLoadSaveData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn invokeOnChanged(&self) {
+        ((*self.vfptr).invokeOnChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reset(&self) {
+        ((*self.vfptr).reset)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getDescription(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getDescription)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn doKilled(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doKilled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn load(&self) {
+        ((*self.vfptr).load)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unload(&self) {
+        ((*self.vfptr).unload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isLoaded(&self) -> bool {
+        ((*self.vfptr).isLoaded)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isEquipped(&self) -> bool {
+        ((*self.vfptr).isEquipped)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn attachRef(&self) {
+        ((*self.vfptr).attachRef)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn detachRef(&self) {
+        ((*self.vfptr).detachRef)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAimOffset(
+        &self,
+        a1: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getAimOffset)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHotKey(&self, a1: i32) {
+        ((*self.vfptr).setHotKey)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn equipExclusive(&self) {
+        ((*self.vfptr).equipExclusive)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn equip(&self) {
+        ((*self.vfptr).equip)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unequip(&self) {
+        ((*self.vfptr).unequip)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn show(&self) {
+        ((*self.vfptr).show)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn hide(&self) {
+        ((*self.vfptr).hide)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onLoaded(&self) {
+        ((*self.vfptr).onLoaded)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isBusy(&self) -> bool {
+        ((*self.vfptr).isBusy)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn render_2(
+        &self,
+        a1: *mut gfc__UIRenderer,
+        a2: *const gfc__Matrix4,
+    ) {
+        ((*self.vfptr).render_2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn isReady(&self) -> bool {
+        ((*self.vfptr).isReady)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn autoEquip(&self) {
+        ((*self.vfptr).autoEquip)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn equipAfterLoad(&self) {
+        ((*self.vfptr).equipAfterLoad)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn canEquipEnhancement(
+        &self,
+        a1: i32,
+        a2: gfc__AutoRef_gfc__WeaponEnhancement_,
+    ) -> bool {
+        ((*self.vfptr).canEquipEnhancement)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn equipEnhancement(
+        &self,
+        a1: i32,
+        a2: gfc__AutoRef_gfc__WeaponEnhancement_,
+    ) {
+        ((*self.vfptr).equipEnhancement)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn unequipEnhancement(
+        &self,
+        a1: gfc__AutoRef_gfc__WeaponEnhancement_,
+    ) {
+        ((*self.vfptr).unequipEnhancement)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getEnhancement(
+        &self,
+        result: *mut gfc__AutoRef_gfc__WeaponEnhancement_,
+        a2: i32,
+    ) -> *mut gfc__AutoRef_gfc__WeaponEnhancement_ {
+        ((*self.vfptr).getEnhancement)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn beginAttack(&self, a1: *const gfc__MoveInput) {
+        ((*self.vfptr).beginAttack)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn endAttack(&self) {
+        ((*self.vfptr).endAttack)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onTriggerFrame(&self) {
+        ((*self.vfptr).onTriggerFrame)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onShootTriggerFrame(&self) {
+        ((*self.vfptr).onShootTriggerFrame)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onMoveStateChanged(&self) {
+        ((*self.vfptr).onMoveStateChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isAttacking(&self) -> bool {
+        ((*self.vfptr).isAttacking)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn leaveTargetCamera(&self) {
+        ((*self.vfptr).leaveTargetCamera)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Weapon__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Weapon) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Weapon) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__TBox_float_gfc__FloatMath_,
+    ),
+    pub doAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub doRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub placedInEditor: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub droppedToGroundInEditor: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: f32),
+    pub updatePost: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: f32),
+    pub render: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__Renderer,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub drawDebug: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub getPackageID: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> i32,
+    pub playSound: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__SoundDesc,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub playSound_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: i32,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub stopSound: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: i32),
+    pub setHide: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub setFreeze: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub setLocked: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub setSelected: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub setDisabled: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub setDisplayNames: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub setError: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub setSettled: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub isGroup: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub addObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: gfc__AutoRef_gfc__WorldObject_),
+    pub removeObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: gfc__AutoRef_gfc__WorldObject_),
+    pub inGroup: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub isRoot: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub removeFromGroup: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub getGroup: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> *mut gfc__WorldObject,
+    pub getObject: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> *mut gfc__Object3D,
+    pub setObject: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__Object3D),
+    pub getAnimation: unsafe extern "thiscall" fn(
+        this: *const gfc__Weapon,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        _: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_,
+    pub addObjectToWorld: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__World),
+    pub addToLayer: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub removeFromPathFinding:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__TraversalWaypoint),
+    pub detachFromObject: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onAttachedToObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__WorldObject,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub onDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__WorldObject),
+    pub onChildDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__WorldObject),
+    pub overrideHitEffect:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: f32, _: *mut gfc__Body) -> bool,
+    pub supportsStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub staticLightingIsDynamic: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub getAORayLength: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> i32,
+    pub initStaticLighting: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool,
+    pub clearStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub getActorType: unsafe extern "thiscall" fn(this: *const gfc__Weapon) -> i32,
+    pub getTriggerType: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> u32,
+    pub getHeading: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> f32,
+    pub setHeading: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: f32),
+    pub setScale_2: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: f32, _: f32, _: f32),
+    pub getCenterPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getTopCenterPosition:
+        unsafe extern "thiscall" fn(
+            this: *mut gfc__Weapon,
+            result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setEthereal: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub getEthereal: unsafe extern "thiscall" fn(this: *const gfc__Weapon) -> bool,
+    pub setOutOfPhase: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: bool),
+    pub getOutOfPhase: unsafe extern "thiscall" fn(this: *const gfc__Weapon) -> bool,
+    pub isDynamic: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub isDead: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub IsPlayer: unsafe extern "thiscall" fn(this: *const gfc__Weapon) -> bool,
+    pub enteredDetectorObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: gfc__AutoRef_gfc__DetectorObject_),
+    pub exitedDetectorObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: gfc__AutoRef_gfc__DetectorObject_),
+    pub queryStrike: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__HitInfo),
+    pub queryHit: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__HitInfo) -> bool,
+    pub doHit: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__HitInfo),
+    pub recordHit: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__HitInfo),
+    pub doKill: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__HitInfo),
+    pub onMoveCollide:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__Actor, _: f32),
+    pub onRepulse: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub doTouch: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__Actor),
+    pub playSound_3: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: i32,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub playSoundEx:
+        unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__SoundDesc) -> i32,
+    pub isSoundPlaying: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: i32) -> bool,
+    pub visualChanged: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub getMoveWeight: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> f32,
+    pub onEnterLiquidRegion: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onExitLiquidRegion: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub getCurrentSpline: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__AutoRef_gfc__BezierCurve_,
+        _: *mut f32,
+        _: *mut f32,
+    ) -> *mut gfc__AutoRef_gfc__BezierCurve_,
+    pub inArc2D: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__WorldObject,
+        _: f32,
+    ) -> bool,
+    pub updateAnimation: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: f32),
+    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onPickup: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onDrop: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onChanged: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub attach: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__Container),
+    pub detach: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub computeAttributes: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub loadVisuals: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__Actor),
+    pub unloadVisuals: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onLoadSaveData: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub invokeOnChanged: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub getDescription: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub doKilled: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *mut gfc__HitInfo),
+    pub load: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub isLoaded: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub isEquipped: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub attachRef: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub detachRef: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub getAimOffset: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub setHotKey: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: i32),
+    pub equipExclusive: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub equip: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub unequip: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub show: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub hide: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onLoaded: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub isBusy: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub render_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: *mut gfc__UIRenderer,
+        _: *const gfc__Matrix4,
+    ),
+    pub isReady: unsafe extern "thiscall" fn(this: *mut gfc__Weapon) -> bool,
+    pub autoEquip: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub equipAfterLoad: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub canEquipEnhancement: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: i32,
+        _: gfc__AutoRef_gfc__WeaponEnhancement_,
+    ) -> bool,
+    pub equipEnhancement: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: i32,
+        _: gfc__AutoRef_gfc__WeaponEnhancement_,
+    ),
+    pub unequipEnhancement: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        _: gfc__AutoRef_gfc__WeaponEnhancement_,
+    ),
+    pub getEnhancement: unsafe extern "thiscall" fn(
+        this: *mut gfc__Weapon,
+        result: *mut gfc__AutoRef_gfc__WeaponEnhancement_,
+        _: i32,
+    )
+        -> *mut gfc__AutoRef_gfc__WeaponEnhancement_,
+    pub beginAttack: unsafe extern "thiscall" fn(this: *mut gfc__Weapon, _: *const gfc__MoveInput),
+    pub endAttack: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onTriggerFrame: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onShootTriggerFrame: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub onMoveStateChanged: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+    pub isAttacking: unsafe extern "thiscall" fn(this: *const gfc__Weapon) -> bool,
+    pub leaveTargetCamera: unsafe extern "thiscall" fn(this: *mut gfc__Weapon),
+}
+
+#[repr(C)]
+pub struct gfc__Item {
+    pub vfptr: *const gfc__Item__vftable,
+    // gfc__IRefObject
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__WorldObject
+    pub mObjectID: u32,
+    pub mRegionID: u16,
+    pub mLayerID: u16,
+    pub mName: gfc__HString,
+    pub mEventGroupID: i32,
+    pub mWorld: *mut gfc__World,
+    pub mGroup: *mut gfc__WorldObject,
+    pub mLightGroup: u32,
+    pub mEventHandlers: *mut gfc__WorldObject__EventHandlerNode,
+    pub mEventHandlerLocks: i32,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mPackageID: i32,
+    // gfc__Actor
+    pub mFactionOverrideID: i32,
+    pub mMaskOfShadowsState: i32,
+    pub mInActiveMaskRealm: bool,
+    pub mRepulsedThisFrame: bool,
+    pub mPortalsEnabled: bool,
+    pub mInsidePortal: bool,
+    pub mLastHit: gfc__AutoRef_gfc__HitInfo_,
+    pub mLastHitInstigatorPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mCurrentVisualID: i32,
+    pub mObject: gfc__AutoRef_gfc__Object3D_,
+    pub mRagdoll: gfc__AutoRef_gfc__Object3D_,
+    pub mPosition: gfc__TVector3_float_gfc__FloatMath_,
+    pub mRotation: gfc__TVector3_float_gfc__FloatMath_,
+    pub mHeading: f32,
+    pub mActorDesc: gfc__AutoRef_gfc__ActorDesc_,
+    pub mLastTouchList: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
+    pub mSoundChannels: gfc__Vector_gfc__AutoRef_gfc__ChannelAccessor__0_gfc__CAllocator_,
+    pub mUpdatePhantoms: gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_,
+    pub mWeaponPhantoms: gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_,
+    pub mAttached3DObjects: gfc__Vector_gfc__AutoRef_gfc__Object3D__0_gfc__CAllocator_,
+    pub mLiquidRegions: gfc__Vector_gfc__AutoRef_gfc__LiquidRegion__0_gfc__CAllocator_,
+    pub mFocusNode: *mut gfc__Node3D,
+    pub mSaveData: gfc__AutoRef_gfc__WorldObjectData_,
+    pub mPreloaded: bool,
+    pub mIsEthereal: bool,
+    pub mIsOutOfPhase: bool,
+    pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
+    pub mPreviousFactionID: i32,
+    // gfc__KinematicActor
+    pub mAnimController: gfc__AutoRef_gfc__AnimController_,
+    pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
+    pub mAnimIDGenerator: i32,
+    // gfc__Item
+    pub mValid: bool,
+    pub mAutoPersist: bool,
+    pub mInfoID: u32,
+    pub mContainer: *mut gfc__Container,
+    pub mParticleSystem: i32,
+}
+
+unsafe impl UpcastToNop<gfc__KinematicActor> for gfc__Item {}
+
+unsafe impl UpcastToNop<gfc__Actor> for gfc__Item {}
+
+unsafe impl UpcastToNop<gfc__WorldObject> for gfc__Item {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__Item {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Item {}
+
+impl gfc__Item {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setPosition(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setPosition)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setRotation(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setRotation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getRotation(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getRotation)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setScale(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).setScale)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScale(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getScale)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getBoundingBox(
+        &self,
+        a1: *mut gfc__TBox_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).getBoundingBox)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doAddToWorld(&self) {
+        ((*self.vfptr).doAddToWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doRemoveFromWorld(&self) {
+        ((*self.vfptr).doRemoveFromWorld)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn placedInEditor(&self) {
+        ((*self.vfptr).placedInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn droppedToGroundInEditor(&self) {
+        ((*self.vfptr).droppedToGroundInEditor)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn preload(&self) {
+        ((*self.vfptr).preload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn begin(&self) {
+        ((*self.vfptr).begin)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn update(&self, a1: f32) {
+        ((*self.vfptr).update)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updatePost(&self, a1: f32) {
+        ((*self.vfptr).updatePost)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn render(
+        &self,
+        a1: *mut gfc__Renderer,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).render)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn drawDebug(&self) {
+        ((*self.vfptr).drawDebug)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getPackageID(&self) -> i32 {
+        ((*self.vfptr).getPackageID)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn playSound(
+        &self,
+        a1: *mut gfc__SoundDesc,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn playSound_2(
+        &self,
+        a1: i32,
+        a2: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound_2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn stopSound(&self, a1: i32) {
+        ((*self.vfptr).stopSound)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setHide(&self, a1: bool) {
+        ((*self.vfptr).setHide)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setFreeze(&self, a1: bool) {
+        ((*self.vfptr).setFreeze)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setLocked(&self, a1: bool) {
+        ((*self.vfptr).setLocked)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSelected(&self, a1: bool) {
+        ((*self.vfptr).setSelected)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisabled(&self, a1: bool) {
+        ((*self.vfptr).setDisabled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setDisplayNames(&self, a1: bool) {
+        ((*self.vfptr).setDisplayNames)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setError(&self, a1: bool) {
+        ((*self.vfptr).setError)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setSettled(&self, a1: bool) {
+        ((*self.vfptr).setSettled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isGroup(&self) -> bool {
+        ((*self.vfptr).isGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn addObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).addObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeObject(&self, a1: gfc__AutoRef_gfc__WorldObject_) {
+        ((*self.vfptr).removeObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn inGroup(&self) -> bool {
+        ((*self.vfptr).inGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isRoot(&self) -> bool {
+        ((*self.vfptr).isRoot)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromGroup(&self) {
+        ((*self.vfptr).removeFromGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getGroup(&self) -> *mut gfc__WorldObject {
+        ((*self.vfptr).getGroup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getObject(&self) -> *mut gfc__Object3D {
+        ((*self.vfptr).getObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setObject(&self, a1: *mut gfc__Object3D) {
+        ((*self.vfptr).setObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAnimation(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        a2: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_ {
+        ((*self.vfptr).getAnimation)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn addObjectToWorld(&self, a1: *mut gfc__World) {
+        ((*self.vfptr).addObjectToWorld)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addToLayer(&self) {
+        ((*self.vfptr).addToLayer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn removeFromPathFinding(&self, a1: *mut gfc__TraversalWaypoint) {
+        ((*self.vfptr).removeFromPathFinding)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detachFromObject(&self) {
+        ((*self.vfptr).detachFromObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onAttachedToObject(
+        &self,
+        a1: *mut gfc__WorldObject,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+        a3: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) {
+        ((*self.vfptr).onAttachedToObject)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn onDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onChildDetachedFromObject(&self, a1: *mut gfc__WorldObject) {
+        ((*self.vfptr).onChildDetachedFromObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn overrideHitEffect(&self, a1: f32, a2: *mut gfc__Body) -> bool {
+        ((*self.vfptr).overrideHitEffect)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn supportsStaticLighting(&self) -> bool {
+        ((*self.vfptr).supportsStaticLighting)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn staticLightingIsDynamic(&self) -> bool {
+        ((*self.vfptr).staticLightingIsDynamic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAORayLength(&self) -> i32 {
+        ((*self.vfptr).getAORayLength)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn initStaticLighting(
+        &self,
+        a1: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool {
+        ((*self.vfptr).initStaticLighting)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clearStaticLighting(&self) {
+        ((*self.vfptr).clearStaticLighting)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getActorType(&self) -> i32 {
+        ((*self.vfptr).getActorType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getTriggerType(&self) -> u32 {
+        ((*self.vfptr).getTriggerType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getHeading(&self) -> f32 {
+        ((*self.vfptr).getHeading)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setHeading(&self, a1: f32) {
+        ((*self.vfptr).setHeading)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setScale_2(&self, a1: f32, a2: f32, a3: f32) {
+        ((*self.vfptr).setScale_2)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getCenterPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getCenterPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getTopCenterPosition(
+        &self,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_ {
+        ((*self.vfptr).getTopCenterPosition)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn setEthereal(&self, a1: bool) {
+        ((*self.vfptr).setEthereal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getEthereal(&self) -> bool {
+        ((*self.vfptr).getEthereal)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setOutOfPhase(&self, a1: bool) {
+        ((*self.vfptr).setOutOfPhase)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getOutOfPhase(&self) -> bool {
+        ((*self.vfptr).getOutOfPhase)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isDynamic(&self) -> bool {
+        ((*self.vfptr).isDynamic)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isDead(&self) -> bool {
+        ((*self.vfptr).isDead)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn IsPlayer(&self) -> bool {
+        ((*self.vfptr).IsPlayer)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn enteredDetectorObject(
+        &self,
+        a1: gfc__AutoRef_gfc__DetectorObject_,
+    ) {
+        ((*self.vfptr).enteredDetectorObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn exitedDetectorObject(
+        &self,
+        a1: gfc__AutoRef_gfc__DetectorObject_,
+    ) {
+        ((*self.vfptr).exitedDetectorObject)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn queryStrike(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).queryStrike)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn queryHit(&self, a1: *mut gfc__HitInfo) -> bool {
+        ((*self.vfptr).queryHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doHit(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn recordHit(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).recordHit)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn doKill(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doKill)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onMoveCollide(&self, a1: *mut gfc__Actor, a2: f32) {
+        ((*self.vfptr).onMoveCollide)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn onRepulse(&self) {
+        ((*self.vfptr).onRepulse)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn doTouch(&self, a1: *mut gfc__Actor) {
+        ((*self.vfptr).doTouch)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn playSound_3(
+        &self,
+        a1: i32,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32 {
+        ((*self.vfptr).playSound_3)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn playSoundEx(&self, a1: *mut gfc__SoundDesc) -> i32 {
+        ((*self.vfptr).playSoundEx)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isSoundPlaying(&self, a1: i32) -> bool {
+        ((*self.vfptr).isSoundPlaying)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn visualChanged(&self) {
+        ((*self.vfptr).visualChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMoveWeight(&self) -> f32 {
+        ((*self.vfptr).getMoveWeight)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onEnterLiquidRegion(&self) {
+        ((*self.vfptr).onEnterLiquidRegion)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onExitLiquidRegion(&self) {
+        ((*self.vfptr).onExitLiquidRegion)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getCurrentSpline(
+        &self,
+        result: *mut gfc__AutoRef_gfc__BezierCurve_,
+        a2: *mut f32,
+        a3: *mut f32,
+    ) -> *mut gfc__AutoRef_gfc__BezierCurve_ {
+        ((*self.vfptr).getCurrentSpline)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn inArc2D(&self, a1: *mut gfc__WorldObject, a2: f32) -> bool {
+        ((*self.vfptr).inArc2D)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn updateAnimation(&self, a1: f32) {
+        ((*self.vfptr).updateAnimation)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn onInit(&self) {
+        ((*self.vfptr).onInit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onPickup(&self) {
+        ((*self.vfptr).onPickup)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onDrop(&self) {
+        ((*self.vfptr).onDrop)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onChanged(&self) {
+        ((*self.vfptr).onChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn attach(&self, a1: *mut gfc__Container) {
+        ((*self.vfptr).attach)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn detach(&self) {
+        ((*self.vfptr).detach)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn computeAttributes(&self) {
+        ((*self.vfptr).computeAttributes)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn loadVisuals(&self, a1: *mut gfc__Actor) {
+        ((*self.vfptr).loadVisuals)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn unloadVisuals(&self) {
+        ((*self.vfptr).unloadVisuals)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn onLoadSaveData(&self) {
+        ((*self.vfptr).onLoadSaveData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn invokeOnChanged(&self) {
+        ((*self.vfptr).invokeOnChanged)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reset(&self) {
+        ((*self.vfptr).reset)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getDescription(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getDescription)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn doKilled(&self, a1: *mut gfc__HitInfo) {
+        ((*self.vfptr).doKilled)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn load(&self) {
+        ((*self.vfptr).load)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn unload(&self) {
+        ((*self.vfptr).unload)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isLoaded(&self) -> bool {
+        ((*self.vfptr).isLoaded)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isEquipped(&self) -> bool {
+        ((*self.vfptr).isEquipped)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn attachRef(&self) {
+        ((*self.vfptr).attachRef)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn detachRef(&self) {
+        ((*self.vfptr).detachRef)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Item__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__Item) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__Item) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+    pub setPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getRotation: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub getScale: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getBoundingBox:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__TBox_float_gfc__FloatMath_),
+    pub doAddToWorld: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub doRemoveFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub placedInEditor: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub droppedToGroundInEditor: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub preload: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub update: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: f32),
+    pub updatePost: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: f32),
+    pub render: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *mut gfc__Renderer,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub drawDebug: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub getPackageID: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> i32,
+    pub playSound: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *mut gfc__SoundDesc,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub playSound_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: i32,
+        _: *mut gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub stopSound: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: i32),
+    pub setHide: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub setFreeze: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub setLocked: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub setSelected: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub setDisabled: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub setDisplayNames: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub setError: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub setSettled: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub isGroup: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub addObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: gfc__AutoRef_gfc__WorldObject_),
+    pub removeObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: gfc__AutoRef_gfc__WorldObject_),
+    pub inGroup: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub isRoot: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub removeFromGroup: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub getGroup: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> *mut gfc__WorldObject,
+    pub getObject: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> *mut gfc__Object3D,
+    pub setObject: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__Object3D),
+    pub getAnimation: unsafe extern "thiscall" fn(
+        this: *const gfc__Item,
+        result: *mut gfc__AutoRef_gfc__Animation_,
+        _: i32,
+    ) -> *mut gfc__AutoRef_gfc__Animation_,
+    pub addObjectToWorld: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__World),
+    pub addToLayer: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub removeFromPathFinding:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__TraversalWaypoint),
+    pub detachFromObject: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub onAttachedToObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *mut gfc__WorldObject,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ),
+    pub onDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__WorldObject),
+    pub onChildDetachedFromObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__WorldObject),
+    pub overrideHitEffect:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: f32, _: *mut gfc__Body) -> bool,
+    pub supportsStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub staticLightingIsDynamic: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub getAORayLength: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> i32,
+    pub initStaticLighting: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: *mut gfc__StaticLightingObjectOpt,
+    ) -> bool,
+    pub clearStaticLighting: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub getActorType: unsafe extern "thiscall" fn(this: *const gfc__Item) -> i32,
+    pub getTriggerType: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> u32,
+    pub getHeading: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> f32,
+    pub setHeading: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: f32),
+    pub setScale_2: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: f32, _: f32, _: f32),
+    pub getCenterPosition: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        result: *mut gfc__TVector3_float_gfc__FloatMath_,
+    )
+        -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub getTopCenterPosition:
+        unsafe extern "thiscall" fn(
+            this: *mut gfc__Item,
+            result: *mut gfc__TVector3_float_gfc__FloatMath_,
+        ) -> *mut gfc__TVector3_float_gfc__FloatMath_,
+    pub setEthereal: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub getEthereal: unsafe extern "thiscall" fn(this: *const gfc__Item) -> bool,
+    pub setOutOfPhase: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: bool),
+    pub getOutOfPhase: unsafe extern "thiscall" fn(this: *const gfc__Item) -> bool,
+    pub isDynamic: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub isDead: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub IsPlayer: unsafe extern "thiscall" fn(this: *const gfc__Item) -> bool,
+    pub enteredDetectorObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: gfc__AutoRef_gfc__DetectorObject_),
+    pub exitedDetectorObject:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: gfc__AutoRef_gfc__DetectorObject_),
+    pub queryStrike: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__HitInfo),
+    pub queryHit: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__HitInfo) -> bool,
+    pub doHit: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__HitInfo),
+    pub recordHit: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__HitInfo),
+    pub doKill: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__HitInfo),
+    pub onMoveCollide:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__Actor, _: f32),
+    pub onRepulse: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub doTouch: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__Actor),
+    pub playSound_3: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        _: i32,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> i32,
+    pub playSoundEx:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__SoundDesc) -> i32,
+    pub isSoundPlaying: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: i32) -> bool,
+    pub visualChanged: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub getMoveWeight: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> f32,
+    pub onEnterLiquidRegion: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub onExitLiquidRegion: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub getCurrentSpline: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        result: *mut gfc__AutoRef_gfc__BezierCurve_,
+        _: *mut f32,
+        _: *mut f32,
+    ) -> *mut gfc__AutoRef_gfc__BezierCurve_,
+    pub inArc2D:
+        unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__WorldObject, _: f32) -> bool,
+    pub updateAnimation: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: f32),
+    pub onInit: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub onPickup: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub onDrop: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub onChanged: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub attach: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__Container),
+    pub detach: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub computeAttributes: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub loadVisuals: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__Actor),
+    pub unloadVisuals: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub onLoadSaveData: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub invokeOnChanged: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub reset: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub getDescription: unsafe extern "thiscall" fn(
+        this: *mut gfc__Item,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub doKilled: unsafe extern "thiscall" fn(this: *mut gfc__Item, _: *mut gfc__HitInfo),
+    pub load: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub unload: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub isLoaded: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub isEquipped: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
+    pub attachRef: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+    pub detachRef: unsafe extern "thiscall" fn(this: *mut gfc__Item),
 }
 
 #[repr(C)]
@@ -13149,6 +16107,11 @@ pub struct gfc__WrathMan {
 
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__Player__HairSim_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__Container_ {
     pub p: *mut gfc__IRefObject,
 }
 
@@ -19142,454 +22105,4 @@ pub struct hkpMtThreadStructure {
 #[repr(C)]
 pub struct hkPadSpu_hkpMultiThreadedSimulation___ {
     pub m_storage: *mut hkpMultiThreadedSimulation,
-}
-
-#[repr(C)]
-pub struct hkPadSpu_hkpWorldDynamicsStepInfo___ {
-    pub m_storage: *mut hkpWorldDynamicsStepInfo,
-}
-
-#[repr(C)]
-pub struct hkPadSpu_void___ {
-    pub m_storage: *mut (),
-}
-
-#[repr(C)]
-pub struct hkpProcessCdPoint {
-    pub m_contact: hkContactPoint,
-    pub m_contactPointId: u32,
-    pub m_isShortestPoint: u32,
-    pub m_padding: [u32; 2],
-}
-
-#[repr(C)]
-pub struct hkpProcessCollisionData {
-    pub m_firstFreeContactPoint: hkPadSpu_hkpProcessCdPoint___,
-    pub m_constraintOwner: hkPadSpu_hkpConstraintOwner___,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_contactPoints: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 12296],
-    pub m_toi: hkpProcessCollisionData__ToiInfo,
-}
-
-#[repr(C)]
-pub struct hkpProcessCollisionData__ToiInfo {
-    pub m_contactPoint: hkContactPoint,
-    pub m_time: hkPadSpu_float_,
-    pub m_seperatingVelocity: hkPadSpu_float_,
-    __pdbindgen_padding: [u8; 8],
-    pub m_gskCache: hkGskCache16,
-    pub m_properties: hkContactPointPropertiesWithExtendedUserData16,
-}
-
-#[repr(C)]
-pub struct hkpToiEvent {
-    pub m_time: f32,
-    pub m_seperatingVelocity: f32,
-    pub m_useSimpleHandling: hkBool,
-    pub m_entities: [*mut hkpEntity; 2],
-    pub m_contactMgr: *mut hkpDynamicsContactMgr,
-    pub m_properties: hkpContactPointProperties,
-    pub m_extendedUserDatas: [u32; 7],
-    __pdbindgen_padding: [u8; 8],
-    pub m_contactPoint: hkContactPoint,
-}
-
-#[repr(C)]
-pub struct hkpContinuousSimulation {
-    pub vfptr: *const hkpContinuousSimulation__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpSimulation
-    pub m_determinismCheckFrameCounter: u32,
-    pub m_world: *mut hkpWorld,
-    pub m_lastProcessingStep: hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_,
-    pub m_currentTime: f32,
-    pub m_currentPsiTime: f32,
-    pub m_physicsDeltaTime: f32,
-    pub m_simulateUntilTime: f32,
-    pub m_frameMarkerPsiSnap: f32,
-    pub m_previousStepResult: u32,
-    // hkpContinuousSimulation
-    __pdbindgen_padding: [u8; 4],
-    pub m_toiEvents: hkArray_hkpToiEvent_hkContainerHeapAllocator_,
-    pub m_entitiesNeedingPsiCollisionDetection:
-        hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    pub m_toiResourceMgr: *mut hkpToiResourceMgr,
-    pub m_toiCounter: i32,
-}
-
-unsafe impl UpcastToNop<hkpSimulation> for hkpContinuousSimulation {}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpContinuousSimulation {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpContinuousSimulation {}
-
-impl hkpContinuousSimulation {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn stepDeltaTime(&self, a1: f32) -> hkpStepResult {
-        ((*self.vfptr).stepDeltaTime)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn integrate(&self, a1: f32) -> hkpStepResult {
-        ((*self.vfptr).integrate)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn collide(&self) -> hkpStepResult {
-        ((*self.vfptr).collide)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn advanceTime(&self) -> hkpStepResult {
-        ((*self.vfptr).advanceTime)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn stepBeginSt(
-        &self,
-        a1: *mut hkJobQueue,
-        a2: f32,
-    ) -> hkpStepResult {
-        ((*self.vfptr).stepBeginSt)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn finishMtStep(
-        &self,
-        a1: *mut hkJobQueue,
-        a2: *mut hkThreadPool,
-    ) -> hkpStepResult {
-        ((*self.vfptr).finishMtStep)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getMultithreadConfig(&self, a1: *mut hkpMultithreadConfig) {
-        ((*self.vfptr).getMultithreadConfig)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setMultithreadConfig(
-        &self,
-        a1: *const hkpMultithreadConfig,
-        a2: *mut hkJobQueue,
-    ) {
-        ((*self.vfptr).setMultithreadConfig)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn collideEntitiesDiscrete(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-        a4: *const hkStepInfo,
-        a5: hkpSimulation__FindContacts,
-    ) {
-        ((*self.vfptr).collideEntitiesDiscrete)(self as *const _ as *mut _, a1, a2, a3, a4, a5)
-    }
-
-    pub unsafe extern "thiscall" fn resetCollisionInformationForEntities(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-        a4: hkpSimulation__ResetCollisionInformation,
-    ) {
-        ((*self.vfptr).resetCollisionInformationForEntities)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-            a3,
-            a4,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn assertThereIsNoCollisionInformationForEntities(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-    ) {
-        ((*self.vfptr).assertThereIsNoCollisionInformationForEntities)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-            a3,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionInformationForAgent(
-        &self,
-        a1: *mut hkpAgentNnEntry,
-    ) {
-        ((*self.vfptr).removeCollisionInformationForAgent)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn assertThereIsNoCollisionInformationForAgent(
-        &self,
-        a1: *mut hkpAgentNnEntry,
-    ) {
-        ((*self.vfptr).assertThereIsNoCollisionInformationForAgent)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn reintegrateAndRecollideEntities(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *mut hkpWorld,
-        a4: i32,
-    ) {
-        ((*self.vfptr).reintegrateAndRecollideEntities)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn collideInternal(&self, a1: *const hkStepInfo) {
-        ((*self.vfptr).collideInternal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn warpTime(&self, a1: f32) {
-        ((*self.vfptr).warpTime)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn collideEntitiesOfOneIslandNarrowPhaseContinuous_toiOnly(
-        &self,
-        a1: *mut *mut hkpEntity,
-        a2: i32,
-        a3: *const hkpProcessCollisionInput,
-        a4: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    ) {
-        ((*self.vfptr).collideEntitiesOfOneIslandNarrowPhaseContinuous_toiOnly)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-            a3,
-            a4,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn collideEntitiesNeedingPsiCollisionDetectionNarrowPhase_toiOnly(
-        &self,
-        a1: *const hkpProcessCollisionInput,
-        a2: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    ) {
-        ((*self.vfptr).collideEntitiesNeedingPsiCollisionDetectionNarrowPhase_toiOnly)(
-            self as *const _ as *mut _,
-            a1,
-            a2,
-        )
-    }
-
-    pub unsafe extern "thiscall" fn simulateToi(
-        &self,
-        a1: *mut hkpWorld,
-        a2: *mut hkpToiEvent,
-        a3: f32,
-        a4: f32,
-    ) {
-        ((*self.vfptr).simulateToi)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-}
-
-#[repr(C)]
-pub struct hkpContinuousSimulation__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation, _: u32) -> *mut (),
-    pub __first_virtual_table_function__:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkpContinuousSimulation) -> *const hkClass,
-    pub deleteThisReferencedObject:
-        unsafe extern "thiscall" fn(this: *const hkpContinuousSimulation),
-    pub stepDeltaTime:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation, _: f32) -> hkpStepResult,
-    pub integrate:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation, _: f32) -> hkpStepResult,
-    pub collide: unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation) -> hkpStepResult,
-    pub advanceTime:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation) -> hkpStepResult,
-    pub stepBeginSt: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut hkJobQueue,
-        _: f32,
-    ) -> hkpStepResult,
-    pub finishMtStep: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut hkJobQueue,
-        _: *mut hkThreadPool,
-    ) -> hkpStepResult,
-    pub getMultithreadConfig: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut hkpMultithreadConfig,
-    ),
-    pub setMultithreadConfig: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *const hkpMultithreadConfig,
-        _: *mut hkJobQueue,
-    ),
-    pub collideEntitiesDiscrete: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-        _: *const hkStepInfo,
-        _: hkpSimulation__FindContacts,
-    ),
-    pub resetCollisionInformationForEntities: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-        _: hkpSimulation__ResetCollisionInformation,
-    ),
-    pub assertThereIsNoCollisionInformationForEntities: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-    ),
-    pub removeCollisionInformationForAgent:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation, _: *mut hkpAgentNnEntry),
-    pub assertThereIsNoCollisionInformationForAgent:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation, _: *mut hkpAgentNnEntry),
-    pub reintegrateAndRecollideEntities: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *mut hkpWorld,
-        _: i32,
-    ),
-    pub collideInternal:
-        unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation, _: *const hkStepInfo),
-    pub warpTime: unsafe extern "thiscall" fn(this: *mut hkpContinuousSimulation, _: f32),
-    pub collideEntitiesOfOneIslandNarrowPhaseContinuous_toiOnly: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut *mut hkpEntity,
-        _: i32,
-        _: *const hkpProcessCollisionInput,
-        _: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-    ),
-    pub collideEntitiesNeedingPsiCollisionDetectionNarrowPhase_toiOnly:
-        unsafe extern "thiscall" fn(
-            this: *mut hkpContinuousSimulation,
-            _: *const hkpProcessCollisionInput,
-            _: *mut hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_,
-        ),
-    pub simulateToi: unsafe extern "thiscall" fn(
-        this: *mut hkpContinuousSimulation,
-        _: *mut hkpWorld,
-        _: *mut hkpToiEvent,
-        _: f32,
-        _: f32,
-    ),
-}
-
-#[repr(C)]
-pub struct hkPointerMap_unsigned_int_hkpEntity___hkContainerHeapAllocator_ {
-    pub m_map:
-        hkMap_unsigned_long_unsigned_long_hkMapOperations_unsigned_long__hkContainerHeapAllocator_,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkpToiEvent_ {
-    pub m_data: *mut hkpToiEvent,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkArray_hkpToiEvent_hkContainerHeapAllocator_ {
-    // hkArrayBase_hkpToiEvent_
-    pub m_data: *mut hkpToiEvent,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-    // hkArray_hkpToiEvent_hkContainerHeapAllocator_
-}
-
-unsafe impl UpcastToNop<hkArrayBase_hkpToiEvent_>
-    for hkArray_hkpToiEvent_hkContainerHeapAllocator_
-{
-}
-
-#[repr(C)]
-pub struct hkpBodyVelocity {
-    pub m_linear: hkVector4f,
-    pub m_angular: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkpSimpleConstraintInfoInitInput {
-    pub m_massRelPos: hkVector4f,
-    pub m_invInertia: hkMatrix3f,
-    pub m_invMasses: hkVector4f,
-    pub m_transform: *const hkTransformf,
-    __pdbindgen_padding: [u8; 12],
-}
-
-#[repr(C)]
-pub struct hkArray_short_hkContainerHeapAllocator_ {
-    // hkArrayBase_short_
-    pub m_data: *mut i16,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-    // hkArray_short_hkContainerHeapAllocator_
-}
-
-unsafe impl UpcastToNop<hkArrayBase_short_> for hkArray_short_hkContainerHeapAllocator_ {}
-
-#[repr(C)]
-pub struct hkArrayBase_short_ {
-    pub m_data: *mut i16,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkpPhantomBroadPhaseListener {
-    pub vfptr: *const hkpPhantomBroadPhaseListener__vftable,
-    // hkBaseObject
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
-    /* hkpBroadPhaseListener
-     * hkpPhantomBroadPhaseListener */
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpPhantomBroadPhaseListener {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpPhantomBroadPhaseListener {}
-
-unsafe impl UpcastTo<hkpBroadPhaseListener> for hkpPhantomBroadPhaseListener {
-    fn upcast_to(p: *const Self) -> *const hkpBroadPhaseListener {
-        (p as usize + 0x8) as *const _
-    }
-}
-
-impl hkpPhantomBroadPhaseListener {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addCollisionPair(&self, a1: *mut hkpTypedBroadPhaseHandlePair) {
-        ((*self.vfptr).addCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn removeCollisionPair(
-        &self,
-        a1: *mut hkpTypedBroadPhaseHandlePair,
-    ) {
-        ((*self.vfptr).removeCollisionPair)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
 }

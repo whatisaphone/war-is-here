@@ -20,6 +20,7 @@ fn handle_message(message: &[u8]) -> bool {
     let message = str::from_utf8(message).unwrap_or(":(");
     let command = message.split_ascii_whitespace().next().unwrap_or(":(");
     match command {
+        "pickup_item" => commands::pickup_item::run(message),
         "show_collision" => commands::show_collision::run(message),
         "show_triggers" => commands::show_triggers::run(message),
         "spawn_object" => commands::spawn_objct::run(message),

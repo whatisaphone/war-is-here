@@ -2,6 +2,14 @@ pub use crate::darksiders1::code::vigil::{
     darksiders::{
         client::darksiders::Darksiders,
         world::{
+            actor::{
+                actor::Actor,
+                character::Character,
+                inventory::Inventory,
+                item::{equippableitem::EquippableItem, item::Item},
+                kinematicactor::KinematicActor,
+                player::Player,
+            },
             detectorobject::DetectorObject,
             physics::physicsshapeobject::{PhysicsShapeObject, PhysicsShapeObject__Detect},
         },

@@ -25,6 +25,7 @@ symbols! {
     pub static gfc__WorldObject___Class: *mut gfc__Class = Data(0x88ba8c);
     pub static gfc__WorldGroup___Class: *mut gfc__Class = Data(0x88ba80);
     pub static gfc__TriggerRegion___Class: *mut gfc__Class = Data(0x58c510);
+    pub static gfc__Item___Class: *mut gfc__Class = Data(0x56bc10);
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__KGMeshCache = Data(0x5559f4);
     pub static gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle: *mut gfc__KGGraphics = Data(0xa1aec);
@@ -125,6 +126,9 @@ symbols! {
     pub static gfc__ByteOutputStream__ByteOutputStream_2: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream, _: i32) = Text(0xa21fb0);
     pub static gfc__ClassRegistry__classForName: unsafe extern "thiscall" fn(this: *mut gfc__ClassRegistry, _: *const gfc__HString, _: bool, _: bool) -> *mut gfc__Class = Text(0xa16e50);
     pub static gfc__PhysicsShapeObject__getTransform: unsafe extern "thiscall" fn(this: *mut gfc__PhysicsShapeObject, _: *mut gfc__Matrix4) = Text(0x8ed360);
+    pub static gfc__Player__pickupItem: unsafe extern "thiscall" fn(this: *mut gfc__Player, _: gfc__AutoRef_gfc__Item_) = Text(0x83ab00);
+    pub static gfc__Player__pickupItem_2: unsafe extern "thiscall" fn(this: *mut gfc__Player, _: gfc__AutoRef_gfc__ItemActor_) = Text(0x849000);
+    pub static gfc__Inventory__addItem: unsafe extern "thiscall" fn(this: *mut gfc__Inventory, _: gfc__AutoRef_gfc__Item_) -> bool = Text(0x81bdd0);
     pub static gfc__RegionLayer__getRoot: unsafe extern "thiscall" fn(this: *const gfc__RegionLayer, result: *mut gfc__AutoRef_gfc__WorldGroup_) -> *mut gfc__AutoRef_gfc__WorldGroup_ = Text(0x769ed0);
     pub static gfc__WorldRegion__getLayer: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion, result: *mut gfc__AutoRef_gfc__RegionLayer_, _: i32) -> *mut gfc__AutoRef_gfc__RegionLayer_ = Text(0x769f60);
     pub static gfc__Vector4Parameter__Vector4Parameter_2: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: *const gfc__TVector4_float_gfc__FloatMath_) = Text(0x5b0ec0);

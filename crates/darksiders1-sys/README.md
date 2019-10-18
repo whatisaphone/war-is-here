@@ -11,6 +11,7 @@ pdbindgen \
     /path/to/darksiders1.pdb \
     -o src \
     -i '^gfc::CShape$' \
+    -i '^gfc::Inventory$' \
     -i '^gfc::GameCamera$' \
     -i '^gfc::PhysicsManager$' \
     -i '^gfc::Player$' \
@@ -20,6 +21,7 @@ pdbindgen \
     -i '^gfc::StaticMesh$' \
     -i '^gfc::StaticMeshVisual$' \
     -i '^gfc::TriggerRegion$' \
+    -i '^gfc::Weapon$' \
     -i '^gfc::WorldRegion$' \
     -i '^gfc::WorldRegionData$' \
     -i '^hkpBoxShape$' \
@@ -31,6 +33,7 @@ pdbindgen \
     -i '^gfc::Singleton<gfc::Object3DCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
+    -i '^gfc::Item::_Class$' \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
     -i '^gfc::WorldObject::_Class$' \
@@ -45,6 +48,7 @@ pdbindgen \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::HString::~?HString$' \
     -i '^gfc::HString::c_str$' \
+    -i '^gfc::Inventory::addItem$' \
     -i '^gfc::KGGraphics::createStaticMesh$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
     -i '^gfc::Material::~?Material$' \
@@ -65,6 +69,7 @@ pdbindgen \
     -i '^gfc::OblivionGame::getWorld$' \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::PhysicsShapeObject::getTransform$' \
+    -i '^gfc::Player::pickupItem$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
     -i '^gfc::StaticMeshVisual::~?StaticMeshVisual$' \

@@ -15,6 +15,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__WorldObject___Class);
     bind!(data, gfc__WorldGroup___Class);
     bind!(data, gfc__TriggerRegion___Class);
+    bind!(data, gfc__Item___Class);
     bind!(
         data,
         gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
@@ -133,6 +134,9 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ByteOutputStream__ByteOutputStream_2);
     bind!(text, gfc__ClassRegistry__classForName);
     bind!(text, gfc__PhysicsShapeObject__getTransform);
+    bind!(text, gfc__Player__pickupItem);
+    bind!(text, gfc__Player__pickupItem_2);
+    bind!(text, gfc__Inventory__addItem);
     bind!(text, gfc__RegionLayer__getRoot);
     bind!(text, gfc__WorldRegion__getLayer);
     bind!(text, gfc__Vector4Parameter__Vector4Parameter_2);

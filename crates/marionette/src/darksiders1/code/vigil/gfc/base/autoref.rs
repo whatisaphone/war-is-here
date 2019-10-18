@@ -174,6 +174,16 @@ lowered_autoref!(
     target::gfc__InputStream,
     lift = true,
 );
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Inventory_,
+    target::gfc__Inventory,
+    lift = true,
+);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Item_,
+    target::gfc__Item,
+    lift = true,
+);
 lowered_autoref!(target::gfc__AutoRef_gfc__MBSubMesh_, target::gfc__MBSubMesh);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__Material_,
@@ -207,6 +217,11 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__PhysicsManager_,
     target::gfc__PhysicsManager,
+);
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Player_,
+    target::gfc__Player,
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayer_,

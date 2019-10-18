@@ -16,11 +16,20 @@ Commands are sent over UDP. For an easy way to send them, install `netcat` (`nc`
 nc -u localhost 12345 -w 1 <<<'your_command_here'
 ```
 
+#### `pickup_item`
+
+Gives the player any `Item`.
+
+```
+pickup_item bfg_sentinel/weapon_bfg_sentinel
+pickup_item weapon_enhancements/common_bane
+```
+
 #### `spawn_actor`
 
 Spawn an `Actor` class into the world.
 
-```sh
+```
 spawn_actor vulgrim_chime/vulgrim_chime_medium -4000 -28000 200
 spawn_actor ci_streetpropsset01/ci_streetlight_r -4000 -28000 0
 ```
@@ -29,14 +38,14 @@ spawn_actor ci_streetpropsset01/ci_streetlight_r -4000 -28000 0
 
 Spawn an `o3d` resource into the world.
 
-```sh
+```
 spawn_static_object city01_streets ci_shoppingstrip -4000 -24000 50 1
 spawn_static_object city01_streets city01_glass2_04 -4000 -28000 180 1
 ```
 
 You can also spawn objects that are part of this mod (not included with the original game):
 
-```sh
+```
 spawn_static_object city01_streets gritty_cube -4000 -28000 180 1
 ```
 
@@ -44,7 +53,7 @@ spawn_static_object city01_streets gritty_cube -4000 -28000 180 1
 
 Show triggers in the world.
 
-```sh
+```
 show_triggers
 ```
 
@@ -52,7 +61,7 @@ show_triggers
 
 Send the player to any area in the game.
 
-```sh
+```
 teleport overworld CI_01
 ```
 
