@@ -47,4 +47,31 @@ impl WorldObject {
             self.inner.addObjectToWorld(Lower::lower_ptr(world));
         }
     }
+
+    pub fn remove_object_from_world(&self) {
+        unsafe {
+            target::gfc__WorldObject__removeObjectFromWorld(self.as_ptr());
+        }
+    }
+
+    pub fn attach_to_object(
+        &self,
+        parent: &Self,
+        parent_node_name: &gfc::HString,
+        child_node_name: &gfc::HString,
+        // See `gfc::AttachManager::attachObject`.
+        attach_type: u8,
+        relative: bool,
+    ) {
+        unsafe {
+            target::gfc__WorldObject__attachToObject(
+                self.as_ptr(),
+                parent.as_ptr(),
+                Lower::lower_ptr(parent_node_name),
+                Lower::lower_ptr(child_node_name),
+                attach_type,
+                relative,
+            )
+        }
+    }
 }

@@ -195,6 +195,11 @@ lowered_autoref!(
     target::gfc__MeshBuilder,
 );
 lowered_autoref!(
+    target::gfc__AutoRef_gfc__Node3D_,
+    target::gfc__Node3D,
+    lift = true,
+);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__Object_,
     target::gfc__Object,
     lift = true,
@@ -234,6 +239,7 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__Skeleton3D_,
     target::gfc__Skeleton3D,
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__StaticMesh_,

@@ -80,8 +80,8 @@ pub fn uninstall() {
 
 mod hook {
     use crate::{
-        commands::show_triggers,
-        darksiders1::{gfc, Lower},
+        commands::{show_collision, show_triggers},
+        darksiders1::{gfc, Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
             override_get_material,
@@ -102,6 +102,7 @@ mod hook {
 
         unsafe {
             show_triggers::draw(renderer);
+            show_collision::draw((*renderer).lift_ref());
         }
     }
 

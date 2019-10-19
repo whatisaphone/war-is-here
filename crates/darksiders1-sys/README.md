@@ -10,7 +10,7 @@ The developers were generous enough to include a PDB with the game, so creating 
 pdbindgen \
     /path/to/darksiders1.pdb \
     -o src \
-    -i '^gfc::CShape$' \
+    -i '^hkpConvexVerticesShape$' \
     -i '^gfc::Inventory$' \
     -i '^gfc::GameCamera$' \
     -i '^gfc::PhysicsManager$' \
@@ -24,15 +24,16 @@ pdbindgen \
     -i '^gfc::Weapon$' \
     -i '^gfc::WorldRegion$' \
     -i '^gfc::WorldRegionData$' \
-    -i '^hkpBoxShape$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::DSUIManager,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGGraphics,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGMeshCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Object3DCache,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::PhysMeshCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
+    -i '^gfc::CShape\w*::_Class$' \
     -i '^gfc::Item::_Class$' \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
@@ -43,6 +44,7 @@ pdbindgen \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
     -i '^gfc::ByteInputStream::~?ByteInputStream$' \
     -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
+    -i '^gfc::CShape\w*::~?CShape\w*$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Darksiders::processInputEvent$' \
@@ -60,6 +62,8 @@ pdbindgen \
     -i '^gfc::MeshCache::loadMesh$' \
     -i '^gfc::MeshReader::MeshReader$' \
     -i '^gfc::MeshReader::readObject$' \
+    -i '^gfc::Node3D::getMatrix$' \
+    -i '^gfc::Node3D::getPosition$' \
     -i '^gfc::Object3D::~?Object3D$' \
     -i '^gfc::Object3DCache::get$' \
     -i '^gfc::ObjectWriter::~?ObjectWriter$' \
@@ -70,6 +74,7 @@ pdbindgen \
     -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::PhysicsShapeObject::getTransform$' \
     -i '^gfc::Player::pickupItem$' \
+    -i '^gfc::PhysMeshCache::get$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
     -i '^gfc::StaticMeshVisual::~?StaticMeshVisual$' \
@@ -83,6 +88,8 @@ pdbindgen \
     -i '^gfc::WindowHelper::pushWindow$' \
     -i '^gfc::World::getRegion$' \
     -i '^gfc::WorldGroup::getObjects$' \
+    -i '^gfc::WorldObject::attachToObject$' \
+    -i '^gfc::WorldObject::removeObjectFromWorld' \
     -i '^gfc::WorldObject::setLayerID$' \
     -i '^gfc::WorldObject::setRegionID$' \
     -i '^gfc::WorldRegion::getLayer$'

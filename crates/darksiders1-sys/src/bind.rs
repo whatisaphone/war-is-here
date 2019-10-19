@@ -14,6 +14,16 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__OmniLight___Class);
     bind!(data, gfc__WorldObject___Class);
     bind!(data, gfc__WorldGroup___Class);
+    bind!(data, gfc__CShape___Class);
+    bind!(data, gfc__CShapeTransform___Class);
+    bind!(data, gfc__CShapeTerrainChunk___Class);
+    bind!(data, gfc__CShapeCapsule___Class);
+    bind!(data, gfc__CShapeMesh___Class);
+    bind!(data, gfc__CShapeSphere___Class);
+    bind!(data, gfc__CShapeCylinder___Class);
+    bind!(data, gfc__CShapeTerrainNode___Class);
+    bind!(data, gfc__CShapeBox___Class);
+    bind!(data, gfc__CShapeComposite___Class);
     bind!(data, gfc__TriggerRegion___Class);
     bind!(data, gfc__Item___Class);
     bind!(
@@ -31,6 +41,7 @@ pub unsafe fn bind(args: &BindArgs) {
     );
     bind!(data, gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle);
+    bind!(data, gfc__Singleton_gfc__PhysMeshCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle);
     bind!(text, gfc__Vector4Parameter__Vector4Parameter);
@@ -104,6 +115,8 @@ pub unsafe fn bind(args: &BindArgs) {
         gfc__AutoRef_gfc__IRefObject____AutoRef_gfc__IRefObject_
     );
     bind!(text, gfc__World__getRegion);
+    bind!(text, gfc__WorldObject__removeObjectFromWorld);
+    bind!(text, gfc__WorldObject__attachToObject);
     bind!(text, gfc__Object3DCache__get);
     bind!(text, gfc__Object3D__Object3D);
     bind!(text, gfc__Object3DCache__get_2);
@@ -112,6 +125,33 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__StaticMeshVisual___StaticMeshVisual);
     bind!(text, gfc__Object3D___Object3D);
     bind!(text, gfc__ResourceCache__getResource);
+    bind!(text, gfc__PhysMeshCache__get);
+    bind!(text, gfc__PhysMeshCache__get_2);
+    bind!(text, gfc__CShape__CShape);
+    bind!(text, gfc__CShapeCapsule__CShapeCapsule);
+    bind!(text, gfc__CShapeCapsule___CShapeCapsule);
+    bind!(text, gfc__CShapeCapsule__CShapeCapsule_2);
+    bind!(text, gfc__CShapeCylinder__CShapeCylinder);
+    bind!(text, gfc__CShapeCylinder__CShapeCylinder_2);
+    bind!(text, gfc__CShapeMesh__CShapeMesh);
+    bind!(text, gfc__CShapeMesh__CShapeMesh_2);
+    bind!(text, gfc__CShapeMesh___CShapeMesh);
+    bind!(text, gfc__CShapeTerrainChunk__CShapeTerrainChunk);
+    bind!(text, gfc__CShapeTerrainChunk__CShapeTerrainChunk_2);
+    bind!(text, gfc__CShapeTerrainChunk___CShapeTerrainChunk);
+    bind!(text, gfc__CShapeTerrainNode__CShapeTerrainNode);
+    bind!(text, gfc__CShapeTerrainNode__CShapeTerrainNode_2);
+    bind!(text, gfc__CShapeTerrainNode___CShapeTerrainNode);
+    bind!(text, gfc__CShapeBox__CShapeBox);
+    bind!(text, gfc__CShapeBox__CShapeBox_2);
+    bind!(text, gfc__CShapeBox__CShapeBox_3);
+    bind!(text, gfc__CShapeSphere__CShapeSphere);
+    bind!(text, gfc__CShapeSphere__CShapeSphere_2);
+    bind!(text, gfc__CShapeTransform__CShapeTransform);
+    bind!(text, gfc__CShapeTransform___CShapeTransform);
+    bind!(text, gfc__CShapeTransform__CShapeTransform_2);
+    bind!(text, gfc__CShapeComposite__CShapeComposite);
+    bind!(text, gfc__CShapeComposite___CShapeComposite);
     bind!(text, gfc__WorldGroup__getObjects);
     bind!(text, gfc__HString__HString);
     bind!(text, gfc__HString__HString_2);
@@ -133,6 +173,10 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ByteOutputStream___ByteOutputStream);
     bind!(text, gfc__ByteOutputStream__ByteOutputStream_2);
     bind!(text, gfc__ClassRegistry__classForName);
+    bind!(text, gfc__CShape___CShape);
+    bind!(text, gfc__CShapeBox___CShapeBox);
+    bind!(text, gfc__CShapeSphere___CShapeSphere);
+    bind!(text, gfc__CShapeCylinder___CShapeCylinder);
     bind!(text, gfc__PhysicsShapeObject__getTransform);
     bind!(text, gfc__Player__pickupItem);
     bind!(text, gfc__Player__pickupItem_2);
@@ -142,6 +186,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__Vector4Parameter__Vector4Parameter_2);
     bind!(text, gfc__Vector4Parameter___Vector4Parameter);
     bind!(text, gfc__Vector4Parameter__Vector4Parameter_3);
+    bind!(text, gfc__Node3D__getPosition);
     bind!(text, gfc__WorldObject__setRegionID);
     bind!(text, gfc__WorldObject__setLayerID);
     bind!(text, gfc__ObjectWriter___ObjectWriter);
@@ -158,6 +203,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__UIRenderer__end);
     bind!(text, gfc__UIRenderer__setColor);
     bind!(text, gfc__UIRenderer__setSolidMaterial);
+    bind!(text, gfc__Node3D__getMatrix);
     bind!(text, gfc__UIRenderer__pushTransform);
     bind!(text, gfc__UIRenderer__pushParams);
     bind!(text, gfc__UIRenderer__begin);

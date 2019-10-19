@@ -1,6 +1,9 @@
 pub use crate::darksiders1::code::vigil::{
     darksiders::{
-        client::darksiders::Darksiders,
+        client::{
+            darksiders::Darksiders,
+            helpers::{helper::Helper, teleporthelper::TeleportHelper},
+        },
         world::{
             actor::{
                 actor::Actor,
@@ -28,6 +31,8 @@ pub use crate::darksiders1::code::vigil::{
             mesh::{Mesh, StaticMesh},
             meshbuilder::MeshBuilder,
             meshcache::MeshCache,
+            skeleton3d::{Node3D, Skeleton3D},
+            uirenderer::UIRenderer,
         },
         io::{
             bytestream::{ByteInputStream, ByteOutputStream},
@@ -45,8 +50,8 @@ pub use crate::darksiders1::code::vigil::{
         oc::ooobjectwriter::OOObjectWriter,
         util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},
         world::{
-            collision::cshape::CShape,
-            physics::rigidbody::RigidBody,
+            collision::{cshape::CShape, cshapebox::CShapeBox, cshapemesh::CShapeMesh},
+            physics::{physmeshcache::PhysMeshCache, rigidbody::RigidBody},
             resource::resourcecache::ResourceCache,
             staticobject::StaticObject,
             triggerregion::TriggerRegion,

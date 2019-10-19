@@ -6,6 +6,10 @@ struct_wrapper!(HString, target::gfc__HString);
 struct_wrapper_drop!(HString, target::gfc__HString___HString);
 
 impl HString {
+    pub const EMPTY: Self = Self {
+        inner: target::gfc__HString { mHash: 0 },
+    };
+
     pub fn from_str(s: &str) -> Self {
         let cstring = CString::new(s).unwrap();
         Self::from_cstr(&cstring)

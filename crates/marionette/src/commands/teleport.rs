@@ -41,13 +41,13 @@ struct Args {
 }
 
 unsafe fn go(args: &Args) {
-    let teleport_helper = *target::gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
+    let teleport_helper = gfc::Singleton::<gfc::TeleportHelper>::get_instance();
     let world = gfc::HString::from_str(&args.world);
     let start_region = gfc::HString::from_str(&args.start_region);
     let start_point = gfc::HString::from_str(&args.start_point);
     let start_load_region = gfc::HString::from_str(&args.start_load_region);
     target::gfc__TeleportHelper__warpToMap(
-        teleport_helper,
+        teleport_helper.as_ptr(),
         world.as_ptr(),
         start_region.as_ptr(),
         start_point.as_ptr(),

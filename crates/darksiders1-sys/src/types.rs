@@ -5909,6 +5909,11 @@ pub struct gfc__AutoRef_gfc__HDRDesc_ {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__ResourceType_gfc__Texture_6___ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__DynamicRenderer {
     pub mCurrentViewInv: gfc__Matrix4,
     pub mCurrentView: gfc__Matrix4,
@@ -12276,10 +12281,4 @@ pub struct keen__LowOverheadMemoryAllocator__vftable {
     pub free: unsafe extern "thiscall" fn(this: *mut keen__LowOverheadMemoryAllocator, _: *mut ()),
     pub getName:
         unsafe extern "thiscall" fn(this: *const keen__LowOverheadMemoryAllocator) -> *const i8,
-}
-
-#[repr(C)]
-pub struct keen__ZoneAllocatorAdapter {
-    pub m_allocator: keen__ZoneAllocator,
-    pub m_allocationCount: u32,
 }
