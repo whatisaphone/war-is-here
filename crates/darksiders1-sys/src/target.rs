@@ -230,4 +230,5 @@ symbols! {
     pub fn gfc__String__String_3;
     pub fn gfc__String__String_4;
     pub fn gfc__String__String_5;
+    pub fn hkpConvexVerticesShape__getOriginalVertices;
 }

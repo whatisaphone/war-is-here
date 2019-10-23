@@ -1,3 +1,6 @@
+use crate::darksiders1::hkReferencedObject;
+use darksiders1_sys::target;
+
 #[repr(i32)]
 #[allow(non_camel_case_types)]
 pub enum hkcdShapeType__ShapeTypeEnum {
@@ -86,3 +89,10 @@ pub enum hkcdShapeType__ShapeTypeEnum {
     ///< Invalid shape
     Invalid = 34,
 }
+
+struct_wrapper!(
+    /// Base class for all Havok shapes
+    hkcdShape,
+    target::hkcdShape,
+);
+struct_wrapper_super!(hkcdShape, hkReferencedObject);

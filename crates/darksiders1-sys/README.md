@@ -10,9 +10,8 @@ The developers were generous enough to include a PDB with the game, so creating 
 pdbindgen \
     /path/to/darksiders1.pdb \
     -o src \
-    -i '^hkpConvexVerticesShape$' \
-    -i '^gfc::Inventory$' \
     -i '^gfc::GameCamera$' \
+    -i '^gfc::Inventory$' \
     -i '^gfc::PhysicsManager$' \
     -i '^gfc::Player$' \
     -i '^gfc::RegionLayer$' \
@@ -24,6 +23,8 @@ pdbindgen \
     -i '^gfc::Weapon$' \
     -i '^gfc::WorldRegion$' \
     -i '^gfc::WorldRegionData$' \
+    -i '^gfc::CShape\w*::_Class$' \
+    -i '^gfc::Item::_Class$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::DSUIManager,.+>::InstanceHandle$' \
@@ -33,14 +34,11 @@ pdbindgen \
     -i '^gfc::Singleton<gfc::PhysMeshCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
-    -i '^gfc::CShape\w*::_Class$' \
-    -i '^gfc::Item::_Class$' \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
     -i '^gfc::WorldObject::_Class$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
-    -i '^gfc::_UIManager::draw$' \
     -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
     -i '^gfc::ByteInputStream::~?ByteInputStream$' \
     -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
@@ -92,5 +90,7 @@ pdbindgen \
     -i '^gfc::WorldObject::removeObjectFromWorld' \
     -i '^gfc::WorldObject::setLayerID$' \
     -i '^gfc::WorldObject::setRegionID$' \
-    -i '^gfc::WorldRegion::getLayer$'
+    -i '^gfc::WorldRegion::getLayer$' \
+    -i '^gfc::_UIManager::draw$' \
+    -i '^hkpConvexVerticesShape::getOriginalVertices$'
 ```

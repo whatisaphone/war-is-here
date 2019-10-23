@@ -1,5 +1,5 @@
 macro_rules! struct_wrapper {
-    ($(#[$($attrs:meta),*])* $name:ident, $inner:ty) => {
+    ($(#[$($attrs:meta),*])* $name:ident, $inner:ty $(,)?) => {
         #[repr(transparent)]
         $(#[$($attrs)*])*
         pub struct $name {

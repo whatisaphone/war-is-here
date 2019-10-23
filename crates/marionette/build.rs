@@ -6,6 +6,7 @@ use grep::{
 };
 use indexmap::IndexMap;
 use std::{
+    borrow::Cow,
     env,
     fmt::{self, Write},
     fs,
@@ -59,17 +60,25 @@ fn emit_impls(
     subclasses: &[String],
 ) -> fmt::Result {
     for subclass in subclasses {
+        // HACK alert! Assume that Havok classes are in the root, and everything else is
+        // in `gfc`.
+        let subclass: Cow<str> = if subclass.starts_with("hk") {
+            Cow::from(subclass)
+        } else {
+            Cow::from(format!("gfc::{}", subclass))
+        };
+
         writeln!(
             w,
             "
-impl AsRef<{superclass}> for gfc::{subclass} {{
+impl AsRef<{superclass}> for {subclass} {{
     fn as_ref(&self) -> &{superclass} {{ self }}
 }}",
             superclass = superclass,
             subclass = subclass,
         )?;
 
-        if let Some(subsubclasses) = extends.get(&format!("gfc::{}", subclass)) {
+        if let Some(subsubclasses) = extends.get(&format!("{}", subclass)) {
             emit_impls(w, extends, superclass, subsubclasses)?;
         }
     }

@@ -211,4 +211,5 @@ symbols! {
     pub static gfc__String__String_3: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const gfc__String, _: i32, _: i32) = Text(0x69060);
     pub static gfc__String__String_4: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const i8) = Text(0x69530);
     pub static gfc__String__String_5: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const std__basic_string_char_std__char_traits_char__std__allocator_char___) = Text(0x69570);
+    pub static hkpConvexVerticesShape__getOriginalVertices: unsafe extern "thiscall" fn(this: *const hkpConvexVerticesShape, _: *mut hkArray_hkVector4f_hkContainerHeapAllocator_) = Text(0x12d4ca0);
 }

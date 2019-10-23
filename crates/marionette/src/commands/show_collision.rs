@@ -1,11 +1,15 @@
 use crate::{
-    darksiders1::{gfc, Lift, Lift1, LoweredAutoRef},
+    darksiders1::{gfc, hkcdShapeType__ShapeTypeEnum, Lift, Lift1, LoweredAutoRef},
     hooks::ON_POST_UPDATE_QUEUE,
     library::bitmap_font,
     utils::coordinate_transformer::CoordinateTransformer,
 };
-use darksiders1_sys::target;
-use std::sync::atomic::{AtomicBool, Ordering};
+use darksiders1_sys::target::{self, hkpConvexVerticesShape};
+use na::Vector4;
+use std::{
+    arch::x86::__m128,
+    sync::atomic::{AtomicBool, Ordering},
+};
 
 pub fn run(_command: &str) {
     let mut guard = ON_POST_UPDATE_QUEUE.lock();
@@ -16,20 +20,33 @@ pub fn run(_command: &str) {
 }
 
 unsafe fn go() {
+    DRAW_ENABLED.store(true, Ordering::SeqCst);
+
     let world = match gfc::OblivionGame::get_instance().get_world() {
         Some(world) => world,
         None => return,
     };
 
     let physics_manager = (*world.as_ptr()).mPhysicsManager.ptr();
+    eprintln!(
+        "(*physics_manager).mRigidBodies.lift1_ref().len() = {:?}",
+        (*physics_manager).mRigidBodies.lift1_ref().len(),
+    );
     for &body in (*physics_manager).mRigidBodies.lift1_ref() {
         let body = (*body).lift_ref();
 
         let rigid_body = body.rigid_body_raw();
         let shape = rigid_body.m_collidable.m_shape;
-        eprintln!("body = {:p}", body);
-        eprintln!("rigid_body = {:?}", rigid_body as *const _);
-        eprintln!("havok_shape type: {:?}", (*shape).m_type.m_storage);
+        let shape_type = (*shape).m_type.m_storage;
+        eprintln!("shape_type = {:?}", shape_type);
+        if i32::from(shape_type) == hkcdShapeType__ShapeTypeEnum::ConvexVertices as i32 {
+            let shape = (*shape.cast::<hkpConvexVerticesShape>()).lift_ref();
+            let mut vertices = Vec::new();
+            shape.get_original_vertices(&mut vertices);
+            let vertices = &*(vertices.as_slice() as *const [__m128] as *const [Vector4<f32>]);
+            eprintln!("vertices = {:?}", vertices);
+            eprintln!("vertices.len() = {:?}", vertices.len());
+        }
     }
 }
 

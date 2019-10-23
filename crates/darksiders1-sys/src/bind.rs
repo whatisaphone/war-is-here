@@ -219,4 +219,5 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__String__String_3);
     bind!(text, gfc__String__String_4);
     bind!(text, gfc__String__String_5);
+    bind!(text, hkpConvexVerticesShape__getOriginalVertices);
 }
