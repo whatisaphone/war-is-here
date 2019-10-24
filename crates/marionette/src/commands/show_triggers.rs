@@ -8,10 +8,16 @@ use crate::{
         debug_draw_3d,
         geometry::{box_edges, icosphere},
         mem::init_with,
+        pretty::Pretty,
     },
 };
 use darksiders1_sys::target;
-use na::{Matrix4, Point3, Vector3};
+use na::{Isometry, Matrix4, Point3, Translation, UnitQuaternion, Vector3};
+use ncollide3d::{
+    query::PointQuery,
+    shape::{Ball, Compound, Cuboid, ShapeHandle},
+};
+use ordered_float::NotNan;
 use pdbindgen_runtime::StaticCast;
 use std::{
     convert::TryFrom,
@@ -147,10 +153,15 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
         return;
     }
 
+    let player = gfc::OblivionGame::get_instance().get_player_actor();
+    let player_pos = player.get_position();
+
     target::gfc__UIRenderer__begin(renderer, true);
     target::gfc__UIRenderer__setMaterial(renderer, (*renderer).mSolidMaterial.ptr());
 
     let transformer = CoordinateTransformer::create();
+
+    let mut triggers = Vec::new();
 
     walk(&mut |object| {
         let trigger_region = match gfc::object_safecast::<gfc::TriggerRegion>(object) {
@@ -193,7 +204,68 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
                 }
             }
         }
+
+        let shape = match get_shape(&trigger_region) {
+            Shape::Aabb(bounds) => {
+                let center = na::center(&bounds.min, &bounds.max);
+                Some(Compound::new(vec![(
+                    Isometry::from_parts(
+                        Translation::from(center.coords),
+                        UnitQuaternion::identity(),
+                    ),
+                    ShapeHandle::new(Cuboid::new(bounds.max - center)),
+                )]))
+            }
+            Shape::Box(_size, _transform) => None,
+            Shape::Sphere(radius, center) => {
+                Some(Compound::new(vec![(
+                    Isometry::from_parts(
+                        Translation::from(center.coords),
+                        UnitQuaternion::identity(),
+                    ),
+                    ShapeHandle::new(Ball::new(radius)),
+                )]))
+            }
+            Shape::Cylinder(_radius, _length, _pos) => None,
+        };
+
+        let projection = match shape {
+            Some(shape) => Some(shape.project_point(&Isometry::identity(), &player_pos, false)),
+            None => None,
+        };
+
+        if let Some(projection) = projection {
+            triggers.push((trigger_region, projection));
+        }
     });
+
+    let closest_trigger = triggers
+        .into_iter()
+        .filter(|(_region, projection)| !projection.is_inside)
+        .min_by_key(|(_region, projection)| {
+            NotNan::new(na::distance_squared(&player_pos, &projection.point)).unwrap()
+        });
+    if let Some((trigger, projection)) = closest_trigger {
+        let object_name = (*trigger.as_ptr())
+            .mName
+            .lift_ref()
+            .c_str()
+            .to_str()
+            .unwrap_or("<invalid utf-8>");
+        bitmap_font::draw_string(renderer, 10.0, 10.0, object_name);
+        bitmap_font::draw_string(
+            renderer,
+            10.0,
+            30.0,
+            &format!("{}", Pretty(projection.point)),
+        );
+
+        debug_draw::clunky_draw_line(
+            renderer,
+            transformer.world_to_screen(&player_pos).xy(),
+            transformer.world_to_screen(&projection.point).xy(),
+        );
+    }
 
     target::gfc__UIRenderer__endRendering(renderer);
 }

@@ -23,7 +23,11 @@ pub unsafe fn box_wireframe(
     }
 }
 
-unsafe fn clunky_draw_line(renderer: *mut target::gfc__UIRenderer, p: Point2<f32>, q: Point2<f32>) {
+pub unsafe fn clunky_draw_line(
+    renderer: *mut target::gfc__UIRenderer,
+    p: Point2<f32>,
+    q: Point2<f32>,
+) {
     let viewport = gfc::KGGraphics::get_instance().get_viewport();
     let viewport = viewport.convert(|x| x as f32);
     let (p, q, steps) = match plan_line(&viewport, p, q) {
