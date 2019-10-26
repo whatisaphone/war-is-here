@@ -1,3 +1,4 @@
+pub mod load_map_menu;
 pub mod pickup_item;
 pub mod show_collision;
 pub mod show_triggers;
