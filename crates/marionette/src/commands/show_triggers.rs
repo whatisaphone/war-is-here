@@ -153,7 +153,10 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
         return;
     }
 
-    let player = gfc::OblivionGame::get_instance().get_player_actor();
+    let player = match gfc::OblivionGame::get_instance().get_player_actor() {
+        Some(player) => player,
+        None => return,
+    };
     let player_pos = player.get_position();
 
     target::gfc__UIRenderer__begin(renderer, true);

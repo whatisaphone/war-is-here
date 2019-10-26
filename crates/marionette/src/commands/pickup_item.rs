@@ -49,6 +49,7 @@ unsafe fn go(args: &Args) {
     };
 
     let darksiders = gfc::OblivionGame::get_instance();
-    let player = darksiders.get_player_actor();
-    player.pickup_item(item);
+    if let Some(player) = darksiders.get_player_actor() {
+        player.pickup_item(item);
+    }
 }
