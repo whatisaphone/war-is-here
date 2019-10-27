@@ -2,6 +2,7 @@
 
 use crate::utils::detour::TypedDetour;
 use darksiders1_sys::target;
+use detour::RawDetour;
 use parking_lot::{Mutex, RwLock};
 use pdbindgen_runtime::{main_module, BindArgs};
 use std::collections::VecDeque;
@@ -20,7 +21,7 @@ pub struct GodObject {
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
     gfc__Object3DCache__get: target::gfc__Object3DCache__get,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
-    _cleanup: Vec<Box<dyn Send + Sync>>,
+    detours: Vec<RawDetour>,
 }
 
 pub fn install() {
@@ -32,7 +33,7 @@ pub fn install() {
 
         macro_rules! hook {
             ($name:ident) => {
-                TypedDetour::new(target::$name, hook::$name).unwrap()
+                TypedDetour::create(target::$name, hook::$name).unwrap()
             };
         }
 
@@ -55,15 +56,15 @@ pub fn install() {
             gfc__MeshCache__loadMesh: gfc__MeshCache__loadMesh.trampoline(),
             gfc__Object3DCache__get: gfc__Object3DCache__get.trampoline(),
             gfc__ResourceCache__getResource: gfc__ResourceCache__getResource.trampoline(),
-            _cleanup: vec![
-                Box::new(gfc___UIManager__draw),
-                Box::new(gfc__Darksiders__onPostUpdateInterval),
-                Box::new(gfc__Darksiders__processInputEvent),
-                Box::new(gfc__MaterialCache__get),
-                Box::new(gfc__MeshCache__getStaticMesh),
-                Box::new(gfc__MeshCache__loadMesh),
-                Box::new(gfc__Object3DCache__get),
-                Box::new(gfc__ResourceCache__getResource),
+            detours: vec![
+                gfc___UIManager__draw.into_inner(),
+                gfc__Darksiders__onPostUpdateInterval.into_inner(),
+                gfc__Darksiders__processInputEvent.into_inner(),
+                gfc__MaterialCache__get.into_inner(),
+                gfc__MeshCache__getStaticMesh.into_inner(),
+                gfc__MeshCache__loadMesh.into_inner(),
+                gfc__Object3DCache__get.into_inner(),
+                gfc__ResourceCache__getResource.into_inner(),
             ],
         });
         *ON_POST_UPDATE_QUEUE.lock() = Some(VecDeque::new());
@@ -71,11 +72,20 @@ pub fn install() {
 }
 
 pub fn uninstall() {
+    let guard = DETOURS.write();
+    let detours = guard.as_ref().unwrap();
+    assert!(guard.is_some());
+
+    for detour in &detours.detours {
+        unsafe { detour.disable() }.unwrap();
+    }
+}
+
+pub fn cleanup() {
     let mut guard = DETOURS.write();
     assert!(guard.is_some());
 
-    // This drops the `GodObject` inside `guard`, which cleans up the detours.
-    *guard = None;
+    drop(guard.take());
 }
 
 mod hook {

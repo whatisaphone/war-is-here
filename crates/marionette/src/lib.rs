@@ -5,7 +5,7 @@
 #![allow(clippy::single_match_else)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
-use std::thread;
+use std::{thread, time::Duration};
 use winapi::{
     shared::minwindef::{BOOL, DWORD, HINSTANCE, LPVOID, TRUE},
     um::{
@@ -52,9 +52,18 @@ fn init(hinst: HINSTANCE) {
 
     println!("Hello world :)");
     hooks::install();
+
+    // This will pump messages until the user requests us to terminate.
     control::start();
+
     println!("Goodbye world :(");
     hooks::uninstall();
+
+    // Release the lock, and let any code that was waiting on it return. This sleep
+    // doesn't actually seem to be necessary, but better safe than sorry.
+    thread::sleep(Duration::from_millis(100));
+
+    hooks::cleanup();
 
     unsafe {
         FreeConsole();
