@@ -10,20 +10,21 @@ The developers were generous enough to include a PDB with the game, so creating 
 pdbindgen \
     /path/to/darksiders1.pdb \
     -o src \
+    -i '^gfc::CShape$' \
+    -i '^gfc::CShapeBox$' \
+    -i '^gfc::CShapeMesh$' \
     -i '^gfc::GameCamera$' \
-    -i '^gfc::Inventory$' \
     -i '^gfc::PhysicsManager$' \
-    -i '^gfc::Player$' \
-    -i '^gfc::RegionLayer$' \
     -i '^gfc::RegionLayerData$' \
     -i '^gfc::Skeleton3D$' \
     -i '^gfc::StaticMesh$' \
-    -i '^gfc::StaticMeshVisual$' \
     -i '^gfc::TriggerRegion$' \
     -i '^gfc::Weapon$' \
-    -i '^gfc::WorldRegion$' \
+    -i '^gfc::WorldGroup$' \
     -i '^gfc::WorldRegionData$' \
-    -i '^gfc::CShape\w*::_Class$' \
+    -i '^gfc::CShape::_Class$' \
+    -i '^gfc::CShapeBox::_Class$' \
+    -i '^gfc::CShapeMesh::_Class$' \
     -i '^gfc::Item::_Class$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
@@ -39,10 +40,8 @@ pdbindgen \
     -i '^gfc::WorldObject::_Class$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
-    -i '^gfc::AutoRef<gfc::IRefObject>::~?AutoRef<gfc::IRefObject>$' \
     -i '^gfc::ByteInputStream::~?ByteInputStream$' \
     -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
-    -i '^gfc::CShape\w*::~?CShape\w*$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Darksiders::processInputEvent$' \
@@ -69,7 +68,6 @@ pdbindgen \
     -i '^gfc::OblivionGame::getProjMatrix$' \
     -i '^gfc::OblivionGame::getViewMatrix$' \
     -i '^gfc::OblivionGame::getWorld$' \
-    -i '^gfc::OmniLight::\w+$' \
     -i '^gfc::PhysicsShapeObject::getTransform$' \
     -i '^gfc::Player::pickupItem$' \
     -i '^gfc::PhysMeshCache::get$' \
@@ -85,7 +83,6 @@ pdbindgen \
     -i '^gfc::Vector4Parameter::~?Vector4Parameter$' \
     -i '^gfc::WindowHelper::pushWindow$' \
     -i '^gfc::World::getRegion$' \
-    -i '^gfc::WorldGroup::getObjects$' \
     -i '^gfc::WorldObject::attachToObject$' \
     -i '^gfc::WorldObject::removeObjectFromWorld' \
     -i '^gfc::WorldObject::setLayerID$' \
