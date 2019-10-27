@@ -7,12 +7,12 @@ use parking_lot::{Mutex, RwLock};
 use pdbindgen_runtime::{main_module, BindArgs};
 use std::collections::VecDeque;
 
-static DETOURS: RwLock<Option<GodObject>> = RwLock::new(None);
+static DETOURS: RwLock<Option<Detours>> = RwLock::new(None);
 #[allow(clippy::type_complexity)]
 pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>>> =
     Mutex::new(None);
 
-pub struct GodObject {
+struct Detours {
     gfc___UIManager__draw: target::gfc___UIManager__draw,
     gfc__Darksiders__onPostUpdateInterval: target::gfc__Darksiders__onPostUpdateInterval,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
@@ -32,41 +32,31 @@ pub fn install() {
         darksiders1_sys::bind(&BindArgs::create(main_module()));
 
         macro_rules! hook {
-            ($name:ident) => {
-                TypedDetour::create(target::$name, hook::$name).unwrap()
+            ($($name:ident),* $(,)?) => {
+                $(
+                    let $name = TypedDetour::create(target::$name, hook::$name).unwrap();
+                )*
+
+                *guard = Some(Detours {
+                    $($name: $name.trampoline()),*,
+                    detours: vec![
+                        $($name.into_inner()),*,
+                    ],
+                });
             };
         }
 
-        let gfc___UIManager__draw = hook!(gfc___UIManager__draw);
-        let gfc__Darksiders__onPostUpdateInterval = hook!(gfc__Darksiders__onPostUpdateInterval);
-        let gfc__Darksiders__processInputEvent = hook!(gfc__Darksiders__processInputEvent);
-        let gfc__MaterialCache__get = hook!(gfc__MaterialCache__get);
-        let gfc__MeshCache__getStaticMesh = hook!(gfc__MeshCache__getStaticMesh);
-        let gfc__MeshCache__loadMesh = hook!(gfc__MeshCache__loadMesh);
-        let gfc__Object3DCache__get = hook!(gfc__Object3DCache__get);
-        let gfc__ResourceCache__getResource = hook!(gfc__ResourceCache__getResource);
+        hook!(
+            gfc___UIManager__draw,
+            gfc__Darksiders__onPostUpdateInterval,
+            gfc__Darksiders__processInputEvent,
+            gfc__MaterialCache__get,
+            gfc__MeshCache__getStaticMesh,
+            gfc__MeshCache__loadMesh,
+            gfc__Object3DCache__get,
+            gfc__ResourceCache__getResource,
+        );
 
-        *guard = Some(GodObject {
-            gfc___UIManager__draw: gfc___UIManager__draw.trampoline(),
-            gfc__Darksiders__onPostUpdateInterval: gfc__Darksiders__onPostUpdateInterval
-                .trampoline(),
-            gfc__Darksiders__processInputEvent: gfc__Darksiders__processInputEvent.trampoline(),
-            gfc__MaterialCache__get: gfc__MaterialCache__get.trampoline(),
-            gfc__MeshCache__getStaticMesh: gfc__MeshCache__getStaticMesh.trampoline(),
-            gfc__MeshCache__loadMesh: gfc__MeshCache__loadMesh.trampoline(),
-            gfc__Object3DCache__get: gfc__Object3DCache__get.trampoline(),
-            gfc__ResourceCache__getResource: gfc__ResourceCache__getResource.trampoline(),
-            detours: vec![
-                gfc___UIManager__draw.into_inner(),
-                gfc__Darksiders__onPostUpdateInterval.into_inner(),
-                gfc__Darksiders__processInputEvent.into_inner(),
-                gfc__MaterialCache__get.into_inner(),
-                gfc__MeshCache__getStaticMesh.into_inner(),
-                gfc__MeshCache__loadMesh.into_inner(),
-                gfc__Object3DCache__get.into_inner(),
-                gfc__ResourceCache__getResource.into_inner(),
-            ],
-        });
         *ON_POST_UPDATE_QUEUE.lock() = Some(VecDeque::new());
     }
 }
