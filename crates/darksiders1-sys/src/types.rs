@@ -202,8 +202,8 @@ pub struct keen__Event {
 
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__TlsfAllocator_ {
-    pub vfptr: *const keen__BaseMemoryAllocator_keen__TlsfAllocator___vftable,
     // keen__MemoryAllocator
+    pub vfptr: *const keen__BaseMemoryAllocator_keen__TlsfAllocator___vftable,
     // keen__BaseMemoryAllocator_keen__TlsfAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
@@ -287,8 +287,8 @@ pub struct keen__Thread {
 
 #[repr(C)]
 pub struct keen__TlsfMemoryAllocator {
-    pub vfptr: *const keen__TlsfMemoryAllocator__vftable,
     // keen__MemoryAllocator
+    pub vfptr: *const keen__TlsfMemoryAllocator__vftable,
     // keen__BaseMemoryAllocator_keen__TlsfAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
@@ -429,11 +429,10 @@ pub struct keen__UserAccountSystem {
     pub creationParameters: keen__UserAccountSystemCreationParameters,
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub runningOperations: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding: [u8; 24],
     // keen__UserAccountSystem
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub accounts: compile_error!("unimplemented feature: class layout 0x0"),
-    __pdbindgen_padding_2: [u8; 4256],
+    __pdbindgen_padding: [u8; 4280],
     pub accountCount: u32,
 }
 
@@ -2060,8 +2059,8 @@ pub struct keen__IoResult_unsigned___int64_ {
 
 #[repr(C)]
 pub struct keen__AliasPathFileDevice {
-    pub vfptr: *const keen__AliasPathFileDevice__vftable,
     // keen__FileDeviceInterface
+    pub vfptr: *const keen__AliasPathFileDevice__vftable,
     // keen__AliasPathFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__AliasPathFileDevice__StreamEntry_,
 }
@@ -2225,8 +2224,8 @@ pub struct keen__AliasPathFileDevice__vftable {
 
 #[repr(C)]
 pub struct keen__NativeFileDevice {
-    pub vfptr: *const keen__NativeFileDevice__vftable,
     // keen__FileDeviceInterface
+    pub vfptr: *const keen__NativeFileDevice__vftable,
     // keen__NativeFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__NativeFileDevice__FileStreamData_,
     pub m_readThreadContexts: keen__Array_keen__NativeFileDevice__ReadThreadContext_,
@@ -2408,8 +2407,8 @@ pub struct keen__NativeFileDevice__ReadThreadContext {
 
 #[repr(C)]
 pub struct keen__PakFileDevice {
-    pub vfptr: *const keen__PakFileDevice__vftable,
     // keen__FileDeviceInterface
+    pub vfptr: *const keen__PakFileDevice__vftable,
     // keen__PakFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__PakFileDevice__PakFileStream_,
     pub m_chunkAllocator: keen__TlsfMemoryAllocator,
@@ -2601,8 +2600,8 @@ pub struct keen__IoResult_unsigned_short_ {
 
 #[repr(C)]
 pub struct keen__MemoryFileDevice {
-    pub vfptr: *const keen__MemoryFileDevice__vftable,
     // keen__FileDeviceInterface
+    pub vfptr: *const keen__MemoryFileDevice__vftable,
     // keen__MemoryFileDevice
     pub m_streams: keen__FileStreamAllocator_keen__MemoryFileDevice__StreamEntry_,
     pub m_files: keen__Array_keen__MemoryFileDevice__FileEntry_,
@@ -2882,9 +2881,7 @@ pub struct keen__FileStreamAllocator_keen__NativeFileDevice__FileStreamData_ {
 #[repr(C)]
 pub struct keen__MemoryFileDeviceMountData {
     // keen__FileDeviceMountData
-    __pdbindgen_padding: [u8; 1],
     // keen__MemoryFileDeviceMountData
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub pAllocator: *mut keen__MemoryAllocator,
     pub fileHandle: u32,
 }
@@ -2923,8 +2920,8 @@ pub struct keen__IndexArray {
 
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__LowOverheadAllocator_ {
-    pub vfptr: *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator___vftable,
     // keen__MemoryAllocator
+    pub vfptr: *const keen__BaseMemoryAllocator_keen__LowOverheadAllocator___vftable,
     // keen__BaseMemoryAllocator_keen__LowOverheadAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
@@ -3126,8 +3123,8 @@ pub struct keen__Queue_keen__InputEvent_ {
 #[repr(C)]
 pub struct std__allocator_char_ {
     // std___Allocator_base_char_
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_char_
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_char_> for std__allocator_char_ {}
@@ -3140,11 +3137,10 @@ pub struct std___Container_base0 {
 #[repr(C)]
 pub struct std___String_val_char_std__allocator_char___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___String_val_char_std__allocator_char___
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
     pub _Bx: compile_error!("unimplemented feature: type kind 0x1506"),
-    __pdbindgen_padding_2: [u8; 15],
+    __pdbindgen_padding: [u8; 16],
     pub _Mysize: u32,
     pub _Myres: u32,
     pub _Alval: std__allocator_char_,
@@ -3160,8 +3156,8 @@ pub struct std__binary_function_gfc__HString_gfc__HString_bool_ {
 #[repr(C)]
 pub struct std__less_gfc__HString_ {
     // std__binary_function_gfc__HString_gfc__HString_bool_
-    __pdbindgen_padding: [u8; 1],
     // std__less_gfc__HString_
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std__binary_function_gfc__HString_gfc__HString_bool_>
@@ -3177,11 +3173,10 @@ pub struct std___Allocator_base_char_ {
 #[repr(C)]
 pub struct std__basic_string_char_std__char_traits_char__std__allocator_char___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___String_val_char_std__allocator_char___
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
     pub _Bx: compile_error!("unimplemented feature: type kind 0x1506"),
-    __pdbindgen_padding_2: [u8; 15],
+    __pdbindgen_padding: [u8; 16],
     pub _Mysize: u32,
     pub _Myres: u32,
     pub _Alval: std__allocator_char_,
@@ -3451,8 +3446,8 @@ pub struct gfc__ThreadSafeBool {
 
 #[repr(C)]
 pub struct gfc__InputStream {
-    pub vfptr: *const gfc__InputStream__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__InputStream__vftable,
     pub ReferenceCount: i32,
     // gfc__Stream
     // gfc__InputStream
@@ -3630,8 +3625,8 @@ pub struct gfc__Half {
 
 #[repr(C)]
 pub struct gfc__SoundDesc {
-    pub vfptr: *const gfc__SoundDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__SoundDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__SoundDesc
@@ -3736,8 +3731,8 @@ pub struct gfc__TFlags_unsigned_short_ {
 
 #[repr(C)]
 pub struct gfc__Resource {
-    pub vfptr: *const gfc__Resource__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Resource__vftable,
     pub ReferenceCount: i32,
     // gfc__Resource
     pub mState: i32,
@@ -3954,8 +3949,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Property__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Object {
-    pub vfptr: *const gfc__Object__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Object__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
 }
@@ -4045,8 +4040,8 @@ pub struct gfc__AutoRef_gfc__File_ {
 
 #[repr(C)]
 pub struct gfc__OutputStream {
-    pub vfptr: *const gfc__OutputStream__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__OutputStream__vftable,
     pub ReferenceCount: i32,
     // gfc__Stream
     // gfc__OutputStream
@@ -4111,8 +4106,8 @@ pub struct gfc__Mutex {
 
 #[repr(C)]
 pub struct gfc__Property {
-    pub vfptr: *const gfc__Property__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Property__vftable,
     pub ReferenceCount: i32,
     // gfc__Property
     pub mName: gfc__HString,
@@ -4372,8 +4367,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__ClassLoader__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Stream {
-    pub vfptr: *const gfc__Stream__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Stream__vftable,
     pub ReferenceCount: i32,
     // gfc__Stream
 }
@@ -4430,8 +4425,8 @@ pub struct gfc__AutoRef_gfc__Class_ {
 
 #[repr(C)]
 pub struct gfc__Class {
-    pub vfptr: *const gfc__Class__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Class__vftable,
     pub ReferenceCount: i32,
     // gfc__Class
     pub mParent: gfc__AutoRef_gfc__Class_,
@@ -4540,8 +4535,8 @@ pub struct gfc__Class__vftable {
 
 #[repr(C)]
 pub struct gfc__Environment {
-    pub vfptr: *const gfc__Environment__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Environment__vftable,
     pub ReferenceCount: i32,
     // gfc__Environment
     pub mParent: gfc__AutoRef_gfc__Environment_,
@@ -4579,8 +4574,8 @@ pub struct gfc__AutoRef_gfc__Constructor_ {
 
 #[repr(C)]
 pub struct gfc__Method {
-    pub vfptr: *const gfc__Method__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Method__vftable,
     pub ReferenceCount: i32,
     // gfc__Method
     pub mName: gfc__HString,
@@ -4690,9 +4685,7 @@ pub struct std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__W
 pub struct std__vector_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub _Myfirst: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Mylast: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Myend: *mut gfc__AutoRef_gfc__ImageSurface_,
@@ -4707,9 +4700,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std__vector_gfc__AutoRef_gfc_
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__AutoRef_gfc__Object___,
     // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
@@ -4731,9 +4722,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
@@ -4759,8 +4748,8 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Param
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____ {
     // std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_____
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl
@@ -4772,8 +4761,8 @@ unsafe impl
 #[repr(C)]
 pub struct std__less_gfc__AutoRef_gfc__Object___ {
     // std__binary_function_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__bool_
-    __pdbindgen_padding: [u8; 1],
     // std__less_gfc__AutoRef_gfc__Object___
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl
@@ -4786,9 +4775,7 @@ unsafe impl
 pub struct std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
 }
 
@@ -4804,8 +4791,8 @@ pub struct std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node_ {}
@@ -4827,9 +4814,7 @@ unsafe impl
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
@@ -4851,9 +4836,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_
 #[repr(C)]
 pub struct std__map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_______ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__Class___,
     // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
@@ -4896,9 +4879,7 @@ unsafe impl UpcastToNop<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Pa
 #[repr(C)]
 pub struct std__map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_______ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__AutoRef_gfc__Object___,
     // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
@@ -4923,9 +4904,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__AutoRef_gfc__Ob
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__AutoRef_gfc__Object___,
     // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
@@ -4952,9 +4931,7 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoR
 pub struct std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__Class___,
 }
 
@@ -4963,8 +4940,8 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__Class_
 #[repr(C)]
 pub struct std__allocator_gfc__AutoRef_gfc__ImageSurface___ {
     // std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_gfc__AutoRef_gfc__ImageSurface___
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___>
@@ -4975,9 +4952,7 @@ unsafe impl UpcastToNop<std___Allocator_base_gfc__AutoRef_gfc__ImageSurface___>
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__AutoRef_gfc__Object___,
     // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
@@ -4996,8 +4971,8 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_tra
 #[repr(C)]
 pub struct std__less_gfc__Class___ {
     // std__binary_function_gfc__Class___gfc__Class___bool_
-    __pdbindgen_padding: [u8; 1],
     // std__less_gfc__Class___
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std__binary_function_gfc__Class___gfc__Class___bool_>
@@ -5015,8 +4990,8 @@ pub struct std___Pair_base_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Ob
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node_ {}
@@ -5024,8 +4999,8 @@ unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gf
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____ {
     // std___Allocator_base_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent_____
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl
@@ -5039,9 +5014,7 @@ unsafe impl
 pub struct std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Vector_val_gfc__AutoRef_gfc__ImageSurface__std__allocator_gfc__AutoRef_gfc__ImageSurface_____
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub _Myfirst: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Mylast: *mut gfc__AutoRef_gfc__ImageSurface_,
     pub _Myend: *mut gfc__AutoRef_gfc__ImageSurface_,
@@ -5058,8 +5031,8 @@ pub struct std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__
 #[repr(C)]
 pub struct std__less_gfc__String_ {
     // std__binary_function_gfc__String_gfc__String_bool_
-    __pdbindgen_padding: [u8; 1],
     // std__less_gfc__String_
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std__binary_function_gfc__String_gfc__String_bool_>
@@ -5070,9 +5043,7 @@ unsafe impl UpcastToNop<std__binary_function_gfc__String_gfc__String_bool_>
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__Class___,
     // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
@@ -5094,9 +5065,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__Class___,
     // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
@@ -5122,9 +5091,7 @@ pub struct std__binary_function_gfc__String_gfc__String_bool_ {
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
@@ -5143,9 +5110,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_tra
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__Class___,
     // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
@@ -5170,9 +5135,7 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gf
 #[repr(C)]
 pub struct std__map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter_______ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
@@ -5204,8 +5167,8 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gf
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node_ {}
@@ -5219,8 +5182,8 @@ pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Parameter___ {
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {
     // std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____> for std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object_____ {}
@@ -5229,9 +5192,7 @@ unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__AutoRef_gfc__Object_
 pub struct std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__AutoRef_gfc__Object___,
 }
 
@@ -5327,8 +5288,8 @@ unsafe impl UpcastToNop<gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__C
 
 #[repr(C)]
 pub struct gfc__StaticMesh {
-    pub vfptr: *const gfc__StaticMesh__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__StaticMesh__vftable,
     pub ReferenceCount: i32,
     /* gfc__Mesh
      * gfc__StaticMesh */
@@ -5635,8 +5596,8 @@ pub struct gfc__AutoRef_gfc__RenderTexture_ {
 
 #[repr(C)]
 pub struct gfc__VertexBuffer {
-    pub vfptr: *const gfc__VertexBuffer__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__VertexBuffer__vftable,
     pub ReferenceCount: i32,
     // gfc__VertexBuffer
 }
@@ -5738,8 +5699,8 @@ pub struct gfc__Vector_gfc__UIRenderer__Clip_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__IndexBuffer {
-    pub vfptr: *const gfc__IndexBuffer__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__IndexBuffer__vftable,
     pub ReferenceCount: i32,
     // gfc__IndexBuffer
 }
@@ -5929,8 +5890,8 @@ pub struct gfc__AutoRef_gfc__RegionCell_ {
 
 #[repr(C)]
 pub struct gfc__FogDesc {
-    pub vfptr: *const gfc__FogDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__FogDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__EnvironmentDesc
@@ -6894,8 +6855,8 @@ pub struct gfc__AutoRef_gfc__AmbientDesc_ {
 
 #[repr(C)]
 pub struct gfc__Camera3D {
-    pub vfptr: *const gfc__Camera3D__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Camera3D__vftable,
     pub ReferenceCount: i32,
     // gfc__Camera3D
     pub mFrameID: i32,
@@ -7003,8 +6964,8 @@ pub struct gfc__Camera3D__vftable {
 
 #[repr(C)]
 pub struct gfc__DepthOfFieldDesc {
-    pub vfptr: *const gfc__DepthOfFieldDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__DepthOfFieldDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__EnvironmentDesc
@@ -7505,8 +7466,8 @@ pub struct gfc__Renderer__vftable {
 
 #[repr(C)]
 pub struct gfc__CameraBlurDesc {
-    pub vfptr: *const gfc__CameraBlurDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CameraBlurDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__EnvironmentDesc
@@ -7653,8 +7614,8 @@ pub struct gfc__Matrix3Row {
 
 #[repr(C)]
 pub struct gfc__Shader {
-    pub vfptr: *const gfc__Shader__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Shader__vftable,
     pub ReferenceCount: i32,
     // gfc__Shader
     pub mName: gfc__HString,
@@ -7865,8 +7826,8 @@ pub struct gfc__AutoRef_gfc__ShaderCompiler_ {
 
 #[repr(C)]
 pub struct gfc__WorldObject {
-    pub vfptr: *const gfc__WorldObject__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__WorldObject__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -8483,9 +8444,7 @@ pub struct gfc__PixelShaderInstanceData {
 #[repr(C)]
 pub struct gfc__Map_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class_____ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__Class___,
     // std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__WorldComponent__std__less_gfc__Class____std__allocator_std__pair_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent______0______Node,
@@ -8539,8 +8498,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Image {
-    pub vfptr: *const gfc__Image__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Image__vftable,
     pub ReferenceCount: i32,
     // gfc__Image
     pub mType: gfc__ImageType,
@@ -8571,8 +8530,8 @@ pub struct gfc__MatrixArrayPool {
 
 #[repr(C)]
 pub struct gfc__World {
-    pub vfptr: *const gfc__World__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__World__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__World
@@ -8712,8 +8671,8 @@ pub struct gfc__ObjectCloner {
 
 #[repr(C)]
 pub struct gfc__AmbientDesc {
-    pub vfptr: *const gfc__AmbientDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__AmbientDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__EnvironmentDesc
@@ -8826,8 +8785,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__DepthOfFieldDesc__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Texture {
-    pub vfptr: *const gfc__Texture__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Texture__vftable,
     pub ReferenceCount: i32,
     // gfc__Texture
     pub mName: gfc__HString,
@@ -8959,8 +8918,8 @@ pub struct gfc__AutoRef_gfc__Animation_ {
 
 #[repr(C)]
 pub struct gfc__WorldRegionData {
-    pub vfptr: *const gfc__WorldRegionData__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__WorldRegionData__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldRegionData
@@ -9065,8 +9024,8 @@ pub struct gfc__AutoRef_gfc__CameraBlurDesc_ {
 
 #[repr(C)]
 pub struct gfc__ByteOutputStream {
-    pub vfptr: *const gfc__ByteOutputStream__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__ByteOutputStream__vftable,
     pub ReferenceCount: i32,
     // gfc__Stream
     // gfc__OutputStream
@@ -9191,8 +9150,8 @@ pub struct gfc__AutoRef_gfc__ShaderContext_ {
 
 #[repr(C)]
 pub struct gfc__Mesh {
-    pub vfptr: *const gfc__Mesh__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Mesh__vftable,
     pub ReferenceCount: i32,
     // gfc__Mesh
 }
@@ -9307,8 +9266,8 @@ pub struct gfc__Mesh__Group {
 
 #[repr(C)]
 pub struct gfc__WorldRegion {
-    pub vfptr: *const gfc__WorldRegion__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__WorldRegion__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldRegion
@@ -9422,8 +9381,8 @@ pub struct gfc__Vector_gfc__RenderNode___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Parameter {
-    pub vfptr: *const gfc__Parameter__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Parameter__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Parameter
@@ -9682,8 +9641,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__HDRDesc__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__RegionLayerData {
-    pub vfptr: *const gfc__RegionLayerData__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__RegionLayerData__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__RegionLayerData
@@ -9781,8 +9740,8 @@ pub struct gfc__AutoRef_gfc__Texture_ {
 
 #[repr(C)]
 pub struct gfc__ObjectReader {
-    pub vfptr: *const gfc__ObjectReader__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__ObjectReader__vftable,
     pub ReferenceCount: i32,
     // gfc__ObjectReader
 }
@@ -9815,8 +9774,8 @@ pub struct gfc__ObjectReader__vftable {
 
 #[repr(C)]
 pub struct gfc__MaterialCache {
-    pub vfptr: *const gfc__MaterialCache__vftable,
     // gfc__ResourceCache
+    pub vfptr: *const gfc__MaterialCache__vftable,
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
     pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
@@ -9969,8 +9928,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__MeshInstance {
-    pub vfptr: *const gfc__MeshInstance__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__MeshInstance__vftable,
     pub ReferenceCount: i32,
     // gfc__MeshInstance
     pub mLocked: bool,
@@ -10038,8 +9997,8 @@ pub struct gfc__Quaternion {
 
 #[repr(C)]
 pub struct gfc__Material {
-    pub vfptr: *const gfc__Material__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Material__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Material
@@ -10246,8 +10205,8 @@ pub struct gfc__RenderNode {
 
 #[repr(C)]
 pub struct gfc__KGGraphics {
-    pub vfptr: *const gfc__KGGraphics__vftable,
     // gfc__Graphics
+    pub vfptr: *const gfc__KGGraphics__vftable,
     // gfc__KGGraphics
     #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
     pub m_destructors: compile_error!("unimplemented feature: class layout 0x0"),
@@ -11184,8 +11143,8 @@ pub struct gfc__DynamicRenderNode {
 
 #[repr(C)]
 pub struct gfc__Vector4Parameter {
-    pub vfptr: *const gfc__Vector4Parameter__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Vector4Parameter__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Parameter
@@ -11454,8 +11413,8 @@ pub struct gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__VertexDeclaration {
-    pub vfptr: *const gfc__VertexDeclaration__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__VertexDeclaration__vftable,
     pub ReferenceCount: i32,
     // gfc__VertexDeclaration
 }
@@ -11500,9 +11459,7 @@ pub struct gfc__DynMeshBuffer {
 #[repr(C)]
 pub struct gfc__Map_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object_____ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__AutoRef_gfc__Object___,
     // std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__AutoRef_gfc__Object__gfc__AutoRef_gfc__Object__std__less_gfc__AutoRef_gfc__Object____std__allocator_std__pair_gfc__AutoRef_gfc__Object__const__gfc__AutoRef_gfc__Object______0______Node,
@@ -11543,8 +11500,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__ByteInputStream {
-    pub vfptr: *const gfc__ByteInputStream__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__ByteInputStream__vftable,
     pub ReferenceCount: i32,
     // gfc__Stream
     // gfc__InputStream
@@ -11652,9 +11609,7 @@ pub struct gfc__ByteInputStream__vftable {
 #[repr(C)]
 pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Parameter__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Parameter______0______Node,
@@ -11689,12 +11644,12 @@ pub struct gfc__AutoRef_gfc__ParticleManager_ {
 
 #[repr(C)]
 pub struct gfc__Skeleton3D {
-    pub vfptr: *const gfc__Skeleton3D__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Skeleton3D__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__Hierarchical_gfc__Node3D___vftable,
     // gfc__Hierarchical_gfc__Node3D_
+    pub vfptr_2: *const gfc__Skeleton3D__vftable,
     pub mParent: *mut gfc__Node3D,
     pub mHead: gfc__AutoRef_gfc__Node3D_,
     pub mTail: gfc__AutoRef_gfc__Node3D_,
@@ -11794,12 +11749,12 @@ pub struct gfc__BoundingVolume {
 
 #[repr(C)]
 pub struct gfc__Node3D {
-    pub vfptr: *const gfc__Node3D__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Node3D__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__Hierarchical_gfc__Node3D___vftable,
     // gfc__Hierarchical_gfc__Node3D_
+    pub vfptr_2: *const gfc__Node3D__vftable,
     pub mParent: *mut gfc__Node3D,
     pub mHead: gfc__AutoRef_gfc__Node3D_,
     pub mTail: gfc__AutoRef_gfc__Node3D_,
@@ -11893,13 +11848,14 @@ pub struct gfc__Node3D___o {
 
 #[repr(C)]
 pub struct gfc__HDRDesc {
-    pub vfptr: *const gfc__HDRDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__HDRDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__EnvironmentDesc
     pub mApplied: bool,
     // gfc__HDRDesc
+    __pdbindgen_padding: [u8; 3],
     pub mToneMap: bool,
     pub mMidTone: f32,
     pub mMinToneMapMult: f32,
@@ -11998,8 +11954,8 @@ pub struct gfc__HDRDesc__vftable {
 
 #[repr(C)]
 pub struct gfc__EnvironmentDesc {
-    pub vfptr: *const gfc__EnvironmentDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__EnvironmentDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__EnvironmentDesc
@@ -12094,8 +12050,8 @@ pub struct gfc__EnvironmentDesc__vftable {
 
 #[repr(C)]
 pub struct keen__ZoneMemoryAllocator {
-    pub vfptr: *const keen__ZoneMemoryAllocator__vftable,
     // keen__MemoryAllocator
+    pub vfptr: *const keen__ZoneMemoryAllocator__vftable,
     // keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
@@ -12156,8 +12112,8 @@ pub struct keen__ZoneMemoryAllocator__vftable {
 
 #[repr(C)]
 pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_ {
-    pub vfptr: *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter___vftable,
     // keen__MemoryAllocator
+    pub vfptr: *const keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter___vftable,
     // keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],
@@ -12222,8 +12178,8 @@ pub struct keen__BaseMemoryAllocator_keen__ZoneAllocatorAdapter___vftable {
 
 #[repr(C)]
 pub struct keen__LowOverheadMemoryAllocator {
-    pub vfptr: *const keen__LowOverheadMemoryAllocator__vftable,
     // keen__MemoryAllocator
+    pub vfptr: *const keen__LowOverheadMemoryAllocator__vftable,
     // keen__BaseMemoryAllocator_keen__LowOverheadAllocator_
     pub m_mutex: keen__Mutex,
     pub m_name: [i8; 128],

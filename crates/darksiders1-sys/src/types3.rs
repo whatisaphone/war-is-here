@@ -11,8 +11,8 @@ pub struct gfc__AutoRef_gfc__Visual_ {
 
 #[repr(C)]
 pub struct gfc__WorldLight {
-    pub vfptr: *const gfc__WorldLight__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__WorldLight__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -670,12 +670,12 @@ pub struct gfc__AutoRef_gfc__RagdollBoneMapping_ {
 
 #[repr(C)]
 pub struct gfc__PhantomBody {
-    pub vfptr: *const gfc__PhantomBody__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__PhantomBody__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__CollisionObject__vftable,
     // gfc__CollisionObject
+    pub vfptr_2: *const gfc__PhantomBody__vftable,
     pub mCollisionManager: *mut gfc__CollisionManager,
     // gfc__Body
     pub mObject: *mut gfc__Object3D,
@@ -687,6 +687,7 @@ pub struct gfc__PhantomBody {
     pub mAutoActivate: bool,
     pub mBodyType: u8,
     // gfc__PhantomBody
+    __pdbindgen_padding: [u8; 4],
     pub mHavokShape: *mut hkpShape,
     pub mPhantom: *mut hkpShapePhantom,
     pub mLastNodeVersion: i32,
@@ -818,8 +819,8 @@ pub struct gfc__PhantomBody__vftable {
 
 #[repr(C)]
 pub struct gfc__RagdollMapper {
-    pub vfptr: *const gfc__RagdollMapper__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__RagdollMapper__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__RagdollMapper
@@ -968,8 +969,8 @@ pub struct hkpShapeBufferStorage {
 
 #[repr(C)]
 pub struct hkpCollisionAgent {
-    pub vfptr: *const hkpCollisionAgent__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpCollisionAgent__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpCollisionAgent
@@ -1151,8 +1152,8 @@ unsafe impl UpcastToNop<hkArrayBase_unsigned_int_>
 
 #[repr(C)]
 pub struct gfc__CShapeTerrainChunk {
-    pub vfptr: *const gfc__CShapeTerrainChunk__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeTerrainChunk__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -1329,8 +1330,8 @@ pub struct gfc__AutoRef_gfc__TerrainChunkLayer_ {
 
 #[repr(C)]
 pub struct gfc__CShapeTerrainNode {
-    pub vfptr: *const gfc__CShapeTerrainNode__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeTerrainNode__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -1704,13 +1705,13 @@ unsafe impl UpcastToNop<hkArrayBase_hkFourTransposedPointsf_>
 
 #[repr(C)]
 pub struct hkpNullBroadPhaseListener {
-    pub vfptr: *const hkpNullBroadPhaseListener__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpNullBroadPhaseListener__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
-    /* hkpBroadPhaseListener
-     * hkpNullBroadPhaseListener */
+    // hkpBroadPhaseListener
+    pub vfptr_2: *const hkpNullBroadPhaseListener__vftable,
+    // hkpNullBroadPhaseListener
 }
 
 unsafe impl UpcastToNop<hkReferencedObject> for hkpNullBroadPhaseListener {}
@@ -1801,8 +1802,8 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sampl
 
 #[repr(C)]
 pub struct hkpConvexVerticesShape {
-    pub vfptr: *const hkpConvexVerticesShape__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConvexVerticesShape__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkcdShape
@@ -2055,8 +2056,8 @@ pub struct hkpConvexVerticesShape__vftable {
 
 #[repr(C)]
 pub struct hkpAction {
-    pub vfptr: *const hkpAction__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpAction__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpAction
@@ -2292,8 +2293,8 @@ pub struct gfc__Vector_gfc__DebrisManager__Debris_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__CShapeTransform {
-    pub vfptr: *const gfc__CShapeTransform__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeTransform__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -2464,8 +2465,8 @@ pub struct gfc__CShapeTransform__vftable {
 
 #[repr(C)]
 pub struct gfc__CShapeCapsule {
-    pub vfptr: *const gfc__CShapeCapsule__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeCapsule__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -2638,8 +2639,8 @@ pub struct gfc__Vector_gfc__PhysMeshCache__ReloadInfo_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__PhysMeshCache {
-    pub vfptr: *const gfc__PhysMeshCache__vftable,
     // gfc__ResourceCache
+    pub vfptr: *const gfc__PhysMeshCache__vftable,
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
     pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
@@ -2804,8 +2805,8 @@ pub struct gfc__AutoRef_gfc__StaticObject_ {
 
 #[repr(C)]
 pub struct gfc__CShapeBox {
-    pub vfptr: *const gfc__CShapeBox__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeBox__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -2967,8 +2968,8 @@ pub struct gfc__CShapeBox__vftable {
 
 #[repr(C)]
 pub struct gfc__CShapeMesh {
-    pub vfptr: *const gfc__CShapeMesh__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeMesh__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -3145,8 +3146,8 @@ pub struct gfc__ExportCache {
 
 #[repr(C)]
 pub struct gfc__DebrisManager {
-    pub vfptr: *const gfc__DebrisManager__vftable,
     // gfc__ResourceListener
+    pub vfptr: *const gfc__DebrisManager__vftable,
     // gfc__DebrisManager
     pub mWorld: *mut gfc__World,
     pub mTime: f32,
@@ -3183,8 +3184,8 @@ pub struct gfc__DebrisManager__Debris {
 
 #[repr(C)]
 pub struct gfc__CShapeSphere {
-    pub vfptr: *const gfc__CShapeSphere__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeSphere__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -3353,8 +3354,8 @@ pub struct gfc__AutoRef_gfc__DebrisManagerDesc_ {
 
 #[repr(C)]
 pub struct gfc__CShapeCylinder {
-    pub vfptr: *const gfc__CShapeCylinder__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeCylinder__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -3691,8 +3692,8 @@ pub struct gfc__AutoRef_gfc__BezierCurve_ {
 
 #[repr(C)]
 pub struct gfc__PhysicsDetectRegion {
-    pub vfptr: *const gfc__PhysicsDetectRegion__vftable,
     // hkpWorldPostSimulationListener
+    pub vfptr: *const gfc__PhysicsDetectRegion__vftable,
     // gfc__PhysicsDetectRegion
     pub mPhantomOverlapListenerProxy: gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
     pub mWorld: *mut gfc__World,
@@ -3798,9 +3799,9 @@ pub struct gfc__PhysicsDetectRegion__BodyInfo {
 
 #[repr(C)]
 pub struct gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy {
+    // hkpPhantomOverlapListener
     pub vfptr: *const gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy__vftable,
-    /* hkpPhantomOverlapListener
-     * gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy */
+    // gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy
 }
 
 unsafe impl UpcastToNop<hkpPhantomOverlapListener>
@@ -3872,8 +3873,8 @@ pub struct gfc__Vector_gfc__TraversalWaypoint__UnreachableWaypoint_0_gfc__CAlloc
 
 #[repr(C)]
 pub struct gfc__TraversalWaypoint {
-    pub vfptr: *const gfc__TraversalWaypoint__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__TraversalWaypoint__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -4363,8 +4364,8 @@ pub struct gfc__TraversalWaypoint__UnreachableWaypoint {
 
 #[repr(C)]
 pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo {
-    pub vfptr: *const gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable,
     // gfc__SceneObject
+    pub vfptr: *const gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -4372,8 +4373,8 @@ pub struct gfc__TraversalWaypoint__TraversalWaypointGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__TraversalWaypoint__TraversalWaypointGizmo__vftable,
     pub mLocked: bool,
     // gfc__Gizmo
     pub mObject: *mut gfc__WorldObject,
@@ -4597,8 +4598,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__CShape__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__CShapeComposite {
-    pub vfptr: *const gfc__CShapeComposite__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShapeComposite__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -4768,8 +4769,8 @@ pub struct gfc__CShapeComposite__vftable {
 
 #[repr(C)]
 pub struct gfc__CollisionManager {
-    pub vfptr: *const gfc__CollisionManager__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CollisionManager__vftable,
     pub ReferenceCount: i32,
     // gfc__CollisionManager
     pub mObjects: gfc__Vector_gfc__CollisionObject___0_gfc__CAllocator_,
@@ -4836,8 +4837,8 @@ unsafe impl UpcastToNop<std___Pair_base_gfc__String_const__gfc__StateMapValue_>
 
 #[repr(C)]
 pub struct gfc__ModSysContainerModule {
-    pub vfptr: *const gfc__ModSysContainerModule__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__ModSysContainerModule__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__VisScriptEntity
@@ -4847,10 +4848,12 @@ pub struct gfc__ModSysContainerModule {
     pub mLocationY: i32,
     pub mModuleSystem: *mut gfc__ModuleSystem,
     // gfc__VisScriptModule
+    __pdbindgen_padding: [u8; 4],
     pub mEventLinks: gfc__Vector_gfc__ModuleEventLink_0_gfc__CAllocator_,
     pub mInputLinks: gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_,
     pub mVariableLinks: gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator_,
     // gfc__ModSysContainerModule
+    __pdbindgen_padding_2: [u8; 4],
     pub mEnable: bool,
     pub mIncludeName: gfc__HString,
     pub mInternalModuleSystem: gfc__AutoRef_gfc__ModuleSystem_,
@@ -5139,8 +5142,8 @@ pub struct gfc__AutoRef_gfc__ClassLoader_ {
 
 #[repr(C)]
 pub struct gfc__OOObjectWriter {
-    pub vfptr: *const gfc__OOObjectWriter__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__OOObjectWriter__vftable,
     pub ReferenceCount: i32,
     // gfc__ObjectWriter
     // gfc__OOObjectWriter
@@ -5174,8 +5177,8 @@ pub struct gfc__HashTable_gfc__HString_gfc__AutoRef_gfc__Class__gfc__Hash_unsign
 
 #[repr(C)]
 pub struct CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_ {
-    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable,
     // CCallbackBase
+    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0___vftable,
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
     // CCallbackImpl_24_
@@ -5237,8 +5240,8 @@ pub struct UserStatsReceived_t {
 
 #[repr(C)]
 pub struct CCallbackImpl_16_ {
-    pub vfptr: *const CCallbackImpl_16___vftable,
     // CCallbackBase
+    pub vfptr: *const CCallbackImpl_16___vftable,
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
     // CCallbackImpl_16_
@@ -5400,8 +5403,8 @@ pub struct keen__ISteamAchievementsCallback__vftable {
 
 #[repr(C)]
 pub struct keen__SteamStats {
-    pub vfptr: *const keen__SteamStats__vftable,
     // keen__ISteamStatsCallback
+    pub vfptr: *const keen__SteamStats__vftable,
     pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
     pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
     // keen__SteamStats
@@ -5451,12 +5454,12 @@ pub struct keen__Array_unit4__RankingBoardCacheEntry_ {
 
 #[repr(C)]
 pub struct keen__SteamAchievements {
-    pub vfptr: *const keen__SteamAchievements__vftable,
     // keen__ISteamAchievementsCallback
+    pub vfptr: *const keen__SteamAchievements__vftable,
     pub m_onUserAchievementStored:
         CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_,
-    pub vfptr_2: *const keen__ISteamStatsCallback__vftable,
     // keen__ISteamStatsCallback
+    pub vfptr_2: *const keen__SteamAchievements__vftable,
     pub m_onUserStatsReceived: CCallback_keen__ISteamStatsCallback_UserStatsReceived_t_0_,
     pub m_onUserStatsStored: CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_,
     // keen__SteamAchievements
@@ -5547,8 +5550,8 @@ pub struct UserStatsStored_t {
 
 #[repr(C)]
 pub struct CCallbackImpl_152_ {
-    pub vfptr: *const CCallbackImpl_152___vftable,
     // CCallbackBase
+    pub vfptr: *const CCallbackImpl_152___vftable,
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
     // CCallbackImpl_152_
@@ -5580,8 +5583,8 @@ pub struct CCallbackImpl_152___vftable {
 
 #[repr(C)]
 pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0_ {
-    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable,
     // CCallbackBase
+    pub vfptr: *const CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable,
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
     // CCallbackImpl_16_
@@ -5636,9 +5639,9 @@ pub struct CCallback_keen__ISteamStatsCallback_UserStatsStored_t_0___vftable {
 
 #[repr(C)]
 pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_ {
+    // CCallbackBase
     pub vfptr:
         *const CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0___vftable,
-    // CCallbackBase
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
     // CCallbackImpl_152_
@@ -5693,8 +5696,8 @@ pub struct CCallback_keen__ISteamAchievementsCallback_UserAchievementStored_t_0_
 
 #[repr(C)]
 pub struct CCallbackImpl_24_ {
-    pub vfptr: *const CCallbackImpl_24___vftable,
     // CCallbackBase
+    pub vfptr: *const CCallbackImpl_24___vftable,
     pub m_nCallbackFlags: u8,
     pub m_iCallback: i32,
     // CCallbackImpl_24_
@@ -6139,8 +6142,8 @@ pub struct gfc__AutoRef_gfc__CharacterClass_ {
 
 #[repr(C)]
 pub struct gfc__Character {
-    pub vfptr: *const gfc__Character__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Character__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -6186,10 +6189,12 @@ pub struct gfc__Character {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
     // gfc__Character
+    __pdbindgen_padding_2: [u8; 4],
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -6246,7 +6251,7 @@ pub struct gfc__Character {
     pub mOldMotionType: i32,
     pub mCharacterClass: gfc__AutoRef_gfc__CharacterClass_,
     pub mBodyRelativeVersion: i32,
-    __pdbindgen_padding: [u8; 4],
+    __pdbindgen_padding_3: [u8; 4],
     pub mOrientation: gfc__Matrix4,
     pub mOrientationInv: gfc__Matrix4,
     pub mLastBodyMatrix: gfc__Matrix4,
@@ -7163,8 +7168,8 @@ pub struct gfc__Character__PActor {
 
 #[repr(C)]
 pub struct gfc__Actor {
-    pub vfptr: *const gfc__Actor__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Actor__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -7856,8 +7861,8 @@ pub struct gfc__AutoRef_gfc__ActorDesc_ {
 
 #[repr(C)]
 pub struct gfc__GameCamera {
-    pub vfptr: *const gfc__GameCamera__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__GameCamera__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__ISynchronized
@@ -8047,8 +8052,8 @@ pub struct gfc__AutoRef_gfc__Item_ {
 
 #[repr(C)]
 pub struct gfc__TriggerRegion {
-    pub vfptr: *const gfc__TriggerRegion__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__TriggerRegion__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -8072,10 +8077,12 @@ pub struct gfc__TriggerRegion {
     pub mBounds: gfc__TBox_float_gfc__FloatMath_,
     pub mGizmo: *mut gfc__PhysicsShapeGizmo,
     // gfc__DetectorObject
+    __pdbindgen_padding: [u8; 4],
     pub mBodyType: u8,
     pub mRegion: *mut gfc__DetectorRegion,
     pub mEnabled: bool,
     // gfc__TriggerRegion
+    __pdbindgen_padding_2: [u8; 7],
     pub mFilterList: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mDefaultFilterList: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mNameFilter: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
@@ -8619,8 +8626,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__DetectorObject__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Player {
-    pub vfptr: *const gfc__Player__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Player__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -8666,10 +8673,12 @@ pub struct gfc__Player {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
     // gfc__Character
+    __pdbindgen_padding_2: [u8; 4],
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -8726,7 +8735,7 @@ pub struct gfc__Player {
     pub mOldMotionType: i32,
     pub mCharacterClass: gfc__AutoRef_gfc__CharacterClass_,
     pub mBodyRelativeVersion: i32,
-    __pdbindgen_padding: [u8; 4],
+    __pdbindgen_padding_3: [u8; 4],
     pub mOrientation: gfc__Matrix4,
     pub mOrientationInv: gfc__Matrix4,
     pub mLastBodyMatrix: gfc__Matrix4,
@@ -8745,8 +8754,8 @@ pub struct gfc__Player {
     pub mTexturePackage: gfc__HString,
     pub mDissolveTexture: gfc__HString,
     pub mDissolvePatternTexture: gfc__HString,
-    pub vfptr_2: *const gfc__ResourceListener__vftable,
     // gfc__ResourceListener
+    pub vfptr_2: *const gfc__Player__vftable,
     // gfc__Player
     pub mDoReinitTransitions: bool,
     pub mFrenzyItem: gfc__AutoRef_gfc__FrenzyItem_,
@@ -8783,7 +8792,7 @@ pub struct gfc__Player {
     pub mHavocFormEnabled: bool,
     pub mHavocFormDecayRate: i32,
     pub mDelayedSwapDirection: i32,
-    __pdbindgen_padding_2: [u8; 4],
+    __pdbindgen_padding_4: [u8; 4],
     pub mMoveInput: gfc__MoveInput,
     pub mSaveData_2: gfc__AutoRef_gfc__PlayerSaveData_,
     pub mSaveDataStored: gfc__AutoRef_gfc__PlayerSaveData_,
@@ -8830,7 +8839,7 @@ pub struct gfc__Player {
     pub mNumSecondaryToggleQueued: i32,
     pub mLastEquippedTime: f32,
     pub mHitPauseTime: f32,
-    __pdbindgen_padding_3: [u8; 12],
+    __pdbindgen_padding_5: [u8; 12],
 }
 
 unsafe impl UpcastToNop<gfc__Character> for gfc__Player {}
@@ -9716,8 +9725,8 @@ pub struct gfc__Player__vftable {
 
 #[repr(C)]
 pub struct gfc__CharacterDoInteractiveDesc {
-    pub vfptr: *const gfc__CharacterDoInteractiveDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CharacterDoInteractiveDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CharMoveStateDesc
@@ -10017,8 +10026,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__HavokWeaponProxy__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Mount {
-    pub vfptr: *const gfc__Mount__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Mount__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -10064,10 +10073,12 @@ pub struct gfc__Mount {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
     // gfc__Character
+    __pdbindgen_padding_2: [u8; 4],
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -10124,7 +10135,7 @@ pub struct gfc__Mount {
     pub mOldMotionType: i32,
     pub mCharacterClass: gfc__AutoRef_gfc__CharacterClass_,
     pub mBodyRelativeVersion: i32,
-    __pdbindgen_padding: [u8; 4],
+    __pdbindgen_padding_3: [u8; 4],
     pub mOrientation: gfc__Matrix4,
     pub mOrientationInv: gfc__Matrix4,
     pub mLastBodyMatrix: gfc__Matrix4,
@@ -10145,7 +10156,7 @@ pub struct gfc__Mount {
     pub mDissolvePatternTexture: gfc__HString,
     // gfc__Mount
     pub mPlayer: gfc__AutoRef_gfc__Player_,
-    __pdbindgen_padding_2: [u8; 12],
+    __pdbindgen_padding_4: [u8; 12],
 }
 
 unsafe impl UpcastToNop<gfc__Character> for gfc__Mount {}
@@ -11176,8 +11187,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Player__HairSim__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__KinematicActor {
-    pub vfptr: *const gfc__KinematicActor__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__KinematicActor__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -11223,6 +11234,7 @@ pub struct gfc__KinematicActor {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
@@ -11915,8 +11927,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__AutoJumpSolver__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__CharMoveStateDesc {
-    pub vfptr: *const gfc__CharMoveStateDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CharMoveStateDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CharMoveStateDesc
@@ -12083,8 +12095,8 @@ pub struct gfc__AutoRef_gfc__AnimController_ {
 
 #[repr(C)]
 pub struct gfc__HitInfo {
-    pub vfptr: *const gfc__HitInfo__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__HitInfo__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__HitInfo
@@ -12383,8 +12395,8 @@ pub struct gfc__AutoRef_gfc__CollisionPhantom_ {
 
 #[repr(C)]
 pub struct gfc__DetectorRegion {
-    pub vfptr: *const gfc__DetectorRegion__vftable,
     // hkpWorldPostSimulationListener
+    pub vfptr: *const gfc__DetectorRegion__vftable,
     // gfc__PhysicsDetectRegion
     pub mPhantomOverlapListenerProxy: gfc__PhysicsDetectRegion__PhantomOverlapListenerProxy,
     pub mWorld: *mut gfc__World,
@@ -12496,8 +12508,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__InteractiveTransition__0_gfc__CAllocato
 
 #[repr(C)]
 pub struct gfc__Inventory {
-    pub vfptr: *const gfc__Inventory__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Inventory__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Inventory
@@ -12578,8 +12590,8 @@ pub struct gfc__Inventory__vftable {
 
 #[repr(C)]
 pub struct gfc__Container {
-    pub vfptr: *const gfc__Container__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Container__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Container
@@ -12681,8 +12693,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Item__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__WindowHelper {
-    pub vfptr: *const gfc__WindowHelper__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__WindowHelper__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Helper
@@ -12791,8 +12803,8 @@ pub struct gfc__WindowHelper__vftable {
 
 #[repr(C)]
 pub struct gfc__EquippableItem {
-    pub vfptr: *const gfc__EquippableItem__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__EquippableItem__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -12838,10 +12850,12 @@ pub struct gfc__EquippableItem {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
     // gfc__Item
+    __pdbindgen_padding_2: [u8; 4],
     pub mValid: bool,
     pub mAutoPersist: bool,
     pub mInfoID: u32,
@@ -13736,8 +13750,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc___UIControl__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__TeleportHelper {
-    pub vfptr: *const gfc__TeleportHelper__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__TeleportHelper__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Helper
@@ -13844,12 +13858,12 @@ pub struct gfc__TeleportHelper__vftable {
 
 #[repr(C)]
 pub struct gfc__Hud {
-    pub vfptr: *const gfc__Hud__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Hud__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__Hierarchical_gfc___UIControl___vftable,
     // gfc__Hierarchical_gfc___UIControl_
+    pub vfptr_2: *const gfc__Hud__vftable,
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
     pub mTail: gfc__AutoRef_gfc___UIControl_,
@@ -13892,6 +13906,7 @@ pub struct gfc__Hud {
     pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
     // gfc__UIScriptControl
     // gfc__Hud
+    __pdbindgen_padding: [u8; 4],
     pub mHudGearID: i32,
     pub mHudSoulsID: i32,
     pub mHudTextID: i32,
@@ -14483,8 +14498,8 @@ pub struct gfc__AutoRef_gfc__HudChallengeCounterData_ {
 
 #[repr(C)]
 pub struct gfc__DraggableActor {
-    pub vfptr: *const gfc__DraggableActor__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__DraggableActor__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -14530,10 +14545,12 @@ pub struct gfc__DraggableActor {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
     // gfc__Character
+    __pdbindgen_padding_2: [u8; 4],
     pub mHitPoints: f32,
     pub mMoveDir: f32,
     pub mSpeed: f32,
@@ -14590,7 +14607,7 @@ pub struct gfc__DraggableActor {
     pub mOldMotionType: i32,
     pub mCharacterClass: gfc__AutoRef_gfc__CharacterClass_,
     pub mBodyRelativeVersion: i32,
-    __pdbindgen_padding: [u8; 4],
+    __pdbindgen_padding_3: [u8; 4],
     pub mOrientation: gfc__Matrix4,
     pub mOrientationInv: gfc__Matrix4,
     pub mLastBodyMatrix: gfc__Matrix4,
@@ -14623,7 +14640,7 @@ pub struct gfc__DraggableActor {
     pub mGlobalDragInfo: gfc__AutoRef_gfc__DraggableActorInfo_,
     pub mGrabNodes: gfc__Vector_gfc__Node3D___0_gfc__CAllocator_,
     pub mVfxNodes: gfc__Vector_gfc__Node3D___0_gfc__CAllocator_,
-    __pdbindgen_padding_2: [u8; 12],
+    __pdbindgen_padding_4: [u8; 12],
 }
 
 unsafe impl UpcastToNop<gfc__Character> for gfc__DraggableActor {}
@@ -15565,8 +15582,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__WeaponEnhancement__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__DSUIManager {
-    pub vfptr: *const gfc__DSUIManager__vftable,
     // gfc___UIManager
+    pub vfptr: *const gfc__DSUIManager__vftable,
     __pdbindgen_padding: [u8; 12],
     pub mUIRenderer: gfc__UIRenderer,
     pub mDimensions: gfc__TVector2_int_gfc__FloatMath_,
@@ -15593,8 +15610,8 @@ pub struct gfc__DSUIManager {
     pub mCrosshairScale: gfc__TVector2_float_gfc__FloatMath_,
     pub mIsIterating: bool,
     pub mResized: bool,
-    __pdbindgen_padding_2: [u8; 6],
     // gfc__DSUIManager
+    __pdbindgen_padding_2: [u8; 6],
     pub mSounds: gfc__AutoRef_gfc__SoundList_,
     pub mHUD: *mut gfc__Hud,
     pub mHiddenCount: i32,
@@ -15702,8 +15719,8 @@ pub struct gfc__DSUIManager__vftable {
 
 #[repr(C)]
 pub struct gfc__Weapon {
-    pub vfptr: *const gfc__Weapon__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Weapon__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -15749,10 +15766,12 @@ pub struct gfc__Weapon {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
     // gfc__Item
+    __pdbindgen_padding_2: [u8; 4],
     pub mValid: bool,
     pub mAutoPersist: bool,
     pub mInfoID: u32,
@@ -15776,6 +15795,7 @@ pub struct gfc__Weapon {
     pub mIsVisible: bool,
     pub mPreviousMountPoint: i32,
     // gfc__Weapon
+    __pdbindgen_padding_3: [u8; 4],
     pub mExperience: f32,
     pub mLevel: i32,
     pub mAllowEnhancements: bool,
@@ -16715,8 +16735,8 @@ pub struct gfc__Weapon__vftable {
 
 #[repr(C)]
 pub struct gfc__Item {
-    pub vfptr: *const gfc__Item__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Item__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -16762,10 +16782,12 @@ pub struct gfc__Item {
     pub mChildActorsDeprecated: gfc__Vector_gfc__AutoRef_gfc__Actor__0_gfc__CAllocator_,
     pub mPreviousFactionID: i32,
     // gfc__KinematicActor
+    __pdbindgen_padding: [u8; 4],
     pub mAnimController: gfc__AutoRef_gfc__AnimController_,
     pub mAnimControllers: List_gfc__KinematicActor__KAnimation_,
     pub mAnimIDGenerator: i32,
     // gfc__Item
+    __pdbindgen_padding_2: [u8; 4],
     pub mValid: bool,
     pub mAutoPersist: bool,
     pub mInfoID: u32,
@@ -17525,12 +17547,12 @@ pub struct gfc__Item__vftable {
 
 #[repr(C)]
 pub struct gfc__UIScriptControl {
-    pub vfptr: *const gfc__UIScriptControl__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__UIScriptControl__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__Hierarchical_gfc___UIControl___vftable,
     // gfc__Hierarchical_gfc___UIControl_
+    pub vfptr_2: *const gfc__UIScriptControl__vftable,
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
     pub mTail: gfc__AutoRef_gfc___UIControl_,
@@ -18174,8 +18196,8 @@ pub struct gfc__AutoRef_gfc__LiquidRegionDesc_ {
 
 #[repr(C)]
 pub struct gfc__PhysicsShapeGizmo {
-    pub vfptr: *const gfc__PhysicsShapeGizmo__vftable,
     // gfc__SceneObject
+    pub vfptr: *const gfc__PhysicsShapeGizmo__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -18183,8 +18205,8 @@ pub struct gfc__PhysicsShapeGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__PhysicsShapeGizmo__vftable,
     pub mLocked: bool,
     // gfc__PhysicsShapeGizmo
     pub mObject: *mut gfc__PhysicsShapeObject,
@@ -18469,12 +18491,12 @@ pub struct gfc__AutoRef_gfc__InteractiveTransition_ {
 
 #[repr(C)]
 pub struct gfc__LoadMapMenu {
-    pub vfptr: *const gfc__LoadMapMenu__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__LoadMapMenu__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__Hierarchical_gfc___UIControl___vftable,
     // gfc__Hierarchical_gfc___UIControl_
+    pub vfptr_2: *const gfc__LoadMapMenu__vftable,
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
     pub mTail: gfc__AutoRef_gfc___UIControl_,
@@ -18516,6 +18538,7 @@ pub struct gfc__LoadMapMenu {
     pub mFirstDraw: bool,
     pub mLastDialogResult: gfc__AutoRef_gfc__Value_,
     // gfc__LoadMapMenu
+    __pdbindgen_padding: [u8; 4],
     pub mListItems: gfc__Vector_gfc__String_0_gfc__CAllocator_,
     pub mMaps: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mSelectedMapType: i32,
@@ -19117,8 +19140,8 @@ pub struct gfc__AutoRef_gfc__Query_ {
 
 #[repr(C)]
 pub struct gfc__KGMeshCache {
-    pub vfptr: *const gfc__KGMeshCache__vftable,
     // gfc__ResourceCache
+    pub vfptr: *const gfc__KGMeshCache__vftable,
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
     pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
@@ -19737,8 +19760,8 @@ pub struct hkcdVertex {
     // hkVector4f
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
     pub m_quad: compile_error!("unimplemented feature: type kind 0x1506"),
-    __pdbindgen_padding: [u8; 16],
     // hkcdVertex
+    __pdbindgen_padding: [u8; 16],
 }
 
 unsafe impl UpcastToNop<hkVector4f> for hkcdVertex {}
@@ -19780,8 +19803,8 @@ pub struct hkSphere {
 
 #[repr(C)]
 pub struct hkcdShape {
-    pub vfptr: *const hkcdShape__vftable,
     // hkBaseObject
+    pub vfptr: *const hkcdShape__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkcdShape
@@ -19839,8 +19862,8 @@ pub struct hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_c
 
 #[repr(C)]
 pub struct hkReferencedObject {
-    pub vfptr: *const hkReferencedObject__vftable,
     // hkBaseObject
+    pub vfptr: *const hkReferencedObject__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
 }
@@ -19918,8 +19941,8 @@ pub struct hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_ {
 
 #[repr(C)]
 pub struct hkpConstraintData {
-    pub vfptr: *const hkpConstraintData__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConstraintData__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConstraintData
@@ -20250,8 +20273,8 @@ pub struct hkpShapeContainer__vftable {
 
 #[repr(C)]
 pub struct hkpBvTreeShape {
-    pub vfptr: *const hkpBvTreeShape__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBvTreeShape__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkcdShape
@@ -20525,8 +20548,8 @@ pub struct hkpLinearCastInput {
 
 #[repr(C)]
 pub struct hkpBroadPhase {
-    pub vfptr: *const hkpBroadPhase__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBroadPhase__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpBroadPhase
@@ -20957,18 +20980,18 @@ pub struct hkpBroadPhase__hkpCastAabbInput {
 
 #[repr(C)]
 pub struct hkpCollisionFilter {
-    pub vfptr: *const hkpCollisionFilter__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpCollisionFilter__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpCollidableCollidableFilter__vftable,
     // hkpCollidableCollidableFilter
-    pub vfptr_3: *const hkpShapeCollectionFilter__vftable,
+    pub vfptr_2: *const hkpCollisionFilter__vftable,
     // hkpShapeCollectionFilter
-    pub vfptr_4: *const hkpRayShapeCollectionFilter__vftable,
+    pub vfptr_3: *const hkpCollisionFilter__vftable,
     // hkpRayShapeCollectionFilter
-    pub vfptr_5: *const hkpRayCollidableFilter__vftable,
+    pub vfptr_4: *const hkpCollisionFilter__vftable,
     // hkpRayCollidableFilter
+    pub vfptr_5: *const hkpCollisionFilter__vftable,
     // hkpCollisionFilter
     pub m_prepad: [u32; 2],
     pub m_type: hkEnum_enum_hkpCollisionFilter__hkpFilterType_unsigned_int_,
@@ -21088,8 +21111,8 @@ pub struct hkpCdPoint {
 
 #[repr(C)]
 pub struct hkpSphereRepShape {
-    pub vfptr: *const hkpSphereRepShape__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpSphereRepShape__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkcdShape
@@ -21306,8 +21329,8 @@ pub struct hkpSphereRepShape__vftable {
 
 #[repr(C)]
 pub struct hkpConvexShape {
-    pub vfptr: *const hkpConvexShape__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConvexShape__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkcdShape
@@ -21573,8 +21596,8 @@ pub struct hkpAabbCastCollector__vftable {
 
 #[repr(C)]
 pub struct hkpConvexVerticesConnectivity {
-    pub vfptr: *const hkpConvexVerticesConnectivity__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConvexVerticesConnectivity__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConvexVerticesConnectivity
@@ -21623,8 +21646,8 @@ pub struct hkpConvexVerticesConnectivity__vftable {
 
 #[repr(C)]
 pub struct hkpConvexListFilter {
-    pub vfptr: *const hkpConvexListFilter__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConvexListFilter__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConvexListFilter
@@ -21698,8 +21721,8 @@ pub struct hkpCollidableAddedEvent {
 
 #[repr(C)]
 pub struct hkpPhantom {
-    pub vfptr: *const hkpPhantom__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpPhantom__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorldObject
@@ -21830,8 +21853,8 @@ pub struct hkpPhantom__vftable {
 
 #[repr(C)]
 pub struct hkpWorld {
-    pub vfptr: *const hkpWorld__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpWorld__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorld
@@ -21979,8 +22002,8 @@ pub struct hkEnum_enum_hkpWorldCinfo__SimulationType_int_ {
 
 #[repr(C)]
 pub struct hkpRigidBody {
-    pub vfptr: *const hkpRigidBody__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpRigidBody__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorldObject
@@ -22014,8 +22037,8 @@ pub struct hkpRigidBody {
     pub m_localFrame: hkRefPtr_hkLocalFrame_,
     pub m_extendedListeners: *mut hkpEntity__ExtendedListeners,
     pub m_npData: u32,
-    __pdbindgen_padding_2: [u8; 4],
     // hkpRigidBody
+    __pdbindgen_padding_2: [u8; 4],
 }
 
 unsafe impl UpcastToNop<hkpEntity> for hkpRigidBody {}
@@ -22104,8 +22127,8 @@ pub struct hkpAgentNnTrack {
 
 #[repr(C)]
 pub struct hkpSimulationIsland {
-    pub vfptr: *const hkpSimulationIsland__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpSimulationIsland__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConstraintOwner
@@ -22243,8 +22266,8 @@ unsafe impl UpcastToNop<hkpCollisionEvent> for hkpContactPointEvent {}
 
 #[repr(C)]
 pub struct hkpDynamicsContactMgr {
-    pub vfptr: *const hkpDynamicsContactMgr__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpDynamicsContactMgr__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpContactMgr
@@ -22552,8 +22575,8 @@ unsafe impl UpcastToNop<hkpConstraintAtom> for hkpModifierConstraintAtom {}
 
 #[repr(C)]
 pub struct hkpSimpleConstraintContactMgr {
-    pub vfptr: *const hkpSimpleConstraintContactMgr__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpSimpleConstraintContactMgr__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpContactMgr
@@ -22899,9 +22922,9 @@ pub struct hkEnum_enum_hkpContactPointAddedEvent__Type_int_ {
 
 #[repr(C)]
 pub struct hkpCollisionListener {
+    // hkpContactListener
     pub vfptr: *const hkpCollisionListener__vftable,
-    /* hkpContactListener
-     * hkpCollisionListener */
+    // hkpCollisionListener
 }
 
 unsafe impl UpcastToNop<hkpContactListener> for hkpCollisionListener {}
@@ -23038,8 +23061,8 @@ pub struct hkpCollisionInput {
 
 #[repr(C)]
 pub struct hkThreadPool {
-    pub vfptr: *const hkThreadPool__vftable,
     // hkBaseObject
+    pub vfptr: *const hkThreadPool__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkThreadPool
@@ -23203,8 +23226,8 @@ pub struct hkpCollisionDispatcher__ShapeInheritance {
 
 #[repr(C)]
 pub struct hkpBreakableMaterial {
-    pub vfptr: *const hkpBreakableMaterial__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBreakableMaterial__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpBreakableMaterial

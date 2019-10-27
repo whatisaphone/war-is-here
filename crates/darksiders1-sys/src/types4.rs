@@ -11,8 +11,8 @@ pub struct hkRefPtr_hkpBreakableMaterial_ {
 
 #[repr(C)]
 pub struct hkpBreakableShape {
-    pub vfptr: *const hkpBreakableShape__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBreakableShape__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpBreakableShape
@@ -57,8 +57,8 @@ pub struct hkRefPtr_hkcdShape_const__ {
 
 #[repr(C)]
 pub struct hkpBreakableBody {
-    pub vfptr: *const hkpBreakableBody__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBreakableBody__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpBreakableBody
@@ -111,8 +111,8 @@ pub struct hkpBreakableBody__vftable {
 
 #[repr(C)]
 pub struct hkpBreakableBody__Controller {
-    pub vfptr: *const hkpBreakableBody__Controller__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBreakableBody__Controller__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpBreakableBody__Controller
@@ -214,8 +214,8 @@ pub struct hkWorldOperation__BaseOperation {
 
 #[repr(C)]
 pub struct hkpBodyOperation {
-    pub vfptr: *const hkpBodyOperation__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBodyOperation__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpBodyOperation
@@ -266,8 +266,8 @@ pub struct hkpBodyOperation__vftable {
 
 #[repr(C)]
 pub struct hkpSimulation {
-    pub vfptr: *const hkpSimulation__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpSimulation__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpSimulation
@@ -536,8 +536,8 @@ pub struct hkEnum_enum_hkpSimulation__LastProcessingStep_unsigned_char_ {
 
 #[repr(C)]
 pub struct hkpConstraintTrackerData {
-    pub vfptr: *const hkpConstraintTrackerData__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConstraintTrackerData__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConstraintTrackerData
@@ -692,8 +692,8 @@ pub struct hkContactPointMaterial {
 
 #[repr(C)]
 pub struct hkpShapePhantom {
-    pub vfptr: *const hkpShapePhantom__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpShapePhantom__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorldObject
@@ -902,8 +902,8 @@ pub struct hkpCollisionDispatcher {
 #[cfg(pdb_issue = "error in field m_debugAgent2Table")]
 #[repr(C)]
 pub struct hkpCollisionDispatcher {
-    pub vfptr: *const hkpCollisionDispatcher__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpCollisionDispatcher__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpCollisionDispatcher
@@ -993,16 +993,16 @@ pub struct hkpCollisionDispatcher__vftable {
 
 #[repr(C)]
 pub struct hkpBroadPhaseBorder {
-    pub vfptr: *const hkpBroadPhaseBorder__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBroadPhaseBorder__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpWorldDeletionListener__vftable,
     // hkpWorldDeletionListener
-    pub vfptr_3: *const hkpPhantomOverlapListener__vftable,
+    pub vfptr_2: *const hkpBroadPhaseBorder__vftable,
     // hkpPhantomOverlapListener
-    pub vfptr_4: *const hkpWorldPostSimulationListener__vftable,
+    pub vfptr_3: *const hkpBroadPhaseBorder__vftable,
     // hkpWorldPostSimulationListener
+    pub vfptr_4: *const hkpBroadPhaseBorder__vftable,
     // hkpBroadPhaseBorder
     pub m_world: *mut hkpWorld,
     pub m_phantoms: [*mut hkpPhantom; 6],
@@ -1143,8 +1143,8 @@ pub struct hkpToiEvent {
 
 #[repr(C)]
 pub struct hkpContinuousSimulation {
-    pub vfptr: *const hkpContinuousSimulation__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpContinuousSimulation__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpSimulation
@@ -1500,13 +1500,13 @@ pub struct hkArrayBase_short_ {
 
 #[repr(C)]
 pub struct hkpPhantomBroadPhaseListener {
-    pub vfptr: *const hkpPhantomBroadPhaseListener__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpPhantomBroadPhaseListener__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
-    /* hkpBroadPhaseListener
-     * hkpPhantomBroadPhaseListener */
+    // hkpBroadPhaseListener
+    pub vfptr_2: *const hkpPhantomBroadPhaseListener__vftable,
+    // hkpPhantomBroadPhaseListener
 }
 
 unsafe impl UpcastToNop<hkReferencedObject> for hkpPhantomBroadPhaseListener {}
@@ -1558,8 +1558,8 @@ pub struct hkpPhantomBroadPhaseListener__vftable {
 
 #[repr(C)]
 pub struct hkpContactMgr {
-    pub vfptr: *const hkpContactMgr__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpContactMgr__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpContactMgr
@@ -1715,8 +1715,8 @@ pub struct hkpContactMgr__vftable {
 
 #[repr(C)]
 pub struct hkpWorldExtension {
-    pub vfptr: *const hkpWorldExtension__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpWorldExtension__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorldExtension
@@ -1803,8 +1803,8 @@ pub struct hkViewPtr_hkpConstraintInstance_ {
 
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation {
-    pub vfptr: *const hkpMultiThreadedSimulation__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpMultiThreadedSimulation__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpSimulation
@@ -2122,8 +2122,8 @@ pub struct hkpMultiThreadedSimulation__vftable {
 
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener {
-    pub vfptr: *const hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener__vftable,
     // hkpBroadPhaseListener
+    pub vfptr: *const hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener__vftable,
     // hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener
     pub m_simulation: *mut hkpMultiThreadedSimulation,
 }
@@ -2168,8 +2168,8 @@ pub struct hkpMultiThreadedSimulation__MtEntityEntityBroadPhaseListener__vftable
 
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener {
-    pub vfptr: *const hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener__vftable,
     // hkpBroadPhaseListener
+    pub vfptr: *const hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener__vftable,
     // hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener
     pub m_criticalSection: *mut hkCriticalSection,
 }
@@ -2214,8 +2214,8 @@ pub struct hkpMultiThreadedSimulation__MtPhantomBroadPhaseListener__vftable {
 
 #[repr(C)]
 pub struct hkpMultiThreadedSimulation__MtBroadPhaseBorderListener {
-    pub vfptr: *const hkpMultiThreadedSimulation__MtBroadPhaseBorderListener__vftable,
     // hkpBroadPhaseListener
+    pub vfptr: *const hkpMultiThreadedSimulation__MtBroadPhaseBorderListener__vftable,
     // hkpMultiThreadedSimulation__MtBroadPhaseBorderListener
     pub m_criticalSection: *mut hkCriticalSection,
 }
@@ -2327,8 +2327,8 @@ pub struct hkpShapeRayBundleCastOutput {
 
 #[repr(C)]
 pub struct hkpWorldMaintenanceMgr {
-    pub vfptr: *const hkpWorldMaintenanceMgr__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpWorldMaintenanceMgr__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorldMaintenanceMgr
@@ -2401,12 +2401,12 @@ pub struct hkpWorldMaintenanceMgr__vftable {
 
 #[repr(C)]
 pub struct hkpEntityEntityBroadPhaseListener {
-    pub vfptr: *const hkpEntityEntityBroadPhaseListener__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpEntityEntityBroadPhaseListener__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
     // hkpBroadPhaseListener
+    pub vfptr_2: *const hkpEntityEntityBroadPhaseListener__vftable,
     // hkpEntityEntityBroadPhaseListener
     pub m_world: *mut hkpWorld,
 }
@@ -2462,13 +2462,13 @@ pub struct hkpEntityEntityBroadPhaseListener__vftable {
 
 #[repr(C)]
 pub struct hkpBroadPhaseBorderListener {
-    pub vfptr: *const hkpBroadPhaseBorderListener__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpBroadPhaseBorderListener__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
-    pub vfptr_2: *const hkpBroadPhaseListener__vftable,
-    /* hkpBroadPhaseListener
-     * hkpBroadPhaseBorderListener */
+    // hkpBroadPhaseListener
+    pub vfptr_2: *const hkpBroadPhaseBorderListener__vftable,
+    // hkpBroadPhaseBorderListener
 }
 
 unsafe impl UpcastToNop<hkReferencedObject> for hkpBroadPhaseBorderListener {}
@@ -2520,8 +2520,8 @@ pub struct hkpBroadPhaseBorderListener__vftable {
 
 #[repr(C)]
 pub struct hkpToiResourceMgr {
-    pub vfptr: *const hkpToiResourceMgr__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpToiResourceMgr__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpToiResourceMgr
@@ -2836,8 +2836,8 @@ pub struct hkpIslandPostIntegrateListener__vftable {
 
 #[repr(C)]
 pub struct hkpEntity {
-    pub vfptr: *const hkpEntity__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpEntity__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorldObject
@@ -2958,8 +2958,8 @@ pub struct hkEnum_enum_hkpConstraintInstance__InstanceType_unsigned_char_ {
 
 #[repr(C)]
 pub struct hkpConstraintInstance {
-    pub vfptr: *const hkpConstraintInstance__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConstraintInstance__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConstraintInstance
@@ -3038,8 +3038,8 @@ pub struct hkpConstraintInstance__vftable {
 
 #[repr(C)]
 pub struct hkpShapeBase {
-    pub vfptr: *const hkpShapeBase__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpShapeBase__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkcdShape
@@ -3222,8 +3222,8 @@ pub struct hkpShapeBase__vftable {
 
 #[repr(C)]
 pub struct hkpMotion {
-    pub vfptr: *const hkpMotion__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpMotion__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpMotion
@@ -3476,8 +3476,8 @@ pub struct hkEnum_enum_hkpMaterial__ResponseType_signed_char_ {
 
 #[repr(C)]
 pub struct hkpWorldObject {
-    pub vfptr: *const hkpWorldObject__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpWorldObject__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpWorldObject
@@ -3554,8 +3554,8 @@ pub struct hkEnum_enum_hkpConstraintInstance__ConstraintPriority_unsigned_char_ 
 
 #[repr(C)]
 pub struct hkpShape {
-    pub vfptr: *const hkpShape__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpShape__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkcdShape

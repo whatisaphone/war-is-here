@@ -25,8 +25,8 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__String_const__gfc__String___ {
     // std___Allocator_base_std__pair_gfc__String_const__gfc__String___
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__String_const__gfc__String___
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__String_const__gfc__String___>
@@ -37,9 +37,7 @@ unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__String_const__gfc__S
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
@@ -66,8 +64,8 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gf
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node_ {}
@@ -76,9 +74,7 @@ unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gf
 pub struct std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
 }
 
@@ -111,9 +107,7 @@ pub struct std___Allocator_base_std__pair_gfc__String_const__gfc__String___ {
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
@@ -135,9 +129,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
@@ -156,9 +148,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_tra
 #[repr(C)]
 pub struct std__map_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String_____ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
@@ -202,8 +192,8 @@ pub struct gfc__AutoRef_gfc__MBSubMesh_ {
 
 #[repr(C)]
 pub struct gfc__MeshBuilder {
-    pub vfptr: *const gfc__MeshBuilder__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__MeshBuilder__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__MeshBuilder
@@ -306,8 +296,8 @@ pub struct gfc__MBWeight {
 
 #[repr(C)]
 pub struct gfc__MeshCache {
-    pub vfptr: *const gfc__MeshCache__vftable,
     // gfc__ResourceCache
+    pub vfptr: *const gfc__MeshCache__vftable,
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
     pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
@@ -460,8 +450,8 @@ pub struct gfc__MeshCache__ReloadInfo {
 
 #[repr(C)]
 pub struct gfc__MeshResourceUnopt {
-    pub vfptr: *const gfc__MeshResourceUnopt__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__MeshResourceUnopt__vftable,
     pub ReferenceCount: i32,
     // gfc__Resource
     pub mState: i32,
@@ -517,8 +507,8 @@ pub struct gfc__MeshResourceUnopt__vftable {
 
 #[repr(C)]
 pub struct gfc__ResourceType_gfc__Mesh_2_ {
-    pub vfptr: *const gfc__ResourceType_gfc__Mesh_2___vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__ResourceType_gfc__Mesh_2___vftable,
     pub ReferenceCount: i32,
     // gfc__Resource
     pub mState: i32,
@@ -570,8 +560,8 @@ pub struct gfc__AutoRef_gfc__Mesh_ {
 
 #[repr(C)]
 pub struct gfc__MeshReader {
-    pub vfptr: *const gfc__MeshReader__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__MeshReader__vftable,
     pub ReferenceCount: i32,
     /* gfc__ObjectReader
      * gfc__MeshReader */
@@ -614,8 +604,8 @@ pub struct gfc__MBBone {
 
 #[repr(C)]
 pub struct gfc__MBSubMesh {
-    pub vfptr: *const gfc__MBSubMesh__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__MBSubMesh__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__MBSubMesh
@@ -710,8 +700,8 @@ pub struct gfc__MBSubMesh__vftable {
 
 #[repr(C)]
 pub struct gfc__ObjectWriter {
-    pub vfptr: *const gfc__ObjectWriter__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__ObjectWriter__vftable,
     pub ReferenceCount: i32,
     // gfc__ObjectWriter
 }
@@ -762,8 +752,8 @@ pub struct gfc__Vector_gfc__MBBone_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__MeshResource {
-    pub vfptr: *const gfc__MeshResource__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__MeshResource__vftable,
     pub ReferenceCount: i32,
     // gfc__Resource
     pub mState: i32,
@@ -814,9 +804,7 @@ pub struct gfc__MeshResource__vftable {
 #[repr(C)]
 pub struct gfc__Map_gfc__String_gfc__String_std__less_gfc__String___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__String_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__String____0______Node,
@@ -852,9 +840,7 @@ pub struct gfc__AutoRef_gfc__Font_ {
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
@@ -873,9 +859,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_tra
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
@@ -901,8 +885,8 @@ pub struct std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Font___ {
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node_ {}
@@ -929,9 +913,7 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gf
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
@@ -959,9 +941,7 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gf
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
@@ -984,8 +964,8 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node_ {}
@@ -993,9 +973,7 @@ unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gf
 #[repr(C)]
 pub struct std__map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_______ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
@@ -1033,9 +1011,7 @@ unsafe impl UpcastToNop<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__Fo
 #[repr(C)]
 pub struct std__map_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl_______ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
@@ -1066,8 +1042,8 @@ pub struct std___Pair_base_gfc__HString_const__gfc___UIControl___ {
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____ {
     // std___Allocator_base_std__pair_gfc__HString_const__gfc___UIControl_____
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__HString_const__gfc___UIControl_____
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__HString_const__gfc___UIControl_____>
@@ -1089,9 +1065,7 @@ pub struct std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__
 pub struct std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
 }
 
@@ -1100,9 +1074,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__HStrin
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
@@ -1129,9 +1101,7 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font_
 pub struct std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
 }
 
@@ -1140,9 +1110,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__HStrin
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
@@ -1168,8 +1136,8 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____ {
     // std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font_____
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl
@@ -1185,8 +1153,8 @@ pub struct gfc__AutoRef_gfc___UIControl_ {
 
 #[repr(C)]
 pub struct gfc__Darksiders {
-    pub vfptr: *const gfc__Darksiders__vftable,
     // gfc__OblivionGame
+    pub vfptr: *const gfc__Darksiders__vftable,
     __pdbindgen_padding: [u8; 4],
     pub mpLocalGameSession: *mut unit4__LocalGameSession,
     pub mpInputSystem: *mut keen__InputSystem,
@@ -1242,6 +1210,7 @@ pub struct gfc__Darksiders {
     pub mRenderThread: gfc__Thread,
     pub mOverSampling: bool,
     // gfc__Darksiders
+    __pdbindgen_padding_2: [u8; 7],
     pub mShouldRestartMainMenu: bool,
     pub mFirstAutoCatchStarted: bool,
     pub mState: u8,
@@ -1609,8 +1578,8 @@ pub struct gfc__AutoRef_gfc__Camera3D_ {
 
 #[repr(C)]
 pub struct gfc__WorldManager {
-    pub vfptr: *const gfc__WorldManager__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__WorldManager__vftable,
     pub ReferenceCount: i32,
     // gfc__WorldManager
     pub mWorld: gfc__AutoRef_gfc__World_,
@@ -1906,9 +1875,7 @@ unsafe impl UpcastToNop<gfc___UIEvent> for gfc__FocusEvent {}
 #[repr(C)]
 pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Font__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Font______0______Node,
@@ -1973,8 +1940,8 @@ pub struct gfc__Vector_gfc__VisScriptModule___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__Helper {
-    pub vfptr: *const gfc__Helper__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Helper__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Helper
@@ -2460,12 +2427,12 @@ pub struct gfc__AutoRef_gfc__RichPresenceManager_ {
 
 #[repr(C)]
 pub struct gfc___UIControl {
-    pub vfptr: *const gfc___UIControl__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc___UIControl__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__Hierarchical_gfc___UIControl___vftable,
     // gfc__Hierarchical_gfc___UIControl_
+    pub vfptr_2: *const gfc___UIControl__vftable,
     pub mParent: *mut gfc___UIControl,
     pub mHead: gfc__AutoRef_gfc___UIControl_,
     pub mTail: gfc__AutoRef_gfc___UIControl_,
@@ -3205,9 +3172,7 @@ pub struct gfc___UIManager__vftable {
 #[repr(C)]
 pub struct gfc__Map_gfc__HString_gfc___UIControl___std__less_gfc__HString___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc___UIControl___std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc___UIControl______0______Node,
@@ -3683,9 +3648,7 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gf
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
@@ -3702,8 +3665,8 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_tra
 pub struct std__allocator_std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node_
+    // std__allocator_std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node_> for std__allocator_std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node_ {}
@@ -3712,9 +3675,7 @@ unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tset_traits_gf
 pub struct std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
 }
 
@@ -3723,8 +3684,8 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__String
 #[repr(C)]
 pub struct std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______ {
     // std___Allocator_base_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl
@@ -3736,8 +3697,8 @@ unsafe impl
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___ {
     // std___Allocator_base_std__pair_gfc__String_const__gfc__StateMapValue___
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__String_const__gfc__StateMapValue___
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std__pair_gfc__String_const__gfc__StateMapValue___>
@@ -3760,8 +3721,8 @@ pub struct std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node_ {}
@@ -3769,9 +3730,7 @@ unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gf
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
@@ -3790,9 +3749,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_tra
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
@@ -3815,8 +3772,8 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_
 pub struct std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_
 {
     // std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_
+    // std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_
     __pdbindgen_padding: [u8; 1],
-    /* std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_ */
 }
 
 unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_> for std__allocator_std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node_ {}
@@ -3825,9 +3782,7 @@ unsafe impl UpcastToNop<std___Allocator_base_std___Tree_nod_std___Tmap_traits_gf
 pub struct std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: gfc__PhysicsEffects__ContactCmp,
 }
 
@@ -3836,9 +3791,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tset_traits_gfc__LockFr
 #[repr(C)]
 pub struct std___Tree_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: gfc__PhysicsEffects__ContactCmp,
     // std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0___
     pub _Myhead: *mut std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node,
@@ -3860,9 +3813,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tset_traits_
 #[repr(C)]
 pub struct std___Tree_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
@@ -3884,9 +3835,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_std___Tmap_traits_
 #[repr(C)]
 pub struct std___Tree_val_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
@@ -3905,9 +3854,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_val_std___Tmap_tra
 #[repr(C)]
 pub struct std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: gfc__PhysicsEffects__ContactCmp,
     // std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0___
     pub _Myhead: *mut std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node,
@@ -3923,9 +3870,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tset_tra
 #[repr(C)]
 pub struct std___Tree_val_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: gfc__PhysicsEffects__ContactCmp,
     // std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0___
     pub _Myhead: *mut std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node,
@@ -3954,9 +3899,7 @@ pub struct std___Tree_nod_std___Tmap_traits_gfc__Class___gfc__AutoRef_gfc__World
 #[repr(C)]
 pub struct std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
@@ -3972,9 +3915,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tree_nod_std___Tmap_tra
 #[repr(C)]
 pub struct std__map_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue_____ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__String_,
     // std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__String_gfc__StateMapValue_std__less_gfc__String__std__allocator_std__pair_gfc__String_const__gfc__StateMapValue____0______Node,
@@ -3999,8 +3940,8 @@ unsafe impl UpcastToNop<std___Container_base0> for std__map_gfc__String_gfc__Sta
 #[repr(C)]
 pub struct std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample_____ {
     // std___Allocator_base_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample_____
-    __pdbindgen_padding: [u8; 1],
     // std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample_____
+    __pdbindgen_padding: [u8; 1],
 }
 
 unsafe impl
@@ -4019,9 +3960,7 @@ pub struct std___Pair_base_gfc__Class___const_gfc__AutoRef_gfc__WorldComponent__
 pub struct std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0_
 {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
 }
 
@@ -4030,9 +3969,7 @@ unsafe impl UpcastToNop<std___Container_base0> for std___Tmap_traits_gfc__HStrin
 #[repr(C)]
 pub struct std__set_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo________ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: gfc__PhysicsEffects__ContactCmp,
     // std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0___
     pub _Myhead: *mut std___Tree_nod_std___Tset_traits_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo______gfc__PhysicsEffects__ContactCmp_std__allocator_gfc__LockFreeNode_gfc__PhysicsEffects__ContactInfo_______0______Node,
@@ -4070,9 +4007,7 @@ unsafe impl UpcastToNop<std___Pair_base_gfc__Class___const_gfc__AutoRef_gfc__Wor
 #[repr(C)]
 pub struct std__map_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample_______ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
@@ -4324,8 +4259,8 @@ unsafe impl UpcastToNop<hkArrayBase_hkpContactImpulseLimitBreachedListener___>
 
 #[repr(C)]
 pub struct hkpMaxSizeMotion {
-    pub vfptr: *const hkpMaxSizeMotion__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpMaxSizeMotion__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpMotion
@@ -4720,8 +4655,8 @@ pub struct hkJobQueue__JobQueueEntry {
     pub m_jobSpuType: hkEnum_enum_hkJobSpuType_unsigned_char_,
     pub m_size: u16,
     pub m_threadAffinity: i16,
-    __pdbindgen_padding: [u8; 8],
     // hkJobQueue__JobQueueEntry
+    __pdbindgen_padding: [u8; 8],
     pub m_data: [u8; 112],
 }
 
@@ -4828,8 +4763,8 @@ pub struct hkRefPtr_hkWorldMemoryAvailableWatchDog_ {
 
 #[repr(C)]
 pub struct hkpConstraintOwner {
-    pub vfptr: *const hkpConstraintOwner__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpConstraintOwner__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConstraintOwner
@@ -5188,14 +5123,14 @@ pub struct gfc__Vector_gfc__Occluder___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__TerrainChunk {
-    pub vfptr: *const gfc__TerrainChunk__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__TerrainChunk__vftable,
     pub ReferenceCount: i32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__TerrainChunk__vftable,
     pub mLocked: bool,
-    pub vfptr_3: *const gfc__SceneObject__vftable,
     // gfc__SceneObject
+    pub vfptr_3: *const gfc__TerrainChunk__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -5262,8 +5197,8 @@ pub struct gfc__Clipper {
 
 #[repr(C)]
 pub struct gfc__VisScriptVariable {
-    pub vfptr: *const gfc__VisScriptVariable__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__VisScriptVariable__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__VisScriptEntity
@@ -5503,8 +5438,8 @@ pub struct gfc__Vector_gfc__PhysicsEffects__FXParticleManager__ParticleInfo_0_gf
 
 #[repr(C)]
 pub struct gfc__ModuleSystem {
-    pub vfptr: *const gfc__ModuleSystem__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__ModuleSystem__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__ModuleSystem
@@ -5619,8 +5554,8 @@ pub struct gfc__MeshParticle {
     pub FlipX: compile_error!("unimplemented feature: type kind 0x1205"),
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
     pub FlipY: compile_error!("unimplemented feature: type kind 0x1205"),
-    __pdbindgen_padding: [u8; 4],
     // gfc__MeshParticle
+    __pdbindgen_padding: [u8; 4],
     pub EmitOrientation: gfc__Quaternion,
     pub SizeOverLife: f32,
     pub StretchOverLife: f32,
@@ -5648,8 +5583,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Material__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__TerrainNode {
-    pub vfptr: *const gfc__TerrainNode__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__TerrainNode__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__TerrainNode
@@ -5761,8 +5696,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__CameraCinematicGroup__0_gfc__CAllocator
 
 #[repr(C)]
 pub struct gfc__VisScriptModule {
-    pub vfptr: *const gfc__VisScriptModule__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__VisScriptModule__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__VisScriptEntity
@@ -5772,6 +5707,7 @@ pub struct gfc__VisScriptModule {
     pub mLocationY: i32,
     pub mModuleSystem: *mut gfc__ModuleSystem,
     // gfc__VisScriptModule
+    __pdbindgen_padding: [u8; 4],
     pub mEventLinks: gfc__Vector_gfc__ModuleEventLink_0_gfc__CAllocator_,
     pub mInputLinks: gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_,
     pub mVariableLinks: gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator_,
@@ -6020,8 +5956,8 @@ pub struct gfc__Vector_gfc__PhysicsEffects__FXSoundManager__SoundInfo_0_gfc__CAl
 
 #[repr(C)]
 pub struct gfc__VisScriptEntity {
-    pub vfptr: *const gfc__VisScriptEntity__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__VisScriptEntity__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__VisScriptEntity
@@ -6158,8 +6094,8 @@ pub struct gfc__SpriteParticle {
     pub FlipX: compile_error!("unimplemented feature: type kind 0x1205"),
     #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
     pub FlipY: compile_error!("unimplemented feature: type kind 0x1205"),
-    __pdbindgen_padding: [u8; 4],
     // gfc__SpriteParticle
+    __pdbindgen_padding: [u8; 4],
     pub OldPosition: [f32; 3],
     pub SpinCenter: [f32; 2],
     pub Frame: f32,
@@ -6182,8 +6118,8 @@ pub struct gfc__LockFreePoolHandle_gfc__TrailParticle_gfc__TrailParticle_ {
 
 #[repr(C)]
 pub struct gfc__PhysicsMaterialInteraction {
-    pub vfptr: *const gfc__PhysicsMaterialInteraction__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__PhysicsMaterialInteraction__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__PhysicsMaterialInteraction
@@ -6303,8 +6239,8 @@ pub struct gfc__AutoRef_gfc__TerrainChunk_ {
 
 #[repr(C)]
 pub struct gfc__PhysicsManager {
-    pub vfptr: *const gfc__PhysicsManager__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__PhysicsManager__vftable,
     pub ReferenceCount: i32,
     // gfc__PhysicsManager
     pub mRigidBodies: gfc__Vector_gfc__RigidBody___0_gfc__CAllocator_,
@@ -6394,8 +6330,8 @@ pub struct gfc__Particle {
 
 #[repr(C)]
 pub struct gfc__Visual {
-    pub vfptr: *const gfc__Visual__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Visual__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Visual
@@ -6640,8 +6576,8 @@ pub struct gfc__Visual__vftable {
 
 #[repr(C)]
 pub struct gfc__Emitter {
-    pub vfptr: *const gfc__Emitter__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Emitter__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Emitter
@@ -6829,9 +6765,7 @@ pub struct gfc__Emitter__vftable {
 #[repr(C)]
 pub struct gfc__Map_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString___ {
     // std___Container_base0
-    __pdbindgen_padding: [u8; 1],
     // std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0_
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
     pub comp: std__less_gfc__HString_,
     // std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0___
     pub _Myhead: *mut std___Tree_nod_std___Tmap_traits_gfc__HString_gfc__AutoRef_gfc__Sample__std__less_gfc__HString__std__allocator_std__pair_gfc__HString_const__gfc__AutoRef_gfc__Sample______0______Node,
@@ -6913,8 +6847,8 @@ pub struct gfc__ResourceListener__vftable {
 
 #[repr(C)]
 pub struct gfc__StaticMeshVisual {
-    pub vfptr: *const gfc__StaticMeshVisual__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__StaticMeshVisual__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Visual
@@ -6926,8 +6860,8 @@ pub struct gfc__StaticMeshVisual {
     pub mForceFade: f32,
     pub mObjectColor: gfc__TVector3_float_gfc__FloatMath_,
     pub mObject: *mut gfc__Object3D,
-    pub vfptr_2: *const gfc__SceneObject__vftable,
     // gfc__SceneObject
+    pub vfptr_2: *const gfc__StaticMeshVisual__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -6935,8 +6869,8 @@ pub struct gfc__StaticMeshVisual {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_3: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_3: *const gfc__StaticMeshVisual__vftable,
     pub mLocked: bool,
     // gfc__StaticMeshVisual
     pub mChecksum: u32,
@@ -7439,8 +7373,8 @@ pub struct gfc__Vector_gfc__PhysicsManager__KeyframedBodyInfo_0_gfc__CAllocator_
 
 #[repr(C)]
 pub struct gfc__DetectorObject {
-    pub vfptr: *const gfc__DetectorObject__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__DetectorObject__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -7464,6 +7398,7 @@ pub struct gfc__DetectorObject {
     pub mBounds: gfc__TBox_float_gfc__FloatMath_,
     pub mGizmo: *mut gfc__PhysicsShapeGizmo,
     // gfc__DetectorObject
+    __pdbindgen_padding: [u8; 4],
     pub mBodyType: u8,
     pub mRegion: *mut gfc__DetectorRegion,
     pub mEnabled: bool,
@@ -7992,8 +7927,8 @@ pub struct gfc__TrailParticle {
 
 #[repr(C)]
 pub struct gfc__PhysicsEffectsDesc {
-    pub vfptr: *const gfc__PhysicsEffectsDesc__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__PhysicsEffectsDesc__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__PhysicsEffectsDesc
@@ -8092,8 +8027,8 @@ pub struct gfc__PhysicsEffectsDesc__vftable {
 
 #[repr(C)]
 pub struct gfc__SceneManager {
-    pub vfptr: *const gfc__SceneManager__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__SceneManager__vftable,
     pub ReferenceCount: i32,
     // gfc__SceneManager
     pub mDrawCounter: u32,
@@ -8190,8 +8125,8 @@ pub struct gfc__SceneManager__vftable {
 
 #[repr(C)]
 pub struct gfc__PhysicsShapeObject {
-    pub vfptr: *const gfc__PhysicsShapeObject__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__PhysicsShapeObject__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -8684,8 +8619,8 @@ pub struct gfc__PhysicsShapeObject__vftable {
 
 #[repr(C)]
 pub struct gfc__PhysicsEffects {
-    pub vfptr: *const gfc__PhysicsEffects__vftable,
     // hkpContactListener
+    pub vfptr: *const gfc__PhysicsEffects__vftable,
     // hkpCollisionListener
     // gfc__PhysicsEffects
     __pdbindgen_padding: [u8; 4],
@@ -8838,8 +8773,8 @@ pub struct gfc__PhysicsEffects__ContactInfo {
 
 #[repr(C)]
 pub struct gfc__EmitterSceneObject {
-    pub vfptr: *const gfc__EmitterSceneObject__vftable,
     // gfc__SceneObject
+    pub vfptr: *const gfc__EmitterSceneObject__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -8847,8 +8782,8 @@ pub struct gfc__EmitterSceneObject {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__EmitterSceneObject__vftable,
     pub mLocked: bool,
     // gfc__EmitterSceneObject
     pub mBVolume: gfc__BoundingVolume,
@@ -9029,8 +8964,8 @@ pub struct gfc__AutoRef_gfc__TerrainFlora_ {
 
 #[repr(C)]
 pub struct gfc__Cinematic {
-    pub vfptr: *const gfc__Cinematic__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Cinematic__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -9498,8 +9433,8 @@ pub struct gfc__Cinematic__vftable {
 
 #[repr(C)]
 pub struct gfc__WorldGroup {
-    pub vfptr: *const gfc__WorldGroup__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__WorldGroup__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -10168,8 +10103,8 @@ unsafe impl UpcastToNop<hkArrayBase_hkpIslandPostCollideListener___>
 
 #[repr(C)]
 pub struct hkLocalFrameCollector {
-    pub vfptr: *const hkLocalFrameCollector__vftable,
     // hkBaseObject
+    pub vfptr: *const hkLocalFrameCollector__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkLocalFrameCollector
@@ -10430,8 +10365,8 @@ pub struct hkArrayBase_hkpEntity___ {
 
 #[repr(C)]
 pub struct hkpKeyframedRigidMotion {
-    pub vfptr: *const hkpKeyframedRigidMotion__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpKeyframedRigidMotion__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpMotion
@@ -10802,8 +10737,8 @@ pub struct hkPadSpu_hkpProcessCollisionOutput__PotentialInfo___ {
 
 #[repr(C)]
 pub struct hkpSimpleContactConstraintData {
-    pub vfptr: *const hkpSimpleContactConstraintData__vftable,
     // hkBaseObject
+    pub vfptr: *const hkpSimpleContactConstraintData__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkpConstraintData
@@ -11312,8 +11247,8 @@ pub struct hkArrayBase_hkStackTracer__CallTree__Node_ {
 
 #[repr(C)]
 pub struct hkWorldMemoryAvailableWatchDog {
-    pub vfptr: *const hkWorldMemoryAvailableWatchDog__vftable,
     // hkBaseObject
+    pub vfptr: *const hkWorldMemoryAvailableWatchDog__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkWorldMemoryAvailableWatchDog
@@ -11519,8 +11454,8 @@ unsafe impl UpcastToNop<hkArrayBase_hkpEntityListener___>
 
 #[repr(C)]
 pub struct hkLocalFrameGroup {
-    pub vfptr: *const hkLocalFrameGroup__vftable,
     // hkBaseObject
+    pub vfptr: *const hkLocalFrameGroup__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkLocalFrameGroup
@@ -11573,8 +11508,8 @@ unsafe impl UpcastToNop<hkArrayBase_hkpSimulationIsland___>
 
 #[repr(C)]
 pub struct hkLocalFrame {
-    pub vfptr: *const hkLocalFrame__vftable,
     // hkBaseObject
+    pub vfptr: *const hkLocalFrame__vftable,
     // hkReferencedObject
     pub m_memSizeAndRefCount: u32,
     // hkLocalFrame
@@ -11719,8 +11654,8 @@ pub struct hkpConstraintQueryIn {
     pub m_rhsFactor: hkPadSpu_float_,
     pub m_virtMassFactor: hkPadSpu_float_,
     pub m_frictionRhsFactor: hkPadSpu_float_,
-    __pdbindgen_padding: [u8; 4],
     // hkpConstraintQueryIn
+    __pdbindgen_padding: [u8; 4],
     pub m_bodyA: hkPadSpu_hkpVelocityAccumulator_const___,
     pub m_bodyB: hkPadSpu_hkpVelocityAccumulator_const___,
     pub m_transformA: hkPadSpu_hkTransformf_const___,
@@ -11780,8 +11715,8 @@ pub struct List_gfc__AutoRef_gfc__WorldObject_____ListNode {
 
 #[repr(C)]
 pub struct gfc__OmniLightGizmo {
-    pub vfptr: *const gfc__OmniLightGizmo__vftable,
     // gfc__SceneObject
+    pub vfptr: *const gfc__OmniLightGizmo__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -11789,8 +11724,8 @@ pub struct gfc__OmniLightGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__OmniLightGizmo__vftable,
     pub mLocked: bool,
     // gfc__Gizmo
     pub mObject: *mut gfc__WorldObject,
@@ -11961,8 +11896,8 @@ pub struct gfc__OmniLightGizmo__vftable {
 
 #[repr(C)]
 pub struct gfc__StaticLightingVisualOpt {
-    pub vfptr: *const gfc__StaticLightingVisualOpt__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__StaticLightingVisualOpt__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__StaticLightingVisualOpt
@@ -12129,8 +12064,8 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Visual__0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__StaticLightingObjectOpt {
-    pub vfptr: *const gfc__StaticLightingObjectOpt__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__StaticLightingObjectOpt__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__StaticLightingObjectOpt
@@ -12240,8 +12175,8 @@ pub struct gfc__AutoRef_gfc__ParticleController_ {
 
 #[repr(C)]
 pub struct gfc__RegionLayer {
-    pub vfptr: *const gfc__RegionLayer__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__RegionLayer__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__RegionLayer
@@ -12329,8 +12264,8 @@ pub struct gfc__RegionLayer__vftable {
 
 #[repr(C)]
 pub struct gfc__Object3DCache {
-    pub vfptr: *const gfc__Object3DCache__vftable,
     // gfc__ResourceCache
+    pub vfptr: *const gfc__Object3DCache__vftable,
     pub mExtensions: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
     pub mType: i32,
     pub mPackages: gfc__Vector_gfc__ResourceCache__PackageInfo___0_gfc__CAllocator_,
@@ -12484,8 +12419,8 @@ pub struct gfc__AutoRef_gfc__AnimationController_ {
 
 #[repr(C)]
 pub struct gfc__IconGizmo {
-    pub vfptr: *const gfc__IconGizmo__vftable,
     // gfc__SceneObject
+    pub vfptr: *const gfc__IconGizmo__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -12493,8 +12428,8 @@ pub struct gfc__IconGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__IconGizmo__vftable,
     pub mLocked: bool,
     // gfc__Gizmo
     pub mObject: *mut gfc__WorldObject,
@@ -12665,8 +12600,8 @@ pub struct gfc__IconGizmo__vftable {
 
 #[repr(C)]
 pub struct gfc__Object3D {
-    pub vfptr: *const gfc__Object3D__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Object3D__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__Object3D
@@ -12849,8 +12784,8 @@ pub struct gfc__ScenePortal__vftable {
 
 #[repr(C)]
 pub struct gfc__StaticObject {
-    pub vfptr: *const gfc__StaticObject__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__StaticObject__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -13318,12 +13253,12 @@ pub struct gfc__StaticObject__vftable {
 
 #[repr(C)]
 pub struct gfc__RigidBody {
-    pub vfptr: *const gfc__RigidBody__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__RigidBody__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__CollisionObject__vftable,
     // gfc__CollisionObject
+    pub vfptr_2: *const gfc__RigidBody__vftable,
     pub mCollisionManager: *mut gfc__CollisionManager,
     // gfc__Body
     pub mObject: *mut gfc__Object3D,
@@ -13335,6 +13270,7 @@ pub struct gfc__RigidBody {
     pub mAutoActivate: bool,
     pub mBodyType: u8,
     // gfc__RigidBody
+    __pdbindgen_padding: [u8; 4],
     pub mRootBody: gfc__AutoRef_gfc__RigidBody_,
     pub mRigidBody: *mut hkpRigidBody,
     pub mCachedKeyframe: *mut gfc__CachedKeyframe,
@@ -13481,8 +13417,8 @@ pub struct gfc__RigidBody__vftable {
 
 #[repr(C)]
 pub struct gfc__StaticLightingRegionOpt {
-    pub vfptr: *const gfc__StaticLightingRegionOpt__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__StaticLightingRegionOpt__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__StaticLightingRegionOpt
@@ -13579,8 +13515,8 @@ pub struct gfc__StaticLightingRegionOpt__vftable {
 
 #[repr(C)]
 pub struct gfc__CShape {
-    pub vfptr: *const gfc__CShape__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__CShape__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__CShape
@@ -13830,8 +13766,8 @@ pub struct gfc__SceneLight__vftable {
 
 #[repr(C)]
 pub struct gfc__OmniLight {
-    pub vfptr: *const gfc__OmniLight__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__OmniLight__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__WorldObject
@@ -13852,6 +13788,7 @@ pub struct gfc__OmniLight {
     pub mEnabled: bool,
     pub mJitterAmount: f32,
     // gfc__OmniLight
+    __pdbindgen_padding: [u8; 4],
     pub mStaticOnly: bool,
     pub mLight: gfc__AutoRef_gfc__LightVisual_,
     pub mGizmo: *mut gfc__OmniLightGizmo,
@@ -14296,12 +14233,12 @@ pub struct gfc__OmniLight__vftable {
 
 #[repr(C)]
 pub struct gfc__Body {
-    pub vfptr: *const gfc__Body__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__Body__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
-    pub vfptr_2: *const gfc__CollisionObject__vftable,
     // gfc__CollisionObject
+    pub vfptr_2: *const gfc__Body__vftable,
     pub mCollisionManager: *mut gfc__CollisionManager,
     // gfc__Body
     pub mObject: *mut gfc__Object3D,
@@ -14439,8 +14376,8 @@ pub struct gfc__Vector_gfc__SceneObserver___0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__WorldObjectGizmo {
-    pub vfptr: *const gfc__WorldObjectGizmo__vftable,
     // gfc__SceneObject
+    pub vfptr: *const gfc__WorldObjectGizmo__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -14448,8 +14385,8 @@ pub struct gfc__WorldObjectGizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__WorldObjectGizmo__vftable,
     pub mLocked: bool,
     // gfc__Gizmo
     pub mObject: *mut gfc__WorldObject,
@@ -14625,8 +14562,8 @@ pub struct gfc__WorldObjectGizmo__vftable {
 
 #[repr(C)]
 pub struct gfc__PSystem {
-    pub vfptr: *const gfc__PSystem__vftable,
     // gfc__IRefObject
+    pub vfptr: *const gfc__PSystem__vftable,
     pub ReferenceCount: i32,
     // gfc__Object
     // gfc__PSystem
@@ -14724,8 +14661,8 @@ pub struct gfc__AutoRef_gfc__Skeleton3D_ {
 
 #[repr(C)]
 pub struct gfc__Gizmo {
-    pub vfptr: *const gfc__Gizmo__vftable,
     // gfc__SceneObject
+    pub vfptr: *const gfc__Gizmo__vftable,
     pub mType: gfc__SceneObject__Type,
     pub mDrawCounter: u32,
     pub mCachedBoundingVolume: gfc__BoundingVolume,
@@ -14733,8 +14670,8 @@ pub struct gfc__Gizmo {
     pub mSceneManager: *mut gfc__SceneManager,
     pub mCells: gfc__Vector_gfc__SceneCell___0_gfc__CAllocator_,
     pub mHashID: u32,
-    pub vfptr_2: *const gfc__IRenderCallback__vftable,
     // gfc__IRenderCallback
+    pub vfptr_2: *const gfc__Gizmo__vftable,
     pub mLocked: bool,
     // gfc__Gizmo
     pub mObject: *mut gfc__WorldObject,
