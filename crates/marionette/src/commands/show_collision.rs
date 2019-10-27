@@ -35,8 +35,8 @@ unsafe fn go() {
     for &body in (*physics_manager).mRigidBodies.lift1_ref() {
         let body = (*body).lift_ref();
 
-        let rigid_body = body.rigid_body_raw();
-        let shape = rigid_body.m_collidable.m_shape;
+        let rigid_body = (*body.as_ptr()).mRigidBody;
+        let shape = (*rigid_body).m_collidable.m_shape;
         let shape_type = (*shape).m_type.m_storage;
         eprintln!("shape_type = {:?}", shape_type);
         if i32::from(shape_type) == hkcdShapeType__ShapeTypeEnum::ConvexVertices as i32 {
@@ -78,8 +78,8 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
         let world_object = (*(*object.as_ptr()).mWorldObject).lift_ref();
         let world_object_name = (*world_object.as_ptr()).mName.lift_ref();
 
-        let rigid_body = body.rigid_body_raw();
-        let shape = rigid_body.m_collidable.m_shape;
+        let rigid_body = (*body.as_ptr()).mRigidBody;
+        let shape = (*rigid_body).m_collidable.m_shape;
 
         let node = (*body.as_ptr()).mNode.lift_ref();
         let position = node.get_position();

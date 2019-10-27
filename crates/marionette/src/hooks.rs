@@ -136,9 +136,7 @@ mod hook {
         // Setting this flag prevents the game from pausing when you deactivate the
         // window.
         unsafe {
-            // work around pdbindgen layout issue
-            let this_mGameInBackground = (this as usize + 0x1a6) as *mut bool;
-            *this_mGameInBackground = false;
+            (*this).mGameInBackground = false;
         }
 
         result
