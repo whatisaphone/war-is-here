@@ -25,6 +25,14 @@ pickup_item bfg_sentinel/weapon_bfg_sentinel
 pickup_item weapon_enhancements/common_bane
 ```
 
+#### `load_map_menu`
+
+Show a window that lets you teleport to any area in the game.
+
+```
+load_map_menu
+```
+
 #### `spawn_actor`
 
 Spawn an `Actor` class into the world.
