@@ -81,7 +81,7 @@ pub fn uninstall() {
 mod hook {
     use crate::{
         commands::{show_collision, show_triggers},
-        darksiders1::{gfc, Lift, Lower},
+        darksiders1::{Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
             override_get_material,
@@ -91,22 +91,20 @@ mod hook {
     };
     use darksiders1_sys::target;
 
-    pub extern "thiscall" fn gfc___UIManager__draw(
+    pub unsafe extern "thiscall" fn gfc___UIManager__draw(
         this: *mut target::gfc___UIManager,
         renderer: *mut target::gfc__UIRenderer,
     ) {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
 
-        unsafe { (detours.gfc___UIManager__draw)(this, renderer) }
+        (detours.gfc___UIManager__draw)(this, renderer);
 
-        unsafe {
-            show_triggers::draw(renderer);
-            show_collision::draw((*renderer).lift_ref());
-        }
+        show_triggers::draw(renderer);
+        show_collision::draw((*renderer).lift_ref());
     }
 
-    pub extern "thiscall" fn gfc__Darksiders__onPostUpdateInterval(
+    pub unsafe extern "thiscall" fn gfc__Darksiders__onPostUpdateInterval(
         this: *mut target::gfc__Darksiders,
         deltat: f32,
     ) {
@@ -121,28 +119,26 @@ mod hook {
             }
         }
 
-        unsafe { (detours.gfc__Darksiders__onPostUpdateInterval)(this, deltat) }
+        (detours.gfc__Darksiders__onPostUpdateInterval)(this, deltat)
     }
 
-    pub extern "thiscall" fn gfc__Darksiders__processInputEvent(
+    pub unsafe extern "thiscall" fn gfc__Darksiders__processInputEvent(
         this: *mut target::gfc__Darksiders,
         inputEvent: *const target::keen__InputEvent,
     ) -> bool {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
 
-        let result = unsafe { (detours.gfc__Darksiders__processInputEvent)(this, inputEvent) };
+        let result = (detours.gfc__Darksiders__processInputEvent)(this, inputEvent);
 
         // Setting this flag prevents the game from pausing when you deactivate the
         // window.
-        unsafe {
-            (*this).mGameInBackground = false;
-        }
+        (*this).mGameInBackground = false;
 
         result
     }
 
-    pub extern "thiscall" fn gfc__MaterialCache__get(
+    pub unsafe extern "thiscall" fn gfc__MaterialCache__get(
         this: *mut target::gfc__MaterialCache,
         result: *mut target::gfc__AutoRef_gfc__Material_,
         packageID: i32,
@@ -151,18 +147,16 @@ mod hook {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
 
-        let material_name = unsafe { gfc::HString::from_ptr(materialName) };
+        let material_name = (*materialName).lift_ref();
         if let Some(ovurride) = override_get_material(packageID, material_name) {
-            unsafe {
-                *result = Lower::lower(ovurride);
-            }
+            *result = Lower::lower(ovurride);
             return result;
         }
 
-        unsafe { (detours.gfc__MaterialCache__get)(this, result, packageID, materialName) }
+        (detours.gfc__MaterialCache__get)(this, result, packageID, materialName)
     }
 
-    pub extern "thiscall" fn gfc__MeshCache__getStaticMesh(
+    pub unsafe extern "thiscall" fn gfc__MeshCache__getStaticMesh(
         this: *mut target::gfc__MeshCache,
         result: *mut target::gfc__AutoRef_gfc__StaticMesh_,
         packageID: i32,
@@ -173,19 +167,17 @@ mod hook {
         let detours = guard.as_ref().unwrap();
 
         {
-            let mesh_name = unsafe { gfc::HString::from_ptr(meshName) };
+            let mesh_name = (*meshName).lift_ref();
             if let Some(ovurride) = override_get_static_mesh(packageID, mesh_name, idx) {
-                unsafe {
-                    *result = Lower::lower(ovurride);
-                }
+                *result = Lower::lower(ovurride);
                 return result;
             }
         }
 
-        unsafe { (detours.gfc__MeshCache__getStaticMesh)(this, result, packageID, meshName, idx) }
+        (detours.gfc__MeshCache__getStaticMesh)(this, result, packageID, meshName, idx)
     }
 
-    pub extern "thiscall" fn gfc__MeshCache__loadMesh(
+    pub unsafe extern "thiscall" fn gfc__MeshCache__loadMesh(
         this: *mut target::gfc__MeshCache,
         meshRes: *mut target::gfc__MeshResourceUnopt,
         meshIdx: i32,
@@ -196,12 +188,10 @@ mod hook {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
 
-        unsafe {
-            (detours.gfc__MeshCache__loadMesh)(this, meshRes, meshIdx, stream, name, packageID)
-        }
+        (detours.gfc__MeshCache__loadMesh)(this, meshRes, meshIdx, stream, name, packageID)
     }
 
-    pub extern "thiscall" fn gfc__Object3DCache__get(
+    pub unsafe extern "thiscall" fn gfc__Object3DCache__get(
         this: *mut target::gfc__Object3DCache,
         result: *mut target::gfc__AutoRef_gfc__Object3D_,
         packageID: i32,
@@ -211,19 +201,17 @@ mod hook {
         let detours = guard.as_ref().unwrap();
 
         {
-            let object_name = unsafe { gfc::HString::from_ptr(objectName) };
+            let object_name = (*objectName).lift_ref();
             if let Some(ovurride) = override_get_object3d(packageID, object_name) {
-                unsafe {
-                    *result = Lower::lower(ovurride);
-                }
+                *result = Lower::lower(ovurride);
                 return result;
             }
         }
 
-        unsafe { (detours.gfc__Object3DCache__get)(this, result, packageID, objectName) }
+        (detours.gfc__Object3DCache__get)(this, result, packageID, objectName)
     }
 
-    pub extern "thiscall" fn gfc__ResourceCache__getResource(
+    pub unsafe extern "thiscall" fn gfc__ResourceCache__getResource(
         this: *mut target::gfc__ResourceCache,
         packageId: i32,
         hashedName: *const target::gfc__HString,
@@ -231,11 +219,10 @@ mod hook {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
 
-        let result =
-            unsafe { (detours.gfc__ResourceCache__getResource)(this, packageId, hashedName) };
+        let result = (detours.gfc__ResourceCache__getResource)(this, packageId, hashedName);
 
         if result.is_null() {
-            let hashed_name = unsafe { gfc::HString::from_ptr(hashedName) };
+            let hashed_name = (*hashedName).lift_ref();
             println!(
                 "failed to load resource. packageId = {}, hashedName = {:?}",
                 packageId,
