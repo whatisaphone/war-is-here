@@ -12,7 +12,7 @@ use darksiders1_sys::target;
 use na::Point2;
 
 pub unsafe fn box_wireframe(
-    renderer: *mut target::gfc__UIRenderer,
+    renderer: &gfc::UIRenderer,
     transformer: &CoordinateTransformer,
     bounds: &gfc::TBox<f32>,
 ) {
@@ -23,11 +23,7 @@ pub unsafe fn box_wireframe(
     }
 }
 
-pub unsafe fn clunky_draw_line(
-    renderer: *mut target::gfc__UIRenderer,
-    p: Point2<f32>,
-    q: Point2<f32>,
-) {
+pub unsafe fn clunky_draw_line(renderer: &gfc::UIRenderer, p: Point2<f32>, q: Point2<f32>) {
     let viewport = gfc::KGGraphics::get_instance().get_viewport();
     let viewport = viewport.convert(|x| x as f32);
     let (p, q, steps) = match plan_line(&viewport, p, q) {
@@ -43,7 +39,7 @@ pub unsafe fn clunky_draw_line(
             (q.y - p.y) / steps as f32,
         );
         target::gfc__UIRenderer__fillRect(
-            renderer,
+            renderer.as_ptr(),
             x,
             y,
             w.max(1.0),

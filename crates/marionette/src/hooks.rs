@@ -100,7 +100,7 @@ mod hook {
 
         (detours.gfc___UIManager__draw)(this, renderer);
 
-        show_triggers::draw(renderer);
+        show_triggers::draw((*renderer).lift_ref());
         show_collision::draw((*renderer).lift_ref());
     }
 

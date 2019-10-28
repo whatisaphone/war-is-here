@@ -148,7 +148,7 @@ fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
 
 static ENABLED: AtomicBool = AtomicBool::new(false);
 
-pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
+pub unsafe fn draw(renderer: &gfc::UIRenderer) {
     if !ENABLED.load(Ordering::SeqCst) {
         return;
     }
@@ -159,8 +159,11 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
     };
     let player_pos = player.get_position();
 
-    target::gfc__UIRenderer__begin(renderer, true);
-    target::gfc__UIRenderer__setMaterial(renderer, (*renderer).mSolidMaterial.ptr());
+    target::gfc__UIRenderer__begin(renderer.as_ptr(), true);
+    target::gfc__UIRenderer__setMaterial(
+        renderer.as_ptr(),
+        (*renderer.as_ptr()).mSolidMaterial.ptr(),
+    );
 
     let transformer = CoordinateTransformer::create();
 
@@ -270,7 +273,7 @@ pub unsafe fn draw(renderer: *mut target::gfc__UIRenderer) {
         );
     }
 
-    target::gfc__UIRenderer__endRendering(renderer);
+    target::gfc__UIRenderer__endRendering(renderer.as_ptr());
 }
 
 // See `gfc::DetectorObject::doAddToWorld`

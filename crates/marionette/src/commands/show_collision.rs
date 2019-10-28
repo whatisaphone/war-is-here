@@ -87,7 +87,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
         let screen = transformer.world_to_screen(&position);
         if screen.z >= 0.0 && screen.z < 1000.0 {
             bitmap_font::draw_string(
-                renderer.as_ptr(),
+                renderer,
                 screen.x,
                 screen.y,
                 world_object_name
@@ -97,7 +97,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
             );
 
             bitmap_font::draw_string(
-                renderer.as_ptr(),
+                renderer,
                 screen.x,
                 screen.y + 20.0,
                 &format!("shape type {}", (*shape).m_type.m_storage),

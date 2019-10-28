@@ -3,7 +3,7 @@
 use crate::darksiders1::{gfc, Lower};
 use darksiders1_sys::target;
 
-pub unsafe fn draw_string(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32, s: &str) {
+pub unsafe fn draw_string(renderer: &gfc::UIRenderer, x: f32, y: f32, s: &str) {
     let mut dx = 0;
     let mut dy = 0;
     for ch in s.chars() {
@@ -22,7 +22,7 @@ pub unsafe fn draw_string(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32
     }
 }
 
-pub unsafe fn draw_char(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32, ch: char) {
+pub unsafe fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, ch: char) {
     let ch = if (ch as usize) < 256 {
         ch as usize
     } else {
@@ -34,7 +34,7 @@ pub unsafe fn draw_char(renderer: *mut target::gfc__UIRenderer, x: f32, y: f32, 
             let on = bits & (1 << (7 - col)) != 0;
             if on {
                 target::gfc__UIRenderer__fillRect(
-                    renderer,
+                    renderer.as_ptr(),
                     x + col as f32 * SCALE,
                     y + row as f32 * SCALE,
                     SCALE,
