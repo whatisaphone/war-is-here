@@ -40,6 +40,7 @@ pdbindgen \
     -i '^gfc::WorldObject::_Class$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
+    -i '^hkpConvexVerticesShape::getOriginalVertices$' \
     -i '^gfc::ByteInputStream::~?ByteInputStream$' \
     -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
     -i '^gfc::ClassRegistry::classForName$' \
@@ -50,10 +51,10 @@ pdbindgen \
     -i '^gfc::Inventory::addItem$' \
     -i '^gfc::KGGraphics::createStaticMesh$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::MBSubMesh::MBSubMesh$' \
     -i '^gfc::Material::~?Material$' \
     -i '^gfc::Material::setParameter$' \
     -i '^gfc::MaterialCache::get$' \
-    -i '^gfc::MBSubMesh::MBSubMesh$' \
     -i '^gfc::MeshBuilder::~?MeshBuilder$' \
     -i '^gfc::MeshCache::getStaticMesh$' \
     -i '^gfc::MeshCache::loadMesh$' \
@@ -61,10 +62,10 @@ pdbindgen \
     -i '^gfc::MeshReader::readObject$' \
     -i '^gfc::Node3D::getMatrix$' \
     -i '^gfc::Node3D::getPosition$' \
+    -i '^gfc::OOObjectWriter::writeObject$' \
     -i '^gfc::Object3D::~?Object3D$' \
     -i '^gfc::Object3DCache::get$' \
     -i '^gfc::ObjectWriter::~?ObjectWriter$' \
-    -i '^gfc::OOObjectWriter::writeObject$' \
     -i '^gfc::OblivionGame::getProjMatrix$' \
     -i '^gfc::OblivionGame::getViewMatrix$' \
     -i '^gfc::OblivionGame::getWorld$' \
@@ -88,6 +89,5 @@ pdbindgen \
     -i '^gfc::WorldObject::setLayerID$' \
     -i '^gfc::WorldObject::setRegionID$' \
     -i '^gfc::WorldRegion::getLayer$' \
-    -i '^gfc::_UIManager::draw$' \
-    -i '^hkpConvexVerticesShape::getOriginalVertices$'
+    -i '^gfc::_UIManager::draw$'
 ```
