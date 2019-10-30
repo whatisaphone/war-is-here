@@ -116,3 +116,17 @@ pub fn icosphere() -> impl Iterator<Item = [Point3<f32>; 2]> {
             .chain(iter::once([verts[c], verts[a]]))
     })
 }
+
+pub fn cylinder(resolution: usize) -> impl Iterator<Item = [Point3<f32>; 2]> {
+    let mut result = Vec::with_capacity(resolution * 3);
+    for i in 0..resolution {
+        let rad1 = (i as f32 / resolution as f32) * 2.0 * std::f32::consts::PI;
+        let rad2 = ((i + 1) as f32 / resolution as f32) * 2.0 * std::f32::consts::PI;
+        let (y1, x1) = rad1.sin_cos();
+        let (y2, x2) = rad2.sin_cos();
+        result.push([Point3::new(x1, y1, -1.0), Point3::new(x2, y2, -1.0)]);
+        result.push([Point3::new(x1, y1, 1.0), Point3::new(x2, y2, 1.0)]);
+        result.push([Point3::new(x1, y1, -1.0), Point3::new(x1, y1, 1.0)]);
+    }
+    result.into_iter()
+}

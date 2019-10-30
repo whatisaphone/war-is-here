@@ -6,7 +6,7 @@ use crate::{
         coordinate_transformer::CoordinateTransformer,
         debug_draw,
         debug_draw_3d,
-        geometry::{box_edges, icosphere},
+        geometry::{box_edges, cylinder, icosphere},
         mem::init_with,
         pretty::Pretty,
     },
@@ -15,12 +15,14 @@ use darksiders1_sys::target;
 use na::{Isometry, Matrix4, Point3, Translation, UnitQuaternion, Vector3};
 use ncollide3d::{
     query::PointQuery,
-    shape::{Ball, Compound, Cuboid, ShapeHandle},
+    shape::{Ball, Compound, ConvexHull, Cuboid, Cylinder, ShapeHandle},
+    transformation::ToTriMesh,
 };
 use ordered_float::NotNan;
 use pdbindgen_runtime::StaticCast;
 use std::{
     convert::TryFrom,
+    f32::consts::FRAC_PI_2,
     sync::atomic::{AtomicBool, Ordering},
 };
 
@@ -126,7 +128,13 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
                 debug_draw_3d::line(center + p.coords * radius, center + q.coords * radius);
             }
         }
-        Shape::Cylinder(_radius, _length, _pos) => {}
+        Shape::Cylinder(radius, length, pos) => {
+            for [p, q] in cylinder(24) {
+                let p = Point3::new(p.x * radius, p.y * radius, p.z * length);
+                let q = Point3::new(q.x * radius, q.y * radius, q.z * length);
+                debug_draw_3d::line(pos + p.coords, pos + q.coords);
+            }
+        }
     }
 }
 
@@ -232,7 +240,20 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
                     ShapeHandle::new(Ball::new(radius)),
                 )]))
             }
-            Shape::Cylinder(_radius, _length, _pos) => None,
+            Shape::Cylinder(radius, length, pos) => {
+                // Cylinder does not implement Shape
+                // https://github.com/rustsim/ncollide/issues/216
+                let cylinder = Cylinder::new(length / 2.0, radius).to_trimesh(24);
+                Some(Compound::new(vec![(
+                    Isometry::from_parts(
+                        Translation::from(pos.coords),
+                        // `nalgebra` uses principal y-axis; Darksiders uses principal z-axis.
+                        // Rotate to match.
+                        UnitQuaternion::from_axis_angle(&Vector3::x_axis(), FRAC_PI_2),
+                    ),
+                    ShapeHandle::new(ConvexHull::try_from_points(&cylinder.coords).unwrap()),
+                )]))
+            }
         };
 
         let projection = match shape {
