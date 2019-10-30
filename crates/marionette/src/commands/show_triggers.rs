@@ -6,7 +6,7 @@ use crate::{
         coordinate_transformer::CoordinateTransformer,
         debug_draw,
         debug_draw_3d,
-        geometry::{box_edges, cylinder, icosphere},
+        geometry::{box_edges, box_vertices, cylinder, icosphere},
         mem::init_with,
         pretty::Pretty,
     },
@@ -230,7 +230,16 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
                     ShapeHandle::new(Cuboid::new(bounds.max - center)),
                 )]))
             }
-            Shape::Box(_size, _transform) => None,
+            Shape::Box(size, transform) => {
+                let vertices = box_vertices(size / 2.0)
+                    .iter()
+                    .map(|p| Point3::from_homogeneous(transform * p.to_homogeneous()).unwrap())
+                    .collect::<Vec<_>>();
+                Some(Compound::new(vec![(
+                    Isometry::identity(),
+                    ShapeHandle::new(ConvexHull::try_from_points(&vertices).unwrap()),
+                )]))
+            }
             Shape::Sphere(radius, center) => {
                 Some(Compound::new(vec![(
                     Isometry::from_parts(
