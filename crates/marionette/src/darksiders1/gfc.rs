@@ -3,6 +3,7 @@ pub use crate::darksiders1::code::vigil::{
         client::{
             darksiders::Darksiders,
             helpers::{helper::Helper, teleporthelper::TeleportHelper},
+            ui::dsuimanager::DSUIManager,
         },
         world::{
             actor::{
@@ -48,6 +49,7 @@ pub use crate::darksiders1::code::vigil::{
         },
         memory::memop::{mem_alloc, mem_free},
         oc::ooobjectwriter::OOObjectWriter,
+        ui::uimanager::_UIManager,
         util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},
         world::{
             collision::{cshape::CShape, cshapebox::CShapeBox, cshapemesh::CShapeMesh},

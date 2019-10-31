@@ -25,6 +25,10 @@ impl_singleton!(
     target::gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle,
 );
 impl_singleton!(
+    gfc::DSUIManager,
+    target::gfc__Singleton_gfc__DSUIManager_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle,
+);
+impl_singleton!(
     gfc::KGGraphics,
     target::gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle,
 );
