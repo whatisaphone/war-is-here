@@ -73,6 +73,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__World__getRegion);
     bind!(text, gfc__WorldObject__removeObjectFromWorld);
     bind!(text, gfc__WorldObject__attachToObject);
+    bind!(text, gfc__World__World);
     bind!(text, gfc__Object3DCache__get);
     bind!(text, gfc__Object3D__Object3D);
     bind!(text, gfc__Object3DCache__get_2);

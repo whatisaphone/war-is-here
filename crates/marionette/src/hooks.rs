@@ -21,6 +21,7 @@ struct Detours {
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
     gfc__Object3DCache__get: target::gfc__Object3DCache__get,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
+    gfc__World__World: target::gfc__World__World,
     detours: Vec<RawDetour>,
 }
 
@@ -55,6 +56,7 @@ pub fn install() {
             gfc__MeshCache__loadMesh,
             gfc__Object3DCache__get,
             gfc__ResourceCache__getResource,
+            gfc__World__World,
         );
 
         *ON_POST_UPDATE_QUEUE.lock() = Some(VecDeque::new());
@@ -80,7 +82,7 @@ pub fn cleanup() {
 
 mod hook {
     use crate::{
-        commands::{show_collision, show_triggers},
+        commands::{pretend_editor, show_collision, show_triggers},
         darksiders1::{Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
@@ -231,5 +233,18 @@ mod hook {
         }
 
         result
+    }
+
+    pub unsafe extern "thiscall" fn gfc__World__World(
+        this: *mut target::gfc__World,
+    ) -> *mut target::gfc__World {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        (detours.gfc__World__World)(this);
+
+        pretend_editor::world_constructor_hook(this);
+
+        this
     }
 }

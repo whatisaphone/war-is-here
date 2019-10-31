@@ -74,6 +74,7 @@ symbols! {
     pub static gfc__World__getRegion: unsafe extern "thiscall" fn(this: *const gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0xdd61f0);
     pub static gfc__WorldObject__removeObjectFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) = Text(0xe05600);
     pub static gfc__WorldObject__attachToObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__WorldObject, _: *const gfc__HString, _: *const gfc__HString, _: u8, _: bool) = Text(0xe0edb0);
+    pub static gfc__World__World: unsafe extern "thiscall" fn(this: *mut gfc__World) -> *mut gfc__World = Text(0xe17670);
     pub static gfc__Object3DCache__get: unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, result: *mut gfc__AutoRef_gfc__Object3D_, _: i32, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Object3D_ = Text(0xd889c0);
     pub static gfc__Object3D__Object3D: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) = Text(0xd9d130);
     pub static gfc__Object3DCache__get_2: unsafe extern "thiscall" fn(this: *mut gfc__Object3DCache, result: *mut gfc__AutoRef_gfc__Object3D_, _: *const gfc__HString, _: *const gfc__HString) -> *mut gfc__AutoRef_gfc__Object3D_ = Text(0xd9deb0);

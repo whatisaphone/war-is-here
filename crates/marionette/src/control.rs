@@ -21,7 +21,9 @@ fn handle_message(message: &[u8]) -> bool {
     let command = message.split_ascii_whitespace().next().unwrap_or(":(");
     match command {
         "load_map_menu" => commands::load_map_menu::run(message),
+        "move_player" => commands::move_player::run(message),
         "pickup_item" => commands::pickup_item::run(message),
+        "pretend_editor" => commands::pretend_editor::run(message),
         "show_collision" => commands::show_collision::run(message),
         "show_triggers" => commands::show_triggers::run(message),
         "shutdown" => return false,

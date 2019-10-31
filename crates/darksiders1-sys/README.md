@@ -83,6 +83,7 @@ pdbindgen \
     -i '^gfc::UIRenderer::\w+$' \
     -i '^gfc::Vector4Parameter::~?Vector4Parameter$' \
     -i '^gfc::WindowHelper::pushWindow$' \
+    -i '^gfc::World::World$' \
     -i '^gfc::World::getRegion$' \
     -i '^gfc::WorldObject::attachToObject$' \
     -i '^gfc::WorldObject::removeObjectFromWorld' \

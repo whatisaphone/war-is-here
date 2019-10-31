@@ -1,5 +1,7 @@
 pub mod load_map_menu;
+pub mod move_player;
 pub mod pickup_item;
+pub mod pretend_editor;
 pub mod show_collision;
 pub mod show_triggers;
 pub mod spawn_objct;
