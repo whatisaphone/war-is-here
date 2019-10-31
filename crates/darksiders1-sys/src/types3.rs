@@ -17298,6 +17298,316 @@ pub struct gfc__AutoRef_gfc__Query_ {
 }
 
 #[repr(C)]
+pub struct gfc__KGStaticMesh {
+    // gfc__IRefObject
+    pub vfptr: *const gfc__KGStaticMesh__vftable,
+    pub ReferenceCount: i32,
+    // gfc__Mesh
+    // gfc__StaticMesh
+    // gfc__KGStaticMesh
+    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
+    pub m_renderGeometries: compile_error!("unimplemented feature: class layout 0x0"),
+    __pdbindgen_padding: [u8; 88],
+    pub m_pLoadBuffers: [*mut (); 2],
+    pub mGraphics: *mut gfc__KGGraphics,
+    pub mFlags: gfc__TFlags_unsigned_long_,
+    pub mBoundingBox: gfc__TBox_float_gfc__FloatMath_,
+    pub mGroups: *mut gfc__Mesh__Group,
+    pub mGroupCount: i32,
+}
+
+unsafe impl UpcastToNop<gfc__StaticMesh> for gfc__KGStaticMesh {}
+
+unsafe impl UpcastToNop<gfc__Mesh> for gfc__KGStaticMesh {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__KGStaticMesh {}
+
+impl gfc__KGStaticMesh {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> gfc__Mesh__Type {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn isCompressed(&self) -> bool {
+        ((*self.vfptr).isCompressed)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getGroup(&self, a1: i32) -> *mut gfc__Mesh__Group {
+        ((*self.vfptr).getGroup)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getGroupCount(&self) -> i32 {
+        ((*self.vfptr).getGroupCount)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getGroupIDAt(&self, a1: i32) -> i32 {
+        ((*self.vfptr).getGroupIDAt)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getGroupNameAt(&self, a1: i32) -> *const gfc__String {
+        ((*self.vfptr).getGroupNameAt)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn beginCreate(&self, a1: *mut gfc__MeshBuilder) {
+        ((*self.vfptr).beginCreate)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn create(&self, a1: *mut gfc__MeshBuilder) {
+        ((*self.vfptr).create)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn endCreate(&self) {
+        ((*self.vfptr).endCreate)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getBoundingBox(
+        &self,
+    ) -> *const gfc__TBox_float_gfc__FloatMath_ {
+        ((*self.vfptr).getBoundingBox)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getVertexBuffer(
+        &self,
+        result: *mut gfc__AutoRef_gfc__VertexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__VertexBuffer_ {
+        ((*self.vfptr).getVertexBuffer)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getIndexBuffer(
+        &self,
+        result: *mut gfc__AutoRef_gfc__IndexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__IndexBuffer_ {
+        ((*self.vfptr).getIndexBuffer)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn updateAddress(&self, a1: *mut (), a2: *mut ()) {
+        ((*self.vfptr).updateAddress)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn isLightmapped(&self) -> bool {
+        ((*self.vfptr).isLightmapped)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn testCollision(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+        a3: *mut f32,
+    ) -> bool {
+        ((*self.vfptr).testCollision)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn testCollision_2(
+        &self,
+        a1: *const gfc__TVector3_float_gfc__FloatMath_,
+        a2: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> bool {
+        ((*self.vfptr).testCollision_2)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn render(&self, a1: *const gfc__RenderNode) {
+        ((*self.vfptr).render)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn renderGroup(&self, a1: *const gfc__RenderNode, a2: i32) {
+        ((*self.vfptr).renderGroup)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn renderDepthOnly(&self, a1: *const gfc__RenderNode) {
+        ((*self.vfptr).renderDepthOnly)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn renderGroupDepthOnly(
+        &self,
+        a1: *const gfc__RenderNode,
+        a2: i32,
+    ) {
+        ((*self.vfptr).renderGroupDepthOnly)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn renderLitGroup(
+        &self,
+        a1: *const gfc__RenderNode,
+        a2: i32,
+        a3: u32,
+        a4: gfc__AutoRef_gfc__VertexBuffer_,
+        a5: *mut gfc__Texture,
+        a6: *mut gfc__Texture,
+        a7: *mut gfc__Texture,
+        a8: *mut gfc__Texture,
+        a9: f32,
+    ) {
+        ((*self.vfptr).renderLitGroup)(
+            self as *const _ as *mut _,
+            a1,
+            a2,
+            a3,
+            a4,
+            a5,
+            a6,
+            a7,
+            a8,
+            a9,
+        )
+    }
+
+    pub unsafe extern "thiscall" fn renderLitGroup_2(
+        &self,
+        a1: *const gfc__RenderNode,
+        a2: i32,
+        a3: u32,
+        a4: *const gfc__AutoRef_gfc__VertexBuffer_,
+    ) {
+        ((*self.vfptr).renderLitGroup_2)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn createRenderCallback(
+        &self,
+        a1: i32,
+    ) -> *mut gfc__IRenderCallback {
+        ((*self.vfptr).createRenderCallback)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn createRenderCallback_2(&self) -> *mut gfc__IRenderCallback {
+        ((*self.vfptr).createRenderCallback_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn createLitRenderCallback(
+        &self,
+        a1: i32,
+        a2: u32,
+        a3: gfc__AutoRef_gfc__VertexBuffer_,
+        a4: *mut gfc__Texture,
+        a5: *mut gfc__Texture,
+        a6: *mut gfc__Texture,
+        a7: *mut gfc__Texture,
+        a8: f32,
+    ) -> *mut gfc__IRenderCallback {
+        ((*self.vfptr).createLitRenderCallback)(
+            self as *const _ as *mut _,
+            a1,
+            a2,
+            a3,
+            a4,
+            a5,
+            a6,
+            a7,
+            a8,
+        )
+    }
+
+    pub unsafe extern "thiscall" fn createLitRenderCallback_2(
+        &self,
+        a1: i32,
+        a2: u32,
+        a3: *const gfc__AutoRef_gfc__VertexBuffer_,
+    ) -> *mut gfc__IRenderCallback {
+        ((*self.vfptr).createLitRenderCallback_2)(self as *const _ as *mut _, a1, a2, a3)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__KGStaticMesh__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__KGStaticMesh) -> gfc__Mesh__Type,
+    pub isCompressed: unsafe extern "thiscall" fn(this: *const gfc__KGStaticMesh) -> bool,
+    pub getGroup:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh, _: i32) -> *mut gfc__Mesh__Group,
+    pub getGroupCount: unsafe extern "thiscall" fn(this: *const gfc__KGStaticMesh) -> i32,
+    pub getGroupIDAt: unsafe extern "thiscall" fn(this: *const gfc__KGStaticMesh, _: i32) -> i32,
+    pub getGroupNameAt:
+        unsafe extern "thiscall" fn(this: *const gfc__KGStaticMesh, _: i32) -> *const gfc__String,
+    pub beginCreate:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh, _: *mut gfc__MeshBuilder),
+    pub create: unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh, _: *mut gfc__MeshBuilder),
+    pub endCreate: unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh),
+    pub getBoundingBox: unsafe extern "thiscall" fn(
+        this: *const gfc__KGStaticMesh,
+    ) -> *const gfc__TBox_float_gfc__FloatMath_,
+    pub getVertexBuffer: unsafe extern "thiscall" fn(
+        this: *const gfc__KGStaticMesh,
+        result: *mut gfc__AutoRef_gfc__VertexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__VertexBuffer_,
+    pub getIndexBuffer: unsafe extern "thiscall" fn(
+        this: *const gfc__KGStaticMesh,
+        result: *mut gfc__AutoRef_gfc__IndexBuffer_,
+    ) -> *mut gfc__AutoRef_gfc__IndexBuffer_,
+    pub updateAddress:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh, _: *mut (), _: *mut ()),
+    pub isLightmapped: unsafe extern "thiscall" fn(this: *const gfc__KGStaticMesh) -> bool,
+    pub testCollision: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *mut f32,
+    ) -> bool,
+    pub testCollision_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+        _: *const gfc__TVector3_float_gfc__FloatMath_,
+    ) -> bool,
+    pub render:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh, _: *const gfc__RenderNode),
+    pub renderGroup: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: *const gfc__RenderNode,
+        _: i32,
+    ),
+    pub renderDepthOnly:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh, _: *const gfc__RenderNode),
+    pub renderGroupDepthOnly: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: *const gfc__RenderNode,
+        _: i32,
+    ),
+    pub renderLitGroup: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: *const gfc__RenderNode,
+        _: i32,
+        _: u32,
+        _: gfc__AutoRef_gfc__VertexBuffer_,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: f32,
+    ),
+    pub renderLitGroup_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: *const gfc__RenderNode,
+        _: i32,
+        _: u32,
+        _: *const gfc__AutoRef_gfc__VertexBuffer_,
+    ),
+    pub createRenderCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: i32,
+    ) -> *mut gfc__IRenderCallback,
+    pub createRenderCallback_2:
+        unsafe extern "thiscall" fn(this: *mut gfc__KGStaticMesh) -> *mut gfc__IRenderCallback,
+    pub createLitRenderCallback: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: i32,
+        _: u32,
+        _: gfc__AutoRef_gfc__VertexBuffer_,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: *mut gfc__Texture,
+        _: f32,
+    ) -> *mut gfc__IRenderCallback,
+    pub createLitRenderCallback_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__KGStaticMesh,
+        _: i32,
+        _: u32,
+        _: *const gfc__AutoRef_gfc__VertexBuffer_,
+    ) -> *mut gfc__IRenderCallback,
+}
+
+#[repr(C)]
 pub struct gfc__KGMeshCache {
     // gfc__ResourceCache
     pub vfptr: *const gfc__KGMeshCache__vftable,
@@ -22258,153 +22568,4 @@ pub struct hkpConstraintListener__vftable {
         this: *mut hkpConstraintListener,
         _: *const hkpConstraintRepairedEvent,
     ),
-}
-
-#[repr(C)]
-pub struct hkContactPointMaterial {
-    pub m_userData: u32,
-    pub m_friction: hkUFloat8,
-    pub m_restitution: u8,
-    pub m_maxImpulse: hkUFloat8,
-    pub m_flags: u8,
-}
-
-#[repr(C)]
-pub struct hkpShapePhantom {
-    // hkBaseObject
-    pub vfptr: *const hkpShapePhantom__vftable,
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpWorldObject
-    pub m_world: *mut hkpWorld,
-    pub m_userData: u32,
-    pub m_collidable: hkpLinkedCollidable,
-    pub m_multiThreadCheck: hkMultiThreadCheck,
-    pub m_name: hkStringPtr,
-    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
-    // hkpPhantom
-    pub m_overlapListeners: hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_,
-    pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
-    // hkpShapePhantom
-    pub m_motionState: hkMotionState,
-}
-
-unsafe impl UpcastToNop<hkpPhantom> for hkpShapePhantom {}
-
-unsafe impl UpcastToNop<hkpWorldObject> for hkpShapePhantom {}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpShapePhantom {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpShapePhantom {}
-
-impl hkpShapePhantom {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setShape(
-        &self,
-        a1: *const hkpShape,
-    ) -> hkWorldOperation__Result {
-        ((*self.vfptr).setShape)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn updateShape(
-        &self,
-        a1: *mut hkpShapeModifier,
-    ) -> hkWorldOperation__Result {
-        ((*self.vfptr).updateShape)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getMotionState(&self) -> *mut hkMotionState {
-        ((*self.vfptr).getMotionState)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getType(&self) -> hkpPhantomType {
-        ((*self.vfptr).getType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn calcAabb(&self, a1: *mut hkAabb) {
-        ((*self.vfptr).calcAabb)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addOverlappingCollidable(&self, a1: *mut hkpCollidable) {
-        ((*self.vfptr).addOverlappingCollidable)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn isOverlappingCollidableAdded(
-        &self,
-        result: *mut hkBool,
-        a2: *const hkpCollidable,
-    ) -> *mut hkBool {
-        ((*self.vfptr).isOverlappingCollidableAdded)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn removeOverlappingCollidable(&self, a1: *mut hkpCollidable) {
-        ((*self.vfptr).removeOverlappingCollidable)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn ensureDeterministicOrder(&self) {
-        ((*self.vfptr).ensureDeterministicOrder)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn clone(&self) -> *mut hkpPhantom {
-        ((*self.vfptr).clone)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn updateShapeCollectionFilter(&self) {
-        ((*self.vfptr).updateShapeCollectionFilter)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deallocateInternalArrays(&self) {
-        ((*self.vfptr).deallocateInternalArrays)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setPositionAndLinearCast(
-        &self,
-        a1: *const hkVector4f,
-        a2: *const hkpLinearCastInput,
-        a3: *mut hkpCdPointCollector,
-        a4: *mut hkpCdPointCollector,
-    ) {
-        ((*self.vfptr).setPositionAndLinearCast)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn setTransformAndLinearCast(
-        &self,
-        a1: *const hkTransformf,
-        a2: *const hkpLinearCastInput,
-        a3: *mut hkpCdPointCollector,
-        a4: *mut hkpCdPointCollector,
-    ) {
-        ((*self.vfptr).setTransformAndLinearCast)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn getClosestPoints(
-        &self,
-        a1: *mut hkpCdPointCollector,
-        a2: *const hkpCollisionInput,
-    ) {
-        ((*self.vfptr).getClosestPoints)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getPenetrations(
-        &self,
-        a1: *mut hkpCdBodyPairCollector,
-        a2: *const hkpCollisionInput,
-    ) {
-        ((*self.vfptr).getPenetrations)(self as *const _ as *mut _, a1, a2)
-    }
 }

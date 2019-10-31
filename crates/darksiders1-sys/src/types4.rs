@@ -5,6 +5,155 @@ use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkContactPointMaterial {
+    pub m_userData: u32,
+    pub m_friction: hkUFloat8,
+    pub m_restitution: u8,
+    pub m_maxImpulse: hkUFloat8,
+    pub m_flags: u8,
+}
+
+#[repr(C)]
+pub struct hkpShapePhantom {
+    // hkBaseObject
+    pub vfptr: *const hkpShapePhantom__vftable,
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkpWorldObject
+    pub m_world: *mut hkpWorld,
+    pub m_userData: u32,
+    pub m_collidable: hkpLinkedCollidable,
+    pub m_multiThreadCheck: hkMultiThreadCheck,
+    pub m_name: hkStringPtr,
+    pub m_properties: hkArray_hkSimpleProperty_hkContainerHeapAllocator_,
+    // hkpPhantom
+    pub m_overlapListeners: hkArray_hkpPhantomOverlapListener___hkContainerHeapAllocator_,
+    pub m_phantomListeners: hkArray_hkpPhantomListener___hkContainerHeapAllocator_,
+    // hkpShapePhantom
+    pub m_motionState: hkMotionState,
+}
+
+unsafe impl UpcastToNop<hkpPhantom> for hkpShapePhantom {}
+
+unsafe impl UpcastToNop<hkpWorldObject> for hkpShapePhantom {}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkpShapePhantom {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkpShapePhantom {}
+
+impl hkpShapePhantom {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setShape(
+        &self,
+        a1: *const hkpShape,
+    ) -> hkWorldOperation__Result {
+        ((*self.vfptr).setShape)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn updateShape(
+        &self,
+        a1: *mut hkpShapeModifier,
+    ) -> hkWorldOperation__Result {
+        ((*self.vfptr).updateShape)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getMotionState(&self) -> *mut hkMotionState {
+        ((*self.vfptr).getMotionState)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> hkpPhantomType {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn calcAabb(&self, a1: *mut hkAabb) {
+        ((*self.vfptr).calcAabb)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addOverlappingCollidable(&self, a1: *mut hkpCollidable) {
+        ((*self.vfptr).addOverlappingCollidable)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn isOverlappingCollidableAdded(
+        &self,
+        result: *mut hkBool,
+        a2: *const hkpCollidable,
+    ) -> *mut hkBool {
+        ((*self.vfptr).isOverlappingCollidableAdded)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn removeOverlappingCollidable(&self, a1: *mut hkpCollidable) {
+        ((*self.vfptr).removeOverlappingCollidable)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn ensureDeterministicOrder(&self) {
+        ((*self.vfptr).ensureDeterministicOrder)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn clone(&self) -> *mut hkpPhantom {
+        ((*self.vfptr).clone)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn updateShapeCollectionFilter(&self) {
+        ((*self.vfptr).updateShapeCollectionFilter)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deallocateInternalArrays(&self) {
+        ((*self.vfptr).deallocateInternalArrays)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setPositionAndLinearCast(
+        &self,
+        a1: *const hkVector4f,
+        a2: *const hkpLinearCastInput,
+        a3: *mut hkpCdPointCollector,
+        a4: *mut hkpCdPointCollector,
+    ) {
+        ((*self.vfptr).setPositionAndLinearCast)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn setTransformAndLinearCast(
+        &self,
+        a1: *const hkTransformf,
+        a2: *const hkpLinearCastInput,
+        a3: *mut hkpCdPointCollector,
+        a4: *mut hkpCdPointCollector,
+    ) {
+        ((*self.vfptr).setTransformAndLinearCast)(self as *const _ as *mut _, a1, a2, a3, a4)
+    }
+
+    pub unsafe extern "thiscall" fn getClosestPoints(
+        &self,
+        a1: *mut hkpCdPointCollector,
+        a2: *const hkpCollisionInput,
+    ) {
+        ((*self.vfptr).getClosestPoints)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getPenetrations(
+        &self,
+        a1: *mut hkpCdBodyPairCollector,
+        a2: *const hkpCollisionInput,
+    ) {
+        ((*self.vfptr).getPenetrations)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
 pub struct hkpShapePhantom__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom, _: u32) -> *mut (),
     pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkpShapePhantom),
