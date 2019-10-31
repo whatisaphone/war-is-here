@@ -14,10 +14,10 @@ pdbindgen \
     -i '^gfc::CShapeBox$' \
     -i '^gfc::CShapeMesh$' \
     -i '^gfc::GameCamera$' \
+    -i '^gfc::KGStaticMesh$' \
     -i '^gfc::PhysicsManager$' \
     -i '^gfc::RegionLayerData$' \
     -i '^gfc::Skeleton3D$' \
-    -i '^gfc::StaticMesh$' \
     -i '^gfc::TriggerRegion$' \
     -i '^gfc::Weapon$' \
     -i '^gfc::WorldGroup$' \
