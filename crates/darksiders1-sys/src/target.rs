@@ -50,6 +50,7 @@ symbols! {
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle;
+    pub static gfc__Singleton_gfc__ResourceManager_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle;
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle;
@@ -101,6 +102,8 @@ symbols! {
     pub fn gfc__StaticMeshVisual__StaticMeshVisual_2;
     pub fn gfc__StaticMeshVisual___StaticMeshVisual;
     pub fn gfc__Object3D___Object3D;
+    pub fn gfc__ResourceManager__getPermanentID;
+    pub fn gfc__ResourceManager__loadPackages;
     pub fn gfc__ResourceCache__getResource;
     pub fn gfc__PhysMeshCache__get;
     pub fn gfc__PhysMeshCache__get_2;
@@ -112,6 +115,8 @@ symbols! {
     pub fn gfc__HString__HString_6;
     pub fn gfc__HString___HString;
     pub fn gfc__HString__c_str;
+    pub fn gfc__ScriptClass__ScriptClass;
+    pub fn gfc__ScriptClass___ScriptClass;
     pub fn gfc__OOObjectWriter__writeObject;
     pub fn gfc__MemFree;
     pub fn gfc__MemAlloc;

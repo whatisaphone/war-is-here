@@ -2,6 +2,8 @@
 
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use na::Point3;
+use once_cell::sync::Lazy;
+use std::slice;
 
 pub fn run(command: &str) {
     let args = match parse(command) {
@@ -56,9 +58,33 @@ unsafe fn go(args: &Args) {
         }
     };
 
+    if let Some(sc) = as_script_class(class) {
+        let package_id = (*sc.as_ptr()).mPackageID;
+        let resource_manager = <gfc::Singleton<gfc::ResourceManager>>::get_instance();
+        let package_id = resource_manager.get_permanent_id(package_id);
+        resource_manager.load_packages(slice::from_ref(&package_id), false);
+        println!("loading package {}", package_id);
+    }
+
     obj.set_position(&Point3::new(args.x, args.y, args.z));
 
     if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
         obj.add_object_to_world(world);
     }
+}
+
+// Major hack! I would rather pdbindgen be able to bind to the vftable directly.
+static SCRIPTCLASS_VFTABLE: Lazy<usize> = Lazy::new(|| {
+    let dummy = gfc::ScriptClass::new(&hstring!("dummy"), -1, None);
+    unsafe { (*dummy.as_ptr()).vfptr as usize }
+});
+
+fn as_script_class(class: &gfc::Class) -> Option<&gfc::ScriptClass> {
+    // Hack! We should be using actual RTTI instead of comparing the vfptr.
+    unsafe {
+        if (*class.as_ptr()).vfptr as usize == *SCRIPTCLASS_VFTABLE {
+            return Some(gfc::ScriptClass::from_ptr(class.as_ptr().cast()));
+        }
+    }
+    None
 }

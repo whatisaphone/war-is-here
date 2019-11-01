@@ -49,12 +49,18 @@ pub use crate::darksiders1::code::vigil::{
         },
         memory::memop::{mem_alloc, mem_free},
         oc::ooobjectwriter::OOObjectWriter,
+        reflection::scriptclass::ScriptClass,
         ui::uimanager::_UIManager,
-        util::{hstring::HString, singleton::Singleton, string::String, vector::Vector},
+        util::{
+            hstring::HString,
+            singleton::Singleton,
+            string::String,
+            vector::{Vector, Vector__SliceAdapter},
+        },
         world::{
             collision::{cshape::CShape, cshapebox::CShapeBox, cshapemesh::CShapeMesh},
             physics::{physmeshcache::PhysMeshCache, rigidbody::RigidBody},
-            resource::resourcecache::ResourceCache,
+            resource::{resourcecache::ResourceCache, resourcemanager::ResourceManager},
             staticobject::StaticObject,
             triggerregion::TriggerRegion,
             visuals::{

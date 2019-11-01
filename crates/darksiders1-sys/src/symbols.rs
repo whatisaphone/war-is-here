@@ -31,6 +31,7 @@ symbols! {
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__KGMeshCache = Data(0x5559f4);
     pub static gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle: *mut gfc__KGGraphics = Data(0xa1aec);
+    pub static gfc__Singleton_gfc__ResourceManager_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__ResourceManager = Data(0xa4228);
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__Darksiders = Data(0xa1afc);
     pub static gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle: *mut gfc__Object3DCache = Data(0xa1a8c);
     pub static gfc__Singleton_gfc__ClassRegistry_gfc__CreateStatic_gfc__SingletonLongevity__DieNextToLast___InstanceHandle: *mut gfc__ClassRegistry = Data(0xa4230);
@@ -82,6 +83,8 @@ symbols! {
     pub static gfc__StaticMeshVisual__StaticMeshVisual_2: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual, _: *const gfc__HString, _: i32, _: *const gfc__HString) = Text(0xdae200);
     pub static gfc__StaticMeshVisual___StaticMeshVisual: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual) = Text(0xdae3c0);
     pub static gfc__Object3D___Object3D: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) = Text(0xdbbaf0);
+    pub static gfc__ResourceManager__getPermanentID: unsafe extern "thiscall" fn(this: *const gfc__ResourceManager, _: i32) -> i32 = Text(0xc840e0);
+    pub static gfc__ResourceManager__loadPackages: unsafe extern "thiscall" fn(this: *mut gfc__ResourceManager, result: *mut gfc__AutoRef_gfc__PackageMarker_, _: *const gfc__Vector_int_0_gfc__CAllocator_, _: bool, _: *mut gfc__Map_int_gfc__AutoRef_gfc__OverrideResources__std__less_int___) -> *mut gfc__AutoRef_gfc__PackageMarker_ = Text(0xc9e5c0);
     pub static gfc__ResourceCache__getResource: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: i32, _: *const gfc__HString) -> *mut () = Text(0xca0750);
     pub static gfc__PhysMeshCache__get: unsafe extern "thiscall" fn(this: *mut gfc__PhysMeshCache, _: i32, _: *const gfc__HString, _: i32, _: f32) -> *mut hkpShape = Text(0xc75710);
     pub static gfc__PhysMeshCache__get_2: unsafe extern "thiscall" fn(this: *mut gfc__PhysMeshCache, _: *const gfc__HString, _: *const gfc__HString, _: i32, _: f32) -> *mut hkpShape = Text(0xc77260);
@@ -93,6 +96,8 @@ symbols! {
     pub static gfc__HString__HString_6: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: u64, _: *const i8, _: i32) = Text(0xa6e720);
     pub static gfc__HString___HString: unsafe extern "thiscall" fn(this: *mut gfc__HString) = Text(0xa6e790);
     pub static gfc__HString__c_str: unsafe extern "thiscall" fn(this: *const gfc__HString) -> *const i8 = Text(0xa6e8d0);
+    pub static gfc__ScriptClass__ScriptClass: unsafe extern "thiscall" fn(this: *mut gfc__ScriptClass, _: *const gfc__HString, _: i32, _: *mut gfc__Class) = Text(0xa61fb0);
+    pub static gfc__ScriptClass___ScriptClass: unsafe extern "thiscall" fn(this: *mut gfc__ScriptClass) = Text(0xa62140);
     pub static gfc__OOObjectWriter__writeObject: unsafe extern "thiscall" fn(this: *mut gfc__OOObjectWriter, _: gfc__AutoRef_gfc__Object_, _: gfc__AutoRef_gfc__OutputStream_, _: bool) = Text(0xa40140);
     pub static gfc__MemFree: unsafe extern "C" fn(_: u32, _: *mut (), _: *const i8, _: u32) -> *mut () = Text(0xa35880);
     pub static gfc__MemAlloc: unsafe extern "C" fn(_: u32, _: *mut (), _: u32, _: u32, _: u32, _: u32, _: *const i8, _: u32) -> *mut () = Text(0xa37580);

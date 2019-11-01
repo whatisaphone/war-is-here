@@ -210,6 +210,7 @@ lowered_vector!(
     target::gfc__TVector4_float_gfc__FloatMath_,
     lift = true,
 );
+lowered_vector!(target::gfc__Vector_int_0_gfc__CAllocator_, i32, lift = true);
 lowered_vector!(
     target::gfc__Vector_unsigned_char_0_gfc__CAllocator_,
     u8,
@@ -225,3 +226,27 @@ lowered_vector!(
     u16,
     lift = true,
 );
+
+/// This is an adapter that takes a `&[T]` and exposes it as a `&Vector<T>`,
+/// without copying the contents.
+///
+/// The resulting `Vector<T>` is read-only.
+pub struct Vector__SliceAdapter<T> {
+    vector: Vector<T>,
+}
+
+impl<T> Vector__SliceAdapter<T> {
+    pub fn new(xs: &[T]) -> Self {
+        Self {
+            vector: Vector {
+                data: xs.as_ptr() as *mut _,
+                size: xs.len().try_into().unwrap(),
+                capacity_and_flags: 0,
+            },
+        }
+    }
+
+    pub fn as_vector(&self) -> &Vector<T> {
+        &self.vector
+    }
+}

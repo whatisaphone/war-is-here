@@ -29,6 +29,10 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle);
     bind!(
         data,
+        gfc__Singleton_gfc__ResourceManager_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
+    );
+    bind!(
+        data,
         gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
     );
     bind!(data, gfc__Singleton_gfc__Object3DCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle);
@@ -81,6 +85,8 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__StaticMeshVisual__StaticMeshVisual_2);
     bind!(text, gfc__StaticMeshVisual___StaticMeshVisual);
     bind!(text, gfc__Object3D___Object3D);
+    bind!(text, gfc__ResourceManager__getPermanentID);
+    bind!(text, gfc__ResourceManager__loadPackages);
     bind!(text, gfc__ResourceCache__getResource);
     bind!(text, gfc__PhysMeshCache__get);
     bind!(text, gfc__PhysMeshCache__get_2);
@@ -92,6 +98,8 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__HString__HString_6);
     bind!(text, gfc__HString___HString);
     bind!(text, gfc__HString__c_str);
+    bind!(text, gfc__ScriptClass__ScriptClass);
+    bind!(text, gfc__ScriptClass___ScriptClass);
     bind!(text, gfc__OOObjectWriter__writeObject);
     bind!(text, gfc__MemFree);
     bind!(text, gfc__MemAlloc);

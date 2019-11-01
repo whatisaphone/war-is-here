@@ -67,7 +67,8 @@ pub unsafe trait Lift1: Sized {
     }
 }
 
-// Numbers are, obviously, the same on both sides of the divide.
+// Numbers are, obviously, the same on both sides of the curtain.
 impl_lift_lower!(u8, u8);
 impl_lift_lower!(u16, u16);
+impl_lift_lower!(i32, i32);
 impl_lift_lower!(u32, u32);

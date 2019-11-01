@@ -33,6 +33,7 @@ pdbindgen \
     -i '^gfc::Singleton<gfc::KGMeshCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Object3DCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::PhysMeshCache,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::ResourceManager,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::TeleportHelper,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::WindowHelper,.+>::InstanceHandle$' \
     -i '^gfc::TriggerRegion::_Class$' \
@@ -74,6 +75,9 @@ pdbindgen \
     -i '^gfc::PhysMeshCache::get$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
+    -i '^gfc::ResourceManager::getPermanentID$' \
+    -i '^gfc::ResourceManager::loadPackages$' \
+    -i '^gfc::ScriptClass::~?ScriptClass$' \
     -i '^gfc::StaticMeshVisual::~?StaticMeshVisual$' \
     -i '^gfc::StaticObject::~?StaticObject$' \
     -i '^gfc::StaticObject::setObjectName$' \

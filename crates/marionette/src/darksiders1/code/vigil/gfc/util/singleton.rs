@@ -45,6 +45,10 @@ impl_singleton!(
     target::gfc__Singleton_gfc__PhysMeshCache_gfc__CreateStatic_gfc__SingletonLongevity__DieSecond___InstanceHandle,
 );
 impl_singleton!(
+    gfc::ResourceManager,
+    target::gfc__Singleton_gfc__ResourceManager_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle,
+);
+impl_singleton!(
     gfc::TeleportHelper,
     target::gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle,
 );
