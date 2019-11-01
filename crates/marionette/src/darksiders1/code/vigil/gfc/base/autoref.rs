@@ -27,6 +27,7 @@ impl IRefObject {
 
 pub struct AutoRef<T: AsRef<IRefObject>>(*mut T);
 
+#[allow(clippy::use_self)]
 impl<T: AsRef<IRefObject>> AutoRef<T> {
     pub fn new(x: T) -> Self {
         let p = Heap::into_raw(Heap::new(x));
@@ -35,10 +36,7 @@ impl<T: AsRef<IRefObject>> AutoRef<T> {
         }
         Self(p)
     }
-}
 
-#[allow(clippy::use_self)]
-impl<T: AsRef<IRefObject>> AutoRef<T> {
     pub unsafe fn from_ptr(p: *const T) -> Self {
         (*p).as_ref().add_ref();
         Self::from_raw(p)
