@@ -27,6 +27,7 @@ fn handle_message(message: &[u8]) -> bool {
         "show_collision" => commands::show_collision::run(message),
         "show_triggers" => commands::show_triggers::run(message),
         "shutdown" => return false,
+        "spawn_humans" => commands::spawn_humans::run(message),
         "spawn_object" => commands::spawn_objct::run(message),
         "spawn_static_object" => commands::spawn_static_object::run(message),
         "teleport" => commands::teleport::run(message),

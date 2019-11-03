@@ -85,7 +85,10 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__StaticMeshVisual__StaticMeshVisual_2);
     bind!(text, gfc__StaticMeshVisual___StaticMeshVisual);
     bind!(text, gfc__Object3D___Object3D);
+    bind!(text, gfc__ResourceManager__getPackageID);
+    bind!(text, gfc__ResourceManager__getPackageID_2);
     bind!(text, gfc__ResourceManager__getPermanentID);
+    bind!(text, gfc__ResourceManager__getPackageID_3);
     bind!(text, gfc__ResourceManager__loadPackages);
     bind!(text, gfc__ResourceCache__getResource);
     bind!(text, gfc__PhysMeshCache__get);

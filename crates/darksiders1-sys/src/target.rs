@@ -102,7 +102,10 @@ symbols! {
     pub fn gfc__StaticMeshVisual__StaticMeshVisual_2;
     pub fn gfc__StaticMeshVisual___StaticMeshVisual;
     pub fn gfc__Object3D___Object3D;
+    pub fn gfc__ResourceManager__getPackageID;
+    pub fn gfc__ResourceManager__getPackageID_2;
     pub fn gfc__ResourceManager__getPermanentID;
+    pub fn gfc__ResourceManager__getPackageID_3;
     pub fn gfc__ResourceManager__loadPackages;
     pub fn gfc__ResourceCache__getResource;
     pub fn gfc__PhysMeshCache__get;

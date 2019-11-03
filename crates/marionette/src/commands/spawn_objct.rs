@@ -17,7 +17,7 @@ pub fn run(command: &str) {
     guard
         .as_mut()
         .unwrap()
-        .push_back(Box::new(move || unsafe { go(&args) }));
+        .push_back(Box::new(move || go(&args)));
 }
 
 fn parse(command: &str) -> Result<Args, ()> {
@@ -30,14 +30,14 @@ fn parse(command: &str) -> Result<Args, ()> {
     Ok(Args { classname, x, y, z })
 }
 
-struct Args {
-    classname: String,
-    x: f32,
-    y: f32,
-    z: f32,
+pub(super) struct Args {
+    pub classname: String,
+    pub x: f32,
+    pub y: f32,
+    pub z: f32,
 }
 
-unsafe fn go(args: &Args) {
+pub(super) fn go(args: &Args) {
     let classname = gfc::HString::from_str(&args.classname);
 
     let class = match gfc::Singleton::<gfc::ClassRegistry>::get_instance()
@@ -59,7 +59,9 @@ unsafe fn go(args: &Args) {
     };
 
     if let Some(sc) = as_script_class(class) {
-        let package_id = (*sc.as_ptr()).mPackageID;
+        // Load the package even if it's already loaded. This is just sheer laziness on
+        // my part.
+        let package_id = unsafe { (*sc.as_ptr()).mPackageID };
         let resource_manager = <gfc::Singleton<gfc::ResourceManager>>::get_instance();
         let package_id = resource_manager.get_permanent_id(package_id);
         resource_manager.load_packages(slice::from_ref(&package_id), false);
@@ -68,7 +70,7 @@ unsafe fn go(args: &Args) {
 
     obj.set_position(&Point3::new(args.x, args.y, args.z));
 
-    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
+    if let Some(world) = unsafe { gfc::OblivionGame::get_instance().get_world() } {
         obj.add_object_to_world(world);
     }
 }

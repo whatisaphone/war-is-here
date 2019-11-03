@@ -24,6 +24,15 @@ impl ResourceManager {
         // the memory.
     }
 
+    pub fn get_package_id(&self, package_name: &gfc::HString) -> i32 {
+        unsafe {
+            target::gfc__ResourceManager__getPackageID(
+                self.as_ptr(),
+                Lower::lower_ptr(package_name),
+            )
+        }
+    }
+
     pub fn get_permanent_id(&self, runtime_id: i32) -> i32 {
         unsafe { target::gfc__ResourceManager__getPermanentID(self.as_ptr(), runtime_id) }
     }

@@ -82,7 +82,7 @@ pub fn cleanup() {
 
 mod hook {
     use crate::{
-        commands::{pretend_editor, show_collision, show_triggers},
+        commands::{pretend_editor, show_collision, show_triggers, spawn_humans},
         darksiders1::{Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
@@ -120,6 +120,8 @@ mod hook {
                 f();
             }
         }
+
+        spawn_humans::pump();
 
         (detours.gfc__Darksiders__onPostUpdateInterval)(this, deltat)
     }

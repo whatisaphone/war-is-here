@@ -75,6 +75,7 @@ pdbindgen \
     -i '^gfc::PhysMeshCache::get$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::ResourceCache::getResource$' \
+    -i '^gfc::ResourceManager::getPackageID$' \
     -i '^gfc::ResourceManager::getPermanentID$' \
     -i '^gfc::ResourceManager::loadPackages$' \
     -i '^gfc::ScriptClass::~?ScriptClass$' \

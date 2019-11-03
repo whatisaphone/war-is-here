@@ -24,6 +24,10 @@ impl Class {
         }
     }
 
+    pub fn is_abstract(&self) -> bool {
+        unsafe { self.inner.isAbstract() }
+    }
+
     pub fn instanceof(&self, class: &Self) -> bool {
         unsafe { self.inner.instanceof(class.as_ptr()) }
     }

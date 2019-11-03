@@ -83,7 +83,10 @@ symbols! {
     pub static gfc__StaticMeshVisual__StaticMeshVisual_2: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual, _: *const gfc__HString, _: i32, _: *const gfc__HString) = Text(0xdae200);
     pub static gfc__StaticMeshVisual___StaticMeshVisual: unsafe extern "thiscall" fn(this: *mut gfc__StaticMeshVisual) = Text(0xdae3c0);
     pub static gfc__Object3D___Object3D: unsafe extern "thiscall" fn(this: *mut gfc__Object3D) = Text(0xdbbaf0);
+    pub static gfc__ResourceManager__getPackageID: unsafe extern "thiscall" fn(this: *const gfc__ResourceManager, _: *const gfc__HString) -> i32 = Text(0xc83fd0);
+    pub static gfc__ResourceManager__getPackageID_2: unsafe extern "thiscall" fn(this: *const gfc__ResourceManager, _: i32) -> i32 = Text(0xc84060);
     pub static gfc__ResourceManager__getPermanentID: unsafe extern "thiscall" fn(this: *const gfc__ResourceManager, _: i32) -> i32 = Text(0xc840e0);
+    pub static gfc__ResourceManager__getPackageID_3: unsafe extern "thiscall" fn(this: *const gfc__ResourceManager, _: *const gfc__String) -> i32 = Text(0xc97840);
     pub static gfc__ResourceManager__loadPackages: unsafe extern "thiscall" fn(this: *mut gfc__ResourceManager, result: *mut gfc__AutoRef_gfc__PackageMarker_, _: *const gfc__Vector_int_0_gfc__CAllocator_, _: bool, _: *mut gfc__Map_int_gfc__AutoRef_gfc__OverrideResources__std__less_int___) -> *mut gfc__AutoRef_gfc__PackageMarker_ = Text(0xc9e5c0);
     pub static gfc__ResourceCache__getResource: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: i32, _: *const gfc__HString) -> *mut () = Text(0xca0750);
     pub static gfc__PhysMeshCache__get: unsafe extern "thiscall" fn(this: *mut gfc__PhysMeshCache, _: i32, _: *const gfc__HString, _: i32, _: f32) -> *mut hkpShape = Text(0xc75710);

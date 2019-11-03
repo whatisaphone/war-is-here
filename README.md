@@ -16,6 +16,16 @@ Commands are sent over UDP. For an easy way to send them, install `netcat` (`nc`
 nc -u localhost 12345 -w 1 <<<'your_command_here'
 ```
 
+#### `load_map_menu`
+
+Show a window that lets you teleport to any area in the game.
+
+```
+load_map_menu
+```
+
+#### `move_player`
+
 #### `pickup_item`
 
 Gives the player any `Item`.
@@ -25,15 +35,21 @@ pickup_item bfg_sentinel/weapon_bfg_sentinel
 pickup_item weapon_enhancements/common_bane
 ```
 
-#### `load_map_menu`
+#### `pretend_editor`
 
-Show a window that lets you teleport to any area in the game.
+#### `show_collision`
+
+#### `show_triggers`
+
+Show triggers in the world.
 
 ```
-load_map_menu
+show_triggers
 ```
 
-#### `spawn_actor`
+#### `spawn_humans`
+
+#### `spawn_object`
 
 Spawn an `Actor` class into the world.
 
@@ -55,14 +71,6 @@ You can also spawn objects that are part of this mod (not included with the orig
 
 ```
 spawn_static_object city01_streets gritty_cube -4000 -28000 180 1
-```
-
-#### `show_triggers`
-
-Show triggers in the world.
-
-```
-show_triggers
 ```
 
 #### `teleport`
