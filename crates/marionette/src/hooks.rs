@@ -58,9 +58,9 @@ pub fn install() {
             gfc__ResourceCache__getResource,
             gfc__World__World,
         );
-
-        *ON_POST_UPDATE_QUEUE.lock() = Some(VecDeque::new());
     }
+
+    *ON_POST_UPDATE_QUEUE.lock() = Some(VecDeque::new());
 }
 
 pub fn uninstall() {
