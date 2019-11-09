@@ -4,16 +4,16 @@ Darksiders modding!
 
 ## How to use
 
-Still very rudimentary. First, run `dev/inject.sh`. This will spin up a UDP server inside Darksiders that has some basic commands.
+Still very rudimentary. First, run `dev/inject.sh`. This will spin up a TCP server inside Darksiders that has some basic commands.
 
-All these were tested in Crossroads, so you might want to go there first. Things to try:
+All these were tested in Crossroads, so you might want to go there to test things (which you can do using the `teleport` command 😉). Things to try:
 
 ### Commands
 
-Commands are sent over UDP. For an easy way to send them, install `netcat` (`nc`) and run:
+Commands are sent as simple strings over TCP. For an easy way to send them, install `netcat` (`nc`) and run:
 
 ```sh
-nc -u localhost 12345 -w 1 <<<'your_command_here'
+nc localhost 53508 <<<'your_command_here'
 ```
 
 #### `load_map_menu`
@@ -46,6 +46,8 @@ Show triggers in the world.
 ```
 show_triggers
 ```
+
+#### `shutdown`
 
 #### `spawn_humans`
 

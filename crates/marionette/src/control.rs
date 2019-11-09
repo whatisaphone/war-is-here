@@ -1,39 +1,42 @@
 use crate::commands;
 use std::{
-    net::{Ipv4Addr, UdpSocket},
-    str,
+    io,
+    io::{BufRead, Write},
+    net::{Ipv4Addr, TcpListener, TcpStream},
 };
 
-pub fn start() {
-    let socket = UdpSocket::bind((Ipv4Addr::LOCALHOST, 12345)).unwrap();
+const RANDOM_PORT: u16 = 53508; // chosen by fair dice roll. guaranteed to be random.
 
-    let mut buf = vec![0; 4096];
-    while let Ok(bytes) = socket.recv(&mut buf) {
-        let message = &buf[..bytes];
-        if !handle_message(message) {
+pub fn start() {
+    let server = TcpListener::bind((Ipv4Addr::LOCALHOST, RANDOM_PORT)).unwrap();
+
+    while let Ok((client, _)) = server.accept() {
+        let terminate = !handle_client(client);
+        if terminate {
             break;
         }
     }
 }
 
-fn handle_message(message: &[u8]) -> bool {
-    let message = str::from_utf8(message).unwrap_or(":(");
-    let command = message.split_ascii_whitespace().next().unwrap_or(":(");
-    match command {
-        "load_map_menu" => commands::load_map_menu::run(message),
-        "move_player" => commands::move_player::run(message),
-        "pickup_item" => commands::pickup_item::run(message),
-        "pretend_editor" => commands::pretend_editor::run(message),
-        "show_collision" => commands::show_collision::run(message),
-        "show_triggers" => commands::show_triggers::run(message),
-        "shutdown" => return false,
-        "spawn_humans" => commands::spawn_humans::run(message),
-        "spawn_object" => commands::spawn_objct::run(message),
-        "spawn_static_object" => commands::spawn_static_object::run(message),
-        "teleport" => commands::teleport::run(message),
-        _ => {
-            println!("unknown command");
+fn handle_client(mut client: TcpStream) -> bool {
+    let mut reader = io::BufReader::new(client.try_clone().unwrap());
+
+    let mut buf = Vec::with_capacity(32);
+    match reader.read_until(b'\n', &mut buf) {
+        Ok(n) if n > 0 => {}
+        _ => return false,
+    }
+
+    let result = commands::run(&buf);
+    match result {
+        commands::RunResult::Ok => {
+            let _ = client.write_all("\u{1f44d}\n".as_bytes()); // 👍
         }
+        commands::RunResult::Response(response) => {
+            let _ = client.write_all(response.as_bytes());
+            let _ = client.write_all(b"\n");
+        }
+        commands::RunResult::Shutdown => return false,
     }
     true
 }

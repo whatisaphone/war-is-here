@@ -4,13 +4,10 @@ use parking_lot::Mutex;
 use rand::{thread_rng, Rng};
 use std::time::{Duration, Instant};
 
-pub fn run(command: &str) {
+pub fn run(command: &str) -> Result<(), &'static str> {
     let args = match parse(command) {
         Ok(args) => args,
-        Err(()) => {
-            println!("parse error");
-            return;
-        }
+        Err(()) => return Err("parse error"),
     };
 
     *STATE.lock() = Some(State {
@@ -18,6 +15,7 @@ pub fn run(command: &str) {
         next_time: Instant::now(),
         position: Point3::new(args.x, args.y, args.z),
     });
+    Ok(())
 }
 
 fn parse(command: &str) -> Result<Args, ()> {

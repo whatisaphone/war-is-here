@@ -2,19 +2,17 @@ use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 use darksiders1_sys::target;
 use na::{Point3, Vector3};
 
-pub fn run(command: &str) {
+pub fn run(command: &str) -> Result<(), &'static str> {
     let args = match parse(command) {
         Ok(args) => args,
-        Err(()) => {
-            println!("parse error");
-            return;
-        }
+        Err(()) => return Err("parse error"),
     };
     let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard
         .as_mut()
         .unwrap()
         .push_back(Box::new(move || unsafe { go(&args) }));
+    Ok(())
 }
 
 fn parse(command: &str) -> Result<Args, ()> {

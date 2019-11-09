@@ -5,19 +5,17 @@ use na::Point3;
 use once_cell::sync::Lazy;
 use std::slice;
 
-pub fn run(command: &str) {
+pub fn run(command: &str) -> Result<(), &'static str> {
     let args = match parse(command) {
         Ok(args) => args,
-        Err(()) => {
-            println!("parse error");
-            return;
-        }
+        Err(()) => return Err("parse error"),
     };
     let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard
         .as_mut()
         .unwrap()
         .push_back(Box::new(move || go(&args)));
+    Ok(())
 }
 
 fn parse(command: &str) -> Result<Args, ()> {

@@ -2,6 +2,6 @@
 
 set -euo pipefail
 
-nc -u localhost 12345 -w 1 <<<shutdown
+nc localhost 53508 <<<shutdown || true
 cargo build
 vendor/Injector.exe -n darksiders1.exe -i ../target/debug/marionette.dll
