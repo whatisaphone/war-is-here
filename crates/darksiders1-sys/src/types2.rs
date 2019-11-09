@@ -162,35 +162,35 @@ pub struct gfc__ThreadSafeVector_gfc__RenderNode___ {
 pub struct gfc__RenderNode {
     __pdbindgen_padding: [u8; 340],
     pub Flags: gfc__TFlags_unsigned_long_,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub Camera: *mut gfc__Camera3D,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub Shader: *mut gfc__Shader,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub Material: *mut gfc__Material,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub RenderCallback: *mut gfc__IRenderCallback,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub MeshInstance: *mut gfc__MeshInstance,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub Context: i32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub SceneContext: *mut (),
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub ObjectContext: *mut (),
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub Transform: gfc__Matrix4,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub World: gfc__Matrix4,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub WorldView: gfc__Matrix4,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub WorldViewProj: gfc__Matrix4,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub MatrixArray: *mut gfc__MatrixArray,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub BVolume: gfc__BoundingVolume,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub LightGroup: u32,
     pub BlendMode: i32,
     pub MeshFormat: u32,
@@ -203,8 +203,8 @@ pub struct gfc__RenderNode {
     pub LODLevel: u32,
     pub LightCount: i32,
     pub OmniLightCount: i32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub Lights: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub Lights: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_2: [u8; 64],
     pub DynMeshNode: *mut gfc__DynMeshNode,
     pub ObjectColor: gfc__TVector4_float_gfc__FloatMath_,
@@ -217,8 +217,8 @@ pub struct gfc__KGGraphics {
     // gfc__Graphics
     pub vfptr: *const gfc__KGGraphics__vftable,
     // gfc__KGGraphics
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_destructors: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_destructors: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 3072],
     pub mDefaultAllocator: *mut keen__MemoryAllocator,
     pub m_pGraphicsSystem: *mut keen__GraphicsSystem,
@@ -266,8 +266,8 @@ pub struct gfc__KGGraphics {
     pub mGcmCommandBuffer: *mut (),
     pub mGcmCommandBufferSize: u32,
     pub mTiledMemorySize: u32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_vertexBuffers: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_vertexBuffers: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_2: [u8; 48],
     pub m_vertexBufferCount: u32,
     pub m_pVertexConstantBuffers: [*mut keen__DynamicConstantBuffer; 4],
@@ -293,8 +293,8 @@ pub struct gfc__KGGraphics {
     pub m_pCurrentFrameBuffer: *const keen__TextureData,
     pub m_pCurrentDepthBuffer: *const keen__TextureData,
     pub m_envProbeDepthBuffer: keen__TextureData,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_environmentProbeTextures: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_environmentProbeTextures: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_6: [u8; 8],
     pub m_pEnvironmentProbeRenderTargets: [*const keen__RenderTarget; 2],
     pub m_postProcessEffect: u32,
@@ -3112,8 +3112,8 @@ pub struct gfc__ResourcePackageInfo {
     pub mPermanentDependencies: gfc__Vector_int_0_gfc__CAllocator_,
     pub mRuntimeID: i32,
     pub mRuntimeName: gfc__HString,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub mRefAndState: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub mRefAndState: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 4],
     pub mPackage: *mut gfc__ResourcePackage,
     pub mFlattenedDependencies: gfc__Vector_int_0_gfc__CAllocator_,
@@ -7008,8 +7008,8 @@ pub struct hkpSimpleContactConstraintDataInfo {
     pub m_biNormalAxis: u16,
     pub m_rollingFrictionMultiplier: hkHalf,
     pub m_internalData1: hkHalf,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_rhsRolling: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_rhsRolling: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 4],
     pub m_contactRadius: f32,
     pub m_data: [f32; 4],
@@ -7134,8 +7134,8 @@ pub struct hkpProcessCollisionOutput__PotentialInfo {
     pub m_firstFreePotentialContact: *mut hkpProcessCollisionOutput__ContactRef,
     pub m_firstFreeRepresentativeContact: *mut *mut hkpProcessCdPoint,
     pub m_representativeContacts: [*mut hkpProcessCdPoint; 256],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_potentialContacts: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_potentialContacts: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 3072],
 }
 
@@ -7209,8 +7209,8 @@ pub struct hkpMaxSizeMotion {
     pub m_inertiaAndMassInv: hkVector4f,
     pub m_linearVelocity: hkVector4f,
     pub m_angularVelocity: hkVector4f,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_deactivationRefPosition: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_deactivationRefPosition: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 32],
     pub m_deactivationRefOrientation: [u32; 2],
     pub m_savedMotion: *mut hkpMaxSizeMotion,
@@ -7639,10 +7639,10 @@ pub struct hkGskCache16 {
     pub m_vertices: [u16; 4],
     pub m_dimA: u8,
     pub m_dimB: u8,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_maxDimA: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_maxDimB: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_maxDimA: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_maxDimB: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 1],
     pub m_gskFlags: u8,
     // hkGskCache16
@@ -7972,10 +7972,10 @@ pub struct gfc__EmitterInstance {
     pub Offset: gfc__Matrix4,
     pub RaycastTo: gfc__TVector3_float_gfc__FloatMath_,
     pub LastPosition: [f32; 3],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub LinearVelocity: [f32; 3],
     pub LastOrientation: [f32; 4],
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub AngularVelocity: [f32; 3],
     pub ChannelId: i32,
     pub SoundChannel: i32,
@@ -7986,35 +7986,35 @@ pub struct gfc__EmitterInstance {
     pub EyeDistanceSqr: f32,
     pub Fade: f32,
     pub TrailLength: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub Power: f32,
     pub RefNode: *mut gfc__Node3D,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub RefObject: *mut gfc__Object3D,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub RefParticle: gfc__LockFreePoolHandle_gfc__MeshParticle_gfc__MeshParticle_,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub AttachTo: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub WorldRelRotation: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub SortType: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub DoRaycast: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub CalcAngularVelocity: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub ParticleType: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub FlaggedForDelete: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub Stopping: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub DisableEmit: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub DrawFailed: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub UseAlternateTime: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub AttachTo: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub WorldRelRotation: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub SortType: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub DoRaycast: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub CalcAngularVelocity: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub ParticleType: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub FlaggedForDelete: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub Stopping: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub DisableEmit: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub DrawFailed: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub UseAlternateTime: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 8],
     pub ParticleList: gfc__EmitterInstance___unnamed_type_ParticleList_,
     pub WorldPtr: *mut gfc__World,
@@ -8026,14 +8026,14 @@ pub struct gfc__EmitterInstance {
 #[repr(C)]
 pub struct gfc__EmitterInstance___unnamed_type_ParticleList_ {
     pub SpriteHead: gfc__LockFreePoolHandle_gfc__SpriteParticle_gfc__SpriteParticle_,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub MeshHead: gfc__LockFreePoolHandle_gfc__MeshParticle_gfc__MeshParticle_,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub TrailHead: gfc__LockFreePoolHandle_gfc__TrailParticle_gfc__TrailParticle_,
     pub SpriteTail: gfc__LockFreePoolHandle_gfc__SpriteParticle_gfc__SpriteParticle_,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub MeshTail: gfc__LockFreePoolHandle_gfc__MeshParticle_gfc__MeshParticle_,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub TrailTail: gfc__LockFreePoolHandle_gfc__TrailParticle_gfc__TrailParticle_,
     pub Size: u32,
 }
@@ -8041,8 +8041,8 @@ pub struct gfc__EmitterInstance___unnamed_type_ParticleList_ {
 #[repr(C)]
 pub struct gfc__LockFreePoolMarker_gfc__EmitterInstance_ {
     pub Object: *mut gfc__EmitterInstance,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub State: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub State: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 4],
 }
 
@@ -8063,8 +8063,8 @@ pub struct gfc__Vector_gfc__Occluder___0_gfc__CAllocator_ {
 pub struct gfc__Clipper {
     pub pOccluders: *const gfc__Vector_gfc__Occluder___0_gfc__CAllocator_,
     pub numPlanes: u32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub planes: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub planes: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 1024],
 }
 
@@ -8258,8 +8258,8 @@ pub struct gfc__ModuleInputLink {
 #[repr(C)]
 pub struct gfc__LockFreePoolMarker_gfc__TrailParticle_ {
     pub Object: *mut gfc__TrailParticle,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub State: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub State: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 4],
 }
 
@@ -8418,10 +8418,10 @@ pub struct gfc__MeshParticle {
     pub Size: f32,
     pub Mass: f32,
     pub EmitterInst: *mut gfc__EmitterInstance,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub FlipX: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub FlipY: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub FlipX: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub FlipY: compile_error!("unimplemented type kind"),
     // gfc__MeshParticle
     __pdbindgen_padding: [u8; 4],
     pub EmitOrientation: gfc__Quaternion,
@@ -8828,8 +8828,8 @@ pub struct gfc__VisScriptEntity__vftable {
 #[repr(C)]
 pub struct gfc__LockFreePoolMarker_gfc__SpriteParticle_ {
     pub Object: *mut gfc__SpriteParticle,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub State: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub State: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 4],
 }
 
@@ -8845,10 +8845,10 @@ pub struct gfc__SpriteParticle {
     pub Size: f32,
     pub Mass: f32,
     pub EmitterInst: *mut gfc__EmitterInstance,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub FlipX: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub FlipY: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub FlipX: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub FlipY: compile_error!("unimplemented type kind"),
     // gfc__SpriteParticle
     __pdbindgen_padding: [u8; 4],
     pub OldPosition: [f32; 3],
@@ -9064,10 +9064,10 @@ pub struct gfc__Particle {
     pub Size: f32,
     pub Mass: f32,
     pub EmitterInst: *mut gfc__EmitterInstance,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub FlipX: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub FlipY: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub FlipX: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub FlipY: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 4],
 }
 
@@ -12653,8 +12653,8 @@ pub struct gfc__ModuleEventLink {
 #[repr(C)]
 pub struct gfc__LockFreePoolMarker_gfc__MeshParticle_ {
     pub Object: *mut gfc__MeshParticle,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub State: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub State: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 4],
 }
 
@@ -13110,8 +13110,8 @@ pub struct hkpKeyframedRigidMotion {
     pub m_inertiaAndMassInv: hkVector4f,
     pub m_linearVelocity: hkVector4f,
     pub m_angularVelocity: hkVector4f,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_deactivationRefPosition: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_deactivationRefPosition: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 32],
     pub m_deactivationRefOrientation: [u32; 2],
     pub m_savedMotion: *mut hkpMaxSizeMotion,
@@ -13395,8 +13395,8 @@ unsafe impl UpcastToNop<hkArrayBase_hkpPhantomListener___>
 
 #[repr(C)]
 pub struct keen__FixedSizedArray_gfc__SceneManager__DistributedCulling_1024_ {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_data: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_data: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 24576],
     pub m_size: u32,
 }

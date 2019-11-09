@@ -7,7 +7,7 @@ repos:
         name: fmt
         language: system
         files: '[.]rs$'
-        entry: rustup run nightly-2019-08-15 rustfmt
+        entry: rustup run nightly-2019-11-06 rustfmt
 
       # Each package is checked separately because of
       # https://github.com/rust-lang/cargo/issues/5364

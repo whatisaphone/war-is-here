@@ -5160,8 +5160,8 @@ unsafe impl UpcastToNop<hkArrayBase_hkpBroadPhaseHandlePair_>
 
 #[repr(C)]
 pub struct hkpTypedBroadPhaseDispatcher {
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_broadPhaseListeners: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_broadPhaseListeners: compile_error!("unimplemented sizeof array"),
     __pdbindgen_padding: [u8; 256],
     pub m_nullBroadPhaseListener: hkpNullBroadPhaseListener,
 }
@@ -7278,14 +7278,14 @@ pub struct keen__ImmediateRenderer {
     pub m_pCommandWriter: *mut keen__GraphicsCommandWriter,
     pub m_pVertexData: *mut (),
     pub m_pGraphicsSystem: *mut keen__GraphicsSystem,
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_pRasterizerStates: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_pBlendStates: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_pDepthStencilState: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_pSamplerState: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_pRasterizerStates: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_pBlendStates: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_pDepthStencilState: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_pSamplerState: compile_error!("unimplemented sizeof array"),
     __pdbindgen_padding: [u8; 172],
     pub m_pShaderParameterBuffer: *mut keen__DynamicConstantBuffer,
     pub m_pFragmentParameterBuffer: *mut keen__DynamicConstantBuffer,
@@ -7302,8 +7302,8 @@ pub struct keen__ImmediateRenderer {
     pub m_endFinalRenderPass: bool,
     pub m_cullMode: keen__ImmediateCullMode,
     pub m_fillMode: keen__ImmediateFillMode,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_renderPassCameraData: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_renderPassCameraData: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_2: [u8; 912],
     pub m_renderPassCameras: [*const keen__Camera; 4],
     pub m_currentRenderPassStackSize: u32,
@@ -7337,8 +7337,8 @@ pub struct keen__DownsampleDepthContext {
     pub pDepthDepthStencilState: *const keen__DepthStencilState,
     pub pStencilBlendState: *const keen__BlendState,
     pub pStencilDepthStencilState: *const keen__DepthStencilState,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub vertexData: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub vertexData: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 24],
 }
 
@@ -7370,29 +7370,29 @@ pub struct keen__GraphicsSystem {
     pub ownerThreadId: u32,
     pub frontThreadId: u32,
     pub immediateCommandBuffer: keen__GraphicsCommandBuffer,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub deferredCommandBuffer: keen__GraphicsCommandBuffer,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub emptyFragmentShader: keen__FragmentShader,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub pDefaultSwapChain: *mut keen__RenderSwapChain,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub pCurrentSwapChain: *mut keen__RenderSwapChain,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub currentFrameNumber: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub pScreenCapture: *mut keen__ScreenCapture,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub previousFullscreenMode: keen__graphics__WindowMode,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub fullscreenMode: keen__graphics__WindowMode,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub exclusiveModeWidth: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub exclusiveModeHeight: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub exclusiveModeRefreshRateNumerator: u32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub exclusiveModeRefreshRateDenominator: u32,
 }
 
@@ -7445,8 +7445,8 @@ pub struct keen__RenderSwapChain {
 pub struct keen__DownsampleDepthVariants {
     pub m_fragmentShaders: [*const keen__FragmentShader; 2],
     pub m_vertexShaders: [*const keen__VertexShader; 1],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_pipelines: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_pipelines: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 16],
 }
 
@@ -7472,8 +7472,8 @@ pub struct keen__GraphicsStateObjectPool_keen__VertexFormat_ {
 pub struct keen__CopyDepthVariants {
     pub m_fragmentShaders: [*const keen__FragmentShader; 1],
     pub m_vertexShaders: [*const keen__VertexShader; 1],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_pipelines: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_pipelines: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 8],
 }
 
@@ -7508,14 +7508,14 @@ pub struct keen__PoolAllocator_keen__VertexInputBinding_ {
 
 #[repr(C)]
 pub struct keen__StockObjects {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_shaderPipelines: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_shaderPipelines: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 24],
     pub m_pStockVertexShaders: [*const keen__VertexShader; 2],
     pub m_pStockFragmentShaders: [*const keen__FragmentShader; 3],
     pub m_pFormats: [*const keen__VertexFormat; 3],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_textures: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_textures: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_2: [u8; 32],
 }
 
@@ -20573,8 +20573,8 @@ pub struct gfc__KGStaticMesh {
     // gfc__Mesh
     // gfc__StaticMesh
     // gfc__KGStaticMesh
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_renderGeometries: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_renderGeometries: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 88],
     pub m_pLoadBuffers: [*mut (); 2],
     pub mGraphics: *mut gfc__KGGraphics,
@@ -21039,14 +21039,13 @@ pub struct IUnknownVtbl {
 #[cfg(pdb_issue = "error in field QueryInterface")]
 #[repr(C)]
 pub struct IUnknownVtbl {
-    #[cfg(pdb_issue = "unimplemented feature: primitive kind 0x8")]
-    pub QueryInterface: *mut unsafe extern "stdcall" fn(
-        _: *mut IUnknown,
-        _: *const _GUID,
-        _: *mut *mut (),
-    ) -> compile_error!(
-        "unimplemented feature: primitive kind 0x8"
-    ),
+    #[cfg(pdb_issue = "unimplemented primitive kind")]
+    pub QueryInterface:
+        *mut unsafe extern "stdcall" fn(
+            _: *mut IUnknown,
+            _: *const _GUID,
+            _: *mut *mut (),
+        ) -> compile_error!("unimplemented primitive kind"),
     pub AddRef: *mut unsafe extern "stdcall" fn(_: *mut IUnknown) -> u32,
     pub Release: *mut unsafe extern "stdcall" fn(_: *mut IUnknown) -> u32,
 }
@@ -21250,8 +21249,8 @@ pub struct hkJobQueue {
     pub m_cpuCustomQueuesBegin: i32,
     pub m_cpuTypesQueuesBegin: i32,
     pub m_numJobQueues: i32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_customJobs: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_customJobs: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 16],
     pub m_numCustomJobs: i32,
     pub m_cpuSemaphoreBegin: i32,
@@ -21261,12 +21260,12 @@ pub struct hkJobQueue {
     pub m_queryRulesAreUpdated: hkBool,
     pub m_queueSemaphores: [*mut hkSemaphore; 5],
     pub m_numQueueSemaphores: i32,
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_nextQueueToGet: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_nextQueueToGet: compile_error!("unimplemented sizeof array"),
     __pdbindgen_padding_2: [u8; 110],
     pub m_cpuThreadIndexToSemaphoreIndex: [i8; 12],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_jobFuncs: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_jobFuncs: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_3: [u8; 242],
     pub m_threadPool: *mut hkSpuThreadPool,
     pub m_customJobSetup: hkArray_hkJobQueue__CustomJobTypeSetup_hkContainerHeapAllocator_,
@@ -21280,8 +21279,8 @@ pub struct hkJobQueue__DynamicData {
     pub m_waitPolicy: hkJobQueue__WaitPolicy,
     pub m_outOfMemory: hkBool,
     pub m_numThreadsWaiting: [u16; 5],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_jobQueue: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_jobQueue: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 412],
 }
 
@@ -21322,15 +21321,15 @@ pub struct hkQuaternionf {
 
 #[repr(C)]
 pub struct hkSimdFloat32 {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_real: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_real: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 16],
 }
 
 #[repr(C)]
 pub struct hkVector4f {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_quad: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_quad: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 16],
 }
 
@@ -21487,16 +21486,16 @@ pub struct hkTransformf {
 
 #[repr(C)]
 pub struct hkFourTransposedPointsf {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_vertices: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_vertices: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 48],
 }
 
 #[repr(C)]
 pub struct hkcdVertex {
     // hkVector4f
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_quad: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_quad: compile_error!("unimplemented type kind"),
     // hkcdVertex
     __pdbindgen_padding: [u8; 16],
 }
@@ -21523,8 +21522,8 @@ pub struct hkMatrix3f {
 
 #[repr(C)]
 pub struct hkVector4fComparison {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_mask: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_mask: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 16],
 }
 
@@ -21655,8 +21654,8 @@ pub struct hkpSolverInfo {
     pub m_dampDivFrictionTau: f32,
     pub m_frictionTauDivDamp: f32,
     pub m_contactRestingVelocity: f32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_deactivationInfo: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_deactivationInfo: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 192],
     pub m_deltaTime: f32,
     pub m_invDeltaTime: f32,

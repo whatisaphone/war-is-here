@@ -144,8 +144,8 @@ unsafe impl UpcastToNop<keen__float3> for keen__Vector3 {}
 
 #[repr(C)]
 pub struct keen__Projection {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub data: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub data: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 24],
     pub r#type: keen__ProjectionType,
     pub rightHanded: bool,
@@ -153,8 +153,8 @@ pub struct keen__Projection {
 
 #[repr(C)]
 pub struct keen__Frustum {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_planes: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_planes: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 96],
 }
 
@@ -357,8 +357,8 @@ pub struct _GUID {
 
 #[repr(C)]
 pub struct CSteamID {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_steamid: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_steamid: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 8],
 }
 
@@ -393,8 +393,8 @@ pub struct CCallbackBase__vftable {
 #[repr(C)]
 pub struct keen__UserAccountSystemBase {
     pub creationParameters: keen__UserAccountSystemCreationParameters,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub runningOperations: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub runningOperations: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 24],
 }
 
@@ -427,11 +427,11 @@ pub struct keen__UserAccountId {
 pub struct keen__UserAccountSystem {
     // keen__UserAccountSystemBase
     pub creationParameters: keen__UserAccountSystemCreationParameters,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub runningOperations: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub runningOperations: compile_error!("unimplemented class layout"),
     // keen__UserAccountSystem
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub accounts: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub accounts: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 4280],
     pub accountCount: u32,
 }
@@ -1220,8 +1220,8 @@ pub struct keen__TextureDescription {
 pub struct keen__SkinningD3D11 {
     pub m_pSkinningBuffer: *mut ID3D11Buffer,
     pub m_skinningBatch: keen__SkinningBatch,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_instances: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_instances: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 24],
     pub m_currentFrameIndex: u32,
     pub m_currentBufferPosition: u32,
@@ -1405,8 +1405,8 @@ pub struct keen__DynamicConstantBuffer {
 pub struct keen__RenderTarget {
     pub renderTargetViews: [*mut ID3D11RenderTargetView; 8],
     pub pDepthBufferView: *mut ID3D11DepthStencilView,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub colorBuffers: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub colorBuffers: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 64],
     pub depthBuffer: keen__RenderTargetBuffer,
     pub colorBufferCount: u32,
@@ -1416,8 +1416,8 @@ pub struct keen__RenderTarget {
 
 #[repr(C)]
 pub struct keen__SoftwareSkinningJointMatrixData {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub jointMatrices: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub jointMatrices: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 16384],
 }
 
@@ -1427,8 +1427,8 @@ pub struct keen__VertexFormat {
     pub hash: u32,
     pub refCount: u32,
     // keen__VertexFormat
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub attributes: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub attributes: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 68],
     pub attributeOffsets: [u32; 17],
     pub attributeCount: u32,
@@ -1535,8 +1535,8 @@ pub struct keen__SizedArray_keen__SaveData__SaveData_ {
 #[repr(C)]
 pub struct keen__SaveDataInteractionData {
     pub id: kaiko__LocalGameSessionInteractionId,
-    #[cfg(pdb_issue = "unimplemented feature: enum layout 0x0")]
-    pub responseOptions: compile_error!("unimplemented feature: enum layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented enum layout")]
+    pub responseOptions: compile_error!("unimplemented enum layout"),
     __pdbindgen_padding: [u8; 8],
     pub responseOptionCount: u32,
 }
@@ -2393,8 +2393,8 @@ pub struct keen__NativeFileDevice__vftable {
 #[repr(C)]
 pub struct keen__NativeFileDevice__ReadThreadContext {
     pub thread: keen__Thread,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub buffers: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub buffers: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 68],
     pub bufferEmpty: keen__Event,
     pub bufferFilled: keen__Event,
@@ -3011,13 +3011,13 @@ pub struct keen__InputSystem {
     __pdbindgen_padding: [u8; 4],
     pub controllerState: keen__PlatformControllerState,
     pub storedEvents: keen__SizedArray_keen__InputEvent_,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub controllerInfos: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub controllerInfos: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_2: [u8; 384],
     pub autoCatchType: keen__InputSystemControllerAutoCatchType,
     pub autoCatchPlayerId: *const keen__LocalPlayerIdStructureType,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub mappedAxisButtonStates: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub mappedAxisButtonStates: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_3: [u8; 112],
     pub gestureHelper: keen__GestureHelper,
 }
@@ -3069,30 +3069,30 @@ pub struct keen__InputEvent {
     pub controllerClass: u8,
     pub localPlayerId: u8,
     pub r#type: u8,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub data: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub data: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 16],
 }
 
 #[repr(C)]
 pub struct keen__PlatformControllerState {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub controllers: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub controllers: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 48],
     pub mouseVisible: bool,
     pub mousePositionRelative: bool,
     pub lastMousePosition: keen__float2,
     pub pDirect8: *mut IDirectInput8A,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub directInputControllers: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub directInputControllers: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_2: [u8; 64],
     pub directInputControllerCount: u32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub lastState: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub lastState: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_3: [u8; 1796],
     pub mouseWheelButtonFlags: u32,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub steamController: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub steamController: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_4: [u8; 68],
     pub steamControllerCount: u32,
     __pdbindgen_padding_5: [u8; 4],
@@ -3316,8 +3316,8 @@ pub struct std___Container_base0 {
 pub struct std___String_val_char_std__allocator_char___ {
     // std___Container_base0
     // std___String_val_char_std__allocator_char___
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub _Bx: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub _Bx: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 16],
     pub _Mysize: u32,
     pub _Myres: u32,
@@ -3563,8 +3563,8 @@ unsafe impl
 pub struct std__basic_string_char_std__char_traits_char__std__allocator_char___ {
     // std___Container_base0
     // std___String_val_char_std__allocator_char___
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub _Bx: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub _Bx: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 16],
     pub _Mysize: u32,
     pub _Myres: u32,
@@ -3594,19 +3594,19 @@ pub struct gfc__TVector3_float_gfc__FloatMath_ {
     pub x: f32,
     pub y: f32,
     pub z: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub r: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub g: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub b: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub u: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub v: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub w: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub array: [f32; 3],
 }
 
@@ -3771,15 +3771,15 @@ pub struct gfc__TVector4_float_gfc__FloatMath_ {
     pub y: f32,
     pub z: f32,
     pub w: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub r: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub g: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub b: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub a: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub array: [f32; 4],
 }
 
@@ -3818,8 +3818,8 @@ pub struct gfc__ValueStack {
 
 #[repr(C)]
 pub struct gfc__ValueStack___Stack {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub Stack: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub Stack: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 8192],
 }
 
@@ -4238,16 +4238,16 @@ pub struct gfc__Matrix4 {
     pub wy: f32,
     pub wz: f32,
     pub ww: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub x: gfc__Matrix4Row,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub y: gfc__Matrix4Row,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub z: gfc__Matrix4Row,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub w: gfc__Matrix4Row,
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m: compile_error!("unimplemented sizeof array"),
 }
 
 #[repr(C)]
@@ -4330,11 +4330,11 @@ pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__AutoRef_gfc__Propert
 pub struct gfc__TVector2_float_gfc__FloatMath_ {
     pub x: f32,
     pub y: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub u: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub v: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub array: [f32; 2],
 }
 
@@ -5254,8 +5254,8 @@ pub struct gfc__Vector_gfc__ResourceBuffer_0_gfc__CAllocator_ {
 
 #[repr(C)]
 pub struct gfc__ResourceIndex {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub Resources: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub Resources: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 216],
 }
 
@@ -6369,11 +6369,11 @@ pub struct gfc__AutoRef_gfc__Parameter_ {
 pub struct gfc__TVector2_int_gfc__FloatMath_ {
     pub x: i32,
     pub y: i32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub u: i32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub v: i32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub array: [i32; 2],
 }
 
@@ -7429,11 +7429,11 @@ pub struct gfc__Matrix3 {
     pub zx: f32,
     pub zy: f32,
     pub zz: f32,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub x: gfc__Matrix3Row,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub y: gfc__Matrix3Row,
-    #[cfg(pdb_issue = "can\'t lay out field accurately")]
+    #[cfg(pdb_issue = "can\'t lay out type accurately")]
     pub z: gfc__Matrix3Row,
 }
 
@@ -9073,8 +9073,8 @@ pub struct gfc__AutoRef_gfc__FullScreenEffectDesc_ {
 
 #[repr(C)]
 pub struct gfc__AffineTransform {
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub Elements: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub Elements: compile_error!("unimplemented sizeof array"),
     __pdbindgen_padding: [u8; 36],
 }
 
@@ -9495,8 +9495,8 @@ pub struct gfc__UIRenderer__Params {
 pub struct gfc__MatrixArray {
     pub mCount: u32,
     pub mPad: [u32; 3],
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub mFirstMatrix: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub mFirstMatrix: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 64],
 }
 
@@ -9601,8 +9601,8 @@ pub struct gfc__AutoRef_gfc__VertexBuffer_ {
 
 #[repr(C)]
 pub struct gfc__Frustum {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub planes: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub planes: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 96],
 }
 
@@ -10216,8 +10216,8 @@ pub struct gfc__PixelShaderGlobalData {
     pub invProj: keen__GraphicsMatrix44,
     pub depthRange: keen__float4,
     pub viewport: keen__float4,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub spotOffsets: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub spotOffsets: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 256],
 }
 

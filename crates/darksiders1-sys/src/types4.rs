@@ -1021,8 +1021,8 @@ pub struct hkpWorld {
     pub m_npWorld: *mut hknpWorld,
     __pdbindgen_padding_2: [u8; 8],
     pub m_dynamicsStepInfo: hkpWorldDynamicsStepInfo,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_broadPhaseExtents: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_broadPhaseExtents: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_3: [u8; 32],
     pub m_broadPhaseNumMarkers: i32,
     pub m_sizeOfToiEventQueue: i32,
@@ -1213,22 +1213,22 @@ pub struct hkpSimulationIsland {
     pub m_storageIndex: u16,
     pub m_dirtyListIndex: u16,
     pub m_splitCheckFrameCounter: u8,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_splitCheckRequested: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_isSparse: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_actionListCleanupNeeded: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_allowIslandLocking: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_isInActiveIslandsArray: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_activeMark: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_tryToIncreaseIslandSizeMark: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_inIntegrateJob: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_splitCheckRequested: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_isSparse: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_actionListCleanupNeeded: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_allowIslandLocking: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_isInActiveIslandsArray: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_activeMark: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_tryToIncreaseIslandSizeMark: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_inIntegrateJob: compile_error!("unimplemented type kind"),
     pub m_multiThreadCheck: hkMultiThreadCheck,
     pub m_timeSinceLastHighFrequencyCheck: f32,
     pub m_timeSinceLastLowFrequencyCheck: f32,
@@ -2232,8 +2232,8 @@ pub struct hkpProcessCollisionOutput {
     // hkpProcessCollisionData
     pub m_firstFreeContactPoint: hkPadSpu_hkpProcessCdPoint___,
     pub m_constraintOwner: hkPadSpu_hkpConstraintOwner___,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_contactPoints: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_contactPoints: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 12296],
     pub m_toi: hkpProcessCollisionData__ToiInfo,
     // hkpProcessCollisionOutput
@@ -2248,10 +2248,10 @@ pub struct hkpGskCache {
     pub m_vertices: [u16; 4],
     pub m_dimA: u8,
     pub m_dimB: u8,
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_maxDimA: compile_error!("unimplemented feature: type kind 0x1205"),
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1205")]
-    pub m_maxDimB: compile_error!("unimplemented feature: type kind 0x1205"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_maxDimA: compile_error!("unimplemented type kind"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_maxDimB: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 1],
     pub m_gskFlags: u8,
 }
@@ -3407,29 +3407,29 @@ pub struct hkpCollisionDispatcher {
         _: *const hkpCollisionInput,
         _: *mut hkpContactMgr,
     ) -> *mut hkpCollisionAgent,
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_contactMgrFactory: compile_error!("unimplemented feature: sizeof array 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_contactMgrFactory: compile_error!("unimplemented sizeof array"),
     __pdbindgen_padding: [u8; 260],
     pub m_hasAlternateType: [u32; 35],
     pub m_numAgent2Types: i32,
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_agent2Types: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_agent2TypesPred: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_agent2Func: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_agent2Types: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_agent2TypesPred: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_agent2Func: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_2: [u8; 3732],
     pub m_numAgent3Types: i32,
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_agent3Types: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_agent3TypesPred: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_agent3Func: compile_error!("unimplemented feature: class layout 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: sizeof array 0x0")]
-    pub m_collisionQualityTable: compile_error!("unimplemented feature: sizeof array 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_collisionQualityInfo: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_agent3Types: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_agent3TypesPred: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_agent3Func: compile_error!("unimplemented class layout"),
+    #[cfg(pdb_issue = "unimplemented sizeof array")]
+    pub m_collisionQualityTable: compile_error!("unimplemented sizeof array"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_collisionQualityInfo: compile_error!("unimplemented class layout"),
     __pdbindgen_padding_3: [u8; 4248],
     pub m_collisionAgentRegistered: hkBool,
     pub m_agent3Registered: hkBool,
@@ -3437,14 +3437,14 @@ pub struct hkpCollisionDispatcher {
     pub m_checkEnabled: hkBool,
     pub m_shapeInheritance:
         hkArray_hkpCollisionDispatcher__ShapeInheritance_hkContainerHeapAllocator_,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_debugAgent2Table: *mut compile_error!("unimplemented feature: class layout 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_debugAgent2TablePred: *mut compile_error!("unimplemented feature: class layout 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_debugAgent3Table: *mut compile_error!("unimplemented feature: class layout 0x0"),
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_debugAgent3TablePred: *mut compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_debugAgent2Table: *mut compile_error!("unimplemented class layout"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_debugAgent2TablePred: *mut compile_error!("unimplemented class layout"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_debugAgent3Table: *mut compile_error!("unimplemented class layout"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_debugAgent3TablePred: *mut compile_error!("unimplemented class layout"),
     pub m_expectedMaxLinearVelocity: f32,
     pub m_expectedMinPsiDeltaTime: f32,
     __pdbindgen_padding_4: [u8; 8],
@@ -3606,8 +3606,8 @@ pub struct hkpProcessCdPoint {
 pub struct hkpProcessCollisionData {
     pub m_firstFreeContactPoint: hkPadSpu_hkpProcessCdPoint___,
     pub m_constraintOwner: hkPadSpu_hkpConstraintOwner___,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_contactPoints: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_contactPoints: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 12296],
     pub m_toi: hkpProcessCollisionData__ToiInfo,
 }
@@ -4807,15 +4807,15 @@ pub struct hkpContactImpulseLimitBreachedListener__vftable {
 
 #[repr(C)]
 pub struct hkpContactImpulseLimitBreachedListenerInfo {
-    #[cfg(pdb_issue = "unimplemented feature: type kind 0x1506")]
-    pub m_data: compile_error!("unimplemented feature: type kind 0x1506"),
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_data: compile_error!("unimplemented type kind"),
     __pdbindgen_padding: [u8; 16],
 }
 
 #[repr(C)]
 pub struct hkpShapeRayBundleCastOutput {
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_outputs: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_outputs: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 320],
 }
 
@@ -5728,8 +5728,8 @@ pub struct hkpMotion {
     pub m_inertiaAndMassInv: hkVector4f,
     pub m_linearVelocity: hkVector4f,
     pub m_angularVelocity: hkVector4f,
-    #[cfg(pdb_issue = "unimplemented feature: class layout 0x0")]
-    pub m_deactivationRefPosition: compile_error!("unimplemented feature: class layout 0x0"),
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_deactivationRefPosition: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 32],
     pub m_deactivationRefOrientation: [u32; 2],
     pub m_savedMotion: *mut hkpMaxSizeMotion,

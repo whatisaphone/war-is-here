@@ -30,7 +30,7 @@ pub fn install() {
     assert!(guard.is_none());
 
     unsafe {
-        darksiders1_sys::bind(&BindArgs::create(main_module()));
+        darksiders1_sys::bind(&BindArgs::create(main_module()).unwrap());
 
         macro_rules! hook {
             ($($name:ident),* $(,)?) => {
