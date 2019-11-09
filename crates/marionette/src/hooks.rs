@@ -152,8 +152,8 @@ mod hook {
         let detours = guard.as_ref().unwrap();
 
         let material_name = (*materialName).lift_ref();
-        if let Some(ovurride) = override_get_material(packageID, material_name) {
-            *result = Lower::lower(ovurride);
+        if let Some(ovrrride) = override_get_material(packageID, material_name) {
+            *result = Lower::lower(ovrrride);
             return result;
         }
 
@@ -172,8 +172,8 @@ mod hook {
 
         {
             let mesh_name = (*meshName).lift_ref();
-            if let Some(ovurride) = override_get_static_mesh(packageID, mesh_name, idx) {
-                *result = Lower::lower(ovurride);
+            if let Some(ovrrride) = override_get_static_mesh(packageID, mesh_name, idx) {
+                *result = Lower::lower(ovrrride);
                 return result;
             }
         }
@@ -206,8 +206,8 @@ mod hook {
 
         {
             let object_name = (*objectName).lift_ref();
-            if let Some(ovurride) = override_get_object3d(packageID, object_name) {
-                *result = Lower::lower(ovurride);
+            if let Some(ovrrride) = override_get_object3d(packageID, object_name) {
+                *result = Lower::lower(ovrrride);
                 return result;
             }
         }
