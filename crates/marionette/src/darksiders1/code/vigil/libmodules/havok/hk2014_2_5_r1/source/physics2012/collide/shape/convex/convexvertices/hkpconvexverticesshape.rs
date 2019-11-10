@@ -40,9 +40,7 @@ impl hkpConvexVerticesShape {
 
         // The function will shrink `array` down to the needed size, so we should pass
         // the info along.
-        vertices.resize_with(array.m_size.try_into().unwrap(), || unsafe {
-            _mm_setzero_ps()
-        });
+        vertices.resize_with(array.m_size.try_into().unwrap(), || unreachable!());
 
         unsafe { &mut *(vertices.as_mut_slice() as *mut [__m128] as *mut [Vector4<f32>]) }
     }

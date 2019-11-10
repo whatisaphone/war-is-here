@@ -4,10 +4,11 @@ use crate::{
     library::bitmap_font,
     utils::coordinate_transformer::CoordinateTransformer,
 };
-use darksiders1_sys::target::{self, hkpConvexVerticesShape};
-use na::Vector4;
+use darksiders1_sys::target::{self, hkpConvexVerticesShape, hkpMoppBvTreeShape};
 use std::{
-    arch::x86::__m128,
+    convert::TryFrom,
+    fs,
+    slice,
     sync::atomic::{AtomicBool, Ordering},
 };
 
@@ -39,11 +40,29 @@ unsafe fn go() {
         let shape = (*rigid_body).m_collidable.m_shape;
         let shape_type = (*shape).m_type.m_storage;
         eprintln!("shape_type = {:?}", shape_type);
+        if i32::from(shape_type) == hkcdShapeType__ShapeTypeEnum::Mopp as i32 {
+            let shape = shape.cast::<hkpMoppBvTreeShape>();
+
+            let code = slice::from_raw_parts(
+                (*shape).m_moppData,
+                usize::try_from((*shape).m_moppDataSize).unwrap(),
+            );
+            fs::write(
+                format!(r"C:\Users\John\AppData\Local\Temp\data_{:p}.bin", shape),
+                code,
+            )
+            .unwrap();
+
+            let child = (*shape).m_child.m_childShape;
+            eprintln!(
+                "(*child).m_type.m_storage = {:?}",
+                (*child).m_type.m_storage,
+            );
+        }
         if i32::from(shape_type) == hkcdShapeType__ShapeTypeEnum::ConvexVertices as i32 {
             let shape = (*shape.cast::<hkpConvexVerticesShape>()).lift_ref();
             let mut vertices = Vec::new();
-            shape.get_original_vertices(&mut vertices);
-            let vertices = &*(vertices.as_slice() as *const [__m128] as *const [Vector4<f32>]);
+            let vertices = shape.get_original_vertices(&mut vertices);
             eprintln!("vertices = {:?}", vertices);
             eprintln!("vertices.len() = {:?}", vertices.len());
         }

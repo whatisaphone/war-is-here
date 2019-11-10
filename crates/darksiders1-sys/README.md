@@ -10,6 +10,8 @@ The developers were generous enough to include a PDB with the game, so creating 
 pdbindgen \
     /path/to/darksiders1.pdb \
     -o src \
+    -i '^hkpExtendedMeshShape$' \
+    -i '^hkpMoppBvTreeShape$' \
     -i '^gfc::CShape$' \
     -i '^gfc::CShapeBox$' \
     -i '^gfc::CShapeMesh$' \
