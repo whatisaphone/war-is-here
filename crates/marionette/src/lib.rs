@@ -23,6 +23,7 @@ mod control;
 mod darksiders1;
 mod hooks;
 mod library;
+mod splash;
 mod utils;
 
 #[no_mangle]

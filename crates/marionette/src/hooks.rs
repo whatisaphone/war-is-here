@@ -90,6 +90,7 @@ mod hook {
             override_get_object3d,
             override_get_static_mesh,
         },
+        splash,
     };
     use darksiders1_sys::target;
 
@@ -102,6 +103,7 @@ mod hook {
 
         (detours.gfc___UIManager__draw)(this, renderer);
 
+        splash::draw((*renderer).lift_ref());
         show_triggers::draw((*renderer).lift_ref());
         show_collision::draw((*renderer).lift_ref());
     }
