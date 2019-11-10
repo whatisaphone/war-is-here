@@ -90,6 +90,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
                 renderer,
                 screen.x,
                 screen.y,
+                2,
                 world_object_name
                     .c_str()
                     .to_str()
@@ -100,6 +101,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
                 renderer,
                 screen.x,
                 screen.y + 20.0,
+                2,
                 &format!("shape type {}", (*shape).m_type.m_storage),
             );
         }

@@ -193,7 +193,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
                 .c_str()
                 .to_str()
                 .unwrap_or("<invalid utf-8>");
-            bitmap_font::draw_string(renderer, screen.x, screen.y, class_name);
+            bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
 
             let object_name = (*trigger_region.as_ptr())
                 .mName
@@ -201,20 +201,20 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
                 .c_str()
                 .to_str()
                 .unwrap_or("<invalid utf-8>");
-            bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, object_name);
+            bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, 2, object_name);
 
             match get_shape(&trigger_region) {
                 Shape::Aabb(bounds) => {
                     debug_draw::box_wireframe(renderer, &transformer, &bounds);
                 }
                 Shape::Box(_size, _transform) => {
-                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "box");
+                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "box");
                 }
                 Shape::Sphere(_radius, _center) => {
-                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "sphere");
+                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "sphere");
                 }
                 Shape::Cylinder(_radius, _length, _pos) => {
-                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, "cylinder");
+                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "cylinder");
                 }
             }
         }
@@ -237,11 +237,12 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
             .c_str()
             .to_str()
             .unwrap_or("<invalid utf-8>");
-        bitmap_font::draw_string(renderer, 10.0, 10.0, object_name);
+        bitmap_font::draw_string(renderer, 10.0, 10.0, 2, object_name);
         bitmap_font::draw_string(
             renderer,
             10.0,
             30.0,
+            2,
             &format!("{}", Pretty(projection.point)),
         );
 

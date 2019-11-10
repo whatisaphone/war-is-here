@@ -2,8 +2,9 @@
 
 use crate::darksiders1::{gfc, Lower};
 use darksiders1_sys::target;
+use std::convert::TryFrom;
 
-pub unsafe fn draw_string(renderer: &gfc::UIRenderer, x: f32, y: f32, s: &str) {
+pub unsafe fn draw_string(renderer: &gfc::UIRenderer, x: f32, y: f32, scale: i32, s: &str) {
     let mut dx = 0;
     let mut dy = 0;
     for ch in s.chars() {
@@ -14,15 +15,16 @@ pub unsafe fn draw_string(renderer: &gfc::UIRenderer, x: f32, y: f32, s: &str) {
         }
         draw_char(
             renderer,
-            x + SCALE * (dx * FONT_WIDTH) as f32,
-            y + SCALE * (dy * FONT_HEIGHT) as f32,
+            x + scale as f32 * (dx * FONT_WIDTH) as f32,
+            y + scale as f32 * (dy * FONT_HEIGHT) as f32,
+            scale,
             ch,
         );
         dx += 1;
     }
 }
 
-pub unsafe fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, ch: char) {
+pub unsafe fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, scale: i32, ch: char) {
     let ch = if (ch as usize) < 256 {
         ch as usize
     } else {
@@ -35,10 +37,10 @@ pub unsafe fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, ch: char) {
             if on {
                 target::gfc__UIRenderer__fillRect(
                     renderer.as_ptr(),
-                    x + col as f32 * SCALE,
-                    y + row as f32 * SCALE,
-                    SCALE,
-                    SCALE,
+                    x + (col * usize::try_from(scale).unwrap()) as f32,
+                    y + (row * usize::try_from(scale).unwrap()) as f32,
+                    scale as f32,
+                    scale as f32,
                     &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
                     &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
                 )
@@ -46,8 +48,6 @@ pub unsafe fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, ch: char) {
         }
     }
 }
-
-const SCALE: f32 = 2.0;
 
 // https://github.com/spacerace/romfont/blob/73f2ba6849e7f1d8a58d5861e462bcf6bf169780/font-headers/IBM_VGA_8x14.h
 const FONT_WIDTH: usize = 8;
