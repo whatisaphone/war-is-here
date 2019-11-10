@@ -85,6 +85,7 @@ symbols! {
     pub fn gfc__OblivionGame__getProjMatrix;
     pub fn gfc__OblivionGame__getWorld;
     pub fn gfc__OblivionGame__getViewMatrix;
+    pub fn gfc__OblivionGame__update;
     pub fn gfc__StaticObject__setObjectName;
     pub fn gfc__StaticObject__setPackageName;
     pub fn gfc__StaticObject__StaticObject;
@@ -147,7 +148,6 @@ symbols! {
     pub fn gfc__ObjectWriter___ObjectWriter;
     pub fn gfc__World__getRegion_2;
     pub fn gfc__Darksiders__processInputEvent;
-    pub fn gfc__Darksiders__onPostUpdateInterval;
     pub fn gfc__UIRenderer__translate;
     pub fn gfc__UIRenderer__rotate;
     pub fn gfc__UIRenderer__scale;

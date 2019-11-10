@@ -66,6 +66,7 @@ symbols! {
     pub static gfc__OblivionGame__getProjMatrix: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, result: *mut gfc__Matrix4) -> *mut gfc__Matrix4 = Text(0xe7f230);
     pub static gfc__OblivionGame__getWorld: unsafe extern "thiscall" fn(this: *const gfc__OblivionGame) -> *mut gfc__World = Text(0xe816a0);
     pub static gfc__OblivionGame__getViewMatrix: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, result: *mut gfc__Matrix4) -> *mut gfc__Matrix4 = Text(0xe81980);
+    pub static gfc__OblivionGame__update: unsafe extern "thiscall" fn(this: *mut gfc__OblivionGame, _: f32, _: bool) = Text(0xe8d960);
     pub static gfc__StaticObject__setObjectName: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: *const gfc__HString) = Text(0xe2d660);
     pub static gfc__StaticObject__setPackageName: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: *const gfc__HString) = Text(0xe2d810);
     pub static gfc__StaticObject__StaticObject: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject) -> *mut gfc__StaticObject = Text(0xe54d60);
@@ -128,7 +129,6 @@ symbols! {
     pub static gfc__ObjectWriter___ObjectWriter: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter) = Text(0x2103c0);
     pub static gfc__World__getRegion_2: unsafe extern "thiscall" fn(this: *mut gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0x223730);
     pub static gfc__Darksiders__processInputEvent: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent) -> bool = Text(0x27b4b0);
-    pub static gfc__Darksiders__onPostUpdateInterval: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: f32) = Text(0x295c90);
     pub static gfc__UIRenderer__translate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb170);
     pub static gfc__UIRenderer__rotate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32) = Text(0x1eb1b0);
     pub static gfc__UIRenderer__scale: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb1e0);

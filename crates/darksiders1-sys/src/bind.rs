@@ -68,6 +68,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__OblivionGame__getProjMatrix);
     bind!(text, gfc__OblivionGame__getWorld);
     bind!(text, gfc__OblivionGame__getViewMatrix);
+    bind!(text, gfc__OblivionGame__update);
     bind!(text, gfc__StaticObject__setObjectName);
     bind!(text, gfc__StaticObject__setPackageName);
     bind!(text, gfc__StaticObject__StaticObject);
@@ -130,7 +131,6 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ObjectWriter___ObjectWriter);
     bind!(text, gfc__World__getRegion_2);
     bind!(text, gfc__Darksiders__processInputEvent);
-    bind!(text, gfc__Darksiders__onPostUpdateInterval);
     bind!(text, gfc__UIRenderer__translate);
     bind!(text, gfc__UIRenderer__rotate);
     bind!(text, gfc__UIRenderer__scale);

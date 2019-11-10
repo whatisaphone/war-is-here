@@ -14,12 +14,12 @@ pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>
 
 struct Detours {
     gfc___UIManager__draw: target::gfc___UIManager__draw,
-    gfc__Darksiders__onPostUpdateInterval: target::gfc__Darksiders__onPostUpdateInterval,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
     gfc__MaterialCache__get: target::gfc__MaterialCache__get,
     gfc__MeshCache__getStaticMesh: target::gfc__MeshCache__getStaticMesh,
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
     gfc__Object3DCache__get: target::gfc__Object3DCache__get,
+    gfc__OblivionGame__update: target::gfc__OblivionGame__update,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
     gfc__World__World: target::gfc__World__World,
     detours: Vec<RawDetour>,
@@ -49,12 +49,12 @@ pub fn install() {
 
         hook!(
             gfc___UIManager__draw,
-            gfc__Darksiders__onPostUpdateInterval,
             gfc__Darksiders__processInputEvent,
             gfc__MaterialCache__get,
             gfc__MeshCache__getStaticMesh,
             gfc__MeshCache__loadMesh,
             gfc__Object3DCache__get,
+            gfc__OblivionGame__update,
             gfc__ResourceCache__getResource,
             gfc__World__World,
         );
@@ -104,26 +104,6 @@ mod hook {
 
         show_triggers::draw((*renderer).lift_ref());
         show_collision::draw((*renderer).lift_ref());
-    }
-
-    pub unsafe extern "thiscall" fn gfc__Darksiders__onPostUpdateInterval(
-        this: *mut target::gfc__Darksiders,
-        deltat: f32,
-    ) {
-        let guard = DETOURS.read();
-        let detours = guard.as_ref().unwrap();
-
-        {
-            let mut guard = ON_POST_UPDATE_QUEUE.lock();
-            let on_post_update_queue = guard.as_mut().unwrap();
-            while let Some(f) = on_post_update_queue.pop_front() {
-                f();
-            }
-        }
-
-        spawn_humans::pump();
-
-        (detours.gfc__Darksiders__onPostUpdateInterval)(this, deltat)
     }
 
     pub unsafe extern "thiscall" fn gfc__Darksiders__processInputEvent(
@@ -213,6 +193,27 @@ mod hook {
         }
 
         (detours.gfc__Object3DCache__get)(this, result, packageID, objectName)
+    }
+
+    pub unsafe extern "thiscall" fn gfc__OblivionGame__update(
+        this: *mut target::gfc__OblivionGame,
+        timescale: f32,
+        noInputUpdate: bool,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        {
+            let mut guard = ON_POST_UPDATE_QUEUE.lock();
+            let on_post_update_queue = guard.as_mut().unwrap();
+            while let Some(f) = on_post_update_queue.pop_front() {
+                f();
+            }
+        }
+
+        spawn_humans::pump();
+
+        (detours.gfc__OblivionGame__update)(this, timescale, noInputUpdate)
     }
 
     pub unsafe extern "thiscall" fn gfc__ResourceCache__getResource(

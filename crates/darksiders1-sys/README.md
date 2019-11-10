@@ -39,13 +39,12 @@ pdbindgen \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::WorldGroup::_Class$' \
     -i '^gfc::WorldObject::_Class$' \
+    -i '^hkpConvexVerticesShape::getOriginalVertices$' \
     -i '^gfc::MemAlloc$' \
     -i '^gfc::MemFree$' \
-    -i '^hkpConvexVerticesShape::getOriginalVertices$' \
     -i '^gfc::ByteInputStream::~?ByteInputStream$' \
     -i '^gfc::ByteOutputStream::~?ByteOutputStream$' \
     -i '^gfc::ClassRegistry::classForName$' \
-    -i '^gfc::Darksiders::onPostUpdateInterval$' \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::HString::~?HString$' \
     -i '^gfc::HString::c_str$' \
@@ -70,6 +69,7 @@ pdbindgen \
     -i '^gfc::OblivionGame::getProjMatrix$' \
     -i '^gfc::OblivionGame::getViewMatrix$' \
     -i '^gfc::OblivionGame::getWorld$' \
+    -i '^gfc::OblivionGame::update$' \
     -i '^gfc::PhysicsShapeObject::getTransform$' \
     -i '^gfc::Player::pickupItem$' \
     -i '^gfc::PhysMeshCache::get$' \
