@@ -30,6 +30,7 @@ impl<'a, T> IntoIterator for &'a List<'a, T> {
     type Item = &'a T;
     type IntoIter = List__Iterator<'a, T>;
 
+    #[allow(clippy::must_use_candidate)]
     fn into_iter(self) -> Self::IntoIter {
         List__Iterator::new(self)
     }

@@ -49,6 +49,7 @@ pub fn build_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
     result.lift()
 }
 
+#[allow(clippy::too_many_lines)]
 fn build_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
     let half_size = 25.0;
 

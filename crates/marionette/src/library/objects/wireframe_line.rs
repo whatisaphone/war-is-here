@@ -51,6 +51,7 @@ pub fn build_mesh() -> gfc::AutoRef<gfc::StaticMesh> {
 
 pub const HALF_SIZE: f32 = 5.0;
 
+#[allow(clippy::too_many_lines)]
 fn build_meshbuilder() -> gfc::AutoRef<gfc::MeshBuilder> {
     unsafe {
         let builder = gfc::AutoRef::new(gfc::MeshBuilder::new());

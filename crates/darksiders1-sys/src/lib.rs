@@ -1,8 +1,7 @@
 #![feature(abi_thiscall, const_transmute)]
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
-#![warn(clippy::pedantic)]
+#![allow(clippy::all)]
 // #![warn(clippy::cargo)]
-#![allow(clippy::should_implement_trait)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
 pub use bind::bind;

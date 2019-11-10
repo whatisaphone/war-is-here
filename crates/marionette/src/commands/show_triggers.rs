@@ -219,60 +219,9 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
             }
         }
 
-        let shape = match get_shape(&trigger_region) {
-            Shape::Aabb(bounds) => {
-                let center = na::center(&bounds.min, &bounds.max);
-                Some(Compound::new(vec![(
-                    Isometry::from_parts(
-                        Translation::from(center.coords),
-                        UnitQuaternion::identity(),
-                    ),
-                    ShapeHandle::new(Cuboid::new(bounds.max - center)),
-                )]))
-            }
-            Shape::Box(size, transform) => {
-                let vertices = box_vertices(size / 2.0)
-                    .iter()
-                    .map(|p| Point3::from_homogeneous(transform * p.to_homogeneous()).unwrap())
-                    .collect::<Vec<_>>();
-                Some(Compound::new(vec![(
-                    Isometry::identity(),
-                    ShapeHandle::new(ConvexHull::try_from_points(&vertices).unwrap()),
-                )]))
-            }
-            Shape::Sphere(radius, center) => {
-                Some(Compound::new(vec![(
-                    Isometry::from_parts(
-                        Translation::from(center.coords),
-                        UnitQuaternion::identity(),
-                    ),
-                    ShapeHandle::new(Ball::new(radius)),
-                )]))
-            }
-            Shape::Cylinder(radius, length, pos) => {
-                // Cylinder does not implement Shape
-                // https://github.com/rustsim/ncollide/issues/216
-                let cylinder = Cylinder::new(length / 2.0, radius).to_trimesh(24);
-                Some(Compound::new(vec![(
-                    Isometry::from_parts(
-                        Translation::from(pos.coords),
-                        // `nalgebra` uses principal y-axis; Darksiders uses principal z-axis.
-                        // Rotate to match.
-                        UnitQuaternion::from_axis_angle(&Vector3::x_axis(), FRAC_PI_2),
-                    ),
-                    ShapeHandle::new(ConvexHull::try_from_points(&cylinder.coords).unwrap()),
-                )]))
-            }
-        };
-
-        let projection = match shape {
-            Some(shape) => Some(shape.project_point(&Isometry::identity(), &player_pos, false)),
-            None => None,
-        };
-
-        if let Some(projection) = projection {
-            triggers.push((trigger_region, projection));
-        }
+        let shape = get_shape(&trigger_region).to_compound();
+        let projection = shape.project_point(&Isometry::identity(), &player_pos, false);
+        triggers.push((trigger_region, projection));
     });
 
     let closest_trigger = triggers
@@ -337,4 +286,54 @@ pub enum Shape {
     Box(Vector3<f32>, Matrix4<f32>),
     Sphere(f32, Point3<f32>),
     Cylinder(f32, f32, Point3<f32>),
+}
+
+impl Shape {
+    fn to_compound(&self) -> Compound<f32> {
+        match self {
+            Self::Aabb(bounds) => {
+                let center = na::center(&bounds.min, &bounds.max);
+                Compound::new(vec![(
+                    Isometry::from_parts(
+                        Translation::from(center.coords),
+                        UnitQuaternion::identity(),
+                    ),
+                    ShapeHandle::new(Cuboid::new(bounds.max - center)),
+                )])
+            }
+            Self::Box(size, transform) => {
+                let vertices = box_vertices(size / 2.0)
+                    .iter()
+                    .map(|p| Point3::from_homogeneous(transform * p.to_homogeneous()).unwrap())
+                    .collect::<Vec<_>>();
+                Compound::new(vec![(
+                    Isometry::identity(),
+                    ShapeHandle::new(ConvexHull::try_from_points(&vertices).unwrap()),
+                )])
+            }
+            &Self::Sphere(radius, center) => {
+                Compound::new(vec![(
+                    Isometry::from_parts(
+                        Translation::from(center.coords),
+                        UnitQuaternion::identity(),
+                    ),
+                    ShapeHandle::new(Ball::new(radius)),
+                )])
+            }
+            &Self::Cylinder(radius, length, pos) => {
+                // Cylinder does not implement Shape
+                // https://github.com/rustsim/ncollide/issues/216
+                let cylinder = Cylinder::new(length / 2.0, radius).to_trimesh(24);
+                Compound::new(vec![(
+                    Isometry::from_parts(
+                        Translation::from(pos.coords),
+                        // `nalgebra` uses principal y-axis; Darksiders uses principal z-axis.
+                        // Rotate to match.
+                        UnitQuaternion::from_axis_angle(&Vector3::x_axis(), FRAC_PI_2),
+                    ),
+                    ShapeHandle::new(ConvexHull::try_from_points(&cylinder.coords).unwrap()),
+                )])
+            }
+        }
+    }
 }
