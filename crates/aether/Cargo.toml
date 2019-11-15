@@ -1,5 +1,5 @@
 [package]
-name = "marionette"
+name = "aether"
 version = "0.0.0"
 authors = ["John Simon <john@whatisaph.one>"]
 edition = "2018"

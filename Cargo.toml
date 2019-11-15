@@ -1,7 +1,7 @@
 [workspace]
 members = [
     "crates/darksiders1-sys",
-    "crates/marionette",
+    "crates/aether",
 ]
 
 [profile.release]

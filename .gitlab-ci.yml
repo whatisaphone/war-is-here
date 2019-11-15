@@ -16,15 +16,15 @@ fmt:
   script:
     - cargo clippy --manifest-path "$crate_dir"/Cargo.toml --all-targets --features strict
 
+check-aether:
+  extends: .check-crate
+  variables:
+    crate_dir: crates/aether
+
 check-darksiders1-sys:
   extends: .check-crate
   variables:
     crate_dir: crates/darksiders1-sys
-
-check-marionette:
-  extends: .check-crate
-  variables:
-    crate_dir: crates/marionette
 
 test:
   image: rust:1.37

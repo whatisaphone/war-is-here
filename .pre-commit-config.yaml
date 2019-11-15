@@ -12,18 +12,18 @@ repos:
       # Each package is checked separately because of
       # https://github.com/rust-lang/cargo/issues/5364
 
+      - id: check:aether
+        name: check:aether
+        language: system
+        files: '[.]rs$'
+        entry: cargo clippy --manifest-path crates/aether/Cargo.toml --all-targets --features strict
+        pass_filenames: false
+
       - id: check:darksiders1-sys
         name: check:darksiders1-sys
         language: system
         files: '[.]rs$'
         entry: cargo clippy --manifest-path crates/darksiders1-sys/Cargo.toml --all-targets --features strict
-        pass_filenames: false
-
-      - id: check:marionette
-        name: check:marionette
-        language: system
-        files: '[.]rs$'
-        entry: cargo clippy --manifest-path crates/marionette/Cargo.toml --all-targets --features strict
         pass_filenames: false
 
       - id: test
