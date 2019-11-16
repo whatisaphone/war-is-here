@@ -16,10 +16,12 @@ pub unsafe fn box_wireframe(
     transformer: &CoordinateTransformer,
     bounds: &gfc::TBox<f32>,
 ) {
-    for [p, q] in &box_edges(bounds.min, bounds.max) {
-        let p = transformer.world_to_screen(p);
-        let q = transformer.world_to_screen(q);
-        clunky_draw_line(renderer, Point2::new(p.x, p.y), Point2::new(q.x, q.y));
+    for &[p, q] in &box_edges(bounds.min, bounds.max) {
+        if let Some([p, q]) = transformer.clip_line_to_frustum_near_plane(p, q) {
+            let p = transformer.world_to_screen(&p);
+            let q = transformer.world_to_screen(&q);
+            clunky_draw_line(renderer, Point2::new(p.x, p.y), Point2::new(q.x, q.y));
+        }
     }
 }
 
