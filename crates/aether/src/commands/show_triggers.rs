@@ -190,20 +190,12 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
         let screen = transformer.world_to_screen(&position);
 
         if screen.z >= 0.0 && screen.z < 500.0 {
-            let class_name = trigger_region
-                .class()
-                .name()
-                .c_str()
-                .to_str()
-                .unwrap_or("<invalid utf-8>");
+            let class_name = trigger_region.class().name();
+            let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
             bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
 
-            let object_name = (*trigger_region.as_ptr())
-                .mName
-                .lift_ref()
-                .c_str()
-                .to_str()
-                .unwrap_or("<invalid utf-8>");
+            let object_name = (*trigger_region.as_ptr()).mName.lift_ref();
+            let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
             bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, 2, object_name);
 
             match get_shape(&trigger_region) {
