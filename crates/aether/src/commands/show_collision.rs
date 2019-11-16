@@ -12,17 +12,28 @@ use std::{
     sync::atomic::{AtomicBool, Ordering},
 };
 
-pub fn run(_command: &str) {
-    let mut guard = ON_POST_UPDATE_QUEUE.lock();
-    guard
-        .as_mut()
-        .unwrap()
-        .push_back(Box::new(move || unsafe { go() }));
+static DRAW_ENABLED: AtomicBool = AtomicBool::new(false);
+
+pub fn run(_command: &str) -> &'static str {
+    let prev_enabled = DRAW_ENABLED.fetch_nand(true, Ordering::SeqCst);
+    let enabled = !prev_enabled;
+
+    if enabled {
+        let mut guard = ON_POST_UPDATE_QUEUE.lock();
+        guard
+            .as_mut()
+            .unwrap()
+            .push_back(Box::new(move || unsafe { go() }));
+    }
+
+    if enabled {
+        "now set to true"
+    } else {
+        "now set to false"
+    }
 }
 
 unsafe fn go() {
-    DRAW_ENABLED.store(true, Ordering::SeqCst);
-
     let world = match gfc::OblivionGame::get_instance().get_world() {
         Some(world) => world,
         None => return,
@@ -68,8 +79,6 @@ unsafe fn go() {
         }
     }
 }
-
-static DRAW_ENABLED: AtomicBool = AtomicBool::new(false);
 
 pub unsafe fn draw(renderer: &gfc::UIRenderer) {
     if !DRAW_ENABLED.load(Ordering::SeqCst) {

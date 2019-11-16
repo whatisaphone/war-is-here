@@ -27,18 +27,9 @@ pub fn run(message: &[u8]) -> RunResult {
         }
         "move_player" => move_player::run(message).into(),
         "pickup_item" => pickup_item::run(message).into(),
-        "pretend_editor" => {
-            pretend_editor::run(message);
-            RunResult::Ok
-        }
-        "show_collision" => {
-            show_collision::run(message);
-            RunResult::Ok
-        }
-        "show_triggers" => {
-            show_triggers::run(message);
-            RunResult::Ok
-        }
+        "pretend_editor" => RunResult::Response(pretend_editor::run(message)),
+        "show_collision" => RunResult::Response(show_collision::run(message)),
+        "show_triggers" => RunResult::Response(show_triggers::run(message)),
         "shutdown" => RunResult::Shutdown,
         "spawn_humans" => spawn_humans::run(message).into(),
         "spawn_object" => spawn_objct::run(message).into(),

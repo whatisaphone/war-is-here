@@ -26,17 +26,28 @@ use std::{
     sync::atomic::{AtomicBool, Ordering},
 };
 
-pub fn run(_command: &str) {
-    let mut guard = ON_POST_UPDATE_QUEUE.lock();
-    guard
-        .as_mut()
-        .unwrap()
-        .push_back(Box::new(move || unsafe { go() }));
+static ENABLED: AtomicBool = AtomicBool::new(false);
+
+pub fn run(_command: &str) -> &'static str {
+    let prev_enabled = ENABLED.fetch_nand(true, Ordering::SeqCst);
+    let enabled = !prev_enabled;
+
+    if enabled {
+        let mut guard = ON_POST_UPDATE_QUEUE.lock();
+        guard
+            .as_mut()
+            .unwrap()
+            .push_back(Box::new(move || unsafe { go() }));
+    }
+
+    if enabled {
+        "now set to true"
+    } else {
+        "now set to false"
+    }
 }
 
 unsafe fn go() {
-    ENABLED.store(true, Ordering::SeqCst);
-
     walk(&mut |object| {
         if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
             mark(&trigger);
@@ -153,8 +164,6 @@ fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
         obj.add_object_to_world(world);
     }
 }
-
-static ENABLED: AtomicBool = AtomicBool::new(false);
 
 // TODO: This is too slow (probably because of cylinders). Caching is required.
 const SHOW_CLOSEST: bool = false;
