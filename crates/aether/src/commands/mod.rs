@@ -5,6 +5,7 @@ pub mod move_player;
 pub mod pickup_item;
 pub mod pretend_editor;
 pub mod show_collision;
+pub mod show_player_pos;
 pub mod show_triggers;
 pub mod spawn_humans;
 pub mod spawn_objct;
@@ -29,6 +30,7 @@ pub fn run(message: &[u8]) -> RunResult {
         "pickup_item" => pickup_item::run(message).into(),
         "pretend_editor" => RunResult::Response(pretend_editor::run(message)),
         "show_collision" => RunResult::Response(show_collision::run(message)),
+        "show_player_pos" => RunResult::Response(show_player_pos::run(message)),
         "show_triggers" => RunResult::Response(show_triggers::run(message)),
         "shutdown" => RunResult::Shutdown,
         "spawn_humans" => spawn_humans::run(message).into(),

@@ -82,7 +82,7 @@ pub fn cleanup() {
 
 mod hook {
     use crate::{
-        commands::{pretend_editor, show_collision, show_triggers, spawn_humans},
+        commands::{pretend_editor, show_collision, show_player_pos, show_triggers, spawn_humans},
         darksiders1::{Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
@@ -104,6 +104,7 @@ mod hook {
         (detours.gfc___UIManager__draw)(this, renderer);
 
         splash::draw((*renderer).lift_ref());
+        show_player_pos::draw((*renderer).lift_ref());
         show_triggers::draw((*renderer).lift_ref());
         show_collision::draw((*renderer).lift_ref());
     }
