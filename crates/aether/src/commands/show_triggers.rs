@@ -156,6 +156,9 @@ fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
 
 static ENABLED: AtomicBool = AtomicBool::new(false);
 
+// TODO: This is too slow (probably because of cylinders). Caching is required.
+const SHOW_CLOSEST: bool = false;
+
 pub unsafe fn draw(renderer: &gfc::UIRenderer) {
     if !ENABLED.load(Ordering::SeqCst) {
         return;
@@ -219,9 +222,11 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
             }
         }
 
-        let shape = get_shape(&trigger_region).to_compound();
-        let projection = shape.project_point(&Isometry::identity(), &player_pos, false);
-        triggers.push((trigger_region, projection));
+        if SHOW_CLOSEST {
+            let shape = get_shape(&trigger_region).to_compound();
+            let projection = shape.project_point(&Isometry::identity(), &player_pos, false);
+            triggers.push((trigger_region, projection));
+        }
     });
 
     let closest_trigger = triggers
