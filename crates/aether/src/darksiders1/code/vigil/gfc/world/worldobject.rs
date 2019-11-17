@@ -14,6 +14,18 @@ struct_wrapper_super!(WorldObject, gfc::Object);
 impl_reflection!(WorldObject, target::gfc__WorldObject___Class);
 
 impl WorldObject {
+    pub fn set_region_id(&self, v: u16) {
+        unsafe {
+            target::gfc__WorldObject__setRegionID(self.as_ptr(), v);
+        }
+    }
+
+    pub fn set_layer_id(&self, v: u16) {
+        unsafe {
+            target::gfc__WorldObject__setLayerID(self.as_ptr(), v);
+        }
+    }
+
     pub fn set_position(&self, pos: &Point3<f32>) {
         unsafe {
             self.inner.setPosition(Lower::lower_ptr(&pos.coords));

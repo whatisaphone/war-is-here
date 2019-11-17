@@ -6,13 +6,13 @@ use crate::{
         coordinate_transformer::CoordinateTransformer,
         debug_draw,
         debug_draw_3d,
-        geometry::{box_edges, box_vertices, cylinder, icosphere},
+        geometry::{box_edges, box_vertices, cylinder, icosphere, transform},
         mem::init_with,
         pretty::Pretty,
     },
 };
 use darksiders1_sys::target;
-use na::{Isometry, Matrix4, Point3, Translation, UnitQuaternion, Vector3};
+use na::{Isometry, Matrix4, Point3, Transform3, Translation, UnitQuaternion, Vector3};
 use ncollide3d::{
     query::PointQuery,
     shape::{Ball, Compound, ConvexHull, Cuboid, Cylinder, ShapeHandle},
@@ -211,8 +211,11 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
                 Shape::Aabb(bounds) => {
                     debug_draw::box_wireframe(renderer, &transformer, &bounds);
                 }
-                Shape::Box(_size, _transform) => {
-                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "box");
+                Shape::Box(size, tf) => {
+                    let origin = Point3::origin();
+                    let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
+                    transform(&mut wireframe, &Transform3::from_matrix_unchecked(tf));
+                    debug_draw::wireframe(renderer, &transformer, &wireframe);
                 }
                 Shape::Sphere(_radius, _center) => {
                     bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "sphere");

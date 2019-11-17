@@ -1,6 +1,6 @@
 #![allow(clippy::cast_precision_loss)]
 
-use na::{Point3, Vector3};
+use na::{Point3, Transform3, Vector3};
 use std::{collections::HashMap, iter};
 
 pub fn box_edges(p1: Point3<f32>, p2: Point3<f32>) -> [[Point3<f32>; 2]; 12] {
@@ -143,4 +143,11 @@ pub fn cylinder(resolution: usize) -> impl Iterator<Item = [Point3<f32>; 2]> {
         result.push([Point3::new(x1, y1, -1.0), Point3::new(x1, y1, 1.0)]);
     }
     result.into_iter()
+}
+
+pub fn transform(wireframe: &mut [[Point3<f32>; 2]], transform: &Transform3<f32>) {
+    for [p, q] in wireframe {
+        *p = transform * *p;
+        *q = transform * *q;
+    }
 }

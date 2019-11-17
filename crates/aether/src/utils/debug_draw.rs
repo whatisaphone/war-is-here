@@ -9,14 +9,22 @@ use crate::{
     },
 };
 use darksiders1_sys::target;
-use na::Point2;
+use na::{Point2, Point3};
 
 pub unsafe fn box_wireframe(
     renderer: &gfc::UIRenderer,
     transformer: &CoordinateTransformer,
     bounds: &gfc::TBox<f32>,
 ) {
-    for &[p, q] in &box_edges(bounds.min, bounds.max) {
+    wireframe(renderer, transformer, &box_edges(bounds.min, bounds.max));
+}
+
+pub unsafe fn wireframe(
+    renderer: &gfc::UIRenderer,
+    transformer: &CoordinateTransformer,
+    wireframe: &[[Point3<f32>; 2]],
+) {
+    for &[p, q] in wireframe {
         if let Some([p, q]) = transformer.clip_line_to_frustum_near_plane(p, q) {
             let p = transformer.world_to_screen(&p);
             let q = transformer.world_to_screen(&q);

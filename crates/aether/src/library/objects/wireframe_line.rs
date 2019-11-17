@@ -7,7 +7,7 @@ use na::Point3;
 use once_cell::sync::Lazy;
 use pdbindgen_runtime::StaticCast;
 
-pub static PACKAGE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("city01_streets"));
+pub static PACKAGE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("vfx_shared"));
 pub static OBJECT_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("wireframe_line"));
 pub static MESH_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("wireframe_line"));
 static NODE_NAME: Lazy<gfc::HString> = Lazy::new(|| hstring!("line"));

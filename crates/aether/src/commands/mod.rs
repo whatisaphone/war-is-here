@@ -2,6 +2,7 @@ use std::str;
 
 pub mod infinite_jump;
 pub mod load_map_menu;
+pub mod load_package;
 pub mod move_player;
 pub mod pickup_item;
 pub mod pretend_editor;
@@ -28,6 +29,7 @@ pub fn run(message: &[u8]) -> RunResult {
             load_map_menu::run(message);
             RunResult::Ok
         }
+        "load_package" => load_package::run(message).into(),
         "move_player" => move_player::run(message).into(),
         "pickup_item" => pickup_item::run(message).into(),
         "pretend_editor" => RunResult::Response(pretend_editor::run(message)),
