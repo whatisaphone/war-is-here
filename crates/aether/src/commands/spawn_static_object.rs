@@ -1,5 +1,4 @@
 use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
-use darksiders1_sys::target;
 use na::{Point3, Vector3};
 
 pub fn run(command: &str) -> Result<(), &'static str> {
@@ -50,8 +49,8 @@ unsafe fn go(args: &Args) {
 
     let obj = gfc::AutoRef::new(gfc::StaticObject::new());
 
-    target::gfc__StaticObject__setPackageName(obj.as_ptr(), package_name.as_ptr());
-    target::gfc__StaticObject__setObjectName(obj.as_ptr(), object_name.as_ptr());
+    obj.set_package_name(&package_name);
+    obj.set_object_name(&object_name);
     obj.set_position(&Point3::new(args.x, args.y, args.z));
     obj.set_scale(&Vector3::new(args.scale, args.scale, args.scale));
 

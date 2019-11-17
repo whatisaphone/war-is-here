@@ -104,19 +104,13 @@ macro_rules! impl_reflection {
 
 macro_rules! cstr {
     ($str:literal) => {{
-        use std::{ffi::CStr, os::raw::c_char};
-
         let zstr = concat!($str, "\0");
-        #[allow(unused_unsafe)]
-        unsafe { CStr::from_ptr(zstr.as_ptr() as *const c_char) }
+        ::std::ffi::CStr::from_bytes_with_nul(zstr.as_bytes()).unwrap()
     }};
 }
 
 macro_rules! hstring {
-    ($str:literal) => {{
-        use $crate::darksiders1::gfc;
-
-        let cstr = cstr!($str);
-        gfc::HString::from_cstr(cstr)
-    }};
+    ($str:literal) => {
+        $crate::darksiders1::gfc::HString::from_cstr(cstr!($str))
+    };
 }

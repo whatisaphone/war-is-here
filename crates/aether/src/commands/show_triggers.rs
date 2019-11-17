@@ -19,7 +19,6 @@ use ncollide3d::{
     transformation::ToTriMesh,
 };
 use ordered_float::NotNan;
-use pdbindgen_runtime::StaticCast;
 use std::{
     convert::TryFrom,
     f32::consts::FRAC_PI_2,
@@ -97,10 +96,8 @@ unsafe fn walk(visitor: &mut dyn FnMut(&gfc::WorldObject)) {
 
 unsafe fn walk_group(group: &gfc::WorldGroup, visitor: &mut dyn FnMut(&gfc::WorldObject)) {
     let objects = &mut (*group.as_ptr()).mObjects;
-    let objects = List::<target::gfc__AutoRef_gfc__WorldObject_>::from_ptr(objects);
+    let objects = List::from_ptr(objects);
     for object in objects {
-        let object = object.lift_ref();
-
         visitor(object);
 
         if let Some(group) = gfc::object_safecast::<gfc::WorldGroup>(object) {
@@ -110,40 +107,38 @@ unsafe fn walk_group(group: &gfc::WorldGroup, visitor: &mut dyn FnMut(&gfc::Worl
 }
 
 unsafe fn mark(trigger: &gfc::TriggerRegion) {
+    let region_id = trigger.get_region_id();
+    let layer_id = trigger.get_layer_id();
     let position = trigger.get_position();
 
-    add_marker(
-        (*trigger.as_ptr()).mRegionID,
-        (*trigger.as_ptr()).mLayerID,
-        position.x,
-        position.y,
-        position.z,
-    );
+    add_marker(region_id, layer_id, position.x, position.y, position.z);
 
     match get_shape(&trigger) {
         Shape::Aabb(bounds) => {
             for &[p, q] in &box_edges(bounds.min, bounds.max) {
-                debug_draw_3d::line(p, q);
+                debug_draw_3d::line(region_id, layer_id, p, q);
             }
         }
-        Shape::Box(size, transform) => {
-            for &[p, q] in &box_edges(Point3::origin() - size / 2.0, Point3::origin() + size / 2.0)
-            {
-                let p = Point3::from_homogeneous(transform * p.to_homogeneous()).unwrap();
-                let q = Point3::from_homogeneous(transform * q.to_homogeneous()).unwrap();
-                debug_draw_3d::line(p, q);
+        Shape::Box(size, tf) => {
+            let origin = Point3::origin();
+            let wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
+            let transform = Transform3::from_matrix_unchecked(tf);
+            for &[p, q] in &wireframe {
+                debug_draw_3d::line(region_id, layer_id, transform * p, transform * q);
             }
         }
         Shape::Sphere(radius, center) => {
             for [p, q] in icosphere() {
-                debug_draw_3d::line(center + p.coords * radius, center + q.coords * radius);
+                let p = center + p.coords * radius;
+                let q = center + q.coords * radius;
+                debug_draw_3d::line(region_id, layer_id, p, q);
             }
         }
         Shape::Cylinder(radius, length, pos) => {
             for [p, q] in cylinder(24) {
-                let p = Point3::new(p.x * radius, p.y * radius, p.z * length);
-                let q = Point3::new(q.x * radius, q.y * radius, q.z * length);
-                debug_draw_3d::line(pos + p.coords, pos + q.coords);
+                let p = pos + Vector3::new(p.x * radius, p.y * radius, p.z * length);
+                let q = pos + Vector3::new(q.x * radius, q.y * radius, q.z * length);
+                debug_draw_3d::line(region_id, layer_id, p, q);
             }
         }
     }
@@ -151,13 +146,10 @@ unsafe fn mark(trigger: &gfc::TriggerRegion) {
 
 fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
     let obj = gfc::AutoRef::new(gfc::StaticObject::new());
-
-    unsafe {
-        target::gfc__WorldObject__setRegionID(obj.as_ptr().static_cast(), region_id);
-        target::gfc__WorldObject__setLayerID(obj.as_ptr().static_cast(), layer_id);
-        target::gfc__StaticObject__setPackageName(obj.as_ptr(), hstring!("vfx_shared").as_ptr());
-        target::gfc__StaticObject__setObjectName(obj.as_ptr(), hstring!("sphere").as_ptr());
-    }
+    obj.set_region_id(region_id);
+    obj.set_layer_id(layer_id);
+    obj.set_package_name(&hstring!("vfx_shared"));
+    obj.set_object_name(&hstring!("sphere"));
     obj.set_position(&Point3::new(x, y, z));
 
     if let Some(world) = unsafe { gfc::OblivionGame::get_instance().get_world() } {
@@ -179,11 +171,8 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
     };
     let player_pos = player.get_position();
 
-    target::gfc__UIRenderer__begin(renderer.as_ptr(), true);
-    target::gfc__UIRenderer__setMaterial(
-        renderer.as_ptr(),
-        (*renderer.as_ptr()).mSolidMaterial.ptr(),
-    );
+    renderer.begin(true);
+    renderer.set_material(renderer.solid_material());
 
     let transformer = CoordinateTransformer::create();
 
@@ -240,12 +229,8 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
             NotNan::new(na::distance_squared(&player_pos, &projection.point)).unwrap()
         });
     if let Some((trigger, projection)) = closest_trigger {
-        let object_name = (*trigger.as_ptr())
-            .mName
-            .lift_ref()
-            .c_str()
-            .to_str()
-            .unwrap_or("<invalid utf-8>");
+        let object_name = (*trigger.as_ptr()).mName.lift_ref();
+        let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
         bitmap_font::draw_string(renderer, 10.0, 10.0, 2, object_name);
         bitmap_font::draw_string(
             renderer,
@@ -262,7 +247,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
         );
     }
 
-    target::gfc__UIRenderer__endRendering(renderer.as_ptr());
+    renderer.end();
 }
 
 // See `gfc::DetectorObject::doAddToWorld`
@@ -279,13 +264,13 @@ unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
         }
         gfc::PhysicsShapeObject__Detect::Sphere => {
             let radius = (*object.as_ptr()).mSize.z * 0.5;
-            let position = Point3::from(*(*object.as_ptr()).mPosition.lift_ref());
+            let position = object.get_position();
             Shape::Sphere(radius, position)
         }
         gfc::PhysicsShapeObject__Detect::Cylinder => {
             let radius = (*object.as_ptr()).mSize.x * 0.5;
             let length = (*object.as_ptr()).mSize.z;
-            let position = Point3::from(*(*object.as_ptr()).mPosition.lift_ref());
+            let position = object.get_position();
             Shape::Cylinder(radius, length, position)
         }
     }

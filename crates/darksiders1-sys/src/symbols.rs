@@ -124,8 +124,6 @@ symbols! {
     pub static gfc__Vector4Parameter___Vector4Parameter: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter) = Text(0x5b0fa0);
     pub static gfc__Vector4Parameter__Vector4Parameter_3: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: *const gfc__Vector4Parameter) -> *mut gfc__Vector4Parameter = Text(0x5c7e60);
     pub static gfc__Node3D__getPosition: unsafe extern "thiscall" fn(this: *mut gfc__Node3D, result: *mut gfc__TVector3_float_gfc__FloatMath_) -> *mut gfc__TVector3_float_gfc__FloatMath_ = Text(0x41d8d0);
-    pub static gfc__WorldObject__setRegionID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20ac80);
-    pub static gfc__WorldObject__setLayerID: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: u16) = Text(0x20aca0);
     pub static gfc__ObjectWriter___ObjectWriter: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter) = Text(0x2103c0);
     pub static gfc__World__getRegion_2: unsafe extern "thiscall" fn(this: *mut gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0x223730);
     pub static gfc__Darksiders__processInputEvent: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent) -> bool = Text(0x27b4b0);

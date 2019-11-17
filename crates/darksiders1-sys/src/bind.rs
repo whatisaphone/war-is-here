@@ -126,8 +126,6 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__Vector4Parameter___Vector4Parameter);
     bind!(text, gfc__Vector4Parameter__Vector4Parameter_3);
     bind!(text, gfc__Node3D__getPosition);
-    bind!(text, gfc__WorldObject__setRegionID);
-    bind!(text, gfc__WorldObject__setLayerID);
     bind!(text, gfc__ObjectWriter___ObjectWriter);
     bind!(text, gfc__World__getRegion_2);
     bind!(text, gfc__Darksiders__processInputEvent);

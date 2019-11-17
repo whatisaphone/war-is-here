@@ -4,7 +4,7 @@ use crate::{
     library::bitmap_font,
     utils::coordinate_transformer::CoordinateTransformer,
 };
-use darksiders1_sys::target::{self, hkpConvexVerticesShape, hkpMoppBvTreeShape};
+use darksiders1_sys::target::{hkpConvexVerticesShape, hkpMoppBvTreeShape};
 use std::{
     convert::TryFrom,
     fs,
@@ -90,11 +90,8 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
         None => return,
     };
 
-    target::gfc__UIRenderer__begin(renderer.as_ptr(), true);
-    target::gfc__UIRenderer__setMaterial(
-        renderer.as_ptr(),
-        (*renderer.as_ptr()).mSolidMaterial.ptr(),
-    );
+    renderer.begin(true);
+    renderer.set_material(renderer.solid_material());
 
     let transformer = CoordinateTransformer::create();
 
@@ -135,5 +132,5 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
         }
     }
 
-    target::gfc__UIRenderer__endRendering(renderer.as_ptr());
+    renderer.end();
 }

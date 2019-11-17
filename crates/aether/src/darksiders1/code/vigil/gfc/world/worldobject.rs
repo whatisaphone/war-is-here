@@ -16,14 +16,22 @@ impl_reflection!(WorldObject, target::gfc__WorldObject___Class);
 impl WorldObject {
     pub fn set_region_id(&self, v: u16) {
         unsafe {
-            target::gfc__WorldObject__setRegionID(self.as_ptr(), v);
+            (*self.as_ptr()).mRegionID = v;
         }
+    }
+
+    pub fn get_region_id(&self) -> u16 {
+        unsafe { (*self.as_ptr()).mRegionID }
     }
 
     pub fn set_layer_id(&self, v: u16) {
         unsafe {
-            target::gfc__WorldObject__setLayerID(self.as_ptr(), v);
+            (*self.as_ptr()).mLayerID = v;
         }
+    }
+
+    pub fn get_layer_id(&self) -> u16 {
+        unsafe { (*self.as_ptr()).mLayerID }
     }
 
     pub fn set_position(&self, pos: &Point3<f32>) {

@@ -1,8 +1,4 @@
-use crate::{
-    darksiders1::{gfc, LoweredAutoRef},
-    library::bitmap_font,
-};
-use darksiders1_sys::target;
+use crate::{darksiders1::gfc, library::bitmap_font};
 use parking_lot::Mutex;
 use std::time::{Duration, Instant};
 
@@ -28,19 +24,12 @@ pub fn draw(renderer: &gfc::UIRenderer) {
         return;
     }
 
-    unsafe {
-        target::gfc__UIRenderer__begin(renderer.as_ptr(), true);
-        target::gfc__UIRenderer__setMaterial(
-            renderer.as_ptr(),
-            (*renderer.as_ptr()).mSolidMaterial.ptr(),
-        );
-    }
+    renderer.begin(true);
+    renderer.set_material(renderer.solid_material());
 
     unsafe {
         bitmap_font::draw_string(renderer, 100.0, 100.0, 8, text);
     }
 
-    unsafe {
-        target::gfc__UIRenderer__endRendering(renderer.as_ptr());
-    }
+    renderer.end();
 }

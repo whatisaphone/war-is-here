@@ -143,8 +143,6 @@ symbols! {
     pub fn gfc__Vector4Parameter___Vector4Parameter;
     pub fn gfc__Vector4Parameter__Vector4Parameter_3;
     pub fn gfc__Node3D__getPosition;
-    pub fn gfc__WorldObject__setRegionID;
-    pub fn gfc__WorldObject__setLayerID;
     pub fn gfc__ObjectWriter___ObjectWriter;
     pub fn gfc__World__getRegion_2;
     pub fn gfc__Darksiders__processInputEvent;

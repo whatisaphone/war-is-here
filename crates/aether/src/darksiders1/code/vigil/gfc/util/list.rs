@@ -1,3 +1,4 @@
+use crate::darksiders1::gfc;
 use darksiders1_sys::target;
 
 #[repr(C)]
@@ -14,13 +15,15 @@ pub struct List__ListNode<'a, T> {
     value: T,
 }
 
-impl<'a, T> List<'a, T> {
+impl List<'static, gfc::AutoRef<gfc::WorldObject>> {
     pub unsafe fn from_ptr(
         inner: *const target::List_gfc__AutoRef_gfc__WorldObject___,
-    ) -> &'a Self {
+    ) -> &'static Self {
         &*(inner as *const Self)
     }
+}
 
+impl<'a, T> List<'a, T> {
     pub fn iter(&'a self) -> List__Iterator<'a, T> {
         List__Iterator::new(self)
     }

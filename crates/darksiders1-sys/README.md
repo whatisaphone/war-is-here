@@ -94,8 +94,6 @@ pdbindgen \
     -i '^gfc::World::getRegion$' \
     -i '^gfc::WorldObject::attachToObject$' \
     -i '^gfc::WorldObject::removeObjectFromWorld' \
-    -i '^gfc::WorldObject::setLayerID$' \
-    -i '^gfc::WorldObject::setRegionID$' \
     -i '^gfc::WorldRegion::getLayer$' \
     -i '^gfc::_UIManager::draw$'
 ```
