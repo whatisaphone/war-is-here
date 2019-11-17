@@ -11,7 +11,7 @@ pub fn run(command: &str) -> Result<(), &'static str> {
     guard
         .as_mut()
         .unwrap()
-        .push_back(Box::new(move || unsafe { go(&args) }));
+        .push_back(Box::new(move || go(&args)));
     Ok(())
 }
 
@@ -26,7 +26,7 @@ struct Args {
     classname: String,
 }
 
-unsafe fn go(args: &Args) {
+fn go(args: &Args) {
     let classname = gfc::HString::from_str(&args.classname);
 
     let class_registry = gfc::Singleton::<gfc::ClassRegistry>::get_instance();

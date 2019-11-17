@@ -9,7 +9,7 @@ pub fn run(command: &str) -> Result<(), &'static str> {
     guard
         .as_mut()
         .unwrap()
-        .push_back(Box::new(move || unsafe { go(&args) }));
+        .push_back(Box::new(move || go(&args)));
     Ok(())
 }
 
@@ -29,7 +29,7 @@ struct Args {
     z: f32,
 }
 
-unsafe fn go(args: &Args) {
+fn go(args: &Args) {
     let darksiders = gfc::OblivionGame::get_instance();
     let player = match darksiders.get_player_actor() {
         Some(player) => player,

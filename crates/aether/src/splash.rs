@@ -27,9 +27,7 @@ pub fn draw(renderer: &gfc::UIRenderer) {
     renderer.begin(true);
     renderer.set_material(renderer.solid_material());
 
-    unsafe {
-        bitmap_font::draw_string(renderer, 100.0, 100.0, 8, text);
-    }
+    bitmap_font::draw_string(renderer, 100.0, 100.0, 8, text);
 
     renderer.end();
 }

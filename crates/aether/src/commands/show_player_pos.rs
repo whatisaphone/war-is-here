@@ -29,9 +29,7 @@ pub fn draw(renderer: &gfc::UIRenderer) {
     renderer.set_material(renderer.solid_material());
 
     let s = format!("pos: {}", Pretty(&pos));
-    unsafe {
-        bitmap_font::draw_string(renderer, 10.0, 10.0, 2, &s);
-    }
+    bitmap_font::draw_string(renderer, 10.0, 10.0, 2, &s);
 
     renderer.end();
 }

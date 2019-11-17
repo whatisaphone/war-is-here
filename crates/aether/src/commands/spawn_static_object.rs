@@ -10,7 +10,7 @@ pub fn run(command: &str) -> Result<(), &'static str> {
     guard
         .as_mut()
         .unwrap()
-        .push_back(Box::new(move || unsafe { go(&args) }));
+        .push_back(Box::new(move || go(&args)));
     Ok(())
 }
 
@@ -43,7 +43,7 @@ struct Args {
     scale: f32,
 }
 
-unsafe fn go(args: &Args) {
+fn go(args: &Args) {
     let package_name = gfc::HString::from_str(&args.package_name);
     let object_name = gfc::HString::from_str(&args.object_name);
 
@@ -54,7 +54,7 @@ unsafe fn go(args: &Args) {
     obj.set_position(&Point3::new(args.x, args.y, args.z));
     obj.set_scale(&Vector3::new(args.scale, args.scale, args.scale));
 
-    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
+    if let Some(world) = unsafe { gfc::OblivionGame::get_instance().get_world() } {
         obj.add_object_to_world(world);
     }
 }

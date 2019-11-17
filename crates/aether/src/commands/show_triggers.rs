@@ -106,7 +106,7 @@ unsafe fn walk_group(group: &gfc::WorldGroup, visitor: &mut dyn FnMut(&gfc::Worl
     }
 }
 
-unsafe fn mark(trigger: &gfc::TriggerRegion) {
+fn mark(trigger: &gfc::TriggerRegion) {
     let region_id = trigger.get_region_id();
     let layer_id = trigger.get_layer_id();
     let position = trigger.get_position();
@@ -251,25 +251,25 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
 }
 
 // See `gfc::DetectorObject::doAddToWorld`
-unsafe fn get_shape(object: &gfc::TriggerRegion) -> Shape {
+fn get_shape(object: &gfc::TriggerRegion) -> Shape {
     match object.shape() {
         gfc::PhysicsShapeObject__Detect::Aabb => {
-            let bounds = (*object.as_ptr()).mBounds.lift_ref().clone();
+            let bounds = unsafe { (*object.as_ptr()).mBounds.lift_ref().clone() };
             Shape::Aabb(bounds)
         }
         gfc::PhysicsShapeObject__Detect::Box => {
-            let size = *(*object.as_ptr()).mSize.lift_ref();
+            let size = unsafe { *(*object.as_ptr()).mSize.lift_ref() };
             let transform = object.get_transform();
             Shape::Box(size, transform)
         }
         gfc::PhysicsShapeObject__Detect::Sphere => {
-            let radius = (*object.as_ptr()).mSize.z * 0.5;
+            let radius = unsafe { (*object.as_ptr()).mSize.z } * 0.5;
             let position = object.get_position();
             Shape::Sphere(radius, position)
         }
         gfc::PhysicsShapeObject__Detect::Cylinder => {
-            let radius = (*object.as_ptr()).mSize.x * 0.5;
-            let length = (*object.as_ptr()).mSize.z;
+            let radius = unsafe { (*object.as_ptr()).mSize.x } * 0.5;
+            let length = unsafe { (*object.as_ptr()).mSize.z };
             let position = object.get_position();
             Shape::Cylinder(radius, length, position)
         }

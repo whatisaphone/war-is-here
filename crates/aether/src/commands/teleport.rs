@@ -12,7 +12,7 @@ pub fn run(command: &str) -> Result<(), &'static str> {
     guard
         .as_mut()
         .unwrap()
-        .push_back(Box::new(move || unsafe { go(&args) }));
+        .push_back(Box::new(move || go(&args)));
     Ok(())
 }
 
@@ -38,17 +38,19 @@ struct Args {
     start_load_region: String,
 }
 
-unsafe fn go(args: &Args) {
+fn go(args: &Args) {
     let teleport_helper = gfc::Singleton::<gfc::TeleportHelper>::get_instance();
     let world = gfc::HString::from_str(&args.world);
     let start_region = gfc::HString::from_str(&args.start_region);
     let start_point = gfc::HString::from_str(&args.start_point);
     let start_load_region = gfc::HString::from_str(&args.start_load_region);
-    target::gfc__TeleportHelper__warpToMap(
-        teleport_helper.as_ptr(),
-        world.as_ptr(),
-        start_region.as_ptr(),
-        start_point.as_ptr(),
-        start_load_region.as_ptr(),
-    );
+    unsafe {
+        target::gfc__TeleportHelper__warpToMap(
+            teleport_helper.as_ptr(),
+            world.as_ptr(),
+            start_region.as_ptr(),
+            start_point.as_ptr(),
+            start_load_region.as_ptr(),
+        );
+    }
 }

@@ -11,7 +11,7 @@ use crate::{
 use darksiders1_sys::target;
 use na::{Point2, Point3};
 
-pub unsafe fn box_wireframe(
+pub fn box_wireframe(
     renderer: &gfc::UIRenderer,
     transformer: &CoordinateTransformer,
     bounds: &gfc::TBox<f32>,
@@ -19,7 +19,7 @@ pub unsafe fn box_wireframe(
     wireframe(renderer, transformer, &box_edges(bounds.min, bounds.max));
 }
 
-pub unsafe fn wireframe(
+pub fn wireframe(
     renderer: &gfc::UIRenderer,
     transformer: &CoordinateTransformer,
     wireframe: &[[Point3<f32>; 2]],
@@ -33,7 +33,7 @@ pub unsafe fn wireframe(
     }
 }
 
-pub unsafe fn clunky_draw_line(renderer: &gfc::UIRenderer, p: Point2<f32>, q: Point2<f32>) {
+pub fn clunky_draw_line(renderer: &gfc::UIRenderer, p: Point2<f32>, q: Point2<f32>) {
     let viewport = gfc::KGGraphics::get_instance().get_viewport();
     let viewport = viewport.convert(|x| x as f32);
     let (p, q, steps) = match plan_line(&viewport, p, q) {
@@ -48,15 +48,17 @@ pub unsafe fn clunky_draw_line(renderer: &gfc::UIRenderer, p: Point2<f32>, q: Po
             (q.x - p.x) / steps as f32,
             (q.y - p.y) / steps as f32,
         );
-        target::gfc__UIRenderer__fillRect(
-            renderer.as_ptr(),
-            x,
-            y,
-            w.max(1.0),
-            h.max(1.0),
-            &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
-            &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
-        );
+        unsafe {
+            target::gfc__UIRenderer__fillRect(
+                renderer.as_ptr(),
+                x,
+                y,
+                w.max(1.0),
+                h.max(1.0),
+                &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
+                &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
+            );
+        }
     }
 }
 

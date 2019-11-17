@@ -13,7 +13,7 @@ pub fn run(_command: &str) -> &'static str {
     }
 }
 
-pub unsafe fn pump() {
+pub fn pump() {
     let enabled = ENABLED.load(Ordering::SeqCst);
     if !enabled {
         return;
@@ -25,12 +25,14 @@ pub unsafe fn pump() {
         None => return,
     };
 
-    if !(*player.as_ptr()).mMoveInput.JumpDown {
-        return;
-    }
+    unsafe {
+        if !(*player.as_ptr()).mMoveInput.JumpDown {
+            return;
+        }
 
-    let limit = 350.0; // PlayerJumpDesc.JumpImpulse is 350.
-    if (*player.as_ptr()).mGravity < limit {
-        (*player.as_ptr()).mGravity = limit;
+        let limit = 350.0; // PlayerJumpDesc.JumpImpulse is 350.
+        if (*player.as_ptr()).mGravity < limit {
+            (*player.as_ptr()).mGravity = limit;
+        }
     }
 }
