@@ -82,7 +82,14 @@ pub fn cleanup() {
 
 mod hook {
     use crate::{
-        commands::{pretend_editor, show_collision, show_player_pos, show_triggers, spawn_humans},
+        commands::{
+            infinite_jump,
+            pretend_editor,
+            show_collision,
+            show_player_pos,
+            show_triggers,
+            spawn_humans,
+        },
         darksiders1::{Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
@@ -215,6 +222,7 @@ mod hook {
         }
 
         spawn_humans::pump();
+        infinite_jump::pump();
 
         (detours.gfc__OblivionGame__update)(this, timescale, noInputUpdate)
     }

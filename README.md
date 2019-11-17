@@ -16,6 +16,14 @@ Commands are sent as simple strings over TCP. For an easy way to send them, inst
 nc localhost 53508 <<<'your_command_here'
 ```
 
+#### `infinite_jump`
+
+Give the player infinite jump height, as long as the button is held down.
+
+```
+infinite_jump
+```
+
 #### `load_map_menu`
 
 Show a window that lets you teleport to any area in the game.
