@@ -246,6 +246,11 @@ lowered_autoref!(
 );
 lowered_autoref!(target::gfc__AutoRef_gfc__Visual_, target::gfc__Visual);
 lowered_autoref!(
+    target::gfc__AutoRef_gfc__World_,
+    target::gfc__World,
+    lift = true,
+);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldGroup_,
     target::gfc__WorldGroup,
     lift = true,

@@ -25,14 +25,13 @@ pub fn pump() {
         None => return,
     };
 
-    unsafe {
-        if !(*player.as_ptr()).mMoveInput.JumpDown {
-            return;
-        }
+    let jump_down = unsafe { (*player.as_ptr()).mMoveInput.JumpDown };
+    if !jump_down {
+        return;
+    }
 
-        let limit = 350.0; // PlayerJumpDesc.JumpImpulse is 350.
-        if (*player.as_ptr()).mGravity < limit {
-            (*player.as_ptr()).mGravity = limit;
-        }
+    let limit = 350.0; // PlayerJumpDesc.JumpImpulse is 350.
+    if player.gravity() < limit {
+        player.set_gravity(limit);
     }
 }

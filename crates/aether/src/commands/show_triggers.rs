@@ -152,8 +152,8 @@ fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
     obj.set_object_name(&hstring!("sphere"));
     obj.set_position(&Point3::new(x, y, z));
 
-    if let Some(world) = unsafe { gfc::OblivionGame::get_instance().get_world() } {
-        obj.add_object_to_world(world);
+    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
+        obj.add_object_to_world(&world);
     }
 }
 

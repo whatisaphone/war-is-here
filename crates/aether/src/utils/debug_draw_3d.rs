@@ -2,7 +2,7 @@ use crate::{darksiders1::gfc, library::objects::wireframe_line};
 use na::{Point3, Unit, UnitQuaternion, Vector3};
 
 pub fn line(region_id: u16, layer_id: u16, p: Point3<f32>, q: Point3<f32>) {
-    let world = unsafe { gfc::OblivionGame::get_instance().get_world() }.unwrap();
+    let world = gfc::OblivionGame::get_instance().get_world().unwrap();
 
     let obj = gfc::AutoRef::new(gfc::StaticObject::new());
     obj.set_region_id(region_id);
@@ -19,5 +19,5 @@ pub fn line(region_id: u16, layer_id: u16, p: Point3<f32>, q: Point3<f32>) {
         1.0,
         1.0,
     ));
-    obj.add_object_to_world(world);
+    obj.add_object_to_world(&world);
 }

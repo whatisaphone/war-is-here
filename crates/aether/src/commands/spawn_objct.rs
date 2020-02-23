@@ -68,8 +68,8 @@ pub(super) fn go(args: &Args) {
 
     obj.set_position(&Point3::new(args.x, args.y, args.z));
 
-    if let Some(world) = unsafe { gfc::OblivionGame::get_instance().get_world() } {
-        obj.add_object_to_world(world);
+    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
+        obj.add_object_to_world(&world);
     }
 }
 

@@ -54,7 +54,7 @@ fn go(args: &Args) {
     obj.set_position(&Point3::new(args.x, args.y, args.z));
     obj.set_scale(&Vector3::new(args.scale, args.scale, args.scale));
 
-    if let Some(world) = unsafe { gfc::OblivionGame::get_instance().get_world() } {
-        obj.add_object_to_world(world);
+    if let Some(world) = gfc::OblivionGame::get_instance().get_world() {
+        obj.add_object_to_world(&world);
     }
 }
