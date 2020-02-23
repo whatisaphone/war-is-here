@@ -5,12 +5,15 @@ struct_wrapper!(Graphics, target::gfc__Graphics);
 
 impl Graphics {
     pub fn get_viewport(&self) -> gfc::TRect<i32> {
-        let [left, top, right, bottom] = unsafe {
-            init_with(|p: *mut [i32; 4]| {
-                self.inner
-                    .getViewport(&mut (*p)[0], &mut (*p)[1], &mut (*p)[2], &mut (*p)[3]);
+        unsafe {
+            init_with(|p: *mut gfc::TRect<i32>| {
+                self.inner.getViewport(
+                    &mut (*p).left,
+                    &mut (*p).top,
+                    &mut (*p).right,
+                    &mut (*p).bottom,
+                );
             })
-        };
-        gfc::TRect::ltrb(left, top, right, bottom)
+        }
     }
 }

@@ -1,15 +1,14 @@
 #![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 
 use crate::{
-    darksiders1::{gfc, Lower},
+    darksiders1::gfc,
     utils::{
         coordinate_transformer::CoordinateTransformer,
         geometry::box_edges,
         liang_barsky::liang_barsky,
     },
 };
-use darksiders1_sys::target;
-use na::{Point2, Point3};
+use na::{Point2, Point3, Vector4};
 
 pub fn box_wireframe(
     renderer: &gfc::UIRenderer,
@@ -48,17 +47,14 @@ pub fn clunky_draw_line(renderer: &gfc::UIRenderer, p: Point2<f32>, q: Point2<f3
             (q.x - p.x) / steps as f32,
             (q.y - p.y) / steps as f32,
         );
-        unsafe {
-            target::gfc__UIRenderer__fillRect(
-                renderer.as_ptr(),
-                x,
-                y,
-                w.max(1.0),
-                h.max(1.0),
-                &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
-                &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
-            );
-        }
+        renderer.fill_rect(
+            x,
+            y,
+            w.max(1.0),
+            h.max(1.0),
+            &Vector4::new(0.0, 0.0, 1.0, 1.0),
+            &Vector4::new(0.0, 0.0, 1.0, 1.0),
+        );
     }
 }
 

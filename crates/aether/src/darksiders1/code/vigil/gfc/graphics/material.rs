@@ -3,6 +3,7 @@ use crate::{
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
+use na::Vector4;
 
 struct_wrapper!(Parameter, target::gfc__Parameter);
 struct_wrapper_super!(Parameter, gfc::Object);
@@ -40,7 +41,7 @@ struct_wrapper_drop!(
 );
 
 impl Vector4Parameter {
-    pub fn new(value: &gfc::TVector4<f32>) -> Self {
+    pub fn new(value: &Vector4<f32>) -> Self {
         let inner = unsafe {
             init_with(|this| {
                 target::gfc__Vector4Parameter__Vector4Parameter_2(this, Lower::lower_ptr(value));

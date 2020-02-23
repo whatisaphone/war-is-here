@@ -20,4 +20,8 @@ impl ScriptClass {
         };
         Self { inner }
     }
+
+    pub fn package_id(&self) -> i32 {
+        self.inner.mPackageID
+    }
 }

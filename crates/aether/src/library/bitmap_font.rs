@@ -1,7 +1,7 @@
 #![allow(clippy::cast_precision_loss)]
 
-use crate::darksiders1::{gfc, Lower};
-use darksiders1_sys::target;
+use crate::darksiders1::gfc;
+use na::Vector4;
 use std::convert::TryFrom;
 
 pub fn draw_string(renderer: &gfc::UIRenderer, x: f32, y: f32, scale: i32, s: &str) {
@@ -35,17 +35,14 @@ pub fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, scale: i32, ch: cha
             let bits = IBM_VGA_8x14[ch * FONT_HEIGHT + row];
             let on = bits & (1 << (7 - col)) != 0;
             if on {
-                unsafe {
-                    target::gfc__UIRenderer__fillRect(
-                        renderer.as_ptr(),
-                        x + (col * usize::try_from(scale).unwrap()) as f32,
-                        y + (row * usize::try_from(scale).unwrap()) as f32,
-                        scale as f32,
-                        scale as f32,
-                        &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
-                        &Lower::lower(gfc::TVector4::new(0.0, 0.0, 1.0, 1.0)),
-                    );
-                }
+                renderer.fill_rect(
+                    x + (col * usize::try_from(scale).unwrap()) as f32,
+                    y + (row * usize::try_from(scale).unwrap()) as f32,
+                    scale as f32,
+                    scale as f32,
+                    &Vector4::new(0.0, 0.0, 1.0, 1.0),
+                    &Vector4::new(0.0, 0.0, 1.0, 1.0),
+                );
             }
         }
     }

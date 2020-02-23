@@ -4,12 +4,10 @@ use crate::{
 };
 use darksiders1_sys::target;
 use pdbindgen_runtime::StaticCast;
-use std::{mem, ptr};
+use std::ptr;
 
 struct_wrapper!(OOObjectWriter, target::gfc__OOObjectWriter);
 struct_wrapper_super!(OOObjectWriter, gfc::ObjectWriter);
-
-type OOObjectWriterObjectDatabase = gfc::Vector<gfc::AutoRef<gfc::Object>>;
 
 impl OOObjectWriter {
     pub fn new() -> Self {
@@ -19,7 +17,7 @@ impl OOObjectWriter {
                 target::gfc__ObjectWriter__ObjectWriter(this.static_cast());
                 ptr::write(
                     &mut (*this).mObjectDatabase,
-                    mem::transmute(OOObjectWriterObjectDatabase::new()),
+                    Lower::lower(<gfc::Vector<gfc::AutoRef<_>>>::new()),
                 );
                 ptr::write(&mut (*this).mWriteDefaults, false);
             })

@@ -59,7 +59,7 @@ pub(super) fn go(args: &Args) {
     if let Some(sc) = as_script_class(class) {
         // Load the package even if it's already loaded. This is just sheer laziness on
         // my part.
-        let package_id = unsafe { (*sc.as_ptr()).mPackageID };
+        let package_id = sc.package_id();
         let resource_manager = <gfc::Singleton<gfc::ResourceManager>>::get_instance();
         let package_id = resource_manager.get_permanent_id(package_id);
         resource_manager.load_packages(slice::from_ref(&package_id), false);
