@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use crate::{library::console, utils::detour::TypedDetour};
+use crate::{commands::console, utils::detour::TypedDetour};
 use darksiders1_sys::target;
 use detour::RawDetour;
 use parking_lot::{Mutex, RwLock};

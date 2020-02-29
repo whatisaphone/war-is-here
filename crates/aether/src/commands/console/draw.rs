@@ -1,7 +1,6 @@
 use crate::{
     darksiders1::gfc,
     library::dx::{copy_and_map_texture2d, create_staging_texture2d, init_with_hresult},
-    utils::marker::UnsafeSend,
 };
 use gfx::{
     format::{Bgra8, B8_G8_R8_A8},
@@ -11,16 +10,9 @@ use gfx::{
     Encoder,
     Factory,
 };
-use imgui::{im_str, Condition, Context, Window};
+use imgui::{Context, DrawData};
 use imgui_gfx_renderer::{Renderer, Shaders};
-use parking_lot::Mutex;
-use std::{
-    convert::TryInto,
-    mem,
-    ptr,
-    sync::atomic::{AtomicBool, Ordering},
-    time::Instant,
-};
+use std::{convert::TryInto, mem, ptr};
 use winapi::{
     shared::{
         dxgiformat::{
@@ -58,20 +50,7 @@ use winapi::{
     },
 };
 
-// TODO: don't hardcode
-const SCREEN_WIDTH: u16 = 1280;
-const SCREEN_HEIGHT: u16 = 720;
-const WINDOW_LEFT: i32 = 100;
-const WINDOW_TOP: i32 = 500;
-const WINDOW_WIDTH: i32 = 800;
-const WINDOW_HEIGHT: i32 = 200;
-
-pub static WANT_ENABLED: AtomicBool = AtomicBool::new(false);
-pub static IS_ENABLED: AtomicBool = AtomicBool::new(false);
-static STATE: Mutex<Option<UnsafeSend<State>>> = Mutex::new(None);
-
-struct State {
-    imgui: Context,
+pub struct State {
     gfx_device: gfx_device_dx11::Device,
     gfx_factory: gfx_device_dx11::Factory,
     imgui_texture: Texture<gfx_device_dx11::Resources, B8_G8_R8_A8>,
@@ -89,11 +68,10 @@ struct State {
     blit_staging_tex: d3d11::Texture2D,
     blit_dest_tex: d3d11::Texture2D,
     blit_dest_view: d3d11::ShaderResourceView,
-    last_frame: Instant,
 }
 
 #[allow(clippy::too_many_lines)]
-fn init() {
+pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State {
     let device;
     let context;
     let vs_copy;
@@ -110,7 +88,7 @@ fn init() {
         context = (*(*graphics.as_ptr()).m_pGraphicsSystem).pImmediateContext
             as *mut winapi::um::d3d11::ID3D11DeviceContext;
 
-        let source = include_str!("../shaders/simple.hlsl");
+        let source = include_str!("shaders/simple.hlsl");
         let vs_copy_code = d3d11::compile(source, cstr!("vs_copy"), cstr!("vs_5_0")).unwrap();
         let ps_tex_code = d3d11::compile(source, cstr!("ps_tex"), cstr!("ps_5_0")).unwrap();
 
@@ -182,8 +160,8 @@ fn init() {
             .unwrap();
 
         let desc = D3D11_TEXTURE2D_DESC {
-            Width: SCREEN_WIDTH.into(),
-            Height: SCREEN_HEIGHT.into(),
+            Width: screen_width.into(),
+            Height: screen_height.into(),
             MipLevels: 0,
             ArraySize: 1,
             Format: DXGI_FORMAT_B8G8R8A8_UNORM,
@@ -209,18 +187,12 @@ fn init() {
         .unwrap();
     }
 
-    let mut imgui = Context::create();
-    imgui.io_mut().display_size = [SCREEN_WIDTH.into(), SCREEN_HEIGHT.into()];
-    // Make the background semi-transparent
-    imgui.style_mut().colors[imgui::StyleColor::WindowBg as usize][3] = 0.75;
-    imgui.set_ini_filename(None);
-
     let (gfx_device, mut gfx_factory) =
         gfx_device_dx11::create_from_existing(device, context).unwrap();
     let (imgui_texture, _view, imgui_render_target) = gfx_factory
-        .create_render_target(SCREEN_WIDTH, SCREEN_HEIGHT)
+        .create_render_target(screen_width, screen_height)
         .unwrap();
-    let imgui_renderer = Renderer::init(&mut imgui, &mut gfx_factory, Shaders::HlslSm40).unwrap();
+    let imgui_renderer = Renderer::init(imgui, &mut gfx_factory, Shaders::HlslSm40).unwrap();
     let imgui_encoder = gfx_factory.create_command_buffer().into();
 
     let blit_staging_tex;
@@ -233,78 +205,32 @@ fn init() {
         blit_staging_tex = create_staging_texture2d(&device, &texture);
     }
 
-    let mut guard = STATE.lock();
-    // Safety: although this is stored in a static, we promise only to use it from
-    // the game's render thread.
-    *guard = unsafe {
-        Some(UnsafeSend::new(State {
-            imgui,
-            gfx_device,
-            gfx_factory,
-            imgui_texture,
-            imgui_render_target,
-            imgui_renderer,
-            imgui_encoder,
-            vs_copy,
-            ps_tex,
-            input_layout,
-            quad_vertex_buffer,
-            hq_sampler,
-            blit_staging_tex,
-            blit_dest_tex,
-            blit_dest_view,
-            last_frame: Instant::now(),
-        }))
-    };
-}
-
-fn cleanup() {
-    let mut guard = STATE.lock();
-    drop(guard.take());
-}
-
-pub fn run_frame() {
-    match (
-        IS_ENABLED.load(Ordering::SeqCst),
-        WANT_ENABLED.load(Ordering::SeqCst),
-    ) {
-        (false, false) => {
-            return;
-        }
-        (true, false) => {
-            cleanup();
-            IS_ENABLED.store(false, Ordering::SeqCst);
-            return;
-        }
-        (false, true) => {
-            IS_ENABLED.store(true, Ordering::SeqCst);
-            init();
-        }
-        (true, true) => {}
+    State {
+        gfx_device,
+        gfx_factory,
+        imgui_texture,
+        imgui_render_target,
+        imgui_renderer,
+        imgui_encoder,
+        vs_copy,
+        ps_tex,
+        input_layout,
+        quad_vertex_buffer,
+        hq_sampler,
+        blit_staging_tex,
+        blit_dest_tex,
+        blit_dest_view,
     }
+}
 
-    let mut guard = STATE.lock();
-    let mut state = &mut **guard.as_mut().unwrap();
-
-    let io = state.imgui.io_mut();
-    state.last_frame = io.update_delta_time(state.last_frame);
-
-    let ui = state.imgui.frame();
-    #[allow(clippy::cast_precision_loss)]
-    Window::new(im_str!("Console"))
-        .position([WINDOW_LEFT as f32, WINDOW_TOP as f32], Condition::Always)
-        .size(
-            [WINDOW_WIDTH as f32, WINDOW_HEIGHT as f32],
-            Condition::Always,
-        )
-        .collapsible(false)
-        .resizable(false)
-        .build(&ui, || {
-            ui.text(im_str!("test"));
-        });
-
-    let draw_data = ui.render();
-    state.imgui_encoder.reset();
+pub fn draw(
+    state: &mut State,
+    draw_data: &DrawData,
+    window_left: i32,
+    window_top: i32,
+    window_width: i32,
+    window_height: i32,
+) {
     state
         .imgui_encoder
         .clear(&state.imgui_render_target, [0.0, 0.0, 0.0, 0.0]);
@@ -354,11 +280,12 @@ pub fn run_frame() {
             &0,
         );
         (*context.raw()).VSSetShader(state.vs_copy.raw(), ptr::null(), 0);
+        // Piggyback off rasterizer state leftover from imgui renderer
         (*context.raw()).RSSetScissorRects(1, &D3D11_RECT {
-            left: WINDOW_LEFT,
-            top: WINDOW_TOP,
-            right: WINDOW_LEFT + WINDOW_WIDTH,
-            bottom: WINDOW_TOP + WINDOW_HEIGHT,
+            left: window_left,
+            top: window_top,
+            right: window_left + window_width,
+            bottom: window_top + window_height,
         });
         (*context.raw()).PSSetShader(state.ps_tex.raw(), ptr::null(), 0);
         (*context.raw()).PSSetSamplers(0, 1, &state.hq_sampler.raw());
