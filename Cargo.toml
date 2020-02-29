@@ -2,6 +2,7 @@
 members = [
     "crates/darksiders1-sys",
     "crates/aether",
+    "crates/horseman",
 ]
 
 [profile.release]

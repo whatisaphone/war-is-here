@@ -26,6 +26,13 @@ repos:
         entry: cargo clippy --manifest-path crates/darksiders1-sys/Cargo.toml --all-targets --features strict
         pass_filenames: false
 
+      - id: check:horseman
+        name: check:horseman
+        language: system
+        files: '[.]rs$'
+        entry: cargo clippy --manifest-path crates/horseman/Cargo.toml --all-targets --features strict
+        pass_filenames: false
+
       - id: test
         name: test
         language: system

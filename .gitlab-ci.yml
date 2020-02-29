@@ -26,6 +26,11 @@ check-darksiders1-sys:
   variables:
     crate_dir: crates/darksiders1-sys
 
+check-horseman:
+  extends: .check-crate
+  variables:
+    crate_dir: crates/horseman
+
 test:
   image: rust:1.37
   script:
