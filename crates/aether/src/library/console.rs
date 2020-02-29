@@ -59,8 +59,12 @@ use winapi::{
 };
 
 // TODO: don't hardcode
-pub const WIDTH: u16 = 1280;
-pub const HEIGHT: u16 = 720;
+const SCREEN_WIDTH: u16 = 1280;
+const SCREEN_HEIGHT: u16 = 720;
+const WINDOW_LEFT: i32 = 100;
+const WINDOW_TOP: i32 = 500;
+const WINDOW_WIDTH: i32 = 800;
+const WINDOW_HEIGHT: i32 = 200;
 
 pub static WANT_ENABLED: AtomicBool = AtomicBool::new(false);
 pub static IS_ENABLED: AtomicBool = AtomicBool::new(false);
@@ -178,8 +182,8 @@ fn init() {
             .unwrap();
 
         let desc = D3D11_TEXTURE2D_DESC {
-            Width: WIDTH.into(),
-            Height: HEIGHT.into(),
+            Width: SCREEN_WIDTH.into(),
+            Height: SCREEN_HEIGHT.into(),
             MipLevels: 0,
             ArraySize: 1,
             Format: DXGI_FORMAT_B8G8R8A8_UNORM,
@@ -206,15 +210,16 @@ fn init() {
     }
 
     let mut imgui = Context::create();
-    imgui.io_mut().display_size = [WIDTH.into(), HEIGHT.into()];
+    imgui.io_mut().display_size = [SCREEN_WIDTH.into(), SCREEN_HEIGHT.into()];
     // Make the background semi-transparent
     imgui.style_mut().colors[imgui::StyleColor::WindowBg as usize][3] = 0.75;
     imgui.set_ini_filename(None);
 
     let (gfx_device, mut gfx_factory) =
         gfx_device_dx11::create_from_existing(device, context).unwrap();
-    let (imgui_texture, _view, imgui_render_target) =
-        gfx_factory.create_render_target(WIDTH, HEIGHT).unwrap();
+    let (imgui_texture, _view, imgui_render_target) = gfx_factory
+        .create_render_target(SCREEN_WIDTH, SCREEN_HEIGHT)
+        .unwrap();
     let imgui_renderer = Renderer::init(&mut imgui, &mut gfx_factory, Shaders::HlslSm40).unwrap();
     let imgui_encoder = gfx_factory.create_command_buffer().into();
 
@@ -285,9 +290,13 @@ pub fn run_frame() {
     state.last_frame = io.update_delta_time(state.last_frame);
 
     let ui = state.imgui.frame();
+    #[allow(clippy::cast_precision_loss)]
     Window::new(im_str!("Console"))
-        .position([100.0, 500.0], Condition::Always)
-        .size([800.0, 200.0], Condition::Always)
+        .position([WINDOW_LEFT as f32, WINDOW_TOP as f32], Condition::Always)
+        .size(
+            [WINDOW_WIDTH as f32, WINDOW_HEIGHT as f32],
+            Condition::Always,
+        )
         .collapsible(false)
         .resizable(false)
         .build(&ui, || {
@@ -345,13 +354,11 @@ pub fn run_frame() {
             &0,
         );
         (*context.raw()).VSSetShader(state.vs_copy.raw(), ptr::null(), 0);
-        // Hack: imgui turns on scissor, instead of properly turning it off we just set
-        // a massive rect.
         (*context.raw()).RSSetScissorRects(1, &D3D11_RECT {
-            left: i32::min_value(),
-            top: i32::min_value(),
-            right: i32::max_value(),
-            bottom: i32::max_value(),
+            left: WINDOW_LEFT,
+            top: WINDOW_TOP,
+            right: WINDOW_LEFT + WINDOW_WIDTH,
+            bottom: WINDOW_TOP + WINDOW_HEIGHT,
         });
         (*context.raw()).PSSetShader(state.ps_tex.raw(), ptr::null(), 0);
         (*context.raw()).PSSetSamplers(0, 1, &state.hq_sampler.raw());
