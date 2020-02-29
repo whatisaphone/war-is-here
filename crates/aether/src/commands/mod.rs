@@ -1,5 +1,6 @@
 use std::str;
 
+pub mod console;
 pub mod infinite_jump;
 pub mod load_map_menu;
 pub mod load_package;
@@ -24,6 +25,7 @@ pub fn run(message: &[u8]) -> RunResult {
     let message = str::from_utf8(message).unwrap_or(":(");
     let command = message.split_ascii_whitespace().next().unwrap_or(":(");
     match command {
+        "console" => RunResult::Response(console::run(message)),
         "infinite_jump" => RunResult::Response(infinite_jump::run(message)),
         "load_map_menu" => {
             load_map_menu::run(message);

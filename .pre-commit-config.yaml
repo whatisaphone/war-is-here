@@ -19,6 +19,13 @@ repos:
         entry: cargo clippy --manifest-path crates/aether/Cargo.toml --all-targets --features strict
         pass_filenames: false
 
+      - id: check:d3d11
+        name: check:d3d11
+        language: system
+        files: '[.]rs$'
+        entry: cargo clippy --manifest-path crates/d3d11/Cargo.toml --all-targets --features strict
+        pass_filenames: false
+
       - id: check:darksiders1-sys
         name: check:darksiders1-sys
         language: system

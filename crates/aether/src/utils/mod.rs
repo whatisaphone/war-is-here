@@ -4,5 +4,6 @@ pub mod debug_draw_3d;
 pub mod detour;
 pub mod geometry;
 pub mod liang_barsky;
+pub mod marker;
 pub mod mem;
 pub mod pretty;

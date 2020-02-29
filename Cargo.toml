@@ -1,7 +1,8 @@
 [workspace]
 members = [
-    "crates/darksiders1-sys",
     "crates/aether",
+    "crates/d3d11",
+    "crates/darksiders1-sys",
     "crates/horseman",
 ]
 

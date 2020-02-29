@@ -1,11 +1,11 @@
 #![allow(non_snake_case)]
 
-use crate::utils::detour::TypedDetour;
+use crate::{library::console, utils::detour::TypedDetour};
 use darksiders1_sys::target;
 use detour::RawDetour;
 use parking_lot::{Mutex, RwLock};
 use pdbindgen_runtime::{main_module, BindArgs};
-use std::collections::VecDeque;
+use std::{collections::VecDeque, sync::atomic::Ordering, thread, time::Duration};
 
 static DETOURS: RwLock<Option<Detours>> = RwLock::new(None);
 #[allow(clippy::type_complexity)]
@@ -64,6 +64,12 @@ pub fn install() {
 }
 
 pub fn uninstall() {
+    // Wait for cleanups that must happen on the main thread.
+    console::WANT_ENABLED.store(false, Ordering::SeqCst);
+    while console::IS_ENABLED.load(Ordering::SeqCst) {
+        thread::sleep(Duration::from_millis(10));
+    }
+
     let guard = DETOURS.write();
     let detours = guard.as_ref().unwrap();
     assert!(guard.is_some());
@@ -83,6 +89,7 @@ pub fn cleanup() {
 mod hook {
     use crate::{
         commands::{
+            console,
             infinite_jump,
             pretend_editor,
             show_collision,
@@ -114,6 +121,7 @@ mod hook {
         show_player_pos::draw((*renderer).lift_ref());
         show_triggers::draw((*renderer).lift_ref());
         show_collision::draw((*renderer).lift_ref());
+        console::pump();
     }
 
     pub unsafe extern "thiscall" fn gfc__Darksiders__processInputEvent(

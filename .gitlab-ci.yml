@@ -21,6 +21,11 @@ check-aether:
   variables:
     crate_dir: crates/aether
 
+check-d3d11:
+  extends: .check-crate
+  variables:
+    crate_dir: crates/d3d11
+
 check-darksiders1-sys:
   extends: .check-crate
   variables:

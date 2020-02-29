@@ -1,0 +1,18 @@
+[package]
+name = "d3d11"
+version = "0.0.0"
+authors = ["John Simon <john@whatisaph.one>"]
+edition = "2018"
+
+[features]
+strict = []
+
+[dependencies]
+
+[dependencies.winapi]
+version = "0.3.8"
+features = [
+    "d3d11",
+    "d3dcompiler",
+    "winerror",
+]
