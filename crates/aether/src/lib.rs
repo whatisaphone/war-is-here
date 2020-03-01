@@ -45,6 +45,7 @@ pub extern "system" fn DllMain(
 
 fn init(hinst: HINSTANCE) {
     unsafe {
+        #[cfg(debug_assertions)]
         AllocConsole();
     }
 
@@ -64,7 +65,9 @@ fn init(hinst: HINSTANCE) {
     hooks::cleanup();
 
     unsafe {
+        #[cfg(debug_assertions)]
         FreeConsole();
+
         FreeLibraryAndExitThread(hinst, 0);
     }
 }
