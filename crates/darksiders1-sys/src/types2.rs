@@ -5,6 +5,11 @@ use super::{types::*, types3::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct gfc__Quaternion {
+    pub q: gfc__TVector4_float_gfc__FloatMath_,
+}
+
+#[repr(C)]
 pub struct gfc__Material {
     // gfc__IRefObject
     pub vfptr: *const gfc__Material__vftable,
@@ -14054,64 +14059,4 @@ pub struct hkWorldMemoryAvailableWatchDog__MemUsageInfo {
     pub m_maxRuntimeBlockSize: i32,
     pub m_sumRuntimeBlockSize: i32,
     pub m_largestSimulationIsland: *mut hkpSimulationIsland,
-}
-
-#[repr(C)]
-pub struct hkMemoryAllocator__ExtendedInterface {
-    pub vfptr: *const hkMemoryAllocator__ExtendedInterface__vftable,
-}
-
-impl hkMemoryAllocator__ExtendedInterface {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn garbageCollect(&self) {
-        ((*self.vfptr).garbageCollect)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn incrementalGarbageCollect(&self, a1: i32) {
-        ((*self.vfptr).incrementalGarbageCollect)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setMemorySoftLimit(
-        &self,
-        result: *mut hkResult,
-        a2: u32,
-    ) -> *mut hkResult {
-        ((*self.vfptr).setMemorySoftLimit)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getMemorySoftLimit(&self) -> u32 {
-        ((*self.vfptr).getMemorySoftLimit)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn canAllocTotal(&self, a1: i32) -> bool {
-        ((*self.vfptr).canAllocTotal)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn walkMemory(
-        &self,
-        result: *mut hkResult,
-        a2: *mut unsafe extern "C" fn(_: *mut (), _: u32, _: bool, _: i32, _: *mut ()),
-        a3: *mut (),
-    ) -> *mut hkResult {
-        ((*self.vfptr).walkMemory)(self as *const _ as *mut _, result, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn getApproxTotalAllocated(&self) -> u32 {
-        ((*self.vfptr).getApproxTotalAllocated)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setScrubValues(&self, a1: u32, a2: u32) {
-        ((*self.vfptr).setScrubValues)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn addToSnapshot(
-        &self,
-        a1: *mut hkMemorySnapshot,
-        a2: i32,
-    ) -> i32 {
-        ((*self.vfptr).addToSnapshot)(self as *const _ as *mut _, a1, a2)
-    }
 }

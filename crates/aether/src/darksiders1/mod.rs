@@ -29,5 +29,6 @@ pub use code::vigil::{
 
 mod code;
 pub mod gfc;
+pub mod keen;
 
 include!(concat!(env!("OUT_DIR"), "/cast.rs"));

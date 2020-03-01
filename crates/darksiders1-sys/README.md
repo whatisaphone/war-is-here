@@ -95,5 +95,6 @@ pdbindgen \
     -i '^gfc::_UIManager::draw$' \
     -i '^hkpConvexVerticesShape::getOriginalVertices$' \
     -i '^hkpExtendedMeshShape$' \
-    -i '^hkpMoppBvTreeShape$'
+    -i '^hkpMoppBvTreeShape$' \
+    -i '^keen::KeyEventData$'
 ```

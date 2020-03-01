@@ -3105,6 +3105,11 @@ pub struct keen__StaticArray_keen__GestureHelper__MoveData_ {
 }
 
 #[repr(C)]
+pub struct keen__KeyEventData {
+    pub keyCode: u32,
+}
+
+#[repr(C)]
 pub struct keen__RingBuffer_keen__GestureHelper__MoveData_ {
     pub m_data: keen__StaticArray_keen__GestureHelper__MoveData_,
     pub m_start: u32,
@@ -10577,9 +10582,4 @@ pub struct gfc__Vector_gfc__Node3D___0_gfc__CAllocator_ {
 pub struct gfc__ThreadSafeVector_gfc__DynMeshNode___ {
     pub m_vector: gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator_,
     pub m_mutex: gfc__Mutex,
-}
-
-#[repr(C)]
-pub struct gfc__Quaternion {
-    pub q: gfc__TVector4_float_gfc__FloatMath_,
 }

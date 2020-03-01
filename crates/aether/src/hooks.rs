@@ -124,6 +124,8 @@ mod hook {
         console::pump();
     }
 
+    // Return `false` to swallow the event, or `true` to continue processing
+    // normally.
     pub unsafe extern "thiscall" fn gfc__Darksiders__processInputEvent(
         this: *mut target::gfc__Darksiders,
         inputEvent: *const target::keen__InputEvent,
@@ -137,7 +139,15 @@ mod hook {
         // window.
         (*this).mGameInBackground = false;
 
-        result
+        if !result {
+            return false;
+        }
+
+        if !console::handle_input_event(inputEvent.as_ref().unwrap()) {
+            return false;
+        }
+
+        true
     }
 
     pub unsafe extern "thiscall" fn gfc__MaterialCache__get(

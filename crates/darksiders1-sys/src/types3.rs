@@ -5,6 +5,66 @@ use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkMemoryAllocator__ExtendedInterface {
+    pub vfptr: *const hkMemoryAllocator__ExtendedInterface__vftable,
+}
+
+impl hkMemoryAllocator__ExtendedInterface {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn garbageCollect(&self) {
+        ((*self.vfptr).garbageCollect)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn incrementalGarbageCollect(&self, a1: i32) {
+        ((*self.vfptr).incrementalGarbageCollect)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setMemorySoftLimit(
+        &self,
+        result: *mut hkResult,
+        a2: u32,
+    ) -> *mut hkResult {
+        ((*self.vfptr).setMemorySoftLimit)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getMemorySoftLimit(&self) -> u32 {
+        ((*self.vfptr).getMemorySoftLimit)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn canAllocTotal(&self, a1: i32) -> bool {
+        ((*self.vfptr).canAllocTotal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn walkMemory(
+        &self,
+        result: *mut hkResult,
+        a2: *mut unsafe extern "C" fn(_: *mut (), _: u32, _: bool, _: i32, _: *mut ()),
+        a3: *mut (),
+    ) -> *mut hkResult {
+        ((*self.vfptr).walkMemory)(self as *const _ as *mut _, result, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getApproxTotalAllocated(&self) -> u32 {
+        ((*self.vfptr).getApproxTotalAllocated)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setScrubValues(&self, a1: u32, a2: u32) {
+        ((*self.vfptr).setScrubValues)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn addToSnapshot(
+        &self,
+        a1: *mut hkMemorySnapshot,
+        a2: i32,
+    ) -> i32 {
+        ((*self.vfptr).addToSnapshot)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
 pub struct hkMemoryAllocator__ExtendedInterface__vftable {
     pub __vecDelDtor: unsafe extern "thiscall" fn(
         this: *mut hkMemoryAllocator__ExtendedInterface,
@@ -22339,161 +22399,4 @@ pub struct hkpSolverInfo {
 #[repr(C)]
 pub struct hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_ {
     pub m_storage: u16,
-}
-
-#[repr(C)]
-pub struct hkpConstraintData {
-    // hkBaseObject
-    pub vfptr: *const hkpConstraintData__vftable,
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkpConstraintData
-    pub m_userData: u32,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkpConstraintData {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkpConstraintData {}
-
-impl hkpConstraintData {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getType(&self) -> i32 {
-        ((*self.vfptr).getType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getConstraintInfo(
-        &self,
-        a1: *mut hkpConstraintData__ConstraintInfo,
-    ) {
-        ((*self.vfptr).getConstraintInfo)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn isValid(&self, result: *mut hkBool) -> *mut hkBool {
-        ((*self.vfptr).isValid)(self as *const _ as *mut _, result)
-    }
-
-    pub unsafe extern "thiscall" fn setMaximumLinearImpulse(&self, a1: f32) {
-        ((*self.vfptr).setMaximumLinearImpulse)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setMaximumAngularImpulse(&self, a1: f32) {
-        ((*self.vfptr).setMaximumAngularImpulse)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setBreachImpulse(&self, a1: f32) {
-        ((*self.vfptr).setBreachImpulse)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getMaximumLinearImpulse(&self) -> f32 {
-        ((*self.vfptr).getMaximumLinearImpulse)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getMaximumAngularImpulse(&self) -> f32 {
-        ((*self.vfptr).getMaximumAngularImpulse)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getBreachImpulse(&self) -> f32 {
-        ((*self.vfptr).getBreachImpulse)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setBodyToNotify(&self, a1: i32) {
-        ((*self.vfptr).setBodyToNotify)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getNotifiedBodyIndex(&self) -> u8 {
-        ((*self.vfptr).getNotifiedBodyIndex)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn setSolvingMethod(&self, a1: hkpConstraintAtom__SolvingMethod) {
-        ((*self.vfptr).setSolvingMethod)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn setInertiaStabilizationFactor(
-        &self,
-        result: *mut hkResult,
-        a2: f32,
-    ) -> *mut hkResult {
-        ((*self.vfptr).setInertiaStabilizationFactor)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getInertiaStabilizationFactor(
-        &self,
-        result: *mut hkResult,
-        a2: *mut f32,
-    ) -> *mut hkResult {
-        ((*self.vfptr).getInertiaStabilizationFactor)(self as *const _ as *mut _, result, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getAppliedLinearImpulse(
-        &self,
-        a1: *const hkTransformf,
-        a2: *const hkTransformf,
-        a3: *const hkpConstraintRuntime,
-        a4: *mut hkVector4f,
-    ) {
-        ((*self.vfptr).getAppliedLinearImpulse)(self as *const _ as *mut _, a1, a2, a3, a4)
-    }
-
-    pub unsafe extern "thiscall" fn getRuntimeInfo(
-        &self,
-        a1: hkBool,
-        a2: *mut hkpConstraintData__RuntimeInfo,
-    ) {
-        ((*self.vfptr).getRuntimeInfo)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn getSolverResults(
-        &self,
-        a1: *mut hkpConstraintRuntime,
-    ) -> *mut hkpSolverResults {
-        ((*self.vfptr).getSolverResults)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn addInstance(&self, a1: *mut hkpConstraintRuntime, a2: i32) {
-        ((*self.vfptr).addInstance)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn updateDirtyAtoms(
-        &self,
-    ) -> hkpConstraintData__UpdateAtomsResult__Enum {
-        ((*self.vfptr).updateDirtyAtoms)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn buildJacobian(
-        &self,
-        a1: *const hkpConstraintQueryIn,
-        a2: *mut hkpConstraintQueryOut,
-    ) {
-        ((*self.vfptr).buildJacobian)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn isBuildJacobianCallbackRequired(
-        &self,
-        result: *mut hkBool,
-    ) -> *mut hkBool {
-        ((*self.vfptr).isBuildJacobianCallbackRequired)(self as *const _ as *mut _, result)
-    }
-
-    pub unsafe extern "thiscall" fn buildJacobianCallback(
-        &self,
-        a1: *const hkpConstraintQueryIn,
-        a2: *const hkpConstraintQueryOut,
-    ) {
-        ((*self.vfptr).buildJacobianCallback)(self as *const _ as *mut _, a1, a2)
-    }
 }
