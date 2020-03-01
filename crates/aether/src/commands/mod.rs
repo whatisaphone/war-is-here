@@ -21,11 +21,22 @@ pub enum RunResult {
     Shutdown,
 }
 
+const HELP: &str = "\
+Available commands:
+/console        /pickup_item      /spawn_humans
+/help           /pretend_editor   /spawn_object
+/infinite_jump  /show_collision   /spawn_static_object
+/load_map_menu  /show_player_pos  /teleport
+/load_package   /show_triggers
+/move_player    /shutdown
+";
+
 pub fn run(message: &[u8]) -> RunResult {
     let message = str::from_utf8(message).unwrap_or(":(");
     let command = message.split_ascii_whitespace().next().unwrap_or(":(");
     match command {
         "console" => RunResult::Response(console::run(message)),
+        "help" => RunResult::Response(HELP),
         "infinite_jump" => RunResult::Response(infinite_jump::run(message)),
         "load_map_menu" => {
             load_map_menu::run(message);

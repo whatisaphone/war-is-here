@@ -1,4 +1,4 @@
-#![feature(abi_thiscall)]
+#![feature(abi_thiscall, vec_into_raw_parts)]
 #![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
 #![warn(clippy::pedantic)]
 // #![warn(clippy::cargo)]
