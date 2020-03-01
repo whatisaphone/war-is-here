@@ -56,6 +56,29 @@ fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
 
     let io = state.imgui.io_mut();
     io.keys_down[usize::try_from(key_code).unwrap()] = down;
+
+    if key_code == keen::KeyboardButtonId::LeftShift.into()
+        || key_code == keen::KeyboardButtonId::RightShift.into()
+    {
+        io.key_shift = down;
+    }
+    if key_code == keen::KeyboardButtonId::LeftCtrl.into()
+        || key_code == keen::KeyboardButtonId::RightCtrl.into()
+    {
+        io.key_ctrl = down;
+    }
+    if key_code == keen::KeyboardButtonId::LeftAlt.into()
+        || key_code == keen::KeyboardButtonId::RightAlt.into()
+        || key_code == keen::KeyboardButtonId::AltGr.into()
+    {
+        io.key_alt = down;
+    }
+    if key_code == keen::KeyboardButtonId::LeftWindows.into()
+        || key_code == keen::KeyboardButtonId::RightWindows.into()
+    {
+        io.key_super = down;
+    }
+
     InputHandled::Swallow
 }
 
