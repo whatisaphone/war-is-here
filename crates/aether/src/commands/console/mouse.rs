@@ -24,10 +24,11 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
     let typ = keen::InputEventType::try_from((*event).r#type).unwrap();
     match typ {
         keen::InputEventType::RawButtonDown | keen::InputEventType::RawButtonUp => {
+            let down = typ == keen::InputEventType::RawButtonDown;
             let data = &*(*event).data_ptr().cast::<target::keen__KeyEventData>();
 
             let [x, y] = io.mouse_pos;
-            if !inside_window(x, y) {
+            if down && !inside_window(x, y) {
                 return InputHandled::Continue;
             }
 
