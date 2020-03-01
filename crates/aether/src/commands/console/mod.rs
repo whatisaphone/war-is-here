@@ -1,3 +1,5 @@
+#![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
+
 use crate::{darksiders1::keen, utils::marker::UnsafeSend};
 use darksiders1_sys::target;
 use imgui::{im_str, Condition, Context, FocusedWidget, ImString, InputText, Window};
@@ -86,7 +88,8 @@ pub unsafe fn handle_input_event(event: *const target::keen__InputEvent) -> Inpu
         }
         (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::RawButtonDown))
         | (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::RawButtonUp))
-        | (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::MouseMove)) => {
+        | (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::MouseMove))
+        | (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::MouseWheel)) => {
             mouse::handle_event(event)
         }
         _ => InputHandled::Continue,
@@ -133,7 +136,6 @@ fn run_frame() {
 
     let ui = state.imgui.frame();
     let uist = &mut state.ui;
-    #[allow(clippy::cast_precision_loss)]
     Window::new(im_str!("Console"))
         .position([WINDOW_LEFT as f32, WINDOW_TOP as f32], Condition::Always)
         .size(

@@ -31,8 +31,16 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
                 return InputHandled::Continue;
             }
 
-            let down = typ == keen::InputEventType::RawButtonDown;
-            io.mouse_down[usize::try_from(data.keyCode).unwrap()] = down;
+            // Convert `InputEvent` buttons to `imgui` buttons
+            let button = match data.keyCode {
+                0 => Some(0), // Left
+                1 => Some(2), // Middle
+                2 => Some(1), // Right
+                _ => None,
+            };
+            if let Some(button) = button {
+                io.mouse_down[button] = down;
+            }
         }
         keen::InputEventType::MouseMove => {
             let data = &*(*event).data_ptr().cast::<target::keen__MouseEventData>();
@@ -45,13 +53,19 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
                 return InputHandled::Continue;
             }
         }
+        keen::InputEventType::MouseWheel => {
+            let data = &*(*event)
+                .data_ptr()
+                .cast::<target::keen__MouseWheelEventData>();
+
+            io.mouse_wheel = (data.wheelDelta / 120) as f32;
+        }
         _ => unreachable!(),
     }
 
     InputHandled::Swallow
 }
 
-#[allow(clippy::cast_possible_truncation)]
 fn inside_window(x: f32, y: f32) -> bool {
     let x = x as i32;
     let y = y as i32;
