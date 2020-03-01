@@ -5,6 +5,7 @@
 #![allow(clippy::single_match_else)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
+use crate::utils::marker::UnsafeSend;
 use std::{thread, time::Duration};
 use winapi::{
     shared::minwindef::{BOOL, DWORD, HINSTANCE, LPVOID, TRUE},
@@ -34,12 +35,8 @@ pub extern "system" fn DllMain(
 ) -> BOOL {
     match fdw_reason {
         DLL_PROCESS_ATTACH => {
-            #[repr(transparent)]
-            struct UnsafeSend<T>(T);
-            unsafe impl<T> Send for UnsafeSend<T> {}
-
-            let hinst = UnsafeSend(hinst_dll);
-            thread::spawn(move || init(hinst.0));
+            let hinst = unsafe { UnsafeSend::new(hinst_dll) };
+            thread::spawn(move || init(hinst.into_inner()));
             TRUE
         }
         _ => TRUE,
