@@ -34,7 +34,7 @@ pub enum InputEventType {
 }
 
 #[repr(u32)]
-#[derive(IntoPrimitive)]
+#[derive(Eq, PartialEq, IntoPrimitive)]
 pub enum KeyboardButtonId {
     InputId_Unknown = 0xFFFF,
     NumLock = 0x0,

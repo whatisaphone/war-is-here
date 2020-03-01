@@ -1,15 +1,15 @@
 use crate::{darksiders1::keen, utils::marker::UnsafeSend};
 use darksiders1_sys::target;
-use imgui::{im_str, Condition, Context, FocusedWidget, ImString, InputText, Key, Window};
+use imgui::{im_str, Condition, Context, FocusedWidget, ImString, InputText, Window};
 use parking_lot::Mutex;
 use std::{
-    char,
     convert::TryFrom,
     sync::atomic::{AtomicBool, Ordering},
     time::Instant,
 };
 
 mod draw;
+mod keyboard;
 
 // TODO: don't hardcode
 const SCREEN_WIDTH: u16 = 1280;
@@ -68,49 +68,20 @@ pub fn pump() {
     }
 }
 
-pub fn handle_input_event(event: &target::keen__InputEvent) -> bool {
-    let mut guard = STATE.lock();
-    let state = match guard.as_mut() {
-        Some(s) => s,
-        None => return true,
-    };
+#[derive(Eq, PartialEq)]
+pub enum InputHandled {
+    Swallow,
+    Continue,
+}
 
-    let typ = keen::InputEventType::try_from(event.r#type).ok();
+pub unsafe fn handle_input_event(event: *const target::keen__InputEvent) -> InputHandled {
+    let typ = keen::InputEventType::try_from((*event).r#type).ok();
     match typ {
         Some(keen::InputEventType::RawButtonDown)
         | Some(keen::InputEventType::RawButtonUp)
-        | Some(keen::InputEventType::Key) => {}
-        _ => {
-            return true;
-        }
-    };
-
-    // If we get here, we know `data` is a `KeyEventData`.
-    let data = unsafe {
-        // Work around pdbindgen unsupported union
-        let data = (event as *const _ as *const u8).offset(4);
-        &*data.cast::<target::keen__KeyEventData>()
-    };
-
-    let io = state.imgui.io_mut();
-
-    match typ {
-        Some(keen::InputEventType::RawButtonDown) => {
-            io.keys_down[usize::try_from(data.keyCode).unwrap()] = true;
-        }
-        Some(keen::InputEventType::RawButtonUp) => {
-            io.keys_down[usize::try_from(data.keyCode).unwrap()] = false;
-        }
-        Some(keen::InputEventType::Key) => {
-            if let Some(ch) = char::from_u32(data.keyCode) {
-                io.add_input_character(ch);
-            }
-        }
-        _ => unreachable!(),
+        | Some(keen::InputEventType::Key) => keyboard::handle_event(event),
+        _ => InputHandled::Continue,
     }
-
-    // Swallow key event
-    false
 }
 
 fn init() {
@@ -118,34 +89,7 @@ fn init() {
     imgui.set_ini_filename(None);
 
     let io = imgui.io_mut();
-
-    macro_rules! key {
-        ($key:expr, $id:expr) => {
-            io[$key] = $id.into();
-        };
-    }
-    key!(Key::Tab, keen::KeyboardButtonId::Tab);
-    key!(Key::LeftArrow, keen::KeyboardButtonId::ArrowLeft);
-    key!(Key::RightArrow, keen::KeyboardButtonId::ArrowRight);
-    key!(Key::UpArrow, keen::KeyboardButtonId::ArrowUp);
-    key!(Key::PageUp, keen::KeyboardButtonId::PageUp);
-    key!(Key::PageDown, keen::KeyboardButtonId::PageDown);
-    key!(Key::Home, keen::KeyboardButtonId::Home);
-    key!(Key::End, keen::KeyboardButtonId::End);
-    key!(Key::Insert, keen::KeyboardButtonId::Insert);
-    key!(Key::Delete, keen::KeyboardButtonId::Delete);
-    key!(Key::Backspace, keen::KeyboardButtonId::Backspace);
-    key!(Key::Space, keen::KeyboardButtonId::Space);
-    key!(Key::Enter, keen::KeyboardButtonId::Return);
-    key!(Key::Escape, keen::KeyboardButtonId::Escape);
-    // Key::KeyPadEnter
-    key!(Key::A, keen::KeyboardButtonId::A);
-    key!(Key::C, keen::KeyboardButtonId::C);
-    key!(Key::V, keen::KeyboardButtonId::V);
-    key!(Key::X, keen::KeyboardButtonId::X);
-    key!(Key::Y, keen::KeyboardButtonId::Y);
-    key!(Key::Z, keen::KeyboardButtonId::Z);
-
+    keyboard::init(io);
     io.display_size = [SCREEN_WIDTH.into(), SCREEN_HEIGHT.into()];
 
     // Make the background semi-transparent

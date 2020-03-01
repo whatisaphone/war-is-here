@@ -89,7 +89,7 @@ pub fn cleanup() {
 mod hook {
     use crate::{
         commands::{
-            console,
+            console::{self, InputHandled},
             infinite_jump,
             pretend_editor,
             show_collision,
@@ -143,7 +143,7 @@ mod hook {
             return false;
         }
 
-        if !console::handle_input_event(inputEvent.as_ref().unwrap()) {
+        if console::handle_input_event(inputEvent) == InputHandled::Swallow {
             return false;
         }
 
