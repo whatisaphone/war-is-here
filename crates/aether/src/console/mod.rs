@@ -40,16 +40,6 @@ struct UIState {
     input: ImString,
 }
 
-pub fn run(_command: &str) -> &'static str {
-    let prev_enabled = WANT_ENABLED.fetch_nand(true, Ordering::SeqCst);
-    let enabled = !prev_enabled;
-    if enabled {
-        "now set to true"
-    } else {
-        "now set to false"
-    }
-}
-
 pub fn pump() {
     match (
         IS_ENABLED.load(Ordering::SeqCst),

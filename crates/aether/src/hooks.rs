@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use crate::{commands::console, utils::detour::TypedDetour};
+use crate::{console, utils::detour::TypedDetour};
 use darksiders1_sys::target;
 use detour::RawDetour;
 use parking_lot::{Mutex, RwLock};
@@ -89,7 +89,6 @@ pub fn cleanup() {
 mod hook {
     use crate::{
         commands::{
-            console::{self, InputHandled},
             infinite_jump,
             pretend_editor,
             show_collision,
@@ -97,6 +96,7 @@ mod hook {
             show_triggers,
             spawn_humans,
         },
+        console::{self, InputHandled},
         darksiders1::{Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{

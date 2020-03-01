@@ -1,5 +1,5 @@
 use crate::{
-    commands::console::{InputHandled, STATE, WANT_ENABLED},
+    console::{InputHandled, STATE, WANT_ENABLED},
     darksiders1::keen::{self, InputEventExt},
 };
 use darksiders1_sys::target;

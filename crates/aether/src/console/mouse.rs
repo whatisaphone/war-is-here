@@ -1,12 +1,5 @@
 use crate::{
-    commands::console::{
-        InputHandled,
-        STATE,
-        WINDOW_HEIGHT,
-        WINDOW_LEFT,
-        WINDOW_TOP,
-        WINDOW_WIDTH,
-    },
+    console::{InputHandled, STATE, WINDOW_HEIGHT, WINDOW_LEFT, WINDOW_TOP, WINDOW_WIDTH},
     darksiders1::keen::{self, InputEventExt},
 };
 use darksiders1_sys::target;

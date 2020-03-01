@@ -19,7 +19,9 @@ use winapi::{
 
 #[macro_use]
 mod macros;
+
 mod commands;
+mod console;
 mod control;
 mod darksiders1;
 mod hooks;
