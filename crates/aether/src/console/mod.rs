@@ -20,6 +20,7 @@ use imgui::{
     Window,
     WindowFlags,
 };
+use once_cell::sync::Lazy;
 use parking_lot::Mutex;
 use std::{
     cell::{Cell, RefCell},
@@ -49,14 +50,30 @@ pub static WANT_ENABLED: AtomicBool = AtomicBool::new(false);
 pub static IS_ENABLED: AtomicBool = AtomicBool::new(false);
 // Safety: although this is stored in a static, it must only be accessed from
 // the game's render thread.
-static STATE: Mutex<Option<UnsafeSend<State>>> = Mutex::new(None);
+static STATE: Lazy<Mutex<UnsafeSend<State>>> = Lazy::new(|| {
+    Mutex::new(unsafe {
+        UnsafeSend::new(State {
+            enabled: None,
+            ui: UIState {
+                scrollback: RefCell::new(VecDeque::new()),
+                need_scroll: Cell::new(false),
+                input: RefCell::new(ImString::with_capacity(1023)),
+                last_command: RefCell::new(None),
+            },
+        })
+    })
+});
 
 struct State {
+    enabled: Option<EnabledState>,
+    ui: UIState,
+}
+
+struct EnabledState {
     imgui: Context,
     last_frame: Instant,
     draw: draw::State,
     mouse_capture: bool,
-    ui: UIState,
 }
 
 struct UIState {
@@ -127,35 +144,29 @@ fn init() {
     let draw = draw::init(SCREEN_WIDTH, SCREEN_HEIGHT, &mut imgui);
 
     let mut guard = STATE.lock();
-    *guard = unsafe {
-        Some(UnsafeSend::new(State {
-            imgui,
-            last_frame: Instant::now(),
-            draw,
-            mouse_capture: false,
-            ui: UIState {
-                scrollback: RefCell::new(VecDeque::new()),
-                need_scroll: Cell::new(false),
-                input: RefCell::new(ImString::with_capacity(1023)),
-                last_command: RefCell::new(None),
-            },
-        }))
-    };
+    guard.ui.need_scroll.set(true);
+    guard.enabled = Some(EnabledState {
+        imgui,
+        last_frame: Instant::now(),
+        draw,
+        mouse_capture: false,
+    });
 }
 
 fn cleanup() {
     let mut guard = STATE.lock();
-    drop(guard.take());
+    drop(guard.enabled.take());
 }
 
 fn run_frame() {
     let mut guard = STATE.lock();
-    let mut state = &mut **guard.as_mut().unwrap();
+    let state = &mut **guard;
+    let enabled = state.enabled.as_mut().unwrap();
 
-    let io = state.imgui.io_mut();
-    state.last_frame = io.update_delta_time(state.last_frame);
+    let io = enabled.imgui.io_mut();
+    enabled.last_frame = io.update_delta_time(enabled.last_frame);
 
-    let ui = state.imgui.frame();
+    let ui = enabled.imgui.frame();
     let uist = &mut state.ui;
 
     Window::new(im_str!("Console"))
@@ -198,7 +209,7 @@ fn run_frame() {
 
     let draw_data = ui.render();
     draw::draw(
-        &mut state.draw,
+        &mut enabled.draw,
         draw_data,
         WINDOW_LEFT,
         WINDOW_TOP,

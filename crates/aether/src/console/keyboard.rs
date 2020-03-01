@@ -49,12 +49,12 @@ fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
     }
 
     let mut guard = STATE.lock();
-    let state = match guard.as_mut() {
+    let enabled = match guard.enabled.as_mut() {
         Some(s) => s,
         None => return InputHandled::Continue,
     };
 
-    let io = state.imgui.io_mut();
+    let io = enabled.imgui.io_mut();
     io.keys_down[usize::try_from(key_code).unwrap()] = down;
 
     if key_code == keen::KeyboardButtonId::LeftShift.into()
@@ -84,12 +84,12 @@ fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
 
 fn handle_key(key_code: u32) -> InputHandled {
     let mut guard = STATE.lock();
-    let state = match guard.as_mut() {
+    let enabled = match guard.enabled.as_mut() {
         Some(s) => s,
         None => return InputHandled::Continue,
     };
 
-    let io = state.imgui.io_mut();
+    let io = enabled.imgui.io_mut();
     if let Some(ch) = char::from_u32(key_code) {
         io.add_input_character(ch);
     }
