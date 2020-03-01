@@ -10,6 +10,7 @@ use std::{
 
 mod draw;
 mod keyboard;
+mod mouse;
 
 // TODO: don't hardcode
 const SCREEN_WIDTH: u16 = 1280;
@@ -75,11 +76,19 @@ pub enum InputHandled {
 }
 
 pub unsafe fn handle_input_event(event: *const target::keen__InputEvent) -> InputHandled {
-    let typ = keen::InputEventType::try_from((*event).r#type).ok();
-    match typ {
-        Some(keen::InputEventType::RawButtonDown)
-        | Some(keen::InputEventType::RawButtonUp)
-        | Some(keen::InputEventType::Key) => keyboard::handle_event(event),
+    let class = keen::ControllerClass::try_from((*event).controllerClass);
+    let typ = keen::InputEventType::try_from((*event).r#type);
+    match (class, typ) {
+        (Ok(keen::ControllerClass::Keyboard), Ok(keen::InputEventType::RawButtonDown))
+        | (Ok(keen::ControllerClass::Keyboard), Ok(keen::InputEventType::RawButtonUp))
+        | (Ok(keen::ControllerClass::Keyboard), Ok(keen::InputEventType::Key)) => {
+            keyboard::handle_event(event)
+        }
+        (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::RawButtonDown))
+        | (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::RawButtonUp))
+        | (Ok(keen::ControllerClass::Mouse), Ok(keen::InputEventType::MouseMove)) => {
+            mouse::handle_event(event)
+        }
         _ => InputHandled::Continue,
     }
 }

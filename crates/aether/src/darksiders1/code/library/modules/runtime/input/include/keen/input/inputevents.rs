@@ -1,4 +1,27 @@
+use darksiders1_sys::target;
 use num_enum::{IntoPrimitive, TryFromPrimitive};
+
+pub trait InputEventExt {
+    fn data_ptr(&self) -> *const ();
+}
+
+impl InputEventExt for target::keen__InputEvent {
+    fn data_ptr(&self) -> *const () {
+        // Work around pdbindgen unsupported union
+        unsafe { (self as *const Self).cast::<u8>().offset(4).cast::<()>() }
+    }
+}
+
+#[repr(u8)]
+#[derive(Eq, PartialEq, TryFromPrimitive)]
+pub enum ControllerClass {
+    None = 0x0,
+    Keyboard = 0x1,
+    Mouse = 0x2,
+    Controller = 0x3,
+    Touch = 0x4,
+    Count = 0x5,
+}
 
 #[repr(u8)]
 #[derive(Eq, PartialEq, TryFromPrimitive)]

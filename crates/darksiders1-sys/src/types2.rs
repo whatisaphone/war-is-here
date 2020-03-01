@@ -5,6 +5,19 @@ use super::{types::*, types3::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__Node3D___0_gfc__CAllocator_ {
+    pub mData: *mut *mut gfc__Node3D,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__ThreadSafeVector_gfc__DynMeshNode___ {
+    pub m_vector: gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator_,
+    pub m_mutex: gfc__Mutex,
+}
+
+#[repr(C)]
 pub struct gfc__Quaternion {
     pub q: gfc__TVector4_float_gfc__FloatMath_,
 }
@@ -14031,32 +14044,4 @@ impl hkWorldMemoryAvailableWatchDog {
     ) {
         ((*self.vfptr).reduceConstraintsInIsland)(self as *const _ as *mut _, a1, a2)
     }
-}
-
-#[repr(C)]
-pub struct hkWorldMemoryAvailableWatchDog__vftable {
-    pub __vecDelDtor:
-        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog, _: u32) -> *mut (),
-    pub __first_virtual_table_function__:
-        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkWorldMemoryAvailableWatchDog) -> *const hkClass,
-    pub deleteThisReferencedObject:
-        unsafe extern "thiscall" fn(this: *const hkWorldMemoryAvailableWatchDog),
-    pub getAmountOfFreeHeapMemoryRequested:
-        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog) -> i32,
-    pub freeHeapMemoryTillRequestedAmountIsAvailable:
-        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog, _: *mut hkpWorld),
-    pub reduceConstraintsInIsland: unsafe extern "thiscall" fn(
-        this: *mut hkWorldMemoryAvailableWatchDog,
-        _: *const hkWorldMemoryAvailableWatchDog__MemUsageInfo,
-        _: i32,
-    ),
-}
-
-#[repr(C)]
-pub struct hkWorldMemoryAvailableWatchDog__MemUsageInfo {
-    pub m_maxRuntimeBlockSize: i32,
-    pub m_sumRuntimeBlockSize: i32,
-    pub m_largestSimulationIsland: *mut hkpSimulationIsland,
 }

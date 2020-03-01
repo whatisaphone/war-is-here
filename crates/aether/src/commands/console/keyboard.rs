@@ -1,6 +1,6 @@
 use crate::{
     commands::console::{InputHandled, STATE, WANT_ENABLED},
-    darksiders1::keen,
+    darksiders1::keen::{self, InputEventExt},
 };
 use darksiders1_sys::target;
 use imgui::{Io, Key};
@@ -31,18 +31,13 @@ pub fn init(io: &mut Io) {
 }
 
 pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandled {
-    // Work around pdbindgen unsupported union
-    let data = (event as *const u8)
-        .offset(4)
-        .cast::<target::keen__KeyEventData>();
-
-    let key_code = (*data).keyCode;
+    let data = &*(*event).data_ptr().cast::<target::keen__KeyEventData>();
 
     let typ = keen::InputEventType::try_from((*event).r#type).unwrap();
     match typ {
-        keen::InputEventType::RawButtonDown => handle_raw_button(key_code, true),
-        keen::InputEventType::RawButtonUp => handle_raw_button(key_code, false),
-        keen::InputEventType::Key => handle_key(key_code),
+        keen::InputEventType::RawButtonDown => handle_raw_button(data.keyCode, true),
+        keen::InputEventType::RawButtonUp => handle_raw_button(data.keyCode, false),
+        keen::InputEventType::Key => handle_key(data.keyCode),
         _ => unreachable!(),
     }
 }

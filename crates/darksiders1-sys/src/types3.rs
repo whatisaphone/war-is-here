@@ -5,6 +5,34 @@ use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkWorldMemoryAvailableWatchDog__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog, _: u32) -> *mut (),
+    pub __first_virtual_table_function__:
+        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog),
+    pub getClassType:
+        unsafe extern "thiscall" fn(this: *const hkWorldMemoryAvailableWatchDog) -> *const hkClass,
+    pub deleteThisReferencedObject:
+        unsafe extern "thiscall" fn(this: *const hkWorldMemoryAvailableWatchDog),
+    pub getAmountOfFreeHeapMemoryRequested:
+        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog) -> i32,
+    pub freeHeapMemoryTillRequestedAmountIsAvailable:
+        unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog, _: *mut hkpWorld),
+    pub reduceConstraintsInIsland: unsafe extern "thiscall" fn(
+        this: *mut hkWorldMemoryAvailableWatchDog,
+        _: *const hkWorldMemoryAvailableWatchDog__MemUsageInfo,
+        _: i32,
+    ),
+}
+
+#[repr(C)]
+pub struct hkWorldMemoryAvailableWatchDog__MemUsageInfo {
+    pub m_maxRuntimeBlockSize: i32,
+    pub m_sumRuntimeBlockSize: i32,
+    pub m_largestSimulationIsland: *mut hkpSimulationIsland,
+}
+
+#[repr(C)]
 pub struct hkMemoryAllocator__ExtendedInterface {
     pub vfptr: *const hkMemoryAllocator__ExtendedInterface__vftable,
 }
@@ -22363,40 +22391,4 @@ pub struct hkQsTransformf {
     pub m_translation: hkVector4f,
     pub m_rotation: hkQuaternionf,
     pub m_scale: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkpSolverInfo {
-    pub m_padding: f32,
-    pub m_tau: f32,
-    pub m_damping: f32,
-    pub m_frictionTau: f32,
-    pub m_globalAccelerationPerSubStep: hkVector4f,
-    pub m_globalAccelerationPerStep: hkVector4f,
-    pub m_integrateVelocityFactor: hkVector4f,
-    pub m_invIntegrateVelocityFactor: hkVector4f,
-    pub m_dampDivTau: f32,
-    pub m_tauDivDamp: f32,
-    pub m_dampDivFrictionTau: f32,
-    pub m_frictionTauDivDamp: f32,
-    pub m_contactRestingVelocity: f32,
-    #[cfg(pdb_issue = "unimplemented class layout")]
-    pub m_deactivationInfo: compile_error!("unimplemented class layout"),
-    __pdbindgen_padding: [u8; 192],
-    pub m_deltaTime: f32,
-    pub m_invDeltaTime: f32,
-    pub m_numSteps: i32,
-    pub m_numMicroSteps: i32,
-    pub m_invNumMicroSteps: f32,
-    pub m_invNumSteps: f32,
-    pub m_forceCoherentConstraintOrderingInSolver: hkBool,
-    pub m_deactivationNumInactiveFramesSelectFlag: [u8; 2],
-    pub m_deactivationIntegrateCounter: u8,
-    pub m_maxConstraintViolationSqrd: f32,
-    __pdbindgen_padding_2: [u8; 12],
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_ {
-    pub m_storage: u16,
 }

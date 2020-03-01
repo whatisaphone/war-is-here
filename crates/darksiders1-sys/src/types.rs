@@ -3099,6 +3099,16 @@ pub struct keen__PlatformControllerState {
 }
 
 #[repr(C)]
+pub struct keen__MouseEventData {
+    pub position: keen__float2,
+}
+
+#[repr(C)]
+pub struct keen__MouseWheelEventData {
+    pub wheelDelta: i32,
+}
+
+#[repr(C)]
 pub struct keen__StaticArray_keen__GestureHelper__MoveData_ {
     pub m_pData: *mut keen__GestureHelper__MoveData,
     pub m_size: u32,
@@ -10569,17 +10579,4 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__RegionCell__0_gfc__CAllocator_ {
 #[repr(C)]
 pub struct gfc__AutoRef_gfc__SkyDesc_ {
     pub p: *mut gfc__IRefObject,
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__Node3D___0_gfc__CAllocator_ {
-    pub mData: *mut *mut gfc__Node3D,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__ThreadSafeVector_gfc__DynMeshNode___ {
-    pub m_vector: gfc__Vector_gfc__DynMeshNode___0_gfc__CAllocator_,
-    pub m_mutex: gfc__Mutex,
 }

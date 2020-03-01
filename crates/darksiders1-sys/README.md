@@ -96,5 +96,7 @@ pdbindgen \
     -i '^hkpConvexVerticesShape::getOriginalVertices$' \
     -i '^hkpExtendedMeshShape$' \
     -i '^hkpMoppBvTreeShape$' \
-    -i '^keen::KeyEventData$'
+    -i '^keen::KeyEventData$' \
+    -i '^keen::MouseEventData$' \
+    -i '^keen::MouseWheelEventData$'
 ```
