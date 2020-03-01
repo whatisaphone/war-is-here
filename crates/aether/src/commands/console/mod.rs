@@ -32,6 +32,7 @@ struct State {
     imgui: Context,
     last_frame: Instant,
     draw: draw::State,
+    mouse_capture: bool,
     ui: UIState,
 }
 
@@ -115,6 +116,7 @@ fn init() {
             imgui,
             last_frame: Instant::now(),
             draw,
+            mouse_capture: false,
             ui: UIState {
                 input: ImString::with_capacity(1024),
             },

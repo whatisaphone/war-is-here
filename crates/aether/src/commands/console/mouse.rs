@@ -15,7 +15,7 @@ use std::convert::TryFrom;
 pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandled {
     let mut guard = STATE.lock();
     let state = match guard.as_mut() {
-        Some(s) => s,
+        Some(s) => &mut **s,
         None => return InputHandled::Continue,
     };
 
@@ -28,8 +28,15 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
             let data = &*(*event).data_ptr().cast::<target::keen__KeyEventData>();
 
             let [x, y] = io.mouse_pos;
-            if down && !inside_window(x, y) {
-                return InputHandled::Continue;
+            if !inside_window(x, y) {
+                // Mouse down: Never process this.
+                if down {
+                    return InputHandled::Continue;
+                }
+                // Mouse up: if the mouse is captured, fall through to below.
+                if !state.mouse_capture {
+                    return InputHandled::Continue;
+                }
             }
 
             // Convert `InputEvent` buttons to `imgui` buttons
@@ -41,6 +48,7 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
             };
             if let Some(button) = button {
                 io.mouse_down[button] = down;
+                state.mouse_capture = down;
             }
         }
         keen::InputEventType::MouseMove => {
@@ -50,7 +58,7 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
             let y = data.position.y;
             io.mouse_pos = [x, y];
 
-            if !inside_window(x, y) {
+            if !inside_window(x, y) && !state.mouse_capture {
                 return InputHandled::Continue;
             }
         }
