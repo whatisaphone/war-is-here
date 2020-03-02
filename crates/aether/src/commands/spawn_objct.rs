@@ -8,7 +8,7 @@ use std::slice;
 pub fn run(command: &str) -> Result<(), &'static str> {
     let args = match parse(command) {
         Ok(args) => args,
-        Err(()) => return Err("parse error"),
+        Err(()) => return Err("/spawn_object <classname> <x> <y> <z>"),
     };
     let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard

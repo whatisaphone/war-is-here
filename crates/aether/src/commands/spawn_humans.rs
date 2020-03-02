@@ -7,7 +7,7 @@ use std::time::{Duration, Instant};
 pub fn run(command: &str) -> Result<(), &'static str> {
     let args = match parse(command) {
         Ok(args) => args,
-        Err(()) => return Err("parse error"),
+        Err(()) => return Err("/spawn_humans <x> <y> <z>"),
     };
 
     *STATE.lock() = Some(State {

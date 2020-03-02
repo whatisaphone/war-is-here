@@ -5,7 +5,7 @@ use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 pub fn run(command: &str) -> Result<(), &'static str> {
     let args = match parse(command) {
         Ok(args) => args,
-        Err(()) => return Err("parse error"),
+        Err(()) => return Err("/pickup_item <classname>"),
     };
     let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard

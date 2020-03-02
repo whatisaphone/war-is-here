@@ -6,7 +6,7 @@ use darksiders1_sys::target;
 pub fn run(command: &str) -> Result<(), &'static str> {
     let args = match parse(command) {
         Ok(args) => args,
-        Err(()) => return Err("parse error"),
+        Err(()) => return Err("/teleport <world> <region> [<point>] [<load_region>]"),
     };
     let mut guard = ON_POST_UPDATE_QUEUE.lock();
     guard
