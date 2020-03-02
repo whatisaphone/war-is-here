@@ -73,7 +73,6 @@ struct EnabledState {
     imgui: Context,
     last_frame: Instant,
     draw: draw::State,
-    mouse_capture: bool,
 }
 
 struct UIState {
@@ -149,7 +148,6 @@ fn init() {
         imgui,
         last_frame: Instant::now(),
         draw,
-        mouse_capture: false,
     });
 }
 

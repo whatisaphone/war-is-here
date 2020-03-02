@@ -1,5 +1,5 @@
 use crate::{
-    console::{InputHandled, STATE, WINDOW_HEIGHT, WINDOW_LEFT, WINDOW_TOP, WINDOW_WIDTH},
+    console::{InputHandled, STATE},
     darksiders1::keen::{self, InputEventExt},
 };
 use darksiders1_sys::target;
@@ -20,16 +20,8 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
             let down = typ == keen::InputEventType::RawButtonDown;
             let data = &*(*event).data_ptr().cast::<target::keen__KeyEventData>();
 
-            let [x, y] = io.mouse_pos;
-            if !inside_window(x, y) {
-                // Mouse down: Never process this.
-                if down {
-                    return InputHandled::Continue;
-                }
-                // Mouse up: if the mouse is captured, fall through to below.
-                if !enabled.mouse_capture {
-                    return InputHandled::Continue;
-                }
+            if !io.want_capture_mouse {
+                return InputHandled::Continue;
             }
 
             // Convert `InputEvent` buttons to `imgui` buttons
@@ -41,7 +33,6 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
             };
             if let Some(button) = button {
                 io.mouse_down[button] = down;
-                enabled.mouse_capture = down;
             }
         }
         keen::InputEventType::MouseMove => {
@@ -50,10 +41,6 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
             let x = data.position.x;
             let y = data.position.y;
             io.mouse_pos = [x, y];
-
-            if !inside_window(x, y) && !enabled.mouse_capture {
-                return InputHandled::Continue;
-            }
         }
         keen::InputEventType::MouseWheel => {
             let data = &*(*event)
@@ -65,14 +52,9 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
         _ => unreachable!(),
     }
 
-    InputHandled::Swallow
-}
-
-fn inside_window(x: f32, y: f32) -> bool {
-    let x = x as i32;
-    let y = y as i32;
-    x >= WINDOW_LEFT
-        && x < WINDOW_LEFT + WINDOW_WIDTH
-        && y >= WINDOW_TOP
-        && y < WINDOW_TOP + WINDOW_HEIGHT
+    if io.want_capture_mouse {
+        InputHandled::Swallow
+    } else {
+        InputHandled::Continue
+    }
 }
