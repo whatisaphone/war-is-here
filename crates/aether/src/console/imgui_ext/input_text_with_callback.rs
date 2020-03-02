@@ -1,5 +1,5 @@
 use imgui::{sys, ImGuiInputTextFlags, ImStr, ImString, Ui};
-use std::{convert::TryInto, marker::PhantomData, os::raw::c_int};
+use std::{convert::TryInto, marker::PhantomData, os::raw::c_int, slice, str};
 
 #[must_use]
 pub struct InputTextWithCallback<'ui, 'p> {
@@ -57,11 +57,20 @@ unsafe extern "C" fn callback_trampoline(data: *mut sys::ImGuiInputTextCallbackD
 }
 
 pub trait ImGuiInputTextCallbackDataExt {
+    fn buf(&self) -> &str;
     unsafe fn yoink_buf(&self) -> String;
     fn replace_buf(&mut self, buf: String);
+    fn set_caret_to_end(&mut self);
 }
 
 impl ImGuiInputTextCallbackDataExt for sys::ImGuiInputTextCallbackData {
+    fn buf(&self) -> &str {
+        str::from_utf8(unsafe {
+            slice::from_raw_parts(self.Buf.cast(), self.BufTextLen.try_into().unwrap())
+        })
+        .unwrap()
+    }
+
     unsafe fn yoink_buf(&self) -> String {
         String::from_raw_parts(
             self.Buf.cast(),
@@ -77,5 +86,12 @@ impl ImGuiInputTextCallbackDataExt for sys::ImGuiInputTextCallbackData {
         self.Buf = buf.cast();
         self.BufTextLen = len.try_into().unwrap();
         self.BufSize = capacity.try_into().unwrap();
+        self.BufDirty = true;
+    }
+
+    fn set_caret_to_end(&mut self) {
+        self.CursorPos = self.BufTextLen;
+        self.SelectionStart = self.BufTextLen;
+        self.SelectionEnd = self.BufTextLen;
     }
 }

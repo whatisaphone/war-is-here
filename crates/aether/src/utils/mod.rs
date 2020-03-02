@@ -6,4 +6,5 @@ pub mod geometry;
 pub mod liang_barsky;
 pub mod marker;
 pub mod mem;
+pub mod misc;
 pub mod pretty;

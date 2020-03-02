@@ -31,6 +31,25 @@ Available commands:
 /move_player    /shutdown
 ";
 
+pub const COMMANDS: &[&str] = &[
+    "/console",
+    "/help",
+    "/infinite_jump",
+    "/load_map_menu",
+    "/load_package",
+    "/move_player",
+    "/pickup_item",
+    "/pretend_editor",
+    "/show_collision",
+    "/show_player_pos",
+    "/show_triggers",
+    "/shutdown",
+    "/spawn_humans",
+    "/spawn_object",
+    "/spawn_static_object",
+    "/teleport",
+];
+
 pub fn run(message: &[u8]) -> RunResult {
     let message = str::from_utf8(message).unwrap_or(":(");
     let command = message.split_ascii_whitespace().next().unwrap_or(":(");

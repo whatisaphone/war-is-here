@@ -2,10 +2,10 @@
 
 use crate::{
     commands,
-    commands::RunResult,
+    commands::{RunResult, COMMANDS},
     console::imgui_ext::{ImGuiInputTextCallbackDataExt, InputTextWithCallback},
     darksiders1::keen,
-    utils::marker::UnsafeSend,
+    utils::{marker::UnsafeSend, misc::common_prefix},
 };
 use darksiders1_sys::target;
 use imgui::{
@@ -196,12 +196,15 @@ fn run_frame() {
             let pressed_enter =
                 InputTextWithCallback::new(&ui, im_str!("##input"), &mut uist.input.borrow_mut())
                     .flags(
-                        ImGuiInputTextFlags::CallbackHistory
-                            | ImGuiInputTextFlags::EnterReturnsTrue,
+                        ImGuiInputTextFlags::EnterReturnsTrue
+                            | ImGuiInputTextFlags::CallbackCompletion
+                            | ImGuiInputTextFlags::CallbackHistory,
                     )
                     .build(|data| unsafe { input_callback(uist, &mut *data) });
             if pressed_enter {
-                run_command(uist);
+                let mut command = uist.input.borrow_mut();
+                run_command(uist, command.to_str());
+                command.clear();
             }
         });
 
@@ -217,26 +220,80 @@ fn run_frame() {
 }
 
 unsafe fn input_callback(uist: &UIState, data: &mut ImGuiInputTextCallbackData) -> c_int {
-    if let Some(command) = &*uist.last_command.borrow() {
-        let mut buf = data.yoink_buf();
-        buf.clear();
-        buf.push_str(command);
-        data.replace_buf(buf);
-        data.BufDirty = true;
-        data.CursorPos = data.BufTextLen;
-        data.SelectionStart = data.BufTextLen;
-        data.SelectionEnd = data.BufTextLen;
+    match data.EventFlag {
+        x if x == ImGuiInputTextFlags::CallbackHistory.bits() => {
+            input_history(uist, data);
+        }
+        x if x == ImGuiInputTextFlags::CallbackCompletion.bits() => {
+            input_completion(uist, data);
+        }
+        _ => unreachable!(),
     }
     0
 }
 
-fn run_command(uist: &UIState) {
+unsafe fn input_history(uist: &UIState, data: &mut ImGuiInputTextCallbackData) {
+    let last_command = uist.last_command.borrow();
+    let last_command = match &*last_command {
+        Some(c) => c,
+        None => return,
+    };
+    let mut buf = data.yoink_buf();
+    buf.clear();
+    buf.push_str(last_command);
+    data.replace_buf(buf);
+    data.set_caret_to_end();
+}
+
+unsafe fn input_completion(uist: &UIState, data: &mut ImGuiInputTextCallbackData) {
+    let mut scrollback = uist.scrollback.borrow_mut();
+    let buf = data.buf();
+
+    let commands: Vec<_> = COMMANDS
+        .iter()
+        .copied()
+        .filter(|c| c.starts_with(buf))
+        .collect();
+    match commands.len() {
+        0 => {
+            scrollback.push_back(ImString::new("no match"));
+            uist.need_scroll.set(true);
+        }
+        1 => {
+            let mut buf = data.yoink_buf();
+            buf.clear();
+            buf.push_str(commands[0]);
+            data.replace_buf(buf);
+            data.set_caret_to_end();
+        }
+        _ => {
+            let prefix = common_prefix(commands.iter().copied());
+            let mut buf = data.yoink_buf();
+            buf.clear();
+            buf.push_str(prefix);
+            data.replace_buf(buf);
+            data.set_caret_to_end();
+
+            let buf = data.buf();
+            if buf == "" || buf == "/" {
+                drop(scrollback);
+                run_command(uist, "/help");
+            } else {
+                for command in commands {
+                    scrollback.push_back(ImString::new(command));
+                }
+                uist.need_scroll.set(true);
+            }
+        }
+    }
+}
+
+fn run_command(uist: &UIState, command: &str) {
     let scrollback = &mut *uist.scrollback.borrow_mut();
-    let input = &mut *uist.input.borrow_mut();
 
-    scrollback.push_back(ImString::new(format!(">{}", input)));
+    scrollback.push_back(ImString::new(format!(">{}", command)));
 
-    run_command_inner(input.to_str(), |s| {
+    run_command_inner(command, |s| {
         scrollback.push_back(ImString::new(s));
     });
 
@@ -244,8 +301,7 @@ fn run_command(uist: &UIState) {
         scrollback.drain(..scrollback.len() - SCROLLBACK_LINES);
     }
     uist.need_scroll.set(true);
-    *uist.last_command.borrow_mut() = Some(input.to_string());
-    input.clear();
+    *uist.last_command.borrow_mut() = Some(command.to_string());
 }
 
 fn run_command_inner(mut command: &str, mut write: impl FnMut(&str)) {
