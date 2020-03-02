@@ -191,6 +191,9 @@ fn run_frame() {
                     }
                 });
 
+            ui.align_text_to_frame_padding();
+            ui.text(">");
+            ui.same_line(0.0);
             ui.set_keyboard_focus_here(FocusedWidget::Next);
             ui.set_next_item_width(-1.0);
             let pressed_enter =
@@ -291,7 +294,7 @@ unsafe fn input_completion(uist: &UIState, data: &mut ImGuiInputTextCallbackData
 fn run_command(uist: &UIState, command: &str) {
     let scrollback = &mut *uist.scrollback.borrow_mut();
 
-    scrollback.push_back(ImString::new(format!(">{}", command)));
+    scrollback.push_back(ImString::new(format!("> {}", command)));
 
     run_command_inner(command, |s| {
         scrollback.push_back(ImString::new(s));
