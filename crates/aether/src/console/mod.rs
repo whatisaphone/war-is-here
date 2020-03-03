@@ -41,7 +41,7 @@ const SCREEN_WIDTH: u16 = 1280;
 const SCREEN_HEIGHT: u16 = 720;
 const WINDOW_LEFT: i32 = 50;
 const WINDOW_TOP: i32 = 50;
-const WINDOW_WIDTH: i32 = 400;
+const WINDOW_WIDTH: i32 = 420;
 const WINDOW_HEIGHT: i32 = 200;
 
 const SCROLLBACK_LINES: usize = 100;
