@@ -4,92 +4,76 @@ Darksiders modding!
 
 ## How to use
 
-Still very rudimentary. First, run `dev/inject.sh`. This will spin up a TCP server inside Darksiders that has some basic commands.
+Make sure you have the Steam version of Darksiders Warmastered edition. Other versions probably won't work.
 
-All these were tested in Crossroads, so you might want to go there to test things (which you can do using the `teleport` command 😉). Things to try:
+- Download the latest version from [here][download].
+- Extract `horseman.exe` and `aether.dll` to the same directory.
+- Start Darksiders Warmastered Edition.
+- Run `horseman.exe`.
+- Now inside the game, you should be able to hit the tilde key (\`) and see a console appear inside the game. Type `/help` for a list of commands.
+
+[download]: https://github.com/whatisaphone/war-is-here/releases
 
 ### Commands
 
-Commands are sent as simple strings over TCP. For an easy way to send them, install `netcat` (`nc`) and run:
+- **/clear**
 
-```sh
-nc localhost 53508 <<<'your_command_here'
-```
+- **/console**
 
-#### `infinite_jump`
+- **/help**
 
-Give the player infinite jump height, as long as the button is held down.
+- **/infinite_jump** – Gives the player infinite jump height, as long as the button is held down.
 
-```
-infinite_jump
-```
+- **/load_map_menu** – Shows the secret window the game developers put in to let them teleport around the game world.
 
-#### `load_map_menu`
+- **/load_package**
 
-Show a window that lets you teleport to any area in the game.
+- **/move_player**
 
-```
-load_map_menu
-```
+- **/pickup_item** – Gives the player any `Item`. Examples:
 
-#### `move_player`
+  ```
+  /pickup_item bfg_sentinel/weapon_bfg_sentinel
+  /pickup_item weapon_enhancements/common_bane
+  ```
 
-#### `pickup_item`
+- **/pretend_editor** – Run this before entering a game, and the world will load in "editor mode". Most enemies/items are deactivated, and the minimap spawns in the sky!
 
-Gives the player any `Item`.
+- **/show_collision**
 
-```
-pickup_item bfg_sentinel/weapon_bfg_sentinel
-pickup_item weapon_enhancements/common_bane
-```
+- **/show_player_pos**
 
-#### `pretend_editor`
+- **/show_triggers**
 
-#### `show_collision`
+- **/shutdown**
 
-#### `show_triggers`
+- **/spawn_humans** – Spawns a group of mouth breathers into the world.
 
-Show triggers in the world.
+- **/spawn_object** – Spawns any `WorldObject` into the world. Examples:
 
-```
-show_triggers
-```
+  ```
+  /spawn_object vulgrim_chime/vulgrim_chime_medium -4000 -28000 200
+  /spawn_object ci_streetpropsset01/ci_streetlight_r -4000 -28000 0
+  ```
 
-#### `shutdown`
+- **/spawn_static_object** – Spawns any `o3d` resource into the world. Examples:
 
-#### `spawn_humans`
+  ```
+  /spawn_static_object city01_streets ci_shoppingstrip -4000 -24000 50 1
+  /spawn_static_object city01_streets city01_glass2_04 -4000 -28000 180 1
+  ```
 
-#### `spawn_object`
+  You can also spawn objects that are part of this mod (not included with the original game):
 
-Spawn an `Actor` class into the world.
+  ```
+  /spawn_static_object city01_streets gritty_cube -4000 -28000 180 1
+  ```
 
-```
-spawn_actor vulgrim_chime/vulgrim_chime_medium -4000 -28000 200
-spawn_actor ci_streetpropsset01/ci_streetlight_r -4000 -28000 0
-```
+- **/teleport** – Sends the player to any area in the game. Example:
 
-#### `spawn_static_object`
-
-Spawn an `o3d` resource into the world.
-
-```
-spawn_static_object city01_streets ci_shoppingstrip -4000 -24000 50 1
-spawn_static_object city01_streets city01_glass2_04 -4000 -28000 180 1
-```
-
-You can also spawn objects that are part of this mod (not included with the original game):
-
-```
-spawn_static_object city01_streets gritty_cube -4000 -28000 180 1
-```
-
-#### `teleport`
-
-Send the player to any area in the game.
-
-```
-teleport overworld CI_01
-```
+  ```
+  /teleport overworld CI_01
+  ```
 
 ## Development
 
