@@ -7,6 +7,17 @@ use std::{
 
 const RANDOM_PORT: u16 = 53508; // chosen by fair dice roll. guaranteed to be random.
 
+// For now, don't open a socket in public releases, I don't want to trip virus
+// scanners/firewalls/etc.
+#[cfg(not(debug_assertions))]
+pub fn start() {
+    use std::{thread, time::Duration};
+
+    let basically_forever = 60 * 60 * 24 * 365 * 100;
+    thread::sleep(Duration::from_secs(basically_forever))
+}
+
+#[cfg(debug_assertions)]
 pub fn start() {
     let server = TcpListener::bind((Ipv4Addr::LOCALHOST, RANDOM_PORT)).unwrap();
 
