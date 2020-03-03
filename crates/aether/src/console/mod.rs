@@ -296,9 +296,7 @@ fn run_command(uist: &UIState, command: &str) {
 
     scrollback.push_back(ImString::new(format!("> {}", command)));
 
-    run_command_inner(command, |s| {
-        scrollback.push_back(ImString::new(s));
-    });
+    run_command_inner(command, scrollback);
 
     if scrollback.len() > SCROLLBACK_LINES {
         scrollback.drain(..scrollback.len() - SCROLLBACK_LINES);
@@ -307,28 +305,32 @@ fn run_command(uist: &UIState, command: &str) {
     *uist.last_command.borrow_mut() = Some(command.to_string());
 }
 
-fn run_command_inner(mut command: &str, mut write: impl FnMut(&str)) {
+fn run_command_inner(mut command: &str, scrollback: &mut VecDeque<ImString>) {
     if command.is_empty() {
         return;
     }
     if !command.starts_with('/') {
         command = "/help";
     }
+    if command == "/clear" {
+        scrollback.clear();
+        return;
+    }
+
     // Skip the slash
     command = &command[1..];
-
     match commands::run(command.as_bytes()) {
         RunResult::Ok => {
-            write("OK");
+            scrollback.push_back(ImString::new("OK"));
         }
         RunResult::Response(text) => {
             for line in text.trim_end().lines() {
-                write(line);
+                scrollback.push_back(ImString::new(line));
             }
         }
         RunResult::Shutdown => {
             // need to terminate the listener to get this to work
-            write("only valid when using socket");
+            scrollback.push_back(ImString::new("only valid when using socket"));
         }
     }
 }

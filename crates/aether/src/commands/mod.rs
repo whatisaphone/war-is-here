@@ -21,17 +21,19 @@ pub enum RunResult {
     Shutdown,
 }
 
+// Hide "/shutdown" since it doesn't work via GUI
 const HELP: &str = "\
 Available commands:
-/console        /pickup_item      /spawn_humans
-/help           /pretend_editor   /spawn_object
-/infinite_jump  /show_collision   /spawn_static_object
-/load_map_menu  /show_player_pos  /teleport
+/clear          /move_player      /spawn_humans
+/console        /pickup_item      /spawn_object
+/help           /pretend_editor   /spawn_static_object
+/infinite_jump  /show_collision   /teleport
+/load_map_menu  /show_player_pos
 /load_package   /show_triggers
-/move_player    /shutdown
 ";
 
 pub const COMMANDS: &[&str] = &[
+    "/clear",
     "/console",
     "/help",
     "/infinite_jump",
@@ -43,7 +45,7 @@ pub const COMMANDS: &[&str] = &[
     "/show_collision",
     "/show_player_pos",
     "/show_triggers",
-    "/shutdown",
+    // Skip "/shutdown" since it doesn't work via GUI
     "/spawn_humans",
     "/spawn_object",
     "/spawn_static_object",
