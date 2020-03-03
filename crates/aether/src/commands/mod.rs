@@ -1,12 +1,12 @@
 use std::str;
 
 pub mod console;
+pub mod editor_mode;
 pub mod infinite_jump;
 pub mod load_map_menu;
 pub mod load_package;
 pub mod move_player;
 pub mod pickup_item;
-pub mod pretend_editor;
 pub mod show_collision;
 pub mod show_player_pos;
 pub mod show_triggers;
@@ -24,24 +24,24 @@ pub enum RunResult {
 // Hide "/shutdown" since it doesn't work via GUI
 const HELP: &str = "\
 Available commands:
-/clear          /move_player      /spawn_humans
-/console        /pickup_item      /spawn_object
-/help           /pretend_editor   /spawn_static_object
-/infinite_jump  /show_collision   /teleport
-/load_map_menu  /show_player_pos
-/load_package   /show_triggers
+/clear          /load_package     /spawn_humans
+/console        /move_player      /spawn_object
+/editor_mode    /pickup_item      /spawn_static_object
+/help           /show_collision   /teleport
+/infinite_jump  /show_player_pos
+/load_map_menu  /show_triggers
 ";
 
 pub const COMMANDS: &[&str] = &[
     "/clear",
     "/console",
+    "/editor_mode",
     "/help",
     "/infinite_jump",
     "/load_map_menu",
     "/load_package",
     "/move_player",
     "/pickup_item",
-    "/pretend_editor",
     "/show_collision",
     "/show_player_pos",
     "/show_triggers",
@@ -57,6 +57,7 @@ pub fn run(message: &[u8]) -> RunResult {
     let command = message.split_ascii_whitespace().next().unwrap_or(":(");
     match command {
         "console" => RunResult::Response(console::run(message)),
+        "editor_mode" => RunResult::Response(editor_mode::run(message)),
         "help" => RunResult::Response(HELP),
         "infinite_jump" => RunResult::Response(infinite_jump::run(message)),
         "load_map_menu" => {
@@ -66,7 +67,6 @@ pub fn run(message: &[u8]) -> RunResult {
         "load_package" => load_package::run(message).into(),
         "move_player" => move_player::run(message).into(),
         "pickup_item" => pickup_item::run(message).into(),
-        "pretend_editor" => RunResult::Response(pretend_editor::run(message)),
         "show_collision" => RunResult::Response(show_collision::run(message)),
         "show_player_pos" => RunResult::Response(show_player_pos::run(message)),
         "show_triggers" => RunResult::Response(show_triggers::run(message)),

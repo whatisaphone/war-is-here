@@ -89,8 +89,8 @@ pub fn cleanup() {
 mod hook {
     use crate::{
         commands::{
+            editor_mode,
             infinite_jump,
-            pretend_editor,
             show_collision,
             show_player_pos,
             show_triggers,
@@ -275,7 +275,7 @@ mod hook {
 
         (detours.gfc__World__World)(this);
 
-        pretend_editor::world_constructor_hook(this);
+        editor_mode::world_constructor_hook(this);
 
         this
     }

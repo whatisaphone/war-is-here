@@ -20,6 +20,8 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
 - **/console**
 
+- **/editor_mode** – Run this before entering a game, and the world will load in "editor mode". Most enemies/items are deactivated, and the minimap spawns in the sky!
+
 - **/help**
 
 - **/infinite_jump** – Gives the player infinite jump height, as long as the button is held down.
@@ -36,8 +38,6 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
   /pickup_item bfg_sentinel/weapon_bfg_sentinel
   /pickup_item weapon_enhancements/common_bane
   ```
-
-- **/pretend_editor** – Run this before entering a game, and the world will load in "editor mode". Most enemies/items are deactivated, and the minimap spawns in the sky!
 
 - **/show_collision**
 
