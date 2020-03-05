@@ -1,4 +1,4 @@
-# war-is-here
+# <img src="docs/war.png" width="40%" align="right"> war-is-here
 
 Darksiders modding!
 
