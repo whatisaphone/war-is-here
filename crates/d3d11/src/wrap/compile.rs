@@ -1,4 +1,4 @@
-use crate::blob::Blob;
+use crate::wrap::blob::Blob;
 use std::{convert::TryInto, ffi::CStr, mem, ptr};
 use winapi::{shared::winerror::FAILED, um::d3dcompiler};
 

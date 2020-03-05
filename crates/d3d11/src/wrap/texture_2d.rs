@@ -1,4 +1,4 @@
-use crate::{resource::Resource, utils::init_with};
+use crate::{utils::init_with, wrap::resource::Resource};
 use winapi::um::d3d11::{ID3D11Texture2D, D3D11_TEXTURE2D_DESC};
 
 wrap_iunknown!(pub Texture2D, *mut ID3D11Texture2D);
