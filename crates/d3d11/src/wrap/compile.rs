@@ -1,8 +1,8 @@
-use crate::wrap::blob::Blob;
+use crate::Blob;
 use std::{convert::TryInto, ffi::CStr, mem, ptr};
 use winapi::{shared::winerror::FAILED, um::d3dcompiler};
 
-pub fn compile(source: &str, entrypoint: &CStr, target: &CStr) -> Result<Blob, String> {
+pub fn compile(source: &str, entrypoint: &CStr, target: &CStr) -> Result<Blob, Blob> {
     #[cfg(debug_assertions)]
     let flags = d3dcompiler::D3DCOMPILE_DEBUG
         | d3dcompiler::D3DCOMPILE_ENABLE_STRICTNESS
@@ -29,8 +29,7 @@ pub fn compile(source: &str, entrypoint: &CStr, target: &CStr) -> Result<Blob, S
         );
 
         if FAILED(hr) {
-            let error = Blob::from_raw(error.assume_init());
-            return Err(String::from_utf8_lossy(error.buffer()).into_owned());
+            return Err(Blob::from_raw(error.assume_init()));
         }
 
         Ok(Blob::from_raw(code.assume_init()))

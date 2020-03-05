@@ -89,8 +89,12 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
             as *mut winapi::um::d3d11::ID3D11DeviceContext;
 
         let source = include_str!("shaders/simple.hlsl");
-        let vs_copy_code = d3d11::compile(source, cstr!("vs_copy"), cstr!("vs_5_0")).unwrap();
-        let ps_tex_code = d3d11::compile(source, cstr!("ps_tex"), cstr!("ps_5_0")).unwrap();
+        let vs_copy_code = d3d11::compile(source, cstr!("vs_copy"), cstr!("vs_5_0"))
+            .map_err(|e| String::from_utf8_lossy(e.buffer()).into_owned())
+            .unwrap();
+        let ps_tex_code = d3d11::compile(source, cstr!("ps_tex"), cstr!("ps_5_0"))
+            .map_err(|e| String::from_utf8_lossy(e.buffer()).into_owned())
+            .unwrap();
 
         vs_copy = init_with_hresult(|p| {
             (*device).CreateVertexShader(
