@@ -4,6 +4,7 @@
 #![allow(clippy::missing_safety_doc)]
 #![cfg_attr(feature = "strict", deny(warnings))]
 
+pub use result::Result;
 pub use wrap::{
     blob::Blob,
     buffer::Buffer,
@@ -23,5 +24,6 @@ pub use wrap::{
 #[macro_use]
 mod macros;
 
+mod result;
 mod utils;
 mod wrap;

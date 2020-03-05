@@ -1,6 +1,6 @@
 use crate::{
     darksiders1::gfc,
-    library::dx::{copy_and_map_texture2d, create_staging_texture2d, init_with_hresult},
+    library::dx::{create_staging_texture2d, init_with_hresult},
 };
 use gfx::{
     format::{Bgra8, B8_G8_R8_A8},
@@ -38,6 +38,7 @@ use winapi::{
             D3D11_FLOAT32_MAX,
             D3D11_INPUT_ELEMENT_DESC,
             D3D11_INPUT_PER_VERTEX_DATA,
+            D3D11_MAP_READ,
             D3D11_RECT,
             D3D11_RESOURCE_MISC_GENERATE_MIPS,
             D3D11_SAMPLER_DESC,
@@ -206,7 +207,7 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
         let texture = imgui_texture.raw().resource().as_resource() as *mut ID3D11Texture2D;
         let texture = d3d11::Texture2D::from_ptr(texture);
 
-        blit_staging_tex = create_staging_texture2d(&device, &texture);
+        blit_staging_tex = create_staging_texture2d(&device, &texture).unwrap();
     }
 
     State {
@@ -259,11 +260,14 @@ pub fn draw(
 
         // This is pretty inefficient, but I can't figure out how to get `CopyResource`
         // to work with a texture created by `gfx`. So we're going the long way around.
-        let mapped = copy_and_map_texture2d(
-            &context,
-            &d3d11::Texture2D::from_ptr(state.imgui_texture.raw().resource().as_resource().cast()),
-            &state.blit_staging_tex,
+        (*context.raw()).CopyResource(
+            state.blit_staging_tex.as_resource().raw(),
+            state.imgui_texture.raw().resource().as_resource().cast(),
         );
+        let mapped = state
+            .blit_staging_tex
+            .map(&context, 0, D3D11_MAP_READ, 0)
+            .unwrap();
         (*context.raw()).UpdateSubresource(
             state.blit_dest_tex.as_resource().raw(),
             0,
