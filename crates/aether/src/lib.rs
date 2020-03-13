@@ -6,7 +6,7 @@
 #![cfg_attr(feature = "strict", deny(warnings))]
 
 use crate::utils::marker::UnsafeSend;
-use std::{thread, time::Duration};
+use std::{env, thread, time::Duration};
 use winapi::{
     shared::minwindef::{BOOL, DWORD, HINSTANCE, LPVOID, TRUE},
     um::{
@@ -50,6 +50,9 @@ fn init(hinst: HINSTANCE) {
         #[cfg(debug_assertions)]
         AllocConsole();
     }
+
+    #[cfg(debug_assertions)]
+    env::set_var("RUST_BACKTRACE", "1");
 
     println!("Hello world :)");
     hooks::install();
