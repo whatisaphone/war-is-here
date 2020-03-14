@@ -3,8 +3,8 @@ use darksiders1_sys::target;
 
 #[repr(C)]
 pub struct List<'a, T> {
-    list: &'a List__ListNode<'a, T>,
-    tail: &'a List__ListNode<'a, T>,
+    list: Option<&'a List__ListNode<'a, T>>,
+    tail: Option<&'a List__ListNode<'a, T>>,
     size: i32,
 }
 
@@ -50,7 +50,7 @@ pub struct List__Iterator<'a, T> {
 impl<'a, T> List__Iterator<'a, T> {
     pub fn new(l: &'a List<'a, T>) -> Self {
         Self {
-            node: Some(l.list),
+            node: l.list,
             prv: None,
             list: l,
         }
