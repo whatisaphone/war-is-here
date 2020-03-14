@@ -188,6 +188,7 @@ lowered_vector!(
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__RegionLayerData__0_gfc__CAllocator_,
     target::gfc__AutoRef_gfc__RegionLayerData_,
+    lift = true,
 );
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__Visual__0_gfc__CAllocator_,
@@ -196,6 +197,7 @@ lowered_vector!(
 lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator_,
     target::gfc__AutoRef_gfc__WorldRegionData_,
+    lift = true,
 );
 lowered_vector!(
     target::gfc__Vector_gfc__RigidBody___0_gfc__CAllocator_,

@@ -34,6 +34,10 @@ impl WorldObject {
         unsafe { (*self.as_ptr()).mLayerID }
     }
 
+    pub fn get_name(&self) -> &gfc::HString {
+        unsafe { (*self.as_ptr()).mName.lift_ref() }
+    }
+
     pub fn set_position(&self, pos: &Point3<f32>) {
         unsafe {
             self.inner.setPosition(Lower::lower_ptr(&pos.coords));

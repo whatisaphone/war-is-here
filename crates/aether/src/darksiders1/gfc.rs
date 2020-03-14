@@ -60,6 +60,7 @@ pub use crate::darksiders1::code::vigil::{
         world::{
             collision::{cshape::CShape, cshapebox::CShapeBox, cshapemesh::CShapeMesh},
             physics::{physmeshcache::PhysMeshCache, rigidbody::RigidBody},
+            regionlayer::RegionLayer,
             resource::{resourcecache::ResourceCache, resourcemanager::ResourceManager},
             staticobject::StaticObject,
             triggerregion::TriggerRegion,
@@ -72,7 +73,7 @@ pub use crate::darksiders1::code::vigil::{
             world::{World, WorldRegionData},
             worldgroup::WorldGroup,
             worldobject::WorldObject,
-            worldregion::RegionLayerData,
+            worldregion::{RegionLayerData, WorldRegion},
         },
     },
 };

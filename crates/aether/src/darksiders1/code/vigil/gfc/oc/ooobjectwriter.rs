@@ -17,7 +17,7 @@ impl OOObjectWriter {
                 target::gfc__ObjectWriter__ObjectWriter(this.static_cast());
                 ptr::write(
                     &mut (*this).mObjectDatabase,
-                    Lower::lower(<gfc::Vector<gfc::AutoRef<_>>>::new()),
+                    Lower::lower(<gfc::Vector<gfc::AutoRef<gfc::Object>>>::new()),
                 );
                 ptr::write(&mut (*this).mWriteDefaults, false);
             })

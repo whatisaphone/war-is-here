@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, Lift, Lift1, List, LoweredAutoRef},
+    darksiders1::{gfc, Lift},
     hooks::ON_POST_UPDATE_QUEUE,
     library::bitmap_font,
     utils::{
@@ -7,11 +7,9 @@ use crate::{
         debug_draw,
         debug_draw_3d,
         geometry::{box_edges, box_vertices, cylinder, icosphere, transform},
-        mem::init_with,
         pretty::Pretty,
     },
 };
-use darksiders1_sys::target;
 use na::{Isometry, Matrix4, Point3, Transform3, Translation, UnitQuaternion, Vector3};
 use ncollide3d::{
     query::PointQuery,
@@ -20,7 +18,7 @@ use ncollide3d::{
 };
 use ordered_float::NotNan;
 use std::{
-    convert::TryFrom,
+    convert::TryInto,
     f32::consts::FRAC_PI_2,
     sync::atomic::{AtomicBool, Ordering},
 };
@@ -33,10 +31,7 @@ pub fn run(_command: &str) -> &'static str {
 
     if enabled {
         let mut guard = ON_POST_UPDATE_QUEUE.lock();
-        guard
-            .as_mut()
-            .unwrap()
-            .push_back(Box::new(move || unsafe { go() }));
+        guard.as_mut().unwrap().push_back(Box::new(go));
     }
 
     if enabled {
@@ -46,7 +41,7 @@ pub fn run(_command: &str) -> &'static str {
     }
 }
 
-unsafe fn go() {
+fn go() {
     walk(&mut |object| {
         if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
             mark(&trigger);
@@ -54,50 +49,33 @@ unsafe fn go() {
     });
 }
 
-unsafe fn walk(visitor: &mut dyn FnMut(&gfc::WorldObject)) {
+fn walk(visitor: &mut dyn FnMut(&gfc::WorldObject)) {
     let world = match gfc::OblivionGame::get_instance().get_world() {
         Some(world) => world,
         None => return,
     };
 
-    let root = (*world.as_ptr()).mRoot.lift_ref();
-    walk_group(root, visitor);
+    walk_group(&world.root(), visitor);
 
-    let region_data = (*world.as_ptr()).mRegionData.lift1_ref();
-    for (r, _) in region_data.iter().enumerate() {
-        let r = i32::try_from(r).unwrap();
-        let region = init_with(|p| {
-            target::gfc__World__getRegion(world.as_ptr(), p, r);
-        });
-        let region = region.ptr();
-        if region.is_null() {
-            continue;
-        }
+    for (r, _) in world.region_data().iter().enumerate() {
+        let region = match world.get_region(r.try_into().unwrap()) {
+            Some(x) => x,
+            None => continue,
+        };
 
-        let layer_data = (*region).mLayerData.lift1_ref();
-        for (l, _) in layer_data.iter().enumerate() {
-            let l = i32::try_from(l).unwrap();
-            let layer = init_with(|p| {
-                target::gfc__WorldRegion__getLayer(region, p, l);
-            });
-            let layer = layer.ptr();
-            if layer.is_null() {
-                continue;
-            }
+        for (l, _) in region.layer_data().iter().enumerate() {
+            let layer = match region.get_layer(l.try_into().unwrap()) {
+                Some(x) => x,
+                None => continue,
+            };
 
-            let root = init_with(|p| {
-                target::gfc__RegionLayer__getRoot(layer, p);
-            });
-            let root = root.lift();
-            walk_group(&root, visitor);
+            walk_group(&layer.root(), visitor);
         }
     }
 }
 
-unsafe fn walk_group(group: &gfc::WorldGroup, visitor: &mut dyn FnMut(&gfc::WorldObject)) {
-    let objects = &mut (*group.as_ptr()).mObjects;
-    let objects = List::from_ptr(objects);
-    for object in objects {
+fn walk_group(group: &gfc::WorldGroup, visitor: &mut dyn FnMut(&gfc::WorldObject)) {
+    for object in group.objects() {
         visitor(object);
 
         if let Some(group) = gfc::object_safecast::<gfc::WorldGroup>(object) {
@@ -160,7 +138,7 @@ fn add_marker(region_id: u16, layer_id: u16, x: f32, y: f32, z: f32) {
 // TODO: This is too slow (probably because of cylinders). Caching is required.
 const SHOW_CLOSEST: bool = false;
 
-pub unsafe fn draw(renderer: &gfc::UIRenderer) {
+pub fn draw(renderer: &gfc::UIRenderer) {
     if !ENABLED.load(Ordering::SeqCst) {
         return;
     }
@@ -194,7 +172,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
             let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
             bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
 
-            let object_name = (*trigger_region.as_ptr()).mName.lift_ref();
+            let object_name = trigger_region.get_name();
             let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
             bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, 2, object_name);
 
@@ -231,7 +209,7 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
             NotNan::new(na::distance_squared(&player_pos, &projection.point)).unwrap()
         });
     if let Some((trigger, projection)) = closest_trigger {
-        let object_name = (*trigger.as_ptr()).mName.lift_ref();
+        let object_name = trigger.get_name();
         let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
         bitmap_font::draw_string(renderer, 10.0, 10.0, 2, object_name);
         bitmap_font::draw_string(

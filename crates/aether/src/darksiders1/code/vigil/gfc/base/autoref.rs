@@ -229,10 +229,12 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayer_,
     target::gfc__RegionLayer,
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayerData_,
     target::gfc__RegionLayerData,
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__Skeleton3D_,
@@ -263,8 +265,10 @@ lowered_autoref!(
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldRegion_,
     target::gfc__WorldRegion,
+    lift = true,
 );
 lowered_autoref!(
     target::gfc__AutoRef_gfc__WorldRegionData_,
     target::gfc__WorldRegionData,
+    lift = true,
 );
