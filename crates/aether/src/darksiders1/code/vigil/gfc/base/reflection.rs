@@ -9,12 +9,12 @@ struct_wrapper_super!(Class, gfc::IRefObject);
 
 impl Class {
     pub fn new_instance(&self) -> gfc::AutoRef<gfc::Object> {
-        unsafe {
-            let obj = init_with(|p| {
+        let obj = unsafe {
+            init_with(|p| {
                 self.inner.newInstance(p);
-            });
-            obj.lift()
-        }
+            })
+        };
+        obj.lift()
     }
 
     pub fn name(&self) -> &gfc::HString {
