@@ -187,7 +187,9 @@ pub unsafe fn draw(renderer: &gfc::UIRenderer) {
         let position = trigger_region.get_position();
         let screen = transformer.world_to_screen(&position);
 
-        if screen.z >= 0.0 && screen.z < 500.0 {
+        // If position is in front of the camera, and within a certain distance of the
+        // player
+        if screen.z >= 0.0 && na::distance_squared(&player_pos, &position) < 750_f32.powi(2) {
             let class_name = trigger_region.class().name();
             let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
             bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
