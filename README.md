@@ -41,6 +41,8 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
 - **/show_collision**
 
+  This is currently broken and will crash the game.
+
 - **/show_player_pos**
 
 - **/show_triggers**
