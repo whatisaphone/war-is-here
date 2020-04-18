@@ -15,6 +15,7 @@ pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>
 struct Detours {
     gfc___UIManager__draw: target::gfc___UIManager__draw,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
+    gfc__DetectorRegion__bodyEntered: target::gfc__DetectorRegion__bodyEntered,
     gfc__MaterialCache__get: target::gfc__MaterialCache__get,
     gfc__MeshCache__getStaticMesh: target::gfc__MeshCache__getStaticMesh,
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
@@ -50,6 +51,7 @@ pub fn install() {
         hook!(
             gfc___UIManager__draw,
             gfc__Darksiders__processInputEvent,
+            gfc__DetectorRegion__bodyEntered,
             gfc__MaterialCache__get,
             gfc__MeshCache__getStaticMesh,
             gfc__MeshCache__loadMesh,
@@ -148,6 +150,21 @@ mod hook {
         }
 
         true
+    }
+
+    pub unsafe extern "thiscall" fn gfc__DetectorRegion__bodyEntered(
+        this: *mut target::gfc__DetectorRegion,
+        body: *mut target::gfc__Body,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        println!(
+            "bodyEntered {:?}",
+            (*(*this).mOwner).mName.lift_ref().c_str(),
+        );
+
+        (detours.gfc__DetectorRegion__bodyEntered)(this, body);
     }
 
     pub unsafe extern "thiscall" fn gfc__MaterialCache__get(

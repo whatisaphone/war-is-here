@@ -114,6 +114,7 @@ symbols! {
     pub static gfc__ByteOutputStream___ByteOutputStream: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream) = Text(0xa21f40);
     pub static gfc__ByteOutputStream__ByteOutputStream_2: unsafe extern "thiscall" fn(this: *mut gfc__ByteOutputStream, _: i32) -> *mut gfc__ByteOutputStream = Text(0xa21fb0);
     pub static gfc__ClassRegistry__classForName: unsafe extern "thiscall" fn(this: *mut gfc__ClassRegistry, _: *const gfc__HString, _: bool, _: bool) -> *mut gfc__Class = Text(0xa16e50);
+    pub static gfc__DetectorRegion__bodyEntered: unsafe extern "thiscall" fn(this: *mut gfc__DetectorRegion, _: *mut gfc__Body) = Text(0x9c58b0);
     pub static gfc__PhysicsShapeObject__getTransform: unsafe extern "thiscall" fn(this: *mut gfc__PhysicsShapeObject, _: *mut gfc__Matrix4) = Text(0x8ed360);
     pub static gfc__Player__pickupItem: unsafe extern "thiscall" fn(this: *mut gfc__Player, _: gfc__AutoRef_gfc__Item_) = Text(0x83ab00);
     pub static gfc__Player__pickupItem_2: unsafe extern "thiscall" fn(this: *mut gfc__Player, _: gfc__AutoRef_gfc__ItemActor_) = Text(0x849000);
