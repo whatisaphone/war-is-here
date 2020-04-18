@@ -10,6 +10,7 @@ pub struct InputTextWithCallback<'ui, 'p> {
 }
 
 impl<'ui, 'p> InputTextWithCallback<'ui, 'p> {
+    #[allow(clippy::unused_self)]
     pub fn new(_: &Ui<'ui>, label: &'p ImStr, buf: &'p mut ImString) -> Self {
         InputTextWithCallback {
             label,
