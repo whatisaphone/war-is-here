@@ -27,4 +27,8 @@ impl WorldRegion {
     pub fn layer_data(&self) -> &gfc::Vector<gfc::AutoRef<gfc::RegionLayerData>> {
         unsafe { (*self.as_ptr()).mLayerData.lift_ref() }
     }
+
+    pub fn load_regions(&self) -> &gfc::Vector<gfc::AutoRef<gfc::WorldObject>> {
+        unsafe { (*self.as_ptr()).mLoadRegions.lift_ref() }
+    }
 }

@@ -3,3 +3,4 @@ use darksiders1_sys::target;
 
 struct_wrapper!(DetectorObject, target::gfc__DetectorObject);
 struct_wrapper_super!(DetectorObject, gfc::PhysicsShapeObject);
+impl_reflection!(DetectorObject, target::gfc__DetectorObject___Class);

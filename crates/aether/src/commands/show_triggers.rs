@@ -43,7 +43,7 @@ pub fn run(_command: &str) -> &'static str {
 
 fn go() {
     walk(&mut |object| {
-        if let Some(trigger) = gfc::object_safecast::<gfc::TriggerRegion>(object) {
+        if let Some(trigger) = gfc::object_safecast::<gfc::DetectorObject>(object) {
             mark(&trigger);
         }
     });
@@ -71,6 +71,10 @@ fn walk(visitor: &mut dyn FnMut(&gfc::WorldObject)) {
 
             walk_group(&layer.root(), visitor);
         }
+
+        for object in region.load_regions().iter() {
+            visitor(object);
+        }
     }
 }
 
@@ -84,7 +88,7 @@ fn walk_group(group: &gfc::WorldGroup, visitor: &mut dyn FnMut(&gfc::WorldObject
     }
 }
 
-fn mark(trigger: &gfc::TriggerRegion) {
+fn mark(trigger: &gfc::DetectorObject) {
     let region_id = trigger.get_region_id();
     let layer_id = trigger.get_layer_id();
     let position = trigger.get_position();
@@ -157,7 +161,7 @@ pub fn draw(renderer: &gfc::UIRenderer) {
     let mut triggers = Vec::new();
 
     walk(&mut |object| {
-        let trigger_region = match gfc::object_safecast::<gfc::TriggerRegion>(object) {
+        let trigger_region = match gfc::object_safecast::<gfc::DetectorObject>(object) {
             Some(o) => o,
             _ => return,
         };
@@ -231,7 +235,7 @@ pub fn draw(renderer: &gfc::UIRenderer) {
 }
 
 // See `gfc::DetectorObject::doAddToWorld`
-fn get_shape(object: &gfc::TriggerRegion) -> Shape {
+fn get_shape(object: &gfc::DetectorObject) -> Shape {
     match object.shape() {
         gfc::PhysicsShapeObject__Detect::Aabb => {
             let bounds = unsafe { (*object.as_ptr()).mBounds.lift_ref().clone() };

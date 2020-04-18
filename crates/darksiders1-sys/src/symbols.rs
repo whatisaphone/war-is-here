@@ -26,6 +26,7 @@ symbols! {
     pub static gfc__CShape___Class: *mut gfc__Class = Data(0x6a2d70);
     pub static gfc__CShapeMesh___Class: *mut gfc__Class = Data(0x6a2d84);
     pub static gfc__CShapeBox___Class: *mut gfc__Class = Data(0x6a2d74);
+    pub static gfc__DetectorObject___Class: *mut gfc__Class = Data(0x58c4e0);
     pub static gfc__TriggerRegion___Class: *mut gfc__Class = Data(0x58c510);
     pub static gfc__Item___Class: *mut gfc__Class = Data(0x56bc10);
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);

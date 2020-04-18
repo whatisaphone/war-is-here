@@ -16,6 +16,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(data, gfc__CShape___Class);
     bind!(data, gfc__CShapeMesh___Class);
     bind!(data, gfc__CShapeBox___Class);
+    bind!(data, gfc__DetectorObject___Class);
     bind!(data, gfc__TriggerRegion___Class);
     bind!(data, gfc__Item___Class);
     bind!(

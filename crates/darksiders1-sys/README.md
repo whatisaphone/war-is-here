@@ -20,6 +20,7 @@ pdbindgen \
     -i '^gfc::CShapeMesh::_Class$' \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::processInputEvent$' \
+    -i '^gfc::DetectorObject::_Class$' \
     -i '^gfc::DetectorRegion::bodyEntered$' \
     -i '^gfc::GameCamera$' \
     -i '^gfc::HString::c_str$' \

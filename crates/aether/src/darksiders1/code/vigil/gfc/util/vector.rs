@@ -195,6 +195,11 @@ lowered_vector!(
     target::gfc__AutoRef_gfc__Visual_,
 );
 lowered_vector!(
+    target::gfc__Vector_gfc__AutoRef_gfc__WorldObject__0_gfc__CAllocator_,
+    target::gfc__AutoRef_gfc__WorldObject_,
+    lift = true,
+);
+lowered_vector!(
     target::gfc__Vector_gfc__AutoRef_gfc__WorldRegionData__0_gfc__CAllocator_,
     target::gfc__AutoRef_gfc__WorldRegionData_,
     lift = true,
