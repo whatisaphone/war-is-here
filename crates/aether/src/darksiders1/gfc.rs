@@ -2,7 +2,7 @@ pub use crate::darksiders1::code::vigil::{
     darksiders::{
         client::{
             darksiders::Darksiders,
-            helpers::{helper::Helper, teleporthelper::TeleportHelper},
+            helpers::{helper::Helper, teleporthelper::TeleportHelper, windowhelper::WindowHelper},
             ui::dsuimanager::DSUIManager,
         },
         world::{
@@ -50,7 +50,7 @@ pub use crate::darksiders1::code::vigil::{
         memory::memop::{mem_alloc, mem_free},
         oc::ooobjectwriter::OOObjectWriter,
         reflection::scriptclass::ScriptClass,
-        ui::uimanager::_UIManager,
+        ui::{uicontrol::_UIControl, uimanager::_UIManager},
         util::{
             hstring::HString,
             singleton::Singleton,

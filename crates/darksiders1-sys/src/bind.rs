@@ -131,6 +131,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ObjectWriter___ObjectWriter);
     bind!(text, gfc__World__getRegion_2);
     bind!(text, gfc__Darksiders__processInputEvent);
+    bind!(text, gfc__Darksiders__doTheMagic);
     bind!(text, gfc__UIRenderer__translate);
     bind!(text, gfc__UIRenderer__rotate);
     bind!(text, gfc__UIRenderer__scale);

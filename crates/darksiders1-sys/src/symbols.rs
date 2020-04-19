@@ -129,6 +129,7 @@ symbols! {
     pub static gfc__ObjectWriter___ObjectWriter: unsafe extern "thiscall" fn(this: *mut gfc__ObjectWriter) = Text(0x2103c0);
     pub static gfc__World__getRegion_2: unsafe extern "thiscall" fn(this: *mut gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0x223730);
     pub static gfc__Darksiders__processInputEvent: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent) -> bool = Text(0x27b4b0);
+    pub static gfc__Darksiders__doTheMagic: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent, _: *const gfc__HString) -> bool = Text(0x27bed0);
     pub static gfc__UIRenderer__translate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb170);
     pub static gfc__UIRenderer__rotate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32) = Text(0x1eb1b0);
     pub static gfc__UIRenderer__scale: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb1e0);

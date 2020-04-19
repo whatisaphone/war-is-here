@@ -148,6 +148,7 @@ symbols! {
     pub fn gfc__ObjectWriter___ObjectWriter;
     pub fn gfc__World__getRegion_2;
     pub fn gfc__Darksiders__processInputEvent;
+    pub fn gfc__Darksiders__doTheMagic;
     pub fn gfc__UIRenderer__translate;
     pub fn gfc__UIRenderer__rotate;
     pub fn gfc__UIRenderer__scale;

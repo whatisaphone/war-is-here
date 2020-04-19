@@ -19,6 +19,7 @@ pdbindgen \
     -i '^gfc::CShapeMesh$' \
     -i '^gfc::CShapeMesh::_Class$' \
     -i '^gfc::ClassRegistry::classForName$' \
+    -i '^gfc::Darksiders::doTheMagic$' \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::DetectorObject::_Class$' \
     -i '^gfc::DetectorRegion::bodyEntered$' \

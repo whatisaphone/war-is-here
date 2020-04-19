@@ -52,3 +52,7 @@ impl_singleton!(
     gfc::TeleportHelper,
     target::gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle,
 );
+impl_singleton!(
+    gfc::WindowHelper,
+    target::gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle,
+);

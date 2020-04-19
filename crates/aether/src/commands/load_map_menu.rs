@@ -1,5 +1,4 @@
-use crate::hooks::ON_POST_UPDATE_QUEUE;
-use darksiders1_sys::target;
+use crate::{darksiders1::gfc, hooks::ON_POST_UPDATE_QUEUE};
 
 pub fn run(_command: &str) {
     let mut guard = ON_POST_UPDATE_QUEUE.lock();
@@ -10,6 +9,6 @@ pub fn run(_command: &str) {
 }
 
 unsafe fn go() {
-    let window_helper = *target::gfc__Singleton_gfc__WindowHelper_gfc__CreateStatic_gfc__SingletonLongevity__DieFirst___InstanceHandle;
-    target::gfc__WindowHelper__pushWindow(window_helper, hstring!("ui_core/loadmapmenu").as_ptr());
+    let window_helper = <gfc::Singleton<gfc::WindowHelper>>::get_instance();
+    window_helper.push_window(&hstring!("ui_core/loadmapmenu"));
 }

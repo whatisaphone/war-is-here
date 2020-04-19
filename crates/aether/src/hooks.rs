@@ -99,7 +99,7 @@ mod hook {
             spawn_humans,
         },
         console::{self, InputHandled},
-        darksiders1::{Lift, Lower},
+        darksiders1::{gfc, Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
             override_get_material,
@@ -128,12 +128,22 @@ mod hook {
 
     // Return `false` to swallow the event, or `true` to continue processing
     // normally.
+    #[allow(clippy::shadow_unrelated)]
     pub unsafe extern "thiscall" fn gfc__Darksiders__processInputEvent(
         this: *mut target::gfc__Darksiders,
         inputEvent: *const target::keen__InputEvent,
     ) -> bool {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
+
+        // Restore access to The Amazing Secret.
+        let window_helper = <gfc::Singleton<gfc::WindowHelper>>::get_instance();
+        let current_window = window_helper.get_window();
+        let result =
+            target::gfc__Darksiders__doTheMagic(this, inputEvent, current_window.name().as_ptr());
+        if !result {
+            return false;
+        }
 
         let result = (detours.gfc__Darksiders__processInputEvent)(this, inputEvent);
 

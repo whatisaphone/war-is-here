@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.2 – 2020-04-19
+
+- Restore access to The Amazing Secret.
+
 ## v0.1.1 – 2020-04-18
 
 - `/show_triggers` now also draws load regions

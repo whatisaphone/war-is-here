@@ -157,6 +157,11 @@ macro_rules! lowered_autoref {
     }
 }
 
+lowered_autoref!(
+    target::gfc__AutoRef_gfc___UIControl_,
+    target::gfc___UIControl,
+    lift = true,
+);
 lowered_autoref!(target::gfc__AutoRef_gfc__Camera3D_, target::gfc__Camera3D);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__CShape_,
