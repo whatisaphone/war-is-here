@@ -15,6 +15,15 @@ impl PhysicsShapeObject {
         PhysicsShapeObject__Detect::try_from(raw).unwrap()
     }
 
+    pub fn get_bounding_box(&self) -> gfc::TBox<f32> {
+        unsafe {
+            init_with(|p| {
+                (*self.as_ptr()).getBoundingBox(p);
+            })
+        }
+        .lift()
+    }
+
     pub fn get_transform(&self) -> gfc::Matrix4<f32> {
         unsafe {
             init_with(|p| {

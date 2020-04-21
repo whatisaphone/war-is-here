@@ -169,9 +169,7 @@ pub fn draw(renderer: &gfc::UIRenderer) {
         let position = trigger_region.get_position();
         let screen = transformer.world_to_screen(&position);
 
-        // If position is in front of the camera, and within a certain distance of the
-        // player
-        if screen.z >= 0.0 && na::distance_squared(&player_pos, &position) < 750_f32.powi(2) {
+        if should_draw(&trigger_region, &player_pos) {
             let class_name = trigger_region.class().name();
             let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
             bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
@@ -257,6 +255,48 @@ fn get_shape(object: &gfc::DetectorObject) -> Shape {
             let position = object.get_position();
             Shape::Cylinder(radius, length, position)
         }
+    }
+}
+
+#[allow(clippy::shadow_unrelated)]
+fn should_draw(object: &gfc::DetectorObject, point: &Point3<f32>) -> bool {
+    let distance = broad_phase_distance(object, point);
+    if distance < -250.0 || distance > 500.0 {
+        return false;
+    }
+    let distance = narrow_phase_distance(object, point);
+    if distance < -250.0 || distance > 500.0 {
+        return false;
+    }
+    true
+}
+
+fn broad_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> f32 {
+    let bounding_box = object.get_bounding_box();
+
+    let cuboid = Cuboid::new((bounding_box.max - bounding_box.min) / 2.0);
+    let isometry = Isometry::from_parts(
+        Translation::from(bounding_box.center().coords),
+        UnitQuaternion::identity(),
+    );
+
+    let projection = cuboid.project_point(&isometry, point, false);
+    let distance = na::distance(point, &projection.point);
+    if projection.is_inside {
+        -distance
+    } else {
+        distance
+    }
+}
+
+fn narrow_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> f32 {
+    let shape = get_shape(object).to_compound();
+    let projection = shape.project_point(&Isometry::identity(), point, false);
+    let distance = na::distance(point, &projection.point);
+    if projection.is_inside {
+        -distance
+    } else {
+        distance
     }
 }
 
