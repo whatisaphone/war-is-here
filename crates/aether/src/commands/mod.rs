@@ -2,6 +2,7 @@ use std::str;
 
 pub mod console;
 pub mod editor_mode;
+pub mod fps;
 pub mod infinite_jump;
 pub mod load_map_menu;
 pub mod load_package;
@@ -24,18 +25,19 @@ pub enum RunResult {
 // Hide "/shutdown" since it doesn't work via GUI
 const HELP: &str = "\
 Available commands:
-/clear          /load_package     /spawn_humans
-/console        /move_player      /spawn_object
-/editor_mode    /pickup_item      /spawn_static_object
+/clear          /load_map_menu    /show_triggers
+/console        /load_package     /spawn_humans
+/editor_mode    /move_player      /spawn_object
+/fps            /pickup_item      /spawn_static_object
 /help           /show_collision   /teleport
 /infinite_jump  /show_player_pos
-/load_map_menu  /show_triggers
 ";
 
 pub const COMMANDS: &[&str] = &[
     "/clear",
     "/console",
     "/editor_mode",
+    "/fps",
     "/help",
     "/infinite_jump",
     "/load_map_menu",
@@ -58,6 +60,7 @@ pub fn run(message: &[u8]) -> RunResult {
     match command {
         "console" => RunResult::Response(console::run(message)),
         "editor_mode" => RunResult::Response(editor_mode::run(message)),
+        "fps" => RunResult::Response(fps::run(message)),
         "help" => RunResult::Response(HELP),
         "infinite_jump" => RunResult::Response(infinite_jump::run(message)),
         "load_map_menu" => {

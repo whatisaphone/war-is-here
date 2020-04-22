@@ -92,6 +92,7 @@ mod hook {
     use crate::{
         commands::{
             editor_mode,
+            fps,
             infinite_jump,
             show_collision,
             show_player_pos,
@@ -119,10 +120,13 @@ mod hook {
 
         (detours.gfc___UIManager__draw)(this, renderer);
 
-        splash::draw((*renderer).lift_ref());
-        show_player_pos::draw((*renderer).lift_ref());
-        show_triggers::draw((*renderer).lift_ref());
-        show_collision::draw((*renderer).lift_ref());
+        let renderer = (*renderer).lift_ref();
+        splash::draw(renderer);
+        fps::draw(renderer);
+        show_player_pos::draw(renderer);
+        show_triggers::draw(renderer);
+        show_collision::draw(renderer);
+
         console::pump();
     }
 
