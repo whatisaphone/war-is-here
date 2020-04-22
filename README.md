@@ -22,6 +22,8 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
 - **/editor_mode** – Run this before entering a game, and the world will load in "editor mode". Most enemies/items are deactivated, and the minimap spawns in the sky!
 
+- **/fps** – Display an FPS counter.
+
 - **/help**
 
 - **/infinite_jump** – Gives the player infinite jump height, as long as the button is held down.
