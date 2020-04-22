@@ -7,20 +7,27 @@ use crate::{
         debug_draw,
         debug_draw_3d,
         geometry::{box_edges, box_vertices, cylinder, icosphere, transform},
+        na_ext::PointExt,
         pretty::Pretty,
     },
 };
+use lru::LruCache;
 use na::{Isometry, Matrix4, Point3, Transform3, Translation, UnitQuaternion, Vector3};
 use ncollide3d::{
     query::PointQuery,
     shape::{Ball, Compound, ConvexHull, Cuboid, Cylinder, ShapeHandle},
     transformation::ToTriMesh,
 };
+use once_cell::sync::Lazy;
 use ordered_float::NotNan;
+use parking_lot::Mutex;
 use std::{
     convert::TryInto,
     f32::consts::FRAC_PI_2,
-    sync::atomic::{AtomicBool, Ordering},
+    sync::{
+        atomic::{AtomicBool, Ordering},
+        Arc,
+    },
 };
 
 static ENABLED: AtomicBool = AtomicBool::new(false);
@@ -290,7 +297,7 @@ fn broad_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> f3
 }
 
 fn narrow_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> f32 {
-    let shape = get_shape(object).to_compound();
+    let shape = get_shape(object).to_compound_cached();
     let projection = shape.project_point(&Isometry::identity(), point, false);
     let distance = na::distance(point, &projection.point);
     if projection.is_inside {
@@ -308,6 +315,26 @@ pub enum Shape {
 }
 
 impl Shape {
+    /// Since `to_compound` is too expensive to run on every frame, we keep a
+    /// cache.
+    fn to_compound_cached(&self) -> Arc<Compound<f32>> {
+        // This is super sloppy. If the cache is too small, FPS will drop. The tradeoff
+        // is memory usage.
+        static CACHE: Lazy<Mutex<LruCache<TotalShape, Arc<Compound<f32>>>>> =
+            Lazy::new(|| Mutex::new(LruCache::new(1000)));
+
+        let mut cache = CACHE.lock();
+
+        let key = self.into();
+        if let Some(result) = cache.get(&key) {
+            return result.clone();
+        }
+
+        let result = Arc::new(self.to_compound());
+        cache.put(key, result.clone());
+        result
+    }
+
     fn to_compound(&self) -> Compound<f32> {
         match self {
             Self::Aabb(bounds) => {
@@ -352,6 +379,38 @@ impl Shape {
                     ),
                     ShapeHandle::new(ConvexHull::try_from_points(&cylinder.coords).unwrap()),
                 )])
+            }
+        }
+    }
+}
+
+/// A hashable version of `Shape`.
+#[derive(Eq, PartialEq, Hash)]
+enum TotalShape {
+    Aabb(Point3<NotNan<f32>>, Point3<NotNan<f32>>),
+    Box(Vector3<NotNan<f32>>, Matrix4<NotNan<f32>>),
+    Sphere(NotNan<f32>, Point3<NotNan<f32>>),
+    Cylinder(NotNan<f32>, NotNan<f32>, Point3<NotNan<f32>>),
+}
+
+impl From<&Shape> for TotalShape {
+    fn from(s: &Shape) -> Self {
+        fn not_nan(x: f32) -> NotNan<f32> {
+            NotNan::new(x).unwrap()
+        }
+
+        match s {
+            Shape::Aabb(bounds) => {
+                TotalShape::Aabb(bounds.min.map(not_nan), bounds.max.map(not_nan))
+            }
+            Shape::Box(size, transform) => {
+                TotalShape::Box(size.map(not_nan), transform.map(not_nan))
+            }
+            &Shape::Sphere(radius, center) => {
+                TotalShape::Sphere(not_nan(radius), center.map(not_nan))
+            }
+            &Shape::Cylinder(radius, length, pos) => {
+                TotalShape::Cylinder(not_nan(radius), not_nan(length), pos.map(not_nan))
             }
         }
     }

@@ -7,4 +7,5 @@ pub mod liang_barsky;
 pub mod marker;
 pub mod mem;
 pub mod misc;
+pub mod na_ext;
 pub mod pretty;
