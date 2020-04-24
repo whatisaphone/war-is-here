@@ -34,6 +34,18 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
 - **/move_player**
 
+  Move to a position on the map:
+
+  ```
+  /move_player -4000 -28000 100
+  ```
+
+  Move relative to your current position:
+
+  ```
+  /move_player by 500 0 0
+  ```
+
 - **/pickup_item** – Gives the player any `Item`. Examples:
 
   ```
