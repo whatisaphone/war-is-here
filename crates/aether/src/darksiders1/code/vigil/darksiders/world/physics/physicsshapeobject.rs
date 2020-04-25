@@ -24,6 +24,8 @@ impl PhysicsShapeObject {
         .lift()
     }
 
+    /// Calculates a transformation matrix for the object's rotation and
+    /// position.
     pub fn get_transform(&self) -> gfc::Matrix4<f32> {
         unsafe {
             init_with(|p| {

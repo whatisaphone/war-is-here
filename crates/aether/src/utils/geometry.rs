@@ -1,6 +1,6 @@
 #![allow(clippy::cast_precision_loss)]
 
-use na::{Point3, Transform3, Vector3};
+use na::{Point3, Transform3};
 use std::{collections::HashMap, iter};
 
 pub fn box_edges(p1: Point3<f32>, p2: Point3<f32>) -> [[Point3<f32>; 2]; 12] {
@@ -17,20 +17,6 @@ pub fn box_edges(p1: Point3<f32>, p2: Point3<f32>) -> [[Point3<f32>; 2]; 12] {
         [Point3::new(p2.x, p1.y, p1.z), Point3::new(p2.x, p1.y, p2.z)],
         [Point3::new(p1.x, p2.y, p1.z), Point3::new(p1.x, p2.y, p2.z)],
         [Point3::new(p2.x, p2.y, p1.z), Point3::new(p2.x, p2.y, p2.z)],
-    ]
-}
-
-pub fn box_vertices(half_extents: Vector3<f32>) -> [Point3<f32>; 8] {
-    let hx = half_extents;
-    [
-        Point3::new(-hx.x, -hx.y, -hx.z),
-        Point3::new(hx.x, -hx.y, -hx.z),
-        Point3::new(-hx.x, hx.y, -hx.z),
-        Point3::new(hx.x, hx.y, -hx.z),
-        Point3::new(-hx.x, -hx.y, hx.z),
-        Point3::new(hx.x, -hx.y, hx.z),
-        Point3::new(-hx.x, hx.y, hx.z),
-        Point3::new(hx.x, hx.y, hx.z),
     ]
 }
 

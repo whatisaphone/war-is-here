@@ -60,6 +60,15 @@ impl WorldObject {
         }
     }
 
+    pub fn get_rotation(&self) -> UnitQuaternion<f32> {
+        let pos = unsafe {
+            init_with(|p| {
+                self.inner.getRotation(p);
+            })
+        };
+        pos.lift().to_unit_quaternion()
+    }
+
     pub fn set_scale(&self, scale: &Vector3<f32>) {
         unsafe {
             self.inner.setScale(Lower::lower_ptr(scale));
