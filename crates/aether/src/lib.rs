@@ -21,12 +21,12 @@ use winapi::{
 mod macros;
 
 mod commands;
-mod console;
 mod control;
 mod darksiders1;
 mod hooks;
 mod library;
 mod splash;
+mod ui;
 mod utils;
 
 #[no_mangle]

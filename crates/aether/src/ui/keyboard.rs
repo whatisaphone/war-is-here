@@ -1,10 +1,11 @@
 use crate::{
-    console::{InputHandled, STATE, WANT_ENABLED},
+    commands::console,
     darksiders1::keen::{self, InputEventExt},
+    ui::{InputHandled, STATE},
 };
 use darksiders1_sys::target;
 use imgui::{Io, Key};
-use std::{char, convert::TryFrom, sync::atomic::Ordering};
+use std::{char, convert::TryFrom};
 
 pub fn init(io: &mut Io) {
     io[Key::Tab] = keen::KeyboardButtonId::Tab.into();
@@ -44,17 +45,17 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
 
 fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
     if down && key_code == keen::KeyboardButtonId::AccentTilde.into() {
-        WANT_ENABLED.fetch_nand(true, Ordering::SeqCst);
+        console::toggle_visible();
         return InputHandled::Swallow;
     }
 
     let mut guard = STATE.lock();
-    let enabled = match guard.enabled.as_mut() {
+    let state = match guard.as_mut() {
         Some(s) => s,
         None => return InputHandled::Continue,
     };
 
-    let io = enabled.imgui.io_mut();
+    let io = state.imgui.io_mut();
     io.keys_down[usize::try_from(key_code).unwrap()] = down;
 
     if key_code == keen::KeyboardButtonId::LeftShift.into()
@@ -84,12 +85,12 @@ fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
 
 fn handle_key(key_code: u32) -> InputHandled {
     let mut guard = STATE.lock();
-    let enabled = match guard.enabled.as_mut() {
+    let state = match guard.as_mut() {
         Some(s) => s,
         None => return InputHandled::Continue,
     };
 
-    let io = enabled.imgui.io_mut();
+    let io = state.imgui.io_mut();
     if let Some(ch) = char::from_u32(key_code) {
         io.add_input_character(ch);
     }

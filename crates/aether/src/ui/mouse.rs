@@ -1,18 +1,18 @@
 use crate::{
-    console::{InputHandled, STATE},
     darksiders1::keen::{self, InputEventExt},
+    ui::{InputHandled, STATE},
 };
 use darksiders1_sys::target;
 use std::convert::TryFrom;
 
 pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandled {
     let mut guard = STATE.lock();
-    let enabled = match guard.enabled.as_mut() {
+    let state = match guard.as_mut() {
         Some(s) => s,
         None => return InputHandled::Continue,
     };
 
-    let io = enabled.imgui.io_mut();
+    let io = state.imgui.io_mut();
 
     let typ = keen::InputEventType::try_from((*event).r#type).unwrap();
     match typ {

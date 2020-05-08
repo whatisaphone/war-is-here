@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use crate::{console, utils::detour::TypedDetour};
+use crate::{ui, utils::detour::TypedDetour};
 use darksiders1_sys::target;
 use detour::RawDetour;
 use parking_lot::{Mutex, RwLock};
@@ -67,8 +67,8 @@ pub fn install() {
 
 pub fn uninstall() {
     // Wait for cleanups that must happen on the main thread.
-    console::WANT_ENABLED.store(false, Ordering::SeqCst);
-    while console::IS_ENABLED.load(Ordering::SeqCst) {
+    ui::WANT_ENABLED.store(false, Ordering::SeqCst);
+    while ui::IS_ENABLED.load(Ordering::SeqCst) {
         thread::sleep(Duration::from_millis(10));
     }
 
@@ -99,7 +99,6 @@ mod hook {
             show_triggers,
             spawn_humans,
         },
-        console::{self, InputHandled},
         darksiders1::{gfc, Lift, Lower},
         hooks::{DETOURS, ON_POST_UPDATE_QUEUE},
         library::objects::{
@@ -108,6 +107,7 @@ mod hook {
             override_get_static_mesh,
         },
         splash,
+        ui,
     };
     use darksiders1_sys::target;
 
@@ -127,7 +127,7 @@ mod hook {
         show_triggers::draw(renderer);
         show_collision::draw(renderer);
 
-        console::pump();
+        ui::pump();
     }
 
     // Return `false` to swallow the event, or `true` to continue processing
@@ -159,7 +159,7 @@ mod hook {
             return false;
         }
 
-        if console::handle_input_event(inputEvent) == InputHandled::Swallow {
+        if ui::handle_input_event(inputEvent) == ui::InputHandled::Swallow {
             return false;
         }
 
