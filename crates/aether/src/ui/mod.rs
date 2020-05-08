@@ -7,7 +7,7 @@ use once_cell::sync::Lazy;
 use parking_lot::Mutex;
 use std::{
     convert::TryFrom,
-    sync::atomic::{AtomicBool, Ordering},
+    sync::atomic::{AtomicBool, AtomicI32, Ordering},
     time::Instant,
 };
 
@@ -19,7 +19,9 @@ mod mouse;
 const SCREEN_WIDTH: u16 = 1280;
 const SCREEN_HEIGHT: u16 = 720;
 
-pub static WANT_ENABLED: AtomicBool = AtomicBool::new(false);
+/// This is basically a reference count of how many components currently request
+/// the UI to be enabled.
+pub static WANT_ENABLED: AtomicI32 = AtomicI32::new(0);
 pub static IS_ENABLED: AtomicBool = AtomicBool::new(false);
 // Safety: although this is stored in a static, it must only be accessed from
 // the game's render thread.
@@ -35,7 +37,7 @@ struct State {
 pub fn pump() {
     match (
         IS_ENABLED.load(Ordering::SeqCst),
-        WANT_ENABLED.load(Ordering::SeqCst),
+        WANT_ENABLED.load(Ordering::SeqCst) != 0,
     ) {
         (false, false) => {}
         (true, false) => {

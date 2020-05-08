@@ -25,13 +25,21 @@ pub fn run(_command: &str) -> &'static str {
     }
 }
 
+pub fn hide() {
+    let prev_visible = VISIBLE.fetch_and(false, Ordering::SeqCst);
+    if prev_visible {
+        ui::WANT_ENABLED.fetch_sub(1, Ordering::SeqCst);
+    }
+}
+
 pub fn toggle_visible() -> bool {
     let prev_visible = VISIBLE.fetch_nand(true, Ordering::SeqCst);
     let visible = !prev_visible;
-    if visible {
-        // `ui` is what draws the console, so it must also be enabled.
-        ui::WANT_ENABLED.store(true, Ordering::SeqCst);
-    }
+
+    // `ui` is what draws the console, so it must be enabled if the console is.
+    let offset = if visible { 1 } else { -1 };
+    ui::WANT_ENABLED.fetch_add(offset, Ordering::SeqCst);
+
     visible
 }
 

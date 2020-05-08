@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 
-use crate::{ui, utils::detour::TypedDetour};
+use crate::{commands::console, ui, utils::detour::TypedDetour};
 use darksiders1_sys::target;
 use detour::RawDetour;
 use parking_lot::{Mutex, RwLock};
@@ -66,8 +66,10 @@ pub fn install() {
 }
 
 pub fn uninstall() {
-    // Wait for cleanups that must happen on the main thread.
-    ui::WANT_ENABLED.store(false, Ordering::SeqCst);
+    // Disable anything that requires the ui to be loaded.
+    console::hide();
+
+    // Wait for the UI to become cleaned up. This must happen on the main thread.
     while ui::IS_ENABLED.load(Ordering::SeqCst) {
         thread::sleep(Duration::from_millis(10));
     }
