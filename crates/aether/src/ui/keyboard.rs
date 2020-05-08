@@ -80,7 +80,11 @@ fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
         io.key_super = down;
     }
 
-    InputHandled::Swallow
+    if io.want_capture_keyboard {
+        InputHandled::Swallow
+    } else {
+        InputHandled::Continue
+    }
 }
 
 fn handle_key(key_code: u32) -> InputHandled {
@@ -94,5 +98,10 @@ fn handle_key(key_code: u32) -> InputHandled {
     if let Some(ch) = char::from_u32(key_code) {
         io.add_input_character(ch);
     }
-    InputHandled::Swallow
+
+    if io.want_capture_keyboard {
+        InputHandled::Swallow
+    } else {
+        InputHandled::Continue
+    }
 }

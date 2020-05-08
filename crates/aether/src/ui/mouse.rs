@@ -20,10 +20,6 @@ pub unsafe fn handle_event(event: *const target::keen__InputEvent) -> InputHandl
             let down = typ == keen::InputEventType::RawButtonDown;
             let data = &*(*event).data_ptr().cast::<target::keen__KeyEventData>();
 
-            if !io.want_capture_mouse {
-                return InputHandled::Continue;
-            }
-
             // Convert `InputEvent` buttons to `imgui` buttons
             let button = match data.keyCode {
                 0 => Some(0), // Left
