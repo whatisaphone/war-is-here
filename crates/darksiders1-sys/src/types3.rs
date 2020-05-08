@@ -5,6 +5,84 @@ use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkpConstraintData__RuntimeInfo {
+    pub m_sizeOfExternalRuntime: i32,
+    pub m_numSolverResults: i32,
+}
+
+#[repr(C)]
+pub struct hkpConstraintData__ConstraintInfo {
+    // hkpConstraintInfo
+    pub m_maxSizeOfSchema: i32,
+    pub m_sizeOfSchemas: i32,
+    pub m_numSolverResults: i32,
+    pub m_numSolverElemTemps: i32,
+    // hkpConstraintData__ConstraintInfo
+    pub m_atoms: *mut hkpConstraintAtom,
+    pub m_sizeOfAllAtoms: u32,
+    pub m_extraSchemaSize: u32,
+}
+
+unsafe impl UpcastToNop<hkpConstraintInfo> for hkpConstraintData__ConstraintInfo {}
+
+#[repr(C)]
+pub struct hkArrayBase_hkStackTracer__CallTree__Node_ {
+    pub m_data: *mut hkStackTracer__CallTree__Node,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkWorldMemoryAvailableWatchDog {
+    // hkBaseObject
+    pub vfptr: *const hkWorldMemoryAvailableWatchDog__vftable,
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkWorldMemoryAvailableWatchDog
+}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkWorldMemoryAvailableWatchDog {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkWorldMemoryAvailableWatchDog {}
+
+impl hkWorldMemoryAvailableWatchDog {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getAmountOfFreeHeapMemoryRequested(&self) -> i32 {
+        ((*self.vfptr).getAmountOfFreeHeapMemoryRequested)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn freeHeapMemoryTillRequestedAmountIsAvailable(
+        &self,
+        a1: *mut hkpWorld,
+    ) {
+        ((*self.vfptr).freeHeapMemoryTillRequestedAmountIsAvailable)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn reduceConstraintsInIsland(
+        &self,
+        a1: *const hkWorldMemoryAvailableWatchDog__MemUsageInfo,
+        a2: i32,
+    ) {
+        ((*self.vfptr).reduceConstraintsInIsland)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
 pub struct hkWorldMemoryAvailableWatchDog__vftable {
     pub __vecDelDtor:
         unsafe extern "thiscall" fn(this: *mut hkWorldMemoryAvailableWatchDog, _: u32) -> *mut (),
@@ -7495,6 +7573,970 @@ pub struct std__pair_gfc__HString_const__gfc__AutoRef_gfc__ScriptState___ {
 unsafe impl UpcastToNop<std___Pair_base_gfc__HString_const__gfc__AutoRef_gfc__ScriptState___>
     for std__pair_gfc__HString_const__gfc__AutoRef_gfc__ScriptState___
 {
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__InsRun__CachedEnv_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__InsRun__CachedEnv,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__InsExecutor {
+    pub vfptr: *const gfc__InsExecutor__vftable,
+    pub mFunctions: gfc__AutoRef_gfc__ScriptFunctions_,
+    pub mCurrentFunction: gfc__AutoRef_gfc__ScriptFunction_,
+    pub mBuf: *mut u8,
+    pub mPC: i32,
+    pub mLineNumber: i32,
+    pub mNeedsSwap: bool,
+    pub mResult: bool,
+    pub mReturn: bool,
+    pub mMaxInstructions: u32,
+}
+
+impl gfc__InsExecutor {
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn run(&self, a1: *const gfc__HString) -> bool {
+        ((*self.vfptr).run)(self as *const _ as *mut _, a1)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn execute(&self, a1: gfc__Instruction) -> bool {
+        ((*self.vfptr).execute)(self as *const _ as *mut _, a1)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAdd(&self) -> bool {
+        ((*self.vfptr).doAdd)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doSubtract(&self) -> bool {
+        ((*self.vfptr).doSubtract)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMultiply(&self) -> bool {
+        ((*self.vfptr).doMultiply)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDivide(&self) -> bool {
+        ((*self.vfptr).doDivide)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doCat(&self) -> bool {
+        ((*self.vfptr).doCat)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAnd(&self) -> bool {
+        ((*self.vfptr).doAnd)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doOr(&self) -> bool {
+        ((*self.vfptr).doOr)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doModulo(&self) -> bool {
+        ((*self.vfptr).doModulo)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBranchFalse(&self) -> bool {
+        ((*self.vfptr).doBranchFalse)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBranchTrue(&self) -> bool {
+        ((*self.vfptr).doBranchTrue)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doVar(&self) -> bool {
+        ((*self.vfptr).doVar)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doVarAssign(&self) -> bool {
+        ((*self.vfptr).doVarAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doParamAssign(&self) -> bool {
+        ((*self.vfptr).doParamAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAssign(&self) -> bool {
+        ((*self.vfptr).doAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doGoto(&self) -> bool {
+        ((*self.vfptr).doGoto)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIncScope(&self) -> bool {
+        ((*self.vfptr).doIncScope)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDecScope(&self) -> bool {
+        ((*self.vfptr).doDecScope)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doFloat(&self) -> bool {
+        ((*self.vfptr).doFloat)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doInt(&self) -> bool {
+        ((*self.vfptr).doInt)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doString(&self) -> bool {
+        ((*self.vfptr).doString)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBool(&self) -> bool {
+        ((*self.vfptr).doBool)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNullObject(&self) -> bool {
+        ((*self.vfptr).doNullObject)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doRand(&self) -> bool {
+        ((*self.vfptr).doRand)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doRandRange(&self) -> bool {
+        ((*self.vfptr).doRandRange)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIdentifier(&self) -> bool {
+        ((*self.vfptr).doIdentifier)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLabel(&self) -> bool {
+        ((*self.vfptr).doLabel)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doReturn(&self) -> bool {
+        ((*self.vfptr).doReturn)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doReturnNull(&self) -> bool {
+        ((*self.vfptr).doReturnNull)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doPrint(&self) -> bool {
+        ((*self.vfptr).doPrint)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLess(&self) -> bool {
+        ((*self.vfptr).doLess)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doGreater(&self) -> bool {
+        ((*self.vfptr).doGreater)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doEqual(&self) -> bool {
+        ((*self.vfptr).doEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNotEqual(&self) -> bool {
+        ((*self.vfptr).doNotEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doGreaterEqual(&self) -> bool {
+        ((*self.vfptr).doGreaterEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLessEqual(&self) -> bool {
+        ((*self.vfptr).doLessEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNot(&self) -> bool {
+        ((*self.vfptr).doNot)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNegate(&self) -> bool {
+        ((*self.vfptr).doNegate)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIntCast(&self) -> bool {
+        ((*self.vfptr).doIntCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doFloatCast(&self) -> bool {
+        ((*self.vfptr).doFloatCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBoolCast(&self) -> bool {
+        ((*self.vfptr).doBoolCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doStringCast(&self) -> bool {
+        ((*self.vfptr).doStringCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doCall(&self) -> bool {
+        ((*self.vfptr).doCall)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doCallMethod(&self) -> bool {
+        ((*self.vfptr).doCallMethod)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMethod(&self) -> bool {
+        ((*self.vfptr).doMethod)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doPop(&self) -> bool {
+        ((*self.vfptr).doPop)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNew(&self) -> bool {
+        ((*self.vfptr).doNew)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNewValue(&self) -> bool {
+        ((*self.vfptr).doNewValue)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNop(&self) -> bool {
+        ((*self.vfptr).doNop)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doInc(&self) -> bool {
+        ((*self.vfptr).doInc)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDec(&self) -> bool {
+        ((*self.vfptr).doDec)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAddAssign(&self) -> bool {
+        ((*self.vfptr).doAddAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doSubAssign(&self) -> bool {
+        ((*self.vfptr).doSubAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMulAssign(&self) -> bool {
+        ((*self.vfptr).doMulAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDivAssign(&self) -> bool {
+        ((*self.vfptr).doDivAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doModAssign(&self) -> bool {
+        ((*self.vfptr).doModAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMethodChain(&self) -> bool {
+        ((*self.vfptr).doMethodChain)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doProperty(&self) -> bool {
+        ((*self.vfptr).doProperty)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLine(&self) -> bool {
+        ((*self.vfptr).doLine)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doArray(&self) -> bool {
+        ((*self.vfptr).doArray)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doElement(&self) -> bool {
+        ((*self.vfptr).doElement)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doContains(&self) -> bool {
+        ((*self.vfptr).doContains)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doRemove(&self) -> bool {
+        ((*self.vfptr).doRemove)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIterator(&self) -> bool {
+        ((*self.vfptr).doIterator)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIteratorTest(&self) -> bool {
+        ((*self.vfptr).doIteratorTest)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIteratorAssign(&self) -> bool {
+        ((*self.vfptr).doIteratorAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn validateParamCount(
+        &self,
+        a1: i32,
+        a2: *const gfc__HString,
+    ) -> bool {
+        ((*self.vfptr).validateParamCount)(self as *const _ as *mut _, a1, a2)
+    }
+
+    #[cfg(pdb_issue = "malformed PDB: type index 0")]
+    pub unsafe extern "C" fn scriptError(
+        &self,
+        a1: *const i8,
+        a2: compile_error!("malformed PDB: type index 0"),
+    ) {
+        ((*self.vfptr).scriptError)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__InsExecutor__vftable {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field scriptError")]
+#[repr(C)]
+pub struct gfc__InsExecutor__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor, _: u32) -> *mut (),
+    pub run:
+        unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor, _: *const gfc__HString) -> bool,
+    pub execute:
+        unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor, _: gfc__Instruction) -> bool,
+    pub doAdd: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doSubtract: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doMultiply: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doDivide: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doCat: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doAnd: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doOr: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doModulo: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doBranchFalse: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doBranchTrue: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doVar: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doVarAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doParamAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doGoto: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doIncScope: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doDecScope: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doFloat: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doInt: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doString: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doBool: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doNullObject: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doRand: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doRandRange: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doIdentifier: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doLabel: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doReturn: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doReturnNull: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doPrint: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doLess: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doGreater: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doNotEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doGreaterEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doLessEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doNot: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doNegate: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doIntCast: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doFloatCast: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doBoolCast: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doStringCast: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doCall: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doCallMethod: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doMethod: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doPop: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doNew: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doNewValue: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doNop: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doInc: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doDec: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doAddAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doSubAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doMulAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doDivAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doModAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doMethodChain: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doProperty: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doLine: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doArray: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doElement: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doContains: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doRemove: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doIterator: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doIteratorTest: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub doIteratorAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsExecutor) -> bool,
+    pub validateParamCount: unsafe extern "thiscall" fn(
+        this: *mut gfc__InsExecutor,
+        _: i32,
+        _: *const gfc__HString,
+    ) -> bool,
+    #[cfg(pdb_issue = "malformed PDB: type index 0")]
+    pub scriptError: unsafe extern "C" fn(
+        this: *mut gfc__InsExecutor,
+        _: *const i8,
+        _: compile_error!("malformed PDB: type index 0"),
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__FixedVector_gfc__InsRun__CachedEnv_20_0_gfc__CAllocator_ {
+    // gfc__Vector_gfc__InsRun__CachedEnv_0_gfc__CAllocator_
+    pub mData: *mut gfc__InsRun__CachedEnv,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+    // gfc__FixedVector_gfc__InsRun__CachedEnv_20_0_gfc__CAllocator_
+    pub mFixedData: [u8; 160],
+}
+
+unsafe impl UpcastToNop<gfc__Vector_gfc__InsRun__CachedEnv_0_gfc__CAllocator_>
+    for gfc__FixedVector_gfc__InsRun__CachedEnv_20_0_gfc__CAllocator_
+{
+}
+
+#[repr(C)]
+pub struct gfc__InsRun {
+    // gfc__InsExecutor
+    pub vfptr: *const gfc__InsRun__vftable,
+    pub mFunctions: gfc__AutoRef_gfc__ScriptFunctions_,
+    pub mCurrentFunction: gfc__AutoRef_gfc__ScriptFunction_,
+    pub mBuf: *mut u8,
+    pub mPC: i32,
+    pub mLineNumber: i32,
+    pub mNeedsSwap: bool,
+    pub mResult: bool,
+    pub mReturn: bool,
+    pub mMaxInstructions: u32,
+    // gfc__InsRun
+    pub mSourceName: gfc__HString,
+    pub mStack: *mut gfc__ValueStack,
+    pub mEnvCurrent: gfc__AutoRef_gfc__Environment_,
+    pub mEnvBase: gfc__AutoRef_gfc__Environment_,
+    pub mEnvCache: gfc__FixedVector_gfc__InsRun__CachedEnv_20_0_gfc__CAllocator_,
+    pub mMethodCallValue: gfc__AutoRef_gfc__Value_,
+    pub mMethodCallName: gfc__AutoRef_gfc__Value_,
+}
+
+unsafe impl UpcastToNop<gfc__InsExecutor> for gfc__InsRun {}
+
+impl gfc__InsRun {
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn run(&self, a1: *const gfc__HString) -> bool {
+        ((*self.vfptr).run)(self as *const _ as *mut _, a1)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn execute(&self, a1: gfc__Instruction) -> bool {
+        ((*self.vfptr).execute)(self as *const _ as *mut _, a1)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAdd(&self) -> bool {
+        ((*self.vfptr).doAdd)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doSubtract(&self) -> bool {
+        ((*self.vfptr).doSubtract)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMultiply(&self) -> bool {
+        ((*self.vfptr).doMultiply)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDivide(&self) -> bool {
+        ((*self.vfptr).doDivide)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doCat(&self) -> bool {
+        ((*self.vfptr).doCat)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAnd(&self) -> bool {
+        ((*self.vfptr).doAnd)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doOr(&self) -> bool {
+        ((*self.vfptr).doOr)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doModulo(&self) -> bool {
+        ((*self.vfptr).doModulo)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBranchFalse(&self) -> bool {
+        ((*self.vfptr).doBranchFalse)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBranchTrue(&self) -> bool {
+        ((*self.vfptr).doBranchTrue)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doVar(&self) -> bool {
+        ((*self.vfptr).doVar)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doVarAssign(&self) -> bool {
+        ((*self.vfptr).doVarAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doParamAssign(&self) -> bool {
+        ((*self.vfptr).doParamAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAssign(&self) -> bool {
+        ((*self.vfptr).doAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doGoto(&self) -> bool {
+        ((*self.vfptr).doGoto)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIncScope(&self) -> bool {
+        ((*self.vfptr).doIncScope)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDecScope(&self) -> bool {
+        ((*self.vfptr).doDecScope)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doFloat(&self) -> bool {
+        ((*self.vfptr).doFloat)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doInt(&self) -> bool {
+        ((*self.vfptr).doInt)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doString(&self) -> bool {
+        ((*self.vfptr).doString)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBool(&self) -> bool {
+        ((*self.vfptr).doBool)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNullObject(&self) -> bool {
+        ((*self.vfptr).doNullObject)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doRand(&self) -> bool {
+        ((*self.vfptr).doRand)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doRandRange(&self) -> bool {
+        ((*self.vfptr).doRandRange)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIdentifier(&self) -> bool {
+        ((*self.vfptr).doIdentifier)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLabel(&self) -> bool {
+        ((*self.vfptr).doLabel)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doReturn(&self) -> bool {
+        ((*self.vfptr).doReturn)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doReturnNull(&self) -> bool {
+        ((*self.vfptr).doReturnNull)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doPrint(&self) -> bool {
+        ((*self.vfptr).doPrint)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLess(&self) -> bool {
+        ((*self.vfptr).doLess)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doGreater(&self) -> bool {
+        ((*self.vfptr).doGreater)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doEqual(&self) -> bool {
+        ((*self.vfptr).doEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNotEqual(&self) -> bool {
+        ((*self.vfptr).doNotEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doGreaterEqual(&self) -> bool {
+        ((*self.vfptr).doGreaterEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLessEqual(&self) -> bool {
+        ((*self.vfptr).doLessEqual)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNot(&self) -> bool {
+        ((*self.vfptr).doNot)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNegate(&self) -> bool {
+        ((*self.vfptr).doNegate)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIntCast(&self) -> bool {
+        ((*self.vfptr).doIntCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doFloatCast(&self) -> bool {
+        ((*self.vfptr).doFloatCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doBoolCast(&self) -> bool {
+        ((*self.vfptr).doBoolCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doStringCast(&self) -> bool {
+        ((*self.vfptr).doStringCast)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doCall(&self) -> bool {
+        ((*self.vfptr).doCall)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doCallMethod(&self) -> bool {
+        ((*self.vfptr).doCallMethod)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMethod(&self) -> bool {
+        ((*self.vfptr).doMethod)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doPop(&self) -> bool {
+        ((*self.vfptr).doPop)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNew(&self) -> bool {
+        ((*self.vfptr).doNew)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNewValue(&self) -> bool {
+        ((*self.vfptr).doNewValue)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doNop(&self) -> bool {
+        ((*self.vfptr).doNop)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doInc(&self) -> bool {
+        ((*self.vfptr).doInc)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDec(&self) -> bool {
+        ((*self.vfptr).doDec)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doAddAssign(&self) -> bool {
+        ((*self.vfptr).doAddAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doSubAssign(&self) -> bool {
+        ((*self.vfptr).doSubAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMulAssign(&self) -> bool {
+        ((*self.vfptr).doMulAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doDivAssign(&self) -> bool {
+        ((*self.vfptr).doDivAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doModAssign(&self) -> bool {
+        ((*self.vfptr).doModAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doMethodChain(&self) -> bool {
+        ((*self.vfptr).doMethodChain)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doProperty(&self) -> bool {
+        ((*self.vfptr).doProperty)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doLine(&self) -> bool {
+        ((*self.vfptr).doLine)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doArray(&self) -> bool {
+        ((*self.vfptr).doArray)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doElement(&self) -> bool {
+        ((*self.vfptr).doElement)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doContains(&self) -> bool {
+        ((*self.vfptr).doContains)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doRemove(&self) -> bool {
+        ((*self.vfptr).doRemove)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIterator(&self) -> bool {
+        ((*self.vfptr).doIterator)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIteratorTest(&self) -> bool {
+        ((*self.vfptr).doIteratorTest)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn doIteratorAssign(&self) -> bool {
+        ((*self.vfptr).doIteratorAssign)(self as *const _ as *mut _)
+    }
+
+    #[cfg(pdb_issue = "error in field scriptError")]
+    pub unsafe extern "thiscall" fn validateParamCount(
+        &self,
+        a1: i32,
+        a2: *const gfc__HString,
+    ) -> bool {
+        ((*self.vfptr).validateParamCount)(self as *const _ as *mut _, a1, a2)
+    }
+
+    #[cfg(pdb_issue = "malformed PDB: type index 0")]
+    pub unsafe extern "C" fn scriptError(
+        &self,
+        a1: *const i8,
+        a2: compile_error!("malformed PDB: type index 0"),
+    ) {
+        ((*self.vfptr).scriptError)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__InsRun__vftable {
+    _opaque: [u8; 0],
+}
+
+#[cfg(pdb_issue = "error in field scriptError")]
+#[repr(C)]
+pub struct gfc__InsRun__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__InsRun, _: u32) -> *mut (),
+    pub run: unsafe extern "thiscall" fn(this: *mut gfc__InsRun, _: *const gfc__HString) -> bool,
+    pub execute: unsafe extern "thiscall" fn(this: *mut gfc__InsRun, _: gfc__Instruction) -> bool,
+    pub doAdd: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doSubtract: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doMultiply: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doDivide: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doCat: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doAnd: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doOr: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doModulo: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doBranchFalse: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doBranchTrue: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doVar: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doVarAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doParamAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doGoto: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doIncScope: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doDecScope: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doFloat: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doInt: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doString: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doBool: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doNullObject: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doRand: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doRandRange: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doIdentifier: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doLabel: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doReturn: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doReturnNull: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doPrint: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doLess: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doGreater: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doNotEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doGreaterEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doLessEqual: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doNot: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doNegate: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doIntCast: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doFloatCast: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doBoolCast: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doStringCast: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doCall: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doCallMethod: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doMethod: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doPop: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doNew: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doNewValue: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doNop: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doInc: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doDec: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doAddAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doSubAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doMulAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doDivAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doModAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doMethodChain: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doProperty: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doLine: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doArray: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doElement: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doContains: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doRemove: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doIterator: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doIteratorTest: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub doIteratorAssign: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool,
+    pub validateParamCount:
+        unsafe extern "thiscall" fn(this: *mut gfc__InsRun, _: i32, _: *const gfc__HString) -> bool,
+    #[cfg(pdb_issue = "malformed PDB: type index 0")]
+    pub scriptError: unsafe extern "C" fn(
+        this: *mut gfc__InsRun,
+        _: *const i8,
+        _: compile_error!("malformed PDB: type index 0"),
+    ),
+}
+
+#[repr(C)]
+pub struct gfc__InsRun__CachedEnv {
+    pub PC: i32,
+    pub Env: gfc__AutoRef_gfc__Environment_,
 }
 
 #[repr(C)]
@@ -22588,109 +23630,4 @@ pub struct hkFourTransposedPointsf {
     #[cfg(pdb_issue = "unimplemented class layout")]
     pub m_vertices: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 48],
-}
-
-#[repr(C)]
-pub struct hkcdVertex {
-    // hkVector4f
-    #[cfg(pdb_issue = "unimplemented type kind")]
-    pub m_quad: compile_error!("unimplemented type kind"),
-    // hkcdVertex
-    __pdbindgen_padding: [u8; 16],
-}
-
-unsafe impl UpcastToNop<hkVector4f> for hkcdVertex {}
-
-#[repr(C)]
-pub struct hkRotationf {
-    // hkMatrix3f
-    pub m_col0: hkVector4f,
-    pub m_col1: hkVector4f,
-    pub m_col2: hkVector4f,
-    // hkRotationf
-}
-
-unsafe impl UpcastToNop<hkMatrix3f> for hkRotationf {}
-
-#[repr(C)]
-pub struct hkMatrix3f {
-    pub m_col0: hkVector4f,
-    pub m_col1: hkVector4f,
-    pub m_col2: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkVector4fComparison {
-    #[cfg(pdb_issue = "unimplemented type kind")]
-    pub m_mask: compile_error!("unimplemented type kind"),
-    __pdbindgen_padding: [u8; 16],
-}
-
-#[repr(C)]
-pub struct hkStringPtr {
-    pub m_stringAndFlag: *const i8,
-}
-
-#[repr(C)]
-pub struct hkSphere {
-    pub m_pos: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkcdShape {
-    // hkBaseObject
-    pub vfptr: *const hkcdShape__vftable,
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkcdShape
-    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
-    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
-    pub m_bitsPerKey: u8,
-    pub m_shapeInfoCodecType:
-        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkcdShape {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkcdShape {}
-
-impl hkcdShape {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkcdShape__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkcdShape, _: u32) -> *mut (),
-    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkcdShape),
-    pub getClassType: unsafe extern "thiscall" fn(this: *const hkcdShape) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkcdShape),
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_ {
-    pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_ {
-    pub m_storage: u8,
 }

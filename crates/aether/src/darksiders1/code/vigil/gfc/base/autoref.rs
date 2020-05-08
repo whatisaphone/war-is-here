@@ -256,6 +256,11 @@ lowered_autoref!(
     target::gfc__StaticMesh,
     lift = true,
 );
+lowered_autoref!(
+    target::gfc__AutoRef_gfc__Value_,
+    target::gfc__Value,
+    lift = true,
+);
 lowered_autoref!(target::gfc__AutoRef_gfc__Visual_, target::gfc__Visual);
 lowered_autoref!(
     target::gfc__AutoRef_gfc__World_,

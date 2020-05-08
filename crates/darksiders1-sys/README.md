@@ -28,6 +28,7 @@ pdbindgen \
     -i '^gfc::GameCamera$' \
     -i '^gfc::HString::c_str$' \
     -i '^gfc::HString::~?HString$' \
+    -i '^gfc::InsRun::doPrint$' \
     -i '^gfc::Inventory::addItem$' \
     -i '^gfc::Item::_Class$' \
     -i '^gfc::KGGraphics::createStaticMesh$' \
@@ -81,11 +82,15 @@ pdbindgen \
     -i '^gfc::StaticObject::setObjectName$' \
     -i '^gfc::StaticObject::setPackageName$' \
     -i '^gfc::StaticObject::~?StaticObject$' \
+    -i '^gfc::String::c_str$' \
     -i '^gfc::String::~?String$' \
     -i '^gfc::TeleportHelper::warpToMap$' \
     -i '^gfc::TriggerRegion$' \
     -i '^gfc::TriggerRegion::_Class$' \
     -i '^gfc::UIRenderer::\w+$' \
+    -i '^gfc::Value$' \
+    -i '^gfc::ValueStack::pop$' \
+    -i '^gfc::ValueStack::push$' \
     -i '^gfc::Vector4Parameter::~?Vector4Parameter$' \
     -i '^gfc::Weapon$' \
     -i '^gfc::WindowHelper::pushWindow$' \

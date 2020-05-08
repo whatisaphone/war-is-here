@@ -14,4 +14,11 @@ impl String {
         };
         Self { inner }
     }
+
+    pub fn c_str(&self) -> &CStr {
+        unsafe {
+            let result = target::gfc__String__c_str(self.as_ptr());
+            CStr::from_ptr(result)
+        }
+    }
 }

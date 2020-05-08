@@ -22,6 +22,7 @@ struct Detours {
     gfc__DebugOutModule__execute: target::gfc__DebugOutModule__execute,
     gfc__DetectorRegion__bodyEntered: target::gfc__DetectorRegion__bodyEntered,
     gfc__DetectorRegion__bodyExited: target::gfc__DetectorRegion__bodyExited,
+    gfc__InsRun__doPrint: target::gfc__InsRun__doPrint,
     gfc__MaterialCache__get: target::gfc__MaterialCache__get,
     gfc__MeshCache__getStaticMesh: target::gfc__MeshCache__getStaticMesh,
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
@@ -61,6 +62,7 @@ pub fn install() {
             gfc__DebugOutModule__execute,
             gfc__DetectorRegion__bodyEntered,
             gfc__DetectorRegion__bodyExited,
+            gfc__InsRun__doPrint,
             gfc__MaterialCache__get,
             gfc__MeshCache__getStaticMesh,
             gfc__MeshCache__loadMesh,
@@ -215,6 +217,15 @@ mod hook {
         log_events::hook_detectorregion_body_exited((*this).lift_ref(), (*body).lift_ref());
 
         (detours.gfc__DetectorRegion__bodyExited)(this, body, wobject);
+    }
+
+    pub unsafe extern "thiscall" fn gfc__InsRun__doPrint(this: *mut target::gfc__InsRun) -> bool {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        log_events::hook_insrun_do_print((*this).lift_ref());
+
+        (detours.gfc__InsRun__doPrint)(this)
     }
 
     pub unsafe extern "thiscall" fn gfc__MaterialCache__get(

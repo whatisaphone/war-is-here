@@ -95,6 +95,7 @@ symbols! {
     pub static gfc__PhysMeshCache__get: unsafe extern "thiscall" fn(this: *mut gfc__PhysMeshCache, _: i32, _: *const gfc__HString, _: i32, _: f32) -> *mut hkpShape = Text(0xc75710);
     pub static gfc__PhysMeshCache__get_2: unsafe extern "thiscall" fn(this: *mut gfc__PhysMeshCache, _: *const gfc__HString, _: *const gfc__HString, _: i32, _: f32) -> *mut hkpShape = Text(0xc77260);
     pub static gfc__DebugOutModule__execute: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32) = Text(0xaeb700);
+    pub static gfc__InsRun__doPrint: unsafe extern "thiscall" fn(this: *mut gfc__InsRun) -> bool = Text(0xaa6f80);
     pub static gfc__HString__HString: unsafe extern "thiscall" fn(this: *mut gfc__HString) -> *mut gfc__HString = Text(0xa63b40);
     pub static gfc__HString__HString_2: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: *const gfc__String) -> *mut gfc__HString = Text(0xa6e4a0);
     pub static gfc__HString__HString_3: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: *const i8, _: bool) -> *mut gfc__HString = Text(0xa6e550);
@@ -103,6 +104,8 @@ symbols! {
     pub static gfc__HString__HString_6: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: u64, _: *const i8, _: i32) -> *mut gfc__HString = Text(0xa6e720);
     pub static gfc__HString___HString: unsafe extern "thiscall" fn(this: *mut gfc__HString) = Text(0xa6e790);
     pub static gfc__HString__c_str: unsafe extern "thiscall" fn(this: *const gfc__HString) -> *const i8 = Text(0xa6e8d0);
+    pub static gfc__ValueStack__push: unsafe extern "thiscall" fn(this: *mut gfc__ValueStack, _: gfc__AutoRef_gfc__Value_) = Text(0xa56900);
+    pub static gfc__ValueStack__pop: unsafe extern "thiscall" fn(this: *mut gfc__ValueStack, result: *mut gfc__AutoRef_gfc__Value_) -> *mut gfc__AutoRef_gfc__Value_ = Text(0xa569c0);
     pub static gfc__ScriptClass__ScriptClass: unsafe extern "thiscall" fn(this: *mut gfc__ScriptClass, _: *const gfc__HString, _: i32, _: *mut gfc__Class) -> *mut gfc__ScriptClass = Text(0xa61fb0);
     pub static gfc__ScriptClass___ScriptClass: unsafe extern "thiscall" fn(this: *mut gfc__ScriptClass) = Text(0xa62140);
     pub static gfc__OOObjectWriter__writeObject: unsafe extern "thiscall" fn(this: *mut gfc__OOObjectWriter, _: gfc__AutoRef_gfc__Object_, _: gfc__AutoRef_gfc__OutputStream_, _: bool) = Text(0xa40140);
@@ -153,6 +156,7 @@ symbols! {
     pub static gfc__KGGraphics__createStaticMesh_2: unsafe extern "thiscall" fn(this: *mut gfc__KGGraphics, result: *mut gfc__AutoRef_gfc__StaticMesh_, _: *mut gfc__MeshBuilder) -> *mut gfc__AutoRef_gfc__StaticMesh_ = Text(0xe1ec0);
     pub static gfc__MeshBuilder__MeshBuilder: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) -> *mut gfc__MeshBuilder = Text(0xe4d20);
     pub static gfc__MeshBuilder___MeshBuilder: unsafe extern "thiscall" fn(this: *mut gfc__MeshBuilder) = Text(0xe4e10);
+    pub static gfc__String__c_str: unsafe extern "thiscall" fn(this: *const gfc__String) -> *const i8 = Text(0x61f90);
     pub static gfc__String__String: unsafe extern "thiscall" fn(this: *mut gfc__String) -> *mut gfc__String = Text(0x67070);
     pub static gfc__String___String: unsafe extern "thiscall" fn(this: *mut gfc__String) = Text(0x67110);
     pub static gfc__String__String_2: unsafe extern "thiscall" fn(this: *mut gfc__String, _: *const gfc__String) -> *mut gfc__String = Text(0x69030);

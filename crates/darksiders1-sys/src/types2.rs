@@ -5,6 +5,18 @@ use super::{types::*, types3::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__RegionCell__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__RegionCell_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__SkyDesc_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__Node3D___0_gfc__CAllocator_ {
     pub mData: *mut *mut gfc__Node3D,
     pub mSize: i32,
@@ -7985,6 +7997,11 @@ unsafe impl UpcastToNop<hkArrayBase_hkViewPtr_hkpConstraintInstance___>
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__ScriptFunctions_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__EmitterInstance {
     pub Transform: gfc__Matrix4,
     pub Offset: gfc__Matrix4,
@@ -8841,6 +8858,11 @@ pub struct gfc__VisScriptEntity__vftable {
     pub end: unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity),
     pub clearDeadLinks:
         unsafe extern "thiscall" fn(this: *mut gfc__VisScriptEntity, _: *mut gfc__ModuleSystem),
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__ScriptFunction_ {
+    pub p: *mut gfc__IRefObject,
 }
 
 #[repr(C)]
@@ -13966,82 +13988,4 @@ pub struct hkArrayBase_int_ {
     pub m_data: *mut i32,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkpConstraintData__RuntimeInfo {
-    pub m_sizeOfExternalRuntime: i32,
-    pub m_numSolverResults: i32,
-}
-
-#[repr(C)]
-pub struct hkpConstraintData__ConstraintInfo {
-    // hkpConstraintInfo
-    pub m_maxSizeOfSchema: i32,
-    pub m_sizeOfSchemas: i32,
-    pub m_numSolverResults: i32,
-    pub m_numSolverElemTemps: i32,
-    // hkpConstraintData__ConstraintInfo
-    pub m_atoms: *mut hkpConstraintAtom,
-    pub m_sizeOfAllAtoms: u32,
-    pub m_extraSchemaSize: u32,
-}
-
-unsafe impl UpcastToNop<hkpConstraintInfo> for hkpConstraintData__ConstraintInfo {}
-
-#[repr(C)]
-pub struct hkArrayBase_hkStackTracer__CallTree__Node_ {
-    pub m_data: *mut hkStackTracer__CallTree__Node,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkWorldMemoryAvailableWatchDog {
-    // hkBaseObject
-    pub vfptr: *const hkWorldMemoryAvailableWatchDog__vftable,
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-    // hkWorldMemoryAvailableWatchDog
-}
-
-unsafe impl UpcastToNop<hkReferencedObject> for hkWorldMemoryAvailableWatchDog {}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkWorldMemoryAvailableWatchDog {}
-
-impl hkWorldMemoryAvailableWatchDog {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getAmountOfFreeHeapMemoryRequested(&self) -> i32 {
-        ((*self.vfptr).getAmountOfFreeHeapMemoryRequested)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn freeHeapMemoryTillRequestedAmountIsAvailable(
-        &self,
-        a1: *mut hkpWorld,
-    ) {
-        ((*self.vfptr).freeHeapMemoryTillRequestedAmountIsAvailable)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn reduceConstraintsInIsland(
-        &self,
-        a1: *const hkWorldMemoryAvailableWatchDog__MemUsageInfo,
-        a2: i32,
-    ) {
-        ((*self.vfptr).reduceConstraintsInIsland)(self as *const _ as *mut _, a1, a2)
-    }
 }

@@ -5,6 +5,111 @@ use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkcdVertex {
+    // hkVector4f
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_quad: compile_error!("unimplemented type kind"),
+    // hkcdVertex
+    __pdbindgen_padding: [u8; 16],
+}
+
+unsafe impl UpcastToNop<hkVector4f> for hkcdVertex {}
+
+#[repr(C)]
+pub struct hkRotationf {
+    // hkMatrix3f
+    pub m_col0: hkVector4f,
+    pub m_col1: hkVector4f,
+    pub m_col2: hkVector4f,
+    // hkRotationf
+}
+
+unsafe impl UpcastToNop<hkMatrix3f> for hkRotationf {}
+
+#[repr(C)]
+pub struct hkMatrix3f {
+    pub m_col0: hkVector4f,
+    pub m_col1: hkVector4f,
+    pub m_col2: hkVector4f,
+}
+
+#[repr(C)]
+pub struct hkVector4fComparison {
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_mask: compile_error!("unimplemented type kind"),
+    __pdbindgen_padding: [u8; 16],
+}
+
+#[repr(C)]
+pub struct hkStringPtr {
+    pub m_stringAndFlag: *const i8,
+}
+
+#[repr(C)]
+pub struct hkSphere {
+    pub m_pos: hkVector4f,
+}
+
+#[repr(C)]
+pub struct hkcdShape {
+    // hkBaseObject
+    pub vfptr: *const hkcdShape__vftable,
+    // hkReferencedObject
+    pub m_memSizeAndRefCount: u32,
+    // hkcdShape
+    pub m_type: hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_,
+    pub m_dispatchType: hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_,
+    pub m_bitsPerKey: u8,
+    pub m_shapeInfoCodecType:
+        hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_,
+}
+
+unsafe impl UpcastToNop<hkReferencedObject> for hkcdShape {}
+
+unsafe impl UpcastToNop<hkBaseObject> for hkcdShape {}
+
+impl hkcdShape {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
+        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
+        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
+        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct hkcdShape__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkcdShape, _: u32) -> *mut (),
+    pub __first_virtual_table_function__: unsafe extern "thiscall" fn(this: *mut hkcdShape),
+    pub getClassType: unsafe extern "thiscall" fn(this: *const hkcdShape) -> *const hkClass,
+    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkcdShape),
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkcdShapeType__ShapeTypeEnum_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
+pub struct hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_ {
+    pub m_storage: u8,
+}
+
+#[repr(C)]
 pub struct hkReferencedObject {
     // hkBaseObject
     pub vfptr: *const hkReferencedObject__vftable,
@@ -8408,6 +8513,8 @@ pub type hkpWeldingUtility__WeldingType = i32;
 pub type hkpBroadPhase__Capabilities = i32;
 
 pub type hkpBroadPhase__BroadPhaseType = i32;
+
+pub type gfc__Instruction = i32;
 
 pub type unit4__RankingListQueryType = i32;
 

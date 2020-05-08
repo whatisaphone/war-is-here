@@ -4075,6 +4075,295 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__Method__0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
+pub struct gfc__Value {
+    // gfc__IRefObject
+    pub vfptr: *const gfc__Value__vftable,
+    pub ReferenceCount: i32,
+    // gfc__Value
+}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__Value {}
+
+impl gfc__Value {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getType(&self) -> i32 {
+        ((*self.vfptr).getType)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getTypeClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getTypeClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn assign(&self, a1: gfc__AutoRef_gfc__Value_) -> bool {
+        ((*self.vfptr).assign)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn clone(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        a2: u32,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).clone)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn cclone(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        a2: u32,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).cclone)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn execute(
+        &self,
+        a1: *mut gfc__ValueStack,
+        a2: *mut gfc__Environment,
+    ) -> i32 {
+        ((*self.vfptr).execute)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn execute_2(
+        &self,
+        a1: *const u64,
+        a2: *mut gfc__ValueStack,
+        a3: *mut gfc__Environment,
+    ) -> i32 {
+        ((*self.vfptr).execute_2)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getInt(&self) -> i32 {
+        ((*self.vfptr).getInt)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getInt32(&self) -> i32 {
+        ((*self.vfptr).getInt32)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getInt64(&self) -> i64 {
+        ((*self.vfptr).getInt64)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getFloat(&self) -> f32 {
+        ((*self.vfptr).getFloat)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getBool(&self) -> bool {
+        ((*self.vfptr).getBool)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getString(&self, result: *mut gfc__String) -> *mut gfc__String {
+        ((*self.vfptr).getString)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getHString(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getHString)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getWString(
+        &self,
+        result: *mut gfc__WString,
+    ) -> *mut gfc__WString {
+        ((*self.vfptr).getWString)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getObject(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Object_,
+    ) -> *mut gfc__AutoRef_gfc__Object_ {
+        ((*self.vfptr).getObject)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getElementCount(&self) -> i32 {
+        ((*self.vfptr).getElementCount)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn reserveElements(&self, a1: i32) {
+        ((*self.vfptr).reserveElements)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn addElement(&self, a1: gfc__AutoRef_gfc__Value_) {
+        ((*self.vfptr).addElement)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeElement(&self, a1: gfc__AutoRef_gfc__Value_) {
+        ((*self.vfptr).removeElement)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn containsElement(&self, a1: gfc__AutoRef_gfc__Value_) -> bool {
+        ((*self.vfptr).containsElement)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn setElementAt(
+        &self,
+        a1: gfc__AutoRef_gfc__Value_,
+        a2: gfc__AutoRef_gfc__Value_,
+    ) {
+        ((*self.vfptr).setElementAt)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn addElementAt(
+        &self,
+        a1: gfc__AutoRef_gfc__Value_,
+        a2: gfc__AutoRef_gfc__Value_,
+    ) {
+        ((*self.vfptr).addElementAt)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn removeElementAt(&self, a1: gfc__AutoRef_gfc__Value_) {
+        ((*self.vfptr).removeElementAt)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn removeAllElements(&self) {
+        ((*self.vfptr).removeAllElements)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn containsElementAt(&self, a1: gfc__AutoRef_gfc__Value_) -> bool {
+        ((*self.vfptr).containsElementAt)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getKeys(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).getKeys)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getValues(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).getValues)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getElementAt(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        a2: gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).getElementAt)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn hasNext(&self) -> bool {
+        ((*self.vfptr).hasNext)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getValue(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).getValue)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn next(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).next)(self as *const _ as *mut _, result)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__Value__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__Value, _: u32) -> *mut (),
+    pub getType: unsafe extern "thiscall" fn(this: *const gfc__Value) -> i32,
+    pub getTypeClass: unsafe extern "thiscall" fn(this: *const gfc__Value) -> *mut gfc__Class,
+    pub assign:
+        unsafe extern "thiscall" fn(this: *mut gfc__Value, _: gfc__AutoRef_gfc__Value_) -> bool,
+    pub clone: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        _: u32,
+    ) -> *mut gfc__AutoRef_gfc__Value_,
+    pub cclone: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        _: u32,
+    ) -> *mut gfc__AutoRef_gfc__Value_,
+    pub execute: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        _: *mut gfc__ValueStack,
+        _: *mut gfc__Environment,
+    ) -> i32,
+    pub execute_2: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        _: *const u64,
+        _: *mut gfc__ValueStack,
+        _: *mut gfc__Environment,
+    ) -> i32,
+    pub getInt: unsafe extern "thiscall" fn(this: *mut gfc__Value) -> i32,
+    pub getInt32: unsafe extern "thiscall" fn(this: *mut gfc__Value) -> i32,
+    pub getInt64: unsafe extern "thiscall" fn(this: *mut gfc__Value) -> i64,
+    pub getFloat: unsafe extern "thiscall" fn(this: *mut gfc__Value) -> f32,
+    pub getBool: unsafe extern "thiscall" fn(this: *mut gfc__Value) -> bool,
+    pub getString: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__String,
+    ) -> *mut gfc__String,
+    pub getHString: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getWString: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__WString,
+    ) -> *mut gfc__WString,
+    pub getObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Object_,
+    ) -> *mut gfc__AutoRef_gfc__Object_,
+    pub getElementCount: unsafe extern "thiscall" fn(this: *mut gfc__Value) -> i32,
+    pub reserveElements: unsafe extern "thiscall" fn(this: *mut gfc__Value, _: i32),
+    pub addElement: unsafe extern "thiscall" fn(this: *mut gfc__Value, _: gfc__AutoRef_gfc__Value_),
+    pub removeElement:
+        unsafe extern "thiscall" fn(this: *mut gfc__Value, _: gfc__AutoRef_gfc__Value_),
+    pub containsElement:
+        unsafe extern "thiscall" fn(this: *mut gfc__Value, _: gfc__AutoRef_gfc__Value_) -> bool,
+    pub setElementAt: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        _: gfc__AutoRef_gfc__Value_,
+        _: gfc__AutoRef_gfc__Value_,
+    ),
+    pub addElementAt: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        _: gfc__AutoRef_gfc__Value_,
+        _: gfc__AutoRef_gfc__Value_,
+    ),
+    pub removeElementAt:
+        unsafe extern "thiscall" fn(this: *mut gfc__Value, _: gfc__AutoRef_gfc__Value_),
+    pub removeAllElements: unsafe extern "thiscall" fn(this: *mut gfc__Value),
+    pub containsElementAt:
+        unsafe extern "thiscall" fn(this: *mut gfc__Value, _: gfc__AutoRef_gfc__Value_) -> bool,
+    pub getKeys: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_,
+    pub getValues: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_,
+    pub getElementAt: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        _: gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_,
+    pub hasNext: unsafe extern "thiscall" fn(this: *mut gfc__Value) -> bool,
+    pub getValue: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_,
+    pub next: unsafe extern "thiscall" fn(
+        this: *mut gfc__Value,
+        result: *mut gfc__AutoRef_gfc__Value_,
+    ) -> *mut gfc__AutoRef_gfc__Value_,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_int_0_gfc__CAllocator_ {
     pub mData: *mut i32,
     pub mSize: i32,
@@ -10567,16 +10856,4 @@ pub struct gfc__MeshInstance__vftable {
     pub compute: unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
     pub unlockMesh:
         unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
-}
-
-#[repr(C)]
-pub struct gfc__Vector_gfc__AutoRef_gfc__RegionCell__0_gfc__CAllocator_ {
-    pub mData: *mut gfc__AutoRef_gfc__RegionCell_,
-    pub mSize: i32,
-    pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__AutoRef_gfc__SkyDesc_ {
-    pub p: *mut gfc__IRefObject,
 }

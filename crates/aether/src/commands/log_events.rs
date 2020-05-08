@@ -2,6 +2,7 @@ use crate::{darksiders1::gfc, ui};
 use imgui::{im_str, ImStr, ImString};
 use once_cell::sync::Lazy;
 use parking_lot::Mutex;
+use scopeguard::guard;
 use std::{
     collections::VecDeque,
     convert::TryInto,
@@ -230,6 +231,24 @@ pub fn hook_detectorregion_body_exited(detector: &gfc::DetectorRegion, body: &gf
         "{:?} exited region {:?}",
         object.world_object().get_name().c_str(),
         detector.owner().get_name().c_str(),
+    ));
+}
+
+pub fn hook_insrun_do_print(run: &gfc::InsRun) {
+    if !ENABLED.load(Ordering::SeqCst) {
+        return;
+    }
+
+    let mut state = STATE.lock();
+
+    // Peek the value by temporarily popping.
+    let val = run.stack().pop();
+    let val = guard(val, |val| run.stack().push(val));
+
+    let pr = val.get_string();
+    state.log(format!(
+        "print: {}",
+        pr.c_str().to_str().unwrap_or("<invalid utf-8>"),
     ));
 }
 

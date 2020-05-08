@@ -114,6 +114,7 @@ symbols! {
     pub fn gfc__PhysMeshCache__get;
     pub fn gfc__PhysMeshCache__get_2;
     pub fn gfc__DebugOutModule__execute;
+    pub fn gfc__InsRun__doPrint;
     pub fn gfc__HString__HString;
     pub fn gfc__HString__HString_2;
     pub fn gfc__HString__HString_3;
@@ -122,6 +123,8 @@ symbols! {
     pub fn gfc__HString__HString_6;
     pub fn gfc__HString___HString;
     pub fn gfc__HString__c_str;
+    pub fn gfc__ValueStack__push;
+    pub fn gfc__ValueStack__pop;
     pub fn gfc__ScriptClass__ScriptClass;
     pub fn gfc__ScriptClass___ScriptClass;
     pub fn gfc__OOObjectWriter__writeObject;
@@ -172,6 +175,7 @@ symbols! {
     pub fn gfc__KGGraphics__createStaticMesh_2;
     pub fn gfc__MeshBuilder__MeshBuilder;
     pub fn gfc__MeshBuilder___MeshBuilder;
+    pub fn gfc__String__c_str;
     pub fn gfc__String__String;
     pub fn gfc__String___String;
     pub fn gfc__String__String_2;

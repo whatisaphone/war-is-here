@@ -52,7 +52,8 @@ pub use crate::darksiders1::code::vigil::{
         },
         memory::memop::{mem_alloc, mem_free},
         oc::ooobjectwriter::OOObjectWriter,
-        reflection::scriptclass::ScriptClass,
+        reflection::{scriptclass::ScriptClass, value::Value, valuestack::ValueStack},
+        script::common::{insexecutor::InsExecutor, insrun::InsRun},
         ui::{uicontrol::_UIControl, uimanager::_UIManager},
         util::{
             hstring::HString,

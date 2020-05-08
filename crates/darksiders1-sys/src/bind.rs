@@ -97,6 +97,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__PhysMeshCache__get);
     bind!(text, gfc__PhysMeshCache__get_2);
     bind!(text, gfc__DebugOutModule__execute);
+    bind!(text, gfc__InsRun__doPrint);
     bind!(text, gfc__HString__HString);
     bind!(text, gfc__HString__HString_2);
     bind!(text, gfc__HString__HString_3);
@@ -105,6 +106,8 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__HString__HString_6);
     bind!(text, gfc__HString___HString);
     bind!(text, gfc__HString__c_str);
+    bind!(text, gfc__ValueStack__push);
+    bind!(text, gfc__ValueStack__pop);
     bind!(text, gfc__ScriptClass__ScriptClass);
     bind!(text, gfc__ScriptClass___ScriptClass);
     bind!(text, gfc__OOObjectWriter__writeObject);
@@ -155,6 +158,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__KGGraphics__createStaticMesh_2);
     bind!(text, gfc__MeshBuilder__MeshBuilder);
     bind!(text, gfc__MeshBuilder___MeshBuilder);
+    bind!(text, gfc__String__c_str);
     bind!(text, gfc__String__String);
     bind!(text, gfc__String___String);
     bind!(text, gfc__String__String_2);

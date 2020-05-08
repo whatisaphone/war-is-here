@@ -6,6 +6,7 @@ pub mod math;
 pub mod memory;
 pub mod oc;
 pub mod reflection;
+pub mod script;
 pub mod ui;
 pub mod util;
 pub mod visualscript;
