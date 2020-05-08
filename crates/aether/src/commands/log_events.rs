@@ -4,6 +4,7 @@ use once_cell::sync::Lazy;
 use parking_lot::Mutex;
 use scopeguard::guard;
 use std::{
+    cell::Cell,
     collections::VecDeque,
     convert::TryInto,
     sync::atomic::{AtomicBool, Ordering},
@@ -54,11 +55,25 @@ pub fn draw(ui: &imgui::Ui<'_>) {
 
     let mut state = STATE.lock();
 
-    state.prune_old_entries();
-
     imgui_token_guard! {
         ui.push_style_color(imgui::StyleColor::WindowBg, [0.0, 0.0, 0.0, 0.0]);
     }
+
+    // Bit of a hack here to prevent flickering when removing entries.
+    //
+    // imgui's scrolling methods seem to use the previous frame's measurements
+    // instead of the current frame, so naively deleting an item would cause a
+    // flicker of empty space. We can prevent the flicker by setting the new scroll
+    // position a frame prior to actually modifying the list.
+    let num_old_entries = state.count_prune();
+    if num_old_entries != 0 {
+        state.need_scroll.set(true);
+    }
+    let scroll_pos = if state.need_scroll.get() {
+        Some((state.entries.len() - num_old_entries).saturating_sub(1))
+    } else {
+        None
+    };
 
     imgui::Window::new(im_str!("Event Log"))
         .position([WINDOW_LEFT, WINDOW_TOP], imgui::Condition::Always)
@@ -71,18 +86,21 @@ pub fn draw(ui: &imgui::Ui<'_>) {
                 .size([0.0, 0.0])
                 .build(ui, || {});
 
-            for entry in &state.entries {
+            for (i, entry) in state.entries.iter().enumerate() {
                 draw_text_shadow(ui, &entry.timestamp_text);
                 ui.text_colored(TIMESTAMP_COLOR, &entry.timestamp_text);
                 ui.same_line(0.0);
                 draw_text_shadow(ui, &entry.text);
                 ui.text(&entry.text);
-            }
-            if state.need_scroll {
-                ui.set_scroll_here_y();
-                state.need_scroll = false;
+                if Some(i) == scroll_pos {
+                    ui.set_scroll_here_y_with_ratio(1.0);
+                    state.need_scroll.set(false);
+                }
             }
         });
+
+    // Prune the list _after_ drawing to prevent flicker, as per above comment.
+    state.entries.drain(..num_old_entries);
 }
 
 /// Draws a text shadow without affecting the cursor position. Does not draw the
@@ -101,14 +119,14 @@ fn draw_text_shadow(ui: &imgui::Ui<'_>, text: &ImStr) {
 
 struct State {
     entries: VecDeque<Entry>,
-    need_scroll: bool,
+    need_scroll: Cell<bool>,
 }
 
 impl State {
     fn new() -> Self {
         Self {
             entries: VecDeque::new(),
-            need_scroll: false,
+            need_scroll: Cell::new(false),
         }
     }
 
@@ -119,14 +137,15 @@ impl State {
         });
         let entry = Entry::new(timestamp, text.into());
         self.entries.push_back(entry);
-        self.need_scroll = true;
+        self.need_scroll.set(true);
     }
 
-    fn prune_old_entries(&mut self) {
+    fn count_prune(&mut self) -> usize {
         let limit = now() - 5.0;
-        while self.entries.front().map_or(false, |e| e.timestamp < limit) {
-            self.entries.pop_front();
-        }
+        self.entries
+            .iter()
+            .take_while(|e| e.timestamp < limit)
+            .count()
     }
 }
 
