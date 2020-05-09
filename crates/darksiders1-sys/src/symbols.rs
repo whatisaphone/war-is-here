@@ -75,6 +75,7 @@ symbols! {
     pub static gfc__StaticObject__StaticObject_2: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: *const gfc__String, _: *const gfc__String) -> *mut gfc__StaticObject = Text(0xe54f60);
     pub static gfc__StaticObject__StaticObject_3: unsafe extern "thiscall" fn(this: *mut gfc__StaticObject, _: i32) -> *mut gfc__StaticObject = Text(0xe55020);
     pub static gfc__World__getRegion: unsafe extern "thiscall" fn(this: *const gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0xdd61f0);
+    pub static gfc__WorldRegion__preload: unsafe extern "thiscall" fn(this: *mut gfc__WorldRegion) = Text(0xddade0);
     pub static gfc__WorldObject__removeObjectFromWorld: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject) = Text(0xe05600);
     pub static gfc__WorldObject__attachToObject: unsafe extern "thiscall" fn(this: *mut gfc__WorldObject, _: *mut gfc__WorldObject, _: *const gfc__HString, _: *const gfc__HString, _: u8, _: bool) = Text(0xe0edb0);
     pub static gfc__World__World: unsafe extern "thiscall" fn(this: *mut gfc__World) -> *mut gfc__World = Text(0xe17670);

@@ -94,6 +94,7 @@ symbols! {
     pub fn gfc__StaticObject__StaticObject_2;
     pub fn gfc__StaticObject__StaticObject_3;
     pub fn gfc__World__getRegion;
+    pub fn gfc__WorldRegion__preload;
     pub fn gfc__WorldObject__removeObjectFromWorld;
     pub fn gfc__WorldObject__attachToObject;
     pub fn gfc__World__World;

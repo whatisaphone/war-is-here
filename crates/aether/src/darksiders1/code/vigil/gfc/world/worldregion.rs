@@ -11,6 +11,10 @@ struct_wrapper!(WorldRegion, target::gfc__WorldRegion);
 struct_wrapper_super!(WorldRegion, gfc::Object);
 
 impl WorldRegion {
+    pub fn name(&self) -> &gfc::HString {
+        self.inner.mName.lift_ref()
+    }
+
     pub fn layer_data(&self) -> &gfc::Vector<gfc::AutoRef<gfc::RegionLayerData>> {
         unsafe { (*self.as_ptr()).mLayerData.lift_ref() }
     }

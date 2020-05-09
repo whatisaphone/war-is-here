@@ -96,6 +96,7 @@ pdbindgen \
     -i '^gfc::WorldObject::attachToObject$' \
     -i '^gfc::WorldObject::removeObjectFromWorld' \
     -i '^gfc::WorldRegion::getLayer$' \
+    -i '^gfc::WorldRegion::preload$' \
     -i '^gfc::WorldRegionData$' \
     -i '^gfc::_UIManager::draw$' \
     -i '^hkpConvexVerticesShape::getOriginalVertices$' \

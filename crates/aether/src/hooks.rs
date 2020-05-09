@@ -28,6 +28,7 @@ struct Detours {
     gfc__OblivionGame__update: target::gfc__OblivionGame__update,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
     gfc__World__World: target::gfc__World__World,
+    gfc__WorldRegion__preload: target::gfc__WorldRegion__preload,
     detours: Vec<RawDetour>,
 }
 
@@ -65,6 +66,7 @@ pub fn install() {
             gfc__OblivionGame__update,
             gfc__ResourceCache__getResource,
             gfc__World__World,
+            gfc__WorldRegion__preload,
         );
     }
 
@@ -329,5 +331,14 @@ mod hook {
         editor_mode::world_constructor_hook(this);
 
         this
+    }
+
+    pub unsafe extern "thiscall" fn gfc__WorldRegion__preload(this: *mut target::gfc__WorldRegion) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        (detours.gfc__WorldRegion__preload)(this);
+
+        log_events::hook_worldregion_preload((*this).lift_ref());
     }
 }

@@ -200,3 +200,16 @@ pub fn hook_detectorregion_body_exited(detector: &gfc::DetectorRegion, body: &gf
         detector.owner().get_name().c_str(),
     ));
 }
+
+pub fn hook_worldregion_preload(region: &gfc::WorldRegion) {
+    if !ENABLED.load(Ordering::SeqCst) {
+        return;
+    }
+
+    let mut state = STATE.lock();
+
+    state.log(format!(
+        "Finished loading WorldRegion {:?}",
+        region.name().c_str(),
+    ));
+}
