@@ -114,3 +114,87 @@ macro_rules! hstring {
         $crate::darksiders1::gfc::HString::from_cstr(cstr!($str))
     };
 }
+
+// Yes, I just wrote 80 lines of code to save myself 1 line of code. Welcome to
+// the life of a software engineer.
+/// Automatically pops imgui tokens when they go out of scope.
+macro_rules! imgui_token_guard {
+    // @ui is empty. Capture the first token as @ui.
+    (
+        @input = {$head:ident $($tail:tt)*},
+        @ui = {},
+        @current = [],
+        @output = [],
+    ) => {
+        imgui_token_guard!(
+            @input = {$head $($tail)*},
+            @ui = {$head},
+            @current = [],
+            @output = [],
+        )
+    };
+    // If @input starts with a semicolon, complete the statement by moving @current to @output.
+    (
+        @input = {; $($tail:tt)*},
+        @ui = {$ui:ident},
+        @current = [$($current:tt)*],
+        @output = [$({$($output:tt)*})*],
+    ) => {
+        imgui_token_guard!(
+            @input = {$($tail)*},
+            @ui = {$ui},
+            @current = [],
+            @output = [$({$($output)*})* {$($current)*}],
+        )
+    };
+    // Any other token, keep appending to @current.
+    (
+        @input = {$head:tt $($tail:tt)*},
+        @ui = {$ui:ident},
+        @current = [$($current:tt)*],
+        @output = [$({$($output:tt)*})*],
+    ) => {
+        imgui_token_guard!(
+            @input = {$($tail)*},
+            @ui = {$ui},
+            @current = [$($current)* $head],
+            @output = [$({$($output)*})*],
+        )
+    };
+    // @input is empty, but @current is not. Append @current to @output.
+    (
+        @input = {},
+        @ui = {$ui:ident},
+        @current = [$($current:tt)+],
+        @output = [$({$($output:tt)*})*],
+    ) => {
+        imgui_token_guard!(
+            @input = {},
+            @ui = {$ui},
+            @current = [],
+            @output = [$({$($output)*})* {$($current)+}],
+        )
+    };
+    // Emit the final output.
+    (
+        @input = {},
+        @ui = {$ui:ident},
+        @current = [],
+        @output = [$({$($output:tt)*})*],
+    ) => {
+        $(
+            let _guard = scopeguard::guard($($output)*, |token| {
+                token.pop($ui);
+            });
+        )*
+    };
+    // Public interface.
+    ($($input:tt)*) => {
+        imgui_token_guard!(
+            @input = {$($input)*},
+            @ui = {},
+            @current = [],
+            @output = [],
+        )
+    };
+}

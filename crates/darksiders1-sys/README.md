@@ -1,4 +1,4 @@
-# darksiders1-hook
+# darksiders1-sys
 
 Low-level bindings to `darksiders1.exe`.
 
@@ -23,6 +23,7 @@ pdbindgen \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::DetectorObject::_Class$' \
     -i '^gfc::DetectorRegion::bodyEntered$' \
+    -i '^gfc::DetectorRegion::bodyExited$' \
     -i '^gfc::GameCamera$' \
     -i '^gfc::HString::c_str$' \
     -i '^gfc::HString::~?HString$' \
@@ -56,6 +57,7 @@ pdbindgen \
     -i '^gfc::PhysicsManager$' \
     -i '^gfc::PhysicsShapeObject::getTransform$' \
     -i '^gfc::Player::pickupItem$' \
+    -i '^gfc::PlayerStatTracker$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::RegionLayerData$' \
     -i '^gfc::ResourceCache::getResource$' \

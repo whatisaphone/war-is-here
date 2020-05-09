@@ -1,4 +1,7 @@
-use crate::{darksiders1::gfc, utils::mem::init_with};
+use crate::{
+    darksiders1::{gfc, Lift},
+    utils::mem::init_with,
+};
 use darksiders1_sys::target;
 
 struct_wrapper!(Object3D, target::gfc__Object3D);
@@ -13,5 +16,9 @@ impl Object3D {
             })
         };
         Self { inner }
+    }
+
+    pub fn world_object(&self) -> &gfc::WorldObject {
+        unsafe { (*self.inner.mWorldObject).lift_ref() }
     }
 }

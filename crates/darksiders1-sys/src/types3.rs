@@ -14859,6 +14859,130 @@ pub struct gfc__AutoRef_gfc__ChaosLevel_ {
 }
 
 #[repr(C)]
+pub struct gfc__PlayerStatTracker {
+    // gfc__IRefObject
+    pub vfptr: *const gfc__PlayerStatTracker__vftable,
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__PlayerStatTracker
+    pub mNumberOfKills: u32,
+    pub mNumberOfKillsMounted: u32,
+    pub mNumberOfKillsOnRuin: u32,
+    pub mNumberOfKillsOnBird: u32,
+    pub mNumberOfKillsOnFoot: u32,
+    pub mNumberOfDemonsKilled: u32,
+    pub mNumberOfDemonsKilledOnHorseback: u32,
+    pub mNumberOfEnemiesKilledWithEnvironment: u32,
+    pub mMostNumberOfKillsInSingleAttack: u32,
+    pub mMostNumberOfKillsInSingleAttackWithWrath: u32,
+    pub mNumberOfDeaths: u32,
+    pub mDamageDealt: f32,
+    pub mDamageReceived: f32,
+    pub mDamageDealtWarSword: f32,
+    pub mDamageDealtScythe: f32,
+    pub mDamageDealtTremorGauntlet: f32,
+    pub mHealthCollected: f32,
+    pub mDistanceTraveled: f32,
+    pub mDistanceTraveledMounted: f32,
+    pub mDistanceTraveledOnRuin: f32,
+    pub mDistanceTraveledOnBird: f32,
+    pub mDistanceTraveledOnFoot: f32,
+    pub mNumberOfDashes: u32,
+    pub mNumberOfObjectsPickedUp: u32,
+    pub mNumberOfEnvWeaponsPickedUp: u32,
+    pub mNumberOfFocusUses: u32,
+    pub mSoulsCollected: u32,
+    pub mTotalGameTime: u32,
+    pub mTotalCombatTime: f32,
+    pub mCurrentComboCount: u32,
+    pub mHighestComboCount: u32,
+    pub mNumberOfChestsOpened: u32,
+    pub mMostBatsKilledWithoutTouchingGround: u32,
+    pub mNumberOfArtifactsCollected: u32,
+    pub mDeltaTime: f32,
+    pub mCurrentNumberOfKillsInAttack: u32,
+    pub mCurrentNumberOfKillsInAttackWithWrath: u32,
+    pub mNumberOfBatsKilledWithoutTouchingGround: u32,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__PlayerStatTracker {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__PlayerStatTracker {}
+
+impl gfc__PlayerStatTracker {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__PlayerStatTracker__vftable {
+    pub __vecDelDtor:
+        unsafe extern "thiscall" fn(this: *mut gfc__PlayerStatTracker, _: u32) -> *mut (),
+    pub getClass:
+        unsafe extern "thiscall" fn(this: *const gfc__PlayerStatTracker) -> *mut gfc__Class,
+    pub setState:
+        unsafe extern "thiscall" fn(this: *mut gfc__PlayerStatTracker, _: *const gfc__HString),
+    pub getScriptData:
+        unsafe extern "thiscall" fn(this: *const gfc__PlayerStatTracker) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__PlayerStatTracker) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__PlayerStatTracker,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__PlayerStatTracker) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(
+        this: *mut gfc__PlayerStatTracker,
+        _: *const u64,
+    ) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__PlayerStatTracker,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__Item__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__Item_,
     pub mSize: i32,
@@ -22379,16 +22503,4 @@ pub struct hkReferencedObject__vftable {
     pub getClassType:
         unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
     pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
-}
-
-#[repr(C)]
-pub struct hkpConstraintAtom {
-    pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
-}
-
-#[repr(C)]
-pub struct hkQsTransformf {
-    pub m_translation: hkVector4f,
-    pub m_rotation: hkQuaternionf,
-    pub m_scale: hkVector4f,
 }

@@ -118,6 +118,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ByteOutputStream__ByteOutputStream_2);
     bind!(text, gfc__ClassRegistry__classForName);
     bind!(text, gfc__DetectorRegion__bodyEntered);
+    bind!(text, gfc__DetectorRegion__bodyExited);
     bind!(text, gfc__PhysicsShapeObject__getTransform);
     bind!(text, gfc__Player__pickupItem);
     bind!(text, gfc__Player__pickupItem_2);

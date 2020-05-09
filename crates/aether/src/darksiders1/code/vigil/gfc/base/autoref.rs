@@ -232,6 +232,11 @@ lowered_autoref!(
     lift = true,
 );
 lowered_autoref!(
+    target::gfc__AutoRef_gfc__PlayerStatTracker_,
+    target::gfc__PlayerStatTracker,
+    lift = true,
+);
+lowered_autoref!(
     target::gfc__AutoRef_gfc__RegionLayer_,
     target::gfc__RegionLayer,
     lift = true,

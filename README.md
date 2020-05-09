@@ -32,6 +32,8 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
 - **/load_package**
 
+- **/log_events**
+
 - **/move_player**
 
   Move to a position on the map:

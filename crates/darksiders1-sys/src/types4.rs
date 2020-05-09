@@ -5,6 +5,18 @@ use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkpConstraintAtom {
+    pub m_type: hkEnum_enum_hkpConstraintAtom__AtomType_unsigned_short_,
+}
+
+#[repr(C)]
+pub struct hkQsTransformf {
+    pub m_translation: hkVector4f,
+    pub m_rotation: hkQuaternionf,
+    pub m_scale: hkVector4f,
+}
+
+#[repr(C)]
 pub struct hkpSolverInfo {
     pub m_padding: f32,
     pub m_tau: f32,

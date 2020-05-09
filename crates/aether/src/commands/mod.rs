@@ -6,6 +6,7 @@ pub mod fps;
 pub mod infinite_jump;
 pub mod load_map_menu;
 pub mod load_package;
+pub mod log_events;
 pub mod move_player;
 pub mod pickup_item;
 pub mod show_collision;
@@ -25,12 +26,12 @@ pub enum RunResult {
 // Hide "/shutdown" since it doesn't work via GUI
 const HELP: &str = "\
 Available commands:
-/clear          /load_map_menu    /show_triggers
-/console        /load_package     /spawn_humans
-/editor_mode    /move_player      /spawn_object
-/fps            /pickup_item      /spawn_static_object
-/help           /show_collision   /teleport
-/infinite_jump  /show_player_pos
+/clear          /load_map_menu    /show_player_pos
+/console        /load_package     /show_triggers
+/editor_mode    /log_events       /spawn_humans
+/fps            /move_player      /spawn_object
+/help           /pickup_item      /spawn_static_object
+/infinite_jump  /show_collision   /teleport
 ";
 
 pub const COMMANDS: &[&str] = &[
@@ -42,6 +43,7 @@ pub const COMMANDS: &[&str] = &[
     "/infinite_jump",
     "/load_map_menu",
     "/load_package",
+    "/log_events",
     "/move_player",
     "/pickup_item",
     "/show_collision",
@@ -68,6 +70,7 @@ pub fn run(message: &[u8]) -> RunResult {
             RunResult::Ok
         }
         "load_package" => load_package::run(message).into(),
+        "log_events" => RunResult::Response(log_events::run(message)),
         "move_player" => move_player::run(message).into(),
         "pickup_item" => pickup_item::run(message).into(),
         "show_collision" => RunResult::Response(show_collision::run(message)),

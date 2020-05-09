@@ -1,6 +1,10 @@
 #![allow(non_snake_case)]
 
-use crate::{commands::console, ui, utils::detour::TypedDetour};
+use crate::{
+    commands::{console, log_events},
+    ui,
+    utils::detour::TypedDetour,
+};
 use darksiders1_sys::target;
 use detour::RawDetour;
 use parking_lot::{Mutex, RwLock};
@@ -16,6 +20,7 @@ struct Detours {
     gfc___UIManager__draw: target::gfc___UIManager__draw,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
     gfc__DetectorRegion__bodyEntered: target::gfc__DetectorRegion__bodyEntered,
+    gfc__DetectorRegion__bodyExited: target::gfc__DetectorRegion__bodyExited,
     gfc__MaterialCache__get: target::gfc__MaterialCache__get,
     gfc__MeshCache__getStaticMesh: target::gfc__MeshCache__getStaticMesh,
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
@@ -52,6 +57,7 @@ pub fn install() {
             gfc___UIManager__draw,
             gfc__Darksiders__processInputEvent,
             gfc__DetectorRegion__bodyEntered,
+            gfc__DetectorRegion__bodyExited,
             gfc__MaterialCache__get,
             gfc__MeshCache__getStaticMesh,
             gfc__MeshCache__loadMesh,
@@ -68,6 +74,7 @@ pub fn install() {
 pub fn uninstall() {
     // Disable anything that requires the ui to be loaded.
     console::hide();
+    log_events::disable();
 
     // Wait for the UI to become cleaned up. This must happen on the main thread.
     while ui::IS_ENABLED.load(Ordering::SeqCst) {
@@ -96,6 +103,7 @@ mod hook {
             editor_mode,
             fps,
             infinite_jump,
+            log_events,
             show_collision,
             show_player_pos,
             show_triggers,
@@ -175,12 +183,22 @@ mod hook {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
 
-        println!(
-            "bodyEntered {:?}",
-            (*(*this).mOwner).mName.lift_ref().c_str(),
-        );
+        log_events::hook_detectorregion_body_entered((*this).lift_ref(), (*body).lift_ref());
 
         (detours.gfc__DetectorRegion__bodyEntered)(this, body);
+    }
+
+    pub unsafe extern "thiscall" fn gfc__DetectorRegion__bodyExited(
+        this: *mut target::gfc__DetectorRegion,
+        body: *mut target::gfc__Body,
+        wobject: *mut target::gfc__WorldObject,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        log_events::hook_detectorregion_body_exited((*this).lift_ref(), (*body).lift_ref());
+
+        (detours.gfc__DetectorRegion__bodyExited)(this, body, wobject);
     }
 
     pub unsafe extern "thiscall" fn gfc__MaterialCache__get(

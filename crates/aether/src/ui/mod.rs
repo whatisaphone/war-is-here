@@ -1,6 +1,10 @@
 #![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 
-use crate::{commands::console, darksiders1::keen, utils::marker::UnsafeSend};
+use crate::{
+    commands::{console, log_events},
+    darksiders1::keen,
+    utils::marker::UnsafeSend,
+};
 use darksiders1_sys::target;
 use imgui::Context;
 use once_cell::sync::Lazy;
@@ -94,6 +98,7 @@ fn run_frame() {
     let ui = state.imgui.frame();
 
     console::draw(&ui);
+    log_events::draw(&ui);
 
     let draw_data = ui.render();
     draw::draw(
