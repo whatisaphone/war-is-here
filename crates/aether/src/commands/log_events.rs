@@ -172,10 +172,13 @@ pub fn hook_detectorregion_body_entered(detector: &gfc::DetectorRegion, body: &g
 
     let mut state = STATE.lock();
 
-    let object = body.object().world_object();
+    let object = match body.object() {
+        Some(o) => o,
+        None => return,
+    };
     state.log(format!(
         "{:?} entered region {:?}",
-        object.get_name().c_str(),
+        object.world_object().get_name().c_str(),
         detector.owner().get_name().c_str(),
     ));
 }
@@ -187,10 +190,13 @@ pub fn hook_detectorregion_body_exited(detector: &gfc::DetectorRegion, body: &gf
 
     let mut state = STATE.lock();
 
-    let object = body.object().world_object();
+    let object = match body.object() {
+        Some(o) => o,
+        None => return,
+    };
     state.log(format!(
         "{:?} exited region {:?}",
-        object.get_name().c_str(),
+        object.world_object().get_name().c_str(),
         detector.owner().get_name().c_str(),
     ));
 }
