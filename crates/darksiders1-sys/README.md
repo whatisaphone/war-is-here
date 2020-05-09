@@ -59,6 +59,7 @@ pdbindgen \
     -i '^gfc::PhysicsManager$' \
     -i '^gfc::PhysicsShapeObject::getTransform$' \
     -i '^gfc::Player::pickupItem$' \
+    -i '^gfc::Player::setSpawnPoint$' \
     -i '^gfc::PlayerStatTracker$' \
     -i '^gfc::RegionLayer::getRoot$' \
     -i '^gfc::RegionLayerData$' \

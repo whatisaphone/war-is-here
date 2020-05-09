@@ -28,6 +28,7 @@ struct Detours {
     gfc__MeshCache__loadMesh: target::gfc__MeshCache__loadMesh,
     gfc__Object3DCache__get: target::gfc__Object3DCache__get,
     gfc__OblivionGame__update: target::gfc__OblivionGame__update,
+    gfc__Player__setSpawnPoint_2: target::gfc__Player__setSpawnPoint_2,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
     gfc__World__World: target::gfc__World__World,
     gfc__WorldRegion__preload: target::gfc__WorldRegion__preload,
@@ -68,6 +69,7 @@ pub fn install() {
             gfc__MeshCache__loadMesh,
             gfc__Object3DCache__get,
             gfc__OblivionGame__update,
+            gfc__Player__setSpawnPoint_2,
             gfc__ResourceCache__getResource,
             gfc__World__World,
             gfc__WorldRegion__preload,
@@ -321,6 +323,26 @@ mod hook {
         infinite_jump::pump();
 
         (detours.gfc__OblivionGame__update)(this, timescale, noInputUpdate)
+    }
+
+    pub unsafe extern "thiscall" fn gfc__Player__setSpawnPoint_2(
+        this: *mut target::gfc__Player,
+        world: *const target::gfc__HString,
+        region: *const target::gfc__HString,
+        spawnpoint: *const target::gfc__HString,
+        spawnloadregion: *const target::gfc__HString,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        log_events::hook_player_set_spawn_point(
+            (*world).lift_ref(),
+            (*region).lift_ref(),
+            (*spawnpoint).lift_ref(),
+            (*spawnloadregion).lift_ref(),
+        );
+
+        (detours.gfc__Player__setSpawnPoint_2)(this, world, region, spawnpoint, spawnloadregion);
     }
 
     pub unsafe extern "thiscall" fn gfc__ResourceCache__getResource(

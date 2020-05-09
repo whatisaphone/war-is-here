@@ -271,6 +271,26 @@ pub fn hook_insrun_do_print(run: &gfc::InsRun) {
     ));
 }
 
+pub fn hook_player_set_spawn_point(
+    world: &gfc::HString,
+    region: &gfc::HString,
+    spawn_point: &gfc::HString,
+    spawn_load_region: &gfc::HString,
+) {
+    if !ENABLED.load(Ordering::SeqCst) {
+        return;
+    }
+
+    let mut state = STATE.lock();
+    state.log(format!(
+        "setSpawnPoint {:?} {:?} {:?} {:?}",
+        world.c_str(),
+        region.c_str(),
+        spawn_point.c_str(),
+        spawn_load_region.c_str(),
+    ));
+}
+
 pub fn hook_worldregion_preload(region: &gfc::WorldRegion) {
     if !ENABLED.load(Ordering::SeqCst) {
         return;

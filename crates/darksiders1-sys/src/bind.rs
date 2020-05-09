@@ -125,6 +125,8 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__DetectorRegion__bodyEntered);
     bind!(text, gfc__DetectorRegion__bodyExited);
     bind!(text, gfc__PhysicsShapeObject__getTransform);
+    bind!(text, gfc__Player__setSpawnPoint);
+    bind!(text, gfc__Player__setSpawnPoint_2);
     bind!(text, gfc__Player__pickupItem);
     bind!(text, gfc__Player__pickupItem_2);
     bind!(text, gfc__Inventory__addItem);

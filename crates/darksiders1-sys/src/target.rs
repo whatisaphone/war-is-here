@@ -142,6 +142,8 @@ symbols! {
     pub fn gfc__DetectorRegion__bodyEntered;
     pub fn gfc__DetectorRegion__bodyExited;
     pub fn gfc__PhysicsShapeObject__getTransform;
+    pub fn gfc__Player__setSpawnPoint;
+    pub fn gfc__Player__setSpawnPoint_2;
     pub fn gfc__Player__pickupItem;
     pub fn gfc__Player__pickupItem_2;
     pub fn gfc__Inventory__addItem;
