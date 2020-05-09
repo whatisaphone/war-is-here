@@ -76,7 +76,10 @@ pub fn draw(ui: &imgui::Ui<'_>) {
                 draw_text_shadow(ui, &entry.text);
                 ui.text(&entry.text);
             }
-            ui.set_scroll_here_y();
+            if state.need_scroll {
+                ui.set_scroll_here_y();
+                state.need_scroll = false;
+            }
         });
 }
 
@@ -96,12 +99,14 @@ fn draw_text_shadow(ui: &imgui::Ui<'_>, text: &ImStr) {
 
 struct State {
     entries: VecDeque<Entry>,
+    need_scroll: bool,
 }
 
 impl State {
     fn new() -> Self {
         Self {
             entries: VecDeque::new(),
+            need_scroll: false,
         }
     }
 
@@ -112,6 +117,7 @@ impl State {
         });
         let entry = Entry::new(timestamp, text.into());
         self.entries.push_back(entry);
+        self.need_scroll = true;
     }
 
     fn prune_old_entries(&mut self) {
