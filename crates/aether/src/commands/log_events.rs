@@ -259,6 +259,15 @@ pub fn hook_detectorregion_body_exited(detector: &gfc::DetectorRegion, body: &gf
     }
 }
 
+pub fn hook_dssavegamemanager_save_game() {
+    if !ENABLED.load(Ordering::SeqCst) {
+        return;
+    }
+
+    let mut state = STATE.lock();
+    state.log(im_str!("save game"));
+}
+
 pub fn hook_insrun_do_print(run: &gfc::InsRun) {
     if !ENABLED.load(Ordering::SeqCst) {
         return;
@@ -294,6 +303,19 @@ pub fn hook_player_set_spawn_point(
         region.c_str(),
         spawn_point.c_str(),
         spawn_load_region.c_str(),
+    ));
+}
+
+pub fn hook_savedata_set_value(key: &gfc::HString, value: &gfc::HString) {
+    if !ENABLED.load(Ordering::SeqCst) {
+        return;
+    }
+
+    let mut state = STATE.lock();
+    state.log(format!(
+        "set save value {:?} to {:?}",
+        key.c_str(),
+        value.c_str(),
     ));
 }
 

@@ -19,6 +19,7 @@ pdbindgen \
     -i '^gfc::CShapeMesh$' \
     -i '^gfc::CShapeMesh::_Class$' \
     -i '^gfc::ClassRegistry::classForName$' \
+    -i '^gfc::DSSaveGameManager::saveGame$' \
     -i '^gfc::Darksiders::doTheMagic$' \
     -i '^gfc::Darksiders::processInputEvent$' \
     -i '^gfc::DebugOutModule::execute$' \
@@ -67,6 +68,7 @@ pdbindgen \
     -i '^gfc::ResourceManager::getPackageID$' \
     -i '^gfc::ResourceManager::getPermanentID$' \
     -i '^gfc::ResourceManager::loadPackages$' \
+    -i '^gfc::SaveData::setValue$' \
     -i '^gfc::ScriptClass::~?ScriptClass$' \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::DSUIManager,.+>::InstanceHandle$' \

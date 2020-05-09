@@ -122,6 +122,7 @@ symbols! {
     pub static gfc__ClassRegistry__classForName: unsafe extern "thiscall" fn(this: *mut gfc__ClassRegistry, _: *const gfc__HString, _: bool, _: bool) -> *mut gfc__Class = Text(0xa16e50);
     pub static gfc__DetectorRegion__bodyEntered: unsafe extern "thiscall" fn(this: *mut gfc__DetectorRegion, _: *mut gfc__Body) = Text(0x9c58b0);
     pub static gfc__DetectorRegion__bodyExited: unsafe extern "thiscall" fn(this: *mut gfc__DetectorRegion, _: *mut gfc__Body, _: *mut gfc__WorldObject) = Text(0x9c5ba0);
+    pub static gfc__SaveData__setValue: unsafe extern "thiscall" fn(this: *mut gfc__SaveData, _: *const gfc__HString, _: *const gfc__HString) = Text(0x99d580);
     pub static gfc__PhysicsShapeObject__getTransform: unsafe extern "thiscall" fn(this: *mut gfc__PhysicsShapeObject, _: *mut gfc__Matrix4) = Text(0x8ed360);
     pub static gfc__Player__setSpawnPoint: unsafe extern "thiscall" fn(this: *mut gfc__Player, _: *const gfc__HString) = Text(0x81ccd0);
     pub static gfc__Player__setSpawnPoint_2: unsafe extern "thiscall" fn(this: *mut gfc__Player, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString, _: *const gfc__HString) = Text(0x821670);
@@ -138,6 +139,7 @@ symbols! {
     pub static gfc__World__getRegion_2: unsafe extern "thiscall" fn(this: *mut gfc__World, result: *mut gfc__AutoRef_gfc__WorldRegion_, _: i32) -> *mut gfc__AutoRef_gfc__WorldRegion_ = Text(0x223730);
     pub static gfc__Darksiders__processInputEvent: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent) -> bool = Text(0x27b4b0);
     pub static gfc__Darksiders__doTheMagic: unsafe extern "thiscall" fn(this: *mut gfc__Darksiders, _: *const keen__InputEvent, _: *const gfc__HString) -> bool = Text(0x27bed0);
+    pub static gfc__DSSaveGameManager__saveGame: unsafe extern "thiscall" fn(this: *mut gfc__DSSaveGameManager, _: i32) = Text(0x294fa0);
     pub static gfc__UIRenderer__translate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb170);
     pub static gfc__UIRenderer__rotate: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32) = Text(0x1eb1b0);
     pub static gfc__UIRenderer__scale: unsafe extern "thiscall" fn(this: *mut gfc__UIRenderer, _: f32, _: f32) = Text(0x1eb1e0);

@@ -141,6 +141,7 @@ symbols! {
     pub fn gfc__ClassRegistry__classForName;
     pub fn gfc__DetectorRegion__bodyEntered;
     pub fn gfc__DetectorRegion__bodyExited;
+    pub fn gfc__SaveData__setValue;
     pub fn gfc__PhysicsShapeObject__getTransform;
     pub fn gfc__Player__setSpawnPoint;
     pub fn gfc__Player__setSpawnPoint_2;
@@ -157,6 +158,7 @@ symbols! {
     pub fn gfc__World__getRegion_2;
     pub fn gfc__Darksiders__processInputEvent;
     pub fn gfc__Darksiders__doTheMagic;
+    pub fn gfc__DSSaveGameManager__saveGame;
     pub fn gfc__UIRenderer__translate;
     pub fn gfc__UIRenderer__rotate;
     pub fn gfc__UIRenderer__scale;

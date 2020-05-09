@@ -19,6 +19,7 @@ pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>
 struct Detours {
     gfc___UIManager__draw: target::gfc___UIManager__draw,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
+    gfc__DSSaveGameManager__saveGame: target::gfc__DSSaveGameManager__saveGame,
     gfc__DebugOutModule__execute: target::gfc__DebugOutModule__execute,
     gfc__DetectorRegion__bodyEntered: target::gfc__DetectorRegion__bodyEntered,
     gfc__DetectorRegion__bodyExited: target::gfc__DetectorRegion__bodyExited,
@@ -30,6 +31,7 @@ struct Detours {
     gfc__OblivionGame__update: target::gfc__OblivionGame__update,
     gfc__Player__setSpawnPoint_2: target::gfc__Player__setSpawnPoint_2,
     gfc__ResourceCache__getResource: target::gfc__ResourceCache__getResource,
+    gfc__SaveData__setValue: target::gfc__SaveData__setValue,
     gfc__World__World: target::gfc__World__World,
     gfc__WorldRegion__preload: target::gfc__WorldRegion__preload,
     detours: Vec<RawDetour>,
@@ -59,6 +61,7 @@ pub fn install() {
 
         hook!(
             gfc___UIManager__draw,
+            gfc__DSSaveGameManager__saveGame,
             gfc__Darksiders__processInputEvent,
             gfc__DebugOutModule__execute,
             gfc__DetectorRegion__bodyEntered,
@@ -71,6 +74,7 @@ pub fn install() {
             gfc__OblivionGame__update,
             gfc__Player__setSpawnPoint_2,
             gfc__ResourceCache__getResource,
+            gfc__SaveData__setValue,
             gfc__World__World,
             gfc__WorldRegion__preload,
         );
@@ -221,6 +225,18 @@ mod hook {
         (detours.gfc__DetectorRegion__bodyExited)(this, body, wobject);
     }
 
+    pub unsafe extern "thiscall" fn gfc__DSSaveGameManager__saveGame(
+        this: *mut target::gfc__DSSaveGameManager,
+        slot: i32,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        log_events::hook_dssavegamemanager_save_game();
+
+        (detours.gfc__DSSaveGameManager__saveGame)(this, slot);
+    }
+
     pub unsafe extern "thiscall" fn gfc__InsRun__doPrint(this: *mut target::gfc__InsRun) -> bool {
         let guard = DETOURS.read();
         let detours = guard.as_ref().unwrap();
@@ -365,6 +381,19 @@ mod hook {
         }
 
         result
+    }
+
+    pub unsafe extern "thiscall" fn gfc__SaveData__setValue(
+        this: *mut target::gfc__SaveData,
+        key: *const target::gfc__HString,
+        value: *const target::gfc__HString,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        log_events::hook_savedata_set_value((*key).lift_ref(), (*value).lift_ref());
+
+        (detours.gfc__SaveData__setValue)(this, key, value);
     }
 
     pub unsafe extern "thiscall" fn gfc__World__World(

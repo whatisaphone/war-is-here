@@ -5,6 +5,158 @@ use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkCustomAttributes__Attribute {
+    pub m_name: *const i8,
+    pub m_value: hkVariant,
+}
+
+#[repr(C)]
+pub struct hkHalf {
+    pub m_value: i16,
+}
+
+#[repr(C)]
+pub struct hkMemoryAllocator {
+    pub vfptr: *const hkMemoryAllocator__vftable,
+}
+
+impl hkMemoryAllocator {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn blockAlloc(&self, a1: i32) -> *mut () {
+        ((*self.vfptr).blockAlloc)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn blockFree(&self, a1: *mut (), a2: i32) {
+        ((*self.vfptr).blockFree)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn bufAlloc(&self, a1: *mut i32) -> *mut () {
+        ((*self.vfptr).bufAlloc)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn bufFree(&self, a1: *mut (), a2: i32) {
+        ((*self.vfptr).bufFree)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn bufRealloc(
+        &self,
+        a1: *mut (),
+        a2: i32,
+        a3: *mut i32,
+    ) -> *mut () {
+        ((*self.vfptr).bufRealloc)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn blockAllocBatch(&self, a1: *mut *mut (), a2: i32, a3: i32) {
+        ((*self.vfptr).blockAllocBatch)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn blockFreeBatch(&self, a1: *mut *mut (), a2: i32, a3: i32) {
+        ((*self.vfptr).blockFreeBatch)(self as *const _ as *mut _, a1, a2, a3)
+    }
+
+    pub unsafe extern "thiscall" fn getMemoryStatistics(
+        &self,
+        a1: *mut hkMemoryAllocator__MemoryStatistics,
+    ) {
+        ((*self.vfptr).getMemoryStatistics)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getAllocatedSize(&self, a1: *const (), a2: i32) -> i32 {
+        ((*self.vfptr).getAllocatedSize)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn resetPeakMemoryStatistics(&self) {
+        ((*self.vfptr).resetPeakMemoryStatistics)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getExtendedInterface(
+        &self,
+    ) -> *mut hkMemoryAllocator__ExtendedInterface {
+        ((*self.vfptr).getExtendedInterface)(self as *const _ as *mut _)
+    }
+}
+
+#[repr(C)]
+pub struct hkMemoryAllocator__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: u32) -> *mut (),
+    pub blockAlloc: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: i32) -> *mut (),
+    pub blockFree: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut (), _: i32),
+    pub bufAlloc: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut i32) -> *mut (),
+    pub bufFree: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut (), _: i32),
+    pub bufRealloc: unsafe extern "thiscall" fn(
+        this: *mut hkMemoryAllocator,
+        _: *mut (),
+        _: i32,
+        _: *mut i32,
+    ) -> *mut (),
+    pub blockAllocBatch:
+        unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut *mut (), _: i32, _: i32),
+    pub blockFreeBatch:
+        unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut *mut (), _: i32, _: i32),
+    pub getMemoryStatistics: unsafe extern "thiscall" fn(
+        this: *const hkMemoryAllocator,
+        _: *mut hkMemoryAllocator__MemoryStatistics,
+    ),
+    pub getAllocatedSize:
+        unsafe extern "thiscall" fn(this: *const hkMemoryAllocator, _: *const (), _: i32) -> i32,
+    pub resetPeakMemoryStatistics: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator),
+    pub getExtendedInterface:
+        unsafe extern "thiscall" fn(
+            this: *mut hkMemoryAllocator,
+        ) -> *mut hkMemoryAllocator__ExtendedInterface,
+}
+
+#[repr(C)]
+pub struct hkRefCountedProperties {
+    pub m_entries: hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_,
+}
+
+#[repr(C)]
+pub struct hkRefCountedProperties__Entry {
+    pub m_object: hkRefPtr_hkReferencedObject_,
+    pub m_key: u16,
+    pub m_flags: u16,
+}
+
+#[repr(C)]
+pub struct hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_ {
+    // hkArrayBase_hkRefCountedProperties__Entry_
+    pub m_data: *mut hkRefCountedProperties__Entry,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+    // hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_
+}
+
+unsafe impl UpcastToNop<hkArrayBase_hkRefCountedProperties__Entry_>
+    for hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_
+{
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkRefCountedProperties__Entry_ {
+    pub m_data: *mut hkRefCountedProperties__Entry,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkTransformf {
+    pub m_rotation: hkRotationf,
+    pub m_translation: hkVector4f,
+}
+
+#[repr(C)]
+pub struct hkFourTransposedPointsf {
+    #[cfg(pdb_issue = "unimplemented class layout")]
+    pub m_vertices: compile_error!("unimplemented class layout"),
+    __pdbindgen_padding: [u8; 48],
+}
+
+#[repr(C)]
 pub struct hkcdVertex {
     // hkVector4f
     #[cfg(pdb_issue = "unimplemented type kind")]

@@ -12057,6 +12057,11 @@ pub struct gfc__AutoRef_gfc__FrenzyItem_ {
 }
 
 #[repr(C)]
+pub struct gfc__AutoRef_gfc__SaveValue_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__AutoRef_gfc__DetectorObject_ {
     pub p: *mut gfc__IRefObject,
 }
@@ -14510,6 +14515,13 @@ pub struct gfc__Vector_gfc__HitRecord_0_gfc__CAllocator_ {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__AutoRef_gfc__SaveValue__0_gfc__CAllocator_ {
+    pub mData: *mut gfc__AutoRef_gfc__SaveValue_,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__CharMoveVars {
     pub vfptr: *const gfc__CharMoveVars__vftable,
 }
@@ -15766,6 +15778,87 @@ pub struct gfc__HitRecord {
     pub mDamage: f32,
     pub mTimeStamp: f32,
     pub mSource: *mut gfc__Actor,
+}
+
+#[repr(C)]
+pub struct gfc__SaveData {
+    // gfc__IRefObject
+    pub vfptr: *const gfc__SaveData__vftable,
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__SaveData
+    pub mValues: gfc__Vector_gfc__AutoRef_gfc__SaveValue__0_gfc__CAllocator_,
+}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__SaveData {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__SaveData {}
+
+impl gfc__SaveData {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__SaveData__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__SaveData, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__SaveData) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__SaveData, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__SaveData) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__SaveData) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(
+        this: *mut gfc__SaveData,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString,
+    pub getScriptEnvironment:
+        unsafe extern "thiscall" fn(this: *mut gfc__SaveData) -> *mut gfc__Environment,
+    pub getMethodByID:
+        unsafe extern "thiscall" fn(this: *mut gfc__SaveData, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(
+        this: *mut gfc__SaveData,
+        _: *mut gfc__ObjectCloner,
+        _: gfc__AutoRef_gfc__Object_,
+    ),
 }
 
 #[repr(C)]
@@ -19142,6 +19235,18 @@ pub struct gfc__AutoRef_gfc__UICategoryPackages_ {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__DSSaveGameManager__NotifyDelegate_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__DSSaveGameManager__NotifyDelegate,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct gfc__AutoRef_gfc__ISaveGameDelegate_ {
+    pub p: *mut gfc__IRefObject,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__WeaponEnhancement__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__WeaponEnhancement_,
     pub mSize: i32,
@@ -19283,6 +19388,13 @@ pub struct gfc__DSUIManager__vftable {
     pub dispose: unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager),
     pub changeUICategory:
         unsafe extern "thiscall" fn(this: *mut gfc__DSUIManager, _: *const gfc__HString) -> bool,
+}
+
+#[repr(C)]
+pub struct gfc__Vector_gfc__DSSaveGameManager__NotifySection_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__DSSaveGameManager__NotifySection,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
 }
 
 #[repr(C)]
@@ -21111,6 +21223,39 @@ pub struct gfc__Item__vftable {
     pub isEquipped: unsafe extern "thiscall" fn(this: *mut gfc__Item) -> bool,
     pub attachRef: unsafe extern "thiscall" fn(this: *mut gfc__Item),
     pub detachRef: unsafe extern "thiscall" fn(this: *mut gfc__Item),
+}
+
+#[repr(C)]
+pub struct gfc__DSSaveGameManager {
+    pub mThread: gfc__Thread,
+    pub mThreadWake: gfc__Event,
+    pub mThreadState: i32,
+    pub mLoadSlot: i32,
+    pub mLoadDone: gfc__Event,
+    pub mSaveSlot: i32,
+    pub mDeleteSlot: i32,
+    pub mIOBuffer: *mut u8,
+    pub mCurIOBufferLen: i32,
+    pub mNotifyBuffer: gfc__Vector_gfc__DSSaveGameManager__NotifySection_0_gfc__CAllocator_,
+    pub mNotifyBufferLock: gfc__Mutex,
+    pub mDelegateList: gfc__Vector_gfc__DSSaveGameManager__NotifyDelegate_0_gfc__CAllocator_,
+    pub mDelegateUID: i32,
+    pub mCommonStrings: gfc__Vector_gfc__HString_0_gfc__CAllocator_,
+    pub mInitCalled: bool,
+    pub mThreadShutdown: bool,
+    pub mSavingEnabled: bool,
+}
+
+#[repr(C)]
+pub struct gfc__DSSaveGameManager__NotifySection {
+    pub mMode: i32,
+    pub mThreadStatus: i32,
+}
+
+#[repr(C)]
+pub struct gfc__DSSaveGameManager__NotifyDelegate {
+    pub id: i32,
+    pub aDelegate: gfc__AutoRef_gfc__ISaveGameDelegate_,
 }
 
 #[repr(C)]
@@ -23478,156 +23623,4 @@ pub struct hkVector4f {
 pub struct hkCustomAttributes {
     pub m_attributes: *const hkCustomAttributes__Attribute,
     pub m_numAttributes: i32,
-}
-
-#[repr(C)]
-pub struct hkCustomAttributes__Attribute {
-    pub m_name: *const i8,
-    pub m_value: hkVariant,
-}
-
-#[repr(C)]
-pub struct hkHalf {
-    pub m_value: i16,
-}
-
-#[repr(C)]
-pub struct hkMemoryAllocator {
-    pub vfptr: *const hkMemoryAllocator__vftable,
-}
-
-impl hkMemoryAllocator {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn blockAlloc(&self, a1: i32) -> *mut () {
-        ((*self.vfptr).blockAlloc)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn blockFree(&self, a1: *mut (), a2: i32) {
-        ((*self.vfptr).blockFree)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn bufAlloc(&self, a1: *mut i32) -> *mut () {
-        ((*self.vfptr).bufAlloc)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn bufFree(&self, a1: *mut (), a2: i32) {
-        ((*self.vfptr).bufFree)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn bufRealloc(
-        &self,
-        a1: *mut (),
-        a2: i32,
-        a3: *mut i32,
-    ) -> *mut () {
-        ((*self.vfptr).bufRealloc)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn blockAllocBatch(&self, a1: *mut *mut (), a2: i32, a3: i32) {
-        ((*self.vfptr).blockAllocBatch)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn blockFreeBatch(&self, a1: *mut *mut (), a2: i32, a3: i32) {
-        ((*self.vfptr).blockFreeBatch)(self as *const _ as *mut _, a1, a2, a3)
-    }
-
-    pub unsafe extern "thiscall" fn getMemoryStatistics(
-        &self,
-        a1: *mut hkMemoryAllocator__MemoryStatistics,
-    ) {
-        ((*self.vfptr).getMemoryStatistics)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn getAllocatedSize(&self, a1: *const (), a2: i32) -> i32 {
-        ((*self.vfptr).getAllocatedSize)(self as *const _ as *mut _, a1, a2)
-    }
-
-    pub unsafe extern "thiscall" fn resetPeakMemoryStatistics(&self) {
-        ((*self.vfptr).resetPeakMemoryStatistics)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getExtendedInterface(
-        &self,
-    ) -> *mut hkMemoryAllocator__ExtendedInterface {
-        ((*self.vfptr).getExtendedInterface)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkMemoryAllocator__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: u32) -> *mut (),
-    pub blockAlloc: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: i32) -> *mut (),
-    pub blockFree: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut (), _: i32),
-    pub bufAlloc: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut i32) -> *mut (),
-    pub bufFree: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut (), _: i32),
-    pub bufRealloc: unsafe extern "thiscall" fn(
-        this: *mut hkMemoryAllocator,
-        _: *mut (),
-        _: i32,
-        _: *mut i32,
-    ) -> *mut (),
-    pub blockAllocBatch:
-        unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut *mut (), _: i32, _: i32),
-    pub blockFreeBatch:
-        unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator, _: *mut *mut (), _: i32, _: i32),
-    pub getMemoryStatistics: unsafe extern "thiscall" fn(
-        this: *const hkMemoryAllocator,
-        _: *mut hkMemoryAllocator__MemoryStatistics,
-    ),
-    pub getAllocatedSize:
-        unsafe extern "thiscall" fn(this: *const hkMemoryAllocator, _: *const (), _: i32) -> i32,
-    pub resetPeakMemoryStatistics: unsafe extern "thiscall" fn(this: *mut hkMemoryAllocator),
-    pub getExtendedInterface:
-        unsafe extern "thiscall" fn(
-            this: *mut hkMemoryAllocator,
-        ) -> *mut hkMemoryAllocator__ExtendedInterface,
-}
-
-#[repr(C)]
-pub struct hkRefCountedProperties {
-    pub m_entries: hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_,
-}
-
-#[repr(C)]
-pub struct hkRefCountedProperties__Entry {
-    pub m_object: hkRefPtr_hkReferencedObject_,
-    pub m_key: u16,
-    pub m_flags: u16,
-}
-
-#[repr(C)]
-pub struct hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_ {
-    // hkArrayBase_hkRefCountedProperties__Entry_
-    pub m_data: *mut hkRefCountedProperties__Entry,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-    // hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_
-}
-
-unsafe impl UpcastToNop<hkArrayBase_hkRefCountedProperties__Entry_>
-    for hkArray_hkRefCountedProperties__Entry_hkContainerHeapAllocator_
-{
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkRefCountedProperties__Entry_ {
-    pub m_data: *mut hkRefCountedProperties__Entry,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkTransformf {
-    pub m_rotation: hkRotationf,
-    pub m_translation: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkFourTransposedPointsf {
-    #[cfg(pdb_issue = "unimplemented class layout")]
-    pub m_vertices: compile_error!("unimplemented class layout"),
-    __pdbindgen_padding: [u8; 48],
 }
