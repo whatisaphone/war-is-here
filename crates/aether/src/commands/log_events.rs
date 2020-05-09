@@ -228,11 +228,14 @@ pub fn hook_detectorregion_body_entered(detector: &gfc::DetectorRegion, body: &g
         Some(o) => o,
         None => return,
     };
-    state.log(format!(
-        "{:?} entered region {:?}",
-        object.world_object().get_name().c_str(),
-        detector.owner().get_name().c_str(),
-    ));
+    let object_name = object.world_object().get_name();
+    if object_name == &hstring!("War") {
+        state.log(format!(
+            "{:?} entered region {:?}",
+            object_name.c_str(),
+            detector.owner().get_name().c_str(),
+        ));
+    }
 }
 
 pub fn hook_detectorregion_body_exited(detector: &gfc::DetectorRegion, body: &gfc::Body) {
@@ -246,11 +249,14 @@ pub fn hook_detectorregion_body_exited(detector: &gfc::DetectorRegion, body: &gf
         Some(o) => o,
         None => return,
     };
-    state.log(format!(
-        "{:?} exited region {:?}",
-        object.world_object().get_name().c_str(),
-        detector.owner().get_name().c_str(),
-    ));
+    let object_name = object.world_object().get_name();
+    if object_name == &hstring!("War") {
+        state.log(format!(
+            "{:?} exited region {:?}",
+            object_name.c_str(),
+            detector.owner().get_name().c_str(),
+        ));
+    }
 }
 
 pub fn hook_insrun_do_print(run: &gfc::InsRun) {
