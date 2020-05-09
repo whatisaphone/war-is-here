@@ -11,6 +11,14 @@ struct_wrapper!(WorldRegion, target::gfc__WorldRegion);
 struct_wrapper_super!(WorldRegion, gfc::Object);
 
 impl WorldRegion {
+    pub fn layer_data(&self) -> &gfc::Vector<gfc::AutoRef<gfc::RegionLayerData>> {
+        unsafe { (*self.as_ptr()).mLayerData.lift_ref() }
+    }
+
+    pub fn load_regions(&self) -> &gfc::Vector<gfc::AutoRef<gfc::WorldObject>> {
+        unsafe { (*self.as_ptr()).mLoadRegions.lift_ref() }
+    }
+
     pub fn get_layer(&self, idx: i32) -> Option<gfc::AutoRef<gfc::RegionLayer>> {
         let result = unsafe {
             init_with(|p| {
@@ -22,13 +30,5 @@ impl WorldRegion {
         } else {
             Some(result.lift())
         }
-    }
-
-    pub fn layer_data(&self) -> &gfc::Vector<gfc::AutoRef<gfc::RegionLayerData>> {
-        unsafe { (*self.as_ptr()).mLayerData.lift_ref() }
-    }
-
-    pub fn load_regions(&self) -> &gfc::Vector<gfc::AutoRef<gfc::WorldObject>> {
-        unsafe { (*self.as_ptr()).mLoadRegions.lift_ref() }
     }
 }
