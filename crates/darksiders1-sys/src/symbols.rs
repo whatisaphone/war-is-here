@@ -94,6 +94,7 @@ symbols! {
     pub static gfc__ResourceCache__getResource: unsafe extern "thiscall" fn(this: *mut gfc__ResourceCache, _: i32, _: *const gfc__HString) -> *mut () = Text(0xca0750);
     pub static gfc__PhysMeshCache__get: unsafe extern "thiscall" fn(this: *mut gfc__PhysMeshCache, _: i32, _: *const gfc__HString, _: i32, _: f32) -> *mut hkpShape = Text(0xc75710);
     pub static gfc__PhysMeshCache__get_2: unsafe extern "thiscall" fn(this: *mut gfc__PhysMeshCache, _: *const gfc__HString, _: *const gfc__HString, _: i32, _: f32) -> *mut hkpShape = Text(0xc77260);
+    pub static gfc__DebugOutModule__execute: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32) = Text(0xaeb700);
     pub static gfc__HString__HString: unsafe extern "thiscall" fn(this: *mut gfc__HString) -> *mut gfc__HString = Text(0xa63b40);
     pub static gfc__HString__HString_2: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: *const gfc__String) -> *mut gfc__HString = Text(0xa6e4a0);
     pub static gfc__HString__HString_3: unsafe extern "thiscall" fn(this: *mut gfc__HString, _: *const i8, _: bool) -> *mut gfc__HString = Text(0xa6e550);

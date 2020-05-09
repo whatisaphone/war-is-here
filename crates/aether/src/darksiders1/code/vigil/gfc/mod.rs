@@ -8,4 +8,5 @@ pub mod oc;
 pub mod reflection;
 pub mod ui;
 pub mod util;
+pub mod visualscript;
 pub mod world;

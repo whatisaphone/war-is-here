@@ -7229,6 +7229,234 @@ pub struct gfc__AutoRef_gfc__InputModule_ {
 }
 
 #[repr(C)]
+pub struct gfc__DebugOutModule {
+    // gfc__IRefObject
+    pub vfptr: *const gfc__DebugOutModule__vftable,
+    pub ReferenceCount: i32,
+    // gfc__Object
+    // gfc__VisScriptEntity
+    pub mID: u32,
+    pub mComment: gfc__HString,
+    pub mLocationX: i32,
+    pub mLocationY: i32,
+    pub mModuleSystem: *mut gfc__ModuleSystem,
+    // gfc__VisScriptModule
+    __pdbindgen_padding: [u8; 4],
+    pub mEventLinks: gfc__Vector_gfc__ModuleEventLink_0_gfc__CAllocator_,
+    pub mInputLinks: gfc__Vector_gfc__ModuleInputLink_0_gfc__CAllocator_,
+    pub mVariableLinks: gfc__Vector_gfc__ModuleVariableLink_0_gfc__CAllocator_,
+    // gfc__DebugOutModule
+    pub mMessage: gfc__HString,
+}
+
+unsafe impl UpcastToNop<gfc__VisScriptModule> for gfc__DebugOutModule {}
+
+unsafe impl UpcastToNop<gfc__VisScriptEntity> for gfc__DebugOutModule {}
+
+unsafe impl UpcastToNop<gfc__Object> for gfc__DebugOutModule {}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__DebugOutModule {}
+
+impl gfc__DebugOutModule {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getClass(&self) -> *mut gfc__Class {
+        ((*self.vfptr).getClass)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn setState(&self, a1: *const gfc__HString) {
+        ((*self.vfptr).setState)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData(&self) -> *const () {
+        ((*self.vfptr).getScriptData)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptData_2(&self) -> *mut () {
+        ((*self.vfptr).getScriptData_2)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptState(
+        &self,
+        result: *mut gfc__HString,
+    ) -> *mut gfc__HString {
+        ((*self.vfptr).getScriptState)(self as *const _ as *mut _, result)
+    }
+
+    pub unsafe extern "thiscall" fn getScriptEnvironment(&self) -> *mut gfc__Environment {
+        ((*self.vfptr).getScriptEnvironment)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getMethodByID(&self, a1: *const u64) -> *mut gfc__Method {
+        ((*self.vfptr).getMethodByID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn cloneObject(
+        &self,
+        a1: *mut gfc__ObjectCloner,
+        a2: gfc__AutoRef_gfc__Object_,
+    ) {
+        ((*self.vfptr).cloneObject)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getUILabel(&self) -> *const i8 {
+        ((*self.vfptr).getUILabel)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn compile(&self, a1: *mut gfc__ModuleSystem) {
+        ((*self.vfptr).compile)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn begin(&self, a1: *mut gfc__Object) {
+        ((*self.vfptr).begin)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn end(&self) {
+        ((*self.vfptr).end)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn clearDeadLinks(&self, a1: *mut gfc__ModuleSystem) {
+        ((*self.vfptr).clearDeadLinks)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getCategory(&self) -> i32 {
+        ((*self.vfptr).getCategory)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getNumActions(&self) -> i32 {
+        ((*self.vfptr).getNumActions)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getActionID(&self, a1: i32) -> u32 {
+        ((*self.vfptr).getActionID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getActionName(&self, a1: i32) -> *const i8 {
+        ((*self.vfptr).getActionName)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getNumEvents(&self) -> i32 {
+        ((*self.vfptr).getNumEvents)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getEventID(&self, a1: i32) -> u32 {
+        ((*self.vfptr).getEventID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getEventName(&self, a1: i32) -> *const i8 {
+        ((*self.vfptr).getEventName)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getNumVariableConnections(&self) -> i32 {
+        ((*self.vfptr).getNumVariableConnections)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getVariableConnectionID(&self, a1: i32) -> u32 {
+        ((*self.vfptr).getVariableConnectionID)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getVariableConnectionInfo(
+        &self,
+        result: *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
+        a2: i32,
+    ) -> *mut gfc__AutoRef_gfc__VariableConnectionInfo_ {
+        ((*self.vfptr).getVariableConnectionInfo)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn doEvent(&self, a1: u32) {
+        ((*self.vfptr).doEvent)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn execute(&self, a1: u32) {
+        ((*self.vfptr).execute)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn getVariableValue(
+        &self,
+        result: *mut gfc__AutoRef_gfc__Value_,
+        a2: u32,
+    ) -> *mut gfc__AutoRef_gfc__Value_ {
+        ((*self.vfptr).getVariableValue)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn setVariableValue(&self, a1: u32, a2: gfc__AutoRef_gfc__Value_) {
+        ((*self.vfptr).setVariableValue)(self as *const _ as *mut _, a1, a2)
+    }
+
+    pub unsafe extern "thiscall" fn tryAgain(&self) {
+        ((*self.vfptr).tryAgain)(self as *const _ as *mut _)
+    }
+
+    pub unsafe extern "thiscall" fn getVariablesIn(
+        &self,
+        result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+        a2: u32,
+    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
+        ((*self.vfptr).getVariablesIn)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn getVariablesOut(
+        &self,
+        result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+        a2: u32,
+    ) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_ {
+        ((*self.vfptr).getVariablesOut)(self as *const _ as *mut _, result, a2)
+    }
+
+    pub unsafe extern "thiscall" fn executeInternal(&self, a1: u32) {
+        ((*self.vfptr).executeInternal)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn hasVariableIn(&self, a1: u32) -> bool {
+        ((*self.vfptr).hasVariableIn)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn hasVariableOut(&self, a1: u32) -> bool {
+        ((*self.vfptr).hasVariableOut)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__DebugOutModule__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32) -> *mut (),
+    pub getClass: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule) -> *mut gfc__Class,
+    pub setState: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: *const gfc__HString),
+    pub getScriptData: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule) -> *const (),
+    pub getScriptData_2: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule) -> *mut (),
+    pub getScriptState: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, result: *mut gfc__HString) -> *mut gfc__HString,
+    pub getScriptEnvironment: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule) -> *mut gfc__Environment,
+    pub getMethodByID: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: *const u64) -> *mut gfc__Method,
+    pub cloneObject: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: *mut gfc__ObjectCloner, _: gfc__AutoRef_gfc__Object_),
+    pub getUILabel: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule) -> *const i8,
+    pub compile: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: *mut gfc__ModuleSystem),
+    pub begin: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: *mut gfc__Object),
+    pub end: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule),
+    pub clearDeadLinks: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: *mut gfc__ModuleSystem),
+    pub getCategory: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule) -> i32,
+    pub getNumActions: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule) -> i32,
+    pub getActionID: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule, _: i32) -> u32,
+    pub getActionName: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule, _: i32) -> *const i8,
+    pub getNumEvents: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule) -> i32,
+    pub getEventID: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule, _: i32) -> u32,
+    pub getEventName: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule, _: i32) -> *const i8,
+    pub getNumVariableConnections: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule) -> i32,
+    pub getVariableConnectionID: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule, _: i32) -> u32,
+    pub getVariableConnectionInfo: unsafe extern "thiscall" fn(this: *const gfc__DebugOutModule, result: *mut gfc__AutoRef_gfc__VariableConnectionInfo_, _: i32) -> *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
+    pub doEvent: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32),
+    pub execute: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32),
+    pub getVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, result: *mut gfc__AutoRef_gfc__Value_, _: u32) -> *mut gfc__AutoRef_gfc__Value_,
+    pub setVariableValue: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32, _: gfc__AutoRef_gfc__Value_),
+    pub tryAgain: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule),
+    pub getVariablesIn: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_, _: u32) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+    pub getVariablesOut: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, result: *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_, _: u32) -> *mut gfc__Vector_gfc__AutoRef_gfc__VisScriptVariable__0_gfc__CAllocator_,
+    pub executeInternal: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32),
+    pub hasVariableIn: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32) -> bool,
+    pub hasVariableOut: unsafe extern "thiscall" fn(this: *mut gfc__DebugOutModule, _: u32) -> bool,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__VariableConnectionInfo__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__VariableConnectionInfo_,
     pub mSize: i32,
@@ -22465,42 +22693,4 @@ pub struct hkEnum_enum_hkcdShapeDispatchType__ShapeDispatchTypeEnum_unsigned_cha
 #[repr(C)]
 pub struct hkEnum_enum_hkcdShapeInfoCodecType__ShapeInfoCodecTypeEnum_unsigned_char_ {
     pub m_storage: u8,
-}
-
-#[repr(C)]
-pub struct hkReferencedObject {
-    // hkBaseObject
-    pub vfptr: *const hkReferencedObject__vftable,
-    // hkReferencedObject
-    pub m_memSizeAndRefCount: u32,
-}
-
-unsafe impl UpcastToNop<hkBaseObject> for hkReferencedObject {}
-
-impl hkReferencedObject {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn __first_virtual_table_function__(&self) {
-        ((*self.vfptr).__first_virtual_table_function__)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn getClassType(&self) -> *const hkClass {
-        ((*self.vfptr).getClassType)(self as *const _ as *mut _)
-    }
-
-    pub unsafe extern "thiscall" fn deleteThisReferencedObject(&self) {
-        ((*self.vfptr).deleteThisReferencedObject)(self as *const _ as *mut _)
-    }
-}
-
-#[repr(C)]
-pub struct hkReferencedObject__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut hkReferencedObject, _: u32) -> *mut (),
-    pub __first_virtual_table_function__:
-        unsafe extern "thiscall" fn(this: *mut hkReferencedObject),
-    pub getClassType:
-        unsafe extern "thiscall" fn(this: *const hkReferencedObject) -> *const hkClass,
-    pub deleteThisReferencedObject: unsafe extern "thiscall" fn(this: *const hkReferencedObject),
 }

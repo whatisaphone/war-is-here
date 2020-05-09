@@ -21,6 +21,7 @@ pdbindgen \
     -i '^gfc::ClassRegistry::classForName$' \
     -i '^gfc::Darksiders::doTheMagic$' \
     -i '^gfc::Darksiders::processInputEvent$' \
+    -i '^gfc::DebugOutModule::execute$' \
     -i '^gfc::DetectorObject::_Class$' \
     -i '^gfc::DetectorRegion::bodyEntered$' \
     -i '^gfc::DetectorRegion::bodyExited$' \

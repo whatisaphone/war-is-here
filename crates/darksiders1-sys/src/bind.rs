@@ -96,6 +96,7 @@ pub unsafe fn bind(args: &BindArgs) {
     bind!(text, gfc__ResourceCache__getResource);
     bind!(text, gfc__PhysMeshCache__get);
     bind!(text, gfc__PhysMeshCache__get_2);
+    bind!(text, gfc__DebugOutModule__execute);
     bind!(text, gfc__HString__HString);
     bind!(text, gfc__HString__HString_2);
     bind!(text, gfc__HString__HString_3);

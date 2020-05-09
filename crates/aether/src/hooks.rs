@@ -19,6 +19,7 @@ pub static ON_POST_UPDATE_QUEUE: Mutex<Option<VecDeque<Box<dyn FnOnce() + Send>>
 struct Detours {
     gfc___UIManager__draw: target::gfc___UIManager__draw,
     gfc__Darksiders__processInputEvent: target::gfc__Darksiders__processInputEvent,
+    gfc__DebugOutModule__execute: target::gfc__DebugOutModule__execute,
     gfc__DetectorRegion__bodyEntered: target::gfc__DetectorRegion__bodyEntered,
     gfc__DetectorRegion__bodyExited: target::gfc__DetectorRegion__bodyExited,
     gfc__MaterialCache__get: target::gfc__MaterialCache__get,
@@ -57,6 +58,7 @@ pub fn install() {
         hook!(
             gfc___UIManager__draw,
             gfc__Darksiders__processInputEvent,
+            gfc__DebugOutModule__execute,
             gfc__DetectorRegion__bodyEntered,
             gfc__DetectorRegion__bodyExited,
             gfc__MaterialCache__get,
@@ -176,6 +178,18 @@ mod hook {
         }
 
         true
+    }
+
+    pub unsafe extern "thiscall" fn gfc__DebugOutModule__execute(
+        this: *mut target::gfc__DebugOutModule,
+        actionid: u32,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        (detours.gfc__DebugOutModule__execute)(this, actionid);
+
+        log_events::hook_debugoutmodule_execute((*this).lift_ref(), actionid);
     }
 
     pub unsafe extern "thiscall" fn gfc__DetectorRegion__bodyEntered(

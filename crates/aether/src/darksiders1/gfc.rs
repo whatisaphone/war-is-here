@@ -60,6 +60,15 @@ pub use crate::darksiders1::code::vigil::{
             string::String,
             vector::{Vector, Vector__SliceAdapter},
         },
+        visualscript::{
+            debugoutmodule::{
+                DebugOutModule,
+                DebugOutModule__Actions,
+                DebugOutModule__Events,
+                DebugOutModule__Variables,
+            },
+            scriptmodule::{VisScriptEntity, VisScriptModule},
+        },
         world::{
             collision::{cshape::CShape, cshapebox::CShapeBox, cshapemesh::CShapeMesh},
             physics::{physmeshcache::PhysMeshCache, rigidbody::RigidBody},

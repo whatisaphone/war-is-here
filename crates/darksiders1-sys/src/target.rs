@@ -113,6 +113,7 @@ symbols! {
     pub fn gfc__ResourceCache__getResource;
     pub fn gfc__PhysMeshCache__get;
     pub fn gfc__PhysMeshCache__get_2;
+    pub fn gfc__DebugOutModule__execute;
     pub fn gfc__HString__HString;
     pub fn gfc__HString__HString_2;
     pub fn gfc__HString__HString_3;

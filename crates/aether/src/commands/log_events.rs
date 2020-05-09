@@ -4,6 +4,7 @@ use once_cell::sync::Lazy;
 use parking_lot::Mutex;
 use std::{
     collections::VecDeque,
+    convert::TryInto,
     sync::atomic::{AtomicBool, Ordering},
 };
 
@@ -163,6 +164,37 @@ fn format_timestamp(timestamp: f32) -> String {
     let min = total_min % 60;
     let total_hours = total_min / 60;
     format!("{}:{:02}:{:02}.{:03}", total_hours, min, sec, ms)
+}
+
+pub fn hook_debugoutmodule_execute(module: &gfc::DebugOutModule, actionid: u32) {
+    if !ENABLED.load(Ordering::SeqCst) {
+        return;
+    }
+
+    let mut state = STATE.lock();
+
+    match actionid.try_into() {
+        Ok(gfc::DebugOutModule__Actions::In) => {
+            // Loosely based on the real `gfc::DebugOutModule::execute`. It throws the
+            // string away without using it (probably `#ifdef`-ed away) so I recreated the
+            // logic.
+            let mut message = String::with_capacity(64);
+            message.push_str("DebugOutModule: ");
+            message.push_str(
+                module
+                    .message()
+                    .c_str()
+                    .to_str()
+                    .unwrap_or("<invalid utf-8>"),
+            );
+            if module.has_variable_in(gfc::DebugOutModule__Variables::Values.into()) {
+                message.push_str(": ( TODO connected variables )");
+            }
+
+            state.log(message);
+        }
+        _ => {}
+    }
 }
 
 pub fn hook_detectorregion_body_entered(detector: &gfc::DetectorRegion, body: &gfc::Body) {
