@@ -56,6 +56,7 @@ pub fn draw(ui: &imgui::Ui<'_>) {
     let mut state = STATE.lock();
 
     imgui_token_guard! {
+        ui.push_style_var(imgui::StyleVar::WindowBorderSize(0.0));
         ui.push_style_color(imgui::StyleColor::WindowBg, [0.0, 0.0, 0.0, 0.0]);
     }
 
