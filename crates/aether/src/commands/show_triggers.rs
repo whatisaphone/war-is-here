@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, Lift},
+    darksiders1::{gfc, gfc::Reflect, Lift},
     hooks::ON_POST_UPDATE_QUEUE,
     library::bitmap_font,
     utils::{
@@ -31,7 +31,6 @@ use std::{
     },
 };
 
-const MIN_COUNT: usize = 4;
 const MIN_CLOSE_DISTANCE: f32 = 500.0;
 const MIN_INSIDE_DISTANCE: f32 = 250.0;
 
@@ -163,66 +162,79 @@ pub fn draw(renderer: &gfc::UIRenderer) {
 
     let transformer = CoordinateTransformer::create();
 
-    let mut triggers = BTreeSet::new();
+    // Sort objects into multiple groups, so we can have categories of objects which
+    // are always drawn.
+    let mut load_regions = KeepMinCountOrMinPriority::new(1);
+    let mut others = KeepMinCountOrMinPriority::new(4);
 
     walk(&mut |object| {
-        let trigger_region = match gfc::object_safecast::<gfc::DetectorObject>(object) {
+        let object = match gfc::object_safecast::<gfc::DetectorObject>(object) {
             Some(o) => o,
             _ => return,
         };
 
-        let eval = evaluate_object(trigger_region, &player_pos);
-        triggers.insert(eval);
-        // Filter which objects to draw as we go.
-        if triggers.len() > MIN_COUNT && !triggers.last().unwrap().evaluation.force_draw() {
-            triggers.pop_last();
+        let category = categorize_object(&object);
+        let priority = prioritize_object(&object, &player_pos);
+        match category {
+            Category::LoadRegion => load_regions.feed(object, priority),
+            Category::Other => others.feed(object, priority),
         }
     });
 
     renderer.begin(true);
     renderer.set_material(renderer.solid_material());
 
-    // The set is already sorted and trimmed.
-    for EvaluatedObject { object, .. } in &triggers {
-        let position = object.get_position();
-        let screen = transformer.world_to_screen(&position);
-
-        // Only draw text if the position is in front of the camera.
-        let draw_text = screen.z > 0.0;
-        if draw_text {
-            let class_name = object.class().name();
-            let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-            bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
-
-            let object_name = object.get_name();
-            let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-            bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, 2, object_name);
-        }
-
-        match get_shape(&object) {
-            Shape::Aabb(bounds) => {
-                debug_draw::box_wireframe(renderer, &transformer, &bounds);
-            }
-            Shape::Box(size, isometry) => {
-                let origin = Point3::origin();
-                let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
-                transform(&mut wireframe, &na::convert(isometry));
-                debug_draw::wireframe(renderer, &transformer, &wireframe);
-            }
-            Shape::Sphere(_radius, _center) => {
-                if draw_text {
-                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "sphere");
-                }
-            }
-            Shape::Cylinder(_radius, _length, _pos) => {
-                if draw_text {
-                    bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "cylinder");
-                }
-            }
-        }
+    for object in load_regions.into_iter() {
+        draw_object(renderer, &transformer, &object);
+    }
+    for object in others.into_iter() {
+        draw_object(renderer, &transformer, &object);
     }
 
     renderer.end();
+}
+
+fn draw_object(
+    renderer: &gfc::UIRenderer,
+    transformer: &CoordinateTransformer,
+    object: &gfc::DetectorObject,
+) {
+    let position = object.get_position();
+    let screen = transformer.world_to_screen(&position);
+
+    // Only draw text if the position is in front of the camera.
+    let draw_text = screen.z > 0.0;
+    if draw_text {
+        let class_name = object.class().name();
+        let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
+        bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
+
+        let object_name = object.get_name();
+        let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
+        bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, 2, object_name);
+    }
+
+    match get_shape(&object) {
+        Shape::Aabb(bounds) => {
+            debug_draw::box_wireframe(renderer, &transformer, &bounds);
+        }
+        Shape::Box(size, isometry) => {
+            let origin = Point3::origin();
+            let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
+            transform(&mut wireframe, &na::convert(isometry));
+            debug_draw::wireframe(renderer, &transformer, &wireframe);
+        }
+        Shape::Sphere(_radius, _center) => {
+            if draw_text {
+                bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "sphere");
+            }
+        }
+        Shape::Cylinder(_radius, _length, _pos) => {
+            if draw_text {
+                bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "cylinder");
+            }
+        }
+    }
 }
 
 // See `gfc::DetectorObject::doAddToWorld`
@@ -261,56 +273,92 @@ fn get_shape(object: &gfc::DetectorObject) -> Shape {
     }
 }
 
-fn evaluate_object(
-    object: gfc::AutoRef<gfc::DetectorObject>,
-    point: &Point3<f32>,
-) -> EvaluatedObject {
-    let distance = broad_phase_distance(&object, point);
-    if distance > NotNan::new(MIN_CLOSE_DISTANCE).unwrap() {
-        return EvaluatedObject {
-            object,
-            evaluation: Evaluation::Far(distance),
-        };
-    }
-
-    let evaluation = narrow_phase(&object, point);
-    EvaluatedObject { object, evaluation }
+struct KeepMinCountOrMinPriority {
+    min_count: usize,
+    set: BTreeSet<PrioritizedObject>,
 }
 
-struct EvaluatedObject {
-    object: gfc::AutoRef<gfc::DetectorObject>,
-    evaluation: Evaluation,
+impl KeepMinCountOrMinPriority {
+    fn new(min_count: usize) -> Self {
+        Self {
+            min_count,
+            set: BTreeSet::new(),
+        }
+    }
+
+    fn into_iter(self) -> impl Iterator<Item = gfc::AutoRef<gfc::DetectorObject>> {
+        self.set
+            .into_iter()
+            .map(|PrioritizedObject { object, .. }| object)
+    }
+
+    fn feed(&mut self, object: gfc::AutoRef<gfc::DetectorObject>, priority: Priority) {
+        self.set.insert(PrioritizedObject { object, priority });
+        // Filter as we go.
+        if self.set.len() > self.min_count && !self.set.last().unwrap().priority.force_draw() {
+            self.set.pop_last();
+        }
+    }
+}
+
+fn categorize_object(object: &gfc::DetectorObject) -> Category {
+    if object.class().instanceof(gfc::LoadRegion::class()) {
+        return Category::LoadRegion;
+    }
+    Category::Other
+}
+
+fn prioritize_object(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
+    let distance = broad_phase_distance(object, point);
+    if distance > NotNan::new(MIN_CLOSE_DISTANCE).unwrap() {
+        return Priority::Far(distance);
+    }
+
+    narrow_phase(object, point)
+}
+
+enum Category {
+    LoadRegion,
+    Other,
 }
 
 #[derive(Ord, PartialOrd, Eq, PartialEq)]
-enum Evaluation {
+enum Priority {
     Close(NotNan<f32>),
     InsideClose(NotNan<f32>),
     Far(NotNan<f32>),
     InsideFar(NotNan<f32>),
 }
 
-impl Evaluation {
+impl Priority {
     fn force_draw(&self) -> bool {
         matches!(self, Self::Close(_) | Self::InsideClose(_))
     }
 }
 
-impl PartialEq for EvaluatedObject {
+/// Helper struct for sorting objects by priority.
+///
+/// This compares based on `priority`, and ignores `object` entirely.
+struct PrioritizedObject {
+    object: gfc::AutoRef<gfc::DetectorObject>,
+    priority: Priority,
+}
+
+impl PartialEq for PrioritizedObject {
     fn eq(&self, other: &Self) -> bool {
-        self.evaluation == other.evaluation
+        self.priority == other.priority
     }
 }
 
-impl Eq for EvaluatedObject {}
+impl Eq for PrioritizedObject {}
 
-impl PartialOrd for EvaluatedObject {
+impl PartialOrd for PrioritizedObject {
     fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
-        self.evaluation.partial_cmp(&other.evaluation)
+        self.priority.partial_cmp(&other.priority)
     }
 }
 
-impl Ord for EvaluatedObject {
+impl Ord for PrioritizedObject {
     fn cmp(&self, other: &Self) -> Ordering {
         self.partial_cmp(other).unwrap()
     }
@@ -330,20 +378,20 @@ fn broad_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> No
     NotNan::new(distance).unwrap()
 }
 
-fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Evaluation {
+fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
     let shape = get_shape(object).to_compound_cached();
     let projection = shape.project_point(&Isometry::identity(), point, false);
     let distance = na::distance(point, &projection.point);
     if projection.is_inside {
         if distance <= MIN_INSIDE_DISTANCE {
-            Evaluation::InsideClose(NotNan::new(distance).unwrap())
+            Priority::InsideClose(NotNan::new(distance).unwrap())
         } else {
-            Evaluation::InsideFar(NotNan::new(distance).unwrap())
+            Priority::InsideFar(NotNan::new(distance).unwrap())
         }
     } else if distance <= MIN_CLOSE_DISTANCE {
-        Evaluation::Close(NotNan::new(distance).unwrap())
+        Priority::Close(NotNan::new(distance).unwrap())
     } else {
-        Evaluation::Far(NotNan::new(distance).unwrap())
+        Priority::Far(NotNan::new(distance).unwrap())
     }
 }
 

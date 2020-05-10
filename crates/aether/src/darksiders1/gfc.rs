@@ -15,6 +15,7 @@ pub use crate::darksiders1::code::vigil::{
                 player::Player,
             },
             detectorobject::DetectorObject,
+            loadregion::LoadRegion,
             physics::physicsshapeobject::{PhysicsShapeObject, PhysicsShapeObject__Detect},
         },
     },

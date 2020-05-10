@@ -47,6 +47,7 @@ symbols! {
     pub static gfc__CShapeBox___Class;
     pub static gfc__DetectorObject___Class;
     pub static gfc__TriggerRegion___Class;
+    pub static gfc__LoadRegion___Class;
     pub static gfc__Item___Class;
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle;
