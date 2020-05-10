@@ -34,6 +34,7 @@ struct Detours {
     gfc__SaveData__setValue: target::gfc__SaveData__setValue,
     gfc__World__World: target::gfc__World__World,
     gfc__WorldRegion__preload: target::gfc__WorldRegion__preload,
+    gfc__WorldRegion__removeFromWorld: target::gfc__WorldRegion__removeFromWorld,
     detours: Vec<RawDetour>,
 }
 
@@ -77,6 +78,7 @@ pub fn install() {
             gfc__SaveData__setValue,
             gfc__World__World,
             gfc__WorldRegion__preload,
+            gfc__WorldRegion__removeFromWorld,
         );
     }
 
@@ -416,5 +418,16 @@ mod hook {
         (detours.gfc__WorldRegion__preload)(this);
 
         log_events::hook_worldregion_preload((*this).lift_ref());
+    }
+
+    pub unsafe extern "thiscall" fn gfc__WorldRegion__removeFromWorld(
+        this: *mut target::gfc__WorldRegion,
+    ) {
+        let guard = DETOURS.read();
+        let detours = guard.as_ref().unwrap();
+
+        (detours.gfc__WorldRegion__removeFromWorld)(this);
+
+        log_events::hook_worldregion_remove_from_world((*this).lift_ref());
     }
 }

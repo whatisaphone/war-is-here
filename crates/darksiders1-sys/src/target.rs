@@ -97,6 +97,7 @@ symbols! {
     pub fn gfc__WorldRegion__preload;
     pub fn gfc__WorldObject__removeObjectFromWorld;
     pub fn gfc__WorldObject__attachToObject;
+    pub fn gfc__WorldRegion__removeFromWorld;
     pub fn gfc__World__World;
     pub fn gfc__Object3DCache__get;
     pub fn gfc__Object3D__Object3D;

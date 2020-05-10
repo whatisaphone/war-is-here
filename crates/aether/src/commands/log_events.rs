@@ -332,3 +332,13 @@ pub fn hook_worldregion_preload(region: &gfc::WorldRegion) {
         region.name().c_str(),
     ));
 }
+
+pub fn hook_worldregion_remove_from_world(region: &gfc::WorldRegion) {
+    if !ENABLED.load(Ordering::SeqCst) {
+        return;
+    }
+
+    let mut state = STATE.lock();
+
+    state.log(format!("unloading WorldRegion {:?}", region.name().c_str()));
+}
