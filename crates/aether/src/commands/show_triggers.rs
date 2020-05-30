@@ -1,5 +1,5 @@
 use crate::{
-    darksiders1::{gfc, gfc::Reflect, Lift},
+    darksiders1::{gfc, gfc::Reflect},
     hooks::ON_POST_UPDATE_QUEUE,
     library::bitmap_font,
     utils::{
@@ -241,11 +241,11 @@ fn draw_object(
 fn get_shape(object: &gfc::DetectorObject) -> Shape {
     match object.shape() {
         gfc::PhysicsShapeObject__Detect::Aabb => {
-            let bounds = unsafe { (*object.as_ptr()).mBounds.lift_ref().clone() };
+            let bounds = object.bounds().clone();
             Shape::Aabb(bounds)
         }
         gfc::PhysicsShapeObject__Detect::Box => {
-            let size = unsafe { *(*object.as_ptr()).mSize.lift_ref() };
+            let size = *object.size();
             // Note: The game technically uses `getTransform()` here, but if we use that,
             // later on we have to use `ConvexHull` instead of `Cuboid`, and there seems to
             // be a `ConvexHull` performance bug where when you stand in certain spots,
@@ -260,13 +260,13 @@ fn get_shape(object: &gfc::DetectorObject) -> Shape {
             Shape::Box(size, isometry)
         }
         gfc::PhysicsShapeObject__Detect::Sphere => {
-            let radius = unsafe { (*object.as_ptr()).mSize.z } * 0.5;
+            let radius = object.size().z * 0.5;
             let position = object.get_position();
             Shape::Sphere(radius, position)
         }
         gfc::PhysicsShapeObject__Detect::Cylinder => {
-            let radius = unsafe { (*object.as_ptr()).mSize.x } * 0.5;
-            let length = unsafe { (*object.as_ptr()).mSize.z };
+            let radius = object.size().x * 0.5;
+            let length = object.size().z;
             let position = object.get_position();
             Shape::Cylinder(radius, length, position)
         }
