@@ -383,7 +383,7 @@ fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
     let projection = shape.project_point(&Isometry::identity(), point, false);
     let distance = na::distance(point, &projection.point);
     if projection.is_inside {
-        if distance <= MIN_INSIDE_DISTANCE {
+        if distance <= MIN_INSIDE_DISTANCE && !is_trigger_obnoxiously_large(object) {
             Priority::InsideClose(NotNan::new(distance).unwrap())
         } else {
             Priority::InsideFar(NotNan::new(distance).unwrap())
@@ -393,6 +393,14 @@ fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
     } else {
         Priority::Far(NotNan::new(distance).unwrap())
     }
+}
+
+// For e.g. minimap triggers covering the whole map, we don't want to always
+// draw it since it's visually noisy and now useful.
+fn is_trigger_obnoxiously_large(object: &gfc::DetectorObject) -> bool {
+    let bounding_box = object.get_bounding_box();
+    let approx_radius = (bounding_box.max - bounding_box.min).norm() / 2.0;
+    approx_radius > 1000.0
 }
 
 pub enum Shape {
