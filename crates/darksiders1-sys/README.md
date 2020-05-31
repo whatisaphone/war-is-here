@@ -35,6 +35,8 @@ pdbindgen \
     -i '^gfc::KGGraphics::createStaticMesh$' \
     -i '^gfc::KGStaticMesh$' \
     -i '^gfc::LoadMapMenu::LoadMapMenu$' \
+    -i '^gfc::LoadRegion$' \
+    -i '^gfc::LoadRegion::_Class$' \
     -i '^gfc::MBSubMesh::MBSubMesh$' \
     -i '^gfc::Material::setParameter$' \
     -i '^gfc::Material::~?Material$' \
