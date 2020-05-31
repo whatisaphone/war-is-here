@@ -165,7 +165,7 @@ pub fn draw(renderer: &gfc::UIRenderer) {
     // Sort objects into multiple groups, so we can have categories of objects which
     // are always drawn.
     let mut load_regions = KeepMinCountOrMinPriority::new(1);
-    let mut others = KeepMinCountOrMinPriority::new(4);
+    let mut others = KeepMinCountOrMinPriority::new(3);
 
     walk(&mut |object| {
         let object = match gfc::object_safecast::<gfc::DetectorObject>(object) {
