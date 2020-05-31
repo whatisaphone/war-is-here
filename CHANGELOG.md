@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- In /show_triggers, try to choose a better set of objects to display
+- FPS counter (/fps)
+- /move_player can now take absolute or relative coordinates (depending on whether the keyword "by" is present)
+- Display a scolling log of various engine events (/log_events)
+
 ## v0.1.2 – 2020-04-19
 
 - Restore access to The Amazing Secret.
