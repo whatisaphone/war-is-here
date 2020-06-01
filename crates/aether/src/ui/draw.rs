@@ -260,6 +260,8 @@ pub fn draw(
 
         // This is pretty inefficient, but I can't figure out how to get `CopyResource`
         // to work with a texture created by `gfx`. So we're going the long way around.
+        //
+        // This takes about 5ms every frame. Yikes.
         (*context.raw()).CopyResource(
             state.blit_staging_tex.as_resource().raw(),
             state.imgui_texture.raw().resource().as_resource().cast(),
