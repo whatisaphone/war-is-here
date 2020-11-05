@@ -37,7 +37,7 @@ pub extern "system" fn DllMain(
 ) -> BOOL {
     match fdw_reason {
         DLL_PROCESS_ATTACH => {
-            let hinst = unsafe { UnsafeSend::new(hinst_dll) };
+            let hinst = UnsafeSend::new(hinst_dll);
             thread::spawn(move || init(hinst.into_inner()));
             TRUE
         }

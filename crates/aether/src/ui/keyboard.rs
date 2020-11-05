@@ -50,7 +50,7 @@ fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
     }
 
     let mut guard = STATE.lock();
-    let state = match guard.as_mut() {
+    let state = match unsafe { guard.as_mut() } {
         Some(s) => s,
         None => return InputHandled::Continue,
     };
@@ -89,7 +89,7 @@ fn handle_raw_button(key_code: u32, down: bool) -> InputHandled {
 
 fn handle_key(key_code: u32) -> InputHandled {
     let mut guard = STATE.lock();
-    let state = match guard.as_mut() {
+    let state = match unsafe { guard.as_mut() } {
         Some(s) => s,
         None => return InputHandled::Continue,
     };

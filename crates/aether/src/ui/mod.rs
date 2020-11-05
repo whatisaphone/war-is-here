@@ -28,7 +28,7 @@ pub static WANT_ENABLED: AtomicI32 = AtomicI32::new(0);
 pub static IS_ENABLED: AtomicBool = AtomicBool::new(false);
 // Safety: although this is stored in a static, it must only be accessed from
 // the game's render thread.
-static STATE: Mutex<UnsafeSend<Option<State>>> = Mutex::new(unsafe { UnsafeSend::new(None) });
+static STATE: Mutex<UnsafeSend<Option<State>>> = Mutex::new(UnsafeSend::new(None));
 
 struct State {
     imgui: Context,
@@ -72,23 +72,21 @@ fn init() {
     let draw = draw::init(SCREEN_WIDTH, SCREEN_HEIGHT, &mut imgui);
 
     let mut guard = STATE.lock();
-    *guard = unsafe {
-        UnsafeSend::new(Some(State {
-            imgui,
-            last_frame: Instant::now(),
-            draw,
-        }))
-    };
+    *guard = UnsafeSend::new(Some(State {
+        imgui,
+        last_frame: Instant::now(),
+        draw,
+    }));
 }
 
 fn cleanup() {
     let mut guard = STATE.lock();
-    drop(guard.take());
+    drop(unsafe { guard.as_mut() }.take());
 }
 
 fn run_frame() {
     let mut guard = STATE.lock();
-    let state = guard.as_mut().unwrap();
+    let state = unsafe { guard.as_mut() }.as_mut().unwrap();
 
     let io = state.imgui.io_mut();
     state.last_frame = io.update_delta_time(state.last_frame);
