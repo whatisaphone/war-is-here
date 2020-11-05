@@ -1,11 +1,7 @@
-use crate::{
-    darksiders1::gfc,
-    library::dx::{create_staging_texture2d, init_with_hresult},
-};
+use crate::{darksiders1::gfc, library::dx::init_with_hresult};
 use gfx::{
-    format::{Bgra8, B8_G8_R8_A8},
-    handle::{RenderTargetView, Texture},
-    memory::Typed,
+    format::Bgra8,
+    handle::{RenderTargetView, ShaderResourceView},
     Device,
     Encoder,
     Factory,
@@ -14,36 +10,24 @@ use imgui::{Context, DrawData};
 use imgui_gfx_renderer::{Renderer, Shaders};
 use std::{convert::TryInto, mem, ptr};
 use winapi::{
-    shared::{
-        dxgiformat::{
-            DXGI_FORMAT_B8G8R8A8_UNORM,
-            DXGI_FORMAT_R32G32B32A32_FLOAT,
-            DXGI_FORMAT_R32G32B32_FLOAT,
-            DXGI_FORMAT_R32G32_FLOAT,
-        },
-        dxgitype::DXGI_SAMPLE_DESC,
+    shared::dxgiformat::{
+        DXGI_FORMAT_R32G32B32A32_FLOAT,
+        DXGI_FORMAT_R32G32B32_FLOAT,
+        DXGI_FORMAT_R32G32_FLOAT,
     },
     um::{
         d3d11::{
-            ID3D11Texture2D,
             D3D11_APPEND_ALIGNED_ELEMENT,
-            D3D11_BIND_RENDER_TARGET,
-            D3D11_BIND_SHADER_RESOURCE,
-            D3D11_BIND_UNORDERED_ACCESS,
             D3D11_BIND_VERTEX_BUFFER,
             D3D11_BUFFER_DESC,
             D3D11_COMPARISON_ALWAYS,
-            D3D11_CPU_ACCESS_WRITE,
             D3D11_FILTER_MIN_MAG_MIP_LINEAR,
             D3D11_FLOAT32_MAX,
             D3D11_INPUT_ELEMENT_DESC,
             D3D11_INPUT_PER_VERTEX_DATA,
-            D3D11_MAP_READ,
             D3D11_RECT,
-            D3D11_RESOURCE_MISC_GENERATE_MIPS,
             D3D11_SAMPLER_DESC,
             D3D11_SUBRESOURCE_DATA,
-            D3D11_TEXTURE2D_DESC,
             D3D11_TEXTURE_ADDRESS_BORDER,
             D3D11_USAGE_DEFAULT,
         },
@@ -54,7 +38,7 @@ use winapi::{
 pub struct State {
     gfx_device: gfx_device_dx11::Device,
     gfx_factory: gfx_device_dx11::Factory,
-    imgui_texture: Texture<gfx_device_dx11::Resources, B8_G8_R8_A8>,
+    imgui_shader_resource: ShaderResourceView<gfx_device_dx11::Resources, [f32; 4]>,
     imgui_render_target: RenderTargetView<gfx_device_dx11::Resources, Bgra8>,
     imgui_renderer: Renderer<Bgra8, gfx_device_dx11::Resources>,
     imgui_encoder: Encoder<
@@ -66,9 +50,6 @@ pub struct State {
     input_layout: d3d11::InputLayout,
     quad_vertex_buffer: d3d11::Buffer,
     hq_sampler: d3d11::SamplerState,
-    blit_staging_tex: d3d11::Texture2D,
-    blit_dest_tex: d3d11::Texture2D,
-    blit_dest_view: d3d11::ShaderResourceView,
 }
 
 #[allow(clippy::too_many_lines)]
@@ -80,8 +61,6 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
     let input_layout;
     let quad_vertex_buffer;
     let hq_sampler;
-    let blit_dest_tex;
-    let blit_dest_view;
     let graphics = gfc::KGGraphics::get_instance();
     unsafe {
         device = (*(*graphics.as_ptr()).m_pGraphicsSystem).pDevice
@@ -163,57 +142,20 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
         hq_sampler = init_with_hresult(|p| (*device).CreateSamplerState(&desc, p))
             .map(|p| d3d11::SamplerState::from_raw(p))
             .unwrap();
-
-        let desc = D3D11_TEXTURE2D_DESC {
-            Width: screen_width.into(),
-            Height: screen_height.into(),
-            MipLevels: 0,
-            ArraySize: 1,
-            Format: DXGI_FORMAT_B8G8R8A8_UNORM,
-            SampleDesc: DXGI_SAMPLE_DESC {
-                Count: 1,
-                Quality: 0,
-            },
-            Usage: D3D11_USAGE_DEFAULT,
-            BindFlags: D3D11_BIND_SHADER_RESOURCE
-                | D3D11_BIND_RENDER_TARGET
-                | D3D11_BIND_UNORDERED_ACCESS,
-            CPUAccessFlags: D3D11_CPU_ACCESS_WRITE,
-            MiscFlags: D3D11_RESOURCE_MISC_GENERATE_MIPS,
-        };
-        blit_dest_tex = init_with_hresult(|p| (*device).CreateTexture2D(&desc, ptr::null(), p))
-            .map(|p| d3d11::Texture2D::from_raw(p))
-            .unwrap();
-
-        blit_dest_view = init_with_hresult(|p| {
-            (*device).CreateShaderResourceView(blit_dest_tex.as_resource().raw(), ptr::null(), p)
-        })
-        .map(|p| d3d11::ShaderResourceView::from_raw(p))
-        .unwrap();
     }
 
     let (gfx_device, mut gfx_factory) =
         gfx_device_dx11::create_from_existing(device, context).unwrap();
-    let (imgui_texture, _view, imgui_render_target) = gfx_factory
+    let (_imgui_texture, imgui_shader_resource, imgui_render_target) = gfx_factory
         .create_render_target(screen_width, screen_height)
         .unwrap();
     let imgui_renderer = Renderer::init(imgui, &mut gfx_factory, Shaders::HlslSm40).unwrap();
     let imgui_encoder = gfx_factory.create_command_buffer().into();
 
-    let blit_staging_tex;
-    unsafe {
-        let device = d3d11::Device::from_ptr(device);
-
-        let texture = imgui_texture.raw().resource().as_resource() as *mut ID3D11Texture2D;
-        let texture = d3d11::Texture2D::from_ptr(texture);
-
-        blit_staging_tex = create_staging_texture2d(&device, &texture).unwrap();
-    }
-
     State {
         gfx_device,
         gfx_factory,
-        imgui_texture,
+        imgui_shader_resource,
         imgui_render_target,
         imgui_renderer,
         imgui_encoder,
@@ -222,9 +164,6 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
         input_layout,
         quad_vertex_buffer,
         hq_sampler,
-        blit_staging_tex,
-        blit_dest_tex,
-        blit_dest_view,
     }
 }
 
@@ -258,28 +197,6 @@ pub fn draw(
         let target = (*(*(*graphics.as_ptr()).m_pCommandWriter).m_pRenderTarget).renderTargetViews
             [0] as *mut winapi::um::d3d11::ID3D11RenderTargetView;
 
-        // This is pretty inefficient, but I can't figure out how to get `CopyResource`
-        // to work with a texture created by `gfx`. So we're going the long way around.
-        //
-        // This takes about 5ms every frame. Yikes.
-        (*context.raw()).CopyResource(
-            state.blit_staging_tex.as_resource().raw(),
-            state.imgui_texture.raw().resource().as_resource().cast(),
-        );
-        let mapped = state
-            .blit_staging_tex
-            .map(&context, 0, D3D11_MAP_READ, 0)
-            .unwrap();
-        (*context.raw()).UpdateSubresource(
-            state.blit_dest_tex.as_resource().raw(),
-            0,
-            ptr::null(),
-            mapped.data().as_ptr().cast(),
-            mapped.row_pitch(),
-            0,
-        );
-        drop(mapped);
-
         (*context.raw()).IASetInputLayout(state.input_layout.raw());
         (*context.raw()).IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
         (*context.raw()).IASetVertexBuffers(
@@ -297,10 +214,10 @@ pub fn draw(
             right: window_left + window_width,
             bottom: window_top + window_height,
         });
+        (*context.raw()).OMSetRenderTargets(1, &target, ptr::null_mut());
         (*context.raw()).PSSetShader(state.ps_tex.raw(), ptr::null(), 0);
         (*context.raw()).PSSetSamplers(0, 1, &state.hq_sampler.raw());
-        (*context.raw()).PSSetShaderResources(0, 1, &state.blit_dest_view.raw());
-        (*context.raw()).OMSetRenderTargets(1, &target, ptr::null_mut());
+        (*context.raw()).PSSetShaderResources(0, 1, &state.imgui_shader_resource.raw_view().0);
         (*context.raw()).Draw(6, 0);
     }
 }
