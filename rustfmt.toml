@@ -1,5 +1,6 @@
 # https://github.com/rust-lang/rustfmt/blob/master/Configurations.md
 
+edition = "2018"
 error_on_line_overflow = false
 error_on_unformatted = true
 force_multiline_blocks = true
@@ -11,5 +12,4 @@ merge_imports = true
 newline_style = "Unix"
 overflow_delimited_expr = true
 use_field_init_shorthand = true
-version = "Two"
 wrap_comments = true
