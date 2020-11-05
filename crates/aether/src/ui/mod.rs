@@ -7,7 +7,6 @@ use crate::{
 };
 use darksiders1_sys::target;
 use imgui::Context;
-use once_cell::sync::Lazy;
 use parking_lot::Mutex;
 use std::{
     convert::TryFrom,
@@ -29,8 +28,7 @@ pub static WANT_ENABLED: AtomicI32 = AtomicI32::new(0);
 pub static IS_ENABLED: AtomicBool = AtomicBool::new(false);
 // Safety: although this is stored in a static, it must only be accessed from
 // the game's render thread.
-static STATE: Lazy<Mutex<UnsafeSend<Option<State>>>> =
-    Lazy::new(|| Mutex::new(unsafe { UnsafeSend::new(None) }));
+static STATE: Mutex<UnsafeSend<Option<State>>> = Mutex::new(unsafe { UnsafeSend::new(None) });
 
 struct State {
     imgui: Context,
