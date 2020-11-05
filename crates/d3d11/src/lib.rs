@@ -14,6 +14,7 @@ pub use wrap::{
     input_layout::InputLayout,
     mapped_subresource::MappedSubresource,
     pixel_shader::PixelShader,
+    rasterizer_state::RasterizerState,
     resource::Resource,
     sampler_state::SamplerState,
     shader_resource_view::ShaderResourceView,

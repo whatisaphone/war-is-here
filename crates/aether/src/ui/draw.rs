@@ -10,10 +10,13 @@ use imgui::{Context, DrawData};
 use imgui_gfx_renderer::{Renderer, Shaders};
 use std::{convert::TryInto, mem, ptr};
 use winapi::{
-    shared::dxgiformat::{
-        DXGI_FORMAT_R32G32B32A32_FLOAT,
-        DXGI_FORMAT_R32G32B32_FLOAT,
-        DXGI_FORMAT_R32G32_FLOAT,
+    shared::{
+        dxgiformat::{
+            DXGI_FORMAT_R32G32B32A32_FLOAT,
+            DXGI_FORMAT_R32G32B32_FLOAT,
+            DXGI_FORMAT_R32G32_FLOAT,
+        },
+        minwindef::FALSE,
     },
     um::{
         d3d11::{
@@ -21,11 +24,13 @@ use winapi::{
             D3D11_BIND_VERTEX_BUFFER,
             D3D11_BUFFER_DESC,
             D3D11_COMPARISON_ALWAYS,
+            D3D11_CULL_NONE,
+            D3D11_FILL_SOLID,
             D3D11_FILTER_MIN_MAG_MIP_LINEAR,
             D3D11_FLOAT32_MAX,
             D3D11_INPUT_ELEMENT_DESC,
             D3D11_INPUT_PER_VERTEX_DATA,
-            D3D11_RECT,
+            D3D11_RASTERIZER_DESC,
             D3D11_SAMPLER_DESC,
             D3D11_SUBRESOURCE_DATA,
             D3D11_TEXTURE_ADDRESS_BORDER,
@@ -49,6 +54,7 @@ pub struct State {
     ps_tex: d3d11::PixelShader,
     input_layout: d3d11::InputLayout,
     quad_vertex_buffer: d3d11::Buffer,
+    rasterizer_state: d3d11::RasterizerState,
     hq_sampler: d3d11::SamplerState,
 }
 
@@ -60,6 +66,7 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
     let ps_tex;
     let input_layout;
     let quad_vertex_buffer;
+    let rasterizer_state;
     let hq_sampler;
     let graphics = gfc::KGGraphics::get_instance();
     unsafe {
@@ -127,6 +134,22 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
             .map(|p| d3d11::Buffer::from_raw(p))
             .unwrap();
 
+        let desc = D3D11_RASTERIZER_DESC {
+            FillMode: D3D11_FILL_SOLID,
+            CullMode: D3D11_CULL_NONE,
+            FrontCounterClockwise: FALSE,
+            DepthBias: 0,
+            DepthBiasClamp: 0.0,
+            SlopeScaledDepthBias: 0.0,
+            DepthClipEnable: FALSE,
+            ScissorEnable: FALSE,
+            MultisampleEnable: FALSE,
+            AntialiasedLineEnable: FALSE,
+        };
+        rasterizer_state = init_with_hresult(|p| (*device).CreateRasterizerState(&desc, p))
+            .map(|p| d3d11::RasterizerState::from_raw(p))
+            .unwrap();
+
         let desc = D3D11_SAMPLER_DESC {
             Filter: D3D11_FILTER_MIN_MAG_MIP_LINEAR,
             AddressU: D3D11_TEXTURE_ADDRESS_BORDER,
@@ -163,18 +186,12 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
         ps_tex,
         input_layout,
         quad_vertex_buffer,
+        rasterizer_state,
         hq_sampler,
     }
 }
 
-pub fn draw(
-    state: &mut State,
-    draw_data: &DrawData,
-    window_left: i32,
-    window_top: i32,
-    window_width: i32,
-    window_height: i32,
-) {
+pub fn draw(state: &mut State, draw_data: &DrawData) {
     state
         .imgui_encoder
         .clear(&state.imgui_render_target, [0.0, 0.0, 0.0, 0.0]);
@@ -207,13 +224,7 @@ pub fn draw(
             &0,
         );
         (*context.raw()).VSSetShader(state.vs_copy.raw(), ptr::null(), 0);
-        // Piggyback off rasterizer state leftover from imgui renderer
-        (*context.raw()).RSSetScissorRects(1, &D3D11_RECT {
-            left: window_left,
-            top: window_top,
-            right: window_left + window_width,
-            bottom: window_top + window_height,
-        });
+        (*context.raw()).RSSetState(state.rasterizer_state.raw());
         (*context.raw()).OMSetRenderTargets(1, &target, ptr::null_mut());
         (*context.raw()).PSSetShader(state.ps_tex.raw(), ptr::null(), 0);
         (*context.raw()).PSSetSamplers(0, 1, &state.hq_sampler.raw());

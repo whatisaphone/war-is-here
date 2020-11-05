@@ -101,14 +101,7 @@ fn run_frame() {
     log_events::draw(&ui);
 
     let draw_data = ui.render();
-    draw::draw(
-        &mut state.draw,
-        draw_data,
-        0,
-        0,
-        SCREEN_WIDTH.into(),
-        SCREEN_HEIGHT.into(),
-    );
+    draw::draw(&mut state.draw, draw_data);
 }
 
 #[derive(Eq, PartialEq)]

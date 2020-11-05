@@ -6,6 +6,7 @@ pub mod device_context;
 pub mod input_layout;
 pub mod mapped_subresource;
 pub mod pixel_shader;
+pub mod rasterizer_state;
 pub mod resource;
 pub mod sampler_state;
 pub mod shader_resource_view;
