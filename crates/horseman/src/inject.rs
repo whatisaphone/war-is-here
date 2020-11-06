@@ -1,8 +1,3 @@
-#![warn(future_incompatible, rust_2018_compatibility, rust_2018_idioms, unused)]
-#![warn(clippy::pedantic)]
-// #![warn(clippy::cargo)]
-#![cfg_attr(feature = "strict", deny(warnings))]
-
 use crate::{errors::assert_or_last_os_error, utf16, win32::Processes};
 use scopeguard::defer;
 use std::{io, iter, mem, path::Path, ptr};

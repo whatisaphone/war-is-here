@@ -14,7 +14,7 @@ repos:
         name: fmt
         language: system
         files: '[.]rs$'
-        entry: rustup run --install nightly-2019-11-06 rustfmt
+        entry: rustfmt
         pass_filenames: true
 
       # Each package is checked separately because of

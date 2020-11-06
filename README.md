@@ -111,10 +111,16 @@ pre-commit install
 
 This installs a Git hook that runs a quick sanity check before every commit.
 
+### Set the toolchain
+
+```sh
+rustup override set nightly-2020-10-07-i686-pc-windows-msvc
+```
+
 ### Run the app
 
 ```sh
-cargo run
+dev/inject.sh
 ```
 
 ### Run the tests
