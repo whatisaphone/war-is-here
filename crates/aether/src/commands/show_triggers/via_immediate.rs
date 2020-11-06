@@ -1,6 +1,6 @@
 use crate::{
     commands::show_triggers::{
-        shape::{get_shape, Shape},
+        shape::{get_shape, CachedShapeQuery, Shape},
         walk::walk_world,
     },
     darksiders1::{gfc, gfc::Reflect},
@@ -214,7 +214,7 @@ fn broad_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> No
 }
 
 fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
-    let shape = get_shape(object);
+    let shape = get_shape(object).to_cached_shape_query();
     let projection = shape.project_point(point, false);
 
     // Attempt to only take into account the xy plane and ignore the z plane. If
@@ -239,7 +239,7 @@ fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
     }
 }
 
-fn distance_along_xy_plane(shape: &Shape, point: &Point3<f32>) -> Option<f32> {
+fn distance_along_xy_plane(shape: &CachedShapeQuery, point: &Point3<f32>) -> Option<f32> {
     // Very rough approximation. Cast 8 rays horizontally to approximate the
     // distance to the edge at the current z position.
     iproduct!(
