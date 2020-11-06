@@ -13,10 +13,10 @@ use crate::{
     },
 };
 use itertools::iproduct;
-use na::{Isometry, Point3, Translation, UnitComplex, UnitQuaternion, Vector3};
+use na::{Isometry3, Point3, Translation, UnitComplex, UnitQuaternion, Vector3};
 use ncollide3d::{
-    query::{PointQuery, Ray, RayCast},
-    shape::{Compound, Cuboid},
+    query::{PointQuery, Ray},
+    shape::Cuboid,
 };
 use ordered_float::NotNan;
 use std::{cmp::Ordering, collections::BTreeSet, f32::consts::PI};
@@ -203,7 +203,7 @@ fn broad_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> No
     let bounding_box = object.get_bounding_box();
 
     let cuboid = Cuboid::new((bounding_box.max - bounding_box.min) / 2.0);
-    let isometry = Isometry::from_parts(
+    let isometry = Isometry3::from_parts(
         Translation::from(bounding_box.center().coords),
         UnitQuaternion::identity(),
     );
@@ -214,8 +214,8 @@ fn broad_phase_distance(object: &gfc::DetectorObject, point: &Point3<f32>) -> No
 }
 
 fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
-    let shape = get_shape(object).to_compound_cached();
-    let projection = shape.project_point(&Isometry::identity(), point, false);
+    let shape = get_shape(object);
+    let projection = shape.project_point(point, false);
 
     // Attempt to only take into account the xy plane and ignore the z plane. If
     // you're close to a trigger that covers the entire ground, it's useless to
@@ -239,7 +239,7 @@ fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
     }
 }
 
-fn distance_along_xy_plane(shape: &Compound<f32>, point: &Point3<f32>) -> Option<f32> {
+fn distance_along_xy_plane(shape: &Shape, point: &Point3<f32>) -> Option<f32> {
     // Very rough approximation. Cast 8 rays horizontally to approximate the
     // distance to the edge at the current z position.
     iproduct!(
@@ -252,12 +252,7 @@ fn distance_along_xy_plane(shape: &Compound<f32>, point: &Point3<f32>) -> Option
     .flat_map(|(theta, point)| {
         let rot = UnitComplex::new(theta).around_z_axis();
         let vector = rot * Vector3::x();
-        shape.toi_with_ray(
-            &Isometry::identity(),
-            &Ray::new(*point, vector),
-            f32::INFINITY,
-            false,
-        )
+        shape.toi_with_ray(&Ray::new(*point, vector), f32::INFINITY, false)
     })
     .map(|x| NotNan::new(x).unwrap())
     .min()

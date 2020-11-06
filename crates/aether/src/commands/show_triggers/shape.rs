@@ -1,16 +1,13 @@
 #![allow(clippy::module_name_repetitions)]
 
 use crate::darksiders1::gfc;
-use lru::LruCache;
 use na::{Isometry, Isometry3, Point3, Translation, UnitQuaternion, Vector3};
 use ncollide3d::{
-    shape::{Ball, Compound, ConvexHull, Cuboid, Cylinder, ShapeHandle},
-    transformation::ToTriMesh,
+    query::{PointProjection, PointQuery, Ray, RayCast},
+    shape::{Ball, Cuboid, Cylinder},
 };
-use once_cell::sync::Lazy;
 use ordered_float::NotNan;
-use parking_lot::Mutex;
-use std::{f32::consts::FRAC_PI_2, sync::Arc};
+use std::f32::consts::FRAC_PI_2;
 
 // See `gfc::DetectorObject::doAddToWorld`
 pub fn get_shape(object: &gfc::DetectorObject) -> Shape {
@@ -56,67 +53,56 @@ pub enum Shape {
 }
 
 impl Shape {
-    /// Since `to_compound` is too expensive to run on every frame, we keep a
-    /// cache.
-    pub fn to_compound_cached(&self) -> Arc<Compound<f32>> {
-        // This is super sloppy. If the cache is too small, FPS will drop. The tradeoff
-        // is memory usage.
-        static CACHE: Lazy<Mutex<LruCache<TotalShape, Arc<Compound<f32>>>>> =
-            Lazy::new(|| Mutex::new(LruCache::new(1000)));
-
-        let mut cache = CACHE.lock();
-
-        let key = self.into();
-        if let Some(result) = cache.get(&key) {
-            return result.clone();
-        }
-
-        let result = Arc::new(self.to_compound());
-        cache.put(key, result.clone());
-        result
+    pub fn project_point(&self, point: &Point3<f32>, solid: bool) -> PointProjection<f32> {
+        let (isometry, collide) = self.to_collide();
+        collide.project_point(&isometry, point, solid)
     }
 
-    fn to_compound(&self) -> Compound<f32> {
+    pub fn toi_with_ray(&self, ray: &Ray<f32>, max_toi: f32, solid: bool) -> Option<f32> {
+        let (isometry, collide) = self.to_collide();
+        collide.toi_with_ray(&isometry, ray, max_toi, solid)
+    }
+
+    fn to_collide(&self) -> (Isometry3<f32>, Box<dyn ShapeQuery>) {
         match self {
             Self::Aabb(bounds) => {
                 let center = na::center(&bounds.min, &bounds.max);
-                Compound::new(vec![(
+                (
                     Isometry::from_parts(
                         Translation::from(center.coords),
                         UnitQuaternion::identity(),
                     ),
-                    ShapeHandle::new(Cuboid::new(bounds.max - center)),
-                )])
+                    Box::new(Cuboid::new(bounds.max - center)),
+                )
             }
-            &Self::Box(size, isometry) => {
-                Compound::new(vec![(isometry, ShapeHandle::new(Cuboid::new(size / 2.0)))])
-            }
+            &Self::Box(size, isometry) => (isometry, Box::new(Cuboid::new(size / 2.0))),
             &Self::Sphere(radius, center) => {
-                Compound::new(vec![(
+                (
                     Isometry::from_parts(
                         Translation::from(center.coords),
                         UnitQuaternion::identity(),
                     ),
-                    ShapeHandle::new(Ball::new(radius)),
-                )])
+                    Box::new(Ball::new(radius)),
+                )
             }
             &Self::Cylinder(radius, length, pos) => {
-                // Cylinder does not implement Shape
-                // https://github.com/rustsim/ncollide/issues/216
-                let cylinder = Cylinder::new(length / 2.0, radius).to_trimesh(24);
-                Compound::new(vec![(
+                (
                     Isometry::from_parts(
                         Translation::from(pos.coords),
                         // `nalgebra` uses principal y-axis; Darksiders uses principal z-axis.
                         // Rotate to match.
                         UnitQuaternion::from_axis_angle(&Vector3::x_axis(), FRAC_PI_2),
                     ),
-                    ShapeHandle::new(ConvexHull::try_from_points(&cylinder.coords).unwrap()),
-                )])
+                    Box::new(Cylinder::new(length / 2.0, radius)),
+                )
             }
         }
     }
 }
+
+trait ShapeQuery: PointQuery<f32> + RayCast<f32> {}
+
+impl<T> ShapeQuery for T where T: PointQuery<f32> + RayCast<f32> {}
 
 /// A hashable version of `Shape`.
 #[derive(Eq, PartialEq, Hash)]
