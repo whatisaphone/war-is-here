@@ -23,8 +23,8 @@ scopeguard = "1.1.0"
 
 gfx = "0.18.2"
 gfx_device_dx11 = "0.8.2"
-imgui = "0.3.0"
-imgui-gfx-renderer = { version = "0.3.0", default-features = false, features = ["directx"] }
+imgui = "0.5.0"
+imgui-gfx-renderer = { version = "0.5.0", default-features = false, features = ["directx"] }
 
 na = { package = "nalgebra", version = "0.19.0" }
 ncollide3d = "0.21.0"

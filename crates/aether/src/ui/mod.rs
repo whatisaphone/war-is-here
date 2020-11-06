@@ -89,7 +89,9 @@ fn run_frame() {
     let state = unsafe { guard.as_mut() }.as_mut().unwrap();
 
     let io = state.imgui.io_mut();
-    state.last_frame = io.update_delta_time(state.last_frame);
+    let now = Instant::now();
+    io.update_delta_time(now - state.last_frame);
+    state.last_frame = now;
 
     let ui = state.imgui.frame();
 

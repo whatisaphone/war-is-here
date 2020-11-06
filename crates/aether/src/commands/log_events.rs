@@ -94,7 +94,7 @@ pub fn draw(ui: &imgui::Ui<'_>) {
                 draw_text_shadow(ui, &entry.text);
                 ui.text(&entry.text);
                 if Some(i) == scroll_pos {
-                    ui.set_scroll_here_y_with_ratio(1.0);
+                    ui.set_scroll_here_y_with_ratio(0.0);
                     state.need_scroll.set(false);
                 }
             }
