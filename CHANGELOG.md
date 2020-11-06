@@ -12,6 +12,7 @@
 ### Fixed
 
 - Fix fps drop when the console is visible
+- Fix occasional fps drop when show_triggers is enabled
 
 ## v0.1.2 – 2020-04-19
 
