@@ -1,5 +1,5 @@
 use crate::Blob;
-use std::{convert::TryInto, ffi::CStr, mem, ptr};
+use std::{ffi::CStr, mem, ptr};
 use winapi::{shared::winerror::FAILED, um::d3dcompiler};
 
 pub fn compile(source: &str, entrypoint: &CStr, target: &CStr) -> Result<Blob, Blob> {
@@ -16,7 +16,7 @@ pub fn compile(source: &str, entrypoint: &CStr, target: &CStr) -> Result<Blob, B
         let mut error = mem::MaybeUninit::uninit();
         let hr = d3dcompiler::D3DCompile(
             source.as_ptr().cast(),
-            source.len().try_into().unwrap(),
+            source.len(),
             ptr::null(),
             ptr::null(),
             ptr::null_mut(),

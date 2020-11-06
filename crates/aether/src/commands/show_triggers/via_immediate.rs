@@ -41,7 +41,7 @@ pub fn draw(renderer: &gfc::UIRenderer) {
     walk_world(&mut |object| {
         let object = match gfc::object_safecast::<gfc::DetectorObject>(object) {
             Some(o) => o,
-            _ => return,
+            None => return,
         };
 
         let category = categorize_object(&object);
