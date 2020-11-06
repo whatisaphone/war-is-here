@@ -98,7 +98,7 @@ pub fn draw(ui: &imgui::Ui<'_>) {
                         ui.text_wrapped(s);
                     }
                     if state.need_scroll.get() {
-                        ui.set_scroll_here_y();
+                        ui.set_scroll_here_y_with_ratio(0.0);
                         state.need_scroll.set(false);
                     }
                 });
