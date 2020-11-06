@@ -73,13 +73,17 @@ impl CoordinateTransformer {
             (false, false) => None,
             (false, true) => {
                 let pq = Ray::new(p, q - p);
-                let t = plane.toi_with_ray(&isometry, &pq, false).unwrap();
+                let t = plane
+                    .toi_with_ray(&isometry, &pq, f32::INFINITY, false)
+                    .unwrap();
                 let p = pq.point_at(t);
                 Some([p, q])
             }
             (true, false) => {
                 let qp = Ray::new(q, p - q);
-                let t = plane.toi_with_ray(&isometry, &qp, false).unwrap();
+                let t = plane
+                    .toi_with_ray(&isometry, &qp, f32::INFINITY, false)
+                    .unwrap();
                 let q = qp.point_at(t);
                 Some([p, q])
             }

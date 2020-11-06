@@ -252,7 +252,12 @@ fn distance_along_xy_plane(shape: &Compound<f32>, point: &Point3<f32>) -> Option
     .flat_map(|(theta, point)| {
         let rot = UnitComplex::new(theta).around_z_axis();
         let vector = rot * Vector3::x();
-        shape.toi_with_ray(&Isometry::identity(), &Ray::new(*point, vector), false)
+        shape.toi_with_ray(
+            &Isometry::identity(),
+            &Ray::new(*point, vector),
+            f32::INFINITY,
+            false,
+        )
     })
     .map(|x| NotNan::new(x).unwrap())
     .min()

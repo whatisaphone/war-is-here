@@ -1,6 +1,6 @@
 #![allow(clippy::module_name_repetitions)]
 
-use crate::{darksiders1::gfc, utils::na_ext::PointExt};
+use crate::darksiders1::gfc;
 use lru::LruCache;
 use na::{Isometry, Isometry3, Point3, Translation, UnitQuaternion, Vector3};
 use ncollide3d::{
