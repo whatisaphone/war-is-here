@@ -7,13 +7,22 @@ use crate::{
     utils::{
         coordinate_transformer::CoordinateTransformer,
         geometry::LineSegment3,
-        meshes::{box_edges, transform},
-        na_ext::UnitComplexExt,
+        meshes::{box_edges, cylinder, transform, uv_sphere},
+        na_ext::{Transform3Ext, UnitComplexExt},
     },
 };
 use imgui::{im_str, WindowDrawList};
 use itertools::iproduct;
-use na::{Isometry3, Point3, Translation, UnitComplex, UnitQuaternion, Vector3, Vector4};
+use na::{
+    Isometry3,
+    Point3,
+    Transform3,
+    Translation,
+    UnitComplex,
+    UnitQuaternion,
+    Vector3,
+    Vector4,
+};
 use ncollide3d::{
     query::{PointQuery, Ray},
     shape::Cuboid,
@@ -98,7 +107,7 @@ fn draw_object(
     match get_shape(&object) {
         Shape::Aabb(bounds) => {
             for [p, q] in &box_edges(bounds.min, bounds.max) {
-                draw_line(&draw_list, p, q, transformer, reference_pos);
+                draw_line_shaded_by_distance(&draw_list, p, q, transformer, reference_pos);
             }
         }
         Shape::Box(size, isometry) => {
@@ -106,23 +115,31 @@ fn draw_object(
             let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
             transform(&mut wireframe, &na::convert(isometry));
             for [p, q] in &wireframe {
-                draw_line(&draw_list, p, q, transformer, reference_pos);
+                draw_line_shaded_by_distance(&draw_list, p, q, transformer, reference_pos);
             }
         }
-        Shape::Sphere(_radius, _center) => {
-            if draw_text {
-                draw_list.add_text([screen.x, screen.y + 20.0], WHITE, "sphere");
+        Shape::Sphere(radius, center) => {
+            let mut wireframe: Vec<_> = uv_sphere(12, 16);
+            let tf = Translation::from(center.coords)
+                * Transform3::from_scaling(&Vector3::new(radius, radius, radius));
+            transform(&mut wireframe, &tf);
+            for [p, q] in &wireframe {
+                draw_line_colored_by_distance(&draw_list, p, q, transformer, reference_pos);
             }
         }
-        Shape::Cylinder(_radius, _length, _pos) => {
-            if draw_text {
-                draw_list.add_text([screen.x, screen.y + 20.0], WHITE, "cylinder");
+        Shape::Cylinder(radius, length, pos) => {
+            let mut wireframe: Vec<_> = cylinder(16).collect();
+            let tf = Translation::from(pos.coords)
+                * Transform3::from_scaling(&Vector3::new(radius, radius, length));
+            transform(&mut wireframe, &tf);
+            for [p, q] in &wireframe {
+                draw_line_colored_by_distance(&draw_list, p, q, transformer, reference_pos);
             }
         }
     }
 }
 
-fn draw_line(
+fn draw_line_shaded_by_distance(
     draw_list: &WindowDrawList<'_>,
     p: &Point3<f32>,
     q: &Point3<f32>,
@@ -145,6 +162,22 @@ fn draw_line(
         draw_line_gradient(draw_list, &p, &m, transformer, p_color, m_color);
         draw_line_gradient(draw_list, &m, &q, transformer, m_color, q_color);
     }
+}
+
+fn draw_line_colored_by_distance(
+    draw_list: &WindowDrawList<'_>,
+    p: &Point3<f32>,
+    q: &Point3<f32>,
+    transformer: &CoordinateTransformer,
+    reference_pos: &Point3<f32>,
+) {
+    let [p, q] = match transformer.clip_line_to_frustum_near_plane(*p, *q) {
+        Some([p, q]) => [p, q],
+        None => return,
+    };
+    let m = LineSegment3::new(p, q).closest_point(reference_pos);
+    let color = point_color(&m, reference_pos);
+    draw_line_colored(draw_list, &p, &q, transformer, color);
 }
 
 fn point_color(point: &Point3<f32>, reference_pos: &Point3<f32>) -> [f32; 4] {
@@ -183,6 +216,21 @@ fn draw_line_gradient(
             .thickness(2.0)
             .build();
     }
+}
+
+fn draw_line_colored(
+    draw_list: &WindowDrawList<'_>,
+    p: &Point3<f32>,
+    q: &Point3<f32>,
+    transformer: &CoordinateTransformer,
+    color: [f32; 4],
+) {
+    let p = transformer.world_to_screen(&p);
+    let q = transformer.world_to_screen(&q);
+    draw_list
+        .add_line(p.xy().coords.into(), q.xy().coords.into(), color)
+        .thickness(2.0)
+        .build();
 }
 
 struct KeepMinCountOrMinPriority {

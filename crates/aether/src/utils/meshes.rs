@@ -1,7 +1,7 @@
 #![allow(clippy::cast_precision_loss)]
 
 use na::{Point3, Transform3};
-use std::{collections::HashMap, iter};
+use std::{collections::HashMap, f32::consts::PI, iter};
 
 pub fn box_edges(p1: Point3<f32>, p2: Point3<f32>) -> [[Point3<f32>; 2]; 12] {
     [
@@ -115,6 +115,40 @@ pub fn icosphere() -> impl Iterator<Item = [Point3<f32>; 2]> {
             .chain(iter::once([verts[b], verts[c]]))
             .chain(iter::once([verts[c], verts[a]]))
     })
+}
+
+pub fn uv_sphere(parallels: usize, meridians: usize) -> Vec<[Point3<f32>; 2]> {
+    let mut result = Vec::new();
+
+    // Compute the parallel edges
+    for par in 1..parallels {
+        for mer in 0..meridians {
+            let par = par as f32 / parallels as f32 * PI;
+            let mer1 = mer as f32 / meridians as f32 * 2.0 * PI;
+            let mer2 = (mer + 1) as f32 / meridians as f32 * 2.0 * PI;
+
+            result.push([
+                Point3::new(mer1.cos() * par.sin(), mer1.sin() * par.sin(), par.cos()),
+                Point3::new(mer2.cos() * par.sin(), mer2.sin() * par.sin(), par.cos()),
+            ]);
+        }
+    }
+
+    // Compute the meridian edges
+    for par in 0..parallels {
+        for mer in 0..meridians {
+            let par1 = par as f32 / parallels as f32 * PI;
+            let par2 = (par + 1) as f32 / parallels as f32 * PI;
+            let mer = mer as f32 / meridians as f32 * 2.0 * PI;
+
+            result.push([
+                Point3::new(mer.cos() * par1.sin(), mer.sin() * par1.sin(), par1.cos()),
+                Point3::new(mer.cos() * par2.sin(), mer.sin() * par2.sin(), par2.cos()),
+            ]);
+        }
+    }
+
+    result
 }
 
 pub fn cylinder(resolution: usize) -> impl Iterator<Item = [Point3<f32>; 2]> {
