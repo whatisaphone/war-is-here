@@ -6,13 +6,14 @@ use crate::{
     darksiders1::{gfc, gfc::Reflect},
     utils::{
         coordinate_transformer::CoordinateTransformer,
+        geometry::LineSegment3,
         meshes::{box_edges, transform},
         na_ext::UnitComplexExt,
     },
 };
 use imgui::{im_str, WindowDrawList};
 use itertools::iproduct;
-use na::{Isometry3, Point3, Translation, UnitComplex, UnitQuaternion, Vector3};
+use na::{Isometry3, Point3, Translation, UnitComplex, UnitQuaternion, Vector3, Vector4};
 use ncollide3d::{
     query::{PointQuery, Ray},
     shape::Cuboid,
@@ -63,10 +64,10 @@ pub fn draw(ui: &imgui::Ui<'_>) {
         .build(ui, || {
             let draw_list = ui.get_background_draw_list();
             for object in load_regions.into_iter() {
-                draw_object(&draw_list, &transformer, &object);
+                draw_object(&draw_list, &transformer, &object, &player_pos);
             }
             for object in others.into_iter() {
-                draw_object(&draw_list, &transformer, &object);
+                draw_object(&draw_list, &transformer, &object, &player_pos);
             }
         });
 }
@@ -77,6 +78,7 @@ fn draw_object(
     draw_list: &WindowDrawList<'_>,
     transformer: &CoordinateTransformer,
     object: &gfc::DetectorObject,
+    reference_pos: &Point3<f32>,
 ) {
     let position = object.get_position();
     let screen = transformer.world_to_screen(&position);
@@ -96,7 +98,7 @@ fn draw_object(
     match get_shape(&object) {
         Shape::Aabb(bounds) => {
             for [p, q] in &box_edges(bounds.min, bounds.max) {
-                draw_line(&draw_list, p, q, transformer);
+                draw_line(&draw_list, p, q, transformer, reference_pos);
             }
         }
         Shape::Box(size, isometry) => {
@@ -104,7 +106,7 @@ fn draw_object(
             let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
             transform(&mut wireframe, &na::convert(isometry));
             for [p, q] in &wireframe {
-                draw_line(&draw_list, p, q, transformer);
+                draw_line(&draw_list, p, q, transformer, reference_pos);
             }
         }
         Shape::Sphere(_radius, _center) => {
@@ -125,17 +127,62 @@ fn draw_line(
     p: &Point3<f32>,
     q: &Point3<f32>,
     transformer: &CoordinateTransformer,
+    reference_pos: &Point3<f32>,
 ) {
     let [p, q] = match transformer.clip_line_to_frustum_near_plane(*p, *q) {
         Some([p, q]) => [p, q],
         None => return,
     };
-    let p = transformer.world_to_screen(&p);
-    let q = transformer.world_to_screen(&q);
-    draw_list
-        .add_line(p.xy().coords.into(), q.xy().coords.into(), WHITE)
-        .thickness(2.0)
-        .build();
+    let m = LineSegment3::new(p, q).closest_point(reference_pos);
+    if m == p || m == q {
+        let p_color = point_color(&p, reference_pos);
+        let q_color = point_color(&q, reference_pos);
+        draw_line_gradient(draw_list, &p, &q, transformer, p_color, q_color);
+    } else {
+        let p_color = point_color(&p, reference_pos);
+        let m_color = point_color(&m, reference_pos);
+        let q_color = point_color(&q, reference_pos);
+        draw_line_gradient(draw_list, &p, &m, transformer, p_color, m_color);
+        draw_line_gradient(draw_list, &m, &q, transformer, m_color, q_color);
+    }
+}
+
+fn point_color(point: &Point3<f32>, reference_pos: &Point3<f32>) -> [f32; 4] {
+    let distance = na::distance(point, reference_pos);
+    let min_dist = 500.0;
+    let max_dist = 2000.0;
+    let ratio = ((distance - min_dist) / (max_dist - min_dist))
+        .max(0.0)
+        .min(1.0);
+    let near = Vector4::new(1.0, 1.0, 1.0, 1.0);
+    let far = Vector4::new(1.0, 1.0, 1.0, 0.5);
+    (near + ratio * (far - near)).into()
+}
+
+#[allow(clippy::cast_precision_loss)]
+fn draw_line_gradient(
+    draw_list: &WindowDrawList<'_>,
+    p: &Point3<f32>,
+    q: &Point3<f32>,
+    transformer: &CoordinateTransformer,
+    color1: [f32; 4],
+    color2: [f32; 4],
+) {
+    let count = 8;
+    let color1 = Vector4::from(color1);
+    let color2 = Vector4::from(color2);
+    for i in 0..count {
+        let p0 = p + (q - p) * i as f32 / count as f32;
+        let q0 = p + (q - p) * (i + 1) as f32 / count as f32;
+        let p0 = transformer.world_to_screen(&p0);
+        let q0 = transformer.world_to_screen(&q0);
+        let color = color1 + (color2 - color1) * i as f32 / (count - 1) as f32;
+        let color: [f32; 4] = color.into();
+        draw_list
+            .add_line(p0.xy().coords.into(), q0.xy().coords.into(), color)
+            .thickness(2.0)
+            .build();
+    }
 }
 
 struct KeepMinCountOrMinPriority {
