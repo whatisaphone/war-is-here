@@ -6,7 +6,7 @@ use crate::{
     darksiders1::{gfc, gfc::Reflect},
     utils::{
         coordinate_transformer::CoordinateTransformer,
-        geometry::{box_edges, transform},
+        meshes::{box_edges, transform},
         na_ext::UnitComplexExt,
     },
 };

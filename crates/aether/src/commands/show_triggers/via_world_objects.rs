@@ -6,7 +6,7 @@ use crate::{
     darksiders1::gfc,
     utils::{
         debug_draw_3d,
-        geometry::{box_edges, cylinder, icosphere},
+        meshes::{box_edges, cylinder, icosphere},
     },
 };
 use na::{Point3, Vector3};
