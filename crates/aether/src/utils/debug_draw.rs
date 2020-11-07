@@ -1,37 +1,9 @@
 #![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 
-use crate::{
-    darksiders1::gfc,
-    utils::{
-        coordinate_transformer::CoordinateTransformer,
-        geometry::box_edges,
-        liang_barsky::liang_barsky,
-    },
-};
-use na::{Point2, Point3, Vector4};
+use crate::{darksiders1::gfc, utils::liang_barsky::liang_barsky};
+use na::{Point2, Vector4};
 
-pub fn box_wireframe(
-    renderer: &gfc::UIRenderer,
-    transformer: &CoordinateTransformer,
-    bounds: &gfc::TBox<f32>,
-) {
-    wireframe(renderer, transformer, &box_edges(bounds.min, bounds.max));
-}
-
-pub fn wireframe(
-    renderer: &gfc::UIRenderer,
-    transformer: &CoordinateTransformer,
-    wireframe: &[[Point3<f32>; 2]],
-) {
-    for &[p, q] in wireframe {
-        if let Some([p, q]) = transformer.clip_line_to_frustum_near_plane(p, q) {
-            let p = transformer.world_to_screen(&p);
-            let q = transformer.world_to_screen(&q);
-            clunky_draw_line(renderer, Point2::new(p.x, p.y), Point2::new(q.x, q.y));
-        }
-    }
-}
-
+#[allow(dead_code)]
 pub fn clunky_draw_line(renderer: &gfc::UIRenderer, p: Point2<f32>, q: Point2<f32>) {
     let viewport = gfc::KGGraphics::get_instance().get_viewport();
     let viewport = viewport.convert(|x| x as f32);

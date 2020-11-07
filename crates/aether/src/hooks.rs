@@ -1,7 +1,7 @@
 #![allow(non_snake_case)]
 
 use crate::{
-    commands::{console, log_events},
+    commands::{console, log_events, show_triggers},
     ui,
     utils::detour::TypedDetour,
 };
@@ -89,6 +89,7 @@ pub fn uninstall() {
     // Disable anything that requires the ui to be loaded.
     console::hide();
     log_events::disable();
+    show_triggers::disable();
 
     // Wait for the UI to become cleaned up. This must happen on the main thread.
     while ui::IS_ENABLED.load(Ordering::SeqCst) {
@@ -120,7 +121,6 @@ mod hook {
             log_events,
             show_collision,
             show_player_pos,
-            show_triggers,
             spawn_humans,
         },
         darksiders1::{gfc, Lift, Lower},
@@ -148,7 +148,6 @@ mod hook {
         splash::draw(renderer);
         fps::draw(renderer);
         show_player_pos::draw(renderer);
-        show_triggers::draw(renderer);
         show_collision::draw(renderer);
 
         ui::pump();

@@ -1,7 +1,7 @@
 #![allow(clippy::cast_possible_truncation, clippy::cast_precision_loss)]
 
 use crate::{
-    commands::{console, log_events},
+    commands::{console, log_events, show_triggers},
     darksiders1::keen,
     utils::marker::UnsafeSend,
 };
@@ -97,6 +97,7 @@ fn run_frame() {
 
     console::draw(&ui);
     log_events::draw(&ui);
+    show_triggers::draw(&ui);
 
     let draw_data = ui.render();
     draw::draw(&mut state.draw, draw_data);

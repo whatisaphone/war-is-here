@@ -4,14 +4,13 @@ use crate::{
         walk::walk_world,
     },
     darksiders1::{gfc, gfc::Reflect},
-    library::bitmap_font,
     utils::{
         coordinate_transformer::CoordinateTransformer,
-        debug_draw,
         geometry::{box_edges, transform},
         na_ext::UnitComplexExt,
     },
 };
+use imgui::{im_str, WindowDrawList};
 use itertools::iproduct;
 use na::{Isometry3, Point3, Translation, UnitComplex, UnitQuaternion, Vector3};
 use ncollide3d::{
@@ -24,7 +23,7 @@ use std::{cmp::Ordering, collections::BTreeSet, f32::consts::PI};
 const MIN_CLOSE_DISTANCE: f32 = 500.0;
 const MIN_INSIDE_DISTANCE: f32 = 250.0;
 
-pub fn draw(renderer: &gfc::UIRenderer) {
+pub fn draw(ui: &imgui::Ui<'_>) {
     let player = match gfc::OblivionGame::get_instance().get_player_actor() {
         Some(player) => player,
         None => return,
@@ -52,21 +51,30 @@ pub fn draw(renderer: &gfc::UIRenderer) {
         }
     });
 
-    renderer.begin(true);
-    renderer.set_material(renderer.solid_material());
-
-    for object in load_regions.into_iter() {
-        draw_object(renderer, &transformer, &object);
-    }
-    for object in others.into_iter() {
-        draw_object(renderer, &transformer, &object);
+    imgui_token_guard! {
+        ui.push_style_var(imgui::StyleVar::WindowBorderSize(0.0));
+        ui.push_style_color(imgui::StyleColor::WindowBg, [0.0, 0.0, 0.0, 0.0]);
     }
 
-    renderer.end();
+    imgui::Window::new(im_str!("Triggerrs"))
+        .position([0.0, 0.0], imgui::Condition::Always)
+        .title_bar(false)
+        .resizable(false)
+        .build(ui, || {
+            let draw_list = ui.get_background_draw_list();
+            for object in load_regions.into_iter() {
+                draw_object(&draw_list, &transformer, &object);
+            }
+            for object in others.into_iter() {
+                draw_object(&draw_list, &transformer, &object);
+            }
+        });
 }
 
+const WHITE: [f32; 3] = [1.0, 1.0, 1.0];
+
 fn draw_object(
-    renderer: &gfc::UIRenderer,
+    draw_list: &WindowDrawList<'_>,
     transformer: &CoordinateTransformer,
     object: &gfc::DetectorObject,
 ) {
@@ -78,34 +86,56 @@ fn draw_object(
     if draw_text {
         let class_name = object.class().name();
         let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-        bitmap_font::draw_string(renderer, screen.x, screen.y, 2, class_name);
+        draw_list.add_text([screen.x, screen.y], WHITE, class_name);
 
         let object_name = object.get_name();
         let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-        bitmap_font::draw_string(renderer, screen.x, screen.y + 20.0, 2, object_name);
+        draw_list.add_text([screen.x, screen.y + 10.0], WHITE, object_name);
     }
 
     match get_shape(&object) {
         Shape::Aabb(bounds) => {
-            debug_draw::box_wireframe(renderer, &transformer, &bounds);
+            for [p, q] in &box_edges(bounds.min, bounds.max) {
+                draw_line(&draw_list, p, q, transformer);
+            }
         }
         Shape::Box(size, isometry) => {
             let origin = Point3::origin();
             let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
             transform(&mut wireframe, &na::convert(isometry));
-            debug_draw::wireframe(renderer, &transformer, &wireframe);
+            for [p, q] in &wireframe {
+                draw_line(&draw_list, p, q, transformer);
+            }
         }
         Shape::Sphere(_radius, _center) => {
             if draw_text {
-                bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "sphere");
+                draw_list.add_text([screen.x, screen.y + 20.0], WHITE, "sphere");
             }
         }
         Shape::Cylinder(_radius, _length, _pos) => {
             if draw_text {
-                bitmap_font::draw_string(renderer, screen.x, screen.y + 40.0, 2, "cylinder");
+                draw_list.add_text([screen.x, screen.y + 20.0], WHITE, "cylinder");
             }
         }
     }
+}
+
+fn draw_line(
+    draw_list: &WindowDrawList<'_>,
+    p: &Point3<f32>,
+    q: &Point3<f32>,
+    transformer: &CoordinateTransformer,
+) {
+    let [p, q] = match transformer.clip_line_to_frustum_near_plane(*p, *q) {
+        Some([p, q]) => [p, q],
+        None => return,
+    };
+    let p = transformer.world_to_screen(&p);
+    let q = transformer.world_to_screen(&q);
+    draw_list
+        .add_line(p.xy().coords.into(), q.xy().coords.into(), WHITE)
+        .thickness(2.0)
+        .build();
 }
 
 struct KeepMinCountOrMinPriority {
