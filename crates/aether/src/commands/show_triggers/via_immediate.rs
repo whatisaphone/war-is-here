@@ -5,30 +5,24 @@ use crate::{
     },
     darksiders1::{gfc, gfc::Reflect},
     utils::{
+        arrayvec::ArrayVecExt,
         coordinate_transformer::CoordinateTransformer,
         geometry::LineSegment3,
+        interpolate::{lerp, unlerp},
         meshes::{box_edges, cylinder, transform, uv_sphere},
         na_ext::{Transform3Ext, UnitComplexExt},
     },
 };
+use arrayvec::ArrayVec;
 use imgui::{im_str, WindowDrawList};
-use itertools::iproduct;
-use na::{
-    Isometry3,
-    Point3,
-    Transform3,
-    Translation,
-    UnitComplex,
-    UnitQuaternion,
-    Vector3,
-    Vector4,
-};
+use itertools::{iproduct, Itertools};
+use na::{Isometry3, Point3, Transform3, Translation, UnitComplex, UnitQuaternion, Vector3};
 use ncollide3d::{
     query::{PointQuery, Ray},
     shape::Cuboid,
 };
 use ordered_float::NotNan;
-use std::{cmp::Ordering, collections::BTreeSet, f32::consts::PI};
+use std::{cmp::Ordering, collections::BTreeSet, f32::consts::PI, mem};
 
 const MIN_CLOSE_DISTANCE: f32 = 500.0;
 const MIN_INSIDE_DISTANCE: f32 = 250.0;
@@ -106,131 +100,34 @@ fn draw_object(
 
     match get_shape(&object) {
         Shape::Aabb(bounds) => {
-            for [p, q] in &box_edges(bounds.min, bounds.max) {
-                draw_line_shaded_by_distance(&draw_list, p, q, transformer, reference_pos);
-            }
+            let wireframe = box_edges(bounds.min, bounds.max);
+            let wireframe = color_wireframe(&wireframe, reference_pos);
+            draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Box(size, isometry) => {
             let origin = Point3::origin();
             let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
             transform(&mut wireframe, &na::convert(isometry));
-            for [p, q] in &wireframe {
-                draw_line_shaded_by_distance(&draw_list, p, q, transformer, reference_pos);
-            }
+            let wireframe = color_wireframe(&wireframe, reference_pos);
+            draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Sphere(radius, center) => {
             let mut wireframe: Vec<_> = uv_sphere(12, 16);
             let tf = Translation::from(center.coords)
                 * Transform3::from_scaling(&Vector3::new(radius, radius, radius));
             transform(&mut wireframe, &tf);
-            for [p, q] in &wireframe {
-                draw_line_colored_by_distance(&draw_list, p, q, transformer, reference_pos);
-            }
+            let wireframe = color_wireframe(&wireframe, reference_pos);
+            draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Cylinder(radius, length, pos) => {
             let mut wireframe: Vec<_> = cylinder(16).collect();
             let tf = Translation::from(pos.coords)
                 * Transform3::from_scaling(&Vector3::new(radius, radius, length));
             transform(&mut wireframe, &tf);
-            for [p, q] in &wireframe {
-                draw_line_colored_by_distance(&draw_list, p, q, transformer, reference_pos);
-            }
+            let wireframe = color_wireframe(&wireframe, reference_pos);
+            draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
     }
-}
-
-fn draw_line_shaded_by_distance(
-    draw_list: &WindowDrawList<'_>,
-    p: &Point3<f32>,
-    q: &Point3<f32>,
-    transformer: &CoordinateTransformer,
-    reference_pos: &Point3<f32>,
-) {
-    let [p, q] = match transformer.clip_line_to_frustum_near_plane(*p, *q) {
-        Some([p, q]) => [p, q],
-        None => return,
-    };
-    let m = LineSegment3::new(p, q).closest_point(reference_pos);
-    if m == p || m == q {
-        let p_color = point_color(&p, reference_pos);
-        let q_color = point_color(&q, reference_pos);
-        draw_line_gradient(draw_list, &p, &q, transformer, p_color, q_color);
-    } else {
-        let p_color = point_color(&p, reference_pos);
-        let m_color = point_color(&m, reference_pos);
-        let q_color = point_color(&q, reference_pos);
-        draw_line_gradient(draw_list, &p, &m, transformer, p_color, m_color);
-        draw_line_gradient(draw_list, &m, &q, transformer, m_color, q_color);
-    }
-}
-
-fn draw_line_colored_by_distance(
-    draw_list: &WindowDrawList<'_>,
-    p: &Point3<f32>,
-    q: &Point3<f32>,
-    transformer: &CoordinateTransformer,
-    reference_pos: &Point3<f32>,
-) {
-    let [p, q] = match transformer.clip_line_to_frustum_near_plane(*p, *q) {
-        Some([p, q]) => [p, q],
-        None => return,
-    };
-    let m = LineSegment3::new(p, q).closest_point(reference_pos);
-    let color = point_color(&m, reference_pos);
-    draw_line_colored(draw_list, &p, &q, transformer, color);
-}
-
-fn point_color(point: &Point3<f32>, reference_pos: &Point3<f32>) -> [f32; 4] {
-    let distance = na::distance(point, reference_pos);
-    let min_dist = 500.0;
-    let max_dist = 2000.0;
-    let ratio = ((distance - min_dist) / (max_dist - min_dist))
-        .max(0.0)
-        .min(1.0);
-    let near = Vector4::new(1.0, 1.0, 1.0, 1.0);
-    let far = Vector4::new(1.0, 1.0, 1.0, 0.5);
-    (near + ratio * (far - near)).into()
-}
-
-#[allow(clippy::cast_precision_loss)]
-fn draw_line_gradient(
-    draw_list: &WindowDrawList<'_>,
-    p: &Point3<f32>,
-    q: &Point3<f32>,
-    transformer: &CoordinateTransformer,
-    color1: [f32; 4],
-    color2: [f32; 4],
-) {
-    let count = 8;
-    let color1 = Vector4::from(color1);
-    let color2 = Vector4::from(color2);
-    for i in 0..count {
-        let p0 = p + (q - p) * i as f32 / count as f32;
-        let q0 = p + (q - p) * (i + 1) as f32 / count as f32;
-        let p0 = transformer.world_to_screen(&p0);
-        let q0 = transformer.world_to_screen(&q0);
-        let color = color1 + (color2 - color1) * i as f32 / (count - 1) as f32;
-        let color: [f32; 4] = color.into();
-        draw_list
-            .add_line(p0.xy().coords.into(), q0.xy().coords.into(), color)
-            .thickness(2.0)
-            .build();
-    }
-}
-
-fn draw_line_colored(
-    draw_list: &WindowDrawList<'_>,
-    p: &Point3<f32>,
-    q: &Point3<f32>,
-    transformer: &CoordinateTransformer,
-    color: [f32; 4],
-) {
-    let p = transformer.world_to_screen(&p);
-    let q = transformer.world_to_screen(&q);
-    draw_list
-        .add_line(p.xy().coords.into(), q.xy().coords.into(), color)
-        .thickness(2.0)
-        .build();
 }
 
 struct KeepMinCountOrMinPriority {
@@ -382,4 +279,173 @@ fn distance_along_xy_plane(shape: &CachedShapeQuery, point: &Point3<f32>) -> Opt
     .map(|x| NotNan::new(x).unwrap())
     .min()
     .map(NotNan::into_inner)
+}
+
+fn color_wireframe(segments: &[[Point3<f32>; 2]], reference_pos: &Point3<f32>) -> ColoredWireframe {
+    // Convert to more convenient representation
+
+    let mut vertices: Vec<_> = segments.iter().flatten().copied().collect();
+    let edges: Vec<[usize; 2]> = (0..vertices.len())
+        .tuples()
+        .map(|(pi, qi)| [pi, qi])
+        .collect();
+
+    // Split edges at the closest point (i.e., maximum weight) if that point is not
+    // one of the endpoints. That way the gradient stage can assume all segments
+    // have either constant, strictly decreasing, or strictly increasing weight.
+
+    let edges: Vec<_> = edges
+        .into_iter()
+        .flat_map::<ArrayVec<[_; 2]>, _>(|[pi, qi]| {
+            let p = vertices[pi];
+            let q = vertices[qi];
+
+            let m = LineSegment3::new(p, q).closest_point(reference_pos);
+            if m == p || m == q {
+                // Nop (just return back the input changed).
+                return ArrayVec::of([[pi, qi]]);
+            }
+            // Split the segment in two.
+            let mi = vertices.len();
+            vertices.push(m);
+            [[pi, mi], [mi, qi]].into()
+        })
+        .collect();
+
+    // Give each vertex a weight based on distance. 0 = closest, 1 = furthest
+
+    let mut vertex_weights: Vec<_> = vertices
+        .iter()
+        .map(|p| {
+            let dist = na::distance(p, reference_pos);
+            unlerp(dist, 2000.0..500.0).min(1.0)
+        })
+        .collect();
+
+    // Scale weights so they always cover a minimum range
+
+    let required_range = 0.5;
+    let (min_weight, max_weight) = vertex_weights
+        .iter()
+        .copied()
+        .minmax()
+        .into_option()
+        .unwrap();
+
+    // If all weights are equal, we can't meaningfully scale a single value, so
+    // require that minimum != maximum
+    if 0.0 < max_weight - min_weight
+        // Only do this is the difference is not already what we want
+        && max_weight - min_weight < required_range
+    {
+        let old_min_weight = min_weight;
+        let old_max_weight = max_weight;
+
+        let new_min_weight = (max_weight - required_range).max(0.0);
+        let new_max_weight = max_weight;
+
+        for weight in &mut vertex_weights {
+            let t = unlerp(*weight, old_min_weight..old_max_weight);
+            *weight = lerp(t, new_min_weight..new_max_weight);
+        }
+    }
+
+    // We will fake a gradient by drawing a series of segments, each with a
+    // different color. Split the segments at the points where the color will
+    // change.
+
+    let edges: Vec<_> = edges
+        .into_iter()
+        .flat_map(|[mut pi, mut qi]| {
+            const COUNT: usize = 4;
+
+            // Make `p` the smaller weight, and `q` the larger weight. It makes the below
+            // easier.
+            let mut p_weight = vertex_weights[pi];
+            let mut q_weight = vertex_weights[qi];
+            if p_weight > q_weight {
+                mem::swap(&mut pi, &mut qi);
+                mem::swap(&mut p_weight, &mut q_weight);
+            }
+
+            let p = vertices[pi];
+            let q = vertices[qi];
+
+            let mut new_edges = <ArrayVec<[_; COUNT]>>::new();
+            new_edges.push([pi, qi]);
+
+            #[allow(clippy::cast_precision_loss)]
+            for split in (1..COUNT).map(|i| i as f32 / COUNT as f32) {
+                if !(p_weight < split && split < q_weight) {
+                    continue;
+                }
+
+                let ratio = unlerp(split, p_weight..q_weight);
+                let m = lerp(ratio, p..q);
+                let mi = vertices.len();
+                vertices.push(m);
+                vertex_weights.push(split);
+
+                // Split the edge in twain, by changing `[[a, b]]` to `[[a, mid], [mid, b]]`.
+                new_edges.last_mut().unwrap()[1] = mi;
+                new_edges.push([mi, qi]);
+            }
+
+            new_edges
+        })
+        .collect();
+
+    // Assign a color to each edge based on the weights.
+
+    let edge_colors: Vec<_> = edges
+        .iter()
+        .copied()
+        .map(|[pi, qi]| {
+            let p_weight = vertex_weights[pi];
+            let q_weight = vertex_weights[qi];
+            let weight = p_weight.max(q_weight);
+            [1.0, 1.0, 1.0, lerp(weight, 0.5_f32..1.0)]
+        })
+        .collect();
+
+    // Whew, you made it to the end, have a cookie! 🍪
+
+    ColoredWireframe {
+        vertices,
+        edges,
+        edge_colors,
+    }
+}
+
+struct ColoredWireframe {
+    vertices: Vec<Point3<f32>>,
+    edges: Vec<[usize; 2]>,
+    edge_colors: Vec<[f32; 4]>,
+}
+
+fn draw_colored_wireframe(
+    draw_list: &WindowDrawList<'_>,
+    ColoredWireframe {
+        vertices,
+        edges,
+        edge_colors,
+    }: &ColoredWireframe,
+    transformer: &CoordinateTransformer,
+) {
+    for ([pi, qi], color) in edges.iter().copied().zip(edge_colors.iter().copied()) {
+        let p = vertices[pi];
+        let q = vertices[qi];
+
+        let [p, q] = match transformer.clip_line_to_frustum_near_plane(p, q) {
+            Some([p, q]) => [p, q],
+            None => return,
+        };
+
+        let p = transformer.world_to_screen(&p);
+        let q = transformer.world_to_screen(&q);
+        draw_list
+            .add_line(p.xy().coords.into(), q.xy().coords.into(), color)
+            .thickness(2.0)
+            .build();
+    }
 }
