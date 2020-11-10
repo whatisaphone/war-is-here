@@ -6,26 +6,32 @@ use crate::{
         color::Rgb,
         color_schemes::colorbrewer,
         coordinate_transformer::CoordinateTransformer,
+        coordinates::Rect,
         geometry::LineSegment3,
+        imgui_ext::ImStrExt,
         interpolate::{lerp, unlerp},
         meshes::{box_edges, cylinder, transform, uv_sphere},
         na_ext::Transform3Ext,
     },
 };
 use arrayvec::ArrayVec;
+use imgui::{im_str, ImStr, ImString};
 use itertools::Itertools;
 use na::{Point3, Transform3, Translation, Vector3};
 use std::mem;
 
 #[allow(clippy::module_name_repetitions)]
 pub fn draw_object(
-    draw_list: &imgui::WindowDrawList<'_>,
+    ui: &imgui::Ui<'_>,
     transformer: &CoordinateTransformer,
     object: &gfc::DetectorObject,
     reference_pos: &Point3<f32>,
+    label_groups: &mut Vec<LabelGroup>,
 ) {
     let position = object.get_position();
     let screen = transformer.world_to_screen(&position);
+
+    let draw_list = ui.get_background_draw_list();
 
     let color = colorbrewer::qualitative::SET3
         [(object as *const _) as usize / 16 % colorbrewer::qualitative::SET3.len()];
@@ -33,17 +39,37 @@ pub fn draw_object(
     // Only draw text if the position is in front of the camera.
     let draw_text = screen.z > 0.0;
     if draw_text {
-        let class_name = object.class().name();
-        let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-        draw_list.add_text([screen.x, screen.y], <[f32; 3]>::from(color), class_name);
+        fn hstring_to_imstring(hstring: &gfc::HString) -> ImString {
+            ImStr::try_from_cstr(hstring.c_str())
+                .unwrap_or(im_str!("<invalid utf-8>"))
+                .into()
+        }
 
-        let object_name = object.get_name();
-        let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-        draw_list.add_text(
-            [screen.x, screen.y + 10.0],
-            <[f32; 3]>::from(color),
-            object_name,
-        );
+        let mut group = LabelGroup {
+            labels: <_>::default(),
+            bounds: <_>::default(),
+        };
+
+        let mut push_label = |text: &gfc::HString, [x, y]: [f32; 2]| {
+            let text = hstring_to_imstring(text);
+            let [w, h] = ui.calc_text_size(&text, false, 0.0);
+            group.labels.push(Label {
+                text,
+                bounds: Rect::from_xywh(x - w / 2.0, y, w, h),
+                color,
+            });
+        };
+
+        push_label(object.class().name(), [screen.x, screen.y]);
+        push_label(object.get_name(), [screen.x, screen.y + 10.0]);
+
+        group.bounds = group
+            .labels
+            .iter()
+            .map(|l| l.bounds.clone())
+            .fold1(|a, b| a.union(&b))
+            .unwrap();
+        label_groups.push(group);
     }
 
     match get_shape(&object) {
@@ -74,6 +100,68 @@ pub fn draw_object(
             transform(&mut wireframe, &tf);
             let wireframe = color_wireframe(&wireframe, reference_pos, color);
             draw_colored_wireframe(&draw_list, &wireframe, transformer);
+        }
+    }
+}
+
+pub struct LabelGroup {
+    labels: ArrayVec<[Label; 2]>,
+    bounds: Rect,
+}
+
+struct Label {
+    text: imgui::ImString,
+    bounds: Rect,
+    color: Rgb,
+}
+
+pub fn fix_label_overlaps(groups: &mut [LabelGroup]) {
+    for gi in 0..groups.len() {
+        let (prev_groups, current_groups) = groups.split_at_mut(gi);
+        let group = current_groups.first_mut().unwrap();
+        let shift = fix_overlap(&group.bounds, prev_groups);
+
+        group.bounds.y += shift;
+        for label in &mut group.labels {
+            label.bounds.y += shift;
+        }
+    }
+}
+
+fn fix_overlap(original_bounds: &Rect, groups: &[LabelGroup]) -> f32 {
+    let mut existing_center = None;
+    let mut bounds = original_bounds.clone();
+    while let Some(overlap) = find_overlap(&bounds, groups) {
+        let existing_center = existing_center.get_or_insert(overlap);
+        let current_center = bounds.center();
+        let direction = (current_center.y - existing_center.y).signum();
+        let shift = match direction {
+            d if d < 0.0 => overlap.y - bounds.bottom(),
+            d if d > 0.0 => overlap.bottom() - bounds.y,
+            _ => unreachable!(),
+        };
+        // Why is this 1.5? 1.0 should be enough.
+        bounds.y += shift * 1.5;
+    }
+    bounds.y - original_bounds.y
+}
+
+fn find_overlap<'g>(bounds: &Rect, groups: &'g [LabelGroup]) -> Option<&'g Rect> {
+    for group in groups {
+        if bounds.intersection(&group.bounds).is_some() {
+            return Some(&group.bounds);
+        }
+    }
+    None
+}
+
+#[allow(clippy::module_name_repetitions)]
+pub fn draw_label_groups(ui: &imgui::Ui<'_>, groups: &[LabelGroup]) {
+    let draw_list = ui.get_background_draw_list();
+
+    for group in groups {
+        for label in &group.labels {
+            draw_list.add_text([label.bounds.x, label.bounds.y], label.color, &label.text);
         }
     }
 }

@@ -1,15 +1,16 @@
+use imgui::im_str;
+
 use crate::{
     commands::show_triggers::{
         via_immediate::{
             collect::{categorize_object, prioritize_object, Category, KeepMinCountOrMinPriority},
-            draw::draw_object,
+            draw::{draw_label_groups, draw_object, fix_label_overlaps},
         },
         walk::walk_world,
     },
     darksiders1::gfc,
     utils::coordinate_transformer::CoordinateTransformer,
 };
-use imgui::im_str;
 
 mod collect;
 mod draw;
@@ -47,17 +48,21 @@ pub fn draw(ui: &imgui::Ui<'_>) {
         ui.push_style_color(imgui::StyleColor::WindowBg, [0.0, 0.0, 0.0, 0.0]);
     }
 
-    imgui::Window::new(im_str!("Triggerrs"))
+    imgui::Window::new(im_str!("Triggers"))
         .position([0.0, 0.0], imgui::Condition::Always)
         .title_bar(false)
         .resizable(false)
         .build(ui, || {
-            let draw_list = ui.get_background_draw_list();
+            let mut label_groups = Vec::new();
+
             for object in load_regions.into_iter() {
-                draw_object(&draw_list, &transformer, &object, &player_pos);
+                draw_object(&ui, &transformer, &object, &player_pos, &mut label_groups);
             }
             for object in others.into_iter() {
-                draw_object(&draw_list, &transformer, &object, &player_pos);
+                draw_object(&ui, &transformer, &object, &player_pos, &mut label_groups);
             }
+
+            fix_label_overlaps(&mut label_groups);
+            draw_label_groups(&ui, &label_groups);
         });
 }

@@ -1,3 +1,5 @@
+use imgui::ImColor;
+
 #[derive(Copy, Clone)]
 pub struct Rgb {
     pub red: u8,
@@ -18,5 +20,11 @@ impl From<Rgb> for [f32; 3] {
         }
 
         [chan(rgb.red), chan(rgb.green), chan(rgb.blue)]
+    }
+}
+
+impl From<Rgb> for ImColor {
+    fn from(color: Rgb) -> Self {
+        u32::from_le_bytes([color.red, color.green, color.blue, 0xff]).into()
     }
 }
