@@ -330,7 +330,7 @@ fn draw_colored_wireframe(
 
         let [p, q] = match transformer.clip_line_to_frustum_near_plane(p, q) {
             Some([p, q]) => [p, q],
-            None => return,
+            None => continue,
         };
 
         let p = transformer.world_to_screen(&p);
