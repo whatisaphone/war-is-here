@@ -201,19 +201,15 @@ fn color_wireframe(
         })
         .collect();
 
-    // Give each vertex a weight based on distance. 0 = closest, 1 = furthest
+    // Give each vertex a weight based on distance. Closer distance = higher weight.
 
     let mut vertex_weights: Vec<_> = vertices
         .iter()
-        .map(|p| {
-            let dist = na::distance(p, reference_pos);
-            unlerp(dist, 2000.0..500.0).min(1.0)
-        })
+        .map(|p| -na::distance(p, reference_pos))
         .collect();
 
-    // Scale weights so they always cover a minimum range
+    // Scale weights so they always cover a constant range
 
-    let required_range = 0.5;
     let (min_weight, max_weight) = vertex_weights
         .iter()
         .copied()
@@ -221,22 +217,9 @@ fn color_wireframe(
         .into_option()
         .unwrap();
 
-    // If all weights are equal, we can't meaningfully scale a single value, so
-    // require that minimum != maximum
-    if 0.0 < max_weight - min_weight
-        // Only do this is the difference is not already what we want
-        && max_weight - min_weight < required_range
-    {
-        let old_min_weight = min_weight;
-        let old_max_weight = max_weight;
-
-        let new_min_weight = (max_weight - required_range).max(0.0);
-        let new_max_weight = max_weight;
-
-        for weight in &mut vertex_weights {
-            let t = unlerp(*weight, old_min_weight..old_max_weight);
-            *weight = lerp(t, new_min_weight..new_max_weight);
-        }
+    for weight in &mut vertex_weights {
+        let t = unlerp(*weight, min_weight..max_weight);
+        *weight = lerp(t, 0.25_f32..1.0);
     }
 
     // We will fake a gradient by drawing a series of segments, each with a
