@@ -2,5 +2,5 @@
 
 set -euo pipefail
 
-nc localhost 53508 <<<shutdown || true
+nc localhost 43508 <<<shutdown || true
 cargo run

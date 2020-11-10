@@ -5,7 +5,7 @@ use std::{
     net::{Ipv4Addr, TcpListener, TcpStream},
 };
 
-const RANDOM_PORT: u16 = 53508; // chosen by fair dice roll. guaranteed to be random.
+const RANDOM_PORT: u16 = 43508; // chosen by fair dice roll. guaranteed to be random.
 
 // For now, don't open a socket in public releases, I don't want to trip virus
 // scanners/firewalls/etc.
