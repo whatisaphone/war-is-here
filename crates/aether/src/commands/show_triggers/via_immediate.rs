@@ -6,6 +6,8 @@ use crate::{
     darksiders1::{gfc, gfc::Reflect},
     utils::{
         arrayvec::ArrayVecExt,
+        color::Rgb,
+        color_schemes::colorbrewer,
         coordinate_transformer::CoordinateTransformer,
         geometry::LineSegment3,
         interpolate::{lerp, unlerp},
@@ -75,8 +77,6 @@ pub fn draw(ui: &imgui::Ui<'_>) {
         });
 }
 
-const WHITE: [f32; 3] = [1.0, 1.0, 1.0];
-
 fn draw_object(
     draw_list: &WindowDrawList<'_>,
     transformer: &CoordinateTransformer,
@@ -86,29 +86,36 @@ fn draw_object(
     let position = object.get_position();
     let screen = transformer.world_to_screen(&position);
 
+    let color = colorbrewer::qualitative::SET3
+        [(object as *const _) as usize / 16 % colorbrewer::qualitative::SET3.len()];
+
     // Only draw text if the position is in front of the camera.
     let draw_text = screen.z > 0.0;
     if draw_text {
         let class_name = object.class().name();
         let class_name = class_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-        draw_list.add_text([screen.x, screen.y], WHITE, class_name);
+        draw_list.add_text([screen.x, screen.y], <[f32; 3]>::from(color), class_name);
 
         let object_name = object.get_name();
         let object_name = object_name.c_str().to_str().unwrap_or("<invalid utf-8>");
-        draw_list.add_text([screen.x, screen.y + 10.0], WHITE, object_name);
+        draw_list.add_text(
+            [screen.x, screen.y + 10.0],
+            <[f32; 3]>::from(color),
+            object_name,
+        );
     }
 
     match get_shape(&object) {
         Shape::Aabb(bounds) => {
             let wireframe = box_edges(bounds.min, bounds.max);
-            let wireframe = color_wireframe(&wireframe, reference_pos);
+            let wireframe = color_wireframe(&wireframe, reference_pos, color);
             draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Box(size, isometry) => {
             let origin = Point3::origin();
             let mut wireframe = box_edges(origin - size / 2.0, origin + size / 2.0);
             transform(&mut wireframe, &na::convert(isometry));
-            let wireframe = color_wireframe(&wireframe, reference_pos);
+            let wireframe = color_wireframe(&wireframe, reference_pos, color);
             draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Sphere(radius, center) => {
@@ -116,7 +123,7 @@ fn draw_object(
             let tf = Translation::from(center.coords)
                 * Transform3::from_scaling(&Vector3::new(radius, radius, radius));
             transform(&mut wireframe, &tf);
-            let wireframe = color_wireframe(&wireframe, reference_pos);
+            let wireframe = color_wireframe(&wireframe, reference_pos, color);
             draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Cylinder(radius, length, pos) => {
@@ -124,7 +131,7 @@ fn draw_object(
             let tf = Translation::from(pos.coords)
                 * Transform3::from_scaling(&Vector3::new(radius, radius, length));
             transform(&mut wireframe, &tf);
-            let wireframe = color_wireframe(&wireframe, reference_pos);
+            let wireframe = color_wireframe(&wireframe, reference_pos, color);
             draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
     }
@@ -281,7 +288,11 @@ fn distance_along_xy_plane(shape: &CachedShapeQuery, point: &Point3<f32>) -> Opt
     .map(NotNan::into_inner)
 }
 
-fn color_wireframe(segments: &[[Point3<f32>; 2]], reference_pos: &Point3<f32>) -> ColoredWireframe {
+fn color_wireframe(
+    segments: &[[Point3<f32>; 2]],
+    reference_pos: &Point3<f32>,
+    color: Rgb,
+) -> ColoredWireframe {
     // Convert to more convenient representation
 
     let mut vertices: Vec<_> = segments.iter().flatten().copied().collect();
@@ -404,7 +415,10 @@ fn color_wireframe(segments: &[[Point3<f32>; 2]], reference_pos: &Point3<f32>) -
             let p_weight = vertex_weights[pi];
             let q_weight = vertex_weights[qi];
             let weight = p_weight.max(q_weight);
-            [1.0, 1.0, 1.0, lerp(weight, 0.5_f32..1.0)]
+
+            let [r, g, b]: [f32; 3] = color.into();
+            let a = lerp(weight, 0.5_f32..1.0);
+            [r, g, b, a]
         })
         .collect();
 
