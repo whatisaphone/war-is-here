@@ -33,8 +33,8 @@ pub fn draw_object(
 
     let draw_list = ui.get_background_draw_list();
 
-    let color = colorbrewer::qualitative::SET3
-        [(object as *const _) as usize / 16 % colorbrewer::qualitative::SET3.len()];
+    let color = colorbrewer::qualitative::PASTEL2_MODIFIED
+        [(object as *const _) as usize / 16 % colorbrewer::qualitative::PASTEL2_MODIFIED.len()];
 
     // Only draw text if the position is in front of the camera.
     let draw_text = screen.z > 0.0;
@@ -161,6 +161,12 @@ pub fn draw_label_groups(ui: &imgui::Ui<'_>, groups: &[LabelGroup]) {
 
     for group in groups {
         for label in &group.labels {
+            // Draw drop shadow, then actual text
+            draw_list.add_text(
+                [label.bounds.x + 1.0, label.bounds.y + 1.0],
+                [0.0, 0.0, 0.0],
+                &label.text,
+            );
             draw_list.add_text([label.bounds.x, label.bounds.y], label.color, &label.text);
         }
     }
