@@ -5,8 +5,8 @@ use ncollide3d::{
 };
 
 pub struct Plane3 {
-    abc: Vector3<f32>,
-    d: f32,
+    pub abc: Vector3<f32>,
+    pub d: f32,
 }
 
 impl Plane3 {

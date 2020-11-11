@@ -66,7 +66,9 @@ impl CoordinateTransformer {
             Plane3::new(Vector3::new(v.x, v.y, v.z), v.w)
         }
 
-        let near = plane(self.view_proj.row(3) + self.view_proj.row(2));
+        let mut near = plane(self.view_proj.row(3) + self.view_proj.row(2));
+        // A fudge factor is needed. Why?
+        near.d -= 25.0;
 
         // Clip the segment to the plane
 
