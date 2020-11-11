@@ -326,7 +326,7 @@ fn draw_colored_wireframe(
         let q = transformer.world_to_screen(&q);
         draw_list
             .add_line(p.xy().coords.into(), q.xy().coords.into(), color)
-            .thickness(2.0)
+            .thickness(3.0)
             .build();
     }
 }
