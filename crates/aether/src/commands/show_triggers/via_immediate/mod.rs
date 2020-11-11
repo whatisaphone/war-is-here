@@ -1,5 +1,3 @@
-use imgui::im_str;
-
 use crate::{
     commands::show_triggers::{
         via_immediate::{
@@ -11,6 +9,7 @@ use crate::{
     darksiders1::gfc,
     utils::coordinate_transformer::CoordinateTransformer,
 };
+use imgui::im_str;
 
 mod collect;
 mod draw;
