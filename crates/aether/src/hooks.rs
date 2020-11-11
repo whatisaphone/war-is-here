@@ -144,13 +144,13 @@ mod hook {
 
         (detours.gfc___UIManager__draw)(this, renderer);
 
+        ui::pump();
+
         let renderer = (*renderer).lift_ref();
         splash::draw(renderer);
         fps::draw(renderer);
         show_player_pos::draw(renderer);
         show_collision::draw(renderer);
-
-        ui::pump();
     }
 
     // Return `false` to swallow the event, or `true` to continue processing
