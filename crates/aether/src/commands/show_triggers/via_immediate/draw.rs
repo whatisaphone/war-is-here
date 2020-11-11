@@ -317,7 +317,7 @@ fn draw_colored_wireframe(
         let p = vertices[pi];
         let q = vertices[qi];
 
-        let [p, q] = match transformer.clip_line_to_frustum_near_plane(p, q) {
+        let [p, q] = match transformer.clip_line_segment_to_frustum_near_plane(&p, &q) {
             Some([p, q]) => [p, q],
             None => continue,
         };

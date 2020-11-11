@@ -2,14 +2,13 @@
 
 use crate::{
     darksiders1::{gfc, Lift},
-    utils::mem::init_with,
+    utils::{
+        geometry::{LineSegment3, Plane3},
+        mem::init_with,
+    },
 };
 use darksiders1_sys::target;
-use na::{Isometry3, Matrix4, Point3, Unit, Vector3};
-use ncollide3d::{
-    query::{PointQuery, Ray, RayCast},
-    shape::Plane,
-};
+use na::{Matrix4, Point3, RowVector4, Vector3};
 use pdbindgen_runtime::StaticCast;
 
 pub struct CoordinateTransformer {
@@ -54,39 +53,25 @@ impl CoordinateTransformer {
         Point3::new(x, y, screen.z)
     }
 
-    pub fn clip_line_to_frustum_near_plane(
+    pub fn clip_line_segment_to_frustum_near_plane(
         &self,
-        p: Point3<f32>,
-        q: Point3<f32>,
+        p: &Point3<f32>,
+        q: &Point3<f32>,
     ) -> Option<[Point3<f32>; 2]> {
+        // Extract the near plane of the frustum
+        //
         // http://www8.cs.umu.se/kurser/5DV051/HT12/lab/plane_extraction.pdf
-        let near = (self.view_proj.row(3) + self.view_proj.row(2)).transpose();
 
-        let near = near / near.xyz().norm();
-        let plane = Plane::new(Unit::new_unchecked(near.xyz()));
-        // I actually have no idea how this works, but hey, it seems to work.
-        let isometry = Isometry3::new(near.xyz() * -(near.w - 10.0), Vector3::zeros());
-        let p_inside = !plane.project_point(&isometry, &p, true).is_inside;
-        let q_inside = !plane.project_point(&isometry, &q, true).is_inside;
-        match (p_inside, q_inside) {
-            (true, true) => Some([p, q]),
-            (false, false) => None,
-            (false, true) => {
-                let pq = Ray::new(p, q - p);
-                let t = plane
-                    .toi_with_ray(&isometry, &pq, f32::INFINITY, false)
-                    .unwrap();
-                let p = pq.point_at(t);
-                Some([p, q])
-            }
-            (true, false) => {
-                let qp = Ray::new(q, p - q);
-                let t = plane
-                    .toi_with_ray(&isometry, &qp, f32::INFINITY, false)
-                    .unwrap();
-                let q = qp.point_at(t);
-                Some([p, q])
-            }
+        fn plane(v: RowVector4<f32>) -> Plane3 {
+            Plane3::new(Vector3::new(v.x, v.y, v.z), v.w)
         }
+
+        let near = plane(self.view_proj.row(3) + self.view_proj.row(2));
+
+        // Clip the segment to the plane
+
+        let mut segment = LineSegment3::new(*p, *q);
+        segment = segment.clip_to_plane(&near)?;
+        Some([segment.p, segment.q])
     }
 }
