@@ -75,7 +75,7 @@ impl Shape {
         result
     }
 
-    fn to_collide(&self) -> (Isometry3<f32>, Arc<dyn ShapeQuery>) {
+    fn to_collide(&self) -> (Isometry3<f32>, Arc<dyn LimitedShape>) {
         match self {
             Self::Aabb(bounds) => {
                 let center = na::center(&bounds.min, &bounds.max);
@@ -112,13 +112,15 @@ impl Shape {
     }
 }
 
-trait ShapeQuery: PointQuery<f32> + RayCast<f32> + Send + Sync {}
+// I'd like to just use `ncollide3d::shape::Shape`, but `Cylinder` doesn't
+// support it. However it supports all the lower-level traits we need.
+pub trait LimitedShape: PointQuery<f32> + RayCast<f32> + Send + Sync {}
 
-impl<T> ShapeQuery for T where T: PointQuery<f32> + RayCast<f32> + Send + Sync {}
+impl<T> LimitedShape for T where T: PointQuery<f32> + RayCast<f32> + Send + Sync {}
 
 pub struct CachedShapeQuery {
     isometry: Isometry3<f32>,
-    query: Arc<dyn ShapeQuery>,
+    query: Arc<dyn LimitedShape>,
 }
 
 impl CachedShapeQuery {
