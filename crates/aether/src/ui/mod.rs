@@ -15,6 +15,7 @@ use std::{
 };
 
 mod draw;
+mod fonts;
 mod keyboard;
 mod mouse;
 
@@ -26,9 +27,10 @@ const SCREEN_HEIGHT: u16 = 720;
 /// the UI to be enabled.
 pub static WANT_ENABLED: AtomicI32 = AtomicI32::new(0);
 pub static IS_ENABLED: AtomicBool = AtomicBool::new(false);
-// Safety: although this is stored in a static, it must only be accessed from
-// the game's render thread.
+// Safety: These must only be accessed from the game's render thread.
 static STATE: Mutex<UnsafeSend<Option<State>>> = Mutex::new(UnsafeSend::new(None));
+static FONT_GNU_UNIFONT: Mutex<UnsafeSend<Option<imgui::FontId>>> =
+    Mutex::new(UnsafeSend::new(None));
 
 struct State {
     imgui: Context,
@@ -58,6 +60,10 @@ pub fn pump() {
     }
 }
 
+pub fn get_font_gnu_unifont() -> imgui::FontId {
+    FONT_GNU_UNIFONT.lock().into_inner().unwrap()
+}
+
 fn init() {
     let mut imgui = Context::create();
     imgui.set_ini_filename(None);
@@ -68,6 +74,13 @@ fn init() {
 
     // Make the background semi-transparent
     imgui.style_mut().colors[imgui::StyleColor::WindowBg as usize][3] = 0.75;
+
+    let mut fonts = imgui.fonts();
+    fonts.add_font(&[imgui::FontSource::DefaultFontData { config: None }]);
+    unsafe {
+        *FONT_GNU_UNIFONT.lock().as_mut() = Some(fonts::add_gnu_unifont(&mut fonts));
+    }
+    drop(fonts);
 
     let draw = draw::init(SCREEN_WIDTH, SCREEN_HEIGHT, &mut imgui);
 

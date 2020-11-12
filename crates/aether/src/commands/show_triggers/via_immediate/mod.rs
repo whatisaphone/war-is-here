@@ -7,6 +7,7 @@ use crate::{
         walk::walk_world,
     },
     darksiders1::gfc,
+    ui::get_font_gnu_unifont,
     utils::coordinate_transformer::CoordinateTransformer,
 };
 use imgui::im_str;
@@ -45,6 +46,8 @@ pub fn draw(ui: &imgui::Ui<'_>) {
     imgui_token_guard! {
         ui.push_style_var(imgui::StyleVar::WindowBorderSize(0.0));
         ui.push_style_color(imgui::StyleColor::WindowBg, [0.0, 0.0, 0.0, 0.0]);
+
+        ui.push_font(get_font_gnu_unifont());
     }
 
     imgui::Window::new(im_str!("Triggers"))

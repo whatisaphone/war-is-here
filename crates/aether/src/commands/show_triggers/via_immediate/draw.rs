@@ -61,7 +61,7 @@ pub fn draw_object(
         };
 
         push_label(object.class().name(), [screen.x, screen.y]);
-        push_label(object.get_name(), [screen.x, screen.y + 10.0]);
+        push_label(object.get_name(), [screen.x, screen.y + 14.0]);
 
         group.bounds = group
             .labels
@@ -140,8 +140,8 @@ fn fix_overlap(original_bounds: &Rect, groups: &[LabelGroup]) -> f32 {
             d if d > 0.0 => overlap.bottom() - bounds.y,
             _ => unreachable!(),
         };
-        // Why is this 1.5? 1.0 should be enough.
-        bounds.y += shift * 1.5;
+        // Why do I need to scale this? 1.0 should be enough.
+        bounds.y += shift * 2.0;
     }
     bounds.y - original_bounds.y
 }

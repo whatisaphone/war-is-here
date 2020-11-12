@@ -1,3 +1,4 @@
+#[derive(Copy, Clone)]
 pub struct UnsafeSend<T>(T);
 
 unsafe impl<T> Send for UnsafeSend<T> {}

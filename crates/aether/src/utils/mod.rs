@@ -3,6 +3,7 @@ pub mod color;
 pub mod color_schemes;
 pub mod coordinate_transformer;
 pub mod coordinates;
+pub mod cstr;
 pub mod debug_draw;
 pub mod debug_draw_3d;
 pub mod detour;
