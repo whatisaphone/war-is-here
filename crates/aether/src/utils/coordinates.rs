@@ -35,12 +35,12 @@ impl Rect {
     }
 
     pub fn union(&self, other: &Self) -> Self {
-        Self {
-            x: self.x.min(other.x),
-            y: self.y.min(other.y),
-            w: self.w.max(other.w),
-            h: self.h.max(other.h),
-        }
+        Self::from_ltrb(
+            self.x.min(other.x),
+            self.y.min(other.y),
+            self.right().max(other.right()),
+            self.bottom().max(other.bottom()),
+        )
     }
 
     pub fn intersection(&self, other: &Self) -> Option<Self> {

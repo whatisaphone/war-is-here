@@ -140,8 +140,7 @@ fn fix_overlap(original_bounds: &Rect, groups: &[LabelGroup]) -> f32 {
             d if d > 0.0 => overlap.bottom() - bounds.y,
             _ => unreachable!(),
         };
-        // Why do I need to scale this? 1.0 should be enough.
-        bounds.y += shift * 2.0;
+        bounds.y += shift;
     }
     bounds.y - original_bounds.y
 }
