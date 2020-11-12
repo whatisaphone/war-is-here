@@ -3,7 +3,6 @@ use crate::{
     darksiders1::{gfc, gfc::Reflect},
     utils::na_ext::UnitComplexExt,
 };
-use itertools::iproduct;
 use na::{Isometry3, Point3, Translation, UnitComplex, UnitQuaternion, Vector3};
 use ncollide3d::{
     query::{PointQuery, Ray},
@@ -149,19 +148,15 @@ fn narrow_phase(object: &gfc::DetectorObject, point: &Point3<f32>) -> Priority {
 fn distance_along_xy_plane(shape: &CachedShapeQuery, point: &Point3<f32>) -> Option<f32> {
     // Very rough approximation. Cast 8 rays horizontally to approximate the
     // distance to the edge at the current z position.
-    iproduct!(
-        #[allow(clippy::cast_precision_loss)]
-        (0..8).map(|i| 2.0 * PI / 8.0 * i as f32),
-        // HACK: do this from the character's feet as well as his head, in case his head is the
-        // only thing touching a trigger (for example in CI_03, ci03_mm_trigger_10)
-        &[*point, point + Vector3::new(0.0, 0.0, 0.0)]
-    )
-    .flat_map(|(theta, point)| {
-        let rot = UnitComplex::new(theta).around_z_axis();
-        let vector = rot * Vector3::x();
-        shape.toi_with_ray(&Ray::new(*point, vector), f32::INFINITY, false)
-    })
-    .map(|x| NotNan::new(x).unwrap())
-    .min()
-    .map(NotNan::into_inner)
+    #[allow(clippy::cast_precision_loss)]
+    (0..8)
+        .map(|i| 2.0 * PI / 8.0 * i as f32)
+        .flat_map(|theta| {
+            let rot = UnitComplex::new(theta).around_z_axis();
+            let vector = rot * Vector3::x();
+            shape.toi_with_ray(&Ray::new(*point, vector), f32::INFINITY, false)
+        })
+        .map(|x| NotNan::new(x).unwrap())
+        .min()
+        .map(NotNan::into_inner)
 }
