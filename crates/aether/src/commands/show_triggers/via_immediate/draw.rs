@@ -131,16 +131,20 @@ pub fn fix_label_overlaps(groups: &mut [LabelGroup]) {
 fn fix_overlap(original_bounds: &Rect, groups: &[LabelGroup]) -> f32 {
     let mut existing_center = None;
     let mut bounds = original_bounds.clone();
-    while let Some(overlap) = find_overlap(&bounds, groups) {
-        let existing_center = existing_center.get_or_insert(overlap);
-        let current_center = bounds.center();
-        let direction = (current_center.y - existing_center.y).signum();
-        let shift = match direction {
-            d if d < 0.0 => overlap.y - bounds.bottom(),
-            d if d > 0.0 => overlap.bottom() - bounds.y,
-            _ => unreachable!(),
-        };
-        bounds.y += shift;
+    // Put a hard cap on the number of iterations, to prevent infinite loop in some
+    // rare edge case
+    for _ in 0..groups.len() {
+        if let Some(overlap) = find_overlap(&bounds, groups) {
+            let existing_center = existing_center.get_or_insert(overlap);
+            let current_center = bounds.center();
+            let direction = (current_center.y - existing_center.y).signum();
+            let shift = match direction {
+                d if d < 0.0 => overlap.y - bounds.bottom(),
+                d if d > 0.0 => overlap.bottom() - bounds.y,
+                _ => unreachable!(),
+            };
+            bounds.y += shift;
+        }
     }
     bounds.y - original_bounds.y
 }
