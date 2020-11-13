@@ -7,9 +7,20 @@ mod via_world_objects;
 mod walk;
 
 static ENABLED: AtomicBool = AtomicBool::new(false);
+static DRAW_CYLINDERS_SPHERES: AtomicBool = AtomicBool::new(true);
 
 pub fn run(_command: &str) -> &'static str {
     if toggle_enabled() {
+        "now set to true"
+    } else {
+        "now set to false"
+    }
+}
+
+pub fn run_round(_command: &str) -> &'static str {
+    let prev_enabled = DRAW_CYLINDERS_SPHERES.fetch_nand(true, Ordering::SeqCst);
+    let enabled = !prev_enabled;
+    if enabled {
         "now set to true"
     } else {
         "now set to false"
@@ -47,5 +58,6 @@ pub fn draw(ui: &imgui::Ui<'_>) {
         return;
     }
 
-    via_immediate::draw(ui);
+    let draw_cylinders_spheres = DRAW_CYLINDERS_SPHERES.load(Ordering::SeqCst);
+    via_immediate::draw(ui, draw_cylinders_spheres);
 }

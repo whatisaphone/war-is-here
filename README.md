@@ -63,6 +63,10 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
 - **/show_triggers**
 
+- **/show_triggers_round**
+
+Turn cylinders and spheres on/off. This only has an effect when `show_triggers` is enabled.
+
 - **/shutdown**
 
 - **/spawn_humans** – Spawns a group of mouth breathers into the world.

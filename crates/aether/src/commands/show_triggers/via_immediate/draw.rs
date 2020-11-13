@@ -15,10 +15,10 @@ use crate::{
     },
 };
 use arrayvec::ArrayVec;
-use imgui::{im_str, ImStr, ImString};
+use imgui::{im_str, ImStr};
 use itertools::Itertools;
 use na::{Point3, Transform3, Translation, Vector3};
-use std::mem;
+use std::{ffi::CStr, mem};
 
 #[allow(clippy::module_name_repetitions)]
 pub fn draw_object(
@@ -26,6 +26,7 @@ pub fn draw_object(
     transformer: &CoordinateTransformer,
     object: &gfc::DetectorObject,
     reference_pos: &Point3<f32>,
+    draw_cylinders_spheres: bool,
     label_groups: &mut Vec<LabelGroup>,
 ) {
     let position = object.get_position();
@@ -38,30 +39,38 @@ pub fn draw_object(
 
     // Only draw text if the position is in front of the camera.
     let draw_text = screen.z > 0.0;
+    let line_height = 14.0;
     if draw_text {
-        fn hstring_to_imstring(hstring: &gfc::HString) -> ImString {
-            ImStr::try_from_cstr(hstring.c_str())
-                .unwrap_or(im_str!("<invalid utf-8>"))
-                .into()
-        }
-
         let mut group = LabelGroup {
             labels: <_>::default(),
             bounds: <_>::default(),
         };
 
-        let mut push_label = |text: &gfc::HString, [x, y]: [f32; 2]| {
-            let text = hstring_to_imstring(text);
+        let mut push_label = |text: &CStr, [x, y]: [f32; 2]| {
+            let text = ImStr::try_from_cstr(text).unwrap_or(im_str!("<invalid utf-8>"));
             let [w, h] = ui.calc_text_size(&text, false, 0.0);
             group.labels.push(Label {
-                text,
-                bounds: Rect::from_xywh(x - w / 2.0, y, w, h),
+                text: text.into(),
+                bounds: Rect::from_xywh(screen.x + x - w / 2.0, screen.y + y, w, h),
                 color,
             });
         };
 
-        push_label(object.class().name(), [screen.x, screen.y]);
-        push_label(object.get_name(), [screen.x, screen.y + 14.0]);
+        push_label(object.class().name().c_str(), [0.0, 0.0]);
+        push_label(object.get_name().c_str(), [0.0, line_height]);
+        match object.shape() {
+            gfc::PhysicsShapeObject__Detect::Aabb | gfc::PhysicsShapeObject__Detect::Box => {}
+            gfc::PhysicsShapeObject__Detect::Sphere => {
+                if !draw_cylinders_spheres {
+                    push_label(cstr!("sphere"), [0.0, line_height * 2.0]);
+                }
+            }
+            gfc::PhysicsShapeObject__Detect::Cylinder => {
+                if !draw_cylinders_spheres {
+                    push_label(cstr!("cylinder"), [0.0, line_height * 2.0]);
+                }
+            }
+        }
 
         group.bounds = group
             .labels
@@ -86,6 +95,9 @@ pub fn draw_object(
             draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Sphere(radius, center) => {
+            if !draw_cylinders_spheres {
+                return;
+            }
             let mut wireframe: Vec<_> = uv_sphere(12, 16);
             let tf = Translation::from(center.coords)
                 * Transform3::from_scaling(&Vector3::new(radius, radius, radius));
@@ -94,6 +106,9 @@ pub fn draw_object(
             draw_colored_wireframe(&draw_list, &wireframe, transformer);
         }
         Shape::Cylinder(radius, length, pos) => {
+            if !draw_cylinders_spheres {
+                return;
+            }
             let mut wireframe: Vec<_> = cylinder(16).collect();
             let tf = Translation::from(pos.coords)
                 * Transform3::from_scaling(&Vector3::new(radius, radius, length));
@@ -105,7 +120,7 @@ pub fn draw_object(
 }
 
 pub struct LabelGroup {
-    labels: ArrayVec<[Label; 2]>,
+    labels: ArrayVec<[Label; 3]>,
     bounds: Rect,
 }
 

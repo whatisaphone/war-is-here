@@ -26,12 +26,13 @@ pub enum RunResult {
 // Hide "/shutdown" since it doesn't work via GUI
 const HELP: &str = "\
 Available commands:
-/clear          /load_map_menu    /show_player_pos
-/console        /load_package     /show_triggers
-/editor_mode    /log_events       /spawn_humans
-/fps            /move_player      /spawn_object
-/help           /pickup_item      /spawn_static_object
-/infinite_jump  /show_collision   /teleport
+/clear          /load_package     /show_triggers_round
+/console        /log_events       /spawn_humans
+/editor_mode    /move_player      /spawn_object
+/fps            /pickup_item      /spawn_static_object
+/help           /show_collision   /teleport
+/infinite_jump  /show_player_pos
+/load_map_menu  /show_triggers
 ";
 
 pub const COMMANDS: &[&str] = &[
@@ -49,6 +50,7 @@ pub const COMMANDS: &[&str] = &[
     "/show_collision",
     "/show_player_pos",
     "/show_triggers",
+    "/show_triggers_round",
     // Skip "/shutdown" since it doesn't work via GUI
     "/spawn_humans",
     "/spawn_object",
@@ -76,6 +78,7 @@ pub fn run(message: &[u8]) -> RunResult {
         "show_collision" => RunResult::Response(show_collision::run(message)),
         "show_player_pos" => RunResult::Response(show_player_pos::run(message)),
         "show_triggers" => RunResult::Response(show_triggers::run(message)),
+        "show_triggers_round" => RunResult::Response(show_triggers::run_round(message)),
         "shutdown" => RunResult::Shutdown,
         "spawn_humans" => spawn_humans::run(message).into(),
         "spawn_object" => spawn_objct::run(message).into(),

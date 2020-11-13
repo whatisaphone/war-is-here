@@ -15,7 +15,7 @@ use imgui::im_str;
 mod collect;
 mod draw;
 
-pub fn draw(ui: &imgui::Ui<'_>) {
+pub fn draw(ui: &imgui::Ui<'_>, draw_cylinders_spheres: bool) {
     let player = match gfc::OblivionGame::get_instance().get_player_actor() {
         Some(player) => player,
         None => return,
@@ -58,10 +58,24 @@ pub fn draw(ui: &imgui::Ui<'_>) {
             let mut label_groups = Vec::new();
 
             for object in load_regions.into_iter() {
-                draw_object(&ui, &transformer, &object, &player_pos, &mut label_groups);
+                draw_object(
+                    &ui,
+                    &transformer,
+                    &object,
+                    &player_pos,
+                    draw_cylinders_spheres,
+                    &mut label_groups,
+                );
             }
             for object in others.into_iter() {
-                draw_object(&ui, &transformer, &object, &player_pos, &mut label_groups);
+                draw_object(
+                    &ui,
+                    &transformer,
+                    &object,
+                    &player_pos,
+                    draw_cylinders_spheres,
+                    &mut label_groups,
+                );
             }
 
             fix_label_overlaps(&mut label_groups);
