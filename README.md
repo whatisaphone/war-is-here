@@ -20,6 +20,18 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
 - **/console**
 
+- **/draw_triggers**
+
+  Draw an overlay revealing the closest few trigger volumes.
+
+  See also:
+
+  - /mark_triggers
+
+- **/draw_triggers_round**
+
+  Turn cylinders and spheres on/off. This only has an effect when `draw_triggers` is enabled.
+
 - **/editor_mode** – Run this before entering a game, and the world will load in "editor mode". Most enemies/items are deactivated, and the minimap spawns in the sky!
 
 - **/fps** – Display an FPS counter.
@@ -33,6 +45,14 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 - **/load_package**
 
 - **/log_events**
+
+- **/mark_triggers**
+
+  Add objects to the game world which reveal the location of all currently spawned trigger volumes.
+
+  See also:
+
+  - /draw_triggers
 
 - **/move_player**
 
@@ -60,12 +80,6 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
   This is currently broken and will crash the game.
 
 - **/show_player_pos**
-
-- **/show_triggers**
-
-- **/show_triggers_round**
-
-Turn cylinders and spheres on/off. This only has an effect when `show_triggers` is enabled.
 
 - **/shutdown**
 

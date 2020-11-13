@@ -59,7 +59,7 @@ struct State {
 
 const WINDOW_LEFT: f32 = 50.0;
 const WINDOW_TOP: f32 = 50.0;
-const WINDOW_WIDTH: f32 = 420.0;
+const WINDOW_WIDTH: f32 = 450.0;
 const WINDOW_HEIGHT: f32 = 200.0;
 
 const SCROLLBACK_LINES: usize = 100;

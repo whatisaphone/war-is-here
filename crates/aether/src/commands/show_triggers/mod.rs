@@ -9,7 +9,7 @@ mod walk;
 static ENABLED: AtomicBool = AtomicBool::new(false);
 static DRAW_CYLINDERS_SPHERES: AtomicBool = AtomicBool::new(true);
 
-pub fn run(_command: &str) -> &'static str {
+pub fn run_draw(_command: &str) -> &'static str {
     if toggle_enabled() {
         "now set to true"
     } else {
@@ -17,7 +17,7 @@ pub fn run(_command: &str) -> &'static str {
     }
 }
 
-pub fn run_round(_command: &str) -> &'static str {
+pub fn run_draw_round(_command: &str) -> &'static str {
     let prev_enabled = DRAW_CYLINDERS_SPHERES.fetch_nand(true, Ordering::SeqCst);
     let enabled = !prev_enabled;
     if enabled {
@@ -27,6 +27,14 @@ pub fn run_round(_command: &str) -> &'static str {
     }
 }
 
+pub fn run_mark(_command: &str) {
+    let mut guard = ON_POST_UPDATE_QUEUE.lock();
+    guard
+        .as_mut()
+        .unwrap()
+        .push_back(Box::new(via_world_objects::draw));
+}
+
 fn toggle_enabled() -> bool {
     let prev_enabled = ENABLED.fetch_nand(true, Ordering::SeqCst);
     let enabled = !prev_enabled;
@@ -34,14 +42,6 @@ fn toggle_enabled() -> bool {
     // `ui` is what does the drawing, so it must be enabled if we are.
     let offset = if enabled { 1 } else { -1 };
     ui::WANT_ENABLED.fetch_add(offset, Ordering::SeqCst);
-
-    if enabled {
-        let mut guard = ON_POST_UPDATE_QUEUE.lock();
-        guard
-            .as_mut()
-            .unwrap()
-            .push_back(Box::new(via_world_objects::draw));
-    }
 
     enabled
 }
