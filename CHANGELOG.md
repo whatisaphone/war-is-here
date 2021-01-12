@@ -10,8 +10,8 @@
   - Each trigger/label pair is a different color so you can tell them apart
   - Labels use a better font
   - Labels no longer overlap each other
-  - Cylinders and spheres can be toggled on/off
-  - Split the overlay and the world objects into two different commands (/draw_triggers and /mark_triggers)
+  - Split the UI overlay and the world objects into two different commands (**/draw_triggers** and **/mark_triggers**)
+  - Cylinders and spheres can be toggled on/off with **/draw_triggers_round**
   - Improved FPS
 
 ## v0.2.0 – 2020-11-06
