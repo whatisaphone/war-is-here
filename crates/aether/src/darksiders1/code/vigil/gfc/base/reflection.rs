@@ -3,6 +3,7 @@ use crate::{
     utils::mem::init_with,
 };
 use darksiders1_sys::target;
+use std::{mem, ptr};
 
 struct_wrapper!(Class, target::gfc__Class);
 struct_wrapper_super!(Class, gfc::IRefObject);
@@ -30,6 +31,24 @@ impl Class {
 
     pub fn instanceof(&self, class: &Self) -> bool {
         unsafe { self.inner.instanceof(class.as_ptr()) }
+    }
+
+    pub fn get_property_by_name(
+        &self,
+        name: &gfc::HString,
+        out_prop_class: Option<&mut Option<&gfc::Class>>,
+    ) -> Option<&gfc::Property> {
+        unsafe {
+            let out_prop_class: *mut *const target::gfc__Class = match out_prop_class {
+                Some(p) => mem::transmute(*p),
+                None => ptr::null_mut(),
+            };
+
+            self.inner
+                .getPropertyByName(name.as_ptr(), out_prop_class)
+                .as_ref()
+                .map(Lift::lift_ref)
+        }
     }
 }
 
