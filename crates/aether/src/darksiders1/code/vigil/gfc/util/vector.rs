@@ -205,6 +205,10 @@ lowered_vector!(
     lift = true,
 );
 lowered_vector!(
+    target::gfc__Vector_gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_,
+    target::gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair,
+);
+lowered_vector!(
     target::gfc__Vector_gfc__RigidBody___0_gfc__CAllocator_,
     *mut target::gfc__RigidBody,
 );

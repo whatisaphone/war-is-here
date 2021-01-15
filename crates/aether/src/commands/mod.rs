@@ -1,6 +1,7 @@
-use std::str;
+use std::{borrow::Cow, str};
 
 pub mod console;
+pub mod dump_hstrings;
 pub mod editor_mode;
 pub mod fps;
 pub mod infinite_jump;
@@ -19,7 +20,7 @@ pub mod teleport;
 
 pub enum RunResult {
     Ok,
-    Response(&'static str),
+    Response(Cow<'static, str>),
     Shutdown,
 }
 
@@ -40,6 +41,7 @@ pub const COMMANDS: &[&str] = &[
     "/console",
     "/draw_triggers",
     "/draw_triggers_round",
+    "/dump_hstrings",
     "/editor_mode",
     "/fps",
     "/help",
@@ -67,6 +69,7 @@ pub fn run(message: &[u8]) -> RunResult {
         "console" => console::run(message).into(),
         "draw_triggers" => show_triggers::run_draw(message).into(),
         "draw_triggers_round" => show_triggers::run_draw_round(message).into(),
+        "dump_hstrings" => dump_hstrings::run(message).into(),
         "editor_mode" => editor_mode::run(message).into(),
         "fps" => fps::run(message).into(),
         "help" => HELP.into(),
@@ -96,6 +99,12 @@ impl From<()> for RunResult {
 
 impl From<&'static str> for RunResult {
     fn from(response: &'static str) -> Self {
+        Self::Response(response.into())
+    }
+}
+
+impl From<Cow<'static, str>> for RunResult {
+    fn from(response: Cow<'static, str>) -> Self {
         Self::Response(response)
     }
 }
@@ -104,7 +113,7 @@ impl From<Result<(), &'static str>> for RunResult {
     fn from(result: Result<(), &'static str>) -> Self {
         match result {
             Ok(()) => Self::Ok,
-            Err(message) => Self::Response(message),
+            Err(message) => Self::Response(message.into()),
         }
     }
 }

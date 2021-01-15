@@ -5,6 +5,61 @@ use super::{types::*, types2::*, types3::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkJobQueue__CustomJobTypeSetup {
+    pub m_jobType: hkJobType,
+    pub m_jobSubType: u8,
+    pub m_threadId: i32,
+}
+
+#[repr(C)]
+pub struct hkSweptTransformf {
+    pub m_centerOfMass0: hkVector4f,
+    pub m_centerOfMass1: hkVector4f,
+    pub m_rotation0: hkQuaternionf,
+    pub m_rotation1: hkQuaternionf,
+    pub m_centerOfMassLocal: hkVector4f,
+}
+
+#[repr(C)]
+pub struct hkMotionState {
+    pub m_transform: hkTransformf,
+    pub m_sweptTransform: hkSweptTransformf,
+    pub m_deltaAngle: hkVector4f,
+    pub m_objectRadius: f32,
+    pub m_linearDamping: hkHalf,
+    pub m_angularDamping: hkHalf,
+    pub m_timeFactor: hkHalf,
+    pub m_maxLinearVelocity: hkUFloat8,
+    pub m_maxAngularVelocity: hkUFloat8,
+    pub m_deactivationClass: u8,
+}
+
+#[repr(C)]
+pub struct hkQuaternionf {
+    pub m_vec: hkVector4f,
+}
+
+#[repr(C)]
+pub struct hkSimdFloat32 {
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_real: compile_error!("unimplemented type kind"),
+    __pdbindgen_padding: [u8; 16],
+}
+
+#[repr(C)]
+pub struct hkVector4f {
+    #[cfg(pdb_issue = "unimplemented type kind")]
+    pub m_quad: compile_error!("unimplemented type kind"),
+    __pdbindgen_padding: [u8; 16],
+}
+
+#[repr(C)]
+pub struct hkCustomAttributes {
+    pub m_attributes: *const hkCustomAttributes__Attribute,
+    pub m_numAttributes: i32,
+}
+
+#[repr(C)]
 pub struct hkCustomAttributes__Attribute {
     pub m_name: *const i8,
     pub m_value: hkVariant,

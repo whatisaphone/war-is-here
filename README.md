@@ -32,6 +32,10 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
 
   Turn cylinders and spheres on/off. This only has an effect when `draw_triggers` is enabled.
 
+- **/dump_hstrings**
+
+  Dump the string table (hashes and their associated strings) to a file.
+
 - **/editor_mode** – Run this before entering a game, and the world will load in "editor mode". Most enemies/items are deactivated, and the minimap spawns in the sky!
 
 - **/fps** – Display an FPS counter.

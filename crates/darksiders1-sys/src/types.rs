@@ -10025,6 +10025,18 @@ pub struct gfc__AutoRef_gfc__WorldRegion_ {
 }
 
 #[repr(C)]
+pub struct gfc__HStringManager {
+    pub mHashTable: gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_,
+    pub mHashTableLock: gfc__Lock,
+}
+
+#[repr(C)]
+pub struct gfc__HStringManager__StringRef {
+    pub Str: *mut i8,
+    pub RefCount: u32,
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__DynMeshBuffer___0_gfc__CAllocator_ {
     pub mData: *mut *mut gfc__DynMeshBuffer,
     pub mSize: i32,
@@ -10817,43 +10829,4 @@ pub struct gfc__Vector_gfc__AutoRef_gfc__FogDesc__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__FogDesc_,
     pub mSize: i32,
     pub mCapacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct gfc__MeshInstance {
-    // gfc__IRefObject
-    pub vfptr: *const gfc__MeshInstance__vftable,
-    pub ReferenceCount: i32,
-    // gfc__MeshInstance
-    pub mLocked: bool,
-}
-
-unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshInstance {}
-
-impl gfc__MeshInstance {
-    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
-        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn lockMesh(&self, a1: *mut gfc__RenderNode) {
-        ((*self.vfptr).lockMesh)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn compute(&self, a1: *mut gfc__RenderNode) {
-        ((*self.vfptr).compute)(self as *const _ as *mut _, a1)
-    }
-
-    pub unsafe extern "thiscall" fn unlockMesh(&self, a1: *mut gfc__RenderNode) {
-        ((*self.vfptr).unlockMesh)(self as *const _ as *mut _, a1)
-    }
-}
-
-#[repr(C)]
-pub struct gfc__MeshInstance__vftable {
-    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: u32) -> *mut (),
-    pub lockMesh:
-        unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
-    pub compute: unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
-    pub unlockMesh:
-        unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
 }

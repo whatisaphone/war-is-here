@@ -32,6 +32,7 @@ symbols! {
     pub static gfc__Item___Class: *mut gfc__Class = Data(0x56bc10);
     pub static gfc__Singleton_gfc__TeleportHelper_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__TeleportHelper = Data(0x55e0ec);
     pub static gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__KGMeshCache = Data(0x5559f4);
+    pub static gfc__Singleton_gfc__HStringManager_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle: *mut gfc__HStringManager = Data(0x555b14);
     pub static gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle: *mut gfc__KGGraphics = Data(0xa1aec);
     pub static gfc__Singleton_gfc__ResourceManager_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__ResourceManager = Data(0xa4228);
     pub static gfc__Singleton_gfc__Darksiders_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle: *mut gfc__Darksiders = Data(0xa1afc);

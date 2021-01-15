@@ -5,6 +5,45 @@ use super::{types::*, types3::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct gfc__MeshInstance {
+    // gfc__IRefObject
+    pub vfptr: *const gfc__MeshInstance__vftable,
+    pub ReferenceCount: i32,
+    // gfc__MeshInstance
+    pub mLocked: bool,
+}
+
+unsafe impl UpcastToNop<gfc__IRefObject> for gfc__MeshInstance {}
+
+impl gfc__MeshInstance {
+    pub unsafe extern "thiscall" fn __vecDelDtor(&self, a1: u32) -> *mut () {
+        ((*self.vfptr).__vecDelDtor)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn lockMesh(&self, a1: *mut gfc__RenderNode) {
+        ((*self.vfptr).lockMesh)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn compute(&self, a1: *mut gfc__RenderNode) {
+        ((*self.vfptr).compute)(self as *const _ as *mut _, a1)
+    }
+
+    pub unsafe extern "thiscall" fn unlockMesh(&self, a1: *mut gfc__RenderNode) {
+        ((*self.vfptr).unlockMesh)(self as *const _ as *mut _, a1)
+    }
+}
+
+#[repr(C)]
+pub struct gfc__MeshInstance__vftable {
+    pub __vecDelDtor: unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: u32) -> *mut (),
+    pub lockMesh:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
+    pub compute: unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
+    pub unlockMesh:
+        unsafe extern "thiscall" fn(this: *mut gfc__MeshInstance, _: *mut gfc__RenderNode),
+}
+
+#[repr(C)]
 pub struct gfc__Vector_gfc__AutoRef_gfc__RegionCell__0_gfc__CAllocator_ {
     pub mData: *mut gfc__AutoRef_gfc__RegionCell_,
     pub mSize: i32,
@@ -1170,6 +1209,13 @@ pub struct gfc__KGGraphics__vftable {
 }
 
 #[repr(C)]
+pub struct gfc__Vector_gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_ {
+    pub mData: *mut gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair,
+    pub mSize: i32,
+    pub mCapacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct gfc__DynamicRenderNode {
     pub mNext: *mut gfc__DynamicRenderNode,
     pub mPrev: *mut gfc__DynamicRenderNode,
@@ -1426,6 +1472,15 @@ pub struct gfc__Vector4Parameter__vftable {
     pub preload: unsafe extern "thiscall" fn(this: *mut gfc__Vector4Parameter, _: i32),
     pub clone:
         unsafe extern "thiscall" fn(this: *const gfc__Vector4Parameter) -> *mut gfc__Parameter,
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator_ {
+    pub mHashSize: u32,
+    pub mpHashTable: *mut u32,
+    pub mPairs: gfc__Vector_gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair_0_gfc__CAllocator_,
+    pub mNextAvailable: u32,
+    pub mCount: u32,
 }
 
 #[repr(C)]
@@ -13943,49 +13998,6 @@ pub struct hkUFloat8 {
 #[repr(C)]
 pub struct hkArrayBase_hkpSimulationIsland___ {
     pub m_data: *mut *mut hkpSimulationIsland,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkVariant {
-    pub m_object: *mut (),
-    pub m_class: *const hkClass,
-}
-
-#[repr(C)]
-pub struct hkArrayBase_hkSimpleProperty_ {
-    pub m_data: *mut hkSimpleProperty,
-    pub m_size: i32,
-    pub m_capacityAndFlags: i32,
-}
-
-#[repr(C)]
-pub struct hkpContactPointProperties {
-    // hkpSolverResults
-    pub m_impulseApplied: f32,
-    pub m_internalSolverData: f32,
-    // hkContactPointMaterial
-    pub m_userData: u32,
-    pub m_friction: hkUFloat8,
-    pub m_restitution: u8,
-    pub m_maxImpulse: hkUFloat8,
-    pub m_flags: u8,
-    // hkpContactPointProperties
-    pub m_internalDataA: f32,
-}
-
-unsafe impl UpcastToNop<hkpSolverResults> for hkpContactPointProperties {}
-
-unsafe impl UpcastTo<hkContactPointMaterial> for hkpContactPointProperties {
-    fn upcast_to(p: *const Self) -> *const hkContactPointMaterial {
-        (p as usize + 0x8) as *const _
-    }
-}
-
-#[repr(C)]
-pub struct hkArrayBase_int_ {
-    pub m_data: *mut i32,
     pub m_size: i32,
     pub m_capacityAndFlags: i32,
 }

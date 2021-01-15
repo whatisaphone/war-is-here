@@ -28,6 +28,7 @@ pub unsafe fn bind(args: &BindArgs) {
         data,
         gfc__Singleton_gfc__KGMeshCache_gfc__CreateStatic_gfc__DefaultLifetime___InstanceHandle
     );
+    bind!(data, gfc__Singleton_gfc__HStringManager_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle);
     bind!(data, gfc__Singleton_gfc__KGGraphics_gfc__CreateStatic_gfc__SingletonLongevity__DieLast___InstanceHandle);
     bind!(
         data,

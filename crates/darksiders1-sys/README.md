@@ -75,6 +75,7 @@ pdbindgen \
     -i '^gfc::Singleton<gfc::ClassRegistry,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::DSUIManager,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Darksiders,.+>::InstanceHandle$' \
+    -i '^gfc::Singleton<gfc::HStringManager,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGGraphics,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::KGMeshCache,.+>::InstanceHandle$' \
     -i '^gfc::Singleton<gfc::Object3DCache,.+>::InstanceHandle$' \

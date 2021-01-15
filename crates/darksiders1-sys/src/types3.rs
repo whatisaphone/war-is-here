@@ -5,6 +5,49 @@ use super::{types::*, types2::*, types4::*};
 use pdbindgen_runtime::{UpcastTo, UpcastToNop};
 
 #[repr(C)]
+pub struct hkVariant {
+    pub m_object: *mut (),
+    pub m_class: *const hkClass,
+}
+
+#[repr(C)]
+pub struct hkArrayBase_hkSimpleProperty_ {
+    pub m_data: *mut hkSimpleProperty,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
+pub struct hkpContactPointProperties {
+    // hkpSolverResults
+    pub m_impulseApplied: f32,
+    pub m_internalSolverData: f32,
+    // hkContactPointMaterial
+    pub m_userData: u32,
+    pub m_friction: hkUFloat8,
+    pub m_restitution: u8,
+    pub m_maxImpulse: hkUFloat8,
+    pub m_flags: u8,
+    // hkpContactPointProperties
+    pub m_internalDataA: f32,
+}
+
+unsafe impl UpcastToNop<hkpSolverResults> for hkpContactPointProperties {}
+
+unsafe impl UpcastTo<hkContactPointMaterial> for hkpContactPointProperties {
+    fn upcast_to(p: *const Self) -> *const hkContactPointMaterial {
+        (p as usize + 0x8) as *const _
+    }
+}
+
+#[repr(C)]
+pub struct hkArrayBase_int_ {
+    pub m_data: *mut i32,
+    pub m_size: i32,
+    pub m_capacityAndFlags: i32,
+}
+
+#[repr(C)]
 pub struct hkpConstraintData__RuntimeInfo {
     pub m_sizeOfExternalRuntime: i32,
     pub m_numSolverResults: i32,
@@ -8537,6 +8580,14 @@ pub struct gfc__InsRun__vftable {
 pub struct gfc__InsRun__CachedEnv {
     pub PC: i32,
     pub Env: gfc__AutoRef_gfc__Environment_,
+}
+
+#[repr(C)]
+pub struct gfc__HashTable_unsigned___int64_gfc__HStringManager__StringRef_gfc__Hash_unsigned_long_unsigned___int64__gfc__CAllocator___KeyValuePair
+{
+    pub mNext: u32,
+    pub mKey: u64,
+    pub mValue: gfc__HStringManager__StringRef,
 }
 
 #[repr(C)]
@@ -24079,59 +24130,4 @@ pub struct hkJobQueue__DynamicData {
     #[cfg(pdb_issue = "unimplemented class layout")]
     pub m_jobQueue: compile_error!("unimplemented class layout"),
     __pdbindgen_padding: [u8; 412],
-}
-
-#[repr(C)]
-pub struct hkJobQueue__CustomJobTypeSetup {
-    pub m_jobType: hkJobType,
-    pub m_jobSubType: u8,
-    pub m_threadId: i32,
-}
-
-#[repr(C)]
-pub struct hkSweptTransformf {
-    pub m_centerOfMass0: hkVector4f,
-    pub m_centerOfMass1: hkVector4f,
-    pub m_rotation0: hkQuaternionf,
-    pub m_rotation1: hkQuaternionf,
-    pub m_centerOfMassLocal: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkMotionState {
-    pub m_transform: hkTransformf,
-    pub m_sweptTransform: hkSweptTransformf,
-    pub m_deltaAngle: hkVector4f,
-    pub m_objectRadius: f32,
-    pub m_linearDamping: hkHalf,
-    pub m_angularDamping: hkHalf,
-    pub m_timeFactor: hkHalf,
-    pub m_maxLinearVelocity: hkUFloat8,
-    pub m_maxAngularVelocity: hkUFloat8,
-    pub m_deactivationClass: u8,
-}
-
-#[repr(C)]
-pub struct hkQuaternionf {
-    pub m_vec: hkVector4f,
-}
-
-#[repr(C)]
-pub struct hkSimdFloat32 {
-    #[cfg(pdb_issue = "unimplemented type kind")]
-    pub m_real: compile_error!("unimplemented type kind"),
-    __pdbindgen_padding: [u8; 16],
-}
-
-#[repr(C)]
-pub struct hkVector4f {
-    #[cfg(pdb_issue = "unimplemented type kind")]
-    pub m_quad: compile_error!("unimplemented type kind"),
-    __pdbindgen_padding: [u8; 16],
-}
-
-#[repr(C)]
-pub struct hkCustomAttributes {
-    pub m_attributes: *const hkCustomAttributes__Attribute,
-    pub m_numAttributes: i32,
 }
