@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- **/dump_hstrings** command which dumps the string table to a file
+
 ## v0.3.0 – 2020-11-12
 
 ### Changed
