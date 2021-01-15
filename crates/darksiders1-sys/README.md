@@ -105,7 +105,7 @@ pdbindgen \
     -i '^gfc::WorldGroup::_Class$' \
     -i '^gfc::WorldObject::_Class$' \
     -i '^gfc::WorldObject::attachToObject$' \
-    -i '^gfc::WorldObject::removeObjectFromWorld' \
+    -i '^gfc::WorldObject::removeObjectFromWorld$' \
     -i '^gfc::WorldRegion::getLayer$' \
     -i '^gfc::WorldRegion::preload$' \
     -i '^gfc::WorldRegion::removeFromWorld$' \
