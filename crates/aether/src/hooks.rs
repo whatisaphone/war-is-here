@@ -119,6 +119,7 @@ mod hook {
             fps,
             infinite_jump,
             log_events,
+            show_bird_kills,
             show_collision,
             show_player_pos,
             spawn_humans,
@@ -151,6 +152,7 @@ mod hook {
         fps::draw(renderer);
         show_player_pos::draw(renderer);
         show_collision::draw(renderer);
+        show_bird_kills::draw(renderer);
     }
 
     // Return `false` to swallow the event, or `true` to continue processing

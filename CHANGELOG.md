@@ -4,7 +4,8 @@
 
 ### Added
 
-- **/dump_hstrings** command which dumps the string table to a file
+- **/dump_hstrings** command, which dumps the string table to a file
+- **/show_bird_kills** command, which shows the number of kills while on the bird
 
 ## v0.3.0 – 2020-11-12
 

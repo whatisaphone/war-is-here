@@ -5,6 +5,10 @@ struct_wrapper!(PlayerStatTracker, target::gfc__PlayerStatTracker);
 struct_wrapper_super!(PlayerStatTracker, gfc::Object);
 
 impl PlayerStatTracker {
+    pub fn number_of_kills_on_bird(&self) -> u32 {
+        self.inner.mNumberOfKillsOnBird
+    }
+
     pub fn total_game_time(&self) -> u32 {
         self.inner.mTotalGameTime
     }

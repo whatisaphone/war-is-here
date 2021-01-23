@@ -7,6 +7,12 @@ use darksiders1_sys::target;
 struct_wrapper!(WorldRegionData, target::gfc__WorldRegionData);
 struct_wrapper_super!(WorldRegionData, gfc::Object);
 
+impl WorldRegionData {
+    pub fn name(&self) -> &gfc::HString {
+        self.inner.mName.lift_ref()
+    }
+}
+
 struct_wrapper!(World, target::gfc__World);
 struct_wrapper_super!(World, gfc::Object);
 

@@ -10,6 +10,7 @@ pub mod load_package;
 pub mod log_events;
 pub mod move_player;
 pub mod pickup_item;
+pub mod show_bird_kills;
 pub mod show_collision;
 pub mod show_player_pos;
 pub mod show_triggers;
@@ -27,13 +28,13 @@ pub enum RunResult {
 // Hide "/shutdown" since it doesn't work via GUI
 const HELP: &str = "\
 Available commands:
-/clear                /infinite_jump  /show_collision
-/console              /load_map_menu  /show_player_pos
-/draw_triggers        /load_package   /spawn_humans
-/draw_triggers_round  /log_events     /spawn_object
-/editor_mode          /mark_triggers  /spawn_static_object
-/fps                  /move_player    /teleport
-/help                 /pickup_item
+/clear                /infinite_jump  /show_bird_kills
+/console              /load_map_menu  /show_collision
+/draw_triggers        /load_package   /show_player_pos
+/draw_triggers_round  /log_events     /spawn_humans
+/editor_mode          /mark_triggers  /spawn_object
+/fps                  /move_player    /spawn_static_object
+/help                 /pickup_item    /teleport
 ";
 
 pub const COMMANDS: &[&str] = &[
@@ -52,6 +53,7 @@ pub const COMMANDS: &[&str] = &[
     "/mark_triggers",
     "/move_player",
     "/pickup_item",
+    "/show_bird_kills",
     "/show_collision",
     "/show_player_pos",
     // Skip "/shutdown" since it doesn't work via GUI
@@ -80,6 +82,7 @@ pub fn run(message: &[u8]) -> RunResult {
         "mark_triggers" => show_triggers::run_mark(message).into(),
         "move_player" => move_player::run(message).into(),
         "pickup_item" => pickup_item::run(message).into(),
+        "show_bird_kills" => show_bird_kills::run(message).into(),
         "show_collision" => show_collision::run(message).into(),
         "show_player_pos" => show_player_pos::run(message).into(),
         "shutdown" => RunResult::Shutdown,

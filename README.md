@@ -79,6 +79,10 @@ Make sure you have the Steam version of Darksiders Warmastered edition. Other ve
   /pickup_item weapon_enhancements/common_bane
   ```
 
+- **/show_bird_kills**
+
+  Draw a kill counter during the autoscroller. This is the same counter used for the Aerial Predator achievement (which you earn for 160 kills).
+
 - **/show_collision**
 
   This is currently broken and will crash the game.
