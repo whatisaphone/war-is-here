@@ -20,6 +20,7 @@ pub fn run(_command: &str) -> &'static str {
     }
 }
 
+#[allow(clippy::cast_precision_loss)]
 pub fn draw(renderer: &gfc::UIRenderer) {
     let mut counter = COUNTER.lock();
     counter.tick(Instant::now());
@@ -28,16 +29,17 @@ pub fn draw(renderer: &gfc::UIRenderer) {
         return;
     }
 
-    let fps = match counter.fps() {
+    let text = match counter.fps() {
         Some(n) => format!("{} fps", n),
         None => return,
     };
 
+    let viewport = gfc::KGGraphics::get_instance().get_viewport();
+
     renderer.begin(true);
     renderer.set_material(renderer.solid_material());
 
-    // Assume a resolution of 1280x720
-    bitmap_font::draw_string(renderer, 1168.0, 10.0, 2, &fps);
+    bitmap_font::draw_string(renderer, (viewport.width() - 128) as f32, 10.0, 2, &text);
 
     renderer.end();
 }

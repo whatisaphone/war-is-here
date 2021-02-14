@@ -16,6 +16,7 @@ pub fn run(_command: &str) -> &'static str {
     }
 }
 
+#[allow(clippy::cast_precision_loss)]
 pub fn draw(renderer: &gfc::UIRenderer) {
     if !ENABLED.load(Ordering::SeqCst) {
         return;
@@ -43,13 +44,14 @@ pub fn draw(renderer: &gfc::UIRenderer) {
         return;
     }
 
+    let viewport = gfc::KGGraphics::get_instance().get_viewport();
+
     renderer.begin(true);
     renderer.set_material(renderer.solid_material());
 
-    // Assume a resolution of 1280x720
     bitmap_font::draw_string(
         renderer,
-        1000.0,
+        (viewport.width() - 320) as f32,
         120.0,
         2,
         &format!("Kills: {}", player.stat_tracker().number_of_kills_on_bird()),
