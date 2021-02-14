@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.3.2 – 2021-02-14
+
+### Added
+
+- A way to draw all load region triggers no matter their distance: `/draw_triggers all_load_regions`
+
+### Changed
+
+- Moved `/draw_triggers_round` to a subcommand of /draw_triggers: `/draw_triggers round`
+
+### Fixed
+
+- Different screen resolutions are now supported, instead of always assuming 1280x720
+- Trigger labels are centered more accurately
+
 ## v0.3.1 – 2021-01-22
 
 ### Added
