@@ -2,14 +2,15 @@
 
 use crate::{
     commands::{console, log_events, show_triggers},
-    darksiders1::keen,
+    darksiders1::{gfc, keen},
+    ui::draw::check_screen_resolution_change,
     utils::marker::UnsafeSend,
 };
 use darksiders1_sys::target;
 use imgui::Context;
 use parking_lot::Mutex;
 use std::{
-    convert::TryFrom,
+    convert::{TryFrom, TryInto},
     sync::atomic::{AtomicBool, AtomicI32, Ordering},
     time::Instant,
 };
@@ -18,10 +19,6 @@ mod draw;
 mod fonts;
 mod keyboard;
 mod mouse;
-
-// TODO: don't hardcode
-const SCREEN_WIDTH: u16 = 1280;
-const SCREEN_HEIGHT: u16 = 720;
 
 /// This is basically a reference count of how many components currently request
 /// the UI to be enabled.
@@ -68,9 +65,13 @@ fn init() {
     let mut imgui = Context::create();
     imgui.set_ini_filename(None);
 
+    let viewport = gfc::KGGraphics::get_instance().get_viewport();
+    let screen_width: u16 = viewport.width().try_into().unwrap();
+    let screen_height: u16 = viewport.height().try_into().unwrap();
+
     let io = imgui.io_mut();
     keyboard::init(io);
-    io.display_size = [SCREEN_WIDTH.into(), SCREEN_HEIGHT.into()];
+    io.display_size = [screen_width.into(), screen_height.into()];
 
     // Make the background semi-transparent
     imgui.style_mut().colors[imgui::StyleColor::WindowBg as usize][3] = 0.75;
@@ -82,7 +83,7 @@ fn init() {
     }
     drop(fonts);
 
-    let draw = draw::init(SCREEN_WIDTH, SCREEN_HEIGHT, &mut imgui);
+    let draw = draw::init(screen_width, screen_height, &mut imgui);
 
     let mut guard = STATE.lock();
     *guard = UnsafeSend::new(Some(State {
@@ -101,7 +102,13 @@ fn run_frame() {
     let mut guard = STATE.lock();
     let state = unsafe { guard.as_mut() }.as_mut().unwrap();
 
+    let viewport = gfc::KGGraphics::get_instance().get_viewport();
+    let screen_width: u16 = viewport.width().try_into().unwrap();
+    let screen_height: u16 = viewport.height().try_into().unwrap();
+    check_screen_resolution_change(&mut state.draw, screen_width, screen_height);
+
     let io = state.imgui.io_mut();
+    io.display_size = [viewport.width() as f32, viewport.height() as f32];
     let now = Instant::now();
     io.update_delta_time(now - state.last_frame);
     state.last_frame = now;
@@ -109,7 +116,7 @@ fn run_frame() {
     let ui = state.imgui.frame();
 
     console::draw(&ui);
-    log_events::draw(&ui);
+    log_events::draw(&ui, screen_width, screen_height);
     show_triggers::draw(&ui);
 
     let draw_data = ui.render();

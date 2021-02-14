@@ -191,6 +191,22 @@ pub fn init(screen_width: u16, screen_height: u16, imgui: &mut Context) -> State
     }
 }
 
+pub fn check_screen_resolution_change(state: &mut State, screen_width: u16, screen_height: u16) {
+    let (prev_width, prev_height, _, _) = state.imgui_render_target.get_dimensions();
+    // If the resolution did not change, there is nothing to do.
+    if (screen_width, screen_height) == (prev_width, prev_height) {
+        return;
+    }
+
+    // Otherwise, recreate the texture
+    let (_imgui_texture, imgui_shader_resource, imgui_render_target) = state
+        .gfx_factory
+        .create_render_target(screen_width, screen_height)
+        .unwrap();
+    state.imgui_shader_resource = imgui_shader_resource;
+    state.imgui_render_target = imgui_render_target;
+}
+
 pub fn draw(state: &mut State, draw_data: &DrawData) {
     state
         .imgui_encoder

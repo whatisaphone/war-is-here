@@ -10,12 +10,6 @@ use std::{
     sync::atomic::{AtomicBool, Ordering},
 };
 
-// TODO: don't hardcode screen size
-const WINDOW_LEFT: f32 = 0.0;
-const WINDOW_TOP: f32 = 480.0;
-const WINDOW_WIDTH: f32 = 1280.0;
-const WINDOW_HEIGHT: f32 = 240.0;
-
 const TIMESTAMP_COLOR: [f32; 4] = [1.0, 0.75, 0.0, 1.0];
 
 static ENABLED: AtomicBool = AtomicBool::new(false);
@@ -48,7 +42,7 @@ pub fn toggle_enabled() -> bool {
     enabled
 }
 
-pub fn draw(ui: &imgui::Ui<'_>) {
+pub fn draw(ui: &imgui::Ui<'_>, screen_width: u16, screen_height: u16) {
     if !ENABLED.load(Ordering::SeqCst) {
         return;
     }
@@ -76,9 +70,16 @@ pub fn draw(ui: &imgui::Ui<'_>) {
         None
     };
 
+    let scrollback_height = 240;
     imgui::Window::new(im_str!("Event Log"))
-        .position([WINDOW_LEFT, WINDOW_TOP], imgui::Condition::Always)
-        .size([WINDOW_WIDTH, WINDOW_HEIGHT], imgui::Condition::Always)
+        .position(
+            [0.0, (screen_height - scrollback_height).into()],
+            imgui::Condition::Always,
+        )
+        .size(
+            [screen_width.into(), scrollback_height.into()],
+            imgui::Condition::Always,
+        )
         .title_bar(false)
         .resizable(false)
         .build(ui, || {
