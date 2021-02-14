@@ -24,7 +24,7 @@ pub fn draw_string(renderer: &gfc::UIRenderer, x: f32, y: f32, scale: i32, s: &s
     }
 }
 
-pub fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, scale: i32, ch: char) {
+fn draw_char(renderer: &gfc::UIRenderer, x: f32, y: f32, scale: i32, ch: char) {
     let ch = if (ch as usize) < 256 {
         ch as usize
     } else {
