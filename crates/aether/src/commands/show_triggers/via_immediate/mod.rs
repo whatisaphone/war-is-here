@@ -15,7 +15,18 @@ use imgui::im_str;
 mod collect;
 mod draw;
 
-pub fn draw(ui: &imgui::Ui<'_>, draw_cylinders_spheres: bool) {
+pub struct DrawOptions {
+    pub draw_cylinders_spheres: bool,
+    pub all_load_regions: bool,
+}
+
+pub fn draw(
+    ui: &imgui::Ui<'_>,
+    DrawOptions {
+        draw_cylinders_spheres,
+        all_load_regions,
+    }: DrawOptions,
+) {
     let player = match gfc::OblivionGame::get_instance().get_player_actor() {
         Some(player) => player,
         None => return,
@@ -24,9 +35,10 @@ pub fn draw(ui: &imgui::Ui<'_>, draw_cylinders_spheres: bool) {
 
     let transformer = CoordinateTransformer::create();
 
+    let num_load_regions = if all_load_regions { 1000 } else { 1 };
     // Sort objects into multiple groups, so we can have categories of objects which
     // are always drawn.
-    let mut load_regions = KeepMinCountOrMinPriority::new(1);
+    let mut load_regions = KeepMinCountOrMinPriority::new(num_load_regions);
     let mut others = KeepMinCountOrMinPriority::new(3);
 
     walk_world(&mut |object| {

@@ -25,16 +25,17 @@ pub enum RunResult {
     Shutdown,
 }
 
+// Hide "/draw_triggers_round" since the /draw_triggers subcommand is preferred.
 // Hide "/shutdown" since it doesn't work via GUI
 const HELP: &str = "\
 Available commands:
-/clear                /infinite_jump  /show_bird_kills
-/console              /load_map_menu  /show_collision
-/draw_triggers        /load_package   /show_player_pos
-/draw_triggers_round  /log_events     /spawn_humans
-/editor_mode          /mark_triggers  /spawn_object
-/fps                  /move_player    /spawn_static_object
-/help                 /pickup_item    /teleport
+/clear          /load_map_menu    /show_collision
+/console        /load_package     /show_player_pos
+/draw_triggers  /log_events       /spawn_humans
+/editor_mode    /mark_triggers    /spawn_object
+/fps            /move_player      /spawn_static_object
+/help           /pickup_item      /teleport
+/infinite_jump  /show_bird_kills
 ";
 
 pub const COMMANDS: &[&str] = &[
@@ -69,8 +70,8 @@ pub fn run(message: &[u8]) -> RunResult {
     #[allow(clippy::unit_arg)]
     match command {
         "console" => console::run(message).into(),
-        "draw_triggers" => show_triggers::run_draw(message).into(),
-        "draw_triggers_round" => show_triggers::run_draw_round(message).into(),
+        "draw_triggers" => show_triggers::run(message).into(),
+        "draw_triggers_round" => show_triggers::run_toggle_round(message).into(),
         "dump_hstrings" => dump_hstrings::run(message).into(),
         "editor_mode" => editor_mode::run(message).into(),
         "fps" => fps::run(message).into(),
