@@ -56,18 +56,18 @@ pub fn draw_object(
             });
         };
 
-        push_label(object.class().name().c_str(), [0.0, 0.0]);
-        push_label(object.get_name().c_str(), [0.0, line_height]);
+        push_label(object.class().name().c_str(), [0.0, -line_height]);
+        push_label(object.get_name().c_str(), [0.0, 0.0]);
         match object.shape() {
             gfc::PhysicsShapeObject__Detect::Aabb | gfc::PhysicsShapeObject__Detect::Box => {}
             gfc::PhysicsShapeObject__Detect::Sphere => {
                 if !draw_cylinders_spheres {
-                    push_label(cstr!("sphere"), [0.0, line_height * 2.0]);
+                    push_label(cstr!("sphere"), [0.0, line_height]);
                 }
             }
             gfc::PhysicsShapeObject__Detect::Cylinder => {
                 if !draw_cylinders_spheres {
-                    push_label(cstr!("cylinder"), [0.0, line_height * 2.0]);
+                    push_label(cstr!("cylinder"), [0.0, line_height]);
                 }
             }
         }
